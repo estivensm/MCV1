@@ -1,0 +1,263 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,800);
+
+body{
+  font-family: 'Roboto', sans-serif;
+
+}
+.admin{
+        background:#31373d;
+}
+.bar-top{
+  background-color: #8c8c8c !important;
+  border-bottom: 0 !important;
+  color: #d3dbe2 !important;
+  margin-bottom: 0 !important;
+
+  a{
+    color: #d3dbe2 !important;
+  }
+}
+
+.sidebar{
+  color: #d3dbe2 !important;
+  padding-top: 40px;
+
+  a{
+    color: #d3dbe2;
+  }
+}
+
+.main{
+      background: #ecf0f1 !important;
+
+  min-height: 750px !important;
+  
+
+}
+
+.dashboard {
+  .ad{
+    margin: 0px 0 10px 0;
+  }
+
+  .actuales hr{ margin-top: 10px;}
+
+}
+
+.course{
+  .calificacion h4{margin: 0;}
+  //.calificacion .col-md-2{ padding: 0 5px;}
+}
+.active
+{
+  background: #1bbdd0;
+  color:white!important;
+}
+
+
+
+.sidebar a:hover {
+    background: #1bbdd0!important;
+    color:white!important;
+    }
+
+    .cuerpo
+    {
+    padding:30px !important;
+    }
+
+.nav .open>a:hover, .nav .open>a:focus 
+{
+  background: #1bbdd0!important;
+    color:white!important;
+}
+
+.page-header
+{
+  margin:0px 0px 20px!important;
+}
+h1
+{
+  color:gray!important;
+  margin:0px;
+}
+.ic 
+{
+  font-size: 18px !important;
+    color: white;
+    margin-right:3px;
+    span
+    {
+      font-size:14px!important;
+    }
+}
+
+.index1
+{
+      background: white !important;
+
+}
+.logo 
+{
+  background:black;
+
+    p
+    {
+      font-family: 'Days One', sans-serif;
+    
+    font-size: 21px;
+    margin: 0px;
+    color: #dadada;
+}
+
+
+   span
+    {
+      color:#22bdc8;
+
+    }
+}
+
+.logop
+{
+
+  font-family: 'Days One', sans-serif;
+    text-align:center;
+    font-size: 2em;
+    margin: 0px;
+        font-weight: 900;
+    color: #b9b9b9;
+span
+    {
+      color:#22bdc8;
+
+    }
+
+}
+.sign_form
+{
+  margin-top:100px;
+}
+
+.titulo-form
+{
+   font-family: 'Days One', sans-serif;
+    text-align:center;
+    font-size: 2em;
+    margin: 0px;
+       
+    color: #b9b9b9;
+}
+.title-table
+{
+  font-size: 2em;
+  padding:20px;
+  color: #1bbdd0;
+  font-family: 'Days One', sans-serif;
+}
+
+.contenido
+{
+  background:white;
+}
+
+.tr-table
+{
+background: #f2f2f2;
+    color: #7a7a7a;
+    font-weight:bold;
+
+    }
+    .table
+    {
+
+        color: #7a7a7a;
+        font-size:13px;
+
+
+
+    }
+
+    .tbody td
+        {
+        vertical-align: middle !important;
+        }
+
+
+    .opciones
+    {
+    color:#7a7a7a;
+    margin-right:10px;
+    font-size:16px;
+    }
+     .opciones:focus
+    {
+    color:#7a7a7a;
+    
+    }
+     .opciones:hover
+    {
+   text-decoration:none;
+    }
+
+
+    .tbody img
+    {
+      width:50px;
+      border-radius:60px;
+    }
+    .sort 
+    {
+    display:inline-block;
+    color:#7a7a7a;
+    }
+    .sort a
+    {
+    
+    color:#7a7a7a;
+    font-size:13px;
+    
+    margin-right:5px;
+    }
+    .login1
+    {
+    background:white;
+      p
+      {
+        padding:10px;
+      }
+      label
+      {
+      color:#7a7a7a;
+      }
+    }
+
+    .avatar 
+    {
+    text-align:center;
+      img
+      {
+        
+        border-radius:60px;
+      }
+    }
+
+    .menup
+    {
+    font-size:13px;
+    }
+
+    .submenu-main
+    {
+    background:white;
+
+      p
+        {
+        font-size: 1.5em;
+      color: #c1c1c1;;
+        margin-left:20px;
+        font-family: 'Days One', sans-serif;
+
+
+        }
+    }

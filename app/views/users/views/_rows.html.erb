@@ -1,0 +1,36 @@
+
+    <% @users.each do |user| %>
+     <tr class="<%= user.id %>">
+     <td><%= user.avatar? ? image_tag(user.avatar_url(:thumb)) : image_tag("/assets/avatar.jpg")  %></td>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= user.admin_user %></td>
+      <td><%= user.rol %></td>
+        <td><%= user.name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.cargos.last.name if user.cargos.last != nil  %></td>
+        
+    
+        <td>
+            <%= link_to  show_user_path(user), :class => "opciones" do %>
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    
+                <% end %>
+                <%= link_to  edit_user_path(user),remote: true,  :class => "opciones" do %>
+                    
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                <% end %>
+                <%= link_to  delete_user_path(user),  remote: true,method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+
+                    
+                <% end %>
+
+
+   
+        </td>
+       
+      </tr>
+      
+    <% end %>

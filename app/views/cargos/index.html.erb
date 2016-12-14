@@ -1,0 +1,56 @@
+<div class = "container-fluid contenido">
+  <div class = "row">
+  <div class = "col-md-12">
+
+  <div class = "row title-table">
+  <div class = "col-md-10">
+  <p >Cargos</p>
+  </div>
+  <div class = "col-md-2">
+  <%= link_to 'Nuevo', new_cargo_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" %>
+</button>
+  </div>
+
+</div>
+
+<table class="table">
+  <thead>
+    <tr class = "tr-table">
+     <th>id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Proceso</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cargos.each do |cargo| %>
+      <tr>
+       <td><%= cargo.id %></td>
+        <td><%= cargo.name %></td>
+        <td><%= cargo.description %></td>
+        <td><%= cargo.proceso_id %></td>
+        <td><%= cargo.users.first.id if cargo.users.last != nil  %></td>
+        <td><%= link_to  cargo, :class => "opciones" do %>
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    
+                <% end %>
+                <%= link_to  edit_cargo_path(cargo), remote:true, :class => "opciones" do %>
+                    
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                <% end %>
+                <%= link_to cargo,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+
+                    
+                <% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

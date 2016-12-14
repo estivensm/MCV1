@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+  <title><%= content_for?(:title) ? yield(:title) : "Rails College" %></title>
+  <%= csrf_meta_tags %>
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+  <![endif]-->
+
+  <%= stylesheet_link_tag "application", :media => "all" %>
+
+  <!-- For third-generation iPad with high-resolution Retina display: -->
+  <!-- Size should be 144 x 144 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+  <!-- For iPhone with high-resolution Retina display: -->
+  <!-- Size should be 114 x 114 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+  <!-- For first- and second-generation iPad: -->
+  <!-- Size should be 72 x 72 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+  <!-- Size should be 57 x 57 pixels -->
+  <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+  <!-- For all other devices -->
+  <!-- Size should be 32 x 32 pixels -->
+  <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+  <%= javascript_include_tag "application", 'data-turbolinks-track': 'reload' %>
+
+
+</head>
+<body class="admin">
+
+
+
+
+
+<div id="content" class="container-fluid">
+  <div class="row">
+    <div class="col-xs-2 col-md-2 col-lg-2 sidebar barleft">
+      <div class="sidebar-nav menup">
+
+        <ul class="nav nav-pills nav-stacked">
+       <li class = "logo">
+
+              <p>Visual<span>iso</span>ft</p>
+              </li>
+              <li >
+            <% @active = "active" if hola %>
+                <%= link_to users_index_path,:class => "configuracion #{@active}"  do %>
+                    <i class="fa fa-cogs ic" aria-hidden="true"></i>
+                    <span class="hidden-xs">Configuracion</span>
+                <% end %>
+              </li>
+         <li>
+                <%= link_to root_path,:class => "hallazgos" do %>
+<i class="fa fa-search ic" aria-hidden="true"></i>
+                    <span class="hidden-xs">Hallazgos</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path,:class => "plan" do %>
+                    <span class="fa fa-book ic"></span>
+                    <span class="hidden-xs">Plan de Accion</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path,:class => "costos" do %>
+                    <i class="fa fa-money ic" aria-hidden="true"></i>
+
+                    <span class="hidden-xs">Costos de Gestion</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to root_path,:class => "indicadores" do %>
+                    <i class="fa fa-line-chart ic" aria-hidden="true"></i>
+
+                    <span class="hidden-xs">Indicadores y Analisis</span>
+                <% end %>
+              </li>
+        
+
+
+             
+  
+             
+               <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i style = "margin:0px 10px 0px 0px;" class="fa fa-user ic" aria-hidden="true"></i><%=current_user.name %><span class="caret"></span></a>
+          <ul style = "width:200px;" class="dropdown-menu">
+            
+                      
+
+        <li >
+         <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+                    <span class="fa fa-sign-out"></span>
+                    <span class="hidden-xs ">Cerrar Sesión</span>
+<% end %>
+<%= link_to  edit_user_registration_path, :class => "indicadores" do %>
+                    <span class="fa fa-sign-out"></span>
+                    <span class="hidden-xs ">Editar Usuario</span>
+                <% end %></li>
+       
+           
+
+
+       
+        
+          </ul>
+         
+        </li>
+
+         
+ 
+          <li class="avatar" style = "display:none"><%= current_user.avatar? ? image_tag(current_user.avatar_url(:thumb)) : image_tag("/assets/avatar.jpg")  %></li>
+          
+        </ul>
+      </div><!--/.well -->
+
+    </div><!--/sidebar-->
+
+    <div class="col-xs-10 col-md-10 col-lg-10 main">
+      <div class="row submenu-main">
+      <div class="col-md-3 submenu">
+        <p>Configuracion</p>
+      </div>
+      <div class="col-md-9 submenu">
+      <% sub_menu %>
+        <% if hola %>
+                <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+                    <i class="fa fa-building-o" aria-hidden="true"></i>
+
+                    <span class="hidden-xs">Empresa</span>
+                <% end %>
+                 <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    <span class="hidden-xs">Procesos</span>
+                <% end %>
+                <%= link_to cargos_path,:class => "#{@menu[2]}" do %>
+                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+
+                    <span class="hidden-xs">Cargos</span>
+                <% end %>
+                 <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+<i class="fa fa-share" aria-hidden="true"></i>
+                    <span class="hidden-xs">Fuentes</span>
+                <% end %>
+                <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+                    <i class="fa fa-gavel" aria-hidden="true"></i>
+                    <span class="hidden-xs">Normas</span>
+                <% end %>
+               <% if current_user.rol == "SuperAdmin" %>
+                <%= link_to users_index_path,:class => "#{@menu[3]}" do %>
+                    <span class="fa fa-users"></span>
+                    <span class="hidden-xs">Usuarios</span>
+                <% end %>
+                <% end %>
+                <% end %>
+      </div>
+        
+      </div>
+      <div class="row">
+      <div class="col-md-12 cuerpo">
+       <%= flash_messages %>
+      <%= yield %>
+ </div>
+        
+      </div>
+      
+    </div>
+
+  </div><!--/row-->
+
+
+
+</div> <!-- /container -->
+
+</body>
+</html>
+
+

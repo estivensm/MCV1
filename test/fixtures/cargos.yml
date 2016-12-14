@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: cargos
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :string
+#  proceso_id  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  proceso_id: 1
+
+two:
+  name: MyString
+  description: MyString
+  proceso_id: 1

@@ -1,0 +1,122 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "admin";
+@import "font-awesome";
+@import "chosen";
+
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus 
+{
+
+	background: white!important;
+}
+.nav>li>a {
+
+padding: 15px 15px;
+	}
+
+	.barleft
+	{
+		padding: 0px!important;
+	}
+
+	.nav>li
+	{
+		 
+	}
+
+	.logo img
+	{
+		width: 170px;
+	}
+	.logo
+	{
+	text-align: center;
+    padding: 10px;
+}
+.logov img
+	{
+		width: 130px;
+	}
+	.logov
+	{
+	text-align: center;
+    padding: 10px;
+    position: fixed!important;
+    bottom: 50px !important;
+}
+
+.btn-primary:visited {
+    color:white;
+}
+.btn-primary{
+    background: #1bbdd0;
+        border-color: #1bbdd0;
+}
+
+.btn-danger:visited {
+    color:white;
+}
+.submenu a
+{
+
+
+    margin-right: 15px;
+        color: #22bdc8;
+    padding: 10px;
+    border-radius: 3px;
+    font-size:13px;
+    
+}
+.submenu a:hover
+{
+
+
+   background: #1bbdd0;
+  color:white!important;
+  text-decoration:none;
+    
+}
+.submenu 
+{
+
+    padding: 10px;
+    background: white;
+    margin-top: 0px;
+    }
+
+   .nav-pills>li>a
+   {
+   	border-radius: 0px!important;
+   }
+
+.ribbon {
+ 
+  position: fixed!important;
+  bottom: 40px!important;
+  border:0px !important;
+  
+}
+.ribbon img {
+ 
+  width: 150px;
+}
+.pagination
+{
+  margin:5px !important;
+
+   
+      
+}
+
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus 
+
+{    background-color: #1bbdd0 !important;
+    border-color: #1bbdd0 !important;
+    color:white !important;}
+
+    .pagination > li > a, .pagination > li > span
+    {
+
+    color: #1bbdd0 !important;
+    }

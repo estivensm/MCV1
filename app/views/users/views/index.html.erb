@@ -1,0 +1,63 @@
+<div class = "container-fluid contenido">
+  <div class = "row">
+  <div class = "col-md-12">
+
+  <div class = "row title-table">
+  <div class = "col-md-10">
+  <p >Usuarios</p>
+  </div>
+  <div class = "col-md-2">
+  <%= link_to 'Nuevo', new_user_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" %>
+</button>
+  </div>
+
+</div>
+<%= will_paginate @users%>
+
+<table class="table">
+  <thead>
+    <tr class = "tr-table">
+    <td></td>
+    <td>Id </td>
+    <td>
+
+
+
+    <%= render partial: "options", locals: {row: "email", tipo1: "asc",tipo2: "desc"} %>
+                Email </td>
+    <td>adminid</td>
+     <td><%= render partial: "options", locals: {row: "rol", tipo1: "asc",tipo2: "desc"} %>rol</td>
+
+      <td><%= render partial: "options", locals: {row: "name", tipo1: "asc",tipo2: "desc"} %>Nombres</td>
+
+      <td><%= render partial: "options", locals: {row: "last_name", tipo1: "asc",tipo2: "desc"} %>Apellidos</td>
+       
+      <th >Cargo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody class = "tbody">
+  <%= render "rows" %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+
+    
+
+
+
+
+</div>
+</div>
+</div>
+  <script>
+
+   
+
+  </script>

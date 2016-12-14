@@ -1,0 +1,53 @@
+<div class = "container-fluid contenido">
+  <div class = "row">
+  <div class = "col-md-12">
+
+  <div class = "row title-table">
+  <div class = "col-md-10">
+  <p >Procesos</p>
+  </div>
+  <div class = "col-md-2">
+  <%= link_to 'Nuevo', new_proceso_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" %>
+</button>
+  </div>
+
+</div>
+
+<table class="table">
+  <thead>
+    <tr class = "tr-table">
+      <td>Nombre</td>
+      <td>Descripcion</td>
+      <td>User</td>
+      <td>Admin user</td>
+      <td colspan="3"></td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @procesos.each do |proceso| %>
+      <tr>
+        <td><%= proceso.name %></td>
+        <td><%= proceso.description %></td>
+        <td><%= proceso.user_id %></td>
+        <td><%= proceso.admin_user %></td>
+        <td><%= link_to  proceso, :class => "opciones" do %>
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    
+                <% end %>
+                <%= link_to  edit_proceso_path(proceso), remote:true, :class => "opciones" do %>
+                    
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                <% end %>
+                <%= link_to  proceso,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+
+                    
+                <% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

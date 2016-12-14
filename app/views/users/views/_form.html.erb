@@ -1,0 +1,53 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Crear Usuario</h4>
+      </div>
+<%= form_tag create_user_path, remote: true do %>
+  <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+    <%= label_tag :email %>
+    <%= email_field_tag :email,nil , class: "form-control formus" %>
+  </div>
+<div class="form-group">
+    <%= label_tag "Tipo de Documento" %><br />
+ 
+    <%= select_tag 'rol', options_for_select(["Admin", "Basico"]), {:class => 'form-control'}%>
+  </div>
+  <div class="form-group">
+    <%= label_tag "Cargo" %><br />
+ 
+    <%=select_tag 'cargo_ids', options_for_select(@cargos.collect{ |u| [u.name, u.id] }),{:class => "form-control"}%>
+  </div>
+  
+
+    <div class="form-group">
+    <%= label_tag :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= password_field_tag :password,nil,  class: "form-control formus" %>
+  </div>
+  <div class="field">
+    <%= label_tag :password_confirmation %><br />
+    <%= password_field_tag :password_confirmation, nil ,class: "form-control formus" %>
+  </div>
+<%= hidden_field_tag :admin_user ,current_user.id %>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= submit_tag "crear", class: 'btn btn-primary' %>
+      </div>
+<% end %>
+    </div>
+  </div>
+</div>

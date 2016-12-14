@@ -1,0 +1,44 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Crear Cargo</h4>
+      </div>
+<%= form_for(cargo) do |f| %>
+ <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name,  class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description,  class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :proceso_id %>
+   <%= f.select :proceso_id,
+    @procesos.map { |u| [u.name, u.id] },
+               { include_blank: false },
+               { class: 'form-control' }
+%>
+    
+  </div>
+
+<%= f.hidden_field :user_ids , :value => current_user.id %>
+
+  <div class="form-group">
+   <%= f.submit "Crear", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>
+    </div>
+      </div>
