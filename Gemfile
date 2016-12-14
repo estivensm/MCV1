@@ -35,6 +35,7 @@ gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'annotate'
 gem 'chosen-rails'
+gem 'fog', '~> 1.38'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
