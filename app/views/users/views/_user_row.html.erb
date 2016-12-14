@@ -1,11 +1,12 @@
 <tr class="<%= user.id %>">
-<td><%= user.avatar? ? image_tag(user.avatar_url(:thumb)) : image_tag("/assets/avatar.jpg")  %></td>
+<td><%= user.avatar? ? image_tag(user.avatar_url(:thumb)) : image_tag("/https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
       <td><%= user.id %></td>
       <td><%= user.email %></td>
       <td><%= user.admin_user %></td>
       <td><%= user.rol %></td>
       <td><%= user.name %></td>
       <td><%= user.last_name %></td>
+      <td><%= user.cargos.last.name if user.cargos.last != nil  %></td>
       <td><%= link_to  show_user_path(user), :class => "opciones" do %>
                     <i class="fa fa-eye" aria-hidden="true"></i>
                     
