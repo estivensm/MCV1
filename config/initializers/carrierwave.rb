@@ -1,8 +1,8 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider               => 'AWS',                        # required
-    :aws_access_key_id      => 'AKIAI5Q7NBRKUNC74IKQ',                        # required
-    :aws_secret_access_key  => 'n00vZM9rpgrOWzx1g0Jm+ePt9gpgs2nzAYjgaBXAP'                        # required
+    :aws_access_key_id      => 'AKIAJ3QDXZRZCMX4IGUQ',                        # required
+    :aws_secret_access_key  => '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'                         # required
   }
-  config.fog_directory  = "segundobk"                     # required
+  config.fog_directory  = "primerbk"                     # required
 end
