@@ -6,7 +6,7 @@ protected
 
   def configure_permitted_parameters
     [:account_update,:sign_up].each do |metodo|
-    devise_parameter_sanitizer.permit(metodo, keys: [:name,:last_name,:birthday,:document,:document_type,:admin_user,:rol,:avatar])
+    devise_parameter_sanitizer.permit(metodo, keys: [:name,:last_name,:birthday,:document,:document_type,:admin_user,:rol,:avatar,:cargo])
     end
   end
 
@@ -25,7 +25,7 @@ protected
       'application'
     elsif controller_name == 'registrations'
 
-        if action_name == "new" 
+        if action_name == "new" || action_name == "create"
             'application'
             else
             	'admin'

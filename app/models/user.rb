@@ -28,22 +28,33 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  before_save :add_adminid
+  after_create :add_adminid
+  before_save :add_adminid1
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
   has_many :procesos
   has_and_belongs_to_many :cargos
+  has_one :company
 
 
 
          def add_adminid
 
             if self.rol == "SuperAdmin"
-         	    self.admin_user = self.id
+         	     Company.create(name: "visualisoft", user_id: self.id)
          	end
          	puts self.id
          	
+         end
+         def add_adminid1
+
+            if self.rol == "SuperAdmin"
+              self.admin_user = self.id
+              
+          end
+          puts self.id
+          
          end
 end

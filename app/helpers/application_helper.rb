@@ -1,6 +1,13 @@
 module ApplicationHelper
 
 
+
+def company_x
+    @company = Company.where(user_id: current_user.id)
+    return @company.last.id
+end
+
+
 def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
@@ -21,7 +28,7 @@ def bootstrap_class_for flash_type
 
   def hola
     
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos"
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"
     return true
   else
     return false
@@ -43,7 +50,10 @@ def bootstrap_class_for flash_type
     return @menu
 
 end
-
-
+def cargos
+  u = User.find(current_user.id)
+@cargoss = u.cargos
+return @cargoss
+end
 	
 end

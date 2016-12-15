@@ -1,6 +1,6 @@
 <% if @cargo.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody').append('<%= j render "user_row", cargo: @cargo %>');
+  $('table tbody').append('<%= j render "user_row", cargo: @cargo,  %>');
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");

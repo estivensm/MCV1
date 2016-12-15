@@ -21,13 +21,14 @@
 <div class="form-group">
     <%= label_tag "Tipo de Documento" %><br />
  
-    <%= select_tag 'rol', options_for_select(["Admin", "Basico"]), {:class => 'form-control'}%>
+    <%= select_tag 'rol', options_for_select(["Admin", "Basico", "SuperAdmin"]), {:class => 'form-control'}%>
   </div>
 
- <div class="form-group">
+
+  <div class="form-group">
     <%= label_tag "Cargo" %><br />
  
-    <%=select_tag 'cargo_ids', options_for_select(@cargos.collect{ |u| [u.name, u.id] }),{:class => "form-control"}%>
+    <%=select_tag 'cargo', options_for_select(cargos.collect{ |u| [u.name, u.name] }),{:class => "form-control"}%>
   </div>
 
     <div class="form-group">

@@ -250,7 +250,7 @@ background: #f2f2f2;
     .submenu-main
     {
     background:white;
-
+    border-bottom: 1px solid #d4d4d4;
       p
         {
         font-size: 1.5em;
@@ -260,4 +260,20 @@ background: #f2f2f2;
 
 
         }
+    }
+    .show-user
+    {
+      p
+      {
+      color:gray;
+      }
+      h2
+      {
+      color:#1bbdd0;
+      }  
+      i
+      {
+      margin-right:20px;
+
+      }    
     }

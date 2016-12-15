@@ -74,7 +74,7 @@ end
 
 def create_user
 
-  @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol],cargo_ids:params[:cargo_ids])
+  @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol],cargo:params[:cargo])
   if @user.save
 
     redirect_to users_index_path
@@ -85,7 +85,7 @@ end
 def update_user
 
 @user = User.find(params[:id])
-@user.update(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol],cargo_ids:params[:cargo_ids])
+@user.update(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol],cargo:params[:cargo])
    end
 
 def delete_user

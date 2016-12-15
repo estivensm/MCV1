@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
 
+  resources :companies
   resources :cargos
   resources :procesos
   devise_scope :user do 

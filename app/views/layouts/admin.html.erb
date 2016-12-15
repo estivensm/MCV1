@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
   <title><%= content_for?(:title) ? yield(:title) : "Rails College" %></title>
   <%= csrf_meta_tags %>
 
@@ -137,7 +140,7 @@
       <div class="col-md-9 submenu">
       <% sub_menu %>
         <% if hola %>
-                <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+                <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
                     <i class="fa fa-building-o" aria-hidden="true"></i>
 
                     <span class="hidden-xs">Empresa</span>
