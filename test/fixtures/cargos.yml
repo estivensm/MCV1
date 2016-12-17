@@ -8,6 +8,8 @@
 #  proceso_id  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :integer
+#  admin_user  :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

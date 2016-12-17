@@ -6,7 +6,7 @@ def index
 puts "hola"
 if current_user.rol == "SuperAdmin"
 puts "hola1"
-  @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(created_at: :desc)
+  @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user ).order(created_at: :desc)
  case params[:row]
 when "email"
   if params[:tipo] == "desc"
@@ -35,7 +35,7 @@ else
 end
 else
 
-  @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(created_at: :desc)
+  @users = User.paginate(page: params[:page],:per_page => 20).where("admin_user = ? AND id != ?", current_user.id, current_user).order(created_at: :desc)
    
 end
 
@@ -63,18 +63,18 @@ end
 def edit_user
 @user = User.find(params[:id])
 u = User.find(current_user.id)
-@cargos = u.cargos
+
 end
 
 def new_user
 u = User.find(current_user.id)
-@cargos = u.cargos
+
 
 end
 
 def create_user
 
-  @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol],cargo:params[:cargo])
+  @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol])
   if @user.save
 
     redirect_to users_index_path
@@ -85,7 +85,7 @@ end
 def update_user
 
 @user = User.find(params[:id])
-@user.update(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol],cargo:params[:cargo])
+@user.update(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],rol:params[:rol])
    end
 
 def delete_user

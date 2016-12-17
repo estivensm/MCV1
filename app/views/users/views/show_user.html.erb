@@ -21,8 +21,13 @@
     <p><strong><i class="fa fa-cog" aria-hidden="true"></i>
  </strong>  <%= @user.rol %></p>
 
-  <p><%= link_to 'Edit', edit_user_path(@user), remote: true, class: "btn btn-primary btn-lg" %></p>
-  <%= link_to 'Back', users_index_path %>
+  <p><% if @user.rol != "SuperAdmin"%>
+  <%= link_to 'Edit', edit_user_path(@user), remote: true, class: "btn btn-primary btn-lg" %></p>
+  
+  <%else%>
+  <%= link_to 'Edit', edit_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <%end%></p>
+<%= link_to 'Back', users_index_path %>
 </div>
 </div>
 

@@ -23,6 +23,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  rol                    :string
+#  cargo                  :string
 #
 
 class User < ApplicationRecord
@@ -35,8 +36,9 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
   has_many :procesos
-  has_and_belongs_to_many :cargos
+  has_many :cargos
   has_one :company
+  has_many :employeds
 
 
 

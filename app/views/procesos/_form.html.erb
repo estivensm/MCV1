@@ -24,7 +24,7 @@
   </div>
 
   <%= f.hidden_field :admin_user , :value => current_user.id %>
-  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.admin_user %>
 <br>
   <div class="form-group">
     <%= f.submit "Crear", class: 'btn btn-primary' %>

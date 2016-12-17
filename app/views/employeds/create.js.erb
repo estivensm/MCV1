@@ -1,12 +1,12 @@
-<% if @cargo.errors.blank? %>
+<% if @employed.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody').append('<%= j render "user_row", cargo: @cargo  %>');
+  $('table tbody').append('<%= j render "user_row", employed: @employed  %>');
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");
   // TODO: show the errors in the UI
   $('.alert').empty('<p></p>');
-  <% @cargo.errors.full_messages.each do |msg| %>
+  <% @employed.errors.full_messages.each do |msg| %>
           $('.alert').append('<p><%=msg%></p>');
         <% end %>
 

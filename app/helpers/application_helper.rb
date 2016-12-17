@@ -28,7 +28,7 @@ def bootstrap_class_for flash_type
 
   def hola
     
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds"
     return true
   else
     return false
@@ -37,7 +37,7 @@ def bootstrap_class_for flash_type
 
    def sub_menu
       
-    @menu = ["","","",""]
+    @menu = ["","","","",""]
   if  controller.controller_name == "companies" 
     @menu = ["active","","",""]
   elsif controller.controller_name == "procesos"
@@ -46,6 +46,8 @@ def bootstrap_class_for flash_type
     @menu = ["","","active",""]
     elsif controller.controller_name == "views"
  @menu = ["","","","active"]
+ elsif controller.controller_name == "employeds"
+ @menu = ["","","","",""]
     end
     return @menu
 

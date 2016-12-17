@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
  
 
-  resources :companies
+  resources :employeds
+  resources :companies, only: [:show, :create, :edit, :update]
   resources :cargos
   resources :procesos
   devise_scope :user do 

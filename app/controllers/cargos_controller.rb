@@ -71,6 +71,6 @@ class CargosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cargo_params
-      params.require(:cargo).permit(:name, :description, :proceso_id,:user_ids )
+      params.require(:cargo).permit(:name, :description, :proceso_id,:user_id, :admin_user, :cargo_id )
     end
 end

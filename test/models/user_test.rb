@@ -23,6 +23,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  rol                    :string
+#  cargo                  :string
 #
 
 require 'test_helper'

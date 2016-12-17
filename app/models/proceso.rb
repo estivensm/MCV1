@@ -12,7 +12,7 @@
 #
 
 class Proceso < ApplicationRecord
-	validates :name, presence: true
+	#validates :name, presence: true
 	belongs_to :user
 	has_many :cargos
 end

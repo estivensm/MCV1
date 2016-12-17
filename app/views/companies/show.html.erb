@@ -5,12 +5,19 @@
 
 
 <div class="jumbotron">
-<%= @company.logo? ? image_tag(@company.logo_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
-  <h2><%= @company.name %></h2>
-  <p>Telfono: <%= @company.phone %></p>
-  <p>Direccion: <%= @company.address %></p>
-   <p>Nit: <%= @company.nit %></p>
+<div class="row show-user" >
+<div class="col-md-6">
+	<%= @company.logo? ? image_tag(@company.logo_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
+</div>
+	<div class="col-md-6">
+<h2><%= @company.name %></h2>
+  <p><strong>Telfono:</strong> <%= @company.phone %></p>
+  <p><strong>Direccion:</strong> <%= @company.address %></p>
+   <p><strong>Nit:</strong> <%= @company.nit %></p>
   <p><%= link_to 'Edit', edit_company_path(@company), remote: true, class: "btn btn-primary btn-lg" %></p>
   <%= link_to 'Back', companies_path %>
 </div>
+</div>
 
+  
+</div>

@@ -1,0 +1,17 @@
+
+  <div class="form-group">
+    <%= label_tag "Cargo" %><br />
+ 
+    <%=select_tag 'cargo', options_for_select(cargos.collect{ |u| [u.name, u.name] }),{:class => "form-control"}%>
+  </div>
+  
+
+  <div class="form-group">
+    <%= f.label "Cargo" %>
+   <%= f.select :cargo,
+    cargos.map { |u| [u.name, u.name] },
+               { include_blank: false },
+               { class: 'form-control' }
+%>
+    
+  </div>

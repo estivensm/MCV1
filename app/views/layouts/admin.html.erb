@@ -109,9 +109,9 @@
                     <span class="fa fa-sign-out"></span>
                     <span class="hidden-xs ">Cerrar Sesión</span>
 <% end %>
-<%= link_to  edit_user_registration_path, :class => "indicadores" do %>
+<%= link_to  show_user_path(current_user.id), :class => "indicadores" do %>
                     <span class="fa fa-sign-out"></span>
-                    <span class="hidden-xs ">Editar Usuario</span>
+                    <span class="hidden-xs ">Ver Usuario</span>
                 <% end %></li>
        
            
@@ -135,7 +135,7 @@
     <div class="col-xs-10 col-md-10 col-lg-10 main">
       <div class="row submenu-main">
       <div class="col-md-3 submenu">
-        <p>Configuracion</p>
+        <p>Configuracion /<%= controller_name%>/ <%= action_name%></p>
       </div>
       <div class="col-md-9 submenu">
       <% sub_menu %>
@@ -144,15 +144,26 @@
                     <i class="fa fa-building-o" aria-hidden="true"></i>
 
                     <span class="hidden-xs">Empresa</span>
+                    <% if current_user.rol == "SuperAdmin" %>
+                <%= link_to users_index_path,:class => "#{@menu[3]}" do %>
+                    <span class="fa fa-users"></span>
+                    <span class="hidden-xs">Usuarios</span>
+                <% end %>
+                <% end %>
                 <% end %>
                  <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
                     <i class="fa fa-cogs" aria-hidden="true"></i>
                     <span class="hidden-xs">Procesos</span>
                 <% end %>
+                
                 <%= link_to cargos_path,:class => "#{@menu[2]}" do %>
                     <i class="fa fa-briefcase" aria-hidden="true"></i>
 
                     <span class="hidden-xs">Cargos</span>
+                <% end %>
+                <%= link_to employeds_path,:class => "#{@menu[4]}" do %>
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    <span class="hidden-xs">Empleados</span>
                 <% end %>
                  <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
 <i class="fa fa-share" aria-hidden="true"></i>
@@ -162,12 +173,7 @@
                     <i class="fa fa-gavel" aria-hidden="true"></i>
                     <span class="hidden-xs">Normas</span>
                 <% end %>
-               <% if current_user.rol == "SuperAdmin" %>
-                <%= link_to users_index_path,:class => "#{@menu[3]}" do %>
-                    <span class="fa fa-users"></span>
-                    <span class="hidden-xs">Usuarios</span>
-                <% end %>
-                <% end %>
+               
                 <% end %>
       </div>
         
