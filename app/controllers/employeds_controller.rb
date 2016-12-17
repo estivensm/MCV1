@@ -61,6 +61,6 @@ class EmployedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employed_params
-      params.require(:employed).permit(:first_name, :second_name, :first_last_name, :second_last_name, :document_type, :document, :birth_date, :genero, :admin_user, :user_id, :avatare, :cargo_id)
+      params.require(:employed).permit(:first_name, :second_name, :first_last_name, :second_last_name, :document_type, :document, :birth_date, :genero, :admin_user, :user_id, :avatare, :cargo_id, :email)
     end
 end
