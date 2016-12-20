@@ -11,7 +11,7 @@ class CreateEmployeds < ActiveRecord::Migration[5.0]
       t.string :genero
       t.integer :admin_user
       t.integer :user_id
-      t.string :avatar
+      t.string :avatare
 
       t.timestamps
     end

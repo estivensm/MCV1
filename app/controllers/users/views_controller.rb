@@ -4,7 +4,7 @@ class Users::ViewsController < Devise::RegistrationsController
 
 def index
 puts "hola"
-if current_user.rol == "SuperAdmin"
+if current_user.rol == "SuperAdmin" || current_user.rol == "Admin"
 puts "hola1"
   @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user ).order(created_at: :desc)
  case params[:row]

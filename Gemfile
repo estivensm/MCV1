@@ -36,6 +36,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'annotate'
 gem 'chosen-rails'
 gem 'fog', '~> 1.38'
+gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -43,7 +45,7 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  gem 'sqlite3'
+  gem 'pg'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

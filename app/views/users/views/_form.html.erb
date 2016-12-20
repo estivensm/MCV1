@@ -17,6 +17,8 @@
     <%= label_tag :email %>
     <%= email_field_tag :email,nil , class: "form-control formus" %>
   </div>
+
+
 <div class="form-group">
     <%= label_tag "Tipo de Documento" %><br />
  
@@ -35,7 +37,7 @@
     <%= label_tag :password_confirmation %><br />
     <%= password_field_tag :password_confirmation, nil ,class: "form-control formus" %>
   </div>
-<%= hidden_field_tag :admin_user ,current_user.id %>
+<%= hidden_field_tag :admin_user ,current_user.admin_user %>
 
 
       <div class="modal-footer">

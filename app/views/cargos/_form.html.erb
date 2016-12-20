@@ -24,16 +24,16 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :proceso_id %>
+    <%= f.label :proceso_id %><br>
    <%= f.select :proceso_id,
     @procesos.map { |u| [u.name, u.id] },
                { include_blank: false },
-               { class: 'form-control' }
+               { class: 'chosen-select form-control'  }
 %>
     
   </div>
 
-<%= f.hidden_field :admin_user , :value => current_user.id %>
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 
   <div class="form-group">
@@ -43,3 +43,16 @@
 </div>
     </div>
       </div>
+
+      <script>
+
+        $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });
+
+
+      </script>

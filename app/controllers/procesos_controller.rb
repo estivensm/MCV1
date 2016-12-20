@@ -5,7 +5,7 @@ class ProcesosController < ApplicationController
   # GET /procesos.json
   def index
 
-    if current_user.rol ==  "SuperAdmin"
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
     @procesos = Proceso.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
     else
       redirect_to root_path

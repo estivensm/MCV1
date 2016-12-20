@@ -31,6 +31,7 @@ body{
       background: #ecf0f1 !important;
 
   min-height: 750px !important;
+
   
 
 }
@@ -101,23 +102,23 @@ h1
 {
   background:black;
 
-    p
+   
+}
+
+ .logo p
     {
       font-family: 'Days One', sans-serif;
     
     font-size: 21px;
     margin: 0px;
     color: #dadada;
+   
 }
-
-
-   span
+.logo span
     {
       color:#22bdc8;
 
     }
-}
-
 .logop
 {
 
@@ -127,13 +128,14 @@ h1
     margin: 0px;
         font-weight: 900;
     color: #b9b9b9;
-span
+
+
+}
+.logop span
     {
       color:#22bdc8;
 
     }
-
-}
 .sign_form
 {
   margin-top:50px;
@@ -251,6 +253,7 @@ background: #f2f2f2;
     {
     background:white;
     border-bottom: 1px solid #d4d4d4;
+       
       p
         {
         font-size: 1em;
