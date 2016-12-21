@@ -15,4 +15,8 @@ class Proceso < ApplicationRecord
 	#validates :name, presence: true
 	belongs_to :user
 	has_many :cargos
+
+	def self.search(search)
+            where("name like '%#{search}%' or description like '%#{search}%' "  )  
+        end
 end

@@ -26,7 +26,7 @@
   <div class="form-group">
     <%= f.label :proceso_id %><br>
    <%= f.select :proceso_id,
-    @procesos.map { |u| [u.name, u.id] },
+    @procesos.map { |u| ["#{u.name},#{u.description} ", u.id] },
                { include_blank: false },
                { class: 'chosen-select form-control'  }
 %>

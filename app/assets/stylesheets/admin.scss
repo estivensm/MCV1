@@ -280,3 +280,15 @@ background: #f2f2f2;
 
       }    
     }
+
+
+    .table>thead>tr>th {
+    vertical-align: bottom !important;
+    border-bottom: 2px solid #ddd !important;
+}
+
+.search1
+{
+  width:50% !important;
+  display:inline-block !important;
+}
