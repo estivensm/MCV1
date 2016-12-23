@@ -3,6 +3,10 @@ es:
     messages:
       blank: "no puede estar en blanco"
       invalid: "es inválido"
+      not_saved:
+        one: "Ha ocurrido 1 error:"
+        other: "Han ocurrido %{count} errores:"
+      confirmation: "and password deberian ser iguales."  
 
   activerecord:
     attributes:
@@ -11,4 +15,3 @@ es:
         password: "Contraseña"
       proceso:
         name: "Nombre"
-        

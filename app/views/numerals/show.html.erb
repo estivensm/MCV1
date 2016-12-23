@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @numeral.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @numeral.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @numeral.admin_user %>
+</p>
+
+<p>
+  <strong>Norma:</strong>
+  <%= @numeral.norma_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @numeral.description %>
+</p>
+
+<p>
+  <strong>Numeral:</strong>
+  <%= @numeral.numeral %>
+</p>
+
+<p>
+  <strong>Norma:</strong>
+  <%= @numeral.norma %>
+</p>
+
+<%= link_to 'Edit', edit_norma_numeral_path(@norma,@numeral), remote: true %> |
+<%= link_to 'Back', norma_numerals_path(@norma) %>

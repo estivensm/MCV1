@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220124441) do
+ActiveRecord::Schema.define(version: 20161221184622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,28 @@ ActiveRecord::Schema.define(version: 20161220124441) do
     t.string   "avatare"
   end
 
+  create_table "normas", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.string   "archivo"
+    t.string   "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "numerals", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.integer  "norma_id"
+    t.text     "description"
+    t.string   "numeral"
+    t.string   "norma"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "procesos", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -75,16 +97,11 @@ ActiveRecord::Schema.define(version: 20161220124441) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "name"
-    t.string   "last_name"
-    t.string   "document"
-    t.string   "document_type"
     t.string   "avatar"
-    t.date     "birthday"
     t.integer  "admin_user"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "rol"
-    t.string   "cargo"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

@@ -1,71 +1,60 @@
-<div class = "container-fluid contenido">
-<div class = "row">
-   <div class = "col-md-12">
-      <div class = "row title-table">
-         <div class = "col-md-10">
-            <p >Empleados</p>
-         </div>
-         <div class = "col-md-2">
-            <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" %>
-            </button>
-         </div>
-      </div>
-      <table class="table">
-         <thead>
-            <tr class = "tr-table">
-            <th>Avatar</th>
-               <th>Nombres</th>
-               
-               <th>Apellidos</th>
-               
-               
-               <th>Documento</th>
-                            
-               <th>Cargo</th>
-               <th>Admin user</th>
-               <th>User</th>
-               
-               <th colspan="3"></th>
-            </tr>
-         </thead>
-         <tbody>
-            <% @employeds.each do |employed| %>
-            <tr>
-               <td class = "imgav"><%= employed.avatare? ? image_tag(employed.avatare_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
-               <td><%= employed.first_name %> <%= employed.second_name %></td>
-               
-               <td><%= employed.first_last_name %><%= employed.second_last_name %></td>
-               
-             
-               <td><%= employed.document_type %>:<%= employed.document %></td>
-               
-               <td><%= employed.cargo.name if employed.cargo_id? %></td>
-               <td><%= employed.admin_user %></td>
-
-               <td><%= employed.user_id %></td>
-               
-            
-              
-               <td><%= link_to  employed , :class => "opciones" do %>
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    
-                <% end %>
-                <%= link_to  edit_employed_path(employed), remote:true, :class => "opciones" do %>
-                    
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-
-                <% end %>
-                <%= link_to employed,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-
-                    
-                <% end %></td>
-            </tr>
-            <% end %>
-         </tbody>
-      </table>
-      <br>
-    </div>
+<div class = "row title-table">
+   <div class = "col-md-10">
+      <p >Empleados</p>
+   </div>
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" %>
    </div>
 </div>
-
+<div class = "row">
+   <div class = "col-md-6">
+      <div class="form-group">
+         <%= form_tag(employeds_path, :method => "get", id: "search-form") do %>
+         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
+         <%= submit_tag "Search", :class => "btn btn-primary" %>
+         <% end %>
+      </div>
+   </div>
+   <div class = "col-md-6">
+      <%= will_paginate @employeds%>
+   </div>
+</div>
+<div class = "row">
+   <table class="table">
+      <thead>
+         <tr class = "tr-table">
+            <th>Avatar</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Documento</th>
+            <th>Cargo</th>
+            <th>Admin user</th>
+            <th>User</th>
+            <th colspan="3"></th>
+         </tr>
+      </thead>
+      <tbody>
+         <% @employeds.each do |employed| %>
+         <tr>
+            <td class = "imgav"><%= employed.avatare? ? image_tag(employed.avatare_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
+            <td><%= employed.first_name %> <%= employed.second_name %></td>
+            <td><%= employed.first_last_name %><%= employed.second_last_name %></td>
+            <td><%= employed.document_type %>:<%= employed.document %></td>
+            <td><%= employed.cargo.name if employed.cargo_id? %></td>
+            <td><%= employed.admin_user %></td>
+            <td><%= employed.user_id %></td>
+            <td><%= link_to  employed , :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_employed_path(employed), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to employed,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </td>
+         </tr>
+         <% end %>
+      </tbody>
+   </table>
+</div>

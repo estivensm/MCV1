@@ -28,7 +28,7 @@ def bootstrap_class_for flash_type
 
   def hola
     
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds"
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals"
     return true
   else
     return false
@@ -37,17 +37,21 @@ def bootstrap_class_for flash_type
 
    def sub_menu
       
-    @menu = ["","","","",""]
+    @menu = ["","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["active","","",""]
+    @menu = ["active","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","active","",""]
+@menu = ["","active","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","active",""]
+    @menu = ["","","active","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","active"]
+ @menu = ["","","","active",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","",""]
+ @menu = ["","","","","active",""]
+ elsif controller.controller_name == "normas"
+ @menu = ["","","","","","active"]
+elsif controller.controller_name == "numerals"
+ @menu = ["","","","","","active"]
     end
     return @menu
 
@@ -58,4 +62,14 @@ def cargos
 return @cargoss
 end
 	
+ def devise_error_messages?
+    !resource.errors.empty?
+  end
+
+
+
+
+
+
+  
 end

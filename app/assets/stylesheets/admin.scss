@@ -5,7 +5,7 @@ body{
 
 }
 .admin{
-        background:#31373d;
+        background:#f2f2f2;
 }
 .bar-top{
   background-color: #8c8c8c !important;
@@ -25,6 +25,12 @@ body{
   a{
     color: #d3dbe2;
   }
+  a:focus{
+   color:#d3dbe2 !important
+    }
+    a:hover{
+    color:#d3dbe2 !important
+    }
 }
 
 .main{
@@ -64,7 +70,7 @@ body{
 
     .cuerpo
     {
-    padding:30px !important;
+    padding:15px !important;
     }
 
 .nav .open>a:hover, .nav .open>a:focus 
@@ -105,10 +111,10 @@ h1
    
 }
 
- .logo p
+ .logo 
     {
       font-family: 'Days One', sans-serif;
-    
+    background:black;
     font-size: 21px;
     margin: 0px;
     color: #dadada;
@@ -119,23 +125,8 @@ h1
       color:#22bdc8;
 
     }
-.logop
-{
-
-  font-family: 'Days One', sans-serif;
-    text-align:center;
-    font-size: 2em;
-    margin: 0px;
-        font-weight: 900;
-    color: #b9b9b9;
 
 
-}
-.logop span
-    {
-      color:#22bdc8;
-
-    }
 .sign_form
 {
   margin-top:50px;
@@ -207,6 +198,7 @@ background: #f2f2f2;
     {
       width:50px;
       border-radius:60px;
+      height:50px;
     }
     .sort 
     {
@@ -247,12 +239,15 @@ background: #f2f2f2;
     .menup
     {
     font-size:13px;
+
+      
     }
 
     .submenu-main
     {
     background:white;
     border-bottom: 1px solid #d4d4d4;
+    padding:10px;
        
       p
         {
@@ -292,3 +287,68 @@ background: #f2f2f2;
   width:50% !important;
   display:inline-block !important;
 }
+
+.nav
+{
+  li
+      {
+        display:inline-block !important;
+      }
+
+}
+.menum
+{
+  
+  background: #5f6267;
+}
+.menum a
+{
+  padding:15px;
+      text-decoration: none !important;
+}
+.dp
+{
+  padding:15px;
+
+}
+dp a:focus:hover:active:visited {color:black !important }
+.menumi
+{
+      margin-top: 15px;
+
+}
+
+.menusp
+{
+      margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+.conte
+{
+  margin-top:10px;
+     margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+        padding-top: 136px;
+}
+
+.row
+{
+      margin-left: 0px !important;
+    margin-right: 0px !important;
+
+}
+@media (max-width: 900px) {
+    .conte {
+        padding-top: 250px;
+        
+    }
+}
+

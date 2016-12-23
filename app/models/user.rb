@@ -14,16 +14,11 @@
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
 #  name                   :string
-#  last_name              :string
-#  document               :string
-#  document_type          :string
 #  avatar                 :string
-#  birthday               :date
 #  admin_user             :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  rol                    :string
-#  cargo                  :string
 #
 
 class User < ApplicationRecord
@@ -41,6 +36,9 @@ class User < ApplicationRecord
   has_many :employeds
 
 
+def self.search(search)
+            where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  
+        end
 
          def add_adminid
 

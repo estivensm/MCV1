@@ -4,7 +4,21 @@ class EmployedsController < ApplicationController
   # GET /employeds
   # GET /employeds.json
   def index
-    @employeds = Employed.where(admin_user: current_user.id)
+      if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+   
+   if params[:search]
+     @employeds1 = Employed.search(params[:search])
+  else
+     @employeds1 = Employed.all
+  end
+
+
+
+   @employeds = @employeds1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+    else
+      redirect_to root_path
+  end
+
   end
 
   # GET /employeds/1

@@ -5,37 +5,42 @@ class Users::ViewsController < Devise::RegistrationsController
 def index
 puts "hola"
 if current_user.rol == "SuperAdmin" || current_user.rol == "Admin"
-puts "hola1"
-  @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user ).order(created_at: :desc)
+   if params[:search]
+     @users1 = User.search(params[:search])
+  else
+     @users1 = User.all
+  end
+
+  
  case params[:row]
 when "email"
   if params[:tipo] == "desc"
-  @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(email: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(email: :desc)
 else
-   @users = User.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(email: :asc)
+   @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(email: :asc)
 end
 when "rol"
   if params[:tipo] == "desc"
-  @users = User.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user.admin_user).order(rol: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(rol: :desc)
 else
-   @users = User.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user.admin_user).order(rol: :asc)
+   @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(rol: :asc)
 end
 when "last_name"
   if params[:tipo] == "desc"
-  @users = User.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user.admin_user).order(last_name: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(last_name: :desc)
 else
-   @users = User.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user.admin_user).order(last_name: :asc)
+   @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(last_name: :asc)
 end
 when "last_name"
 if params[:tipo] == "desc"
-  @users = User.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user..admin_user).order(name: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user..admin_user).order(name: :desc)
 else
-   @users = User.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user.admin_user).order(name: :asc)
+   @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(name: :asc)
    
 end
 else
 
-  @users = User.paginate(page: params[:page],:per_page => 20).where("admin_user = ? AND id != ?", current_user.id, current_user).order(created_at: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where("admin_user = ? AND id != ?", current_user.id, current_user).order(created_at: :desc)
    
 end
 

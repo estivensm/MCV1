@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @norma.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @norma.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @norma.admin_user %>
+</p>
+
+<p>
+  <strong>Archivo:</strong>
+  <%= @norma.archivo %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @norma.link %>
+</p>
+
+<%= link_to 'Edit', edit_norma_path(@norma) %> |
+<%= link_to 'Back', normas_path %>

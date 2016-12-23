@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
  
 
+  
+  resources :normas do 
+        resources :numerals
+  end
   resources :employeds
   resources :companies #, only: [:show, :create, :edit, :update, :index]
   resources :cargos

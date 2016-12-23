@@ -13,7 +13,6 @@
 #  genero           :string
 #  admin_user       :integer
 #  user_id          :integer
-#  avatar           :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  cargo_id         :integer

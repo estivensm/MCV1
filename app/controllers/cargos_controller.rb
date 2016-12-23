@@ -4,8 +4,20 @@ class CargosController < ApplicationController
   # GET /cargos
   # GET /cargos.json
   def index
-    u = User.find(current_user.id)
-    @cargos = u.cargos
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+   
+   if params[:search]
+     @cargos1 = Cargo.search(params[:search]).where(admin_user: current_user.admin_user)
+  else
+     @cargos1 = Cargo.where(admin_user: current_user.admin_user)
+  end
+
+
+
+   @cargos = @cargos1.paginate(page: params[:page],:per_page => 10)
+    else
+      redirect_to root_path
+  end
   end
 
   # GET /cargos/1

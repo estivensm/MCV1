@@ -1,0 +1,57 @@
+<div class = "row title-table">
+   <div class = "col-md-10">
+      <p >Numerales de Norma <%= @norma.name%></p>
+   </div>
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
+   </div>
+</div>
+<div class = "row">
+   <div class = "col-md-6">
+      <div class="form-group">
+         <%= form_tag(norma_numerals_path(@norma), :method => "get", id: "search-form") do %>
+         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
+         <%= submit_tag "Search", :class => "btn btn-primary" %>
+         <% end %>
+      </div>
+   </div>
+   <div class = "col-md-6">
+      <%= will_paginate @numerals%>
+   </div>
+</div>
+<div class = "row">
+   <table class="table">
+      <thead>
+         <tr class = "tr-table">
+            <th>Numeral</th>
+            <th>Name</th>
+            <th>User</th>
+            <th>Admin user</th>
+            <th>Description</th>
+            <th colspan="3"></th>
+         </tr>
+      </thead>
+      <tbody>
+         <% @numerals.each do |numeral| %>
+         <tr>
+            <td><%= numeral.numeral %></td>
+            <td><%= numeral.name %></td>
+            <td><%= numeral.user_id %></td>
+            <td><%= numeral.admin_user %></td>
+            <td><%= numeral.description %></td>
+            <td><%= link_to norma_numeral_path(@norma,numeral), :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_norma_numeral_path(@norma,numeral), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  norma_numeral_path(@norma,numeral),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </td>
+         </tr>
+         <% end %>
+      </tbody>
+   </table>
+   <%= link_to 'Volver', normas_path %>
+</div>

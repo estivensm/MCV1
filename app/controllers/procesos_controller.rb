@@ -16,7 +16,7 @@ class ProcesosController < ApplicationController
 
 
 
-   @procesos = @procesos1.paginate(page: params[:page],:per_page => 2).where(admin_user: current_user.admin_user)
+   @procesos = @procesos1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
     else
       redirect_to root_path
   end

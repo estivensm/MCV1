@@ -1,0 +1,62 @@
+<div class = "row title-table">
+   <div class = "col-md-10">
+      <p >Normas</p>
+   </div>
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_norma_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
+   </div>
+</div>
+<div class = "row">
+   <div class = "col-md-6">
+      <div class="form-group">
+         <%= form_tag(normas_path, :method => "get", id: "search-form") do %>
+         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
+         <%= submit_tag "Search", :class => "btn btn-primary" %>
+         <% end %>
+      </div>
+   </div>
+   <div class = "col-md-6">
+      <%= will_paginate @normas%>
+   </div>
+</div>
+<div class = "row">
+<table class="table">
+   <thead>
+      <tr class = "tr-table">
+         <th>Name</th>
+         <th>User</th>
+         <th>Admin user</th>
+         <th>Archivo</th>
+         <th>Link</th>
+         <th>Numerales</th>
+         <th colspan="3"></th>
+      </tr>
+   </thead>
+   <tbody>
+      <% @normas.each do |norma| %>
+      <tr>
+         <td><%= norma.name %></td>
+         <td><%= norma.user_id %></td>
+         <td><%= norma.admin_user %></td>
+         <td><%= link_to "Descargar #{norma.name}", norma.archivo_url if norma.archivo_url%></td>
+         <td><%= link_to "Ver", norma.link if norma.link?%></td>
+         <td><%= link_to norma_numerals_path(norma), :class => "opciones" do %>
+            <i class="fa fa-line-chart ic" aria-hidden="true"></i>
+            <span class="label label-warning"><%= norma.numerals.count %></span>
+            <% end %>
+         </td>
+         <td><%= link_to norma, :class => "opciones" do %>
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to  edit_norma_path(norma), remote:true, :class => "opciones" do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to  norma,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+         </td>
+      </tr>
+      <% end %>
+   </tbody>
+</table>
+</div>

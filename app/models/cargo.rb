@@ -16,4 +16,10 @@ class Cargo < ApplicationRecord
 	belongs_to :proceso
 	belongs_to :user
 	has_many :employeds
+
+def self.search(search)
+	
+            where("name like '%#{search}%' or description like '%#{search}%' "  )  
+        end
+
 end

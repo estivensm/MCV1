@@ -1,12 +1,12 @@
-<% if @proceso.errors.blank? %>
+<% if @norma.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody').append('<%= j render "user_row", proceso: @proceso %>');
+  $('table tbody').append('<%= j render "user_row", norma: @norma %>');
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");
   // TODO: show the errors in the UI
   $('.alert').empty('<p></p>');
-  <% @proceso.errors.full_messages.each do |msg| %>
+  <% @norma.errors.full_messages.each do |msg| %>
           $('.alert').append('<p><%=msg%></p>');
         <% end %>
  
