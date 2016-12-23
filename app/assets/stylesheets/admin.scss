@@ -7,6 +7,12 @@ body{
 .admin{
         background:#f2f2f2;
 }
+.app{
+       background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), 
+ url('fondo2.jpg')no-repeat center top;
+  background-size: cover;
+  
+}
 .bar-top{
   background-color: #8c8c8c !important;
   border-bottom: 0 !important;
@@ -125,6 +131,20 @@ h1
       color:#22bdc8;
 
     }
+    .logop 
+    {
+      font-family: 'Days One', sans-serif;
+    text-align:center;
+    font-size: 21px;
+    margin: 0px;
+    color: #dadada;
+   
+}
+.logop span
+    {
+      color:#22bdc8;
+
+    }
 
 
 .sign_form
@@ -215,14 +235,14 @@ background: #f2f2f2;
     }
     .login1
     {    padding: 30px;
-    background:white;
+       background: rgba(255, 255, 255, 0);
       p
       {
         padding:10px;
       }
       label
       {
-      color:#7a7a7a;
+      color:white;
       }
     }
 
@@ -348,7 +368,7 @@ dp a:focus:hover:active:visited {color:black !important }
 @media (max-width: 900px) {
     .conte {
         padding-top: 250px;
-        
+
     }
 }
 
