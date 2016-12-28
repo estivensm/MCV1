@@ -15,3 +15,15 @@
 %>
     
   </div>
+
+
+
+  
+You can use the following SFTP credentials to upload your files (using FileZilla/WinSCP/Rsync):
+  * Host: 104.131.51.1
+  * User: rails
+  * Pass: YV7UFldUIi
+
+You can use the following Postgres database credentials:
+  * User: rails
+  * Pass: Fw37XbLg39
