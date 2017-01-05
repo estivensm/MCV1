@@ -54,7 +54,7 @@ def bootstrap_class_for flash_type
  @menu = ["","","","","","active",""]
 elsif controller.controller_name == "numerals"
  @menu = ["","","","","","active",""]
- lsif controller.controller_name == "sources"
+ elsif controller.controller_name == "sources"
  @menu = ["","","","","","","active"]
     end
     return @menu
