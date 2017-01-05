@@ -5,7 +5,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
- #include CarrierWave::MiniMagick
+ include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -17,7 +17,21 @@ class LogoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  version :large do
+    process resize_to_limit: [800, 800]
+  end
  
+  version :medium, :from_version => :large do
+    process resize_to_limit: [300, 300]
+  end
+ 
+  version :thumb, :from_version => :medium do
+    process resize_to_fit: [50, 50]
+  end
+ 
+  version :square do
+    process :resize_to_fill => [500, 500]
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
