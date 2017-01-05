@@ -1,0 +1,150 @@
+<br>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+
+
+
+<%= form_for(report) do |f| %>
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="row">
+  <div class="col-md-6">
+
+  <div class="form-group">
+    <%= f.label "Proceso" %><br>
+   <%= f.select :source_id,
+    @source.map { |u| [u.name, u.id] },
+               { include_blank: false },
+               { class: 'chosen-select form-control ch'  }
+%>
+
+  </div>
+
+
+
+
+  <div class="form-group">
+    <%= f.label "Asignada a" %><br>
+   <%= f.select :employed_id,
+    @employed.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+               { include_blank: false },
+               { class: 'chosen-select form-control ch'  }
+%>
+
+  </div>
+   </div>
+ <div class="col-md-6">
+<div class="form-group">
+    <%= f.label "Otros interesados" %><br>
+   <%= f.select :employed_ids, @employed.collect {|c| ["#{c.first_name} #{c.second_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select'} %>
+
+  </div>
+
+
+
+  <div class="form-group">
+    <%= f.label "Proceso" %><br>
+   <%= f.select :proceso_id,
+    @procesos.map { |u| ["#{u.name},#{u.description} ", u.id] },
+               { include_blank: false },
+               { class: 'chosen-select form-control ch'  }
+%>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+    <div class="field">
+    <%= f.label "Descripcion" %>
+    <%= f.text_area :description,  class: "form-control" %>
+  </div>
+     <div class="form-group">
+    <%= f.label "Requisito" %>
+    <%= f.text_area :requisito,  class: "form-control" %>
+  </div>
+  </div>
+  <div class="col-md-6">
+<div class="form-group">
+    <%= f.label "Evidencia" %>
+    <%= f.text_area :evidencia ,  class: "form-control"%>
+  </div>
+</div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+<div class="form-group">
+<label for="">Tipo de NC</label>
+<br>
+     <%= f.radio_button :nc_type, 'Real' %>
+  <%= f.label :contactmethod, 'Real', :value => 'Real' %>
+  <%= f.radio_button :nc_type, 'Potencial' %>
+  <%= f.label :contactmethod, 'Potencial', :value => 'Potencial' %>
+  </div>
+
+<div class="form-group">
+    <label for="">¿Acciones?</label><br>
+     <%= f.radio_button :accion, 'Si' %>
+  <%= f.label :contactmethod, 'Si', :value => 'Si' %>
+  <%= f.radio_button :accion, 'No' %>
+  <%= f.label :contactmethod, 'No', :value => 'No' %>
+  </div>
+
+<div class="form-group">
+    <%= f.label "Justificacion" %>
+    <%= f.text_area :justificacion ,  class: "form-control"%>
+  </div>
+  </div>
+</div>
+
+
+
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+
+
+  <div class="actions">
+    <%= f.submit "crear" , class: 'btn btn-primary' %>
+  </div>
+<% end %>
+  </div>
+</div>
+
+ <script>
+
+        $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No hay resultados',
+          width: '350px;'
+
+        });
+
+
+      </script>

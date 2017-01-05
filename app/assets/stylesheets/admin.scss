@@ -338,6 +338,7 @@ background: #f2f2f2;
 {
   padding:15px;
       text-decoration: none !important;
+          font-size: 13px;
 }
 .dp
 {
@@ -370,6 +371,7 @@ dp a:focus:hover:active:visited {color:black !important }
     padding-left: 0px !important;
     padding-right: 0px !important;
         padding-top: 136px;
+        margin-top: 0px;
 }
 
 .row
@@ -381,6 +383,13 @@ dp a:focus:hover:active:visited {color:black !important }
 @media (max-width: 900px) {
     .conte {
         padding-top: 250px;
+
+    }
+}
+
+@media (max-width: 900px) {
+    .ch {
+       width : 10px;
 
     }
 }

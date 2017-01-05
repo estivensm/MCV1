@@ -1,0 +1,2 @@
+json.extract! report, :id, :source, :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user, :created_at, :updated_at
+json.url report_url(report, format: :json)

@@ -26,36 +26,41 @@ def bootstrap_class_for flash_type
   end
 
 
-  def hola
-    
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals"
-    return true
-  else
-    return false
+  def menu
+    @menum = ["",""]
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources"
+    @menum = ["active",""]
+  elsif controller.controller_name == "reports" 
+    @menum = ["","active"]
+  
   end
+  return @menum
   end
 
    def sub_menu
       
-    @menu = ["","","","","",""]
+    @menu = ["","","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["active","","","",""]
+    @menu = ["active","","","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","active","","",""]
+@menu = ["","active","","","","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","active","",""]
+    @menu = ["","","active","","","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","active",""]
+ @menu = ["","","","active","","",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","","active",""]
+ @menu = ["","","","","active","",""]
  elsif controller.controller_name == "normas"
- @menu = ["","","","","","active"]
+ @menu = ["","","","","","active",""]
 elsif controller.controller_name == "numerals"
- @menu = ["","","","","","active"]
+ @menu = ["","","","","","active",""]
+ lsif controller.controller_name == "sources"
+ @menu = ["","","","","","","active"]
     end
     return @menu
 
 end
+
 def cargos
   u = User.find(current_user.id)
 @cargoss = u.cargos
@@ -65,6 +70,22 @@ end
  def devise_error_messages?
     !resource.errors.empty?
   end
+
+def menu_hallazgo
+
+@menu_a = ["","",""]
+if params[:params] == "Abierto"
+  
+@menu_a = ["active","",""]
+elsif params[:params] == "Cerrado"
+  @menu_a = ["","active",""]
+else
+
+  @menu_a = ["","","active"]
+end
+ return @menu_a
+
+ end 
 
 
 

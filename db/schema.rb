@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221184622) do
+ActiveRecord::Schema.define(version: 20170104203219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 20161221184622) do
     t.string   "avatare"
   end
 
+  create_table "employeds_reports", id: false, force: :cascade do |t|
+    t.integer "employed_id"
+    t.integer "report_id"
+    t.index ["employed_id"], name: "index_employeds_reports_on_employed_id", using: :btree
+    t.index ["report_id"], name: "index_employeds_reports_on_report_id", using: :btree
+  end
+
   create_table "normas", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -71,7 +78,7 @@ ActiveRecord::Schema.define(version: 20161221184622) do
     t.integer  "norma_id"
     t.text     "description"
     t.string   "numeral"
-    t.string   "norma"
+    t.string   "norma_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -81,6 +88,36 @@ ActiveRecord::Schema.define(version: 20161221184622) do
     t.text     "description"
     t.integer  "user_id"
     t.integer  "admin_user"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "source"
+    t.integer  "employed_id"
+    t.integer  "proceso_id"
+    t.text     "description"
+    t.text     "requisito"
+    t.text     "evidencia"
+    t.string   "nc_type"
+    t.string   "accion"
+    t.text     "justificacion"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "state"
+    t.string   "codigo"
+    t.integer  "contador"
+    t.integer  "source_id"
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.boolean  "state"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

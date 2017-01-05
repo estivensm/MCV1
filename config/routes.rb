@@ -2,6 +2,8 @@ Rails.application.routes.draw do
  
 
   
+  resources :sources
+  resources :reports
   resources :normas do 
         resources :numerals
   end

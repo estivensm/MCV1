@@ -36,7 +36,7 @@
       <tbody>
          <% @employeds.each do |employed| %>
          <tr>
-            <td class = "imgav"><%= employed.avatare? ? image_tag(employed.avatare_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
+            <td class = "imgav"><%= employed.avatare? ? image_tag(employed.avatare_url) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
             <td><%= employed.first_name %> <%= employed.second_name %></td>
             <td><%= employed.first_last_name %><%= employed.second_last_name %></td>
             <td><%= employed.document_type %>:<%= employed.document %></td>
@@ -58,3 +58,6 @@
       </tbody>
    </table>
 </div>
+
+
+   

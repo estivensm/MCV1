@@ -1,0 +1,57 @@
+<div class = "row title-table">
+   <div class = "col-md-10">
+      <p >Fuentes</p>
+   </div>
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_source_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
+   </div>
+</div>
+<div class = "row">
+   <div class = "col-md-6">
+      <div class="form-group">
+         <%= form_tag(sources_path, :method => "get", id: "search-form") do %>
+         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
+         <%= submit_tag "Search", :class => "btn btn-primary" %>
+         <% end %>
+      </div>
+   </div>
+   <div class = "col-md-6">
+      <%= will_paginate @sources%>
+   </div>
+</div>
+<div class = "row">
+   <table class="table">
+      <thead>
+         <tr class = "tr-table">
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sources.each do |source| %>
+      <tr>
+        <td><%= source.name %></td>
+        <td><%= source.description %></td>
+        <td><%= source.user_id %></td>
+        <td><%= source.admin_user %></td>
+        <td><%= source.state %></td>
+        
+        <td><%= link_to  source, :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_source_path(source), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  source,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"><% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

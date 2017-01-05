@@ -18,4 +18,8 @@ class Numeral < ApplicationRecord
 belongs_to :user
 belongs_to :norma
 
+def self.search(search)
+            where("name like '%#{search}%' or numeral like '%#{search}%' "  )  
+        end
+
 end

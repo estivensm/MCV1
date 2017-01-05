@@ -1,0 +1,1 @@
+rails g scaffold Report source employed_id:integer proceso_id:integer description:text requisito:text evidencia:text nc_type accion justificacion:text user_id:integer admin_user:integer
