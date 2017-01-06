@@ -58,10 +58,16 @@ end
     @procesos = Proceso.all
     @employed = Employed.all
     @source = Source.all
+    @numerals = Numeral.all
   end
 
   # GET /reports/1/edit
   def edit
+
+    @procesos = Proceso.all
+    @employed = Employed.all
+    @source = Source.all
+    @numerals = Numeral.all
   end
 
   # POST /reports
@@ -119,6 +125,12 @@ end
     end
   end
 
+  def get_normas
+      
+      @numerals = Norma.find(params[:id]).numerals 
+      render :json => @numerals
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
@@ -127,6 +139,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id, :employed_ids => [])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id, :employed_ids => [], numeral_reports_attributes: [:id, :comment, :report_id, :numeral_id, :_destroy])
     end
 end

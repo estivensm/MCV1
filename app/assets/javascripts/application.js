@@ -10,11 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require reports
 //= require chosen-jquery
+//= require jquery_nested_form
 //= require bootstrap-sprockets
+//= require bootstrap-checkbox
+//= require turbolinks
 //= require_tree .
 
 
@@ -22,4 +27,7 @@ $(document).on('turbolinks:load',function() {
 
 $('.translation_missing').html("Siguiente");
   $('.prev span').html("Anterior");
+
 });
+
+

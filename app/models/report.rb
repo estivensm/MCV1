@@ -22,6 +22,8 @@ class Report < ApplicationRecord
 has_and_belongs_to_many :employed
 belongs_to :source
 belongs_to :proceso
+has_many :numeral_reports, inverse_of: :report, dependent: :destroy
+accepts_nested_attributes_for :numeral_reports
 after_save :enviar_email
 
 

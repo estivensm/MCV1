@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/users/new', to: 'users/views#new_user', as: "new_user"
     post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
     delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
-   
+    get "normass/:id", to: "reports#get_normas", as: "get_normas"
   end
 devise_for :users
   root 'home#index'
