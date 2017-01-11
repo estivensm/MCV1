@@ -33,7 +33,7 @@ end
 
 
 
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @reports = @reports1.paginate(page: params[:page],:per_page => 11).where(admin_user: current_user.admin_user)
    
 
 
