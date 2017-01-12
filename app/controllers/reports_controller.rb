@@ -3,49 +3,74 @@ class ReportsController < ApplicationController
 
   # GET /reports
   # GET /reports.json
+  
+def abiertos
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+   
+   if params[:search]
+     @reports1 = Report.where(state: "Abierto").search(params[:search])
+  else
+     @reports1 = Report.all.where(state: "Abierto")
+  end
+
+  @route = reports_abiertos_path
+
+   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+    else
+      redirect_to root_path
+  end
+    
+    
+    render 'index'
+end
+
   def index
 
     
 
 
- if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+ 
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
    
    if params[:search]
-
-    if !params[:params].blank?
-    @reports1 = Report.where(state: params[:params]).search(params[:search])
+     @reports1 = Report.search(params[:search])
   else
-    @reports1 = Report.search(params[:search])
-end
-
-      
-    
-  
-  else
-  
-     if !params[:params].blank?
-    @reports1 = Report.where(state: params[:params])
-  else
-    @reports1 = Report.all
-  end
-  
+     @reports1 = Report.all
   end
 
 
-
-   @reports = @reports1.paginate(page: params[:page],:per_page => 11).where(admin_user: current_user.admin_user)
-   
-
+  
+   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+    @route = reports_path  
 
     else
       redirect_to root_path
   end
 
 
-
-
-
   end
+def cerrados
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+   
+   if params[:search] 
+     @reports1 = Report.where(state: "Cerrado").search(params[:search])
+  else
+     @reports1 = Report.all.where(state: "Cerrado")
+  end
+
+
+@route = reports_cerrados_path
+   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+    else
+      redirect_to root_path
+  end
+    render 'index'
+end
+
+
+
+
+
 
   # GET /reports/1
   # GET /reports/1.json
@@ -59,6 +84,7 @@ end
     @employed = Employed.all
     @source = Source.all
     @numerals = Numeral.all
+    @es = 1
   end
 
   # GET /reports/1/edit
@@ -125,10 +151,10 @@ end
     end
   end
 
-  def get_normas
+  def get_sourcee
       
-      @numerals = Norma.find(params[:id]).numerals 
-      render :json => @numerals
+      @source = Source.find(params[:id]) 
+      render :json => @source
   end
 
   private
@@ -139,6 +165,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id, :employed_ids => [], numeral_reports_attributes: [:id, :comment, :report_id, :numeral_id, :_destroy])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_ids => [], numeral_reports_attributes: [:id, :comment, :report_id, :numeral_id, :_destroy])
     end
 end

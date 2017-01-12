@@ -3,7 +3,6 @@
 # Table name: reports
 #
 #  id            :integer          not null, primary key
-#  source        :string
 #  employed_id   :integer
 #  proceso_id    :integer
 #  description   :text
@@ -16,6 +15,10 @@
 #  admin_user    :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  state         :string
+#  codigo        :string
+#  contador      :integer
+#  source_id     :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

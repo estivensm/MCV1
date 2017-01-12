@@ -6,6 +6,7 @@ class CreateSources < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :admin_user
       t.boolean :state
+      t.boolean :default
 
       t.timestamps
     end

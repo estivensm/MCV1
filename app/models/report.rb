@@ -24,11 +24,14 @@ belongs_to :source
 belongs_to :proceso
 has_many :numeral_reports, inverse_of: :report, dependent: :destroy
 accepts_nested_attributes_for :numeral_reports
-after_save :enviar_email
+after_create :enviar_email
+mount_uploader :archivo, ArchivoReportUploader
 
 
 def self.search(search)
-            where("source like '%#{search}%' or description like '%#{search}%' "  )  
+	        alejo = Source.where("name like '%#{search}%' "  )
+	        alejo1 = alejo.first if alejo.exists?
+            where(source_id: alejo1).where("description like '%#{search}%' "  ) 
         end
 
 def enviar_email

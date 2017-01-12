@@ -141,11 +141,11 @@
 
                      <% if @menum[1] == "active" %>
                      <% menu_hallazgo %>
-                     <%= link_to "#{reports_path}?params=Abierto",:class => "#{@menu_a[0]}" do %>
+                     <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
                      <i class="fa fa-building-o" aria-hidden="true"></i>
                      <span class="hidden-xs">Hallazgos Abiertos</span>
                       <% end %>
-                     <%= link_to "#{reports_path}?params=Cerrado",:class => "#{@menu_a[1]}" do %>
+                     <%= link_to reports_cerrados_path,:action => :cerrados,:class => "#{@menu_a[1]}" do %>
                      <span class="fa fa-users"></span>
                      <span class="hidden-xs">Hallazgos Cerrados</span>
                      <% end %>

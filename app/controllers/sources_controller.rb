@@ -8,15 +8,16 @@ class SourcesController < ApplicationController
 
 if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
 
-   if params[:search]
+   if params[:search] 
      @sources1 = Source.search(params[:search])
   else
+      @ja = nil
      @sources1 = Source.all
   end
 
 
 
-   @sources = @sources1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @sources = @sources1.paginate(page: params[:page],:per_page => 5).where(admin_user: current_user.admin_user).order(created_at: :desc)
     else
       redirect_to root_path
   end
@@ -53,6 +54,26 @@ if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
         redirect_to sources_path
          end
   end
+
+def change
+  
+    @source1 = Source.where(admin_user: current_user.admin_user)
+    @source1.update_all(default: false)
+    @source = Source.find(params[:id]).update(default: true)
+
+    if params[:search] && params[:search] != "$%$" 
+     
+     @sources1 = Source.search(params[:search])
+  else
+     @sources1 = Source.all
+  end
+
+
+
+   @sources = @sources1.paginate(page: params[:page],:per_page => 5).where(admin_user: current_user.admin_user).order(created_at: :desc)
+    
+    
+end
 
   # DELETE /sources/1
   # DELETE /sources/1.json

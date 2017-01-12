@@ -16,6 +16,7 @@ class CreateReports < ActiveRecord::Migration[5.0]
       t.string :codigo
       t.integer :contador
       t.integer :source_id
+      t.string :archivo
       t.timestamps
     end
   end

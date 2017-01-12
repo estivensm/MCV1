@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   resources :sources
   resources :reports
+  get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"
+  get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
   resources :normas do 
         resources :numerals
   end
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :procesos
   devise_scope :user do 
     get "users/index", to: "users/views#index", as: "users_index"
+
     get "user/:id", to: "users/views#show_user", as: "show_user"
     get "user/:row/:tipo", to: "users/views#order_user", as: "order_user"
     post "create_user", to: "users/views#create_user", as: "create_user"
@@ -21,6 +24,9 @@ Rails.application.routes.draw do
     post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
     delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
     get "normass/:id", to: "reports#get_normas", as: "get_normas"
+    get "reports/sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
+    get "source1/:id/:page/:search", to: "sources#change", as: "change"
+    
   end
 devise_for :users
   root 'home#index'

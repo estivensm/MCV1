@@ -74,11 +74,12 @@ end
 def menu_hallazgo
 
 @menu_a = ["","",""]
-if params[:params] == "Abierto"
+if  action_name == "abiertos"
   
 @menu_a = ["active","",""]
-elsif params[:params] == "Cerrado"
+elsif action_name  =="cerrados"
   @menu_a = ["","active",""]
+  
 else
 
   @menu_a = ["","","active"]
@@ -90,7 +91,24 @@ end
 
 
 
-
+def page_entries_info(collection, options = {})
+  entry_name = options[:entry_name] || (collection.empty?? 'Reporte' :
+      collection.first.class.name.split('::').last.titleize)
+  if collection.total_pages < 2
+    case collection.size
+    when 0; "No #{entry_name.pluralize}Encontrados"
+    else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+    end
+  else
+    %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+  end
+end
 
   
 end
