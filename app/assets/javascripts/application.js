@@ -20,6 +20,8 @@
 //= require bootstrap-sprockets
 //= require bootstrap-checkbox
 //= require turbolinks
+//= require ckeditor-jquery
+//= require config
 //= require_tree .
 
 
@@ -28,6 +30,9 @@ $(document).on('turbolinks:load',function() {
 $('.translation_missing').html("Siguiente");
   $('.prev span').html("Anterior");
 
+$('.ckeditor').ckeditor({
+  // optional config
 });
 
+});
 

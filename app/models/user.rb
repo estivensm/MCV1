@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_many :cargos
   has_one :company
   has_many :employeds
+  has_many :reports
 
 
 def self.search(search)

@@ -38,7 +38,7 @@
             <td><%= numeral.name %></td>
             <td><%= numeral.user_id %></td>
             <td><%= numeral.admin_user %></td>
-            <td><%= numeral.description %></td>
+            <td><div class="descnum"><%== numeral.description %></div></td>
             <td><%= link_to norma_numeral_path(@norma,numeral), :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
@@ -55,3 +55,4 @@
    </table>
    <%= link_to 'Volver', normas_path %>
 </div>
+

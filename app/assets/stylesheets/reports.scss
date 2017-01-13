@@ -1,3 +1,52 @@
 // Place all the styles related to the Reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.btn.numerb
+{
+  padding:0px !important;
+  font-size:12px;
+  background:white;
+  color:#1bbdd0 !important;
+}
+.modal-body
+{
+  padding:30px !important;
+}
+.modal-header
+{
+  color:#1bbdd0 !important;
+  font-weight:bold;
+  padding:20px !important;
+}
+.modal-title
+{
+  font-weight:bold !important;
+}
+
+.reporte
+{
+      width: 95%;
+    margin: 2.5%;
+    color:gray;
+    font-size: 12px;
+}
+.reporte td
+{
+        width: 200px;
+    border: 1px solid #cecece;
+    padding: 5px;
+    text-align: center;
+
+    
+
+}
+.reporte th
+{
+            width: 200px;
+    border: 1px solid #cecece;
+    padding: 5px;
+    text-align: center;
+    background: #f1f1f1;
+    
+
+}

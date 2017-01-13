@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :reports
   get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"
   get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
+  get "normass/:id", to: "reports#get_normas", as: "get_normas"
+  get "sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
+  get "source1/:id/:page/:search", to: "sources#change", as: "change"
   resources :normas do 
         resources :numerals
   end
@@ -23,9 +26,7 @@ Rails.application.routes.draw do
     get '/users/new', to: 'users/views#new_user', as: "new_user"
     post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
     delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
-    get "normass/:id", to: "reports#get_normas", as: "get_normas"
-    get "reports/sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
-    get "source1/:id/:page/:search", to: "sources#change", as: "change"
+    
     
   end
 devise_for :users

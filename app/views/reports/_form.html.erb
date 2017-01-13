@@ -16,7 +16,7 @@
       <div class="row">
          <div class="col-md-6">
             <div class="form-group">
-               <%= f.label "Proceso" %><br>
+               <%= f.label "Fuente" %><br>
                <%= f.select :source_id,
                   @source.map { |u| [u.name, u.id] },
                              { include_blank: true },
@@ -78,7 +78,9 @@
   </div>
          </div>
       </div>
-      <div class="row numeral_report">
+      <br>
+      <hr>
+      <div class="rowt">
          <div class="col-lg-6">
             <div class="col-lg-10">
                <h3 class = "titulor" style = "margin :0px 0px 5px 0;">Numerales de Norma</h3>
@@ -89,7 +91,7 @@
                   
                   <div class="col-md-1" style = "text-align:right" >
                      <%= attachment_form.link_to_remove do %>
-                     <i style = "color:#e74b09;font-size: 20px" class="fa fa-trash" aria-hidden="true"></i>
+                     <i style = "color:#ababab;font-size: 20px" class="fa fa-trash" aria-hidden="true"></i>
                      <% end %>
                   </div>
                   <div class="col-md-5 pad" >
@@ -134,15 +136,7 @@
 
          <%= f.link_to_add "+", :numeral_reports, :class => 'btn btn-primary top10', id:"add-element"  %>
          </div>
-
-         
-
-         
-      </div>
-       <hr>
-       <br>
-      <div class="row ">
-         <div class="col-md-6">
+ <div class="col-md-6">
             <div class="form-group tiponc">
                <label for="">Tipo de NC</label>
                <br>
@@ -163,9 +157,17 @@
                   Justifica por que este hallazgo no necesito Acciones
                </div>
                <%= f.label "Justificacion" %>
-               <%= f.text_area :justificacion ,  class: "form-control" %>
+               <%= f.text_area :justificacion ,  class: "form-control area" %>
             </div>
          </div>
+         
+
+         
+      </div>
+       <hr>
+       <br>
+      <div class="row ">
+        
       </div>
       <hr>
        <br>
@@ -184,21 +186,54 @@
 
 
 <script>
-  
-    $('.source').change(function(){
-      
-                           $.get("sourcee/" + $('.source').val() , function(data) 
-                                                {
-                                                  if (data.name == "Observacion")
-  {
-                                                  $('.tiponc').fadeOut();
-                                     }
-                                     else
+$(document).ready(function(){
+  if ("<%=action_name%>" != "edit")
+{
 
-                                    $('.tiponc').fadeIn();
-                        
-                                                });                        
-                        })
+ 
+$('.source').val("<%=@es.id%>");
+var b = $('.source').val();
+get_source(b);
+
+}
+else
+{
+  var c = "<%=@report.source_id%>";
+ get_source(c);
+}
+});
+
+
+function get_source(b)
+{
+
+  $.get("/sourcee/" + b, function(data) {
+        if (data.state) {
+            $('.tiponc').fadeIn();
+        } 
+        else {
+            $('.tiponc').fadeOut();
+        }
+
+    });
+}
+
+
+
+
+$('.source').change(function() {
+
+    $.get("/sourcee/" + $('.source').val(), function(data) {
+        if (data.state) {
+            $('.tiponc').fadeIn();
+        } 
+        else {
+            $('.tiponc').fadeOut();
+        }
+
+    });
+})
+    
  
 
 

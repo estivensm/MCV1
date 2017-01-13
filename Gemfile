@@ -26,20 +26,35 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'devise'
+#Administracion de Usuarios
+gem 'devise' 
+#Manejo de Archivos e Imagenes
 gem 'carrierwave'
+#Frontend
 gem 'bootstrap-sass', '~> 3.3.6'
+#Iconos
 gem "font-awesome-rails"
+#Manejo de Imagenes
 gem "mini_magick"
+#Paginacion
 gem 'will_paginate',           '3.1.0'
+#Fronend
 gem 'bootstrap-will_paginate', '0.0.10'
+#Ver los campos en los modelos
 gem 'annotate'
+#Buscador con autocompletado
 gem 'chosen-rails'
+#Guardar en amazon
 gem 'fog', '~> 1.38'
+#Frontend
 gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 gem 'ransack'
+#Variables de entorno para seguridad
 gem 'figaro'
+#Sub Formularios
 gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
+#Editor Rico
+gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

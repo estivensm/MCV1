@@ -75,6 +75,8 @@ end
   # GET /reports/1
   # GET /reports/1.json
   def show
+    @responsables = @report.employed
+    @requisitos = NumeralReport.where(report_id: @report.id)
   end
 
   # GET /reports/new
@@ -84,7 +86,8 @@ end
     @employed = Employed.all
     @source = Source.all
     @numerals = Numeral.all
-    @es = 1
+    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
+    
   end
 
   # GET /reports/1/edit
@@ -94,6 +97,9 @@ end
     @employed = Employed.all
     @source = Source.all
     @numerals = Numeral.all
+    
+    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
+
   end
 
   # POST /reports

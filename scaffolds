@@ -1,1 +1,5 @@
 rails g scaffold Report source employed_id:integer proceso_id:integer description:text requisito:text evidencia:text nc_type accion justificacion:text user_id:integer admin_user:integer
+
+
+<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
+<br>
