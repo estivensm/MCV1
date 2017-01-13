@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .descnum
 {
-	height: 100px;
-    overflow: scroll;
+	max-height: 100px !important;
+    overflow: overlay;
+    height: auto;
 }

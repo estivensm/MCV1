@@ -26,6 +26,7 @@ belongs_to :user
 has_many :numeral_reports, inverse_of: :report, dependent: :destroy
 accepts_nested_attributes_for :numeral_reports
 after_create :enviar_email
+after_save :borrar_basura
 mount_uploader :archivo, ArchivoReportUploader
 
 
@@ -42,6 +43,13 @@ self.employed.each do |employed|
 	ReportMailer.noty_report(employed, self).deliver
     
         	end
+        end
+
+        def borrar_basura
+           NumeralReport.where(report_id: self.id).where(numeral_id: nil).destroy_all
+            
+            puts "aklsjdddddddddddddddddddddddddddddddd"
+            
         end        
 
 end

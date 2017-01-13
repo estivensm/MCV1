@@ -77,6 +77,28 @@ end
   def show
     @responsables = @report.employed
     @requisitos = NumeralReport.where(report_id: @report.id)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => 'file_name',
+        :template => 'reports/pdfs/report.pdf.erb',
+        :layout => 'pdf.html.erb',
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
   end
 
   # GET /reports/new
@@ -124,7 +146,7 @@ end
     respond_to do |format|
       if @report.save
         ReportMailer.noty_report(@employed,@report).deliver
-        format.html { redirect_to @report, notice: 'Report was successfully created.' }
+        format.html { redirect_to @report, notice: 'El Reporte fue creado correctamente' }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new }
@@ -138,7 +160,7 @@ end
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
+        format.html { redirect_to @report, notice: 'El Reporte se actualizo correctamente' }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit }
@@ -152,7 +174,7 @@ end
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
+      format.html { redirect_to reports_url, notice: 'El Reporte se elimino correctamente' }
       format.json { head :no_content }
     end
   end
