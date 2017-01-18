@@ -17,6 +17,8 @@ class Norma < ApplicationRecord
 	belongs_to :user
 	has_many :numerals
 	mount_uploader :archivo, ArchivoUploader
+  
+
 
 def self.search(search)
             where("name like '%#{search}%' or name like '%#{search.upcase}%' "  )  

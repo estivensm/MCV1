@@ -2,8 +2,13 @@ Rails.application.routes.draw do
  
 
   
+  resources :accions
   resources :sources
-  resources :reports
+  resources :reports do 
+    resources :accions
+  end
+    
+  
   get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"
   get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
   get "normass/:id", to: "reports#get_normas", as: "get_normas"

@@ -18,15 +18,25 @@
             <div class="form-group">
                <%= f.label "Fuente" %><br>
                <%= f.select :source_id,
-                  @source.map { |u| [u.name, u.id] },
+                 get_sources.map { |u| [u.name, u.id] },
                              { include_blank: true },
                              { class: 'chosen-select form-control ch source'  }
+                  %>
+            </div>
+
+            
+            <div class="form-group">
+               <%= f.label "Reporta" %><br>
+               <%= f.select :employed_reporta,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch'  }
                   %>
             </div>
             <div class="form-group">
                <%= f.label "Asignada a" %><br>
                <%= f.select :employed_id,
-                  @employed.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
                              { include_blank: true },
                              { class: 'chosen-select form-control ch'  }
                   %>
@@ -35,12 +45,12 @@
          <div class="col-md-6">
             <div class="form-group">
                <%= f.label "Otros interesados" %><br>
-               <%= f.select :employed_ids, @employed.collect {|c| ["#{c.first_name} #{c.second_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
+               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
             </div>
             <div class="form-group">
                <%= f.label "Proceso" %><br>
                <%= f.select :proceso_id,
-                  @procesos.map { |u| ["#{u.name},#{u.description} ", u.id] },
+                  get_procesos.map { |u| ["#{u.name},#{u.description} ", u.id] },
                              { include_blank: true },
                              { class: 'chosen-select form-control ch'  }
                   %>
@@ -97,7 +107,7 @@
                   <div class="col-md-5 pad" >
                      <div class="form-group">
                         <%= attachment_form.select :numeral_id,
-                           @numerals.map { |u| ["#{u.norma.name}: #{u.numeral}-#{u.name} ", u.id] },
+                           get_numerals.map { |u| ["#{u.norma.name}: #{u.numeral}-#{u.name} ", u.id] },
                                       { include_blank: true },
                                       { class: 'chosen-select form-control ch'  }
                            %>
@@ -119,7 +129,7 @@
                         /*$('.comment').change(function(){
                             $.get("/normass/7" , function(data) 
                                                 {
-                                                  alert("<%=@procesos.first.name%>")
+                                                  alert("<%=get_procesos.first.name%>")
                                     console.log(data[1].norma_name)
                                     $('.pad').append('<%= j render "as" %>');
                         

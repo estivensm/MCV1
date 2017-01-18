@@ -10,6 +10,7 @@
 #  state       :boolean
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  default     :boolean
 #
 
 class Source < ApplicationRecord

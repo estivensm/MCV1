@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @accion.codigo %>
+</p>
+
+<p>
+  <strong>Responsable:</strong>
+  <%= @accion.employed_id %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @accion.descripcion %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @accion.tipo %>
+</p>
+
+<p>
+  <strong>Costo:</strong>
+  <%= @accion.costo %>
+</p>
+
+<p>
+  <strong>F seguimiento:</strong>
+  <%= @accion.f_seguimiento %>
+</p>
+
+<p>
+  <strong>F compromiso:</strong>
+  <%= @accion.f_compromiso %>
+</p>
+
+<p>
+  <strong>F real:</strong>
+  <%= @accion.f_real %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @accion.estado %>
+</p>
+
+<p>
+  <strong>Cumplio:</strong>
+  <%= @accion.cumplio %>
+</p>
+
+<p>
+  <strong>Contador:</strong>
+  <%= @accion.contador %>
+</p>
+
+<p>
+  <strong>Evidencia:</strong>
+  <%= @accion.evidencia %>
+</p>
+
+<p>
+  <strong>Contador seg:</strong>
+  <%= @accion.contador_seg %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @accion.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @accion.admin_user %>
+</p>
+
+<%= link_to 'Edit', edit_report_accion_path(@report,@accion) %> |
+<%= link_to 'Back', report_accions_path(@report) %>

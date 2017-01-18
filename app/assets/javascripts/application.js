@@ -19,6 +19,7 @@
 //= require jquery_nested_form
 //= require bootstrap-sprockets
 //= require bootstrap-checkbox
+//= require jquery-ui
 //= require turbolinks
 //= require ckeditor-jquery
 //= require config
@@ -34,5 +35,16 @@ $('.ckeditor').ckeditor({
   // optional config
 });
 
+
 });
+
+
+  $(function () {
+  $('[data-toggle="popover"]').popover({
+  	trigger: 'hover',
+  	html: true
+    
+  
+  })
+})
 

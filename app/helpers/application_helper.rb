@@ -1,6 +1,25 @@
 module ApplicationHelper
 
 
+def get_employeds
+
+  Employed.where(admin_user: current_user.admin_user)
+
+end
+def get_procesos
+
+  Proceso.where(admin_user: current_user.admin_user)
+
+end
+def get_sources
+
+  Source.where(admin_user: current_user.admin_user)
+
+end
+def get_numerals
+Numeral.where(admin_user: current_user.admin_user)
+
+end
 
 def company_x
     @company = Company.where(user_id: current_user.admin_user)

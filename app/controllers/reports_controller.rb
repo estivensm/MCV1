@@ -31,7 +31,7 @@ end
 
  
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
-   
+   @es = Source.where({default: true, admin_user: current_user.admin_user}).first
    if params[:search]
      @reports1 = Report.search(params[:search])
   else
@@ -67,7 +67,9 @@ def cerrados
     render 'index'
 end
 
+def acciones
 
+end
 
 
 
@@ -75,7 +77,10 @@ end
   # GET /reports/1
   # GET /reports/1.json
   def show
-    @responsables = @report.employed
+    @responsables = @report.employeds
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
+    @accions = Accion.where(report_id: @report.id)
     @requisitos = NumeralReport.where(report_id: @report.id)
     respond_to do |format|
       format.html
@@ -104,10 +109,6 @@ end
   # GET /reports/new
   def new
     @report = Report.new
-    @procesos = Proceso.all
-    @employed = Employed.all
-    @source = Source.all
-    @numerals = Numeral.all
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     
   end
@@ -115,10 +116,6 @@ end
   # GET /reports/1/edit
   def edit
 
-    @procesos = Proceso.all
-    @employed = Employed.all
-    @source = Source.all
-    @numerals = Numeral.all
     
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
 
@@ -128,6 +125,7 @@ end
   # POST /reports.json
   def create
     @report = Report.new(report_params)
+    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @report.state = "Abierto"
     @num = Report.where(admin_user: current_user.admin_user).maximum(:contador)
     if @num != nil
@@ -158,6 +156,7 @@ end
   # PATCH/PUT /reports/1
   # PATCH/PUT /reports/1.json
   def update
+    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     respond_to do |format|
       if @report.update(report_params)
         format.html { redirect_to @report, notice: 'El Reporte se actualizo correctamente' }
@@ -193,6 +192,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_ids => [], numeral_reports_attributes: [:id, :comment, :report_id, :numeral_id, :_destroy])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :employed_ids => [], numeral_reports_attributes: [:id, :comment, :report_id, :numeral_id, :_destroy])
     end
 end

@@ -6,6 +6,7 @@
  *= require chosen
  *= magic-check
  *= admin
+ *= require jquery-ui
  *= require_tree .
 */
 

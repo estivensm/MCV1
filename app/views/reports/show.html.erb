@@ -1,6 +1,9 @@
 
-<p><%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %><%= link_to image_tag("pdf-64.png"), report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'btn btn-link' %></p>
+<p><%= link_to 'Edit', edit_report_path(@report) %> 
+<%= link_to 'Back', reports_path %><%= link_to image_tag("pdf-64.png"), report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'btn btn-link' %>
+  <%= link_to 'Acciones', report_accions_path(@report) + "?tipo=Accion" %>
+  <%= link_to 'Acciones', report_accions_path(@report) + "?tipo=Correccion" %>
+</p>
 
 <table class = "reporte">
 <tr>
@@ -25,11 +28,17 @@
   
   <th>Reporta</th>
   <td><%= @report.user.name %></td>
-  <th>Asignado Responsable</th>
-  <td><%= Employed.find(@report.employed_id).first_name %> <%= Employed.find(@report.employed_id).first_last_name %></td>
-  <th>Otros interesados</th>
-  <td><% @responsables.each do |resp| %>
-    <%= resp.first_name%> <%= resp.first_last_name%><br>
+  <th>Responsabilidad</th>
+  
+ 
+  <% employed = Employed.find(@report.employed_id)%>
+     <td colspan="3" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
+     cm = 0 
+     @report.employeds.each do |resp|
+      %><%= "," if cm != 0 %> 
+    <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= resp.avatare_url(:thumb) %>'></p><br><strong>Cargo: </strong><%=resp.cargo.name %><br> <strong>Email:</strong> <%= resp.email%><br><strong>Cedula:</strong> <%= resp.document %>"><%= resp.first_name %> <%= resp.first_last_name %></button>
+    
+    <%  cm = cm + 1 %> 
     <%end%>
   </td>
 </tr>
@@ -104,6 +113,47 @@ $('.modalp1').text(b);
 </tr>
 </table>
 
+<div class="row flujo">
+
+<div class="col-md-4">
+<div class="panel panel-info">
+<div class="panel-heading">Correcciones</div>
+  <div class="panel-body">
+    <p>...</p>
+</div>
+</div>
+
+  
+</div>
+<div class="col-md-4">
+<div class="panel panel-info">
+<div class="panel-heading">Analisis de Causa</div>
+  <div class="panel-body">
+    <p>...</p>
+</div>
+</div>
+
+  
+</div>
+<div class="col-md-4">
+<div class="panel panel-info">
+<div class="panel-heading">Acciones (<%=@accionsca + @accionscc%>)</div>
+  <div class="panel-body">
+  
+    <p><%= link_to  report_accions_path(@report) + "?tipo=Accion", class: 'lin' do%>Tienes <%=@accionsca%> <%=@accionsca == 1 ? "Accion Abierta" : "Acciones Abiertas"%>
+    <%end%> 
+    </p>
+    <p><%= link_to  report_accions_path(@report) + "?tipo=Accion", class: 'lin' do%>Tienes <%=@accionscc%> <%=@accionscc == 1 ? "Accion Cerrada" : "Acciones Cerradas"%> <%end%> </p>
+   
+</div>
+</div>
+
+  
+</div>
+
+</div>
+
+<p id="notice"><%= notice %></p>
 
 
 
@@ -129,17 +179,25 @@ $('.modalp1').text(b);
   </div>
 
 
-<p id="notice"><%= notice %></p>
-
 
 
 
 
 <script>
+  
+  
   $(function () {
-  $('[data-toggle="popover"]').popover()
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    html: true
+    
+  
+  })
 })
+
 </script>
+
+
 
 <!-- Large modal -->
 

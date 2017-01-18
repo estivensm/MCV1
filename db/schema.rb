@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111205641) do
+ActiveRecord::Schema.define(version: 20170117194309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accions", force: :cascade do |t|
+    t.string   "codigo"
+    t.string   "employed_id"
+    t.text     "descripcion"
+    t.string   "tipo"
+    t.integer  "costo"
+    t.integer  "f_seguimiento"
+    t.date     "f_compromiso"
+    t.date     "f_real"
+    t.string   "estado"
+    t.boolean  "cumplio"
+    t.integer  "contador"
+    t.text     "evidencia"
+    t.integer  "contador_seg"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "report_id"
+    t.date     "fp_seguimiento"
+  end
+
+  create_table "accions_employeds", id: false, force: :cascade do |t|
+    t.integer "employed_id"
+    t.integer "accion_id"
+    t.index ["accion_id"], name: "index_accions_employeds_on_accion_id", using: :btree
+    t.index ["employed_id"], name: "index_accions_employeds_on_employed_id", using: :btree
+  end
 
   create_table "cargos", force: :cascade do |t|
     t.string   "name"
@@ -111,13 +140,14 @@ ActiveRecord::Schema.define(version: 20170111205641) do
     t.text     "justificacion"
     t.integer  "user_id"
     t.integer  "admin_user"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "state"
     t.string   "codigo"
     t.integer  "contador"
     t.integer  "source_id"
     t.string   "archivo"
+    t.integer  "employed_reporta"
   end
 
   create_table "sources", force: :cascade do |t|

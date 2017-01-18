@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise' 
 #Manejo de Archivos e Imagenes
 gem 'carrierwave'
+gem 'file_validators'
 #Frontend
 gem 'bootstrap-sass', '~> 3.3.6'
 #Iconos
@@ -44,6 +45,8 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'annotate'
 #Buscador con autocompletado
 gem 'chosen-rails'
+
+gem 'jquery-ui-rails'
 #Guardar en amazon
 gem 'fog', '~> 1.38'
 #Frontend

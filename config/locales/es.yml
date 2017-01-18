@@ -15,3 +15,5 @@ es:
         password: "Contraseña"
       proceso:
         name: "Nombre"
+      accion:
+        employed_id: "Asignada a"
