@@ -80,6 +80,8 @@ end
     @responsables = @report.employeds
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
     @accions = Accion.where(report_id: @report.id)
     @requisitos = NumeralReport.where(report_id: @report.id)
     respond_to do |format|

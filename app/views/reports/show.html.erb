@@ -1,9 +1,19 @@
 
-<p><%= link_to 'Edit', edit_report_path(@report) %> 
-<%= link_to 'Back', reports_path %><%= link_to image_tag("pdf-64.png"), report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'btn btn-link' %>
-  <%= link_to 'Acciones', report_accions_path(@report) + "?tipo=Accion" %>
-  <%= link_to 'Acciones', report_accions_path(@report) + "?tipo=Correccion" %>
+<p><%= link_to  reports_path, :class => "opciones2" do %>
+               <i class="fa fa-arrow-left" aria-hidden="true"></i>
+
+               <% end %>
+               <%= link_to  edit_report_path(@report), :class => "opciones2" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               
+              <%= link_to report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'opciones2' do %>
+              <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+               <% end %>
+  
 </p>
+
+
 
 <table class = "reporte">
 <tr>
@@ -21,7 +31,7 @@
   <td><%= @report.nc_type %></td>
   <th>Estado del Hallazgo</th>
   <td><%= @report.state %></td>
-  <th></th>
+  <th>Costo Actual</th>
   <td>0</td>
 </tr>
 <tr>
@@ -50,13 +60,13 @@
 <tr>
   
  
-  <td colspan="6"><%= @report.description %></td>
+  <td colspan="6" class = "text-left"><%= @report.description %></td>
    
 </tr>
 <tr>
   
   <th>Evidencia</th>
-  <td colspan="2"><%= @report.nc_type %></td>
+  <td colspan="2" class = "text-left"><%= @report.evidencia %></td>
   <th>Evidencia Adjunta</th>
   <td colspan="2"><%= link_to "Descargar Archivo", @report.archivo_url if @report.archivo_url %></td>
   
@@ -65,7 +75,7 @@
 <tr>
   
   <th>Requisito Legal o Interno</th>
-  <td colspan="2"><%= @report.requisito %></td>
+  <td colspan="2" class = "text-left"><%= @report.requisito %></td>
   <th>Requisto Aplicable</th>
   <td colspan="2"><% @requisitos.each do |req|
    numr = Numeral.find(req.numeral_id)%>
@@ -117,9 +127,12 @@ $('.modalp1').text(b);
 
 <div class="col-md-4">
 <div class="panel panel-info">
-<div class="panel-heading">Correcciones</div>
+<div class="panel-heading">Correcciones (<%=@correa + @correc%>)</div>
   <div class="panel-body">
-    <p>...</p>
+    <p><p><%= link_to  report_accions_path(@report) + "?tipo=Correccion", class: 'lin' do%>Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
+    <%end%> 
+    </p>
+    <p><%= link_to  report_accions_path(@report) + "?tipo=Correccion", class: 'lin' do%>Tienes <%=@correc%> <%=@correc == 1 ? "Correccion Cerrada" : "Correcciones Cerradas"%> <%end%> </p>
 </div>
 </div>
 
