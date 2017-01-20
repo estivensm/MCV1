@@ -31,7 +31,7 @@ belongs_to :proceso
 belongs_to :user
 has_many :accions
 after_create :enviar_email
-after_save :borrar_basura
+
 
 mount_uploader :archivo, ArchivoReportUploader
 validate :archivo_size_validation, :if => "archivo?"  
@@ -59,11 +59,6 @@ self.employeds.each do |employed|
         	end
         end
 
-        def borrar_basura
-           NumeralReport.where(report_id: self.id).where(numeral_id: nil).destroy_all
-            
-            
-            
-        end        
+               
 
 end
