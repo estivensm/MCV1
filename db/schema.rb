@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117194309) do
+ActiveRecord::Schema.define(version: 20170120165848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,14 +100,6 @@ ActiveRecord::Schema.define(version: 20170117194309) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "numeral_reports", force: :cascade do |t|
-    t.text     "comment"
-    t.integer  "numeral_id"
-    t.integer  "report_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "numerals", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -118,6 +110,13 @@ ActiveRecord::Schema.define(version: 20170117194309) do
     t.string   "norma_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "numerals_reports", id: false, force: :cascade do |t|
+    t.integer "report_id"
+    t.integer "numeral_id"
+    t.index ["numeral_id"], name: "index_numerals_reports_on_numeral_id", using: :btree
+    t.index ["report_id"], name: "index_numerals_reports_on_report_id", using: :btree
   end
 
   create_table "procesos", force: :cascade do |t|

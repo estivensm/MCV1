@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Crear Usuario</h4>
+        <h4 class="modal-title"><%=action_type%> Norma</h4>
       </div>
 <%= form_for(norma, remote: true) do |f| %>
   <div class="alert alert-danger" style="display:none">
@@ -14,7 +14,7 @@
       <div class="modal-body">
 
     <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label "Nombre" %>
     <%= f.text_field :name,  class: "form-control" %>
   </div>
 
@@ -22,17 +22,19 @@
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 
     <div class="form-group">
-    <%= f.label :archivo %>
+    <%= f.label "Archivo" %>
     <%= f.file_field :archivo,  class: "form-control" %>
   </div>
 
     <div class="form-group">
-    <%= f.label :link %>
+    <%= f.label "Link" %>
     <%= f.url_field :link ,  class: "form-control"%>
   </div>
-
-    <div class="form-group">
-    <%= f.submit "Crear", class: 'btn btn-primary' %>
+<br>
+<hr>
+  <div class="form-group text-center">
+   <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
   </div>
 <% end %>
   </div>

@@ -1,70 +1,91 @@
 
-<%= link_to 'Back', report_path(@report) %>
 <div class="row">
-<div class="col-md-8">
-  <h1 class ="titaccion">Acciones Reporte
-(<a class="btn numerb"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%></a>)</h1>
-</div>
-<div class="col-md-4">
-  <p><%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{params[:tipo]}", :class => 'btn btn-primary pull-right' %></p>
-</div>
-  
+  <div class="col-md-12 ">
+    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
+  </div>
+
 </div>
 
- <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title modalp1">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-  <table class = "reporte">
+
+
+
+
+
+
+
+<div class = "row">
+
+<table class = "reporte" style = "margin-bottom:-1px;">
+<tr>
+<th colspan="8" class ="titaccion tr-table text-center">Reporte
+</th>
 <tr>
   <th>Codigo</th>
   <td><%= @report.codigo %></td>
   <th>Fuente</th>
   <td><%= @report.source.name %></td>
+  <th>Responsable</th>
+  <% employed = Employed.find(@report.employed_id)%>
+     <td colspan="3" class = "imaacc"><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
   
   
 </tr>
 <tr>
-
+<th>Estado</th>
+  <td><%= @report.state %></td>
   <th>Descripcion</th>
-  <td colspan="3"><%= @report.description%></td>
+  <td colspan="4" class="text-left"><%= @report.description%></td>
   
 </tr>
 
 </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-<div class = "row">
-
-
-<% @accions.each do |accion| %>
-   <table class = "reporte">
+ 
+   <table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2;">
 
       <thead>
+<tr class ="tr-table ">
+<th colspan="7" style = "padding-left:150px" class ="titaccion text-center"><%=@tipo + "es"%>
+<th><%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right' %></td>
+</th>
+
+</tr>
          <tr class = "tr-table">
-      <th>Codigo</th>
-      
+      <th style = "width:10%">Codigo</th>
+      <th style = "width:13%">Creacion</th>
      
       
-      <th>Frecuencia de seguimiento</th>
-      <th>Fechas</th>
+      <th style = "width:13%">Responsable</th>
+      <th style = "width:13%">Compromiso</th>
       
-      <th colspan="2">Responsabilidad</th>
+      <th style = "width:41%" colspan="3">Descripcion</th>
+      
+      <th style = "width:10%"></th>
       
       
-      <th><%= link_to  report_accion_path(@report,accion), :class => "opciones" do %>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @accions.each do |accion| %>
+      <tr>
+        <td><%= accion.codigo %></td>
+             
+      <td><%= get_date(accion.created_at) %></td>
+       <% employed = Employed.find(accion.employed_id)%>
+     <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+        <td><%= get_date(accion.f_compromiso) if accion.fp_seguimiento %></td>
+       
+     
+        
+       
+     
+   
+       
+        <td colspan="3" class="text-left"><%= accion.descripcion %></td>
+
+
+       <td> <%= link_to  report_accion_path(@report,accion), :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
                <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
@@ -72,48 +93,17 @@
                <% end %>
                <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
-               <% end %></th>
-      
-      
-    </tr>
-  </thead>
+               <% end %></td>
 
-  <tbody>
-    
-      <tr>
-        <td><%= accion.codigo %></td>
-             
-      
-        <td><%= f_seguimiento(accion.f_seguimiento) %></td>
-        <td>Compromiso: <%= accion.f_compromiso.strftime("%d/%m/%Y") if accion.fp_seguimiento %><br>Proximo Seguimiento: <%= accion.fp_seguimiento.strftime("%d/%m/%Y") if accion.fp_seguimiento %><br><%=accion.contador_seg %></td>
-       
-     
-        
-        <% employed = Employed.find(accion.employed_id)%>
-     <td colspan="3" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
-     cm = 0 
-     accion.employeds.each do |resp|
-      %><%= "," if cm != 0 %> 
-    <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= resp.avatare_url(:thumb) %>'></p><br><strong>Cargo: </strong><%=resp.cargo.name %><br> <strong>Email:</strong> <%= resp.email%><br><strong>Cedula:</strong> <%= resp.document %>"><%= resp.first_name %> <%= resp.first_last_name %></button>
-    
-    <%  cm = cm + 1 %> 
-    <%end%>
-   </td>
-       
-        
+
+
        
         
       </tr>
-<tr>
-        <th colspan="1">Descripcion</th>
-
-        <td colspan="5" class="text-left"><%= accion.descripcion %></td>
-       
-  
-    </tr> 
+ <% end %>
   </tbody>
 </table>
- <% end %>
+
  </div>
 <br>
 

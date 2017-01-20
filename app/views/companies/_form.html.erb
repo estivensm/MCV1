@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-        <h4 class="modal-title">Crear Cargo</h4>
+        <h4 class="modal-title">Editar Empresa</h4>
       </div>
 <%= form_for(company) do |f| %>
   <div class="alert alert-danger" style="display:none">
@@ -14,34 +14,37 @@
       <div class="modal-body">
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label "Nombre" %>
     <%= f.text_field :name ,  class: "form-control"%>
   </div>
 
   <div class="form-group">
-    <%= f.label :logo %>
+    <%= f.label "Logo" %>
     <%= f.file_field :logo,  class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :phone %>
+    <%= f.label "Telefono" %>
     <%= f.text_field :phone,  class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :address %>
+    <%= f.label "Direccion" %>
     <%= f.text_field :address,  class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :nit %>
+    <%= f.label "Nit" %>
     <%= f.text_field :nit,  class: "form-control" %>
   </div>
-<div class="form-group">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <%= f.submit "crear", class: 'btn btn-primary'%>
+<br>
+<hr>
+  <div class="form-group text-center">
+   <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
   </div>
 <% end %>
 </div>
     </div>
       </div>
+ </div>

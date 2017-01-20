@@ -63,14 +63,14 @@ body{
 }
 .active
 {
-  background: #1bbdd0;
+  background:#0db497 ;
   color:white!important;
 }
 
 
 
 .sidebar a:hover {
-    background: #1bbdd0!important;
+    background:#0db497 !important;
     color:white!important;
     }
 
@@ -81,7 +81,7 @@ body{
 
 .nav .open>a:hover, .nav .open>a:focus 
 {
-  background: #1bbdd0!important;
+  background:#0db497 !important;
     color:white!important;
 }
 
@@ -128,7 +128,7 @@ h1
 }
 .logo span
     {
-      color:#22bdc8;
+      color:#0db497;
 
     }
     .logop 
@@ -142,7 +142,7 @@ h1
 }
 .logop span
     {
-      color:#22bdc8;
+      color:#0db497;
 
     }
 
@@ -163,16 +163,20 @@ h1
 }
 .title-table
 {
-  font-size: 2em;
-  padding:20px;
-  color: #1bbdd0;
-  font-family: 'Days One', sans-serif;
+  font-size: 23px;
+    padding: 20px;
+    color: #0db497;
+    font-family: 'Days One', sans-serif;
 }
 
 .contenido
 {
   background:white;
   margin-top: 0px;
+      width: 95%;
+    margin-left: 2.5%;
+    padding: 0px 20px;
+
 }
 
 .tr-table
@@ -186,7 +190,7 @@ background: #f2f2f2;
     {
 
         color: #7a7a7a;
-        font-size:13px;
+        font-size:12px;
 
 
 
@@ -212,12 +216,18 @@ background: #f2f2f2;
      .opciones:hover
     {
    text-decoration:none;
+   color:#7a7a7a !important;
     }
 .opciones2
     {
     color:#7a7a7a;
     margin-right:10px;
     font-size:20px;
+    }
+    .opciones2:hover
+    {
+   text-decoration:none;
+   color:#7a7a7a !important;
     }
 
      .imgav img
@@ -305,7 +315,7 @@ background: #f2f2f2;
       }
       h2
       {
-      color:#1bbdd0;
+      color:#0db497 ;
       }  
       i
       {
@@ -343,8 +353,8 @@ background: #f2f2f2;
 {
   padding:15px;
       text-decoration: none !important;
-          font-size: 13px;
-}
+    font-size: 13px;
+    border-radius: 5px;}
 .dp
 {
   padding:15px;
@@ -418,7 +428,7 @@ dp a:focus:hover:active:visited {color:black !important }
 }
 .label-primary
 {
-  background-color: #1bbdd0 !important;
+  background-color:#0db497  !important;
 }
 .paginate
 {
@@ -427,12 +437,12 @@ dp a:focus:hover:active:visited {color:black !important }
 }
 .page_info
   {
-  color: #1bbdd0 !important;
+  color:#0db497  !important;
   }
   .titulo1
   {
       margin-left: 120px;
-    color: #1bbdd0 !important;
+    color:#0db497  !important;
   }
   .def
   {
@@ -446,8 +456,17 @@ dp a:focus:hover:active:visited {color:black !important }
   text-align:left !important;
   padding:10px !important;
   }
+  .text-right
+{
+  text-align:right !important;
+  
+  }
 
 .text-center
 {
-  
+  text-align:center !important;
+}
+.btnpad
+{
+     padding: 6px 20px !important; 
 }

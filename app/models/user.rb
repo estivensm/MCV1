@@ -26,6 +26,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   after_create :add_adminid
   before_save :add_adminid1
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -35,7 +36,7 @@ class User < ApplicationRecord
   has_one :company
   has_many :employeds
   has_many :reports
-
+  has_many :accions
 
 def self.search(search)
             where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  

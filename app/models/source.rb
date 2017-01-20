@@ -15,7 +15,18 @@
 
 class Source < ApplicationRecord
 	has_many :reports
+	after_create :validar_default
 	def self.search(search)
             where("name like '%#{search}%' or description like '%#{search}%' "  )  
+        end
+
+        def validar_default
+
+           sources = Source.where(admin_user: self.admin_user).count
+           self.default = true if sources == 1 
+           save
+         
+             
+
         end
 end

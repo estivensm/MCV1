@@ -99,11 +99,9 @@
          </div>
             <!--/sidebar-->
             <div class="row submenu-main">
-                  <div class="col-md-3 submenu">
-                     <p>Configuracion /<%= controller_name%>/ <%= action_name%></p>
-                  </div>
+                 
 
-                  <div class="col-md-9 submenu">
+                  <div class="col-md-12 submenu">
                      
                      <% sub_menu %>
                      <% if @menum[0] == "active" %>
@@ -162,12 +160,13 @@
        </div>
               
                   
-               <div class = "container conte">
-               
-                     <div class = "col-md-12 contenido">
+               <div class = "container-fluid conte">
+               <div class = "row">
+                     <div class = "contenido">
                      <%= flash_messages %>
                      <%= yield %>
                   
+                  </div>
                   </div>
            </div>
          <!--/row-->

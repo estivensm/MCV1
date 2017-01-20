@@ -17,6 +17,7 @@
 class Numeral < ApplicationRecord
 belongs_to :user
 belongs_to :norma
+has_and_belongs_to_many :reports
 
 def self.search(search)
             where("name like '%#{search}%' or numeral like '%#{search}%' "  )  

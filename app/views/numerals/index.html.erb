@@ -10,8 +10,8 @@
    <div class = "col-md-6">
       <div class="form-group">
          <%= form_tag(norma_numerals_path(@norma), :method => "get", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
-         <%= submit_tag "Search", :class => "btn btn-primary" %>
+         <%= text_field_tag :search, params[:search], placeholder: "Ingrese Texto", class: "form-control search1" %>
+         <%= submit_tag "Buscar", :class => "btn btn-primary" %>
          <% end %>
       </div>
    </div>
@@ -24,10 +24,10 @@
       <thead>
          <tr class = "tr-table">
             <th>Numeral</th>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>User</th>
             <th>Admin user</th>
-            <th>Description</th>
+            <th>Descripción</th>
             <th colspan="3"></th>
          </tr>
       </thead>

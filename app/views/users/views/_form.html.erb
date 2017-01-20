@@ -14,7 +14,7 @@
       <div class="modal-body">
 
         <div class="form-group">
-    <%= label_tag :email %>
+    <%= label_tag "Email" %>
     <%= email_field_tag :email,nil , class: "form-control formus" %>
   </div>
 
@@ -27,24 +27,28 @@
 
 
     <div class="form-group">
-    <%= label_tag :password %>
+    <%= label_tag "Contraseña" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= password_field_tag :password,nil,  class: "form-control formus" %>
   </div>
   <div class="field">
-    <%= label_tag :password_confirmation %><br />
+    <%= label_tag "Confirmar Contraseña" %><br />
     <%= password_field_tag :password_confirmation, nil ,class: "form-control formus" %>
   </div>
 <%= hidden_field_tag :admin_user ,current_user.admin_user %>
 
+ 
+<br>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= submit_tag "crear", class: 'btn btn-primary' %>
+      <div class="modal-footer text-center">
+       
+        <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
 <% end %>
     </div>
   </div>
 </div>
+

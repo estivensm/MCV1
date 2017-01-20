@@ -4,9 +4,21 @@ class AccionsController < ApplicationController
   # GET /accions
   # GET /accions.json
   def index
-   
-    @accions = Accion.where(tipo: params[:tipo])
+    @tipo = "Accion"
     @report = Report.find(params[:report_id]) 
+    @accions = @report.accions
+   end
+
+  
+
+  def correcciones
+    @tipo = "Correccion"
+     @report = Report.find(params[:report_id]) 
+    @accions = @report.accions.where(tipo: "Correccion")
+   
+
+    render 'index'
+    
   end
 
   # GET /accions/1
@@ -18,12 +30,14 @@ class AccionsController < ApplicationController
 
   # GET /accions/new
   def new
+     @tipo = params[:tipo]
     @accion = Accion.new
      @report = Report.find(params[:report_id]) 
   end
 
   # GET /accions/1/edit
   def edit
+     @tipo = params[:tipo]
      @report = Report.find(params[:report_id]) 
   end
 
@@ -43,7 +57,7 @@ class AccionsController < ApplicationController
     @ano = Time.now.year.to_s
     @ano = @ano.remove("20") 
  
-    @code= "RP#{@report.contador}-ACC-#{@num}-#{@ano}" 
+    @code= "ACC-#{@num}-#{@ano}" 
     @accion.codigo = @code
     @accion.contador = @num
     respond_to do |format|

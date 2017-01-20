@@ -8,14 +8,14 @@ def abiertos
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
    
    if params[:search]
-     @reports1 = Report.where(state: "Abierto").search(params[:search])
+     @reports1 = Report.where(state: "Abierto").search(params[:search],params[:search2])
   else
      @reports1 = Report.all.where(state: "Abierto")
   end
 
   @route = reports_abiertos_path
 
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
     else
       redirect_to root_path
   end
@@ -33,14 +33,14 @@ end
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
    if params[:search]
-     @reports1 = Report.search(params[:search])
+     @reports1 = Report.search(params[:search],params[:search2])
   else
      @reports1 = Report.all
   end
 
 
   
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
     @route = reports_path  
 
     else
@@ -53,14 +53,14 @@ def cerrados
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
    
    if params[:search] 
-     @reports1 = Report.where(state: "Cerrado").search(params[:search])
+     @reports1 = Report.where(state: "Cerrado").search(params[:search],params[:search2])
   else
      @reports1 = Report.all.where(state: "Cerrado")
   end
 
 
 @route = reports_cerrados_path
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
     else
       redirect_to root_path
   end
@@ -83,7 +83,7 @@ end
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
     @accions = Accion.where(report_id: @report.id)
-    @requisitos = NumeralReport.where(report_id: @report.id)
+ 
     respond_to do |format|
       format.html
       format.pdf do
@@ -194,6 +194,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :employed_ids => [], numeral_reports_attributes: [:id, :comment, :report_id, :numeral_id, :_destroy])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :employed_ids => [], :numeral_ids => [])
     end
 end

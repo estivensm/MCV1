@@ -57,8 +57,8 @@ padding: 15px 15px;
     color:white !important;
 }
 .btn-primary{
-    background: #1bbdd0 !important;
-        border-color: #1bbdd0 !important;
+    background: #0db497 !important;
+        border-color: #0db497 !important;
 }
 
 .btn-danger:visited {
@@ -69,7 +69,7 @@ padding: 15px 15px;
 
 
     margin-right: 5px;
-        color: #22bdc8;
+        color: #0db497;
     padding: 10px;
     border-radius: 3px;
     font-size:13px;
@@ -79,7 +79,7 @@ padding: 15px 15px;
 {
 
 
-   background: #1bbdd0;
+   background: #0db497;
   color:white!important;
   text-decoration:none;
     
@@ -118,15 +118,56 @@ padding: 15px 15px;
 
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus 
 
-{    background-color: #1bbdd0 !important;
-    border-color: #1bbdd0 !important;
-    color:white !important;}
+{    background-color: #0db497!important;
+    border-color: #0db497 !important;
+    color: white !important;}
 
     .pagination > li > a, .pagination > li > span
     {
 
-    color: #1bbdd0 !important;
+    color: #0db497 !important;
     }
 
 
 
+.linka
+{
+  color:#0db497 !important;
+}
+
+
+
+.chosen-container-single .chosen-single {
+    height: 32px !important;
+    border-radius: 3px !important;
+    border: 1px solid #CCCCCC !important;
+}
+.chosen-container-single .chosen-single span {
+    padding-top: 2px !important;
+}
+.chosen-container-single .chosen-single div b {
+    margin-top: 2px !important;
+}
+
+
+.chosen-container-active .chosen-single,
+.chosen-container-active.chosen-with-drop .chosen-single {
+    border-color: #ccc !important;
+    border-color: rgba(82, 168, 236, .8) !important;
+    outline: 0 !important;
+    outline: thin dotted \9 !important;
+    -moz-box-shadow: 0 0 8px rgba(82, 168, 236, .6) !important;
+    box-shadow: 0 0 8px rgba(82, 168, 236, .6)!important;
+}
+
+input, select, textarea
+{
+  background: #f9f9f9 !important;
+}
+
+.chosen-container-multi .chosen-choices {
+
+ background: #f9f9f9 !important;
+ border-radius: 4px !important;
+    
+  }

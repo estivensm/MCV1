@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :sources
   resources :reports do 
     resources :accions
+    
+    get "correcciones", to: "accions#correcciones" , as: "correcciones" 
   end
     
   
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   get "source1/:id/:page/:search", to: "sources#change", as: "change"
   resources :normas do 
         resources :numerals
+
   end
   resources :employeds
   resources :companies #, only: [:show, :create, :edit, :update, :index]
@@ -36,5 +39,7 @@ Rails.application.routes.draw do
   end
 devise_for :users
   root 'home#index'
+
+  match "*path" => redirect("/"), via: :get 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

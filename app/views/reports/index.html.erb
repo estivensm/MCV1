@@ -1,3 +1,9 @@
+<div class="row" >
+  <div class="col-md-12 ">
+    <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
+  </div>
+</div>
+
 <div class = "row title-table">
    <div class = "col-md-10">
       <p >Hallazgos <span class="label label-primary"><%=@reports.count%></span></p>
@@ -6,60 +12,89 @@
       <%= link_to 'Nuevo', new_report_path, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
    </div>
 </div>
-<div class = "row">
-   <div class = "col-md-6">
-      <div class="form-group">
-         <%= form_tag(@route, :method => "get", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
+ <div class = "row ">
+   
+
+
+   <div class = "col-md-6" style = "margin-top: 32px;     background: #e6e6e6;
+    border-radius: 4px;
+    
+    padding: 10px;">
+      
+         <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline") do %>
+         <div class="form-group">
+         <%= text_field_tag :search, params[:search], placeholder: "Ingrese texto", class: "form-control shi" %>
+         </div>
+          <div class="form-group">
+         <%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh", include_blank: true , placeholder: "hola"}%>
+
+          </div>
+        
                  
-         <%= submit_tag "Search", :class => "btn btn-primary" %>
+         <%= submit_tag "Buscar", :class => "btn btn-primary", style: "margin-left:10px;padding:3px 20px;" %>
+
          <% end %>
-      </div>
+
+<%= (link_to "Cancelar filtros", reports_path, class: "linka") if params[:commit]  %>
+
+
+
+
+
+
+      
    </div>
-   <div class = "col-md-6 paginate">
+
+   <div class = "col-md-6 paginate text-right">
   
-    <div class="page_info">
-      <%= page_entries_info @reports, :entry_name => 'Reporte' %>
-    </div>
+    
+      <span class="page_info" style = "margin-right:10px;"><%= page_entries_info @reports, :entry_name => 'Reporte' %> </span>
+    <br>
     <%= will_paginate @reports%>
   
-   
-</div>
+   </div>
+   </div>
+  
+
+<br>
 <div class = "row">
    <table class="table">
       <thead>
          <tr class = "tr-table">
+      <th style = "width:13%">F Creacion</th>
+      <th style = "width:13%">Fuente</th>
+      <th style = "width:13%">Responsable</th>
+      <th style = "width:13%">Proceso</th>
+      <th style = "width:25%">Descripcion</th>
+      <th style = "width:13%">Estado<th>
+   
+      
     
-      <th>Source</th>
-      <th>Employed</th>
-      <th>Proceso</th>
-      <th>Description</th>
-      <th>Requisito</th>
-      <th>Evidencia</th>
-      <th>Nc type</th>
-      <th>Accion</th>
-      <th>Justificacion</th>
-      <th>User</th>
-      <th>Admin user</th>
-      <th colspan="3"></th>
+      <th style = "width:13%"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @reports.each do |report| %>
       <tr>
+      <td><%= get_date(report.created_at) %></td>
         <td><%= report.source.name %></td>
-        <td><%= Employed.find(report.employed_id).first_name %> </td>
+        <td><%= Employed.find(report.employed_id).first_name %> <%= Employed.find(report.employed_id).first_last_name %></td>
         <td><%= report.proceso.name %></td>
         <td><%= report.description %></td>
-        <td><%= report.requisito %></td>
-        <td><%= report.evidencia %></td>
-        <td><%= report.nc_type %></td>
-        <td><%= report.accion %></td>
-        <td><%= report.justificacion %></td>
-        <td><%= report.user_id %></td>
-        <td><%= report.admin_user %></td>
-        <td><%= link_to  report, :class => "opciones" do %>
+       
+
+        <td><%if report.state == "Abierto"  %>
+          
+<i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+
+          <%else%>
+          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+          <%end%>
+
+        </td>
+       
+        <td style = "width:13%"><%= link_to  report, :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
                <%= link_to  edit_report_path(report), :class => "opciones" do %>
@@ -73,4 +108,29 @@
   </tbody>
 </table>
 </div>
+
+<script>
+  
+  
+
+    $('.sh').val("<%=params[:search2]%>") ;
+
+$('.sh').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No hay resultados',
+          width: '200px;',
+          placeholder_text_single: "Seleccione una Fuente",
+          placeholder_text_multiple: "Seleccione una varias opciones"
+
+        });
+
+</script>
+<style>
+
+
+
+  
+</style>
 

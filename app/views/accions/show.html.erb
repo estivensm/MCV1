@@ -1,79 +1,103 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Codigo:</strong>
-  <%= @accion.codigo %>
-</p>
-
-<p>
-  <strong>Responsable:</strong>
-  <%= @accion.employed_id %>
-</p>
-
-<p>
-  <strong>Descripcion:</strong>
-  <%= @accion.descripcion %>
-</p>
-
-<p>
-  <strong>Tipo:</strong>
-  <%= @accion.tipo %>
-</p>
-
-<p>
-  <strong>Costo:</strong>
-  <%= @accion.costo %>
-</p>
-
-<p>
-  <strong>F seguimiento:</strong>
-  <%= @accion.f_seguimiento %>
-</p>
-
-<p>
-  <strong>F compromiso:</strong>
-  <%= @accion.f_compromiso %>
-</p>
-
-<p>
-  <strong>F real:</strong>
-  <%= @accion.f_real %>
-</p>
-
-<p>
-  <strong>Estado:</strong>
-  <%= @accion.estado %>
-</p>
-
-<p>
-  <strong>Cumplio:</strong>
-  <%= @accion.cumplio %>
-</p>
-
-<p>
-  <strong>Contador:</strong>
-  <%= @accion.contador %>
-</p>
-
-<p>
-  <strong>Evidencia:</strong>
-  <%= @accion.evidencia %>
-</p>
-
-<p>
-  <strong>Contador seg:</strong>
-  <%= @accion.contador_seg %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @accion.user_id %>
-</p>
-
-<p>
-  <strong>Admin user:</strong>
-  <%= @accion.admin_user %>
-</p>
-
+<div class="row">
+   <div class="col-md-8">
+      <h1 class ="titaccion"><%=@accion.tipo %> del Reporte
+         (<a class="btn numerb"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%></a>)
+      </h1>
+   </div>
+   <div class="col-md-4">
+      <p><%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right' %></p>
+   </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title modalp1">Informacion del Reporte</h4>
+         </div>
+         <div class="modal-body">
+            <table class = "reporte">
+               <tr>
+                  <th>Codigo</th>
+                  <td><%= @report.codigo %></td>
+                  <th>Fuente</th>
+                  <td><%= @report.source.name %></td>
+               </tr>
+               <tr>
+                  <th>Descripcion</th>
+                  <td colspan="3"><%= @report.description%></td>
+               </tr>
+            </table>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class = "row">
+   <table class = "reporte">
+      <thead>
+         <tr class = "tr-table">
+            <th>Codigo</th>
+            <th>Creo</th>
+            <th>Fecha de Creacion</th>
+            <th colspan="2">Responsabilidad</th>
+            <th><%= link_to  report_accion_path(@report,@accion), :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_report_accion_path(@report,@accion), :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_accion_path(@report,@accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td><%= @accion.codigo %></td>
+            <td><%=@accion.user.name%></td>
+             <td><%= get_date(@accion.created_at)%></td>
+            <% employed = Employed.find(@accion.employed_id)%>
+            <td colspan="3" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
+               cm = 0 
+               @accion.employeds.each do |resp|
+                %><%= "," if cm != 0 %> 
+               <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= resp.avatare_url(:thumb) %>'></p><br><strong>Cargo: </strong><%=resp.cargo.name %><br> <strong>Email:</strong> <%= resp.email%><br><strong>Cedula:</strong> <%= resp.document %>"><%= resp.first_name %> <%= resp.first_last_name %></button>
+               <%  cm = cm + 1 %> 
+               <%end%>
+            </td>
+         </tr>
+         <tr class = "tr-table">
+            
+             <th colspan="2" >Posible Evidencia</th>
+            <th>Frecuencia de seguimiento</th>
+            
+            <th colspan="2">Fechas de compromiso</th>
+           
+            <th>Estado</th>
+         </tr>
+         <tr >
+            
+           
+           
+            <td colspan="2"><%=@accion.evidencia%></td>
+            <td><%= f_seguimiento(@accion.f_seguimiento) %></td>
+            <td colspan="2">Cierre: <%= get_date(@accion.f_compromiso) if @accion.fp_seguimiento %><br>Proximo Seguimiento: <%= get_date(@accion.fp_seguimiento) if @accion.fp_seguimiento %><br>Dias Restantes: <%=@accion.contador_seg %></td>
+           
+            <td><%=@accion.estado%></td>
+           
+         </tr>
+         <tr>
+            <th colspan="1">Descripcion</th>
+            <td colspan="5" class="text-left"><%= @accion.descripcion %></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
 <%= link_to 'Edit', edit_report_accion_path(@report,@accion) %> |
-<%= link_to 'Back', report_accions_path(@report) %>
+<%= link_to 'Back', (@accion.tipo == "Accion" ? report_accions_path(@report) : report_correcciones_path(@report)  ) %>

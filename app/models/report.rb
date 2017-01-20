@@ -25,12 +25,11 @@
 
 class Report < ApplicationRecord
 has_and_belongs_to_many :employeds
+has_and_belongs_to_many :numerals
 belongs_to :source
 belongs_to :proceso
 belongs_to :user
 has_many :accions
-has_many :numeral_reports, inverse_of: :report, dependent: :destroy
-accepts_nested_attributes_for :numeral_reports
 after_create :enviar_email
 after_save :borrar_basura
 
@@ -43,11 +42,13 @@ validate :archivo_size_validation, :if => "archivo?"
 
 
 
-def self.search(search)
-	        alejo = Source.where("name like '%#{search}%' "  )
-	        alejo1 = alejo.first if alejo.exists?
-            where(source_id: alejo1).where("description like '%#{search}%' "  ) 
-        end
+def self.search(search, search2)
+          if search2 != ""
+	        where("description like '%#{search.downcase}%' or description like '%#{search.upcase}%'  or description like '%#{search.capitalize}%' or state like '%#{search.downcase}%' or state like '%#{search.capitalize}%' ").where(source_id: search2)
+	         else
+            where("description like '%#{search.downcase}%' or description like '%#{search.upcase}%'  or description like '%#{search.capitalize}%' or state like '%#{search.downcase}%' or state like '%#{search.capitalize}%' ")
+                    end
+      end
 
 def enviar_email
 

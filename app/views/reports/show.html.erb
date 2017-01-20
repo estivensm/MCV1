@@ -1,25 +1,31 @@
 
-<p><%= link_to  reports_path, :class => "opciones2" do %>
-               <i class="fa fa-arrow-left" aria-hidden="true"></i>
-
-               <% end %>
-               <%= link_to  edit_report_path(@report), :class => "opciones2" do %>
+<div class="row">
+  <div class="col-md-6 ">
+    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes",  reports_path, :class => "linka" %></p>
+  </div>
+  <div class="col-md-6 text-right">
+    <p>
+                             <%= link_to  edit_report_path(@report), :class => "opciones2" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
                
               <%= link_to report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'opciones2' do %>
               <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-               <% end %>
+               <% end %></p>
+  </div>
+</div>
+
+
   
-</p>
 
 
 
-<table class = "reporte">
+
+<table class = "reporte hidden-xs" ">
 <tr>
   
   <th>Fecha de Apertura</th>
-  <td><%= @report.created_at.strftime("%m/%d/%Y") %></td>
+  <td><%= get_date(@report.created_at) %></td>
   <th>Fuente</th>
   <td><%= @report.source.name %></td>
   <th>Proceso</th>
@@ -68,7 +74,7 @@
   <th>Evidencia</th>
   <td colspan="2" class = "text-left"><%= @report.evidencia %></td>
   <th>Evidencia Adjunta</th>
-  <td colspan="2"><%= link_to "Descargar Archivo", @report.archivo_url if @report.archivo_url %></td>
+  <td colspan="2"><%= link_to "Descargar Archivo", (@report.archivo_url if @report.archivo_url) , :class => "linka" %></td>
   
 </tr>
 
@@ -77,8 +83,7 @@
   <th>Requisito Legal o Interno</th>
   <td colspan="2" class = "text-left"><%= @report.requisito %></td>
   <th>Requisto Aplicable</th>
-  <td colspan="2"><% @requisitos.each do |req|
-   numr = Numeral.find(req.numeral_id)%>
+  <td colspan="2"><% @report.numerals.each do |numr|%>
    
 <!-- Large modal -->
 
@@ -126,20 +131,20 @@ $('.modalp1').text(b);
 <div class="row flujo">
 
 <div class="col-md-4">
-<div class="panel panel-info">
+<div class="panel panel-default">
 <div class="panel-heading">Correcciones (<%=@correa + @correc%>)</div>
   <div class="panel-body">
-    <p><p><%= link_to  report_accions_path(@report) + "?tipo=Correccion", class: 'lin' do%>Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
+    <p><p><%= link_to  report_correcciones_path(@report) , class: 'lin' do%>Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
     <%end%> 
     </p>
-    <p><%= link_to  report_accions_path(@report) + "?tipo=Correccion", class: 'lin' do%>Tienes <%=@correc%> <%=@correc == 1 ? "Correccion Cerrada" : "Correcciones Cerradas"%> <%end%> </p>
+    <p><%= link_to  report_correcciones_path(@report) , class: 'lin' do%>Tienes <%=@correc%> <%=@correc == 1 ? "Correccion Cerrada" : "Correcciones Cerradas"%> <%end%> </p>
 </div>
 </div>
 
   
 </div>
 <div class="col-md-4">
-<div class="panel panel-info">
+<div class="panel panel-default">
 <div class="panel-heading">Analisis de Causa</div>
   <div class="panel-body">
     <p>...</p>
@@ -149,14 +154,14 @@ $('.modalp1').text(b);
   
 </div>
 <div class="col-md-4">
-<div class="panel panel-info">
+<div class="panel panel-default">
 <div class="panel-heading">Acciones (<%=@accionsca + @accionscc%>)</div>
   <div class="panel-body">
   
-    <p><%= link_to  report_accions_path(@report) + "?tipo=Accion", class: 'lin' do%>Tienes <%=@accionsca%> <%=@accionsca == 1 ? "Accion Abierta" : "Acciones Abiertas"%>
+    <p><%= link_to  report_accions_path(@report) , class: 'lin' do%>Tienes <%=@accionsca%> <%=@accionsca == 1 ? "Accion Abierta" : "Acciones Abiertas"%>
     <%end%> 
     </p>
-    <p><%= link_to  report_accions_path(@report) + "?tipo=Accion", class: 'lin' do%>Tienes <%=@accionscc%> <%=@accionscc == 1 ? "Accion Cerrada" : "Acciones Cerradas"%> <%end%> </p>
+    <p><%= link_to  report_accions_path(@report) , class: 'lin' do%>Tienes <%=@accionscc%> <%=@accionscc == 1 ? "Accion Cerrada" : "Acciones Cerradas"%> <%end%> </p>
    
 </div>
 </div>
@@ -166,30 +171,11 @@ $('.modalp1').text(b);
 
 </div>
 
-<p id="notice"><%= notice %></p>
 
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p class ="holas">Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+
+
 
 
 

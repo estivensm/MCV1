@@ -1,6 +1,11 @@
+<div class="row">
+  <div class="col-md-12 ">
+    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
+  </div>
+
+</div>
+
 <h1 class="titulo1">Editar Reporte</h1>
 
 <%= render 'form', report: @report %>
 
-<%= link_to 'Show', @report %> |
-<%= link_to 'Back', reports_path %>

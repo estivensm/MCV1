@@ -1,6 +1,51 @@
 <hr>
+
 <div class="row">
-   <div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1">
+  <h1 class ="titaccion"><%=action_type%> <%=@tipo%> Reporte
+(<a class="btn numerb"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%></a>)</h1>
+
+
+  
+
+
+ <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title modalp1">Informacion del Reporte</h4>
+        </div>
+        <div class="modal-body">
+  <table class = "reporte">
+<tr>
+  <th>Codigo</th>
+  <td><%= @report.codigo %></td>
+  <th>Fuente</th>
+  <td><%= @report.source.name %></td>
+  
+  
+</tr>
+<tr>
+
+  <th>Descripcion</th>
+  <td colspan="3"><%= @report.description%></td>
+  
+</tr>
+
+</table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<hr>
+   
 <%= form_for([@report,accion]) do |f| %>
   <% if accion.errors.any? %>
    <div class="alert alert-danger">
@@ -36,7 +81,7 @@
 <div class="col-md-6">
 <div class="form-group">
     <%= f.label "Frecuencia de Seguimiento" %>
-    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control"} %>
+    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
   </div>
 
 
@@ -68,6 +113,8 @@
  $.datepicker.setDefaults($.datepicker.regional['es']);
   $('.datepicker').datepicker({
     altField: "#actualDate",
+    changeMonth: true,
+    changeYear: true,
     appendText: "(dd-mm-yyyy)"
   });
  
@@ -104,8 +151,8 @@
 
   
 
-
-  <%= f.hidden_field :tipo , :value => params[:tipo] %>
+<% action_name == "new" ?  parame = @tipo : parame = @accion.tipo %>
+  <%= f.hidden_field :tipo , :value => parame%>
 <%= f.hidden_field :report_id , :value => @report.id %>
    <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>

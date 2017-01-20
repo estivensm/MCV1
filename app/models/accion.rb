@@ -28,6 +28,7 @@ class Accion < ApplicationRecord
 	belongs_to :report
 	has_and_belongs_to_many :employeds
     before_create :insertar
+    belongs_to :user
     validate :start_must_be_before_end_time
     validates :employed_id, presence: true
 
