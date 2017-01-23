@@ -40,15 +40,22 @@
 
 </table>
  
+<% if @accions.count > 0 %>
+
+
+
    <table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2;">
 
       <thead>
 <tr class ="tr-table ">
-<th colspan="7" style = "padding-left:150px" class ="titaccion text-center"><%=@tipo + "es"%>
+<th colspan="7" style = "padding-left:150px" class ="titaccion text-center"><%=@tipo + "es"%> (<%=@accions.count %>)
 <th><%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right' %></td>
 </th>
 
 </tr>
+
+
+
          <tr class = "tr-table">
       <th style = "width:10%">Codigo</th>
       <th style = "width:13%">Creacion</th>
@@ -103,6 +110,19 @@
  <% end %>
   </tbody>
 </table>
+
+
+<%else%>
+<div class="jumbotron jumbacc">
+  <h1 class="display-3">No has creado ninguna <%= @tipo%></h1>
+  
+  <hr class="my-4">
+  <p class="lead">Las <%= @tipo + "es"%> te ayudaran a mejorar tu Empresa</p>
+   <%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg' %>
+  </p>
+</div>
+
+<%end%>
 
  </div>
 <br>
