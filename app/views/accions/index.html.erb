@@ -118,9 +118,8 @@
   
   <hr class="my-4">
   <p class="lead">Las <%= @tipo + "es"%> te ayudaran a mejorar tu Empresa</p>
-   <%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg' %>
+   <%= link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg' %>
   </p>
-</div>
 
 <%end%>
 

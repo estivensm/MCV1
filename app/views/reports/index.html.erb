@@ -34,9 +34,13 @@
          <%= submit_tag "Buscar", :class => "btn btn-primary", style: "margin-left:10px;padding:3px 20px;" %>
 
          <% end %>
-
+<% if action_name == "index"%>
 <%= (link_to "Cancelar filtros", reports_path, class: "linka") if params[:commit]  %>
-
+<%elsif action_name =="abiertos"%>
+<%= (link_to "Cancelar filtros", reports_abiertos_path, class: "linka") if params[:commit]  %>
+<%else%>
+<%= (link_to "Cancelar filtros", reports_cerrados_path, class: "linka") if params[:commit]  %>
+<%end%>
 
 
 

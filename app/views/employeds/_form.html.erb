@@ -41,7 +41,10 @@
   </div>
 <div class="form-group">
     <%= f.label "Email" %>
-    <%= f.email_field :email, class: "form-control" %>
+   <div class="input-group">
+  <span class="input-group-addon" id="basic-addon1">@</span>
+  <%= f.email_field :email, class: "form-control" %>
+</div>
   </div>
 <div class="form-group">
     <%= f.label "Tipo de Documento" %>

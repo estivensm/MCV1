@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "normass/:id", to: "reports#get_normas", as: "get_normas"
   get "sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
   get "source1/:id/:page/:search", to: "sources#change", as: "change"
+  delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
   resources :normas do 
         resources :numerals
 

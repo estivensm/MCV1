@@ -21,9 +21,13 @@
    </div>
 </div>
 <div class = "row">
+
+<%= form_tag delete_procesos_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Procesos' } do %>
+<p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">
       <thead>
          <tr class = "tr-table">
+          <th><%= check_box_tag "all_id", 0 %></th>
             <th>Nombre</th>
             <th>Descripcion</th|>
             <th>User</th>
@@ -34,6 +38,7 @@
       <tbody>
          <% @procesos.each do |proceso| %>
          <tr>
+         <td><%= check_box_tag "proceso_ids[]", proceso.id ,false ,class:"ck"%></td>
             <td><%= proceso.name %></td>
             <td><%= proceso.description %></td>
             <td><%= proceso.user_id %></td>
@@ -52,5 +57,49 @@
          <% end %>
       </tbody>
    </table>
+   
+     
+
+        <% end %>
 </div>
 
+<style>
+.btn-danger{background-color: #d9534f
+ !important}
+   
+</style>
+
+      <script>
+  $('.btn-danger').hide();
+
+$('#all_id').click(function(){
+
+    if ( $(this).is(':checked') )
+    {
+            $('.ck').prop('checked', true);
+            $('.btn-danger').fadeIn();
+             $('td').css('background-color', 'whitesmoke');
+       }
+        else{
+            $('.ck').prop('checked', false);
+            $('.btn-danger').fadeOut();
+            $('td').css('background-color', 'white');
+         }
+    });
+
+$('.ck').click(function(){
+
+  if ( $(this).is(':checked') )
+    {
+            $('td').css('background-color', 'whitesmoke');
+            $('.btn-danger').fadeIn();
+       }
+        else{
+            $('td').css('background-color', 'white');
+            $('.btn-danger').fadeOut();
+         }
+    });
+
+
+
+</script>

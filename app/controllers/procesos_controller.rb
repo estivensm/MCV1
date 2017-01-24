@@ -16,7 +16,7 @@ class ProcesosController < ApplicationController
 
 
 
-   @procesos = @procesos1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @procesos = @procesos1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
     else
       redirect_to root_path
   end
@@ -65,6 +65,15 @@ class ProcesosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def delete_procesos
+    Proceso.where(:id => params[:proceso_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to procesos_path }
+    format.json { head :no_content }
+  end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -34,18 +34,18 @@ class Accion < ApplicationRecord
 
 	 def insertar
    
-        self.fp_seguimiento = self.f_compromiso + self.f_seguimiento
-        @times = self.fp_seguimiento.to_time
-        @time =  @times.to_i - Time.now.to_i  + 1
-        self.contador_seg = @time / 60 / 60/ 24
+        #self.fp_seguimiento = self.f_compromiso + self.f_seguimiento
+        #@times = self.fp_seguimiento.to_time
+        #@time =  @times.to_i - Time.now.to_i  + 1
+        #self.contador_seg = @time / 60 / 60/ 24
                
     end
 
     def start_must_be_before_end_time
-    	self.fp_seguimiento = self.f_compromiso + self.f_seguimiento
-        @times = self.fp_seguimiento.to_time
-        @time =  @times.to_i - Time.now.to_i  + 1
-        self.contador_seg = @time / 60 / 60/ 24
+    	self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
+        @times = self.f_compromiso.to_time
+        @time =  @times.to_i - Time.now.to_i  
+        self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
   end
