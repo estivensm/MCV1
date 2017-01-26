@@ -1,0 +1,53 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><%= action_type %> Proceso</h4>
+      </div>
+<%= form_for([@report,@causa], remote: true) do |f| %>
+  <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+  <div class="form-group">
+       <label for="">¿Acciones?</label><br>
+               <label class="radio-inline">
+               <%= f.radio_button :tipo, '5 Porques', class: 'rb' %>5 Porques
+               </label>
+              <label class="radio-inline">
+               <%= f.radio_button :tipo, 'Pareto', class: 'rb' %>Pareto
+               </label>
+                 <label class="radio-inline">
+               <%= f.radio_button :tipo, 'Lluvia de Ideas', class: 'rb' %>Lluvia de Ideas
+               </label>
+                 <label class="radio-inline">
+               <%= f.radio_button :tipo, 'MFFA', class: 'rb' %>MFFA
+               </label>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion, class: "form-control"  %>
+  </div>
+<div class="form-group">
+    <%= f.label :archivo %>
+    <%= f.file_field :archivo, class: "form-control"  %>
+  </div>
+
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+
+  <%= f.hidden_field :report_id , :value => @report.id %>
+  
+<br>
+<hr>
+  <div class="form-group text-center">
+   <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  </div>
+<% end %>
+ </div> </div> </div>

@@ -1,0 +1,42 @@
+<%= form_for(tipo) do |f| %>
+  <% if tipo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tipo.errors.count, "error") %> prohibited this tipo from being saved:</h2>
+
+      <ul>
+      <% tipo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :archivo %>
+    <%= f.text_field :archivo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :admin_user %>
+    <%= f.number_field :admin_user %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :report_id %>
+    <%= f.number_field :report_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+<div class="col-md-6">
+   <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
+  </div>
+  <div class="col-md-6 text-right">
+    <p>
+                             <%= link_to  edit_report_causa_path(@report,@causa), remote: true, :class => "opciones2" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               
+            
+  </div>
+</div>
+<div class="row">
+<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+<div class="col-md-6">
+<h3>Descripción</h3>
+  <%= @causa.descripcion %>
+</div>
+<div class="col-md-6">
+<h3>Documento</h3>
+  <% if @causa.archivo_url %>
+  <%= link_to "Ver Docucumento", @causa.archivo_url   %>
+  <%= image_tag get_extension(@report.causas.first.archivo.file.extension), class: "extension"%>
+  <%= (@causa.archivo.file.size.to_f/1000) %>KB
+   <% else %>
+   <p>No hay Archivo adjunto</p>
+    <% end %>
+</div>
+  
+</div>
+<hr>
+
+

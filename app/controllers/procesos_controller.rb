@@ -83,6 +83,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proceso_params
-      params.require(:proceso).permit(:name, :description, :user_id, :admin_user)
+      params.require(:proceso).permit!
     end
 end

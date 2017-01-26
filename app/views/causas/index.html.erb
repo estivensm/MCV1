@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Causas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Descripcion</th>
+      <th>Archivo</th>
+      <th>Admin user</th>
+      <th>User</th>
+      <th>Report</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @causas.each do |causa| %>
+      <tr>
+        <td><%= causa.tipo %></td>
+        <td><%= causa.descripcion %></td>
+        <td><%= causa.archivo %></td>
+        <td><%= causa.admin_user %></td>
+        <td><%= causa.user_id %></td>
+        <td><%= causa.report_id %></td>
+        <td><%= link_to 'Show', causa %></td>
+        <td><%= link_to 'Edit', edit_causa_path(causa) %></td>
+        <td><%= link_to 'Destroy', causa, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Causa', new_report_causa_path(@report) %>

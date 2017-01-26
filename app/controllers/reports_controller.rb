@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports.json
   
 def abiertos
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
    
    if params[:search]
      @reports1 = Report.where(state: "Abierto").search(params[:search],params[:search2])
@@ -30,7 +30,7 @@ end
 
 
  
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
    if params[:search]
      @reports1 = Report.search(params[:search],params[:search2])
@@ -39,8 +39,16 @@ end
   end
 
 
-  
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+  if current_user.rol ==  "Basico"
+    
+    a = Employed.where(email: current_user.email).take.id
+    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a ).order(created_at: :desc)
+    
+  else
+        @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+  end
+
     @route = reports_path  
 
     else
@@ -49,8 +57,11 @@ end
 
 
   end
+
+
+
 def cerrados
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
    
    if params[:search] 
      @reports1 = Report.where(state: "Cerrado").search(params[:search],params[:search2])

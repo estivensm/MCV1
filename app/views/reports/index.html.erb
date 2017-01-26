@@ -69,8 +69,8 @@
       <th style = "width:13%">Fuente</th>
       <th style = "width:13%">Responsable</th>
       <th style = "width:13%">Proceso</th>
-      <th style = "width:25%">Descripcion</th>
-      <th style = "width:13%">Estado<th>
+      <th style = "width:30%">Descripcion</th>
+      <th style = "width:8%">Estado<th>
    
       
     
@@ -85,7 +85,7 @@
         <td><%= report.source.name %></td>
         <td><%= Employed.find(report.employed_id).first_name %> <%= Employed.find(report.employed_id).first_last_name %></td>
         <td><%= report.proceso.name %></td>
-        <td><%= report.description %></td>
+        <td><div class="descnum"><%= report.description %></td>
        
 
         <td><%if report.state == "Abierto"  %>

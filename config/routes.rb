@@ -2,10 +2,13 @@ Rails.application.routes.draw do
  
 
   
+
+  resources :tipos
   resources :accions
   resources :sources
   resources :reports do 
     resources :accions
+    resources :causas
     
     get "correcciones", to: "accions#correcciones" , as: "correcciones" 
   end
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
   resources :normas do 
         resources :numerals
+        
 
   end
   resources :employeds

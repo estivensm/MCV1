@@ -2,9 +2,11 @@
       <tr>
         <td><%= source.name %></td>
         <td><%= source.description %></td>
-        <td><%= source.user_id %></td>
-        <td><%= source.admin_user %></td>
-        <td><%= source.state %></td>
+        <td class = "bool"><%= get_state(source.state).html_safe %></td>
+        <td class = "bool"><%= get_state(source.correccion).html_safe %></td>
+        <td class = "bool"><%= get_state(source.causa).html_safe %></td>
+        <td class = "bool"><%= get_state(source.accion).html_safe %></td>
+        <td class = "bool"><%= get_state(source.puede_ac).html_safe %></td>
         <%if params[:page] == nil
           @a = 1
         else
@@ -17,7 +19,7 @@
         end
 
           %>
-        <td><%= link_to  change_path(source.id,@a,@b), remote:true , :class => "opciones" do %>
+        <td class = "bool"><%= link_to  change_path(source.id,@a,@b), remote:true , :class => "opciones" do %>
                <% if source.default %>
                <i class="fa fa-hand-peace-o def" aria-hidden="true"></i>
                <%else%>
@@ -28,13 +30,25 @@
 
                
                <% end %>
-        <td><%= link_to  source, :class => "opciones" do %>
+        <td class = "bool">  
+
+         <%= link_to  source, :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
                <%= link_to  edit_source_path(source), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
                <%= link_to  source,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-               <i class="fa fa-trash" aria-hidden="true"><% end %></td>
+               <i class="fa fa-trash" aria-hidden="true"></i><% end %>
+</td>
       </tr>
     <% end %>
+
+<style>
+.bool
+{
+
+text-align: center;
+}
+  
+</style>

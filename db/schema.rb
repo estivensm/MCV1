@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120165848) do
+ActiveRecord::Schema.define(version: 20170126131605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20170120165848) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.integer  "admin_user"
+  end
+
+  create_table "causas", force: :cascade do |t|
+    t.string   "tipo"
+    t.text     "descripcion"
+    t.string   "archivo"
+    t.integer  "admin_user"
+    t.integer  "user_id"
+    t.integer  "report_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -147,6 +158,11 @@ ActiveRecord::Schema.define(version: 20170120165848) do
     t.integer  "source_id"
     t.string   "archivo"
     t.integer  "employed_reporta"
+    t.integer  "f_seguimiento"
+    t.date     "f_compromiso"
+    t.date     "f_real"
+    t.date     "fp_seguimiento"
+    t.integer  "contador_seg"
   end
 
   create_table "sources", force: :cascade do |t|
@@ -158,6 +174,10 @@ ActiveRecord::Schema.define(version: 20170120165848) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "default"
+    t.boolean  "accion"
+    t.boolean  "correccion"
+    t.boolean  "causa"
+    t.boolean  "puede_ac"
   end
 
   create_table "users", force: :cascade do |t|

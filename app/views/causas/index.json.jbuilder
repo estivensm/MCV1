@@ -1,0 +1,1 @@
+json.array! @causas, partial: 'causas/causa', as: :causa

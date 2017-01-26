@@ -17,7 +17,9 @@
 
 
   
-
+<% if cerrar_reporte(@report.source.correccion,@report.source.causa,@report.source.accion, @report.id )%>
+    <p>FELICITACIONES YA PUEDES CERRAR EL REPORTE</p>
+<%end%>
 
 
 
@@ -74,7 +76,16 @@
   <th>Evidencia</th>
   <td colspan="2" class = "text-left"><%= @report.evidencia %></td>
   <th>Evidencia Adjunta</th>
-  <td colspan="2"><%= link_to "Descargar Archivo", (@report.archivo_url if @report.archivo_url) , :class => "linka" %></td>
+  <td colspan="2">
+  <% if @report.archivo_url%>
+ <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
+ <%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>
+
+<%else%>
+No hay archivo
+<%end%>
+
+ </td>
   
 </tr>
 
@@ -134,10 +145,17 @@ $('.modalp1').text(b);
 <div class="panel panel-default">
 <div class="panel-heading">Correcciones (<%=@correa + @correc%>)</div>
   <div class="panel-body">
-    <p><p><%= link_to  report_correcciones_path(@report) , class: 'lin' do%>Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
-    <%end%> 
+    <%if @report.source.correccion && @report.accion == "Si" %>
+    <p class="color-gray">Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
+    
     </p>
-    <p><%= link_to  report_correcciones_path(@report) , class: 'lin' do%>Tienes <%=@correc%> <%=@correc == 1 ? "Correccion Cerrada" : "Correcciones Cerradas"%> <%end%> </p>
+    <p class="color-gray">Tienes <%=@correc%> <%=@correc == 1 ? "Correccion Cerrada" : "Correcciones Cerradas"%></p>
+
+    <p class="text-right"> <%= link_to  "Ver",report_correcciones_path(@report) , class: 'btn btn-primary'%></p>
+      <%else%>
+         <p class="color-gray">Este Reporte no necesita Correcciones </p>
+      <% end %>
+
 </div>
 </div>
 
@@ -147,22 +165,35 @@ $('.modalp1').text(b);
 <div class="panel panel-default">
 <div class="panel-heading">Analisis de Causa</div>
   <div class="panel-body">
-    <p>...</p>
-</div>
-</div>
+  <%if @report.source.causa && @report.accion == "Si" %>
+    <% if @report.causas.count == 0 %>
+    <p class="color-gray">No has creado el Analisis de Causa</p>
+    <%= link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary'%>
+    <%else%>
+      <p class = "color-gray"><%= @report.causas.last.tipo%></p>
+    <p class="text-right"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>
+    <%end%>
+    <%else%>
+         <p class="color-gray">Este Reporte no necesita Analisis de Causa </p>
+      <% end %>
 
+</div>
+</div>
   
 </div>
 <div class="col-md-4">
 <div class="panel panel-default">
 <div class="panel-heading">Acciones (<%=@accionsca + @accionscc%>)</div>
   <div class="panel-body">
-  
-    <p><%= link_to  report_accions_path(@report) , class: 'lin' do%>Tienes <%=@accionsca%> <%=@accionsca == 1 ? "Accion Abierta" : "Acciones Abiertas"%>
-    <%end%> 
-    </p>
-    <p><%= link_to  report_accions_path(@report) , class: 'lin' do%>Tienes <%=@accionscc%> <%=@accionscc == 1 ? "Accion Cerrada" : "Acciones Cerradas"%> <%end%> </p>
+  <%if @report.source.accion && @report.accion == "Si"%>
+    <p class="color-gray">Tienes <%=@accionsca%> <%=@accionsca == 1 ? "Accion Abierta" : "Acciones Abiertas"%>
    
+    </p>
+    <p class="color-gray">Tienes <%=@accionscc%> <%=@accionscc == 1 ? "Accion Cerrada" : "Acciones Cerradas"%>  </p>
+    <p class="text-right"><%= link_to  "Ver", report_accions_path(@report) , class: 'btn btn-primary'%><p>
+   <%else%>
+    <p class="color-gray">Este Reporte no necesita Acciones </p>
+   <%end%>
 </div>
 </div>
 

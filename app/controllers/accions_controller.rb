@@ -6,7 +6,7 @@ class AccionsController < ApplicationController
   def index
     @tipo = "Accion"
     @report = Report.find(params[:report_id]) 
-    @accions = @report.accions
+    @accions = @report.accions.where(tipo: "Accion")
    end
 
   

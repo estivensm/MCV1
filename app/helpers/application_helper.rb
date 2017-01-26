@@ -9,6 +9,30 @@ else
     end
 end
 
+
+def get_extension(ext)
+
+  case ext
+when "xls"
+  return "/assets/Excel-icon.png"
+when "pdf"
+  return "/assets/pdf-icon.png"
+when "doc"
+  return "/assets/word-icon.png"
+else
+  return "/assets/png-icon.png"
+end
+
+
+  end
+
+def get_state(state)
+
+  state == true ? a = "<i class='fa fa-check' aria-hidden='true'></i>" : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+  
+end
+
+
 def get_employeds
 
   Employed.where(admin_user: current_user.admin_user)
@@ -57,7 +81,7 @@ def bootstrap_class_for flash_type
     @menum = ["",""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources"
     @menum = ["active",""]
-  elsif controller.controller_name == "reports"  || controller.controller_name == "accions" 
+  elsif controller.controller_name == "reports"  || controller.controller_name == "accions" || controller.controller_name == "causas" 
     @menum = ["","active"]
   
   end

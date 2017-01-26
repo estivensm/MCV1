@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @tipo.descripcion %>
+</p>
+
+<p>
+  <strong>Archivo:</strong>
+  <%= @tipo.archivo %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @tipo.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tipo.user_id %>
+</p>
+
+<p>
+  <strong>Report:</strong>
+  <%= @tipo.report_id %>
+</p>
+
+<%= link_to 'Edit', edit_tipo_path(@tipo) %> |
+<%= link_to 'Back', tipos_path %>

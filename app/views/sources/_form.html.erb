@@ -25,10 +25,25 @@
 
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
-
+ <br>
    <div class="form-group">
-    <%= f.label " ¿Es No Conformidad?" %>
-    <%= f.check_box :state %>
+    <label>¿Es No Conformidad?</label>
+    <%= f.check_box :state, class: "state1" %>
+
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.label "Correcciones" %>
+    <%= f.check_box :correccion, class:"scorrecion" %>
+    <%= f.label "Analisis de Causa", class: "lb1" %>
+    <%= f.check_box :causa, class: "scausa" %>
+    <%= f.label "Acciones", class: "lb1" %>
+    <%= f.check_box :accion, class: "saccion" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.label "Puede o no" %>
+    <%= f.check_box :puede_ac, class: "spuede" %>
   </div>
 
   <br>
@@ -41,3 +56,48 @@
   </div>
     </div>
       </div>
+<script>
+  
+ 
+</script>
+  
+  <style >
+    .btn-group a
+    {
+      padding: 0px 5px !important;
+
+    }
+.lb1 
+{
+   margin-left: 10px !important;
+}
+  </style>
+}
+
+<script>
+  $('.state1').change(function(){
+
+             if ( $(this).is(':checked') )
+    {
+            $('.saccion').prop('checked', true);
+            $('.scorrecion').prop('checked', true);
+            $('.scausa').prop('checked', true);
+            $('.spuede').prop('checked', false);
+            $('.saccion').prop('disabled', true);
+            $('.scorrecion').prop('disabled', true);
+            $('.scausa').prop('disabled', true);
+            $('.spuede').prop('disabled', true);
+            
+       }
+        else{
+              $('.saccion').prop('disabled', false);
+            $('.scorrecion').prop('disabled', false);
+            $('.scausa').prop('disabled', false);
+            $('.spuede').prop('disabled', false);
+   
+          
+         }
+    });
+
+
+</script>
