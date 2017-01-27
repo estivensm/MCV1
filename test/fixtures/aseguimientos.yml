@@ -1,0 +1,42 @@
+# == Schema Information
+#
+# Table name: aseguimientos
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  admin_user    :integer
+#  f_seguimiento :date
+#  descripcion   :text
+#  cierra        :boolean
+#  eficaz        :boolean
+#  conclucion    :text
+#  costo         :integer
+#  evidencia     :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  accion_id     :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  f_seguimiento: 2017-01-26
+  descripcion: MyText
+  cierra: false
+  eficaz: false
+  conclucion: MyText
+  costo: 1
+  evidencia: MyString
+
+two:
+  user_id: 1
+  admin_user: 1
+  f_seguimiento: 2017-01-26
+  descripcion: MyText
+  cierra: false
+  eficaz: false
+  conclucion: MyText
+  costo: 1
+  evidencia: MyString

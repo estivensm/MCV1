@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126131605) do
+ActiveRecord::Schema.define(version: 20170126195550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,21 @@ ActiveRecord::Schema.define(version: 20170126131605) do
     t.integer "accion_id"
     t.index ["accion_id"], name: "index_accions_employeds_on_accion_id", using: :btree
     t.index ["employed_id"], name: "index_accions_employeds_on_employed_id", using: :btree
+  end
+
+  create_table "aseguimientos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.date     "f_seguimiento"
+    t.text     "descripcion"
+    t.boolean  "cierra"
+    t.boolean  "eficaz"
+    t.text     "conclucion"
+    t.integer  "costo"
+    t.string   "evidencia"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "accion_id"
   end
 
   create_table "cargos", force: :cascade do |t|
@@ -163,6 +178,7 @@ ActiveRecord::Schema.define(version: 20170126131605) do
     t.date     "f_real"
     t.date     "fp_seguimiento"
     t.integer  "contador_seg"
+    t.integer  "costo"
   end
 
   create_table "sources", force: :cascade do |t|

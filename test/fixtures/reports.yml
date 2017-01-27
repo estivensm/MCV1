@@ -21,6 +21,12 @@
 #  source_id        :integer
 #  archivo          :string
 #  employed_reporta :integer
+#  f_seguimiento    :integer
+#  f_compromiso     :date
+#  f_real           :date
+#  fp_seguimiento   :date
+#  contador_seg     :integer
+#  costo            :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

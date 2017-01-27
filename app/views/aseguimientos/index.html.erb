@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Aseguimientos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>F seguimiento</th>
+      <th>Descripcion</th>
+      <th>Cierra</th>
+      <th>Eficaz</th>
+      <th>Conclucion</th>
+      <th>Costo</th>
+      <th>Evidencia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aseguimientos.each do |aseguimiento| %>
+      <tr>
+        <td><%= aseguimiento.user_id %></td>
+        <td><%= aseguimiento.admin_user %></td>
+        <td><%= aseguimiento.f_seguimiento %></td>
+        <td><%= aseguimiento.descripcion %></td>
+        <td><%= aseguimiento.cierra %></td>
+        <td><%= aseguimiento.eficaz %></td>
+        <td><%= aseguimiento.conclucion %></td>
+        <td><%= aseguimiento.costo %></td>
+        <td><%= aseguimiento.evidencia %></td>
+        <td><%= link_to 'Show', aseguimiento %></td>
+        <td><%= link_to 'Edit', edit_aseguimiento_path(aseguimiento) %></td>
+        <td><%= link_to 'Destroy', aseguimiento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Aseguimiento', new_aseguimiento_path %>

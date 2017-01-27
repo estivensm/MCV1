@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @aseguimiento.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @aseguimiento.admin_user %>
+</p>
+
+<p>
+  <strong>F seguimiento:</strong>
+  <%= @aseguimiento.f_seguimiento %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @aseguimiento.descripcion %>
+</p>
+
+<p>
+  <strong>Cierra:</strong>
+  <%= @aseguimiento.cierra %>
+</p>
+
+<p>
+  <strong>Eficaz:</strong>
+  <%= @aseguimiento.eficaz %>
+</p>
+
+<p>
+  <strong>Conclucion:</strong>
+  <%= @aseguimiento.conclucion %>
+</p>
+
+<p>
+  <strong>Costo:</strong>
+  <%= @aseguimiento.costo %>
+</p>
+
+<p>
+  <strong>Evidencia:</strong>
+  <%= @aseguimiento.evidencia %>
+</p>
+
+<%= link_to 'Edit', edit_aseguimiento_path(@aseguimiento) %> |
+<%= link_to 'Back', aseguimientos_path %>

@@ -25,6 +25,8 @@ class AccionsController < ApplicationController
   # GET /accions/1.json
   def show
     @report = Report.find(params[:report_id]) 
+    @seguimientos = @accion.aseguimientos.order(created_at: :desc)
+
   
   end
 

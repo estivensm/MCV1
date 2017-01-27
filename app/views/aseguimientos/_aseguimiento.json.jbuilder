@@ -1,0 +1,2 @@
+json.extract! aseguimiento, :id, :user_id, :admin_user, :f_seguimiento, :descripcion, :cierra, :eficaz, :conclucion, :costo, :evidencia, :created_at, :updated_at
+json.url aseguimiento_url(aseguimiento, format: :json)

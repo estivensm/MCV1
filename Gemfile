@@ -62,6 +62,7 @@ gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 # gem 'capistrano-rails', group: :development
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'

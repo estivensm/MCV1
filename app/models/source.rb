@@ -11,6 +11,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  default     :boolean
+#  accion      :boolean
+#  correccion  :boolean
+#  causa       :boolean
+#  puede_ac    :boolean
 #
 
 class Source < ApplicationRecord

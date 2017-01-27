@@ -1,0 +1,1 @@
+json.array! @aseguimientos, partial: 'aseguimientos/aseguimiento', as: :aseguimiento

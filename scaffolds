@@ -17,6 +17,8 @@ rails g scaffold tipo descripcion:text archivo admin_user:integer user_id:intege
 rails g scaffold Accion codigo:string responsable:employed_id descripcion:text tipo:string costo:integer f_seguimiento:integer f_compromiso:date f_real:date estado:string cumplio:boolean contador:integer evidencia:text contador_seg:integer user_id:integer admin_user:integer
 
 
+rails g scaffold Seguimiento
+
 <div id="contact-modal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">

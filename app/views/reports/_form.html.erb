@@ -41,12 +41,13 @@
                              { class: 'chosen-select form-control ch'  }
                   %>
             </div>
-         </div>
-         <div class="col-md-6">
-            <div class="form-group">
+             <div class="form-group">
                <%= f.label "Otros interesados" %><br>
                <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}, #{c.email}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
             </div>
+         </div>
+         <div class="col-md-6">
+           
             <div class="form-group">
                <%= f.label "Proceso" %><br>
                <%= f.select :proceso_id,
@@ -55,6 +56,46 @@
                              { class: 'chosen-select form-control ch'  }
                   %>
             </div>
+            <div class="form-group">
+    <%= f.label "Frecuencia de Seguimiento" %>
+    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label "Fecha de Compromiso" %>
+    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
+  </div>
+  <script>
+  $(function() {
+    $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+  $('.datepicker').datepicker({
+    altField: "#actualDate",
+    changeMonth: true,
+    changeYear: true,
+    appendText: "(dd-mm-yyyy)"
+  });
+ 
+});
+
+</script>
          </div>
       </div>
       <hr>
@@ -103,19 +144,19 @@
                <label for="">Tipo de NC</label>
                <br>
                  <label class="radio-inline">
-               <%= f.radio_button :nc_type, 'Real' %>Real
+               <%= f.radio_button :nc_type, 'Real', class: "ncreal" %>Real
                </label>
                 <label class="radio-inline">
-               <%= f.radio_button :nc_type, 'Potencial' %>Potencial
+               <%= f.radio_button :nc_type, 'Potencial' , class: "ncpotencial" %>Potencial
                </label>
             </div>
             <div class="form-group acc1">
                <label for="">¿Acciones?</label><br>
                <label class="radio-inline">
-               <%= f.radio_button :accion, 'Si', class: 'rb' %>Si
+               <%= f.radio_button :accion, 'Si', class: 'rb cksi' %>Si
                </label>
               <label class="radio-inline">
-               <%= f.radio_button :accion, 'No', class: 'rb' %>No
+               <%= f.radio_button :accion, 'No', class: 'rb ckno' %>No
             </div>
             <div class="form-group just">
                <div class="alert alert-warning" role="alert">
@@ -170,11 +211,14 @@ else
 
 function get_source(b)
 {
+  $('.ncreal').prop('checked', true);
+     $('.ncpotencial').prop('checked', false);
 
   $.get("/sourcee/" + b, function(data) {
         if (data.state) {
             $('.tiponc').fadeIn();
             $('.acc1').fadeOut();
+            $('.just').fadeOut();
         } 
         else {
             $('.tiponc').fadeOut();
@@ -196,7 +240,11 @@ function get_source(b)
 
 
 $('.source').change(function() {
-
+     $('.just').fadeOut();
+     $('.cksi').prop('checked', true);
+     $('.ckno').prop('checked', false);
+     $('.ncreal').prop('checked', true);
+     $('.ncpotencial').prop('checked', false);
     $.get("/sourcee/" + $('.source').val(), function(data) {
 
         if (data.state) {
@@ -209,7 +257,7 @@ $('.source').change(function() {
             if (data.accion && data.puede_ac)
             {
               $('.acc1').fadeIn();
-              alert("enter")
+             
             }
             else
             {

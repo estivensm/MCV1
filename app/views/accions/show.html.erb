@@ -1,21 +1,18 @@
-
 <div class="row">
-  <div class="col-md-6 ">
-    <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %> <%= link_to "| #{@accion.tipo}es",  report_accions_path(@report), :class => "linka" %> </p>
-  </div>
-<div class="col-md-6 text-right">
-    <p>
-                             <%= link_to  edit_report_accion_path(@report,@accion), :class => "opciones2" do %>
-               <i class="fa fa-pencil" aria-hidden="true"></i>
-               <% end %>
-               
-             <%= link_to  report_accion_path(@report,@accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones2" do %>
-               <i class="fa fa-trash" aria-hidden="true"></i>
-               <% end %></p>
-  </div>
+   <div class="col-md-6 ">
+      <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %> <%= link_to "| #{@accion.tipo}es",  @accion.tipo == "Accion" ? report_accions_path(@report) : report_correcciones_path(@report), :class => "linka" %> </p>
+   </div>
+   <div class="col-md-6 text-right">
+      <p>
+         <%= link_to  edit_report_accion_path(@report,@accion), :class => "opciones2" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report_accion_path(@report,@accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones2" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
+      </p>
+   </div>
 </div>
-
-
 <div class="modal fade" id="myModal" role="dialog">
    <div class="modal-dialog">
       <!-- Modal content-->
@@ -47,25 +44,23 @@
 <div class = "row">
    <table class = "reporte">
       <thead>
-    <tr>
-<th colspan="8" class ="titaccion tr-table text-center"><%=@accion.tipo %> del Reporte
-         (<a class="btn linka"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%></a>)
-</th>
-<tr>
-
+         <tr>
+            <th colspan="8" class ="titaccion tr-table text-center"><%=@accion.tipo %> del Reporte
+               (<a class="btn linka"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%></a>)
+            </th>
+         <tr>
          <tr class = "tr-table">
             <th>Codigo</th>
             <th>Creo</th>
             <th>Fecha de Creacion</th>
             <th colspan="3">Responsabilidad</th>
-            
          </tr>
       </thead>
       <tbody>
          <tr>
             <td><%= @accion.codigo %></td>
             <td><%=@accion.user.name%></td>
-             <td><%= get_date(@accion.created_at)%></td>
+            <td><%= get_date(@accion.created_at)%></td>
             <% employed = Employed.find(@accion.employed_id)%>
             <td colspan="3" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
                cm = 0 
@@ -77,29 +72,139 @@
             </td>
          </tr>
          <tr class = "tr-table">
-            
-             <th colspan="2" >Posible Evidencia</th>
+            <th colspan="2" >Posible Evidencia</th>
             <th>Frecuencia de seguimiento</th>
-            
             <th colspan="2">Fechas de compromiso</th>
-           
             <th>Estado</th>
          </tr>
          <tr >
-            
-           
-           
             <td colspan="2"><%=@accion.evidencia%></td>
             <td><%= f_seguimiento(@accion.f_seguimiento) %></td>
             <td colspan="2">Cierre: <%= get_date(@accion.f_compromiso) if @accion.fp_seguimiento %><br>Proximo Seguimiento: <%= get_date(@accion.fp_seguimiento) if @accion.fp_seguimiento %><br>Dias Restantes: <%=@accion.contador_seg %></td>
-           
             <td><%=@accion.estado%></td>
-           
          </tr>
          <tr>
             <th colspan="1">Descripcion</th>
             <td colspan="5" class="text-left"><%= @accion.descripcion %></td>
          </tr>
+      </tbody>
+   </table>
+   <table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2;">
+      <thead>
+         <tr class ="tr-table ">
+            <th colspan="7" style = "padding-left:150px" class ="titaccion text-center">Seguimientos (<%=@accion.aseguimientos.count %>)
+            <th><%= link_to 'Nuevo Seguimiento', new_report_accion_aseguimiento_path(@report,@accion), remote: true,:class => 'btn btn-primary pull-right' %></td></th>
+         </tr>
+         <% if @accion.estado == "Abierta"%>
+         <tr class = "tr-table">
+          
+            <th style = "width:13%">Creacion</th>
+            <th style = "width:13%">Responsable</th>
+            <th style = "width:13%">Evidencia</th>
+            <th style = "width:41%" colspan="4">Descripcion</th>
+            <th style = "width:10%"></th>
+         </tr>
+         <%end%>
+      </thead>
+      <tbody>
+         <% @seguimientos.each do |seg| %>
+        <% if !seg.cierra %>
+         <tr>
+          
+            <td><%= get_date(seg.created_at) %></td>
+            <%  idemp = User.find(seg.user_id).email
+               employed = Employed.where(email: idemp).take
+               %>
+            <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+            <td class = "exten">
+            <%= link_to "Ver Evidencia", seg.evidencia_url if seg.evidencia_url %><%=image_tag get_extension(seg.evidencia.file.extension) if seg.evidencia_url%></td>
+            <td colspan="4" class="text-left"><%= seg.descripcion %></td>
+            <td>
+               <%= link_to  edit_report_accion_aseguimiento_path(@report,@accion,seg),remote: true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_accion_aseguimiento_path(@report,@accion,seg),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </td>
+         </tr>
+          <%else%>
+           
+            <tr>
+            <td colspan = "8">
+             <table class = "table" style = "width: 100%;    border: 1px solid #d2d2d2;">
+              <tr>
+            <th colspan = "8" class="text-center" style = "background:#f2f2f2">SEGUIMIENTO QUE CIERRA LA <%=@accion.tipo.upcase%></th>
+         </tr>
+             <tr class = "tr-table">
+            
+            <th style = "width:13%">Creacion</th>
+            <th style = "width:13%">Responsable</th>
+            <th style = "width:13%">Evidencia</th>
+            <th style = "width:41%" colspan="4">Descripcion</th>
+            <th style = "width:10%"></th>
+         </tr>
+             <tr>
+            
+            <td><%= get_date(seg.created_at) %></td>
+            <%  idemp = User.find(seg.user_id).email
+               employed = Employed.find_by(email: idemp)
+               %>
+            <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+            <td class = "exten">
+            <%= link_to "Ver Evidencia", seg.evidencia_url if seg.evidencia_url %><%=image_tag get_extension(seg.evidencia.file.extension) if seg.evidencia_url%></td>
+            <td colspan="4" class="text-left"><%= seg.descripcion %></td>
+            <td>
+               <%= link_to  edit_report_accion_aseguimiento_path(@report,@accion,seg),remote: true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_accion_aseguimiento_path(@report,@accion,seg),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </td>
+         </tr>
+          <tr>
+
+            <th class = "text-center" style = "background:#f2f2f2">¿Fue Efectiva?</th>
+            
+            <th colspan ="6" style = "background:#f2f2f2">Coclusión</th>
+            <th class = "text-center" style = "background:#f2f2f2">Costo</th>
+            
+           
+         </tr>
+         <tr>
+
+    
+            <td class = "text-center"><% if  seg.eficaz%>
+              <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>
+              <%else %>
+              <i class="fa fa-thumbs-o-down" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>
+              <%end %>
+            </td>
+            
+            <td colspan ="6"><%= seg.conclucion%></td>
+             <td class = "text-center" colspan ="6"><%= number_to_currency(seg.costo)%></td>
+            
+          
+         </tr>
+             </table>
+             <hr>
+            </td>
+         </tr>
+         <tr>
+            <th colspan = "8" class="text-center" style = "background:#f2f2f2">OTROS SEGUIMIENTOS</th>
+         </tr>
+         <tr class = "tr-table">
+         
+            <th style = "width:13%">Creacion</th>
+            <th style = "width:13%">Responsable</th>
+            <th style = "width:13%">Evidencia</th>
+            <th style = "width:41%" colspan="4">Descripcion</th>
+            <th style = "width:10%"></th>
+         </tr>
+          <%end%>
+          
+         <% end %>
       </tbody>
    </table>
 </div>
