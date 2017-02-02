@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
           
 
-          resources :aseguimientos
+  
+         
           resources :tipos
           resources :accions
           resources :sources
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
                 resources :aseguimientos
             end
             resources :causas
-            
+            resources :rseguimientos
             get "correcciones", to: "accions#correcciones" , as: "correcciones" 
           end
             
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
           get "sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
           get "source1/:id/:page/:search", to: "sources#change", as: "change"
           delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
+          delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
           resources :normas do 
                 resources :numerals
                 

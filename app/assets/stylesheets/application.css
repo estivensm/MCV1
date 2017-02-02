@@ -69,7 +69,7 @@ padding: 15px 15px;
 
 
     margin-right: 5px;
-        color: #0db497;
+        color: #7b7b7b;
     padding: 10px;
     border-radius: 3px;
     font-size:13px;
@@ -138,7 +138,7 @@ padding: 15px 15px;
 
 
 .chosen-container-single .chosen-single {
-    height: 32px !important;
+    height: 30px !important;
     border-radius: 3px !important;
     border: 1px solid #CCCCCC !important;
 }
@@ -171,3 +171,4 @@ input, select, textarea
  border-radius: 4px !important;
     
   }
+

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rseguimientos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>F seguimiento</th>
+      <th>Descripcion</th>
+      <th>Report</th>
+      <th>Evidencia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rseguimientos.each do |seg| %>
+      <%= render 'rseg_row', seg: seg%>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rseguimiento', new_report_rseguimiento_path(@report) %>
+<%= link_to 'Nuevo Seguimiento', new_report_rseguimiento_path(@report), remote: true,:class => 'btn btn-primary pull-right' %>

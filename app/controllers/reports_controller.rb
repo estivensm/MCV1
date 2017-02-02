@@ -8,7 +8,7 @@ def abiertos
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
    
    if params[:search]
-     @reports1 = Report.where(state: "Abierto").search(params[:search],params[:search2])
+     @reports1 = Report.where(state: "Abierto").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
   else
      @reports1 = Report.all.where(state: "Abierto")
   end
@@ -33,7 +33,7 @@ end
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
    @es = Source.where({default: true, admin_user: current_user.admin_user}).first
    if params[:search]
-     @reports1 = Report.search(params[:search],params[:search2])
+     @reports1 = Report.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
   else
      @reports1 = Report.all
   end
@@ -64,7 +64,7 @@ def cerrados
     if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
    
    if params[:search] 
-     @reports1 = Report.where(state: "Cerrado").search(params[:search],params[:search2])
+     @reports1 = Report.where(state: "Cerrado").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
   else
      @reports1 = Report.all.where(state: "Cerrado")
   end
@@ -94,6 +94,7 @@ end
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
     @accions = Accion.where(report_id: @report.id)
+    @seguimientos = @report.rseguimientos
  
     respond_to do |format|
       format.html
@@ -196,6 +197,18 @@ end
       @source = Source.find(params[:id]) 
       render :json => @source
   end
+
+
+def delete_reports
+
+  
+    Report.where(:id => params[:report_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to reports_path }
+    format.json { head :no_content }
+  end
+ 
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

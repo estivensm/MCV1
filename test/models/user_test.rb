@@ -19,6 +19,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  rol                    :string
+#  company                :string
 #
 
 require 'test_helper'

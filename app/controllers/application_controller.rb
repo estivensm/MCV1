@@ -6,7 +6,7 @@ protected
 
   def configure_permitted_parameters
     [:account_update,:sign_up].each do |metodo|
-    devise_parameter_sanitizer.permit(metodo, keys: [:name,:last_name,:birthday,:document,:document_type,:admin_user,:rol,:avatar,:cargo])
+    devise_parameter_sanitizer.permit(metodo, keys: [:name,:admin_user,:rol,:avatar, :company])
     end
   end
 

@@ -164,7 +164,14 @@ h1
 .title-table
 {
   font-size: 23px;
-    padding: 20px;
+    padding: 6px;
+    color: #0db497;
+    font-family: 'Days One', sans-serif;
+}
+.title-table1
+{
+  font-size: 10px;
+    padding: 10px;
     color: #0db497;
     font-family: 'Days One', sans-serif;
 }
@@ -434,6 +441,12 @@ dp a:focus:hover:active:visited {color:black !important }
 {
   text-align:center;
 
+}
+.pagination
+{
+  
+  position: relative;
+    top: -10px;
 }
 .page_info
   {

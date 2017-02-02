@@ -102,7 +102,7 @@
  <div class="form-group">
     <%= f.label "Cargo" %>
    <%= f.select :cargo_id,
-   Cargo.all.map { |u| [u.name, u.id] },
+   get_cargos.map { |u| [u.name, u.id] },
                { include_blank: false },
                { class: 'form-control' }
 %>
@@ -116,6 +116,8 @@
   <div class="form-group">
     <%= f.label "Foto" %>
     <%= f.file_field :avatare , class: "form-control"%>
+  
+
   </div>
 
 </div>

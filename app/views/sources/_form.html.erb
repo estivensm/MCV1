@@ -26,12 +26,8 @@
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
  <br>
-   <div class="form-group">
-    <label>¿Es No Conformidad?</label>
-    <%= f.check_box :state, class: "state1" %>
-
-  </div>
-  <br>
+  
+ 
   <div class="form-group">
     <%= f.label "Correcciones" %>
     <%= f.check_box :correccion, class:"scorrecion" %>
@@ -83,10 +79,7 @@
             $('.scorrecion').prop('checked', true);
             $('.scausa').prop('checked', true);
             $('.spuede').prop('checked', false);
-            $('.saccion').prop('disabled', true);
-            $('.scorrecion').prop('disabled', true);
-            $('.scausa').prop('disabled', true);
-            $('.spuede').prop('disabled', true);
+     
             
        }
         else{

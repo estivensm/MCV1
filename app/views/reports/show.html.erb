@@ -1,4 +1,5 @@
 
+
 <div class="row">
   <div class="col-md-6 ">
     <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes",  reports_path, :class => "linka" %></p>
@@ -17,7 +18,7 @@
 
 
   
-<% if cerrar_reporte(@report.source.state , @report.source.correccion , @report.source.causa  ,@report.source.accion, @report.id )%>
+<% if cerrar_reporte( @report.source.correccion , @report.source.causa  ,@report.source.accion, @report.id )%>
    <div class="alert alert-success text-center" > <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡FELICITACIONES YA PUEDES CERRAR EL REPORTE! <%= link_to "Cerrar", @repoort, class: "btn btn-primary" , style: "margin-left: 10px;"%></div>
 <%end%>
 
@@ -154,13 +155,16 @@ $('.modalp1').text(b);
 </tr>
 </table>
 
+
+
+
 <div class="row flujo">
 
 <div class="col-md-4">
 <div class="panel panel-default">
 <div class="panel-heading">Correcciones (<%=@correa + @correc%>)</div>
   <div class="panel-body">
-    <%if @report.source.correccion && @report.accion == "Si" && @report.nc_type  == "Real"%>
+    <%if @report.source.correccion && @report.accion == "Si" %>
     <p class="color-gray">Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
     
     </p>
@@ -180,7 +184,7 @@ $('.modalp1').text(b);
 <div class="panel panel-default">
 <div class="panel-heading">Analisis de Causa</div>
   <div class="panel-body">
-  <%if @report.source.causa && @report.accion == "Si" && @report.nc_type  == "Real"%>
+  <%if @report.source.causa && @report.accion == "Si"%>
     <% if @report.causas.count == 0 %>
     <p class="color-gray">No has creado el Analisis de Causa</p>
     <%= link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary'%>
@@ -218,6 +222,33 @@ $('.modalp1').text(b);
 </div>
 
 
+
+
+ <table class = "table" style = "width: 100%;    border: 1px solid #d2d2d2;">
+ <thead>
+              <tr class ="tr-table ">
+            <th colspan = "7" class="text-center" style = "background:#f2f2f2">SEGUIMIENTO AL REPORTE</th>
+           <th><%= link_to 'Nuevo Seguimiento', new_report_rseguimiento_path(@report), remote: true,:class => 'btn btn-primary pull-right' %></th>
+         </tr>
+             <tr class = "tr-table">
+            
+            <th style = "width:13%">Creacion</th>
+            <th style = "width:13%">Responsable</th>
+           
+            <th style = "width:41%" colspan="5">Descripcion</th>
+            <th style = "width:10%"></th>
+         </tr>
+         </thead>
+         <tbody class="hh">  
+<% @seguimientos.each do |seg| %>
+       
+<%= render 'rseg_row', seg: seg %>
+      
+         <%end%>
+
+         </tbody>
+</table>
+        
 
 
 

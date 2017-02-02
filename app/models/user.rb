@@ -19,6 +19,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  rol                    :string
+#  company                :string
 #
 
 class User < ApplicationRecord
@@ -33,10 +34,12 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   has_many :procesos
   has_many :cargos
-  has_one :company
+  has_many :companies
   has_many :employeds
   has_many :reports
   has_many :accions
+  has_many :rseguimientos
+  has_many :aseguimientos
 
 def self.search(search)
             where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  
@@ -45,7 +48,7 @@ def self.search(search)
          def add_adminid
 
             if self.rol == "SuperAdmin"
-         	     Company.create(name: "visualisoft", user_id: self.id)
+         	     Company.create(name: self.company, user_id: self.id)
          	end
          	puts self.id
          	

@@ -140,16 +140,7 @@
             </div>
                    </div>
  <div class="col-md-6">
-            <div class="form-group tiponc">
-               <label for="">Tipo de NC</label>
-               <br>
-                 <label class="radio-inline">
-               <%= f.radio_button :nc_type, 'Real', class: "ncreal" %>Real
-               </label>
-                <label class="radio-inline">
-               <%= f.radio_button :nc_type, 'Potencial' , class: "ncpotencial" %>Potencial
-               </label>
-            </div>
+         
             <div class="form-group acc1">
                <label for="">¿Acciones?</label><br>
                <label class="radio-inline">
@@ -211,17 +202,10 @@ else
 
 function get_source(b)
 {
-  $('.ncreal').prop('checked', true);
-     $('.ncpotencial').prop('checked', false);
+  
 
   $.get("/sourcee/" + b, function(data) {
-        if (data.state) {
-            $('.tiponc').fadeIn();
-            $('.acc1').fadeOut();
-            $('.just').fadeOut();
-        } 
-        else {
-            $('.tiponc').fadeOut();
+        
             if (data.accion && data.puede_ac)
             {
               $('.acc1').fadeIn();
@@ -231,7 +215,7 @@ function get_source(b)
             {
               $('.acc1').fadeOut();
             }
-        }
+        
 
     });
 }
@@ -243,17 +227,10 @@ $('.source').change(function() {
      $('.just').fadeOut();
      $('.cksi').prop('checked', true);
      $('.ckno').prop('checked', false);
-     $('.ncreal').prop('checked', true);
-     $('.ncpotencial').prop('checked', false);
+  
     $.get("/sourcee/" + $('.source').val(), function(data) {
 
-        if (data.state) {
-            $('.tiponc').fadeIn();
-            $('.acc1').fadeOut();
-        } 
-        else {
-            $('.tiponc').fadeOut();
-        
+      
             if (data.accion && data.puede_ac)
             {
               $('.acc1').fadeIn();
@@ -263,7 +240,7 @@ $('.source').change(function() {
             {
               $('.acc1').fadeOut();
             }
-        }
+        
 
     });
 })

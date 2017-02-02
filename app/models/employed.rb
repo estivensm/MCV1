@@ -25,8 +25,14 @@ has_and_belongs_to_many :reports
 has_and_belongs_to_many :accions
 belongs_to :user
 belongs_to :cargo
+
 mount_uploader :avatare, AvatareUploader
+
 def self.search(search)
             where("first_name like '%#{search}%' or second_name like '%#{search}%' or first_last_name like '%#{search}%' or second_last_name like '%#{search}%' or documente like '%#{search}%' or first_name like '%#{search.upcase}%'"  )  
         end
+
+
+
+
 end

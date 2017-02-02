@@ -1,5 +1,5 @@
 <div id="contact-modal" class="modal fade">
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog">
    <div class="modal-content">
       <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -11,49 +11,13 @@
          </ul>
       </div>
       <div class="modal-body">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="form-group">
-                  <%= f.label "Fecha de Compromiso" %>
-                  <%= f.text_field :f_seguimiento, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @aseguimiento.f_seguimiento.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
-                  <script>
-                     $(function() {
-                       $.datepicker.regional['es'] = {
-                     closeText: 'Cerrar',
-                     prevText: '< Ant',
-                     nextText: 'Sig >',
-                     currentText: 'Hoy',
-                     monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                     monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-                     dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-                     dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-                     dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-                     weekHeader: 'Sm',
-                     dateFormat: 'dd/mm/yy',
-                     firstDay: 1,
-                     isRTL: false,
-                     showMonthAfterYear: false,
-                     yearSuffix: ''
-                     };
-                     $.datepicker.setDefaults($.datepicker.regional['es']);
-                     $('.datepicker').datepicker({
-                       altField: "#actualDate",
-                       changeMonth: true,
-                       changeYear: true,
-                       appendText: "(dd-mm-yyyy)"
-                     });
-                     
-                     });
-                     
-                  </script>
-               </div>
+       
+              
                <div class="form-group">
                   <%= f.label :descripcion %>
                   <%= f.text_area :descripcion,  class: "form-control area" %>
                </div>
-            </div>
-            <div class="col-md-6">
-               <div class="form-group">
+                <div class="form-group">
                   <%= f.label :evidencia %>
                   <div class="input-group">
                      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-paperclip" aria-hidden="true"></i>
@@ -61,6 +25,9 @@
                      <%= f.file_field :evidencia,  class: "form-control " %>
                   </div>
                </div>
+            
+          
+              
                <br>
                <div class="form-group">
                   <%= f.label :cierra %>
@@ -81,8 +48,7 @@
                      <%= f.number_field :costo ,  class: "form-control"%>
                   </div>
                </div>
-            </div>
-         </div>
+          
          <%= f.hidden_field :accion_id , :value => @accion.id %>
          <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
          <%= f.hidden_field :user_id ,:value =>  current_user.id %>

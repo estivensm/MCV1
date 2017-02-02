@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  f_seguimiento: 2017-01-30
+  descripcion: MyText
+  report_id: 1
+  evidencia: MyString
+
+two:
+  user_id: 1
+  admin_user: 1
+  f_seguimiento: 2017-01-30
+  descripcion: MyText
+  report_id: 1
+  evidencia: MyString

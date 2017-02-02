@@ -19,6 +19,7 @@
 
 class Aseguimiento < ApplicationRecord
 	belongs_to :accion
+	belongs_to :user
 	mount_uploader :evidencia, ArchivoSegUploader
 	after_create :cerrar_accion
 

@@ -17,7 +17,10 @@ rails g scaffold tipo descripcion:text archivo admin_user:integer user_id:intege
 rails g scaffold Accion codigo:string responsable:employed_id descripcion:text tipo:string costo:integer f_seguimiento:integer f_compromiso:date f_real:date estado:string cumplio:boolean contador:integer evidencia:text contador_seg:integer user_id:integer admin_user:integer
 
 
-rails g scaffold Seguimiento
+rails g scaffold Aseguimiento user_id:integer admin_user:integer f_seguimiento:date descripcion:text cierra:boolean eficaz:boolean conclucion:text costo:integer evidencia 
+
+
+rails g scaffold Rseguimiento user_id:integer admin_user:integer f_seguimiento:date descripcion:text report_id:integer evidencia
 
 <div id="contact-modal" class="modal fade">
   <div class="modal-dialog">
@@ -120,3 +123,296 @@ end
     self.name.gsub!(/[\[\]\"]/, "") if attribute_present?("name")
    
   end
+
+
+
+
+
+
+
+<hr>
+<div class="row">
+   <div class="col-md-10 col-md-offset-1">
+      <%= nested_form_for @report do |f| %>
+      <% if report.errors.any? %>
+      <div id="error_explanation">
+         <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+         <ul>
+            <% report.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+         </ul>
+      </div>
+      <% end %>
+      <div class="row">
+         <div class="col-md-6">
+            <div class="form-group">
+               <%= f.label "Fuente" %><br>
+               <%= f.select :source_id,
+                 get_sources.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch source'  }
+                  %>
+            </div>
+
+            
+            <div class="form-group">
+               <%= f.label "Reporta" %><br>
+               <%= f.select :employed_reporta,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch'  }
+                  %>
+            </div>
+            <div class="form-group">
+               <%= f.label "Asignada a" %><br>
+               <%= f.select :employed_id,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch'  }
+                  %>
+            </div>
+             <div class="form-group">
+               <%= f.label "Otros interesados" %><br>
+               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}, #{c.email}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
+            </div>
+         </div>
+         <div class="col-md-6">
+           
+            <div class="form-group">
+               <%= f.label "Proceso" %><br>
+               <%= f.select :proceso_id,
+                  get_procesos.map { |u| ["#{u.name}", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch'  }
+                  %>
+            </div>
+            <div class="form-group">
+    <%= f.label "Frecuencia de Seguimiento" %>
+    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label "Fecha de Compromiso" %>
+    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
+  </div>
+  <script>
+  $(function() {
+    $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+  $('.datepicker').datepicker({
+    altField: "#actualDate",
+    changeMonth: true,
+    changeYear: true,
+    appendText: "(dd-mm-yyyy)"
+  });
+ 
+});
+
+</script>
+         </div>
+      </div>
+      <hr>
+       <br>
+       <div class="row">
+         <div class="col-md-6">
+            <div class="form-group">
+               <%= f.label "Description" %>
+               <%= f.text_area :description,  class: "form-control area" %>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+               <%= f.label "Requisito Legal y/o Interno" %>
+               <%= f.text_area :requisito,  class: "form-control area" %>
+            </div>
+         </div>
+      </div>
+      
+      <div class="row">
+         <div class="col-md-6">
+            <div class="form-group">
+               <%= f.label "Evidencia que soporta el Reporte" %>
+               <%= f.text_area :evidencia ,  class: "form-control comment area"%>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
+    <%= f.label "Adjuntar Evidencia" %>
+    <%= f.file_field :archivo,  class: "form-control" %>
+  </div>
+         </div>
+      </div>
+      <br>
+      <hr>
+      <div class="rowt">
+         <div class="col-lg-6">
+
+<div class="form-group">
+               <%= f.label "Numerales de Norma" %><br>
+               <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
+            </div>
+                   </div>
+ <div class="col-md-6">
+            <div class="form-group tiponc">
+               <label for="">Tipo de NC</label>
+               <br>
+                 <label class="radio-inline">
+               <%= f.radio_button :nc_type, 'Real', class: "ncreal" %>Real
+               </label>
+                <label class="radio-inline">
+               <%= f.radio_button :nc_type, 'Potencial' , class: "ncpotencial" %>Potencial
+               </label>
+            </div>
+            <div class="form-group acc1">
+               <label for="">¿Acciones?</label><br>
+               <label class="radio-inline">
+               <%= f.radio_button :accion, 'Si', class: 'rb cksi' %>Si
+               </label>
+              <label class="radio-inline">
+               <%= f.radio_button :accion, 'No', class: 'rb ckno' %>No
+            </div>
+            <div class="form-group just">
+               <div class="alert alert-warning" role="alert">
+                  Justifica por que este hallazgo no necesito Acciones
+               </div>
+               <%= f.label "Justificacion" %>
+               <%= f.text_area :justificacion ,  class: "form-control area" %>
+            </div>
+         </div>
+         
+
+         
+      </div>
+       <hr>
+       <br>
+      <div class="row ">
+        
+      </div>
+      <hr>
+      
+     
+      <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+      <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+      <div class="actions text-center">
+         <%= f.submit "Guardar" , class: 'btn btn-primary btn-lg btnpad' %>
+      </div>
+      <br>
+      <br>
+      <% end %>
+   </div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+  if ("<%=action_name%>" != "edit")
+{
+
+ 
+$('.source').val("<%=@es.id%>");
+var b = $('.source').val();
+get_source(b);
+
+}
+else
+{
+  var c = "<%=@report.source_id%>";
+ get_source(c);
+}
+});
+
+
+function get_source(b)
+{
+  $('.ncreal').prop('checked', true);
+     $('.ncpotencial').prop('checked', false);
+
+  $.get("/sourcee/" + b, function(data) {
+        if (data.state) {
+            $('.tiponc').fadeIn();
+            $('.acc1').fadeOut();
+            $('.just').fadeOut();
+        } 
+        else {
+            $('.tiponc').fadeOut();
+            if (data.accion && data.puede_ac)
+            {
+              $('.acc1').fadeIn();
+              
+            }
+            else
+            {
+              $('.acc1').fadeOut();
+            }
+        }
+
+    });
+}
+
+
+
+
+$('.source').change(function() {
+     $('.just').fadeOut();
+     $('.cksi').prop('checked', true);
+     $('.ckno').prop('checked', false);
+     $('.ncreal').prop('checked', true);
+     $('.ncpotencial').prop('checked', false);
+    $.get("/sourcee/" + $('.source').val(), function(data) {
+
+        if (data.state) {
+            $('.tiponc').fadeIn();
+            $('.acc1').fadeOut();
+        } 
+        else {
+            $('.tiponc').fadeOut();
+        
+            if (data.accion && data.puede_ac)
+            {
+              $('.acc1').fadeIn();
+             
+            }
+            else
+            {
+              $('.acc1').fadeOut();
+            }
+        }
+
+    });
+})
+    
+ 
+
+
+</script>
+
+
+
+   <div class="form-group tiponc">
+               <label for="">Tipo de NC</label>
+               <br>
+                 <label class="radio-inline">
+               <%= f.radio_button :nc_type, 'Real', class: "ncreal" %>Real
+               </label>
+                <label class="radio-inline">
+               <%= f.radio_button :nc_type, 'Potencial' , class: "ncpotencial" %>Potencial
+               </label>
+            </div>

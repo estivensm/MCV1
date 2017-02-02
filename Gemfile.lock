@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/mshibuya/remotipart.git
+  revision: 88d9a7d55bde66acb6cf3a3c6036a5a1fc991d5e
+  ref: 88d9a7
+  specs:
+    remotipart (1.2.1)
+
+GIT
   remote: https://github.com/ryanb/nested_form.git
   revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
   specs:
@@ -52,6 +59,10 @@ GEM
     autoprefixer-rails (6.3.7)
       execjs
     bcrypt (3.1.11)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -70,6 +81,7 @@ GEM
       sass-rails (>= 3.2)
     ckeditor_rails (4.5.10)
       railties (>= 3.0)
+    coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -377,6 +389,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  better_errors
   bootstrap-sass (~> 3.3.6)
   bootstrap-will_paginate (= 0.0.10)
   carrierwave
@@ -400,6 +413,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_12factor
   ransack
+  remotipart!
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

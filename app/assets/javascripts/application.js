@@ -19,6 +19,7 @@
 //= require jquery_nested_form
 //= require bootstrap-sprockets
 //= require bootstrap-checkbox
+//= require jquery.remotipart
 //= require jquery-ui
 //= require turbolinks
 //= require ckeditor-jquery
@@ -48,3 +49,4 @@ $('.ckeditor').ckeditor({
   })
 })
 
+ 

@@ -50,8 +50,10 @@ class EmployedsController < ApplicationController
   # PATCH/PUT /employeds/1
   # PATCH/PUT /employeds/1.json
   def update
+    
 
       if @employed.update(employed_params)
+      
         redirect_to employed_path(@employed)
       end
     

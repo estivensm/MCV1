@@ -14,7 +14,7 @@ class CargosController < ApplicationController
 
 
 
-   @cargos = @cargos1.paginate(page: params[:page],:per_page => 2)
+   @cargos = @cargos1.paginate(page: params[:page],:per_page => 20)
     else
       redirect_to root_path
   end

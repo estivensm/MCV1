@@ -36,10 +36,10 @@
       
    </head>
    <body class="admin">
-     
+
+    
       <div class ="container-fluid menusp">
          
-      
          <div class="row menum">
             <div class="col-xs-12 col-md-2 col-lg-2 sidebar barleft">
                
@@ -49,7 +49,7 @@
                   <div class="col-xs-8 col-md-8 col-lg-8 sidebar barleft menumi">
                         <% menu %>
 
-                        <%= link_to users_index_path,:class => "configuracion #{@menum[0]}"  do %>
+                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
                         <i class="fa fa-cogs ic" aria-hidden="true"></i>
                         <span class="hidden-xs">Configuracion</span>
                         <% end %>

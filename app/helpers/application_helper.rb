@@ -40,7 +40,11 @@ def get_state(state)
   
 end
 
+def get_cargos
 
+  Cargo.where(admin_user: current_user.admin_user)
+
+end
 def get_employeds
 
   Employed.where(admin_user: current_user.admin_user)

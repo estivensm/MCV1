@@ -1,6 +1,6 @@
 module ReportsHelper
 
-def cerrar_reporte(nc,correccion,causa,accion,report)
+def cerrar_reporte(correccion,causa,accion,report)
 
 reporte = Report.find(report)
 
@@ -9,7 +9,7 @@ reporte = Report.find(report)
         #verifico si ya se hicieron Correcciones
         contc =  Accion.where(report_id: report).where(tipo: "Correccion").count
 
-            if contc != 0 || nc
+            if contc != 0 
 
                 contc1 =  Accion.where(report_id: report).where(tipo: "Correccion").where(estado: "Abierta").count
                 if contc1 == 0 
@@ -34,7 +34,7 @@ reporte = Report.find(report)
         #verifico si ya se hicieron Acciones
         conta =  Accion.where(report_id: report).where(tipo: "Accion").count
 
-            if conta != 0 || nc
+            if conta != 0 
 
                 conta1 =  Accion.where(report_id: report).where(tipo: "Accion").where(estado: "Abierta").count
                 if conta1 == 0
@@ -59,7 +59,7 @@ reporte = Report.find(report)
         #verifico si ya se hizo el analisis de causas
             contaca =  Causa.where(report_id: report).count
 
-            if contaca != 0 || nc
+            if contaca != 0 
 
                
                     

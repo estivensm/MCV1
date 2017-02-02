@@ -1,0 +1,19 @@
+ <tr class="<%= seg.id %>">
+            
+            <td><%= get_date(seg.created_at) %></td>
+            <%  idemp = User.find(seg.user_id).email
+               employed = Employed.find_by(email: idemp)
+               %>
+            <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+           
+         
+            <td colspan="5" class="text-left"><%= seg.descripcion %></td>
+            <td>
+               <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_rseguimiento_path(@report,seg),remote:true,  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </td>
+         </tr>

@@ -1,0 +1,1 @@
+json.partial! "rseguimientos/rseguimiento", rseguimiento: @rseguimiento
