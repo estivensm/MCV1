@@ -27,6 +27,7 @@
 #  fp_seguimiento   :date
 #  contador_seg     :integer
 #  costo            :integer
+#  cumplio          :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

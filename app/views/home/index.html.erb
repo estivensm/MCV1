@@ -149,7 +149,7 @@
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    format: '<b>{point.name}</b>: {point.percentage:.1f}%: cant:{point.y} ',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     },
@@ -159,19 +159,15 @@
         },
         series: [{
             name: 'Brands',
-            data: [
-                { name: 'Internet Explorer', y: 56.33 },
-                {
-                    name: 'Chrome',
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                },
-                { name: 'Firefox', y: 10.38 },
-                { name: 'Safari', y: 4.77 }, { name: 'Opera', y: 0.91 },
-                { name: 'Proprietary or Undetectable', y: 0.2 }
-            ]
+            data: 
+                [<% 
+                    get_reports_source.each do |key, val| 
+                        a = Source.find(key)%>
+            {name: "<%=a.name%>", y: parseInt("<%=val.to_i%>")},  
+            <% end%>]
         }]
+
     });
 });
 </script>
+

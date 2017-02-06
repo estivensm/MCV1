@@ -1,33 +1,23 @@
 <div class="row" >
-  <div class="col-md-12 ">
-    <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
-  </div>
+   <div class="col-md-12 ">
+      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
+   </div>
 </div>
-
 <div class = "row title-table">
    <div class = "col-md-5">
       <p >Hallazgos <span class="label label-primary"><%=@reports.count%></span></p>
    </div>
-    <div class = "col-md-5 paginate text-right title-table1">
-  
-    
+   <div class = "col-md-5 paginate text-right title-table1">
       <span class="page_info " style = "margin-right:10px;position: relative;
-    top: -30px;
-"><%= page_entries_info @reports, :entry_name => 'Reporte' %> </span>
-   
-    <%= will_paginate @reports%>
-  
+         top: -30px;
+         "><%= page_entries_info @reports, :entry_name => 'Reporte' %> </span>
+      <%= will_paginate @reports%>
    </div>
    <div class = "col-md-2">
       <%= link_to 'Nuevo', new_report_path, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
    </div>
 </div>
-
-  
-
-
 <div class = "row">
-        
 <% if action_name == "index"%>
 <%= (link_to "Cancelar filtros", reports_path, class: "linka") if params[:commit]  %>
 <%elsif action_name =="abiertos"%>
@@ -35,272 +25,240 @@
 <%else %>
 <%= (link_to "Cancelar filtros", reports_cerrados_path, class: "linka") if params[:commit]  %>
 <%end%>
-
-
-
-   <table class="table">
-      <thead>
-       <tr class = "tr-table filtrost">
-        <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline") do %>
-         
-        
-      
-          
-         
-     
-                 
-        
-
-
- <th></th>
-      <th style = "">
-      <%= text_field_tag :search0, params[:search0], placeholder: "desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "hasta",class: "form-control datepicker1 shi1 sh00" %></th>
-
-<script>
-  $(function() {
-    $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-  $('.datepicker').datepicker({
-    altField: "#actualDate",
-    changeMonth: true,
-    changeYear: true,
-    dateFormat: 'mm-dd-yy'
-  });
-  $.datepicker.setDefaults($.datepicker.regional['es']);
-  $('.datepicker1').datepicker({
-    altField: "#actualDate",
-    changeMonth: true,
-    changeYear: true,
-     dateFormat: 'mm-dd-yy'
-  });
- 
-});
-
-
-</script>
-
-
-      <th style = "width:13%"><%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh filter", include_blank: true , placeholder: "hola"}%>
-</th>
-
-      <th style = "width:13%"> <%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter", include_blank: true , placeholder: "hola"}%></th>
-
-      <th style = "width:13%"><%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2 filter shi", include_blank: true , placeholder: "hola"}%></th>
-
-      <th style = "width:30%"><%= text_field_tag :search5, params[:search5], placeholder: "", class: "form-control shi sh3" %></th>
-
-
-      <th style = "width:8%"><%= select_tag "search6", options_for_select(["","Abiertos", "Cerrados" ]), class: "form-control shi sh4" %></th>
-   
-       
-      
-    
-      <th style = "width:13%"><%= submit_tag "Buscar", :class => "btn btn-primary", style: "margin-left:10px;padding:3px 20px;" %></th>
-        <% end %>
-    </tr>
-
-<%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
-<p><%= submit_tag "Eliminar Registros Seleccionados", name: 'eliminar', class: "btn btn-danger" %></p>
-         <tr class = "tr-table">
-         <th><%= check_box_tag "all_id", 0 %></th>
-      <th style = "width:13%">F Creacion</th>
-      <th style = "width:13%">Fuente</th>
-      <th style = "width:13%">Responsable</th>
-      <th style = "width:13%">Proceso</th>
-      <th style = "width:30%">Descripcion</th>
-      <th style = "width:10%">Estado</th>
-   
-      
-    
-      <th style = "width:10%"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-      <td><%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%></td>
-      <td><%= get_date(report.created_at) %></td>
-        <td><%= report.source.name %></td>
-        <td><%= Employed.find(report.employed_id).first_name %> <%= Employed.find(report.employed_id).first_last_name %></td>
-        <td><%= report.proceso.name %></td>
-        <td><div class="descnum"><%= report.description %></td>
-       
-
-        <td><%if report.state == "Abierto"  %>
-          
-<i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
-
-          <%else%>
-          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
-          <%end%>
-
-        </td>
-       
-        <td style = "width:13%"><%= link_to  report, :class => "opciones" do %>
-               <i class="fa fa-eye" aria-hidden="true"></i>
-               <% end %>
-               <%= link_to  edit_report_path(report), :class => "opciones" do %>
-               <i class="fa fa-pencil" aria-hidden="true"></i>
-               <% end %>
-               <%= link_to  report,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-               <i class="fa fa-trash" aria-hidden="true"></i>
-               <% end %></td>
+<table class="table">
+   <thead>
+      <tr class = "tr-table filtrost">
+         <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
+         <th></th>
+         <th style = "">
+            <%= text_field_tag :search0, params[:search0], placeholder: "desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "hasta",class: "form-control datepicker1 shi1 sh00" %>
+         </th>
+         <script>
+            $(function() {
+              $.datepicker.regional['es'] = {
+            closeText: 'Cerrar',
+            prevText: '< Ant',
+            nextText: 'Sig >',
+            currentText: 'Hoy',
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+            dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+            dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+            weekHeader: 'Sm',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+            };
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+            $('.datepicker').datepicker({
+              altField: "#actualDate",
+              changeMonth: true,
+              changeYear: true,
+              dateFormat: 'mm-dd-yy'
+            });
+            $.datepicker.setDefaults($.datepicker.regional['es']);
+            $('.datepicker1').datepicker({
+              altField: "#actualDate",
+              changeMonth: true,
+              changeYear: true,
+               dateFormat: 'mm-dd-yy'
+            });
+            
+            });
+            
+            
+         </script>
+         <th style = "width:13%"><%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh filter", include_blank: true , placeholder: "hola"}%></th>
+         <th style = "width:13%"> <%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter", include_blank: true , placeholder: "hola"}%></th>
+         <th style = "width:13%"><%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2 filter shi", include_blank: true , placeholder: "hola"}%></th>
+         <th style = "width:30%"><%= text_field_tag :search5, params[:search5], placeholder: "", class: "form-control shi sh3" %></th>
+         <th style = "width:8%"><%= select_tag "search6", options_for_select(["","Abiertos", "Cerrados" ]), class: "form-control shi sh4" %></th>
+         <th style = "width:13%"><%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %></th>
+         <% end %>
       </tr>
-    <% end %>
-  </tbody>
+      <%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
+      <p><%= submit_tag "Eliminar Registros Seleccionados", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p>
+      <tr class = "tr-table">
+         <th><%= check_box_tag "all_id", 0 %></th>
+         <th style = "width:13%">F Creacion</th>
+         <th style = "width:13%">Fuente</th>
+         <th style = "width:13%">Responsable</th>
+         <th style = "width:13%">Proceso</th>
+         <th style = "width:30%">Descripcion</th>
+         <th style = "width:10%">Estado</th>
+         <th style = "width:10%"></th>
+      </tr>
+   </thead>
+   <tbody>
+      <% @reports.each do |report| %>
+      <tr>
+         <td><%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%></td>
+         <td><%= get_date(report.created_at) %></td>
+         <td><%= report.source.name %></td>
+         <td><%= Employed.find(report.employed_id).first_name %> <%= Employed.find(report.employed_id).first_last_name %></td>
+         <td><%= report.proceso.name %></td>
+         <td>
+            <div class="descnum">
+               <%= report.description %>
+         </td>
+         <td><%if report.state == "Abierto"  %>
+         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+         <%else%>
+         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+         <%end%>
+         </td>
+         <td style = "width:13%"><%= link_to  report, :class => "opciones" do %>
+         <i class="fa fa-eye" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  edit_report_path(report), :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report,  method: :delete, class: "",data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %></td>
+      </tr>
+      <% end %>
+   </tbody>
 </table>
 <% end %>
 </div>
-
 <script>
-  
-  
+ 
+$(document).on('turbolinks:load',function() {
 
-    $('.sh').val("<%=params[:search2]%>") ;
-
-$('.sh').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-          width: '150px',
-          placeholder_text_single: " ",
-          placeholder_text_multiple: "Seleccione una varias opciones"
-
-        });
-
-
- $('.sh1').val("<%=params[:search3]%>") ;
-
-$('.sh1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-          width: '150px',
-          placeholder_text_single: " ",
-          placeholder_text_multiple: "Seleccione una varias opciones"
-
-        });
-
-$('.sh2').val("<%=params[:search4]%>") ;
-
-$('.sh2').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-          width: '150px',
-          placeholder_text_single: " ",
-          placeholder_text_multiple: "Seleccione una varias opciones"
-
-        });
-$('.sh3').val("<%=params[:search5]%>") ;
-
-$('.sh4').val("<%=params[:search6]%>") ;
-$('.sh0').val("<%=params[:search0]%>") ;
-$('.sh00').val("<%=params[:search]%>") ;
-
-$('.chosen-container span').addClass("shi") ;
-/*$('.filtrost').hide();
-if ("<%=params[:commit]%>" != "")
-{
-$('.filtrost').fadeIn();
-$('.filtros1').fadeOut();
-}
-
-$('.filtros1').click(function(){
-
-  $('.filtrost').fadeIn();
-  $('.filtros1').fadeOut();
-
-});*/
-
-
-
-
-</script>
-
-
-
-
-<style>
-
-.shi
-{
-  height:  30px !important;
-  color:gray !important;
-  font-size: 10px !important;
-}
-.shi1
-{
-  width: 60px;
-  display: inline-block;
-  height:  30px !important;
-  color:gray !important;
-  font-size: 10px !important;
-      padding: 6px 2px;
-      text-align: center;
-}
-
-
-  
-</style>
-
-<style>
-.btn-danger{background-color: #d9534f
- !important}
+   $('.sh').val("<%=params[:search2]%>") ;
    
+   
+
+   $('.sh').chosen(
+       {
+   
+         allow_single_deselect: true,
+         no_results_text: 'No hay resultados',
+         width: '150px',
+         placeholder_text_single: " ",
+         placeholder_text_multiple: "Seleccione una varias opciones"
+   
+       });
+
+   
+   $('.sh1').val("<%=params[:search3]%>") ;
+   
+  
+
+   $('.sh1').chosen(
+       {
+   
+         allow_single_deselect: true,
+         no_results_text: 'No hay resultados',
+         width: '150px',
+         placeholder_text_single: " ",
+         placeholder_text_multiple: "Seleccione una varias opciones"
+   
+       });
+   
+   $('.sh2').val("<%=params[:search4]%>") ;
+   
+   $('.sh2').chosen(
+       {
+   
+         allow_single_deselect: true,
+         no_results_text: 'No hay resultados',
+         width: '150px',
+         placeholder_text_single: " ",
+         placeholder_text_multiple: "Seleccione una varias opciones"
+   
+       });
+ $('.chosen-container span').addClass("shi") ;
+  }); 
+
+
+   $('.sh3').val("<%=params[:search5]%>") ;
+   
+   $('.sh4').val("<%=params[:search6]%>") ;
+   $('.sh0').val("<%=params[:search0]%>") ;
+   $('.sh00').val("<%=params[:search]%>") ;
+   
+  
+   /*$('.filtrost').hide();
+   if ("<%=params[:commit]%>" != "")
+   {
+   $('.filtrost').fadeIn();
+   $('.filtros1').fadeOut();
+   }
+   
+   $('.filtros1').click(function(){
+   
+   $('.filtrost').fadeIn();
+   $('.filtros1').fadeOut();
+   
+   });*/
+   
+   
+   
+   
+</script>
+<style>
+   .shi
+   {
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   }
+   .shi1
+   {
+   width: 60px;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+   text-align: center;
+   }
 </style>
-
-      <script>
-  $('.btn-danger').hide();
-
-$('#all_id').click(function(){
-
-    if ( $(this).is(':checked') )
-    {
-            $('.ck').prop('checked', true);
-            $('.btn-danger').fadeIn();
+<style>
+   .btn-danger{background-color: #d9534f
+   !important}
+</style>
+<script>
+   $('.btn-danger').hide();
+   
+   $('#all_id').click(function(){
+   
+     if ( $(this).is(':checked') )
+     {
+             $('.ck').prop('checked', true);
+             $('.btn-danger').fadeIn();
+              $('td').css('background-color', 'whitesmoke');
+        }
+         else{
+             $('.ck').prop('checked', false);
+             $('.btn-danger').fadeOut();
+             $('td').css('background-color', 'white');
+          }
+     });
+   
+   $('.ck').click(function(){
+   
+   if ( $(this).is(':checked') )
+     {
              $('td').css('background-color', 'whitesmoke');
-       }
-        else{
-            $('.ck').prop('checked', false);
-            $('.btn-danger').fadeOut();
-            $('td').css('background-color', 'white');
-         }
-    });
+             $('.btn-danger').fadeIn();
+        }
+         else{
+             $('td').css('background-color', 'white');
+             $('.btn-danger').fadeOut();
+          }
+     });
+  
+   
+   $('.submit-btn').on('click', function() {
+    return $('.form1').submit();
+   });
 
-$('.ck').click(function(){
-
-  if ( $(this).is(':checked') )
-    {
-            $('td').css('background-color', 'whitesmoke');
-            $('.btn-danger').fadeIn();
-       }
-        else{
-            $('td').css('background-color', 'white');
-            $('.btn-danger').fadeOut();
-         }
-    });
-
-
-
+   
+  
 </script>

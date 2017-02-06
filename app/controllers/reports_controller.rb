@@ -138,6 +138,8 @@ end
   # POST /reports
   # POST /reports.json
   def create
+   
+
     @report = Report.new(report_params)
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @report.state = "Abierto"
@@ -209,6 +211,19 @@ def delete_reports
   end
  
 end
+
+def cerrar_report
+  
+  @report1 = Report.find(params[:report])
+
+   @report1.f_compromiso >= Time.now ? (@report1.cumplio = true) : (@report1.cumplio = false)
+   @report1.f_real = Time.now 
+  
+  if @report1.update(justificacion: params[:descripcion], state: "Cerrado" )
+    redirect_to @report1
+  end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

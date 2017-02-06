@@ -188,5 +188,12 @@ def get_date(fecha)
 end
 
 
+def get_reports_source
+
+  Report.where(admin_user: current_user.admin_user).group(:source_id).count
+  
+end
+
+
   
 end

@@ -1,0 +1,15 @@
+<%=@report.source.name%>
+<%=@report.proceso.name%>
+<% if @tipo == "proximo"%>
+tu reporte esta proximo a vencer
+<% elsif @tipo == "vencido"%>
+tu reporte se vencio
+<% elsif @tipo == "hoy"%>
+tu reporte vence hoy
+<% elsif @tipo == "segp"%>
+seguimiento al reporte vence mañana
+<% elsif @tipo == "segh"%>
+seguimiento al reporte vence hoy
+<% elsif @tipo == "segv"%>
+debes hacer el seguimiento al reporte
+<%end%>

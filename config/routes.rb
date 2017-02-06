@@ -25,6 +25,7 @@ Rails.application.routes.draw do
           get "source1/:id/:page/:search", to: "sources#change", as: "change"
           delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
           delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
+          post "cerrar_report", to: "reports#cerrar_report", as: "cerrar_report"
           resources :normas do 
                 resources :numerals
                 

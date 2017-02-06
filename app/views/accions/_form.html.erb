@@ -3,14 +3,14 @@
 <div class="row">
 <div class="col-md-10 col-md-offset-1">
   <h1 class ="titaccion"><%=action_type%> <%=@tipo%> Reporte
-(<a class="btn numerb"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%></a>)</h1>
+(<a class="btn numerb"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%>) Ver <i class="fa fa-eye" aria-hidden="true"></i></a></h1>
 
 
   
 
 
  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
@@ -23,6 +23,8 @@
 <tr>
   <th>Codigo</th>
   <td><%= @report.codigo %></td>
+  <th>Fecha de Vencimiento</th>
+  <td><%= @report.f_compromiso %></td>
   <th>Fuente</th>
   <td><%= @report.source.name %></td>
   
@@ -31,7 +33,7 @@
 <tr>
 
   <th>Descripcion</th>
-  <td colspan="3"><%= @report.description%></td>
+  <td colspan="5"><%= @report.description%></td>
   
 </tr>
 

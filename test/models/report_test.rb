@@ -27,6 +27,7 @@
 #  fp_seguimiento   :date
 #  contador_seg     :integer
 #  costo            :integer
+#  cumplio          :boolean
 #
 
 require 'test_helper'
