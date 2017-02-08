@@ -416,3 +416,31 @@ $('.source').change(function() {
                <%= f.radio_button :nc_type, 'Potencial' , class: "ncpotencial" %>Potencial
                </label>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /////////////////////////////////////////////////////
+
+
+
+
+
+
+rails g scaffold Rol admin_user:integer user_id:integer configuracion:boolean report_ver:boolean report_crear:boolean report_edit:boolean report_borrar

@@ -59,22 +59,21 @@
 </tr>
 <tr>
   
-  <th>Tipo de NC</th>
-  <td><%= @report.nc_type %></td>
+  <th>Reporta</th>
+  <td><%= @report.user.name %></td>
   <th>Estado del Hallazgo</th>
   <td><%= @report.state %></td>
   <th>Costo Actual</th>
-  <td>0</td>
+  <td><%= number_to_currency(@report.costo)%></td>
 </tr>
 <tr>
   
-  <th>Reporta</th>
-  <td><%= @report.user.name %></td>
+ 
   <th>Responsabilidad</th>
   
  
   <% employed = Employed.find(@report.employed_id)%>
-     <td colspan="3" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
+     <td colspan="2" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
      cm = 0 
      @report.employeds.each do |resp|
       %><%= "," if cm != 0 %> 
@@ -83,20 +82,14 @@
     <%  cm = cm + 1 %> 
     <%end%>
   </td>
-</tr>
-<tr>
-  
-  <th>Estado</th>
-  <td> <%=@report.state%></td>
-  <th>Fechas</th>
+   <th>Fechas</th>
   
  
   
-     <td colspan="3" class = "imaacc">
+     <td colspan="2" class = "imaacc">
      Cierre: <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><br>Proximo Seguimiento: <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br>Dias para el cierre: <%=@report.contador_seg %></td>
-         
-  
 </tr>
+
 <tr>
   
   <th colspan="6">Description</th>
@@ -116,7 +109,7 @@
   <td colspan="2">
   <% if @report.archivo_url%>
  <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
- <%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>
+ <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
 
 <%else%>
 No hay archivo

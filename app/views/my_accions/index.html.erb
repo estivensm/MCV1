@@ -1,0 +1,133 @@
+
+
+<div class = "row title-table">
+   <div class = "col-md-12">
+      <p >Mis Acciones</p>
+   </div>
+  
+</div>
+<div class = "row">
+   <div class = "col-md-6">
+      <div class="form-group">
+         <%= form_tag(accions_path, :method => "get", id: "search-form") do %>
+         <%= text_field_tag :search, params[:search], placeholder: "Ingresa texto", class: "form-control search1" %>
+         <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+         <% end %>
+      </div>
+   </div>
+   <div class = "col-md-6">
+     
+   </div>
+</div>
+<div class = "row">
+
+
+ <table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2; display: none">
+
+      <thead>
+
+
+
+
+         <tr class = "tr-table">
+      <th style = "width:10%">Codigo</th>
+      <th style = "width:13%">Creacion</th>
+     
+      
+      <th style = "width:13%">Responsable</th>
+      <th style = "width:13%">Compromiso</th>
+      
+      <th style = "width:41%" colspan="3">Descripcion</th>
+      
+      <th style = "width:10%"></th>
+      
+      
+      
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @accions.each do |accion1| 
+     	accion = Accion.find(accion1)
+     	report = Report.find(accion.report_id)%>
+      <tr>
+        <td><%= accion.codigo %></td>
+             
+      <td><%= get_date(accion.created_at) %></td>
+       <% employed = Employed.find(accion.employed_id)%>
+     <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+        <td><%= get_date(accion.f_compromiso) if accion.fp_seguimiento %></td>
+       
+     
+        
+       
+     
+   
+       
+        <td colspan="3" class="text-left"><%= accion.descripcion %></td>
+
+
+       <td><%= link_to  report_accion_path(report,accion), :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %> </td>
+
+
+
+       
+        
+      </tr>
+ <% end %>
+  </tbody>
+</table>
+
+
+
+<% @accions.each do |accion1| 
+      accion = Accion.find(accion1)
+      report = Report.find(accion.report_id)%>
+<%= link_to  report_accion_path(report,accion) do %>
+<div class="row seg">
+
+<div class="col-md-12">
+<div class="col-md-4">
+  <p>Codigo: <%=accion.codigo%></p>
+</div>
+<div class="col-md-4">
+<% employed = Employed.find(accion.employed_id)%>
+  <p> Responsable: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></p>
+</div>
+<div class="col-md-4">
+  <p>Fecha de compromiso: <%= accion.f_compromiso%></p>
+</div>
+  
+</div>
+<hr>
+<div class="col-md-12">
+<strong>Descripcion: </strong><%= accion.descripcion%>
+  
+</div>
+  
+</div>
+ <% end %>
+<br>
+ <% end %>
+
+<style>
+  .seg
+  {
+    background: whitesmoke;
+    padding: 10px;
+    color: gray;
+    border-radius: 10px;
+    border: 1px solid #cecece;
+  
+     -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.3s;
+  }
+  .seg:hover
+  {
+  
+    box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+  }
+</style>
+

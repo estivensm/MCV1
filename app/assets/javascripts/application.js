@@ -13,6 +13,7 @@
 
 
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require reports
 //= require chosen-jquery
@@ -21,9 +22,9 @@
 //= require bootstrap-checkbox
 //= require jquery.remotipart
 //= require jquery-ui
-//= require turbolinks
 //= require ckeditor-jquery
 //= require config
+//= require turbolinks
 //= require_tree .
 
 

@@ -1,5 +1,15 @@
 class TiposController < ApplicationController
   before_action :set_tipo, only: [:show, :edit, :update, :destroy]
+    before_action :configuracion
+
+  
+  def configuracion
+
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+        redirect_to root_path
+    end
+    
+  end
 
   # GET /tipos
   # GET /tipos.json

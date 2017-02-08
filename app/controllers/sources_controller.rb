@@ -1,12 +1,22 @@
 class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
+    before_action :configuracion
+
+  
+  def configuracion
+
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+        redirect_to root_path
+    end
+    
+  end
   
   # GET /sources
   # GET /sources.json
   def index
 
 
-if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin"
 
    if params[:search] 
      @sources1 = Source.search(params[:search])
@@ -93,6 +103,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
-      params.require(:source).permit(:name, :description, :user_id, :admin_user, :state, :accion, :correccion, :causa, :puede_ac)
+      params.require(:source).permit(:name, :description, :user_id, :admin_user, :state, :accion, :correccion, :causa, :puede_ac,:codigo)
     end
 end

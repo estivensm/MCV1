@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @rol.admin_user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @rol.user_id %>
+</p>
+
+<p>
+  <strong>Configuracion:</strong>
+  <%= @rol.configuracion %>
+</p>
+
+<p>
+  <strong>Report ver:</strong>
+  <%= @rol.report_ver %>
+</p>
+
+<p>
+  <strong>Report crear:</strong>
+  <%= @rol.report_crear %>
+</p>
+
+<p>
+  <strong>Report edit:</strong>
+  <%= @rol.report_edit %>
+</p>
+
+<p>
+  <strong>Report borrar:</strong>
+  <%= @rol.report_delete%>
+</p>
+
+<%= link_to 'Edit', edit_rol_path(@rol) %> |
+<%= link_to 'Back', rols_path %>

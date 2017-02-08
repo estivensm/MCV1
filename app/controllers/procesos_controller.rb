@@ -1,12 +1,22 @@
 class ProcesosController < ApplicationController
   before_action :set_proceso, only: [:show, :edit, :update, :destroy]
+    before_action :configuracion
+
+  
+  def configuracion
+
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+        redirect_to root_path
+    end
+    
+  end
 
   # GET /procesos
   # GET /procesos.json
   def index
 
  
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+    if current_user.role ==  "SuperAdmin" || current_user.role==  "Admin"
    
    if params[:search]
      @procesos1 = Proceso.search(params[:search])

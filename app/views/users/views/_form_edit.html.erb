@@ -12,19 +12,19 @@
     </ul>
   </div>
       <div class="modal-body">
-
-        <div class="form-group">
-    <%= label_tag "Email" %>
-    <%= email_field_tag :email,  @user.email , class: "form-control formus" %>
+    <div class="form-group">
+    <%= label_tag "Rol" %><br>
+   <%=select_tag 'rol_id', options_from_collection_for_select(Rol.all , "id", "name", @user.rol.id),{class: "form-control cs1" }%>
+  </div>
+  <p></p>
+  <div class="form-group">
+    <%= label_tag "Email" %><br>
+   <%=select_tag 'email',  options_from_collection_for_select(get_employeds , "email", "email", @user.email),{class: "form-control cs1" }%>
   </div>
 
-<div class="form-group">
-    <%= label_tag "Tipo de Documento" %><br />
- 
-    <%= select_tag 'rol', options_for_select(["Admin", "Basico", "SuperAdmin"]), {:class => 'form-control'}%>
-  </div>
 
 
+<p></p>
 
 
     <div class="form-group">
@@ -39,7 +39,10 @@
     <%= password_field_tag :password_confirmation, nil ,class: "form-control formus" %>
   </div>
 <%= hidden_field_tag :admin_user ,current_user.id %>
+<%= hidden_field_tag :role ,"Basico" %>
 <%= hidden_field_tag :id ,@user.id %>
+
+
 <br>
 
       <div class="modal-footer text-center">
@@ -52,4 +55,33 @@
   </div>
 </div>
     
+ <script>
+  
+
+  $('.cs1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No hay resultados',
+          width: '538px;',
+          placeholder_text_single: "Seleccione una opción",
+          placeholder_text_multiple: "Seleccione una varias opciones"
+
+        });
+
+  
  
+</script>
+
+<style type="text/css" media="screen">
+  
+
+@media (max-width: 900px) {
+   .chosen-container
+  {
+
+    width: 200px !important;
+  }
+}
+
+</style>

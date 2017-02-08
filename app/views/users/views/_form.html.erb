@@ -14,16 +14,18 @@
       <div class="modal-body">
 
         <div class="form-group">
-    <%= label_tag "Email" %>
-    <%= email_field_tag :email,nil , class: "form-control formus" %>
+    <%= label_tag "Rol" %><br>
+   <%=select_tag 'rol_id', options_for_select(Rol.all.collect{ |u| [u.name, u.id] }),{class: "form-control cs", include_blank: true }%>
+  </div>
+  <div class="form-group">
+    <%= label_tag "Email" %><br>
+   <%=select_tag 'email', options_for_select(get_employeds.collect{ |u| [u.email, u.email] }),{class: "form-control cs", include_blank: true }%>
   </div>
 
+            
 
-<div class="form-group">
-    <%= label_tag "Tipo de Documento" %><br />
- 
-    <%= select_tag 'rol', options_for_select(["Admin", "Basico"]), {:class => 'form-control'}%>
-  </div>
+
+    
 
 
     <div class="form-group">
@@ -38,6 +40,10 @@
     <%= password_field_tag :password_confirmation, nil ,class: "form-control formus" %>
   </div>
 <%= hidden_field_tag :admin_user ,current_user.admin_user %>
+<%= hidden_field_tag :role ,"Basico" %>
+
+
+
 
  
 <br>
@@ -52,3 +58,33 @@
   </div>
 </div>
 
+
+<script>
+  
+
+  $('.cs').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No hay resultados',
+          width: '538px;',
+          placeholder_text_single: "Seleccione una opción",
+          placeholder_text_multiple: "Seleccione una varias opciones"
+
+        });
+
+
+</script>
+
+<style type="text/css" media="screen">
+  
+
+@media (max-width: 900px) {
+   .chosen-container
+  {
+
+    width: 200px !important;
+  }
+}
+
+</style>

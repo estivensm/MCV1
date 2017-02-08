@@ -58,10 +58,12 @@ class Report < ApplicationRecord
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
+
   end
 
 
-  def self.search(search0,search, search2, search3, search4, search5, search6)
+  
+ def self.search(search0,search, search2, search3, search4, search5, search6)
 
    search6 = search6.chomp("s") if search6 != ""
 
@@ -79,8 +81,8 @@ class Report < ApplicationRecord
         employedop.sourceop.procesop.descop.estadop.fdesdep.fhastap
 
      #begin if search2 != ""
-	     #   where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ").where(source_id: search2).employedp
-	    #else
+       #   where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ").where(source_id: search2).employedp
+      #else
        #   where("description like '%#{search.downcase}%' or description like '%#{search.upcase}%'  or description like '%#{search.capitalize}%' or state like '%#{search.downcase}%' or state like '%#{search.capitalize}%' ")
       #end
 
@@ -88,7 +90,6 @@ class Report < ApplicationRecord
 
   def accions_create
 
-      
 
 
       self.employeds.each do |employed|

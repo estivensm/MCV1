@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   
          
+  resources :rols
+  get 'my_accions/index', as: "misacciones"
+
           resources :tipos
           resources :accions
           resources :sources

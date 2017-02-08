@@ -1,6 +1,7 @@
  <% @sources.each do |source| %>
       <tr>
         <td><%= source.name %></td>
+        <td><%= source.codigo%></td>
         <td><%= source.description %></td>
         
         <td class = "bool"><%= get_state(source.correccion).html_safe %></td>

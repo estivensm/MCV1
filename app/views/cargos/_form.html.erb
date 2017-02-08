@@ -14,17 +14,17 @@
       <div class="modal-body">
 
   <div class="form-group">
-    <%= f.label :name %>
+    <%= f.label "Nombre" %>
     <%= f.text_field :name,  class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :description %>
+    <%= f.label "Descripcion" %>
     <%= f.text_field :description,  class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :proceso_id %><br>
+    <%= f.label "Proceso" %><br>
    <%= f.select :proceso_id,
     @procesos.map { |u| [u.name, u.id] },
                { include_blank: false },

@@ -1,12 +1,15 @@
 <div class="row">
    <div class="col-md-6 ">
-      <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %> <%= link_to "| #{@accion.tipo}es",  @accion.tipo == "Accion" ? report_accions_path(@report) : report_correcciones_path(@report), :class => "linka" %> </p>
+      <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>
+    <%if view_report(@report)%>
+        <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %> <%= link_to "| #{@accion.tipo}es",  @accion.tipo == "Accion" ? report_accions_path(@report) : report_correcciones_path(@report), :class => "linka" %> <%end%></p>
    </div>
    <div class="col-md-6 text-right">
-      <p>
+      <p> <%if view_report(@report)%>
          <%= link_to  edit_report_accion_path(@report,@accion), :class => "opciones2" do %>
          <i class="fa fa-pencil" aria-hidden="true"></i>
          <% end %>
+          <% end %>
          <%= link_to  report_accion_path(@report,@accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones2" do %>
          <i class="fa fa-trash" aria-hidden="true"></i>
          <% end %>
@@ -59,7 +62,7 @@
       <tbody>
          <tr>
             <td><%= @accion.codigo %></td>
-            <td><%=@accion.user.name%></td>
+            <td><%=get_employed(@accion.user.email).first_name + get_employed(@accion.user.email).first_last_name %></td>
             <td><%= get_date(@accion.created_at)%></td>
             <% employed = Employed.find(@accion.employed_id)%>
             <td colspan="3" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 

@@ -31,6 +31,8 @@ class Accion < ApplicationRecord
     belongs_to :user
     validate :start_must_be_before_end_time
     validates :employed_id, presence: true
+    after_destroy :restar_costo
+    
 
 	
 
@@ -41,7 +43,17 @@ class Accion < ApplicationRecord
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
+
   end
+
+  def restar_costo
+
+    report = Report.find(report_id)
+    report.costo = report.costo - self.costo
+    report.save
+      
+  end
+ 
 end
  
 

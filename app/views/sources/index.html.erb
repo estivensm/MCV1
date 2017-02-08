@@ -3,7 +3,7 @@
       <p >Fuentes</p>
    </div>
    <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_source_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
+      <%= link_to 'Nuevo', new_source_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.role == "Admin" %>
    </div>
 </div>
 
@@ -25,6 +25,7 @@
       <thead>
          <tr class = "tr-table" >
       <th style ="width:15%">Nombre</th>
+      <th style ="width:10%">Codigo</th>
       <th style ="width:30%">Descripcion</th>
    
       <th class = "bool">Correcciones</th>

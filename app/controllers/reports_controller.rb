@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports.json
   
 def abiertos
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
+    if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin" || current_user.role ==  "Basico"
    
    if params[:search]
      @reports1 = Report.where(state: "Abierto").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
@@ -29,31 +29,39 @@ end
     
 
 
- 
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
-   @es = Source.where({default: true, admin_user: current_user.admin_user}).first
-   if params[:search]
-     @reports1 = Report.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
-  else
-     @reports1 = Report.all
-  end
-
-
-  if current_user.rol ==  "Basico"
     
-    a = Employed.where(email: current_user.email).take.id
-    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a ).order(created_at: :desc)
-    
-  else
-        @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+       
+              @es = Source.where({default: true, admin_user: current_user.admin_user}).first
+              
+              if params[:search]
+                   @reports1 = Report.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
+              else
+                   @reports1 = Report.all
+              end
 
-  end
 
-    @route = reports_path  
+              if current_user.role ==  "Basico" && !current_user.rol.report_ver && !current_user.rol.report_procesos
+                
+                a = Employed.where(email: current_user.email).take
 
-    else
-      redirect_to root_path
-  end
+                @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a.id ).order(created_at: :desc)
+                
+              
+            elsif current_user.role ==  "Basico" && !current_user.rol.report_ver && current_user.rol.report_procesos
+
+                    a = Employed.where(email: current_user.email).take
+
+                @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
+                @reports = @reports2.paginate(page: params[:page],:per_page => 10)
+                
+              else
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+              end
+
+                  @route = reports_path  
+
+      
 
 
   end
@@ -61,7 +69,7 @@ end
 
 
 def cerrados
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin" || current_user.rol ==  "Basico"
+    if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin" || current_user.role ==  "Basico"
    
    if params[:search] 
      @reports1 = Report.where(state: "Cerrado").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
@@ -123,6 +131,7 @@ end
   # GET /reports/new
   def new
     @report = Report.new
+    @user = Employed.where(email: current_user.email).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     
   end
@@ -143,19 +152,20 @@ end
     @report = Report.new(report_params)
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @report.state = "Abierto"
-    @num = Report.where(admin_user: current_user.admin_user).maximum(:contador)
-    if @num != nil
-        @num = @num + 1
+    num = Report.where(admin_user: current_user.admin_user).where(source_id: @report.source_id).maximum(:contador)
+    if num != nil
+        num = num + 1
 
     else
-        @num = 1001
+        num = 1001
     end
-    @ano = Time.now.year.to_s
-    @ano = @ano.remove("20") 
- 
-    @code= "HALL-#{@num}-#{@ano}" 
-    @report.codigo = @code
-    @report.contador = @num
+    ano = Time.now.year.to_s
+    ano = ano.remove("20") 
+    source = Source.find(@report.source_id).codigo
+    code= "#{source}-#{num}-#{ano}" 
+    @report.codigo = code
+    @report.contador = num
+    @report.costo = 0
     @employed = Employed.find(@report.employed_id)
     respond_to do |format|
       if @report.save

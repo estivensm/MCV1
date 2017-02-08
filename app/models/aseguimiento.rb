@@ -27,11 +27,27 @@ class Aseguimiento < ApplicationRecord
 
         if self.cierra
 
-            Accion.find(self.accion_id).update(estado: "Cerrada")
-            save
+            accion = Accion.find(self.accion_id)
+            accion.f_compromiso >= Time.now ? (accion.cumplio = true) : (accion.cumplio = false)
+            accion.f_real = Time.now
+            report = Report.find(accion.report_id)
+            accion.update(estado: "Cerrada", costo: self.costo)
+             accion.save
+            report.costo = self.costo + report.costo
+            report.save 
+          
+
+            
+                       
             
         end
 
 	end
   
 end
+
+
+   
+    
+  
+  

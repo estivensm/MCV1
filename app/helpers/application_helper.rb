@@ -90,11 +90,13 @@ def bootstrap_class_for flash_type
 
 
   def menu
-    @menum = ["",""]
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources"
-    @menum = ["active",""]
+    @menum = ["","", ""]
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols"
+    @menum = ["active","", ""]
   elsif controller.controller_name == "reports"  || controller.controller_name == "accions" || controller.controller_name == "causas" 
-    @menum = ["","active"]
+    @menum = ["","active",""]
+  elsif controller.controller_name == "my_accions"  
+    @menum = ["","","active"]
   
   end
   return @menum
@@ -102,23 +104,25 @@ def bootstrap_class_for flash_type
 
    def sub_menu
       
-    @menu = ["","","","","","",""]
+    @menu = ["","","","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["active","","","","","",""]
+    @menu = ["active","","","","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","active","","","","","",""]
+@menu = ["","active","","","","","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","active","","","",""]
+    @menu = ["","","active","","","","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","active","","",""]
+ @menu = ["","","","active","","","",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","","active","",""]
+ @menu = ["","","","","active","","",""]
  elsif controller.controller_name == "normas"
- @menu = ["","","","","","active",""]
+ @menu = ["","","","","","active","",""]
 elsif controller.controller_name == "numerals"
- @menu = ["","","","","","active",""]
+ @menu = ["","","","","","active","",""]
  elsif controller.controller_name == "sources"
- @menu = ["","","","","","","active"]
+ @menu = ["","","","","","","active",""]
+ elsif controller.controller_name == "rols"
+ @menu = ["","","","","","","","active"]
     end
     return @menu
 
@@ -194,6 +198,21 @@ def get_reports_source
   
 end
 
+  def get_employed(email)
+            Employed.where(email: email).first
+            
+      end
+ 
+  def view_report(report)
+      a = get_employed(current_user.email)
+    if report.employed_id == a.id || current_user.role == "Admin" || current_user.role == "SuperAdmin"
+        return true
+       
+    else
+        return false
+             
+  end
+end
 
-  
+
 end

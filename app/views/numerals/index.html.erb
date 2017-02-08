@@ -3,7 +3,7 @@
       <p >Numerales de Norma <%= @norma.name%></p>
    </div>
    <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.rol == "SuperAdmin" || current_user.rol == "Admin" %>
+      <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.role == "Admin" %>
    </div>
 </div>
 <div class = "row">

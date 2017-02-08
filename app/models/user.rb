@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :accions
   has_many :rseguimientos
   has_many :aseguimientos
+  belongs_to :rol
 
 def self.search(search)
             where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  
@@ -47,19 +48,25 @@ def self.search(search)
 
          def add_adminid
 
-            if self.rol == "SuperAdmin"
+            if self.role == "SuperAdmin"
          	     Company.create(name: self.company, user_id: self.id)
+               Employed.create(email: self.email, admin_user: self.id, user_id: self.id)
+
          	end
          	puts self.id
          	
          end
          def add_adminid1
 
-            if self.rol == "SuperAdmin"
+            if self.role == "SuperAdmin"
               self.admin_user = self.id
               
-          end
-          puts self.id
+          else
+            e = Employed.where(email: self.email).first
+            self.name = e.first_name + " " + e.first_last_name 
+
+          end 
+          
           
          end
 end

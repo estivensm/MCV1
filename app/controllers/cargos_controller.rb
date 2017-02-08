@@ -1,10 +1,20 @@
 class CargosController < ApplicationController
   before_action :set_cargo, only: [:show, :edit, :update, :destroy]
+  before_action :configuracion
 
   # GET /cargos
   # GET /cargos.json
+  def configuracion
+
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+        redirect_to root_path
+    end
+    
+  end
+
+
   def index
-    if current_user.rol ==  "SuperAdmin" || current_user.rol ==  "Admin"
+   
    
    if params[:search]
      @cargos1 = Cargo.search(params[:search]).where(admin_user: current_user.admin_user)
@@ -15,9 +25,7 @@ class CargosController < ApplicationController
 
 
    @cargos = @cargos1.paginate(page: params[:page],:per_page => 20)
-    else
-      redirect_to root_path
-  end
+   
   end
 
   # GET /cargos/1

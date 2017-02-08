@@ -1,0 +1,80 @@
+<%= form_for(rol) do |f| %>
+  <% if rol.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rol.errors.count, "error") %> prohibited this rol from being saved:</h2>
+
+      <ul>
+      <% rol.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+ <div class="form-group">
+    <%= f.label "Nombre" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Configuracion" %>
+    <%= f.check_box :configuracion %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label "Ver todos los reportes" %>
+    <%= f.check_box :report_ver, class: "rv"%>
+  </div>
+   <div class="form-group">
+    <%= f.label "Ver todos los de mi Proceso" %>
+    <%= f.check_box :report_procesos, class: "rp" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Crear Reporte" %>
+    <%= f.check_box :report_crear %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Editar Reportes" %>
+    <%= f.check_box :report_edit %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label "Borrar Reportes" %>
+    <%= f.check_box :report_delete %>
+  </div>
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+  $('.rp').change(function(){
+
+             if ( $(this).is(':checked') )
+    {
+            $('.rv').prop('checked', false);
+            
+     
+            
+       }
+       
+    });
+    $('.rv').change(function(){
+
+             if ( $(this).is(':checked') )
+    {
+            $('.rp').prop('checked', false);
+            
+     
+            
+       }
+       
+    });
+
+
+</script>

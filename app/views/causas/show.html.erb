@@ -23,7 +23,7 @@
 <h3>Documento</h3>
   <% if @causa.archivo_url %>
   <%= link_to "Ver Docucumento", @causa.archivo_url   %>
-  <%= image_tag get_extension(@report.causas.first.archivo.file.extension), class: "extension"%>
+  <!--<%= image_tag get_extension(@report.causas.first.archivo.file.extension), class: "extension"%>-->
   <%= (@causa.archivo.file.size.to_f/1000) %>KB
    <% else %>
    <p>No hay Archivo adjunto</p>

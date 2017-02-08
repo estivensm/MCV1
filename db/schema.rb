@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202201352) do
+ActiveRecord::Schema.define(version: 20170208165424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,20 @@ ActiveRecord::Schema.define(version: 20170202201352) do
     t.boolean  "cumplio"
   end
 
+  create_table "rols", force: :cascade do |t|
+    t.integer  "admin_user"
+    t.integer  "user_id"
+    t.boolean  "configuracion"
+    t.boolean  "report_ver"
+    t.boolean  "report_crear"
+    t.boolean  "report_edit"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "name"
+    t.boolean  "report_delete"
+    t.boolean  "report_procesos"
+  end
+
   create_table "rseguimientos", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "admin_user"
@@ -206,6 +220,7 @@ ActiveRecord::Schema.define(version: 20170202201352) do
     t.boolean  "correccion"
     t.boolean  "causa"
     t.boolean  "puede_ac"
+    t.string   "codigo"
   end
 
   create_table "users", force: :cascade do |t|
@@ -224,8 +239,9 @@ ActiveRecord::Schema.define(version: 20170202201352) do
     t.integer  "admin_user"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "rol"
     t.string   "company"
+    t.integer  "rol_id"
+    t.string   "role"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

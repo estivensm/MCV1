@@ -1,0 +1,5 @@
+class AddReporteprocesoToRol < ActiveRecord::Migration[5.0]
+  def change
+    add_column :rols, :report_procesos, :boolean
+  end
+end

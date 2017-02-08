@@ -62,6 +62,7 @@ class AccionsController < ApplicationController
     @code= "ACC-#{@num}-#{@ano}" 
     @accion.codigo = @code
     @accion.contador = @num
+    @accion.costo = 0
     respond_to do |format|
       if @accion.save
         format.html { redirect_to report_accion_path(@report,@accion), notice: 'La Accion fue creada correctamente.' }

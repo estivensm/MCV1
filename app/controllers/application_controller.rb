@@ -6,12 +6,12 @@ protected
 
   def configure_permitted_parameters
     [:account_update,:sign_up].each do |metodo|
-    devise_parameter_sanitizer.permit(metodo, keys: [:name,:admin_user,:rol,:avatar, :company])
+    devise_parameter_sanitizer.permit(metodo, keys: [:name,:admin_user,:role,:avatar, :company,:rol_id])
     end
   end
 
 def is_admin?
-    if current_user.rol =="SuperAdmin"
+    if current_user.role =="SuperAdmin"
       true
     else
       redirect_to root_index_path, alert: 'Tu no eres administrador'
