@@ -16,7 +16,7 @@ class SourcesController < ApplicationController
   def index
 
 
-if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin"
+
 
    if params[:search] 
      @sources1 = Source.search(params[:search])
@@ -28,10 +28,7 @@ if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin"
 
 
    @sources = @sources1.paginate(page: params[:page],:per_page => 5).where(admin_user: current_user.admin_user).order(created_at: :desc)
-    else
-      redirect_to root_path
-  end
-
+   
   end
 
   # GET /sources/1

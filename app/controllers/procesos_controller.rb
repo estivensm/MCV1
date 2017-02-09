@@ -7,6 +7,8 @@ class ProcesosController < ApplicationController
 
     if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
         redirect_to root_path
+
+        
     end
     
   end
@@ -16,7 +18,7 @@ class ProcesosController < ApplicationController
   def index
 
  
-    if current_user.role ==  "SuperAdmin" || current_user.role==  "Admin"
+    
    
    if params[:search]
      @procesos1 = Proceso.search(params[:search])
@@ -27,9 +29,7 @@ class ProcesosController < ApplicationController
 
 
    @procesos = @procesos1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
-    else
-      redirect_to root_path
-  end
+    
 
   end
 

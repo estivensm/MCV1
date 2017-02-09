@@ -16,7 +16,7 @@ class NormasController < ApplicationController
   # GET /normas
   # GET /normas.json
   def index
-    if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin"
+   
    
    if params[:search]
      @normas1 = Norma.search(params[:search])
@@ -27,9 +27,7 @@ class NormasController < ApplicationController
 
 
    @normas = @normas1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
-    else
-      redirect_to root_path
-  end
+    
   end
 
   # GET /normas/1

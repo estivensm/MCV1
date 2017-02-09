@@ -14,7 +14,7 @@ class RolsController < ApplicationController
   # GET /rols
   # GET /rols.json
   def index
-    if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin"
+   
    
    if params[:search]
      @rols1 = Rol.search(params[:search]).where(admin_user: current_user.admin_user)
@@ -25,9 +25,7 @@ class RolsController < ApplicationController
 
 
    @rols = @rols1.paginate(page: params[:page],:per_page => 20)
-    else
-      redirect_to root_path
-  end
+   
   end
 
 

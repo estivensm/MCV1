@@ -1,10 +1,20 @@
 class Users::ViewsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
+ before_action :configuracion
 
+  
+  def configuracion
+
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+        redirect_to root_path
+
+        
+    end
+    
+  end
 def index
-puts "hola"
-if current_user.role == "SuperAdmin" || current_user.role == "Admin"
+
    if params[:search]
      @users1 = User.search(params[:search])
   else
@@ -48,9 +58,7 @@ end
 
  
 
-else
-redirect_to root_path
-end
+
   end
 
   
