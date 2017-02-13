@@ -48,32 +48,32 @@ namespace :email do
     end 
 
     Accion.where(estado: "Abierta").each do |accion|
-        employed = Employed.find(report.employed_id)    
+        employed = Employed.find(accion.employed_id)    
         times = accion.f_compromiso.to_time
         time =  times.to_i - Time.now.to_i  
         accion.contador_seg = (time / 60 / 60/ 24) + 1
         accion.save
         
 
-        if report.contador_seg < 5 && report.contador_seg > 0
+        if accion.contador_seg < 5 && accion.contador_seg > 0
             
             AcccionsegMailer.noty_accion(employed,accion,"proximo").deliver
             
-        elsif report.contador_seg < 0
+        elsif accion.contador_seg < 0
 
             AcccionsegMailer.noty_accion(employed,accion, "vencido").deliver
 
-        elsif report.contador_seg == 0
+        elsif accion.contador_seg == 0
 
             AcccionsegMailer.noty_accion(employed,accion, "hoy").deliver
 
         end
 
                  
-        times1 = report.fp_seguimiento.to_time
+        times1 = accion.fp_seguimiento.to_time
         time1 =  times1.to_i - Time.now.to_i  
         m = (time1 / 60 / 60/ 24) + 1
-        report.save
+        accion.save
         
         if (m <= 1)
            
