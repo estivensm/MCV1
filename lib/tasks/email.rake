@@ -57,15 +57,15 @@ namespace :email do
 
         if accion.contador_seg < 5 && accion.contador_seg > 0
             
-            AcccionsegMailer.noty_accion(employed,accion,"proximo").deliver
+            AccionsegMailer.noty_accion(employed,accion,"proximo").deliver
             
         elsif accion.contador_seg < 0
 
-            AcccionsegMailer.noty_accion(employed,accion, "vencido").deliver
+            AccionsegMailer.noty_accion(employed,accion, "vencido").deliver
 
         elsif accion.contador_seg == 0
 
-            AcccionsegMailer.noty_accion(employed,accion, "hoy").deliver
+            AccionsegMailer.noty_accion(employed,accion, "hoy").deliver
 
         end
 
@@ -77,13 +77,13 @@ namespace :email do
         
         if (m <= 1)
            
-        AcccionsegMailer.noty_accion(employed,accion, "segp").deliver
+        AccionsegMailer.noty_accion(employed,accion, "segp").deliver
 
     elsif m == 1
-            AcccionsegMailer.noty_accion(employed,accion, "segh").deliver
+            AccionsegMailer.noty_accion(employed,accion, "segh").deliver
 
     elsif m < 1
-                AcccionsegMailer.noty_accion(employed,accion, "segv").deliver
+                AccionsegMailer.noty_accion(employed,accion, "segv").deliver
             
             end
 
