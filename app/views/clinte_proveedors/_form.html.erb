@@ -1,0 +1,153 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><%= action_type %> Proceso</h4>
+      </div>
+<%= nested_form_for(@clinte_proveedor, remote: true) do |f| %>
+  <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+<div class="row">
+<div class="col-md-6">
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name,  class: "form-control" %>
+  </div>
+
+
+
+
+  <div class="field">
+    <%= f.label :pbx %>
+    <%= f.text_field :pbx,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nit %>
+    <%= f.text_field :nit,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :correo_empresa %>
+    <%= f.text_field :correo_empresa,  class: "form-control" %>
+  </div>
+</div>
+<div class="col-md-6">
+   <div class="field">
+    <%= f.label :contact_name %>
+    <%= f.text_field :contact_name,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_telephone %>
+    <%= f.text_field :contact_telephone,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_email %>
+    <%= f.text_field :contact_email ,  class: "form-control"%>
+  </div>
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo,  class: "form-control" %>
+  </div>
+    <div class="field">
+    <%= f.label :web %>
+    <%= f.text_field :web,  class: "form-control" %>
+  </div>
+</div>
+  
+</div>
+
+  <hr>
+<div class="col-lg-12">
+   <div class="col-lg-10">
+    <h3 class = "titulo" style = "margin :0px 0px 5px 0;">Contactos</h3>
+    </div>
+    <%= f.fields_for :contacts do |contact|  %>
+  <div class="clearfix">
+ <div class="col-md-12" >
+
+  
+    <div class="col-md-3 pdd" >
+     <%= contact.link_to_remove do %>
+<i style = "    color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+  <% end %>
+    <%= contact.label "Nombre" %>
+   <%= contact.text_field :name, :class => 'form-control' %>
+    </div>
+      <div class="col-md-3 pdd" >
+    <%= contact.label "Cargo" %>
+    <%= contact.text_field :mobil, :class => 'form-control' %>
+    </div>
+     <div class="col-md-3 pdd" >
+    <%= contact.label "Email" %>
+    <%= contact.email_field :email, :class => 'form-control' %>
+    </div>
+    <div class="col-md-3 pdd" >
+    <%= contact.label "Cargo" %>
+    <%= contact.text_field :cargo, :class => 'form-control' %>
+    </div>
+<%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+   
+   </div>
+    </div>
+   
+
+
+
+
+
+
+
+
+
+<%end%>
+ </div>
+<br>
+<%= f.link_to_add "Agregar Contacto", :contacts, :class => 'btn btn-primary top10'  %>
+    
+
+
+  
+
+
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+  <br>
+<hr>
+  <div class="form-group text-center">
+   <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  </div>
+<% end %>
+ </div>
+    </div>
+    </div>
+<style>
+.pdd{
+
+padding: 2px;
+}
+.top10
+{margin-top: 10px;
+}
+  
+</style>
+

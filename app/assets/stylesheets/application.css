@@ -5,7 +5,8 @@
  *= require_self
  *= require chosen
  *= magic-check
- *= admin
+*= require image-picker
+ *= require admin
  *= require jquery-ui
  *= require_tree .
 */

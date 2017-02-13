@@ -1,0 +1,50 @@
+# == Schema Information
+#
+# Table name: clinte_proveedors
+#
+#  id                :integer          not null, primary key
+#  user_id           :integer
+#  admin_user        :integer
+#  name              :string
+#  pbx               :string
+#  address           :string
+#  nit               :string
+#  correo_empresa    :string
+#  contact_name      :string
+#  contact_telephone :string
+#  contact_email     :string
+#  tipo              :string
+#  web               :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  name: MyString
+  pbx: MyString
+  address: MyString
+  nit: MyString
+  correo_empresa: MyString
+  contact_name: MyString
+  contact_telephone: MyString
+  contact_email: MyString
+  tipo: MyString
+  web: MyString
+
+two:
+  user_id: 1
+  admin_user: 1
+  name: MyString
+  pbx: MyString
+  address: MyString
+  nit: MyString
+  correo_empresa: MyString
+  contact_name: MyString
+  contact_telephone: MyString
+  contact_email: MyString
+  tipo: MyString
+  web: MyString

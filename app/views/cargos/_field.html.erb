@@ -1,0 +1,2 @@
+<%= f.label "Proceso" %><br>
+   <%= f.select :proceso_id,    @procesos.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control pr'  }%>

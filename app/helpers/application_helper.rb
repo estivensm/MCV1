@@ -39,6 +39,11 @@ def get_state(state)
   state == true ? a = "<i class='fa fa-check' aria-hidden='true'></i>" : a = "<i class='fa fa-times' aria-hidden='true'></i>"
   
 end
+def get_contacts
+
+  Contact.where(admin_user: current_user.admin_user)
+
+end
 
 def get_cargos
 
@@ -50,6 +55,13 @@ def get_employeds
   Employed.where(admin_user: current_user.admin_user)
 
 end
+
+def get_clientes
+
+  ClinteProveedor.where(admin_user: current_user.admin_user)
+
+end
+
 def get_procesos
 
   Proceso.where(admin_user: current_user.admin_user)
@@ -90,13 +102,15 @@ def bootstrap_class_for flash_type
 
 
   def menu
-    @menum = ["","", ""]
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols"
-    @menum = ["active","", ""]
+    @menum = ["","", "", ""]
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
+    @menum = ["active","", "", ""]
   elsif controller.controller_name == "reports"  || controller.controller_name == "accions" || controller.controller_name == "causas" 
-    @menum = ["","active",""]
+    @menum = ["","active","", ""]
   elsif controller.controller_name == "my_accions"  
-    @menum = ["","","active"]
+    @menum = ["","","active", ""]
+     elsif controller.controller_name == "my_reports"  
+    @menum = ["","","", "active"]
   
   end
   return @menum
@@ -104,25 +118,27 @@ def bootstrap_class_for flash_type
 
    def sub_menu
       
-    @menu = ["","","","","","","",""]
+    @menu = ["","","","","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["active","","","","","","",""]
+    @menu = ["active","","","","","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","active","","","","","","",""]
+@menu = ["","active","","","","","","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","active","","","","",""]
+    @menu = ["","","active","","","","","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","active","","","",""]
+ @menu = ["","","","active","","","","",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","","active","","",""]
+ @menu = ["","","","","active","","","",""]
  elsif controller.controller_name == "normas"
- @menu = ["","","","","","active","",""]
+ @menu = ["","","","","","active","","",""]
 elsif controller.controller_name == "numerals"
- @menu = ["","","","","","active","",""]
+ @menu = ["","","","","","active","","",""]
  elsif controller.controller_name == "sources"
- @menu = ["","","","","","","active",""]
+ @menu = ["","","","","","","active","",""]
  elsif controller.controller_name == "rols"
- @menu = ["","","","","","","","active"]
+ @menu = ["","","","","","","","active",""]
+elsif controller.controller_name == "clinte_proveedors"
+ @menu = ["","","","","","","","","active"]
     end
     return @menu
 
@@ -154,6 +170,23 @@ end
  return @menu_a
 
  end 
+ 
+ def menu_misreports
+
+@menu_ma = ["",""]
+if  action_name == "asignado_por_mi"
+  
+@menu_ma = ["active",""]
+ 
+else
+
+  @menu_ma = ["","active"]
+end
+ return @menu_ma
+
+ end 
+
+
 
 
 
@@ -205,7 +238,7 @@ end
  
   def view_report(report)
       a = get_employed(current_user.email)
-    if report.employed_id == a.id || current_user.role == "Admin" || current_user.role == "SuperAdmin"
+    if report.employed_id == a.id || current_user.role == "SuperAdmin"
         return true
        
     else
@@ -213,6 +246,19 @@ end
              
   end
 end
+
+  def myproces_report(report)
+      a = get_employed(current_user.email)
+    if report.proceso_id == a.cargo.proceso_id 
+        return true
+       
+    else
+        return false
+             
+  end
+end
+
+
 
 
 end

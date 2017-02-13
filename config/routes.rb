@@ -5,8 +5,15 @@ Rails.application.routes.draw do
 
   
          
+  resources :clinte_proveedors
+  resources :contacts
+  get 'my_reports/index', as: "misreports"
+
   resources :rols
   get 'my_accions/index', as: "misacciones"
+  get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
+  get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
+  get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
 
           resources :tipos
           resources :accions

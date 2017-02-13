@@ -15,6 +15,7 @@
 #  correccion  :boolean
 #  causa       :boolean
 #  puede_ac    :boolean
+#  codigo      :string
 #
 
 require 'test_helper'

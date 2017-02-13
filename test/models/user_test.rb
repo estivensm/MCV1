@@ -18,8 +18,9 @@
 #  admin_user             :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  rol                    :string
 #  company                :string
+#  rol_id                 :integer
+#  role                   :string
 #
 
 require 'test_helper'

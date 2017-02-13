@@ -5,20 +5,39 @@ class ReportsController < ApplicationController
   # GET /reports.json
   
 def abiertos
-    if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin" || current_user.role ==  "Basico"
+    
    
    if params[:search]
-     @reports1 = Report.where(state: "Abierto").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
+     @reports1 = Report.where(state: "Abierto").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5])
   else
      @reports1 = Report.all.where(state: "Abierto")
   end
 
+  if current_user.role ==  "Basico" && !current_user.rol.report_ver && !current_user.rol.report_procesos
+                
+                #a = Employed.where(email: current_user.email).take
+
+                #@reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a.id ).order(created_at: :desc)
+                redirect_to reports_path
+              
+            elsif current_user.role ==  "Basico" && !current_user.rol.report_ver && current_user.rol.report_procesos
+
+                    a = Employed.where(email: current_user.email).take
+
+                #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
+                @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
+                @reports = @reports2.paginate(page: params[:page],:per_page => 10)
+                
+              else
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+              end
+
+
+
   @route = reports_abiertos_path
 
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
-    else
-      redirect_to root_path
-  end
+   
     
     
     render 'index'
@@ -34,7 +53,7 @@ end
               @es = Source.where({default: true, admin_user: current_user.admin_user}).first
               
               if params[:search]
-                   @reports1 = Report.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
+                   @reports1 = Report.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5])
               else
                    @reports1 = Report.all
               end
@@ -42,16 +61,17 @@ end
 
               if current_user.role ==  "Basico" && !current_user.rol.report_ver && !current_user.rol.report_procesos
                 
-                a = Employed.where(email: current_user.email).take
+                 #a = Employed.where(email: current_user.email).take
 
-                @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a.id ).order(created_at: :desc)
-                
+                #@reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a.id ).order(created_at: :desc)
+                redirect_to reports_path
               
             elsif current_user.role ==  "Basico" && !current_user.rol.report_ver && current_user.rol.report_procesos
 
                     a = Employed.where(email: current_user.email).take
 
-                @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
+                #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
+                @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
                 @reports = @reports2.paginate(page: params[:page],:per_page => 10)
                 
               else
@@ -69,20 +89,36 @@ end
 
 
 def cerrados
-    if current_user.role ==  "SuperAdmin" || current_user.role ==  "Admin" || current_user.role ==  "Basico"
-   
+    
    if params[:search] 
-     @reports1 = Report.where(state: "Cerrado").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
+     @reports1 = Report.where(state: "Cerrado").search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5])
   else
      @reports1 = Report.all.where(state: "Cerrado")
   end
 
+  if current_user.role ==  "Basico" && !current_user.rol.report_ver && !current_user.rol.report_procesos
+                
+                #a = Employed.where(email: current_user.email).take
+
+                #@reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a.id ).order(created_at: :desc)
+                redirect_to reports_path
+              
+            elsif current_user.role ==  "Basico" && !current_user.rol.report_ver && current_user.rol.report_procesos
+
+                    a = Employed.where(email: current_user.email).take
+
+                #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
+                @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
+                @reports = @reports2.paginate(page: params[:page],:per_page => 10)
+                
+              else
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+              end
+
 
 @route = reports_cerrados_path
-   @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
-    else
-      redirect_to root_path
-  end
+    
     render 'index'
 end
 
@@ -139,7 +175,7 @@ end
   # GET /reports/1/edit
   def edit
 
-    
+    @user = Employed.where(email: current_user.email).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
 
   end
@@ -235,6 +271,17 @@ def cerrar_report
 end
 
 
+
+   def set_contacts
+        
+
+        @contacts = Contact.where(clinte_proveedor_id: params[:id])
+        render :json => @contacts
+
+
+      end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
@@ -243,6 +290,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso, :fp_seguimiento, :f_real,:contador_seg,:costo , :employed_ids => [], :numeral_ids => [])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso, :fp_seguimiento, :f_real,:clinte_proveedor_id,:contact_id,:contador_seg,:costo , :employed_ids => [], :numeral_ids => [])
     end
 end

@@ -1,0 +1,1 @@
+json.partial! "clinte_proveedors/clinte_proveedor", clinte_proveedor: @clinte_proveedor

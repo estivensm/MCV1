@@ -1,0 +1,13 @@
+<% if @rol.errors.blank? %>
+  $('#contact-modal').modal('hide');
+  $('table tbody').append('<%= j render "user_row", rol: @rol %>');
+ $('.alert').remove();
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @rol.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+
+<% end %>

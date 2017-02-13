@@ -50,31 +50,18 @@ class RolsController < ApplicationController
   # POST /rols
   # POST /rols.json
   def create
-    @rol = Rol.new(rol_params)
-
-    respond_to do |format|
-      if @rol.save
-        format.html { redirect_to @rol, notice: 'Rol was successfully created.' }
-        format.json { render :show, status: :created, location: @rol }
-      else
-        format.html { render :new }
-        format.json { render json: @rol.errors, status: :unprocessable_entity }
-      end
+       @rol = Rol.new(rol_params)
+    if @rol.save
+        redirect_to rols_path
     end
   end
 
   # PATCH/PUT /rols/1
   # PATCH/PUT /rols/1.json
   def update
-    respond_to do |format|
-      if @rol.update(rol_params)
-        format.html { redirect_to @rol, notice: 'Rol was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rol }
-      else
-        format.html { render :edit }
-        format.json { render json: @rol.errors, status: :unprocessable_entity }
-      end
-    end
+  if @rol.update(rol_params)
+        redirect_to rols_path
+         end
   end
 
   # DELETE /rols/1
@@ -95,6 +82,6 @@ class RolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rol_params
-      params.require(:rol).permit(:admin_user, :user_id, :configuracion, :report_ver, :report_crear, :report_edit, :report_delete, :name,:report_procesos)
+      params.require(:rol).permit(:admin_user, :user_id, :configuracion, :report_ver, :report_crear, :report_edit, :report_delete, :name,:report_rols)
     end
 end

@@ -56,6 +56,165 @@
                              { class: 'chosen-select form-control ch'  }
                   %>
             </div>
+
+
+          <div class="form-group cli">
+               <%= f.label "Cliente" %><br>
+               <%= f.select :clinte_proveedor_id,
+                 get_clientes.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch pr'  }
+                  %>
+                 
+            </div>
+
+
+
+            <div class="form-group pru">
+            <% if (action_name == "edit")
+
+@contactss= Contact.where(clinte_proveedor_id: @report.clinte_proveedor_id)
+
+
+else 
+
+  @contactss = Contact.where(admin_user: current_user.admin_user)
+end %>
+            <%= f.label "Contacto" %><br>
+               <%= f.select :contact_id,
+                 @contactss.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select form-control ch pri'  }
+                  %>
+            </div>
+
+<script>
+   
+   $(document).on('turbolinks:load',function() {
+         
+    $('.pr').change(function(){
+        
+        cambiar(false);
+
+    });
+
+
+
+
+
+
+function cambiar(make){
+
+
+      
+      cl = $('.pr').val(); 
+         
+
+    if (cl != "")
+    {  
+       $.get("/set_contacts/" + cl , function(data) 
+                        {
+          
+
+
+$('.pri').remove();
+$('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+           for (var i=0; i<data.length; i++) { 
+  
+         $('.pri option').remove();
+          
+          
+  $('.pri').removeClass("chosen-select")
+         
+          }
+          if (data != undefined)
+          {
+for (var i=0; i<data.length; i++) { 
+
+         
+$('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>');
+
+          $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data[i].id +'>' +data[i].name +'</li>');
+          
+        }
+
+         $('.pri').addClass("chosen-select")
+         $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });
+console.log("datfffa");
+          }
+         if (data.length == 0)
+         {
+          {$('.pri option').remove();
+       $('.pru').html('<select  class=" form-control pri" name="report[contact_id]" id="report_clinte_proveedor_id" style=""></select>');
+      $('.pri').addClass("chosen-select");
+    $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });}
+}
+
+     
+
+console.log("ajax");
+if (make)
+{
+ $('.pri').val("<%=@report.contact_id%>")
+ console.log("<%=@report.contact_id%>" + "sdfd")
+}
+         
+       
+
+                        });
+ }
+ else
+ {
+
+$('.pri').remove();
+$('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+
+$('.pri').addClass("chosen-select");
+    $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });
+
+
+   
+}
+  
+
+
+
+
+}
+
+
+
+
+ });
+
+    
+
+
+   
+  </script>
+
+
+
+
+
             <div class="form-group">
     <%= f.label "Frecuencia de Seguimiento" %>
     <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
@@ -182,7 +341,7 @@
 
 
 <script>
-$(document).ready(function(){
+$( document ).ready(function() {
   if ("<%=action_name%>" != "edit")
 {
 
@@ -216,6 +375,19 @@ function get_source(b)
             {
               $('.acc1').fadeOut();
             }
+             if (data.tipo == "Externa")
+           
+            {
+              
+              $('.cli').show();
+              $('.pru').show();
+             
+            }
+            else
+            {
+              $('.pru').hide();
+              $('.cli').hide();
+            }
         
 
     });
@@ -240,6 +412,18 @@ $('.source').change(function() {
             else
             {
               $('.acc1').fadeOut();
+            }
+             if (data.tipo == "Externa")
+           
+            {
+              $('.pru').fadeIn();
+              $('.cli').fadeIn();
+             
+            }
+            else
+            {
+              $('.cli').fadeOut();
+              $('.pru').fadeOut();
             }
         
 

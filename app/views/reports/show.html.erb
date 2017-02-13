@@ -60,7 +60,7 @@
 <tr>
   
   <th>Reporta</th>
-  <td><%= @report.user.name %></td>
+  <td><%= Employed.find(@report.employed_reporta).first_name + " " + Employed.find(@report.employed_reporta).first_last_name %></td>
   <th>Estado del Hallazgo</th>
   <td><%= @report.state %></td>
   <th>Costo Actual</th>
@@ -200,8 +200,10 @@ $('.modalp1').text(b);
   <div class="panel-body">
   <%if @report.source.causa && @report.accion == "Si"%>
     <% if @report.causas.count == 0 %>
-    <p class="color-gray">No has creado el Analisis de Causa</p>
-    <%= link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary'%>
+
+    <p class="color-gray">No se ha creado el Analisis de Causa</p>
+    
+    <%= (link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary') if view_report(@report)%>
     <%else%>
       <p class = "color-gray"><%= @report.causas.last.tipo%></p>
     <p class="text-right"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>

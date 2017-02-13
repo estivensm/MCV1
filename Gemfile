@@ -54,6 +54,7 @@ gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 gem 'ransack'
 #Variables de entorno para seguridad
 gem 'figaro'
+gem 'image-picker-rails'
 #Sub Formularios
 gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 #Editor Rico

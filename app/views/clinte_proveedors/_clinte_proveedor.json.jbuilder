@@ -1,0 +1,2 @@
+json.extract! clinte_proveedor, :id, :user_id, :admin_user, :name, :pbx, :address, :nit, :correo_empresa, :contact_name, :contact_telephone, :contact_email, :tipo, :web, :created_at, :updated_at
+json.url clinte_proveedor_url(clinte_proveedor, format: :json)

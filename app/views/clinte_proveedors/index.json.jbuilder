@@ -1,0 +1,1 @@
+json.array! @clinte_proveedors, partial: 'clinte_proveedors/clinte_proveedor', as: :clinte_proveedor

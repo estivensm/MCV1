@@ -25,13 +25,15 @@
 
   <div class="form-group">
     <%= f.label "Proceso" %><br>
-   <%= f.select :proceso_id,
-    @procesos.map { |u| [u.name, u.id] },
-               { include_blank: false },
-               { class: 'chosen-select form-control'  }
-%>
+   <%= f.select :proceso_id,    @procesos.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
+
+  
     
   </div>
+
+
+
+
 
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>

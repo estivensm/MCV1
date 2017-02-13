@@ -1,0 +1,406 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><%= action_type %> Proceso</h4>
+      </div>
+<%= nested_form_for(@clinte_proveedor, remote: true) do |f| %>
+  <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+<div class="row">
+<div class="col-md-6">
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name,  class: "form-control" %>
+  </div>
+
+
+
+
+  <div class="field">
+    <%= f.label :pbx %>
+    <%= f.text_field :pbx,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nit %>
+    <%= f.text_field :nit,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :correo_empresa %>
+    <%= f.text_field :correo_empresa,  class: "form-control" %>
+  </div>
+</div>
+<div class="col-md-6">
+   <div class="field">
+    <%= f.label :contact_name %>
+    <%= f.text_field :contact_name,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_telephone %>
+    <%= f.text_field :contact_telephone,  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_email %>
+    <%= f.text_field :contact_email ,  class: "form-control"%>
+  </div>
+  <div class="field">
+    <%= f.label :tipo %>
+    <%= f.text_field :tipo,  class: "form-control" %>
+  </div>
+    <div class="field">
+    <%= f.label :web %>
+    <%= f.text_field :web,  class: "form-control" %>
+  </div>
+</div>
+  
+</div>
+
+  <hr>
+<div class="col-lg-12">
+   <div class="col-lg-10">
+    <h3 class = "titulo" style = "margin :0px 0px 5px 0;">Contactos</h3>
+    </div>
+    <%= f.fields_for :contacts do |attachment_form|  %>
+  <div class="clearfix">
+ <div class="col-md-12" >
+
+  
+    <div class="col-md-3 pdd" >
+     <%= attachment_form.link_to_remove do %>
+<i style = "    color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+  <% end %>
+    <%= attachment_form.label "Nombre" %>
+   <%= attachment_form.select :name,    get_cargos.map { |u| [u.name, u.id] },{ include_blank: true },{ class: 'chosen-select form-control pr'  }%>
+    </div>
+    <div class="col-md-3 pdd pru" >
+    <%= attachment_form.label "Celular" %>
+   <%= attachment_form.select :mobil,    Employed.where(id: 10000).map { |u| [u.name, u.id] },{ include_blank: true },{ class: 'chosen-select form-control pri'  }%>
+       </div>
+     <div class="col-md-3 pdd" >
+    <%= attachment_form.label "Email" %>
+    <%= attachment_form.email_field :email, :class => 'form-control' %>
+    </div>
+    <div class="col-md-3 pdd" >
+    <%= attachment_form.label "Cargo" %>
+    <%= attachment_form.email_field :cargo, :class => 'form-control' %>
+    </div>
+
+   
+   </div>
+    </div>
+   
+
+ <script>
+
+
+
+
+        $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '150px'
+        });
+
+
+
+        $('.pr').change(function(){
+      b = $('.pr').val(); 
+      console.log(b)  
+      if (b != "")
+      {
+
+
+      var c = $(this).attr('name').replace('name','mobil');
+      var d = $(this).attr('id').replace('name','mobil');
+      var f = $(this).attr('id').replace('name','Celular');
+      console.log($('#' + s).index( this ));
+      $( "div" ).index( this );
+       $.get("/set_cargos/" + b , function(data) 
+                        {
+          
+
+$('.pri').remove();
+$('.pru').html('<label for="'+ f +'">Celular</label><br><select class="chosen-select form-control pri" name="' + c +  '" id=" '+ d + '" style="display: none;">');
+           for (var i=0; i<data.length; i++) { 
+  
+         $('.pri option').remove();
+          
+          
+  $('.pri').removeClass("chosen-select")
+         
+          }
+          if (data != undefined)
+          {
+for (var i=0; i<data.length; i++) { 
+
+         
+$('.pri').append('<option value=' + data[i].id +'>' + data[i].first_name  + '</option>');
+
+          $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data[i].id +'>' +data[i].first_name +'</li>');
+          
+        }
+
+         $('.pri').addClass("chosen-select")
+         $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '150px'
+        });
+console.log("datfffa");
+          }
+         if (data.length == 0)
+         {
+          {$('.pri option').remove();
+       $('.pru').html('<label for="'+ f +'">Celular</label><br><select class="chosen-select form-control pri" name="' + c +  '" id=" '+ d + '" style="display: none;">');
+      $('.pri').addClass("chosen-select");
+    $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '150px'
+        });}
+}
+
+     
+
+
+
+
+         
+       
+
+                        });
+
+
+     }
+     else
+     {
+       {$('.pri option').remove();
+       $('.pru').html('<label for="'+ f +'">Celular</label><br><select class="chosen-select form-control pri" name="' + c +  '" id=" '+ d + '" style="display: none;">');
+      $('.pri').addClass("chosen-select");
+    $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '150px'
+        });}
+     }
+ 
+  
+    });
+
+
+
+      </script>
+
+
+
+
+
+
+
+
+<%end%>
+ </div>
+<br>
+<%= f.link_to_add "Agregar Contacto", :contacts, :class => 'btn btn-primary top10'  %>
+    
+
+
+  
+
+
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+  <br>
+<hr>
+  <div class="form-group text-center">
+   <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  </div>
+<% end %>
+ </div>
+    </div>
+    </div>
+<style>
+.pdd{
+
+padding: 2px;
+}
+.top10
+{margin-top: 10px;
+}
+  
+</style>
+
+
+
+
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title"><%=action_type%> Cargo</h4>
+      </div>
+<%= form_for(cargo) do |f| %>
+ <div class="alert alert-danger" style="display:none">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+  <div class="form-group">
+    <%= f.label "Nombre" %>
+    <%= f.text_field :name,  class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Descripcion" %>
+    <%= f.text_field :description,  class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label "Proceso" %><br>
+   <%= f.select :proceso_id,    @procesos.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
+
+    <%= f.select :proceso_id,    get_cargos.map { |u| [u.name, u.id] },{ include_blank: true },{ class: 'chosen-select form-control pr'  }%>
+    
+  </div>
+
+  <div class="form-group pru">
+
+<select  class="chosen-select form-control pri" name="cargo[proceso_id]" id="cargo_proceso_id" style="">
+    </select>
+
+  </div>
+
+  <script>
+   
+   
+         
+    $('.pr').change(function(){
+      b = $('.pr').val(); 
+      console.log(b)   
+       $.get("/set_cargos/" + b , function(data) 
+                        {
+          
+
+
+$('.pri').remove();
+$('.pru').html('<select  class=" form-control pri" name="cargo[proceso_id]" id="cargo_proceso_id" style=""></select>');
+           for (var i=0; i<data.length; i++) { 
+  
+         $('.pri option').remove();
+          
+          
+  $('.pri').removeClass("chosen-select")
+         
+          }
+          if (data != undefined)
+          {
+for (var i=0; i<data.length; i++) { 
+
+         
+$('.pri').append('<option value=' + data[i].id +'>' + data[i].first_name  + '</option>');
+
+          $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data[i].id +'>' +data[i].first_name +'</li>');
+          
+        }
+
+         $('.pri').addClass("chosen-select")
+         $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });
+console.log("datfffa");
+          }
+         if (data.length == 0)
+         {
+          {$('.pri option').remove();
+       $('.pru').html('<select  class=" form-control pri" name="cargo[proceso_id]" id="cargo_proceso_id" style=""></select>');
+      $('.pri').addClass("chosen-select");
+    $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });}
+}
+
+     
+
+
+
+         
+       
+
+                        });
+ 
+  
+    });
+
+
+
+
+    
+
+
+   
+  </script>
+
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+<br>
+<hr>
+  <div class="form-group text-center">
+   <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  </div>
+<% end %>
+</div>
+    </div>
+      </div>
+
+      <script>
+
+        $('.chosen-select').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          width: '310px'
+        });
+
+
+      </script>

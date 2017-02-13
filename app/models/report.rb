@@ -2,32 +2,34 @@
 #
 # Table name: reports
 #
-#  id               :integer          not null, primary key
-#  employed_id      :integer
-#  proceso_id       :integer
-#  description      :text
-#  requisito        :text
-#  evidencia        :text
-#  nc_type          :string
-#  accion           :string
-#  justificacion    :text
-#  user_id          :integer
-#  admin_user       :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  state            :string
-#  codigo           :string
-#  contador         :integer
-#  source_id        :integer
-#  archivo          :string
-#  employed_reporta :integer
-#  f_seguimiento    :integer
-#  f_compromiso     :date
-#  f_real           :date
-#  fp_seguimiento   :date
-#  contador_seg     :integer
-#  costo            :integer
-#  cumplio          :boolean
+#  id                  :integer          not null, primary key
+#  employed_id         :integer
+#  proceso_id          :integer
+#  description         :text
+#  requisito           :text
+#  evidencia           :text
+#  nc_type             :string
+#  accion              :string
+#  justificacion       :text
+#  user_id             :integer
+#  admin_user          :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  state               :string
+#  codigo              :string
+#  contador            :integer
+#  source_id           :integer
+#  archivo             :string
+#  employed_reporta    :integer
+#  f_seguimiento       :integer
+#  f_compromiso        :date
+#  f_real              :date
+#  fp_seguimiento      :date
+#  contador_seg        :integer
+#  costo               :integer
+#  cumplio             :boolean
+#  clinte_proveedor_id :integer
+#  contact_id          :integer
 #
 
 class Report < ApplicationRecord
@@ -63,9 +65,9 @@ class Report < ApplicationRecord
 
 
   
- def self.search(search0,search, search2, search3, search4, search5, search6)
+ def self.search(search0,search, search2, search3, search4, search5)
 
-   search6 = search6.chomp("s") if search6 != ""
+   #search6 = search6.chomp("s") if search6 != ""
 
     
       
@@ -75,10 +77,10 @@ class Report < ApplicationRecord
     search3 != "" ? (scope :employedop, -> { where(employed_id: search3) }) : (scope :employedop, -> { where.not(id: nil) }) 
     search4 != "" ? (scope :procesop, -> { where(proceso_id: search4) }) : (scope :procesop, -> { where.not(id: nil) }) 
     search5 != "" ? (scope :descop, -> { where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ") }) : (scope :descop, -> { where.not(id: nil) }) 
-    search6 != "" ? (scope :estadop, -> { where(state: search6) }) : (scope :estadop, -> { where.not(id: nil) }) 
+    #search6 != "" ? (scope :estadop, -> { where(state: search6) }) : (scope :estadop, -> { where.not(id: nil) }) 
 
   
-        employedop.sourceop.procesop.descop.estadop.fdesdep.fhastap
+        employedop.sourceop.procesop.descop.fdesdep.fhastap
 
      #begin if search2 != ""
        #   where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ").where(source_id: search2).employedp

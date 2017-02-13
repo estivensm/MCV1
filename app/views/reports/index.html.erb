@@ -71,7 +71,7 @@
 <%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter", include_blank: true , placeholder: "hola"}%>
 <%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2 filter shi", include_blank: true , placeholder: "hola"}%>
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
-<%= select_tag "search6", options_for_select(["","Abiertos", "Cerrados" ] ), {class: "form-control shi sh4 ", include_blank: true } %>
+
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
    </div>

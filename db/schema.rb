@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208165424) do
+ActiveRecord::Schema.define(version: 20170212154117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,23 @@ ActiveRecord::Schema.define(version: 20170208165424) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "clinte_proveedors", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.string   "name"
+    t.string   "pbx"
+    t.string   "address"
+    t.string   "nit"
+    t.string   "correo_empresa"
+    t.string   "contact_name"
+    t.string   "contact_telephone"
+    t.string   "contact_email"
+    t.string   "tipo"
+    t.string   "web"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "logo"
@@ -89,6 +106,18 @@ ActiveRecord::Schema.define(version: 20170208165424) do
     t.string   "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "mobil"
+    t.string   "email"
+    t.string   "cargo"
+    t.integer  "clinte_proveedor_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "user_id"
+    t.integer  "admin_user"
   end
 
   create_table "employeds", force: :cascade do |t|
@@ -165,8 +194,8 @@ ActiveRecord::Schema.define(version: 20170208165424) do
     t.text     "justificacion"
     t.integer  "user_id"
     t.integer  "admin_user"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "state"
     t.string   "codigo"
     t.integer  "contador"
@@ -180,6 +209,8 @@ ActiveRecord::Schema.define(version: 20170208165424) do
     t.integer  "contador_seg"
     t.integer  "costo"
     t.boolean  "cumplio"
+    t.integer  "clinte_proveedor_id"
+    t.integer  "contact_id"
   end
 
   create_table "rols", force: :cascade do |t|
@@ -221,6 +252,7 @@ ActiveRecord::Schema.define(version: 20170208165424) do
     t.boolean  "causa"
     t.boolean  "puede_ac"
     t.string   "codigo"
+    t.string   "tipo"
   end
 
   create_table "users", force: :cascade do |t|

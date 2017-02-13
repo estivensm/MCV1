@@ -6,7 +6,7 @@
 $(".alert").css("display", "block");
   // TODO: show the errors in the UI
   $('.alert').empty('<p></p>');
-  <% @norma.errors.full_messages.each do |msg| %>
+  <% @proceso.errors.full_messages.each do |msg| %>
           $('.alert').append('<p><%=msg%></p>');
         <% end %>
  

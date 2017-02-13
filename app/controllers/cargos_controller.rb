@@ -70,8 +70,19 @@ class CargosController < ApplicationController
        
       
       end
+
+
     
   end
+
+   def set_cargos
+        cargo = Cargo.find(params[:id])
+
+        @users = Employed.where(cargo_id: cargo.id)
+        render :json => @users
+
+
+      end
 
   # DELETE /cargos/1
   # DELETE /cargos/1.json

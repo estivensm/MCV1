@@ -49,7 +49,7 @@
       <thead>
 <tr class ="tr-table ">
 <th colspan="7" style = "padding-left:150px" class ="titaccion text-center"><%=@tipo + "es"%> (<%=@accions.count %>)
-<th><%= link_to 'Nueva Accion', new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right' %></td>
+<th><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || (!view_report(@report) &&  myproces_report(@report)) %></td>
 </th>
 
 </tr>
@@ -114,11 +114,11 @@
 
 <%else%>
 <div class="jumbotron jumbacc">
-  <h1 class="display-3">No has creado ninguna <%= @tipo%></h1>
+  <h1 class="display-3">No se ha creado ninguna <%= @tipo%></h1>
   
   <hr class="my-4">
   <p class="lead">Las <%= @tipo + "es"%> te ayudaran a mejorar tu Empresa</p>
-   <%= link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg' %>
+   <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (!view_report(@report) &&  myproces_report(@report)) %>
   </p>
 
 <%end%>

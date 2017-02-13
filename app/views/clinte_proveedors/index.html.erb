@@ -1,0 +1,72 @@
+<div class = "row title-table">
+   <div class = "col-md-10">
+      <p >Clientes</p>
+   </div>
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_clinte_proveedor_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.role == "Admin" %>
+   </div>
+</div>
+<div class = "row">
+   <div class = "col-md-6">
+      <div class="form-group">
+         <%= form_tag(clinte_proveedors_path, :method => "get", id: "search-form") do %>
+         <%= text_field_tag :search, params[:search], placeholder: "Ingresa texto", class: "form-control search1" %>
+         <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+         <% end %>
+      </div>
+   </div>
+   <div class = "col-md-6">
+      
+   </div>
+</div>
+<div class = "row">
+
+
+
+   <table class="table">
+      <thead>
+         <tr class = "tr-table">
+      <th>Nombre</th>
+      <th>Pbx</th>
+      <th>Direccion</th>
+      <th>Nit</th>
+      <th>Correo Empresa</th>
+      <th>Nombre Contacto</th>
+      <th>Telefono del Contacto</th>
+      <th>Email del Contacto</th>
+      <th>Web</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clinte_proveedors.each do |clinte_proveedor| %>
+      <tr>
+   
+        <td><%= clinte_proveedor.name %></td>
+        <td><%= clinte_proveedor.pbx %></td>
+        <td><%= clinte_proveedor.address %></td>
+        <td><%= clinte_proveedor.nit %></td>
+        <td><%= clinte_proveedor.correo_empresa %></td>
+        <td><%= clinte_proveedor.contact_name %></td>
+        <td><%= clinte_proveedor.contact_telephone %></td>
+        <td><%= clinte_proveedor.contact_email %></td>
+        
+        <td><%= clinte_proveedor.web %></td>
+        <td><%= link_to  clinte_proveedor, :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_clinte_proveedor_path(clinte_proveedor), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  clinte_proveedor,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+

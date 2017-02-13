@@ -23,6 +23,7 @@
 //= require jquery.remotipart
 //= require jquery-ui
 //= require ckeditor-jquery
+//= require image-picker
 //= require config
 //= require turbolinks
 //= require_tree .
