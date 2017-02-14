@@ -330,6 +330,7 @@ $('.pri').addClass("chosen-select");
      
       <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+      <%= f.hidden_field :tag ,:value =>  true %>
       <div class="actions text-center">
          <%= f.submit "Guardar" , class: 'btn btn-primary btn-lg btnpad' %>
       </div>

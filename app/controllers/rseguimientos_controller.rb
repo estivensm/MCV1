@@ -32,11 +32,11 @@ class RseguimientosController < ApplicationController
   def create
     @report = Report.find(params[:report_id])
     @rseguimiento = Rseguimiento.new(rseguimiento_params)
-    respond_to do |format|
+
     if @rseguimiento.save
-      format.js
+      redirect_to report_path(@report)
     end
-  end
+ 
     
   end
 
@@ -44,12 +44,11 @@ class RseguimientosController < ApplicationController
   # PATCH/PUT /rseguimientos/1.json
   def update
      @report = Report.find(params[:report_id]) 
-   respond_to do |format|
       if @rseguimiento.update(rseguimiento_params)
-        format.js
+       redirect_to report_path(@report)
       end
     
-  end
+ 
   end
 
   # DELETE /rseguimientos/1

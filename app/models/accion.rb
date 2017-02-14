@@ -65,13 +65,14 @@ def self.search(search0,search, search2, search3, search5, search6)
 
 
     def start_must_be_before_end_time
+      if self.tag 
     	self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
-
+      end
   end
 
   def restar_costo

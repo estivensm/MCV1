@@ -10,6 +10,8 @@
 #  clinte_proveedor_id :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  user_id             :integer
+#  admin_user          :integer
 #
 
 class Contact < ApplicationRecord

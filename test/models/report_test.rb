@@ -30,6 +30,7 @@
 #  cumplio             :boolean
 #  clinte_proveedor_id :integer
 #  contact_id          :integer
+#  tag                 :boolean
 #
 
 require 'test_helper'

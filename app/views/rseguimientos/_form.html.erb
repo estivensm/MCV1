@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><%= action_type %> Proceso</h4>
       </div>
-<%= form_for([ @report, @rseguimiento], :html => { :multipart => true },remote: true) do |f| %>
+<%= form_for([ @report, @rseguimiento]) do |f| %>
   <div class="alert alert-danger" style="display:none">
     <ul>
     
@@ -23,7 +23,10 @@
     <%= f.label :descripcion %>
     <%= f.text_area :descripcion,  class: "form-control" %>
   </div>
-
+<div class="field">
+    <%= f.label "Evidencia" %>
+    <%= f.file_field :evidencia,  class: "form-control" %>
+  </div>
  
 
   <br>

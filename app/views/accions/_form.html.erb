@@ -158,6 +158,7 @@
 <%= f.hidden_field :report_id , :value => @report.id %>
    <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+<%= f.hidden_field :tag ,:value =>   true%>
 
   <div class="actions">
     <%= f.submit "Guardar" , class: 'btn btn-primary' %>

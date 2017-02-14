@@ -30,6 +30,7 @@
 #  cumplio             :boolean
 #  clinte_proveedor_id :integer
 #  contact_id          :integer
+#  tag                 :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

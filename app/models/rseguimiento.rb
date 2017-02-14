@@ -17,4 +17,15 @@ class Rseguimiento < ApplicationRecord
 	belongs_to :report
 	belongs_to :user
 	mount_uploader :evidencia, ArchivoRepUploader
+	before_create :seguimiento
+
+
+	def seguimiento
+        report = Report.find(self.report_id)
+        employed = Employed.where(email: self.user.email).take     
+    if report.employed_id == employed.id
+		report.fp_seguimiento = Time.at(Time.now + (report.f_seguimiento*60*60*24))
+		report.save
+	end
+end
 end

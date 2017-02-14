@@ -35,12 +35,20 @@ class Aseguimiento < ApplicationRecord
              accion.save
             report.costo = self.costo + report.costo
             report.save 
-          
 
+       
             
                        
             
         end
+
+            accion = Accion.find(self.accion_id)
+        employed = Employed.where(email: self.user.email).take     
+    if accion.employed_id.to_i == employed.id
+        accion.fp_seguimiento = Time.at(Time.now.to_i + (accion.f_seguimiento*60*60*24))
+        accion.save
+    end
+
 
 	end
   
@@ -48,6 +56,6 @@ end
 
 
    
-    
+
   
   

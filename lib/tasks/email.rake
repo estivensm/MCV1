@@ -6,11 +6,10 @@ namespace :email do
         
         employed = Employed.find(report.employed_id)    
         times = report.f_compromiso.to_time
-        time =  times.to_i - Time.now.to_i  
+        time =  times.to_i - Time.now.to_i
         report.contador_seg = (time / 60 / 60/ 24) + 1
-        report.save
 
-        if report.contador_seg < 5 && report.contador_seg > 0
+            if report.contador_seg < 5 && report.contador_seg > 0
             
             ReportsegMailer.noty_report(employed,report, "proximo").deliver
             
@@ -29,8 +28,9 @@ namespace :email do
 
         
         times1 = report.fp_seguimiento.to_time
-        time1 =  times1.to_i - Time.now.to_i  
+        time1 =  times1.to_i - Time.now.to_i
         m = (time1 / 60 / 60/ 24) + 1
+        report.tag = false
         report.save
         
         if (m <= 1)
@@ -50,9 +50,9 @@ namespace :email do
     Accion.where(estado: "Abierta").each do |accion|
         employed = Employed.find(accion.employed_id)    
         times = accion.f_compromiso.to_time
-        time =  times.to_i - Time.now.to_i  
+        time =  times.to_i - Time.now.to_i
         accion.contador_seg = (time / 60 / 60/ 24) + 1
-        accion.save
+       
         
 
         if accion.contador_seg < 5 && accion.contador_seg > 0
@@ -71,8 +71,9 @@ namespace :email do
 
                  
         times1 = accion.fp_seguimiento.to_time
-        time1 =  times1.to_i - Time.now.to_i  
+        time1 =  times1.to_i - Time.now.to_i
         m = (time1 / 60 / 60/ 24) + 1
+        accion.tag = false
         accion.save
         
         if (m <= 1)

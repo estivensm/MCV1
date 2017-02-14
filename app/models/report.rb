@@ -30,6 +30,7 @@
 #  cumplio             :boolean
 #  clinte_proveedor_id :integer
 #  contact_id          :integer
+#  tag                 :boolean
 #
 
 class Report < ApplicationRecord
@@ -45,7 +46,7 @@ class Report < ApplicationRecord
   mount_uploader :archivo, ArchivoReportUploader
   validate :archivo_size_validation, :if => "archivo?"  
   before_destroy :delete_accions
-  validate :start_must_be_before_end_time
+  validate :start_must_be_before_end_time #, on: [:create]
 
   def archivo_size_validation
       
@@ -54,12 +55,21 @@ class Report < ApplicationRecord
   end
 
   def start_must_be_before_end_time
+      
+      if self.tag 
+
       self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
+         self.description = "bbbbbbbbbbbbbbbbb"
+
+      else
+          self.description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        
+      end
 
   end
 
