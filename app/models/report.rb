@@ -46,7 +46,7 @@ class Report < ApplicationRecord
   mount_uploader :archivo, ArchivoReportUploader
   validate :archivo_size_validation, :if => "archivo?"  
   before_destroy :delete_accions
-  validate :start_must_be_before_end_time #, on: [:create]
+  validate :start_must_be_before_end_time, on: [:create, :update]
 
   def archivo_size_validation
       
