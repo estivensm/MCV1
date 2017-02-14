@@ -50,7 +50,7 @@ else
 end
 else
 
-  @users = @users1.paginate(page: params[:page],:per_page => 10).where("admin_user = ? AND id != ?", current_user.id, current_user).order(created_at: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where.not(role: "SuperAdmin").order(created_at: :desc)
    
 end
 
