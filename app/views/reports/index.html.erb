@@ -136,20 +136,31 @@
 
 <%= check_box_tag "all_id", 0 %>
 <% @reports.each do |report| %>
-<%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%>
-<%= link_to  report_path(report) do %>
+
 <div class="row seg">
 
 <div class="col-md-12">
-<div class="col-md-4">
-  <p> Codigo: <%=report.codigo%></p>
+<div class="col-md-3">
+  <p> <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%>
+Codigo: <%=report.codigo%></p>
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
 <% employed = Employed.find(report.employed_id)%>
   <p> Responsable: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></p>
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
   <p>Fecha de compromiso: <%= report.f_compromiso%></p>
+</div>
+<div class="col-md-3">
+ <%= link_to  report, :class => "opciones" do %>
+         <i class="fa fa-eye" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  edit_report_path(report), :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report,  method: :delete, class: "",data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
 </div>
   
 </div>
@@ -162,7 +173,7 @@
 </div>
   
 </div>
- <% end %>
+
 <br>
  <% end %>
 
