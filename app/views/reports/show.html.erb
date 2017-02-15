@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-md-6 ">
-    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes",  reports_path, :class => "linka" %></p>
+    <p><%=  link_to "Inicio /",  root_path, :class => "linka" %>  <%= show_reports ? (link_to "Reportes",  reports_path, :class => "linka"):(link_to "Reportes",  misreports_path, :class => "linka")  %></p>
   </div>
   <div class="col-md-6 text-right">
     <p>

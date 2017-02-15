@@ -87,6 +87,7 @@
 <%end%>
 <%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
 <p><%= submit_tag "Eliminar Registros Seleccionados", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p>
+
 <table class="table">
    <thead>
       <tr class = "tr-table">
@@ -132,6 +133,62 @@
    </tbody>
 </table>
 <% end %>
+
+
+<% @reports.each do |report| %>
+<%= link_to  report_path(report) do %>
+<div class="row seg">
+
+<div class="col-md-12">
+<div class="col-md-4">
+  <p>Codigo: <%=report.codigo%></p>
+</div>
+<div class="col-md-4">
+<% employed = Employed.find(report.employed_id)%>
+  <p> Responsable: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></p>
+</div>
+<div class="col-md-4">
+  <p>Fecha de compromiso: <%= report.f_compromiso%></p>
+</div>
+  
+</div>
+<hr>
+<div class="col-md-12">
+
+  <strong>Descripcion: </strong><%= report.description%>
+
+
+</div>
+  
+</div>
+ <% end %>
+<br>
+ <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 <script>
    $(document).on('turbolinks:load',function() {
@@ -305,3 +362,21 @@
       
      
 </script>
+<style>
+  .seg
+  {
+    background: whitesmoke;
+    padding: 10px;
+    color: gray;
+    border-radius: 10px;
+    border: 1px solid #cecece;
+  
+     -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.3s;
+  }
+  .seg:hover
+  {
+  
+    box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+  }
+</style>

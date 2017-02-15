@@ -1,4 +1,4 @@
-# == Schema Information
+ # == Schema Information
 #
 # Table name: users
 #
@@ -29,6 +29,8 @@ class User < ApplicationRecord
   after_create :add_adminid
   before_save :add_adminid1
 
+  #before_destroy :validar_detele
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -42,6 +44,14 @@ class User < ApplicationRecord
   has_many :rseguimientos
   has_many :aseguimientos
   belongs_to :rol
+   before_destroy :saveable?
+
+  def saveable?
+    if true
+      raise "Destroy aborted; you can't do that!"
+    end
+  end
+
 
 def self.search(search)
             where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  
@@ -70,6 +80,8 @@ def self.search(search)
           
           
          end
+
+        
 end
 
 

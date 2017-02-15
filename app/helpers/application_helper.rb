@@ -262,6 +262,15 @@ end
   end
 end
 
+def show_reports
+if current_user.role !=  "Basico" || current_user.rol.report_ver || current_user.rol.report_procesos
+
+  true
+
+else 
+  false
+end
+end
 
 
 

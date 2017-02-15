@@ -18,7 +18,7 @@ def abiertos
                 #a = Employed.where(email: current_user.email).take
 
                 #@reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where(employed_id: a.id ).order(created_at: :desc)
-                redirect_to reports_path
+              redirect_to :back
               
             elsif current_user.role ==  "Basico" && !current_user.rol.report_ver && current_user.rol.report_procesos
 
@@ -27,20 +27,25 @@ def abiertos
                 #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
                 @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
                 @reports = @reports2.paginate(page: params[:page],:per_page => 10)
-                
-              else
-                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
-
-              end
-
-
-
-  @route = reports_abiertos_path
+                @route = reports_abiertos_path
 
    
     
     
     render 'index'
+              else
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+@route = reports_abiertos_path
+
+   
+    
+    
+    render 'index'
+              end
+
+
+
+  
 end
 
   def index

@@ -22,6 +22,7 @@
 #  updated_at     :datetime         not null
 #  report_id      :integer
 #  fp_seguimiento :date
+#  tag            :boolean
 #
 
 class Accion < ApplicationRecord
