@@ -235,6 +235,10 @@ end
             Employed.where(email: email).first
             
       end
+      def get_employed1
+            Employed.where(email: current_user.email).first
+            
+      end
  
   def view_report(report)
       a = get_employed(current_user.email)
