@@ -130,8 +130,8 @@
   </tbody>
 </table>-->
 
-
-<div class="conteinter htitle">
+<hr>
+<div class="conteinter htitle" style = "padding:0px">
  
 <div class="row rtr">
  <div class="col-md-2 rtd"></div>
@@ -155,7 +155,7 @@
    
    <div class="col-md-2 rtd"><strong>Evidencia: </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
   
-  <div class="col-md-4 rtd text-left"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+  <div class="col-md-6 rtd text-right"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
                <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
