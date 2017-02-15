@@ -134,14 +134,15 @@
 </table>-->
 
 
-
+<%= check_box_tag "all_id", 0 %>
 <% @reports.each do |report| %>
+<%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%>
 <%= link_to  report_path(report) do %>
 <div class="row seg">
 
 <div class="col-md-12">
 <div class="col-md-4">
-  <p> <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%>Codigo: <%=report.codigo%></p>
+  <p> Codigo: <%=report.codigo%></p>
 </div>
 <div class="col-md-4">
 <% employed = Employed.find(report.employed_id)%>
