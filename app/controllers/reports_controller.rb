@@ -283,6 +283,12 @@ end
 
       end
 
+      def seguimiento
+        @report = Report.find(params[:id])
+        @seguimientos = @report.rseguimientos.order(created_at: :desc)
+
+      end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

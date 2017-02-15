@@ -174,7 +174,7 @@ $('.modalp1').text(b);
 
 <div class="row flujo">
 
-<div class="col-md-4">
+<div class="col-md-3">
 <div class="panel panel-default">
 <div class="panel-heading">Correcciones (<%=@correa + @correc%>)</div>
   <div class="panel-body">
@@ -194,7 +194,7 @@ $('.modalp1').text(b);
 
   
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
 <div class="panel panel-default">
 <div class="panel-heading">Analisis de Causa</div>
   <div class="panel-body">
@@ -216,7 +216,7 @@ $('.modalp1').text(b);
 </div>
   
 </div>
-<div class="col-md-4">
+<div class="col-md-3">
 <div class="panel panel-default">
 <div class="panel-heading">Acciones (<%=@accionsca + @accionscc%>)</div>
   <div class="panel-body">
@@ -234,47 +234,27 @@ $('.modalp1').text(b);
 
   
 </div>
+<div class="col-md-3">
+<div class="panel panel-default">
+<div class="panel-heading">Seguimientos(<%=@seguimientos.count%>)</div>
+  <div class="panel-body">
+ 
 
+    <p class="text-right"><%= link_to  "Ver", report_seguimientos_path(@report) , class: 'btn btn-primary'%><p>
+
+   
+ </div>
 </div>
 
-
-
-<div class="row">
-<div class="col-md-9">
-  <h3 class = "linka htitle">Seguimiento</h3>
-</div>
-<div class="col-md-3 text-right">
-  <%= link_to 'Nuevo Seguimiento', new_report_rseguimiento_path(@report), remote: true,:class => 'btn btn-primary pull-right' %>
-</div>
   
 </div>
 
- <table class = "table" style = "width: 100%;    border: 1px solid #d2d2d2;">
- <thead>
-              <tr class ="tr-table ">
-            <th colspan = "7" class="text-center" style = "background:#f2f2f2"></th>
-           <th></th>
-         </tr>
-             <tr class = "tr-table">
-            
-            <th style = "width:13%">Creacion</th>
-            <th style = "width:13%">Responsable</th>
-           
-            <th style = "width:30%" colspan="4">Descripcion</th>
-             <th style = "width:15%" >Evidencia</th>
-            <th style = "width:10%"></th>
-         </tr>
-         </thead>
-         <tbody class="hh">  
-<% @seguimientos.each do |seg| %>
-       
-<%= render 'rseg_row', seg: seg %>
-      
-         <%end%>
+</div>
 
-         </tbody>
-</table>
-        
+
+
+
+
 
 
 

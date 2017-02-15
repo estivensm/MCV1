@@ -1,0 +1,239 @@
+
+<div class="row">
+  <div class="col-md-12 ">
+    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class = "row">
+<h3 class = "linka htitle text-center">Reporte</h3>
+<!--<table class = "reporte" style = "margin-bottom:-1px;">
+<tr>
+<th colspan="8" class ="titaccion tr-table text-center">Reporte
+</th>
+<tr>
+  <th>Codigo</th>
+  <td><%= @report.codigo %></td>
+  <th>Fuente</th>
+  <td><%= @report.source.name %></td>
+  <th>Responsable</th>
+  <% employed = Employed.find(@report.employed_id)%>
+     <td colspan="3" class = "imaacc"><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+  
+  
+</tr>
+<tr>
+<th>Estado</th>
+  <td><%= @report.state %></td>
+  <th>Descripcion</th>
+  <td colspan="4" class="text-left"><%= @report.description%></td>
+  
+</tr>
+
+</table>-->
+
+
+<div class="conteinter reporte cnt">
+<div class="row rtr">
+  <div class="col-md-2 rtd"><strong>Codigo:</strong> <%= @report.codigo %></div>
+
+   <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
+
+  
+   <% employed = Employed.find(@report.employed_id)%>
+   <div class="col-md-2 rtd"><strong>Responsable: </strong><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
+   <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
+  <div class="col-md-2 rtd"><strong>Compromiso:</strong> <%= get_date(@report.f_compromiso) %></div>
+  
+</div>
+<hr>
+<div class="row">
+  
+   <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+   
+
+  <div class="col-md-12 rtd text-left"> <strong>Descripcion</strong>: <%= @report.description%></div>
+   
+
+</div>
+  
+</div>
+
+
+
+
+
+
+ 
+<% if @seguimientos.count > 0 %>
+
+
+
+   <!--<table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2;">
+
+      <thead>
+<tr class ="tr-table ">
+<th colspan="7" style = "padding-left:150px" class ="titaccion text-center">Seguimientos (<%=@seguimientos.count %>)
+<th><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary pull-right')  %></td>
+</th>
+
+</tr>
+
+
+
+         <tr class = "tr-table">
+     
+      <th style = "width:13%">Creacion</th>
+     
+      
+      <th style = "width:13%">Responsable</th>
+      <th style = "width:13%">Evidencia</th>
+      
+      <th style = "width:41%" colspan="4">Descripcion</th>
+      
+      <th style = "width:10%"></th>
+      
+      
+      
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @seguimientos.each do |seg| %>
+      <tr>
+        
+     <td><%= get_date(seg.created_at) %></td>
+            <%  idemp = User.find(seg.user_id).email
+               employed = Employed.find_by(email: idemp)
+               %>
+            <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></td>
+           
+         
+            <td colspan="4" class="text-left"><%= seg.descripcion %></td>
+            <td  class="text-left"><%= link_to "Evidencia",seg.evidencia_url if seg.evidencia_url %></td>
+            <td>
+               
+            </td>
+
+       
+        
+      </tr>
+ <% end %>
+  </tbody>
+</table>-->
+
+
+<div class="conteinter htitle">
+ 
+<div class="row rtr">
+ <div class="col-md-2 rtd"></div>
+<div class="col-md-8 rtd"><h3 class="htitle linka">Seguimientos (<%=@seguimientos.count %>)</h3></div>
+<div class="col-md-2 rtd"><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %></div>
+</div>
+</div>
+
+<% @seguimientos.each do |seg| %>
+<div class="conteinter reporte cnt">
+ 
+<div class="row rtr">
+  <div class="col-md-2 rtd"><strong>Creacion:</strong> <%=  get_date(seg.created_at)  %></div>
+
+   <div class="col-md-2 rtd"><strong>Responsable:</strong> <%  idemp = User.find(seg.user_id).email
+               employed = Employed.find_by(email: idemp)
+               %>
+            <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
+
+  
+   
+   <div class="col-md-2 rtd"><strong>Evidencia: </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
+  
+  <div class="col-md-4 rtd text-left"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+</div>
+  
+</div>
+<div class="row rtr">
+<div class="col-md-12 rtd"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
+
+</div>
+
+  
+</div>
+
+ <% end %>
+
+
+
+
+
+
+
+
+
+
+<%else%>
+<div class="jumbotron jumbacc">
+  <h1 class="display-3">No se ha creado ningun seguimiento</h1>
+  
+  <hr class="my-4">
+ 
+   <%= (link_to "Nueva Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
+  </p>
+
+<%end%>
+
+ </div>
+<br>
+
+
+<style>
+  .imaacc img
+  {
+border-radius: 40px;
+  }
+.cnt
+{
+  border: 1px solid #c3c3c3;
+  margin-bottom: 10px;
+}
+.rtr
+{
+text-align:center;
+
+}
+.rtd
+{
+padding: 5px;
+  text-align:center;
+}
+.titulo
+{
+  background:#f2f2f2;
+}
+</style>
+
+
+<script>
+  
+  $(function () {
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    html: true
+    
+  
+  })
+})
+
+</script>

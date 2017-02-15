@@ -34,7 +34,7 @@ class RseguimientosController < ApplicationController
     @rseguimiento = Rseguimiento.new(rseguimiento_params)
 
     if @rseguimiento.save
-      redirect_to report_path(@report)
+      redirect_to report_seguimientos_path(@report)
     end
  
     
@@ -45,7 +45,7 @@ class RseguimientosController < ApplicationController
   def update
      @report = Report.find(params[:report_id]) 
       if @rseguimiento.update(rseguimiento_params)
-       redirect_to report_path(@report)
+       redirect_to report_seguimientos_path(@report)
       end
     
  
@@ -56,11 +56,14 @@ class RseguimientosController < ApplicationController
   def destroy
      @report = Report.find(params[:report_id]) 
   
-      if @rseguimiento.destroy
-        
+      @rseguimiento.destroy
+    respond_to do |format|
+      format.html { redirect_to report_seguimientos_path(@report), notice: 'El seguimiento se elimino correctamente.' }
+      format.json { head :no_content }
     end
-    
   end
+    
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

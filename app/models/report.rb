@@ -64,10 +64,9 @@ class Report < ApplicationRecord
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
-         self.description = "bbbbbbbbbbbbbbbbb"
+       
 
-      else
-          self.description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+     
         
       end
 

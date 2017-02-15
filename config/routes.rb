@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
+   get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
+
 
           resources :tipos
           resources :accions
