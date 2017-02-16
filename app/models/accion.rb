@@ -33,6 +33,7 @@ class Accion < ApplicationRecord
     validate :start_must_be_before_end_time
     validates :employed_id, presence: true
     after_destroy :restar_costo
+    after_create :send_mail
     
 
 def self.search(search0,search, search2, search3, search5, search6)
@@ -60,6 +61,18 @@ def self.search(search0,search, search2, search3, search5, search6)
       #end
 
   end	
+
+
+  def send_mail
+
+
+
+      self.employeds.each do |employed|
+        
+      ReportMailer.noty_accion(employed, self).deliver
+          
+    end
+  end
 
 
 

@@ -14,8 +14,8 @@
 
 
 <div class = "row">
-<h3 class = "linka htitle text-center">Acciones del reporte</h3>
-<table class = "reporte" style = "margin-bottom:-1px;">
+<h3 class = "linka htitle text-center">Reporte</h3>
+<!--<table class = "reporte" style = "margin-bottom:-1px;">
 <tr>
 <th colspan="8" class ="titaccion tr-table text-center">Reporte
 </th>
@@ -38,13 +38,43 @@
   
 </tr>
 
-</table>
+</table>-->
+
+
+<div class="conteinter reporte cnt">
+<div class="row rtr">
+  <div class="col-md-2 rtd"><strong>Codigo:</strong> <%= @report.codigo %></div>
+
+   <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
+
+  
+   <% employed = Employed.find(@report.employed_id)%>
+   <div class="col-md-2 rtd"><strong>Responsable: </strong><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
+   <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
+  <div class="col-md-2 rtd"><strong>Compromiso:</strong> <%= get_date(@report.f_compromiso) %></div>
+  
+</div>
+<hr>
+<div class="row">
+  
+   <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+   
+
+  <div class="col-md-12 rtd text-left"> <strong>Descripcion</strong>: <%= @report.description%></div>
+   
+
+</div>
+  
+</div>
+
+
+
  
 <% if @accions.count > 0 %>
 
 
 
-   <table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2;">
+   <!--<table class = "table" style = "width: 95%;margin-left: 2.5%;    border: 1px solid #d2d2d2;">
 
       <thead>
 <tr class ="tr-table ">
@@ -109,7 +139,76 @@
       </tr>
  <% end %>
   </tbody>
-</table>
+</table>-->
+
+
+
+
+<hr>
+<div class="conteinter htitle" style = "padding:0px">
+ 
+<div class="row rtr">
+ <div class="col-md-2 rtd"></div>
+<div class="col-md-8 rtd"><h3 class="htitle linka"><%=@tipo + "es"%> (<%=@accions.count %>)</h3></div>
+<div class="col-md-2 rtd"><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || (!view_report(@report) &&  myproces_report(@report)) %></div>
+</div>
+</div>
+
+<% @accions.each do |accion| %>
+<div class="conteinter reporte cnt">
+ 
+<div class="row rtr">
+
+  <div class="col-md-2 rtd"><strong>Creacion:</strong> <%=  get_date(accion.created_at)  %></div>
+ <div class="col-md-2 rtd"><strong>Codigo:</strong> <%=  accion.codigo  %></div>
+   <div class="col-md-2 rtd"><strong>Responsable:</strong> <%  
+               employed = Employed.find(accion.employed_id)
+               %>
+            <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
+
+  
+  
+  
+  <div class="col-md-6 rtd text-right"><%= link_to  report_accion_path(@report,accion), :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+</div>
+  
+</div>
+<div class="row rtr">
+<div class="col-md-12 rtd text-left"><strong>Descripcion: </strong> <%= accion.descripcion %></div>
+
+</div>
+
+  
+</div>
+
+ <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <%else%>
@@ -147,3 +246,29 @@ border-radius: 40px;
 })
 
 </script>
+
+<style>
+  .imaacc img
+  {
+border-radius: 40px;
+  }
+.cnt
+{
+  border: 1px solid #c3c3c3;
+  margin-bottom: 10px;
+}
+.rtr
+{
+text-align:center;
+
+}
+.rtd
+{
+padding: 5px;
+  text-align:center;
+}
+.titulo
+{
+  background:#f2f2f2;
+}
+</style>
