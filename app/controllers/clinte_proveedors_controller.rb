@@ -1,10 +1,31 @@
 class ClinteProveedorsController < ApplicationController
   before_action :set_clinte_proveedor, only: [:show, :edit, :update, :destroy]
+      before_action :configuracion
+
+  
+  def configuracion
+
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+        redirect_to root_path
+
+        
+    end
+    
+  end
 
   # GET /clinte_proveedors
   # GET /clinte_proveedors.json
   def index
-    @clinte_proveedors = ClinteProveedor.all
+   if params[:search]
+     @clinte_proveedors1 = ClinteProveedor.search(params[:search])
+  else
+     @clinte_proveedors1 = ClinteProveedor.all
+  end
+
+
+
+   @clinte_proveedors = @clinte_proveedors1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
+    
   end
 
   # GET /clinte_proveedors/1

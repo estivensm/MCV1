@@ -82,19 +82,29 @@
 <div class="row seg">
 
 <div class="col-md-12">
-<div class="col-md-4">
-  <p>Codigo: <%=report.codigo%></p>
+<div class="col-md-3">
+  <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> <strong>Creación:</strong> <%= get_date(report.created_at)%>
 </div>
-<div class="col-md-4">
+<div class="col-md-2">
+ <strong>Codigo:</strong> <%=report.codigo%>
+</div>
+<div class="col-md-3">
 <% employed = Employed.find(report.employed_id)%>
-  <p> Responsable: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></p>
+   <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
 </div>
-<div class="col-md-4">
-  <p>Fecha de compromiso: <%= report.f_compromiso%></p>
+<div class="col-md-3">
+  <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
+</div>
+<div class="col-md-1">
+<%if report.state == "Abierto"  %>
+         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+         <%else%>
+         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+         <%end%>
 </div>
   
 </div>
-<hr>
+<hr style = "    border: 0.5px solid #dedede !important;">
 <div class="col-md-12">
 <div class="col-md-11">
 	<strong>Descripcion: </strong><%= report.description%>
@@ -118,7 +128,7 @@
     color: gray;
     border-radius: 10px;
     border: 1px solid #cecece;
-  
+  font-size: 13px !important;
      -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
     transition: box-shadow 0.3s;
   }
