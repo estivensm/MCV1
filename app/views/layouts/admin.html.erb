@@ -52,7 +52,7 @@
                         <% menu %>
 
                        <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
+                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]} hidden-xs"  do %>
                         <i class="fa fa-cogs ic" aria-hidden="true"></i>
                         <span class="hidden-xs">Configuracion</span>
                         <% end %>
@@ -75,16 +75,15 @@
                         <% end %>
               
                    
-                        <%= link_to root_path,:class => "indicadores" do %>
+                        <%= link_to root_path,:class => "indicadores hidden-xs" do %>
                         <i class="fa fa-line-chart ic" aria-hidden="true"></i>
                         <span class="hidden-xs">Indicadores y Analisis</span>
                         <% end %>
                         </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 sidebar barleft">
+                    <div class="col-xs-4 col-md-2 col-lg-2 sidebar barleft">
                      <div class="dropdown dp">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i style = "margin:0px 10px 0px 0px;" class="fa fa-user ic" aria-hidden="true"></i>
-                        <!--<% employed = Employed.where(email: current_user.email).first %>
-                        <span class= "hidden-xs"><%= employed.avatare? ? image_tag(employed.avatare_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>--><%=current_user.name  %></span><span class="caret"></span></a>
+                        <a style = "width: 20px;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i style = "margin:0px 10px 0px 0px;" class="fa fa-user ic hidden-xs" aria-hidden="true"></i>
+                      <span class="hidden-xs"><%=current_user.name  %></span><span class="caret"></span></a>
                         <ul style = "width:200px;" class="dropdown-menu">
                            <li >
                               <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
@@ -108,10 +107,11 @@
             <div class="row submenu-main">
                  
 
-                  <div class="col-md-12 submenu">
+                  
                      
                      <% sub_menu %>
                      <% if @menum[0] == "active" %>
+                     <div class="col-md-12 submenu hidden-xs">
                      <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
                      <i class="fa fa-building-o" aria-hidden="true"></i>
                      <span class="hidden-xs">Empresa</span>
@@ -149,10 +149,12 @@
                      <i class="fa fa-share" aria-hidden="true"></i>
                      <span class="hidden-xs">Clientes y Proveedores</span>
                      <% end %>
+                     </div>
                      <% end %>
 
 
                      <% if @menum[1] == "active" %>
+                     <div class="col-md-12 submenu">
                      <% menu_hallazgo 
                      if show_reports %>
                      <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
@@ -169,8 +171,10 @@
                      <% end %>
                     <% else%>
                      <% end %>
+                     </div>
                      <% end %>
                      <% if @menum[3] == "active" %>
+                     <div class="col-md-12 submenu">
                      <% menu_misreports %>
                      <%= link_to misreports_path,:class => "#{@menu_ma[1]}" do %>
                      <i class="fa fa-building-o" aria-hidden="true"></i>
@@ -180,7 +184,7 @@
                      <span class="fa fa-users"></span>
                      <span class="hidden-xs">Asignados</span>
                      <% end %>
-                   
+                   </div>
                     
                      
                      <% end %>
@@ -207,6 +211,14 @@
 </html>
 
 
+
+
+
+
+
+
+  <!--<% employed = Employed.where(email: current_user.email).first %>
+                        <span class= "hidden-xs"><%= employed.avatare? ? image_tag(employed.avatare_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>-->
 
 
 
