@@ -44,13 +44,13 @@ class User < ApplicationRecord
   has_many :rseguimientos
   has_many :aseguimientos
   belongs_to :rol
-   before_destroy :saveable?
+   #before_destroy :saveable?
 
-  def saveable?
-    if true
-      raise "Destroy aborted; you can't do that!"
-    end
-  end
+  #def saveable?
+   # if true
+    #  raise "Destroy aborted; you can't do that!"
+    #end
+  #end
 
 
 def self.search(search)
