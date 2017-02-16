@@ -5,14 +5,16 @@
 </div>
 <div class = "row title-table">
    <div class = "col-md-5">
-      <p >Hallazgos <span class="label label-primary"><%=@reports.count%></span></p>
+      <p>Hallazgos <span class="label label-primary"><%=@reports.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @reports, :entry_name => 'Reporte' %></span> </p>
+
+
+     
    </div>
-   <div class = "col-md-5 paginate text-right title-table1">
-      <span class="page_info " style = "margin-right:10px;position: relative;
-         top: -30px;
-         "><%= page_entries_info @reports, :entry_name => 'Reporte' %> </span>
-      <%= will_paginate @reports%>
+   <div class = "col-md-5 paginate text-left title-table1">
+     
+<%= will_paginate @reports%>
    </div>
+
    <div class = "col-md-2">
       <%= link_to 'Nuevo', new_report_path, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %>
    </div>
@@ -140,25 +142,42 @@
 <div class="row seg">
 
 <div class="col-md-12">
-<div class="col-md-3">
-  <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> <strong>Creación:</strong> <%= get_date(report.created_at)%>
+<div class="col-md-1 text-right">
+  <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> </div>
+<div class="col-md-3"> <strong>Creado:</strong> <%= get_date(report.created_at)%>
 </div>
-<div class="col-md-2">
+<div class="col-md-3">
  <strong>Codigo:</strong> <%=report.codigo%>
 </div>
 <div class="col-md-3">
 <% employed = Employed.find(report.employed_id)%>
    <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
 </div>
-<div class="col-md-3">
-  <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
-</div>
+
 <div class="col-md-1">
 <%if report.state == "Abierto"  %>
          <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
          <%else%>
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
          <%end%>
+</div>
+
+  
+</div>
+
+<div class="col-md-12">
+<div class="col-md-1">
+
+</div>
+<div class="col-md-3">
+ <strong>Fuente:</strong> <%=report.source.name%>
+</div>
+<div class="col-md-3">
+ <strong>Costo:</strong> <%=report.costo%>
+</div>
+
+<div class="col-md-3">
+  <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
 </div>
 
   
