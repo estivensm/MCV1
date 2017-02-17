@@ -31,7 +31,9 @@ class Aseguimiento < ApplicationRecord
             accion.f_compromiso >= Time.now ? (accion.cumplio = true) : (accion.cumplio = false)
             accion.f_real = Time.now
             report = Report.find(accion.report_id)
-            accion.update(estado: "Cerrada", costo: self.costo)
+            
+            accion.update(estado: "Cerrada", costo: self.costo, eficaz: self.eficaz)
+
              accion.save
             report.costo = self.costo + report.costo
             report.save 

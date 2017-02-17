@@ -42,7 +42,7 @@
           <% employed1 = Employed.find(@report.employed_reporta)%>
           <div class="col-md-2 rtd"><strong>Reporta: </strong><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed1.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed1.cargo.name %><br> <strong>Email:</strong> <%= employed1.email%><br><strong>Cedula:</strong> <%= employed1.document %>"><%= employed1.first_name %> <%= employed1.first_last_name %></button></div>
           <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
-          <div class="col-md-2 rtd"><strong>Costo Actual: </strong><%= @report.costo %></div>
+          <div class="col-md-2 rtd"><strong>Costo Actual: </strong><%= number_to_currency(@report.costo) %></div>
         </div>
           <hr>
         <div class="row rtr">
@@ -55,12 +55,12 @@
               <%  cm = cm + 1 %> 
               <%end%>
           </div>
-          <div class="col-md-6 rtd"><strong>Fechas de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
+          <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
         </div>
         <hr>
 <div class="row rtr">
    <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-   <div class="col-md-8 rtd text-left"> <strong>Descripcion:</strong><%= @report.description%></div>
+   <div class="col-md-8 rtd text-left"> <strong>Descripcion:</strong> <%= @report.description%></div>
    <div class="col-md-4 rtd text-left">
       <strong>Evidencia:</strong> <%= @report.evidencia%><br><strong>Adjunto:</strong>  <% if @report.archivo_url%>
       <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
@@ -306,3 +306,6 @@
    </tr>
    </table>
        <%end%></td>-->
+
+
+     

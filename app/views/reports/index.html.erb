@@ -88,7 +88,7 @@
 <%= (link_to "Cancelar filtros", reports_cerrados_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 <%end%>
 <%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
-<p><%= submit_tag "Eliminar Registros Seleccionados", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p>
+<p><%= submit_tag "Eliminar", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p>
 
 <!--<table class="table">
    <thead>
@@ -139,11 +139,26 @@
 <%if @reports.count != 0%><p class="linka"> <%= check_box_tag "all_id", 0 %> Seleccionar totos</p><%end%>
 <% @reports.each do |report| %>
 
+<div class="col-md-2 text-left hidden-xs" style = "padding-left: 40px !importan;padding-top: 5px !important;
+    padding-bottom: 0px !important;">
+  <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> </div>
+
+  
+<div class="col-md-10 text-right" style = "padding-left: 40px !importan;padding-top: 5px !important;
+    padding-bottom: 0px !important;">
+  
+         <%= link_to  edit_report_path(report), :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report,  method: :delete, class: "",data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
+</div>
+
+<%= link_to  report_path(report) do %>
 <div class="row seg">
 
 <div class="col-md-12">
-<div class="col-md-1 text-right">
-  <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> </div>
 <div class="col-md-3"> <strong>Creado:</strong> <%= get_date(report.created_at)%>
 </div>
 <div class="col-md-3">
@@ -166,9 +181,7 @@
 </div>
 
 <div class="col-md-12">
-<div class="col-md-1">
 
-</div>
 <div class="col-md-3">
  <strong>Fuente:</strong> <%=report.source.name%>
 </div>
@@ -189,23 +202,13 @@
 
 
 </div>
-<div class="col-md-2 text-right">
- <%= link_to  report, :class => "opciones" do %>
-         <i class="fa fa-eye" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  edit_report_path(report), :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report,  method: :delete, class: "",data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-</div>
+
   
 </div>
-
 <br>
- <% end %>
 
+ <% end %>
+<% end %>
 <% end %>
 
 

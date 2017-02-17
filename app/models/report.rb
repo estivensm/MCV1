@@ -48,6 +48,9 @@ class Report < ApplicationRecord
   before_destroy :delete_accions
   validate :start_must_be_before_end_time, on: [:create, :update]
 
+
+
+
   def archivo_size_validation
       
       errors[:archivo] << "should be less than 1MB" if archivo.size > 1.megabytes

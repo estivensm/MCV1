@@ -6,7 +6,7 @@
         <h4 class="modal-title">Crear Usuario</h4>
       </div>
 <%= form_tag cerrar_report_path do %>
-  <div class="alert alert-danger" style="display:none">
+  <div class="alert alert-danger" style="display:none;padding: 10px;">
     <ul>
     
     </ul>
@@ -16,6 +16,12 @@
         <div class="form-group">
     <%= label_tag "Descripción" %>
     <%= text_area_tag :descripcion,nil , class: "form-control formus" %>
+  </div>
+
+<div style = "background:whitesmoke;color:gray;">
+  <p>Se Realizaron <%= report.accions.count%> Acciones</p>
+  <p><%= @accion_eficaz%> fuero eficaces</p>
+  <p><%= @accion_noeficaz%> fuero ineficaces</p>
   </div>
 
 <%= hidden_field_tag :report ,@report.id %>

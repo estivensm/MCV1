@@ -139,7 +139,7 @@
 <div class="col-md-2 rtd"><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %></div>
 </div>
 </div>
-
+<hr>
 <% @seguimientos.each do |seg| %>
 <div class="conteinter reporte cnt">
  
@@ -191,10 +191,10 @@
  
    <%= (link_to "Nueva Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
   </p>
-
+</div>
 <%end%>
 
- </div>
+ 
 <br>
 
 
@@ -207,6 +207,7 @@ border-radius: 40px;
 {
   border: 1px solid #c3c3c3;
   margin-bottom: 10px;
+ 
 }
 .rtr
 {

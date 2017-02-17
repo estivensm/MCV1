@@ -144,7 +144,8 @@ end
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
     @accions = Accion.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos
- 
+    @accion_eficaz = @report.accions.where(eficaz: true).count
+    @accion_noeficaz = @report.accions.where(eficaz: false).count
     respond_to do |format|
       format.html
       format.pdf do

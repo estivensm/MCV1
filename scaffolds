@@ -444,3 +444,15 @@ $('.source').change(function() {
 
 
 rails g scaffold Rol admin_user:integer user_id:integer configuracion:boolean report_ver:boolean report_crear:boolean report_edit:boolean report_borrar
+
+
+/////////////////7
+<%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
+<p><%= submit_tag "Eliminar Registros Seleccionados", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p></div>
+
+
+
+
+<%if @reports.count != 0%>
+<p class="linka" style = "display:none"> <%= check_box_tag "all_id", 0 %> Seleccionar totos</p>
+<%end%><%end%>

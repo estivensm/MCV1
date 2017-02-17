@@ -6,7 +6,7 @@ class AccionsController < ApplicationController
   def index
     @tipo = "Accion"
     @report = Report.find(params[:report_id]) 
-    @accions = @report.accions.where(tipo: "Accion")
+    @accions = @report.accions.where(tipo: "Accion").order(created_at: :desc)
    end
 
   
@@ -14,7 +14,7 @@ class AccionsController < ApplicationController
   def correcciones
     @tipo = "Correccion"
      @report = Report.find(params[:report_id]) 
-    @accions = @report.accions.where(tipo: "Correccion")
+    @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
    
 
     render 'index'
@@ -115,6 +115,6 @@ class AccionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accion_params
-      params.require(:accion).permit(:codigo, :employed_id, :descripcion, :tipo, :costo, :f_seguimiento, :f_compromiso, :f_real, :estado, :cumplio, :contador, :evidencia, :contador_seg, :user_id, :admin_user, :fp_seguimiento, :tag, :report_id,:employed_ids => [])
+      params.require(:accion).permit(:codigo, :employed_id, :descripcion, :tipo, :costo, :f_seguimiento, :f_compromiso, :f_real, :estado, :cumplio, :contador, :evidencia, :contador_seg, :user_id, :admin_user,:eficaz, :fp_seguimiento, :tag, :report_id,:employed_ids => [])
     end
 end
