@@ -36,6 +36,7 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
   has_many :procesos
+  has_many :causa_efectos
   has_many :cargos
   has_many :companies
   has_many :employeds

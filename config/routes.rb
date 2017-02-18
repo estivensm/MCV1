@@ -5,17 +5,24 @@ Rails.application.routes.draw do
 
   
          
+  get 'causa_efectos/create'
+
+  get 'causa_efectos/udpate'
+
+  get 'causa_efectos/destroy'
+
   resources :clinte_proveedors
   resources :contacts
   get 'my_reports/index', as: "misreports"
+  post "crear_caef", to: "causa_efectos#create", as: "crear_caef"
 
   resources :rols
   get 'my_accions/index', as: "misacciones"
   get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
-   get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
-
+  get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
+  
 
           resources :tipos
           resources :accions

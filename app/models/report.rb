@@ -42,6 +42,7 @@ class Report < ApplicationRecord
   has_many :accions
   has_many :rseguimientos
   has_many :causas
+  has_many :causa_efectos
   after_create :accions_create
   mount_uploader :archivo, ArchivoReportUploader
   validate :archivo_size_validation, :if => "archivo?"  

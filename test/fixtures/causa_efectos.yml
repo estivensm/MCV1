@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: causa_efectos
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  admin_user :integer
+#  nivel      :string
+#  causa      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  tipo       :string
+#  report_id  :integer
+#  causa_id   :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  nivel: MyString
+  causa: MyString
+
+two:
+  user_id: 1
+  admin_user: 1
+  nivel: MyString
+  causa: MyString

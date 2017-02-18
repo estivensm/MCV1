@@ -23,6 +23,7 @@
 #  report_id      :integer
 #  fp_seguimiento :date
 #  tag            :boolean
+#  eficaz         :boolean
 #
 
 require 'test_helper'

@@ -32,13 +32,17 @@
   
 </div>
 <hr>
+<div class = "pezdiv">
+  
 
   <table class ="pez">
  <tr>
-        <th><a href="mailto:joe@example.com?subject=feedback">email me</a></th><th><a href="mailto:joe@example.com?subject=feedback">email me</a></th><th><a href="mailto:joe@example.com?subject=feedback">email me</a></th></tr>
+        <th style = "width:240px"><button type="button" id="metodo" data-toggle="modal" data-target="#contact-modal" class="btn btn-primary">Metodo</button></th>
+        <th style = "width:240px"><button type="button" data-toggle="modal" data-target="#contact-modal" class="btn btn-primary" >Cerrar</button></th>
+        <th style = "width:240px"><button type="button" data-toggle="modal" data-target="#contact-modal" class="btn btn-primary" >Cerrar</button></th></tr>
 </table>
 <table class ="pez">
-    
+    <%= render 'form_cauefe'%>
     <thead>
       <tr class="thed">
         <th><p class="p1">hola hola hola</p>
@@ -71,6 +75,7 @@
  <tr>
         <th><a href="mailto:joe@example.com?subject=feedback">email me</a></th><th><a href="mailto:joe@example.com?subject=feedback">email me</a></th><th><a href="mailto:joe@example.com?subject=feedback">email me</a></th></tr>
 </table>
+</div>
 
     <style>
 .triangulo-equilatero-bottom-left {
@@ -156,5 +161,22 @@
   width:240px;
   height: 188px;
   background-image: url("https://c1.staticflickr.com/1/374/32577827060_0b526114c6_m.jpg");
+
 }
+.pezdiv
+{
+      width: 90%;
+    margin-left: 10%;
+}
+
+
 </style>
+
+<script>
+  
+$('#metodo').click(function(){
+$('.tipo1').val("afsdf");
+
+})
+
+</script>

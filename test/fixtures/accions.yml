@@ -23,6 +23,7 @@
 #  report_id      :integer
 #  fp_seguimiento :date
 #  tag            :boolean
+#  eficaz         :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
