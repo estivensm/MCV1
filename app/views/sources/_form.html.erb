@@ -1,5 +1,5 @@
 <div id="contact-modal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -13,7 +13,9 @@
   </div>
       <div class="modal-body">
 
-   <div class="form-group">
+      <div class = "row">
+      <div class="col-md-6">
+           <div class="form-group">
     <%= f.label "Nombre" %>
     <%= f.text_field :name,  class: "form-control" %>
   </div>
@@ -22,13 +24,22 @@
     <%= f.label "Descripcion" %>
     <%= f.text_area :description,  class: "form-control" %>
   </div>
-
-<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
-  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
- <br>
-  
- 
-  <div class="form-group">
+    <div class="form-group">
+    <%= f.label "Codigo" %>
+    <%= f.text_field :codigo,  class: "form-control" %>
+  </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group acc1">
+               <label for="">Tipo</label><br>
+               <label class="radio-inline">
+               <%= f.radio_button :tipo, 'Interna', class: 'rb cksi' %>Interna
+               </label>
+              <label class="radio-inline">
+               <%= f.radio_button :tipo, 'Externa', class: 'rb ckno' %>Externa
+    </div>
+        <div class="form-group">
+  <%= f.label "Tratamiento" %><br>
     <%= f.label "Correcciones" %>
     <%= f.check_box :correccion, class:"scorrecion" %>
     <%= f.label "Analisis de Causa", class: "lb1" %>
@@ -38,21 +49,24 @@
   </div>
   <br>
   <div class="form-group">
-    <%= f.label "Puede o no" %>
+    <strong>¿</strong><%= f.label "El tratamiento es opcional?" %>
     <%= f.check_box :puede_ac, class: "spuede" %>
   </div>
-  <div class="form-group">
-    <%= f.label "Codigo" %>
-    <%= f.text_field :codigo,  class: "form-control" %>
-  </div>
-  <div class="form-group acc1">
-               <label for="">Tipo</label><br>
-               <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Interna', class: 'rb cksi' %>Interna
-               </label>
-              <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Externa', class: 'rb ckno' %>Externa
-            </div>
+  <p style = "color:gray" >Al señanalar la anterior casilla tienes la opcion de no hacer el tratamiento con su respectiva actualizacion</p>
+
+
+      </div>
+        
+      </div>
+
+
+
+<%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+ <br>
+  
+ 
+  
             <script>
 
  if ("<%=action_name%>" != "edit")
