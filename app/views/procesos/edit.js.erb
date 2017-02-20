@@ -1,4 +1,4 @@
-$('<%= j render "form", proceso: @proceso %>').on('hidden.bs.modal', function (e) {
+$('<%= j render "form", causa: @causa %>').on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal();

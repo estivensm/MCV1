@@ -40,18 +40,29 @@
           <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
           <div class="col-md-2 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
           <% employed1 = Employed.find(@report.employed_reporta)%>
-          <div class="col-md-2 rtd"><strong>Reporta: </strong><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed1.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed1.cargo.name %><br> <strong>Email:</strong> <%= employed1.email%><br><strong>Cedula:</strong> <%= employed1.document %>"><%= employed1.first_name %> <%= employed1.first_last_name %></button></div>
+          <div class="col-md-2 rtd"><strong>Reporta: </strong>
+
+         <%= render "employed" , employed: employed1 %>
+
+
+          </div>
           <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
           <div class="col-md-2 rtd"><strong>Costo Actual: </strong><%= number_to_currency(@report.costo) %></div>
         </div>
           <hr>
         <div class="row rtr">
           <div class="col-md-6 rtd"><strong>Responsable:</strong> <% employed = Employed.find(@report.employed_id)%>
-              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br><strong>Otros Interesados: </strong><% 
+              
+                 <%= render "employed" , employed: employed %>
+
+              <br><strong>Otros Interesados: </strong><% 
                 cm = 0 
                 @report.employeds.each do |resp|
                   %><%= "," if cm != 0 %> 
-              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= resp.avatare_url(:thumb) %>'></p><br><strong>Cargo: </strong><%=resp.cargo.name %><br> <strong>Email:</strong> <%= resp.email%><br><strong>Cedula:</strong> <%= resp.document %>"><%= resp.first_name %> <%= resp.first_last_name %></button>
+             
+                     <%= render "employed" , employed: resp %>
+
+
               <%  cm = cm + 1 %> 
               <%end%>
           </div>
@@ -137,7 +148,7 @@
             <%if @report.source.causa && @report.accion == "Si"%>
             <% if @report.causas.count == 0 %>
             <p class="color-gray">No se ha creado el Analisis de Causa</p>
-            <%= (link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary') if view_report(@report)%>
+            <%= (link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary') if view_report(@report) %>
             <%else%>
             <p class = "color-gray"><%= @report.causas.last.tipo%></p>
             <p class="text-right"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>

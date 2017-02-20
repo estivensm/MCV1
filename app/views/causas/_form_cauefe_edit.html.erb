@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Crear Usuario</h4>
       </div>
-<%= form_tag crear_caef_path do %>
+<%= form_tag update_caef_path(@caef), method: :patch do %>
   <div class="alert alert-danger" style="display:none;padding: 10px;">
     <ul>
     
@@ -15,21 +15,16 @@
 
         <div class="form-group">
     <%= label_tag "causa" %>
-    <%= text_field_tag :name, nil , class: "form-control formus",:maxlength => 30 , :size => 40 %>
+    <%= text_field_tag :name, @caef.name , class: "form-control formus",:maxlength => 30 , :size => 40 %>
   </div>
   <div class="form-group">
     <%= label_tag "Causa" %>
-    <%= text_area_tag :descripcion, nil , class: "form-control formus" %>
+    <%= text_area_tag :descripcion, @caef.descripcion , class: "form-control formus" %>
   </div>
 
 
 
-<%= hidden_field_tag :user_id ,current_user.id %>
-<%= hidden_field_tag :admin_user ,current_user.admin_user %>
-<%= text_field_tag :nivel, m %>
-<%= hidden_field_tag :tipo , "CausaEfecto" %>
-<%= hidden_field_tag :causa_id ,causa.id %>
-<%= hidden_field_tag :report_id ,report.id %>
+
 
  
 <br>

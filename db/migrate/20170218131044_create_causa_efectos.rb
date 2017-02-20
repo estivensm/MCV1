@@ -4,7 +4,7 @@ class CreateCausaEfectos < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :admin_user
       t.string :nivel
-      t.string :causa
+      t.string :descripcion
       t.string :tipo
       t.integer :causa_id
       t.integer :report_id

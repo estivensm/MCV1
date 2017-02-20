@@ -1,9 +1,9 @@
 <div id="contact-modal" class="modal fade">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg" id = "mdg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><%= action_type %> Proceso</h4>
+        <h4 class="modal-title"><%= action_type %> Analisis de Causa</h4>
       </div>
 <%= form_for([@report,@causa], remote: true) do |f| %>
   <div class="alert alert-danger" style="display:none">
@@ -13,7 +13,9 @@
   </div>
       <div class="modal-body">
 
-  <div class="form-group">
+<div class="row">
+<div class="col-md-6" id = "part">
+    <div class="form-group">
        <label for="">¿Acciones?</label><br>
                <label class="radio-inline">
                <%= f.radio_button :tipo, '5 Porques', class: 'rb' %>5 Porques
@@ -25,18 +27,53 @@
                <%= f.radio_button :tipo, 'Lluvia de Ideas', class: 'rb' %>Lluvia de Ideas
                </label>
                  <label class="radio-inline">
-               <%= f.radio_button :tipo, 'MFFA', class: 'rb' %>MFFA
+               <%= f.radio_button :tipo, 'Causa Efecto', class: 'rb rb1' %>Causa Efecto
                </label>
   </div>
 
  <div class="form-group">
     <%= f.label :descripcion %>
-    <%= f.text_area :descripcion,  :class => 'ckeditor' %>
+    <%= f.text_area :descripcion, class: "form-control area"  %>
   </div>
 <div class="form-group">
     <%= f.label :archivo %>
     <%= f.file_field :archivo, class: "form-control"  %>
   </div>
+</div>
+
+<div class="col-md-6">
+  <div class="form-group caef">
+    <%= f.label "Primera" %>
+    <%= f.text_field :primera_m,   class: "form-control"  %>
+  </div>
+  <div class="form-group caef">
+    <%= f.label "Segunda" %>
+    <%= f.text_field  :seguna_m,  class: "form-control"  %>
+  </div>
+  <div class="form-group caef">
+    <%= f.label "Tercera" %>
+    <%= f.text_field :tercera_m,   class: "form-control"  %>
+  </div>
+   <div class="form-group caef">
+    <%= f.label "Cuarta" %>
+    <%= f.text_field  :cuarta_m,   class: "form-control"  %>
+  </div>
+  <div class="form-group caef">
+    <%= f.label "Quinta" %>
+    <%= f.text_field  :quinta_m,   class: "form-control"  %>
+  </div>
+  <div class="form-group caef">
+    <%= f.label "Sexta" %>
+    <%= f.text_field  :sexta_m,   class: "form-control"  %>
+  </div>
+</div>
+  
+</div>
+
+
+
+
+  
 
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
@@ -57,4 +94,67 @@
 
   $('.ckeditor').ckeditor({
    
-});</script>
+});
+
+
+$(document).on('turbolinks:load',function() {
+$('.caef').hide();
+
+if ("<%=action_name%>" == "edit")
+{
+  
+
+  if ($('.rb1').prop('checked', true) && $('.rb1').val() ==  "Causa Efecto" )
+{
+     $('.caef').fadeIn();
+     
+     $('#part').addClass("col-md-6")
+      $('#mdg').addClass("modal-lg")
+      $('#part').removeClass("col-md-12")
+
+}else
+{
+   $('.caef').fadeOut();
+   $('#part').removeClass("col-md-6")
+   $('#mdg').removeClass("modal-lg")
+  $('#part').addClass("col-md-12")
+  
+}
+
+  $('.rb').prop( "disabled", true );
+
+}
+else
+{
+  $('#mdg').removeClass("modal-lg")
+  $('#part').removeClass("col-md-6")
+  $('#part').addClass("col-md-12")
+
+}
+
+
+$('.rb').change(function() {
+     
+if ($(this).prop('checked', true) && $(this).val() ==  "Causa Efecto" )
+{
+     $('.caef').fadeIn();
+     
+     $('#part').addClass("col-md-6")
+      $('#mdg').addClass("modal-lg")
+      $('#part').removeClass("col-md-12")
+
+}else
+{
+   $('.caef').fadeOut();
+   $('#part').removeClass("col-md-6")
+   $('#mdg').removeClass("modal-lg")
+  $('#part').addClass("col-md-12")
+  
+}
+
+
+
+});
+
+});
+</script>

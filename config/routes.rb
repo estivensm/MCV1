@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   resources :clinte_proveedors
   resources :contacts
   get 'my_reports/index', as: "misreports"
-  post "crear_caef", to: "causa_efectos#create", as: "crear_caef"
+  post "crear_caef", to: "causas#create_caef", as: "crear_caef"
+  get 'new_caef/:causa/:m', to: 'causas#new_caef', as: "new_caef"
+  get '/edit_caef/:id/edit', to: 'causas#edit_caef', as: "edit_caef"
+  get '/show_caef/:id', to: 'causas#show_caef', as: "show_caef"
+  patch "update_caef/:id", to: "causas#update_caef", as: "update_caef"
+  delete "delete_caef/:id", to: "causas#destroy_caef", as: "delete_caef"
+
 
   resources :rols
   get 'my_accions/index', as: "misacciones"

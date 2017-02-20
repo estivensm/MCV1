@@ -11,6 +11,12 @@
 #  report_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  primera_m   :string
+#  seguna_m    :string
+#  tercera_m   :string
+#  cuarta_m    :string
+#  quinta_m    :string
+#  sexta_m     :string
 #
 
 class Causa < ApplicationRecord
@@ -18,4 +24,5 @@ class Causa < ApplicationRecord
 	mount_uploader :archivo, ArchivoCausaUploader
 	validates :tipo, presence: true 
 	has_many :causa_efectos
+
 end

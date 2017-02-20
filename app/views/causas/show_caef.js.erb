@@ -1,0 +1,5 @@
+$('<%= j render "show_cauefe", caef: @caef %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+

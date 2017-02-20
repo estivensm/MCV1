@@ -11,6 +11,12 @@
 #  report_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  primera_m   :string
+#  seguna_m    :string
+#  tercera_m   :string
+#  cuarta_m    :string
+#  quinta_m    :string
+#  sexta_m     :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
