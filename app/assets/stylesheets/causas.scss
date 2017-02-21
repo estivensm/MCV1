@@ -1,3 +1,113 @@
 // Place all the styles related to the Causas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.triangulo-equilatero-bottom-left {
+    width: 0;
+    height: 0;
+    border-right: 100px solid transparent;
+    border-top: 100px solid transparent;
+    border-left: 100px solid #f0ad4e;
+    border-bottom: 100px solid #f0ad4e;
+    }
+    .p1{
+    left: 55px   
+    } 
+    .p2
+    {
+    left: 89px   
+    }
+    .p3
+    {
+    left: 123px
+    }
+    .p4
+    {
+    left: 156px
+    }
+    .p5
+    {
+    left: 192px
+    }
+    .b1{
+    left: 210px   
+    } 
+    .b2
+    {
+    left: 177px   
+    }
+    .b3
+    {
+    left: 142px
+    }
+    .b4
+    {
+    left: 107px
+    }
+    .b5
+    {
+    left: 74px
+    }
+    .pez div
+    {
+    display: inline-block;
+    }
+    .pez
+    {
+    width: 1100px;
+    text-align: left;
+    border-collapse: collapse;;
+    }
+    .pez p
+    {
+    position: relative;
+    height: 18px;
+    }
+    .pez .thed th
+    {
+    border-bottom:1px solid gray;
+    width:240px;
+    height: 188px;
+    background-image: url("https://c1.staticflickr.com/3/2523/32990916266_ca4a85aa8a.jpg");
+    }
+    .pez .tbod th
+    {
+    width:240px;
+    height: 188px;
+    background-image: url("https://c1.staticflickr.com/4/3834/32650789480_4722db1fe3_m.jpg");
+    }
+    .punta
+    {
+    border-bottom:1px solid gray;
+    width:150px;
+    }
+    .punta1
+    {
+    width:150px;
+    }
+    .pro
+    {
+    width:240px;
+    }
+    .prop
+    {
+    border:1px solid gray;
+    padding: 5px;
+    height: auto !important;
+    border-radius: 5px;
+    background: whitesmoke;
+    }
+    .pezdiv
+    {
+    width: 98%;
+    margin-left: 1%;
+    font-size: 12px;
+    
+
+    }
+    .ph
+    {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+    p
+    {color:gray;}

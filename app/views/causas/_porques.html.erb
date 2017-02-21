@@ -1,0 +1,34 @@
+<div class="row">
+    <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+
+    <div class="col-md-6">
+        <h3>Porques</h3>
+        <% i = 1
+         @causa.causa_efectos.each do |cf|%>
+            
+<div class="panel panel-default">
+   <div class="panel-heading ph">Porque <%=i%> </div>
+  <div class="panel-body ph">
+     <p><%= cf.name %></p>
+     </div>
+  
+  </div>
+        <% i += 1
+        end%>    
+        
+
+        
+    </div>
+    <div class="col-md-6">
+     <h3>Observaciones</h3>
+         <p><%= @causa.descripcion != "" ? @causa.descripcion : "No hay observaciones" %></p>
+        <h3>Adjunto</h3>
+        <% if @causa.archivo_url %>
+        <%= link_to "Ver Docucumento", @causa.archivo_url   %>
+        <!--<%= image_tag get_extension(@report.causas.first.archivo.file.extension), class: "extension"%>-->
+        <%= (@causa.archivo.file.size.to_f/1000) %>KB
+        <% else %>
+        <p>No hay Archivo adjunto</p>
+        <% end %>
+    </div>
+</div>

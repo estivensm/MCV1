@@ -1,0 +1,108 @@
+<div class = "pezdiv">
+ <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+    <table class ="pez">
+        <tr>
+            <th style = "width:240px">
+            <%= link_to @causa.primera_m, new_caef_path(@causa,"1"), remote: true, class:"btn btn-primary"%>
+             
+            </th>
+            <th style = "width:240px">
+                <%= link_to @causa.seguna_m, new_caef_path(@causa,"2"), remote: true , class:"btn btn-primary"%>
+            </th>
+            <th style = "width:240px">
+             <%= link_to @causa.tercera_m, new_caef_path(@causa,"3"), remote: true, class:"btn btn-primary" %></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+    <table class ="pez">
+        <%= render 'form_cauefe', report: @report , causa: @causa, m: @m%>
+        <% a = CausaEfecto.where(causa_id: @causa.id).where(nivel: "1").order(:created_at)%>
+        <% b = CausaEfecto.where(causa_id: @causa.id).where(nivel: "2").order(:created_at)%>
+        <% c = CausaEfecto.where(causa_id: @causa.id).where(nivel: "3").order(:created_at)%>
+        <% d = CausaEfecto.where(causa_id: @causa.id).where(nivel: "4").order(:created_at)%>
+        <% e = CausaEfecto.where(causa_id: @causa.id).where(nivel: "5").order(:created_at)%>
+        <% f = CausaEfecto.where(causa_id: @causa.id).where(nivel: "6").order(:created_at)%>
+        <tr class="thed">
+            <th>
+                <p class="p1"><%= (link_to a.first.name, show_caef_path(a.first.id), remote: true) if a.exists? %></p>
+
+                <p class="p2">  <%= (link_to a.limit(2).offset(1).first.name, show_caef_path(a.limit(2).offset(1).first.id), remote: true) if a.limit(2).offset(1).exists? %></p>
+                <p class="p3"><%= (link_to a.limit(3).offset(2).first.name, show_caef_path(a.limit(3).offset(2).first.id), remote: true) if a.limit(3).offset(2).exists? %></p>
+                <p class="p4"><%= (link_to a.limit(4).offset(3).first.name, show_caef_path(a.limit(4).offset(3).first.id), remote: true) if a.limit(4).offset(3).exists? %></p>
+                <p class="p5"><%= (link_to a.limit(5).offset(4).first.name, show_caef_path(a.limit(5).offset(4).first.id), remote: true) if a.limit(5).offset(4).exists? %></p>
+            </th>
+            <th>
+                <p class="p1"><%= (link_to b.first.name, show_caef_path(b.first.id), remote: true) if b.exists? %></p>
+                <p class="p2"> <%= (link_to b.limit(2).offset(1).first.name, show_caef_path(b.limit(2).offset(1).first.id), remote: true) if b.limit(2).offset(1).exists? %></p>
+                <p class="p3"><%= (link_to b.limit(3).offset(2).first.name, show_caef_path(b.limit(3).offset(2).first.id), remote: true) if b.limit(3).offset(2).exists? %></p>
+                <p class="p4"><%= (link_to b.limit(4).offset(3).first.name, show_caef_path(b.limit(4).offset(3).first.id), remote: true) if b.limit(4).offset(3).exists? %></p>
+                <p class="p5"><%= (link_to b.limit(5).offset(4).first.name, show_caef_path(b.limit(5).offset(4).first.id), remote: true) if b.limit(5).offset(4).exists? %></p>
+            </th>
+            <th>
+                
+                
+ <p class="p1"><%= (link_to c.first.name, show_caef_path(c.first.id), remote: true) if c.exists? %></p>
+                <p class="p2"> <%= (link_to c.limit(2).offset(1).first.name, show_caef_path(c.limit(2).offset(1).first.id), remote: true) if c.limit(2).offset(1).exists? %></p>
+                <p class="p3"><%= (link_to c.limit(3).offset(2).first.name, show_caef_path(c.limit(3).offset(2).first.id), remote: true) if c.limit(3).offset(2).exists? %></p>
+                <p class="p4"><%= (link_to c.limit(4).offset(3).first.name, show_caef_path(c.limit(4).offset(3).first.id), remote: true) if c.limit(4).offset(3).exists? %></p>
+                <p class="p5"><%= (link_to c.limit(5).offset(4).first.name, show_caef_path(c.limit(5).offset(4).first.id), remote: true) if c.limit(5).offset(4).exists? %></p>
+            </th>
+            <td class="punta"></td>
+            <td class="pro" rowspan="2">
+                <p class = "prop"><%=@report.description%></p>
+            </td>
+        </tr>
+        <tr class="tbod">
+            <th>
+                <p class="b1"><%= (link_to d.limit(5).offset(4).first.name, show_caef_path(d.limit(5).offset(4).first.id), remote: true) if d.limit(5).offset(4).exists? %></p>
+                <p class="b2"><%= (link_to d.limit(4).offset(3).first.name, show_caef_path(d.limit(4).offset(3).first.id), remote: true) if d.limit(4).offset(3).exists? %></p>
+                <p class="b3"><%= (link_to d.limit(3).offset(2).first.name, show_caef_path(d.limit(3).offset(2).first.id), remote: true) if d.limit(3).offset(2).exists? %></p>
+                <p class="b4"> <%= (link_to d.limit(2).offset(1).first.name, show_caef_path(d.limit(2).offset(1).first.id), remote: true) if d.limit(2).offset(1).exists? %></p>
+                <p class="b5"><%= (link_to d.first.name, show_caef_path(d.first.id), remote: true) if d.exists? %></p>
+            </th>
+            <th>
+                 <p class="b1"><%= (link_to e.limit(5).offset(4).first.name, show_caef_path(e.limit(5).offset(4).first.id), remote: true) if e.limit(5).offset(4).exists? %></p>
+                <p class="b2"><%= (link_to e.limit(4).offset(3).first.name, show_caef_path(e.limit(4).offset(3).first.id), remote: true) if e.limit(4).offset(3).exists? %></p>
+                <p class="b3"><%= (link_to e.limit(3).offset(2).first.name, show_caef_path(e.limit(3).offset(2).first.id), remote: true) if e.limit(3).offset(2).exists? %></p>
+                <p class="b4"> <%= (link_to e.limit(2).offset(1).first.name, show_caef_path(e.limit(2).offset(1).first.id), remote: true) if e.limit(2).offset(1).exists? %></p>
+                <p class="b5"><%= (link_to e.first.name, show_caef_path(e.first.id), remote: true) if e.exists? %></p>
+            </th>
+            <th>
+                 <p class="b1"><%= (link_to f.limit(5).offset(4).first.name, show_caef_path(f.limit(5).offset(4).first.id), remote: true) if f.limit(5).offset(4).exists? %></p>
+                <p class="b2"><%= (link_to f.limit(4).offset(3).first.name, show_caef_path(f.limit(4).offset(3).first.id), remote: true) if f.limit(4).offset(3).exists? %></p>
+                <p class="b3"><%= (link_to f.limit(3).offset(2).first.name, show_caef_path(f.limit(3).offset(2).first.id), remote: true) if f.limit(3).offset(2).exists? %></p>
+                <p class="b4"> <%= (link_to f.limit(2).offset(1).first.name, show_caef_path(f.limit(2).offset(1).first.id), remote: true) if f.limit(2).offset(1).exists? %></p>
+                <p class="b5"><%= (link_to f.first.name, show_caef_path(f.first.id), remote: true) if f.exists? %></p>
+            </th>
+            <td class="punta1"></td>
+        </tr>
+    </table>
+    <table class ="pez">
+        <tr>
+            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,"4"), remote: true, class:"btn btn-primary" %></th></th>
+            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,"5"), remote: true, class:"btn btn-primary" %></th></th>
+            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,"6"), remote: true, class:"btn btn-primary" %></th></button></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </table>
+</div>
+<div class="row">
+    
+
+    <div class="col-md-6">
+        <h3>Descripción</h3>
+       <p><%= @causa.descripcion != "" ? @causa.descripcion : "No hay observaciones" %></p>
+    </div>
+    <div class="col-md-6">
+        <h3>Documento</h3>
+        <% if @causa.archivo_url %>
+        <%= link_to "Ver Docucumento", @causa.archivo_url   %>
+        <!--<%= image_tag get_extension(@report.causas.first.archivo.file.extension), class: "extension"%>-->
+        <%= (@causa.archivo.file.size.to_f/1000) %>KB
+        <% else %>
+        <p>No hay Archivo adjunto</p>
+        <% end %>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="row">
+<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+<div class="col-md-8">
+
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script>
+    
+
+    Highcharts.chart('container', {
+    chart: {
+        zoomType: 'xy'
+    },
+    title: {
+        text: ''
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: [{
+        categories: [<% CausaEfecto.where(causa_id:@causa.id).order(frecuencia: :desc).each do |causa|%>
+            "<%=causa.name%>",
+
+        <%end%>
+
+
+        ],
+        crosshair: true
+    }],
+    yAxis: [{ // Primary yAxis
+        labels: {
+            format: '{value}',
+            style: {
+                color: Highcharts.getOptions().colors[1],
+                backgroundColor: '#FCFFC5'
+            }
+        },
+        title: {
+            text: 'Frecuencia',
+            style: {
+                color: Highcharts.getOptions().colors[1]
+            }
+        }
+    }, { // Secondary yAxis
+        title: {
+            text: 'Porcentaje Acumulado',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value} %',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        opposite: true
+    }],
+    tooltip: {
+        shared: true
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 120,
+        verticalAlign: 'top',
+        y: 100,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+    },
+    series: [{
+        name: 'Porcentaje Acumulado',
+        type: 'spline',
+        yAxis: 1,
+        zIndex: 2,
+        data: [<% CausaEfecto.where(causa_id:@causa.id).order(frecuencia: :desc).each do |causa|%>
+            parseFloat("<%=causa.porcentaje%>"),
+
+        <%end%>],
+        tooltip: {
+            valueSuffix: '%'
+        }
+
+    }, {
+        name: 'Frecuencia',
+        color: "#e2a433",
+        type: 'column',
+        zIndex: 1,
+        data: [<% CausaEfecto.where(causa_id:@causa.id).order(frecuencia: :desc).each do |causa|%>
+            parseInt("<%=causa.frecuencia%>"),
+
+        <%end%>],
+        tooltip: {
+            valueSuffix: ''
+        }
+
+    }]
+});
+</script>

@@ -8,226 +8,30 @@
             <%= link_to  edit_report_causa_path(@report,@causa), remote: true, :class => "opciones2" do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
             <% end %>
-            <%= link_to  report_causa_path(@report,@causa), method: :delete, :class => "opciones2" do %>
+            <%= link_to  report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones2" do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
             <% end %>
     </div>
 </div>
-<div class="row" style = "display:none">
-    <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+<% if @causa.tipo == "5 Porques"%>
+<%= render 'porques' %>
+<%elsif @causa.tipo == "Causa Efecto"%>
+<hr style = "    margin-top: 5px;
+    margin-bottom: 5px;">
 
-    <div class="col-md-6">
-        <h3>Descripción</h3>
-        <%== @causa.descripcion %>
-    </div>
-    <div class="col-md-6">
-        <h3>Documento</h3>
-        <% if @causa.archivo_url %>
-        <%= link_to "Ver Docucumento", @causa.archivo_url   %>
-        <!--<%= image_tag get_extension(@report.causas.first.archivo.file.extension), class: "extension"%>-->
-        <%= (@causa.archivo.file.size.to_f/1000) %>KB
-        <% else %>
-        <p>No hay Archivo adjunto</p>
-        <% end %>
+<%= render 'causaefecto'%>
+
+<%elsif @causa.tipo == "Pareto"%>
+<%=render 'pareto' , report: @report%>
+</div>
+    <div class="col-md-8">
     </div>
 </div>
-<hr>
 
+<%end%>
 
-<div class = "pezdiv">
-    <table class ="pez">
-        <tr>
-            <th style = "width:240px">
-            <%= link_to @causa.primera_m, new_caef_path(@causa,@causa.primera_m), remote: true, class:"btn btn-primary"%>
-             
-            </th>
-            <th style = "width:240px">
-                <%= link_to @causa.seguna_m, new_caef_path(@causa,@causa.seguna_m), remote: true , class:"btn btn-primary"%>
-            </th>
-            <th style = "width:240px">
-             <%= link_to @causa.tercera_m, new_caef_path(@causa,@causa.tercera_m), remote: true, class:"btn btn-primary" %></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </table>
-    <table class ="pez">
-        <%= render 'form_cauefe', report: @report , causa: @causa, m: @m%>
-        <% a = CausaEfecto.where(causa_id: @causa.id).where(nivel: @causa.primera_m).order(:created_at)%>
-        <% b = CausaEfecto.where(causa_id: @causa.id).where(nivel: @causa.seguna_m).order(:created_at)%>
-        <% c = CausaEfecto.where(causa_id: @causa.id).where(nivel: @causa.tercera_m).order(:created_at)%>
-        <% d = CausaEfecto.where(causa_id: @causa.id).where(nivel: @causa.cuarta_m).order(:created_at)%>
-        <% e = CausaEfecto.where(causa_id: @causa.id).where(nivel: @causa.quinta_m).order(:created_at)%>
-        <% f = CausaEfecto.where(causa_id: @causa.id).where(nivel: @causa.sexta_m).order(:created_at)%>
-        <tr class="thed">
-            <th>
-                <p class="p1"><%= (link_to a.first.name, show_caef_path(a.first.id), remote: true) if a.exists? %></p>
-
-                <p class="p2">  <%= (link_to a.limit(2).offset(1).first.name, show_caef_path(a.limit(2).offset(1).first.id), remote: true) if a.limit(2).offset(1).exists? %></p>
-                <p class="p3"><%= (link_to a.limit(3).offset(2).first.name, show_caef_path(a.limit(3).offset(2).first.id), remote: true) if a.limit(3).offset(2).exists? %></p>
-                <p class="p4"><%= (link_to a.limit(4).offset(3).first.name, show_caef_path(a.limit(4).offset(3).first.id), remote: true) if a.limit(4).offset(3).exists? %></p>
-                <p class="p5"><%= (link_to a.limit(5).offset(4).first.name, show_caef_path(a.limit(5).offset(4).first.id), remote: true) if a.limit(5).offset(4).exists? %></p>
-            </th>
-            <th>
-                <p class="p1"><%= (link_to b.first.name, show_caef_path(b.first.id), remote: true) if b.exists? %></p>
-                <p class="p2"> <%= (link_to b.limit(2).offset(1).first.name, show_caef_path(b.limit(2).offset(1).first.id), remote: true) if b.limit(2).offset(1).exists? %></p>
-                <p class="p3"><%= (link_to b.limit(3).offset(2).first.name, show_caef_path(b.limit(3).offset(2).first.id), remote: true) if b.limit(3).offset(2).exists? %></p>
-                <p class="p4"><%= (link_to b.limit(4).offset(3).first.name, show_caef_path(b.limit(4).offset(3).first.id), remote: true) if b.limit(4).offset(3).exists? %></p>
-                <p class="p5"><%= (link_to b.limit(5).offset(4).first.name, show_caef_path(b.limit(5).offset(4).first.id), remote: true) if b.limit(5).offset(4).exists? %></p>
-            </th>
-            <th>
-                
-                
- <p class="p1"><%= (link_to c.first.name, show_caef_path(c.first.id), remote: true) if c.exists? %></p>
-                <p class="p2"> <%= (link_to c.limit(2).offset(1).first.name, show_caef_path(c.limit(2).offset(1).first.id), remote: true) if c.limit(2).offset(1).exists? %></p>
-                <p class="p3"><%= (link_to c.limit(3).offset(2).first.name, show_caef_path(c.limit(3).offset(2).first.id), remote: true) if c.limit(3).offset(2).exists? %></p>
-                <p class="p4"><%= (link_to c.limit(4).offset(3).first.name, show_caef_path(c.limit(4).offset(3).first.id), remote: true) if c.limit(4).offset(3).exists? %></p>
-                <p class="p5"><%= (link_to c.limit(5).offset(4).first.name, show_caef_path(c.limit(5).offset(4).first.id), remote: true) if c.limit(5).offset(4).exists? %></p>
-            </th>
-            <td class="punta"></td>
-            <td class="pro" rowspan="2">
-                <p class = "prop"><%=@report.description%></p>
-            </td>
-        </tr>
-        <tr class="tbod">
-            <th>
-                <p class="b1"><%= (link_to d.limit(5).offset(4).first.name, show_caef_path(d.limit(5).offset(4).first.id), remote: true) if d.limit(5).offset(4).exists? %></p>
-                <p class="b2"><%= (link_to d.limit(4).offset(3).first.name, show_caef_path(d.limit(4).offset(3).first.id), remote: true) if d.limit(4).offset(3).exists? %></p>
-                <p class="b3"><%= (link_to d.limit(3).offset(2).first.name, show_caef_path(d.limit(3).offset(2).first.id), remote: true) if d.limit(3).offset(2).exists? %></p>
-                <p class="b4"> <%= (link_to d.limit(2).offset(1).first.name, show_caef_path(d.limit(2).offset(1).first.id), remote: true) if d.limit(2).offset(1).exists? %></p>
-                <p class="b5"><%= (link_to d.first.name, show_caef_path(d.first.id), remote: true) if d.exists? %></p>
-            </th>
-            <th>
-                 <p class="b1"><%= (link_to e.limit(5).offset(4).first.name, show_caef_path(e.limit(5).offset(4).first.id), remote: true) if e.limit(5).offset(4).exists? %></p>
-                <p class="b2"><%= (link_to e.limit(4).offset(3).first.name, show_caef_path(e.limit(4).offset(3).first.id), remote: true) if e.limit(4).offset(3).exists? %></p>
-                <p class="b3"><%= (link_to e.limit(3).offset(2).first.name, show_caef_path(e.limit(3).offset(2).first.id), remote: true) if e.limit(3).offset(2).exists? %></p>
-                <p class="b4"> <%= (link_to e.limit(2).offset(1).first.name, show_caef_path(e.limit(2).offset(1).first.id), remote: true) if e.limit(2).offset(1).exists? %></p>
-                <p class="b5"><%= (link_to e.first.name, show_caef_path(e.first.id), remote: true) if e.exists? %></p>
-            </th>
-            <th>
-                 <p class="b1"><%= (link_to f.limit(5).offset(4).first.name, show_caef_path(f.limit(5).offset(4).first.id), remote: true) if f.limit(5).offset(4).exists? %></p>
-                <p class="b2"><%= (link_to f.limit(4).offset(3).first.name, show_caef_path(f.limit(4).offset(3).first.id), remote: true) if f.limit(4).offset(3).exists? %></p>
-                <p class="b3"><%= (link_to f.limit(3).offset(2).first.name, show_caef_path(f.limit(3).offset(2).first.id), remote: true) if f.limit(3).offset(2).exists? %></p>
-                <p class="b4"> <%= (link_to f.limit(2).offset(1).first.name, show_caef_path(f.limit(2).offset(1).first.id), remote: true) if f.limit(2).offset(1).exists? %></p>
-                <p class="b5"><%= (link_to f.first.name, show_caef_path(f.first.id), remote: true) if f.exists? %></p>
-            </th>
-            <td class="punta1"></td>
-        </tr>
-    </table>
-    <table class ="pez">
-        <tr>
-            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,@causa.cuarta_m), remote: true, class:"btn btn-primary" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,@causa.quinta_m), remote: true, class:"btn btn-primary" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,@causa.sexta_m), remote: true, class:"btn btn-primary" %></th></button></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </table>
-</div>
-<style>
-    .triangulo-equilatero-bottom-left {
-    width: 0;
-    height: 0;
-    border-right: 100px solid transparent;
-    border-top: 100px solid transparent;
-    border-left: 100px solid #f0ad4e;
-    border-bottom: 100px solid #f0ad4e;
-    }
-    .p1{
-    left: 55px   
-    } 
-    .p2
-    {
-    left: 89px   
-    }
-    .p3
-    {
-    left: 123px
-    }
-    .p4
-    {
-    left: 156px
-    }
-    .p5
-    {
-    left: 192px
-    }
-    .b1{
-    left: 210px   
-    } 
-    .b2
-    {
-    left: 177px   
-    }
-    .b3
-    {
-    left: 142px
-    }
-    .b4
-    {
-    left: 107px
-    }
-    .b5
-    {
-    left: 74px
-    }
-    .pez div
-    {
-    display: inline-block;
-    }
-    .pez
-    {
-    width: 1100px;
-    text-align: left;
-    border-collapse: collapse;;
-    }
-    .pez p
-    {
-    position: relative;
-    height: 18px;
-    }
-    .pez .thed th
-    {
-    border-bottom:1px solid gray;
-    width:240px;
-    height: 188px;
-    background-image: url("https://c1.staticflickr.com/3/2613/32577838220_e2aac782c6_m.jpg");
-    }
-    .pez .tbod th
-    {
-    width:240px;
-    height: 188px;
-    background-image: url("https://c1.staticflickr.com/1/374/32577827060_0b526114c6_m.jpg");
-    }
-    .punta
-    {
-    border-bottom:1px solid gray;
-    width:150px;
-    }
-    .punta1
-    {
-    width:150px;
-    }
-    .pro
-    {
-    width:240px;
-    }
-    .prop
-    {
-    border:1px solid gray;
-    padding: 5px;
-    height: auto !important;
-    border-radius: 5px;
-    background: whitesmoke;
-    }
-    .pezdiv
-    {
-    width: 98%;
-    margin-left: 1%;
-    font-size: 12px;
-    }
-</style>
 <script>
-$(document).on('turbolinks:load',function() {
+/*$(document).on('turbolinks:load',function() {
 
 
       $('#<%=@causa.seguna_m.gsub(" ", "")%>').click(function(){
@@ -246,7 +50,7 @@ $(document).on('turbolinks:load',function() {
     $('.nivel1').val("<%=@causa.sexta_m%>");
     });
     
-     });
+     });*/
     
     
 </script>

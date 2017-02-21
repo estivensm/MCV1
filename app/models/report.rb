@@ -34,19 +34,18 @@
 #
 
 class Report < ApplicationRecord
-  has_and_belongs_to_many :employeds
-  has_and_belongs_to_many :numerals
+  has_and_belongs_to_many :employeds, dependent: :destroy
+  has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
   belongs_to :proceso
   belongs_to :user
-  has_many :accions
-  has_many :rseguimientos
-  has_many :causas
-  has_many :causa_efectos
+  has_many :accions, dependent: :destroy
+  has_many :rseguimientos, dependent: :destroy
+  has_many :causas, dependent: :destroy
+  has_many :causa_efectos, dependent: :destroy
   after_create :accions_create
   mount_uploader :archivo, ArchivoReportUploader
   validate :archivo_size_validation, :if => "archivo?"  
-  before_destroy :delete_accions
   validate :start_must_be_before_end_time, on: [:create, :update]
 
 
@@ -115,15 +114,6 @@ class Report < ApplicationRecord
   end
 
       
-  def delete_accions
-    Rseguimiento.where(report_id:self.id).destroy_all
-    self.accions.each do |acc|
-        Aseguimiento.where(accion_id: acc.id).destroy_all
-    end
-    Accion.where(report_id: self.id).destroy_all
-    Causa.where(report_id: self.id).destroy_all
-
-
-  end         
+        
 
 end

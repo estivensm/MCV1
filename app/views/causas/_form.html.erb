@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"><%= action_type %> Analisis de Causa</h4>
       </div>
-<%= form_for([@report,@causa], remote: true) do |f| %>
+<%= nested_form_for([@report,@causa], remote: true) do |f| %>
   <div class="alert alert-danger" style="display:none">
     <ul>
     
@@ -18,17 +18,18 @@
     <div class="form-group">
        <label for="">¿Acciones?</label><br>
                <label class="radio-inline">
-               <%= f.radio_button :tipo, '5 Porques', class: 'rb' %>5 Porques
+               <%= f.radio_button :tipo, '5 Porques', class: 'rb pq' %>5 Porques
                </label>
               <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Pareto', class: 'rb' %>Pareto
+               <%= f.radio_button :tipo, 'Pareto', class: 'rb par' %>Pareto
                </label>
                  <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Lluvia de Ideas', class: 'rb' %>Lluvia de Ideas
+               <%= f.radio_button :tipo, 'Causa Efecto', class: 'rb cf' %>Causa Efecto
                </label>
                  <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Causa Efecto', class: 'rb rb1' %>Causa Efecto
+               <%= f.radio_button :tipo, 'Lluvia de Ideas', class: 'rb' %>Otro
                </label>
+               
   </div>
 
  <div class="form-group">
@@ -41,36 +42,89 @@
   </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 caef">
   <div class="form-group caef">
     <%= f.label "Primera" %>
-    <%= f.text_field :primera_m,   class: "form-control"  %>
+    <%= f.text_field :primera_m, :value => ( action_name == "new" ? "Mano de Obra" : @causa.primera_m)  ,  class: "form-control"  %>
   </div>
   <div class="form-group caef">
     <%= f.label "Segunda" %>
-    <%= f.text_field  :seguna_m,  class: "form-control"  %>
+    <%= f.text_field  :seguna_m, :value => ( action_name == "new" ? "Materia Prima" : @causa.seguna_m) ,class: "form-control"  %>
   </div>
   <div class="form-group caef">
     <%= f.label "Tercera" %>
-    <%= f.text_field :tercera_m,   class: "form-control"  %>
+    <%= f.text_field :tercera_m, :value => ( action_name == "new" ? "Métodos" : @causa.tercera_m), class: "form-control"  %>
   </div>
    <div class="form-group caef">
     <%= f.label "Cuarta" %>
-    <%= f.text_field  :cuarta_m,   class: "form-control"  %>
+    <%= f.text_field  :cuarta_m, :value => ( action_name == "new" ? "Maquinaria" : @causa.cuarta_m),   class: "form-control"  %>
   </div>
   <div class="form-group caef">
     <%= f.label "Quinta" %>
-    <%= f.text_field  :quinta_m,   class: "form-control"  %>
+    <%= f.text_field  :quinta_m, :value => ( action_name == "new" ? "Medición" : @causa.quinta_m),   class: "form-control"  %>
   </div>
   <div class="form-group caef">
     <%= f.label "Sexta" %>
-    <%= f.text_field  :sexta_m,   class: "form-control"  %>
+    <%= f.text_field  :sexta_m, :value =>  ( action_name == "new" ? "Medio Ambiente" : @causa.sexta_m) , class: "form-control"  %>
   </div>
 </div>
   
+
+
+ <div class="col-lg-6 pareto">
+   <div class="col-lg-10">
+    <h3 class = "linka" style = "margin :0px 0px 5px 0;"><%=  @causa.tipo == "Pareto"  ? "Causas" : "Porques"%></h3>
+    <br>
+    </div>
+
+    <%= f.fields_for :causa_efectos do |pareto|  %>
+  <div class="clearfix">
+ <div class="col-md-12" >
+
+  
+    <div class="col-md-9 pdd" >
+     <%= pareto.link_to_remove do %>
+<i style = "    color: #e74b09;
+    font-size: 18px;
+    margin-left: 0px;
+    position: relative;
+    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
+  <% end %>
+  <% @causa.tipo == "Pareto"  ? nom = "Causas" : nom = "Porques"%>
+    <%= pareto.label nom %>
+   <%= pareto.text_area :name, :class => 'form-control' %>
+    </div>
+
+<%if @causa.tipo == "Pareto"%>
+ <div class="col-md-3 pdd" >
+     
+    <%= pareto.label "Frecuencia" %>
+   <%= pareto.text_field :frecuencia, :class => 'form-control' %>
+    </div>
+
+    <%end%>
+
+
+     
+    <%= pareto.hidden_field :tipo , :value => @causa.tipo %>
+    <%= pareto.hidden_field :causa_id , :value => @causa.id %>
+    <%= pareto.hidden_field :report_id , :value => @report.id %>
+<%= pareto.hidden_field :admin_user , :value => current_user.admin_user %>
+  <%= pareto.hidden_field :user_id ,:value =>  current_user.id %>
+   
+   </div>
+    </div>
+   
+<%end%>
+<br>
+<%= f.link_to_add "Causa", :causa_efectos, :class => 'btn btn-primary top10'  %>
+ </div>
 </div>
 
 
+<br>
+
+    
 
 
   
@@ -82,6 +136,7 @@
   
 <br>
 <hr>
+<br>
   <div class="form-group text-center">
    <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -97,55 +152,59 @@
 });
 
 
-$(document).on('turbolinks:load',function() {
-$('.caef').hide();
+
 
 if ("<%=action_name%>" == "edit")
 {
-  
 
-  if ($('.rb1').prop('checked', true) && $('.rb1').val() ==  "Causa Efecto" )
+  $('.top10').click(function(){
+
+      
+    
+  });
+
+  $('.rb').prop( "disabled", true );
+
+  if ($('.cf').is(':checked') && $('.cf').val() ==  "Causa Efecto" )
 {
      $('.caef').fadeIn();
+    
+     $('.pareto').hide();
      
      $('#part').addClass("col-md-6")
       $('#mdg').addClass("modal-lg")
       $('#part').removeClass("col-md-12")
 
-}else
-{
-   $('.caef').fadeOut();
-   $('#part').removeClass("col-md-6")
-   $('#mdg').removeClass("modal-lg")
-  $('#part').addClass("col-md-12")
-  
 }
+else if ($('.pq').is(':checked') && $('.pq').val() ==  "5 Porques" )
+{
+     $('.caef').hide();
+     
+      $('.pareto').fadeIn();
+     $('#part').addClass("col-md-6")
+      $('#mdg').addClass("modal-lg")
+      $('#part').removeClass("col-md-12")
 
-  $('.rb').prop( "disabled", true );
+      
+
+
+
+}
+else if ($('.par').is(':checked') && $('.par').val() ==  "Pareto" )
+{
+     $('.caef').hide();
+     
+      $('.pareto').fadeIn();
+     $('#part').addClass("col-md-6")
+      $('#mdg').addClass("modal-lg")
+      $('#part').removeClass("col-md-12")
 
 }
 else
 {
-  $('#mdg').removeClass("modal-lg")
-  $('#part').removeClass("col-md-6")
-  $('#part').addClass("col-md-12")
-
-}
-
-
-$('.rb').change(function() {
-     
-if ($(this).prop('checked', true) && $(this).val() ==  "Causa Efecto" )
-{
-     $('.caef').fadeIn();
-     
-     $('#part').addClass("col-md-6")
-      $('#mdg').addClass("modal-lg")
-      $('#part').removeClass("col-md-12")
-
-}else
-{
-   $('.caef').fadeOut();
+   $('.caef').hide();
+    $('.pareto').hide();
+   
    $('#part').removeClass("col-md-6")
    $('#mdg').removeClass("modal-lg")
   $('#part').addClass("col-md-12")
@@ -153,8 +212,35 @@ if ($(this).prop('checked', true) && $(this).val() ==  "Causa Efecto" )
 }
 
 
+  
 
-});
+}
+else
+{
+   $('.caef').hide();
+   $('.pareto').hide();
+   $('.porques').hide();
+   $('.pq').prop('checked', true)
+   $('#part').removeClass("col-md-6")
+   $('#mdg').removeClass("modal-lg")
+  $('#part').addClass("col-md-12")
 
-});
+}
+
+
+
+
+
+
+
+
+
 </script>
+<style>
+
+.top10
+{margin-top: 10px;
+}
+
+  
+</style>

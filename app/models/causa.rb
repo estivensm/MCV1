@@ -23,6 +23,40 @@ class Causa < ApplicationRecord
 	belongs_to :report
 	mount_uploader :archivo, ArchivoCausaUploader
 	validates :tipo, presence: true 
-	has_many :causa_efectos
+	has_many :causa_efectos, inverse_of: :causa, dependent: :destroy
+	accepts_nested_attributes_for :causa_efectos, :allow_destroy => true
+	after_create :eliminar_causas_basura
+	after_update :crear_porcentaje
+
+        
+	def eliminar_causas_basura
+
+		causa_basuara = CausaEfecto.where(causa_id: self.id).where.not(tipo: self.tipo)
+		causa_basuara.destroy_all
+		
+
+
+        
+	end
+
+	def crear_porcentaje
+
+        sum = CausaEfecto.where(causa_id: self.id).sum(:frecuencia)
+        CausaEfecto.where(causa_id: self.id).update_all(porcentaje: 0)
+        sump = 0
+        CausaEfecto.where(causa_id: self.id).order(frecuencia: :desc).each do |causa|
+            
+            
+            porc = ((causa.frecuencia.to_f / sum) * 100).round(2) 
+            causa.porcentaje = porc + sump 
+            sump = causa.porcentaje
+            causa.save
+
+
+        end
+
+
+
+	end
 
 end

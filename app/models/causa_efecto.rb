@@ -18,5 +18,5 @@
 class CausaEfecto < ApplicationRecord
 	belongs_to :user
 	belongs_to :report
-	belongs_to :causa
+	belongs_to :causa  , inverse_of: :causa_efectos
 end

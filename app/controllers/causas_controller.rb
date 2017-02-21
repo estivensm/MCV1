@@ -101,6 +101,7 @@ end
 def show_caef
 
 @caef = CausaEfecto.find(params[:id])
+@causa = Causa.find(@caef.causa_id)
 
   
 end
@@ -114,6 +115,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def causa_params
-      params.require(:causa).permit(:tipo, :descripcion, :archivo, :admin_user, :user_id, :report_id,:primera_m, :seguna_m,:tercera_m,:cuarta_m,:quinta_m, :sexta_m)
+      params.require(:causa).permit(:tipo, :descripcion, :archivo, :admin_user, :user_id, :report_id,:primera_m, :seguna_m,:tercera_m,:cuarta_m,:quinta_m, :sexta_m, causa_efectos_attributes: [:id, :name, :user_id,:nivel,:descripcion,:tipo,:report_id,:causa_id,:admin_user,:frecuencia, :porcentaje, :_destroy])
     end
 end
