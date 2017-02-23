@@ -17,6 +17,7 @@
     <%= label_tag "Rol" %><br>
    <%=select_tag 'rol_id', options_for_select(Rol.all.collect{ |u| [u.name, u.id] }),{class: "form-control cs", include_blank: true }%>
   </div>
+  
   <div class="form-group">
     <%= label_tag "Email" %><br>
    <%=select_tag 'email', options_for_select(get_employeds.collect{ |u| [u.email, u.email] }),{class: "form-control cs", include_blank: true }%>

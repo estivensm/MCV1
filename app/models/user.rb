@@ -28,6 +28,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   after_create :add_adminid
   before_save :add_adminid1
+  before_create :add_adminid2
+
 
   #before_destroy :validar_detele
 
@@ -63,6 +65,13 @@ def self.search(search)
             if self.role == "SuperAdmin"
          	     Company.create(name: self.company, user_id: self.id)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id)
+               self.employed_id =  Employed.where(admin_user: self.id).last.id
+               save
+               puts "holaaaaaaaa"
+               puts  Employed.where(admin_user: self.id).last.id
+
+
+
 
          	end
          	puts self.id
@@ -74,13 +83,21 @@ def self.search(search)
               self.admin_user = self.id
               
           else
-            e = Employed.where(email: self.email).first
-            self.name = e.first_name + " " + e.first_last_name 
+           
 
           end 
           
           
          end
+
+
+          def add_adminid2
+           if self.role != "SuperAdmin"
+           self.employed_id = Employed.where(email: self.email).first.id
+          
+          end
+         end
+
 
         
 end

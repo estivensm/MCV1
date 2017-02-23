@@ -35,6 +35,7 @@
 
 class Report < ApplicationRecord
   has_and_belongs_to_many :employeds, dependent: :destroy
+  belongs_to :cierra, :class_name => 'Employed'
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
   belongs_to :proceso

@@ -22,11 +22,8 @@
 <%= render 'causaefecto'%>
 
 <%elsif @causa.tipo == "Pareto"%>
-<%=render 'pareto' , report: @report%>
-</div>
-    <div class="col-md-8">
-    </div>
-</div>
+<%=render 'pareto' , report: @report, causa_pareto: @causa_pareto, causa_paretot: @causa_paretot%>
+
 
 <%end%>
 

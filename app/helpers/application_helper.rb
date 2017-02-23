@@ -104,13 +104,13 @@ def bootstrap_class_for flash_type
   def menu
     @menum = ["","", "", ""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
-    @menum = ["active","", "", ""]
+    @menum = ["active1","", "", ""]
   elsif controller.controller_name == "reports"  || controller.controller_name == "accions" || controller.controller_name == "causas" 
-    @menum = ["","active","", ""]
+    @menum = ["","active1","", ""]
   elsif controller.controller_name == "my_accions"  
-    @menum = ["","","active", ""]
+    @menum = ["","","active1", ""]
      elsif controller.controller_name == "my_reports"  
-    @menum = ["","","", "active"]
+    @menum = ["","","", "active1"]
   
   end
   return @menum
@@ -236,7 +236,7 @@ end
             
       end
       def get_employed1
-            Employed.where(email: current_user.email).first
+            Employed.where(email: current_user.email).first # Devuelve el empleado relacionado con el Usuario
             
       end
  

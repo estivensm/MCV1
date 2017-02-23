@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300,800);
 
 body{
-  font-family: 'Roboto', sans-serif;
+  font-family: "Open Sans", sans-serif;
 
 }
 .admin{
@@ -32,10 +32,10 @@ body{
     color: #d3dbe2;
   }
   a:focus{
-   color:#d3dbe2 !important
+   color:#949494 !important
     }
     a:hover{
-    color:#d3dbe2 !important
+    color:#949494 !important
     }
 }
 
@@ -65,12 +65,19 @@ body{
 {
   background:#0db497 !important;
   color:white!important;
+      border-right: none !important;
+}
+
+.active1
+{
+     background: #424242 !important;
+  color:white!important;
+      border-right: none !important;
 }
 
 
-
 .sidebar a:hover {
-    background:#0db497 !important;
+    background: #424242 !important;
     color:white!important;
     }
 
@@ -93,6 +100,7 @@ h1
 {
   color:gray!important;
   margin:0px;
+  font-size:32px !important;
 }
 .ic 
 {
@@ -112,7 +120,7 @@ h1
 }
 .logo 
 {
-  background:black;
+  background:#737882;
 
    
 }
@@ -120,10 +128,10 @@ h1
  .logo 
     {
       font-family: 'Days One', sans-serif;
-    background:black;
+    background:#737882;
     font-size: 21px;
     margin: 0px;
-    color: #dadada;
+    color: #fdfdfd;
    
 }
 .logo span
@@ -354,14 +362,15 @@ background: #f2f2f2;
 .menum
 {
   
-  background: #5f6267;
+      background: #737882;
 }
 .menum a
 {
-  padding:15px;
+  padding: 18px 12px;
       text-decoration: none !important;
     font-size: 13px;
-    border-radius: 5px;}
+    border-radius: 0px;
+        border-left: 1px solid grey;}
 .dp
 {
   padding:15px;

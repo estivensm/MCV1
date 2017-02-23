@@ -13,6 +13,9 @@ class CausasController < ApplicationController
   # GET /causas/1.json
   def show
      @report = Report.find(params[:report_id])
+     @causa_pareto = CausaEfecto.where(causa_id: @causa.id).where(tipo: "Pareto").where("porcentaje <= ?", 80)
+     @causa_paretot = CausaEfecto.where(causa_id: @causa.id).where(tipo: "Pareto").where("porcentaje > ?" , 80)
+
   end
 
   # GET /causas/new

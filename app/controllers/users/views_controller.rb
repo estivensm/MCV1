@@ -87,7 +87,7 @@ end
 
 def create_user
 
-  @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],role:params[:role], company:params[:company],rol_id:params[:rol_id])
+  @user = User.create(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],role:params[:role], company:params[:company],rol_id:params[:rol_id],employed_id:params[:employed_id])
   if @user.save
     WelcomeMailer.welcome(@user).deliver
     redirect_to users_index_path
@@ -98,7 +98,7 @@ end
 def update_user
 
 @user = User.find(params[:id])
-@user.update(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],role:params[:role], company:params[:company],rol_id:params[:rol_id])
+@user.update(email:params[:email],password:params[:password],password_confirmation:params[:password_confirmation],admin_user:params[:admin_user],role:params[:role], company:params[:company],rol_id:params[:rol_id],employed_id:params[:employed_id])
    end
 
 def delete_user

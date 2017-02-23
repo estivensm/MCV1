@@ -47,7 +47,7 @@ class Causa < ApplicationRecord
         CausaEfecto.where(causa_id: self.id).order(frecuencia: :desc).each do |causa|
             
             
-            porc = ((causa.frecuencia.to_f / sum) * 100).round(2) 
+            porc = ((causa.frecuencia.to_f / sum) * 100).round(0) 
             causa.porcentaje = porc + sump 
             sump = causa.porcentaje
             causa.save

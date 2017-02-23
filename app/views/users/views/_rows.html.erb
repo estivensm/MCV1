@@ -2,7 +2,7 @@
     <% @users.each do |user| %>
      <tr class="<%= user.id %>">
      <td  class = "imgav"><%= user.avatar? ? image_tag(user.avatar_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
-      <td><%= user.id %></td>
+      <td><%= user.id %> <%= user.employed_id%></td>
       <td><%= user.email %></td>
       <td><%= user.admin_user %></td>
       <td><%= user.rol.name %></td>

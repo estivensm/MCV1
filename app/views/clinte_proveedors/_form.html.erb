@@ -32,14 +32,19 @@
     <%= f.label "Dirección" %>
     <%= f.text_field :address,  class: "form-control" %>
   </div>
-
+ <div class="field">
+    <%= f.label "Nit" %>
+    <%= f.text_field :nit,  class: "form-control" %>
+  </div>
  
 </div>
 <div class="col-md-6">
    
- <div class="field">
-    <%= f.label "Nit" %>
-    <%= f.text_field :nit,  class: "form-control" %>
+
+
+  <div class="form-group">
+    <%= f.label "Tipo de Documento" %>
+     <%= f.select 'tipo', options_for_select(["Cliente", "Proveedor", "Entidad Gubernamental", "Entidad de Certificación"]), {},{:class => 'form-control'}%>
   </div>
 
   <div class="field">

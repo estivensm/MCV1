@@ -85,7 +85,7 @@ $('#all_id').click(function(){
     });
 
 $('.ck').click(function(){
-
+var a = 0;
   if ( $(this).is(':checked') )
     {
             $('td').css('background-color', 'whitesmoke');
@@ -93,7 +93,16 @@ $('.ck').click(function(){
        }
         else{
             $('td').css('background-color', 'white');
+$(".ck").each(function(){  //todos los que sean de la clase row1
+    if($(this).is(':checked')){
+       a  = 1;
+    }
+});
+            if (a != 1)
+            {
             $('.btn-danger').fadeOut();
+            $('#all_id').prop('checked', false);
+          }
          }
     });
 

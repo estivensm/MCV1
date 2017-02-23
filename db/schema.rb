@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221160047) do
+ActiveRecord::Schema.define(version: 20170223033014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170221160047) do
     t.date     "fp_seguimiento"
     t.boolean  "tag"
     t.boolean  "eficaz"
+    t.integer  "cierra_id"
   end
 
   create_table "accions_employeds", id: false, force: :cascade do |t|
@@ -235,6 +236,7 @@ ActiveRecord::Schema.define(version: 20170221160047) do
     t.integer  "clinte_proveedor_id"
     t.integer  "contact_id"
     t.boolean  "tag"
+    t.integer  "cierra_id"
   end
 
   create_table "rols", force: :cascade do |t|
@@ -298,6 +300,7 @@ ActiveRecord::Schema.define(version: 20170221160047) do
     t.string   "company"
     t.integer  "rol_id"
     t.string   "role"
+    t.integer  "employed_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

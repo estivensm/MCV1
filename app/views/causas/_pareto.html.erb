@@ -9,7 +9,8 @@
 
     Highcharts.chart('container', {
     chart: {
-        zoomType: 'xy'
+        zoomType: 'xy',
+        alignTicks:false
     },
     title: {
         text: ''
@@ -28,6 +29,7 @@
         crosshair: true
     }],
     yAxis: [{ // Primary yAxis
+
         labels: {
             format: '{value}',
             style: {
@@ -40,8 +42,11 @@
             style: {
                 color: Highcharts.getOptions().colors[1]
             }
-        }
+        }, 
+        min:0,
+        max:90
     }, { // Secondary yAxis
+          tickInterval: 20,
         title: {
             text: 'Porcentaje Acumulado',
             style: {
@@ -54,7 +59,9 @@
                 color: Highcharts.getOptions().colors[0]
             }
         },
-        opposite: true
+        opposite: true,
+        min:0,
+        max:100
     }],
     tooltip: {
         shared: true
@@ -71,6 +78,7 @@
     series: [{
         name: 'Porcentaje Acumulado',
         type: 'spline',
+
         yAxis: 1,
         zIndex: 2,
         data: [<% CausaEfecto.where(causa_id:@causa.id).order(frecuencia: :desc).each do |causa|%>
@@ -97,3 +105,41 @@
     }]
 });
 </script>
+
+</div>
+    <div class="col-md-4">
+   <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Vitales </div>
+  <div class="panel-body ph">
+     <% causa_pareto.each do  |cp| %>
+    <p class = "titctp">* <%=cp.name %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
+<div class="panel panel-default">
+   <div class="panel-heading ph">Causas Tribiales</div>
+  <div class="panel-body ph">
+     <% causa_pareto.each do  |cpt| %>
+    <p class = "titctp">* <%=cpt.name %></p>
+    <%end%>
+     </div>
+  
+  </div>
+    </div>
+</div>
+
+<style>
+.titct
+{
+margin-top: : 0px
+}
+.titctp
+{
+font-size: 12px !important;    
+}
+
+    
+</style>
+

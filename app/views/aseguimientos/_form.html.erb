@@ -29,10 +29,12 @@
           
               
                <br>
+               <% if @accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin"%>
                <div class="form-group">
                   <%= f.label :cierra %>
                   <%= f.check_box :cierra ,  class: "cierra1"  %>
                </div>
+               <% end %>
                <div class="form-group cierra">
                   <%= f.label :eficaz %>
                   <%= f.check_box :eficaz  %>
