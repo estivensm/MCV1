@@ -62,9 +62,9 @@ emp = Employed.where(admin_user: self.admin_user).count
 	end
 
 	def destroy_user
-        
+        if User.where(email:self.email).where(admin_user:self.admin_user).count != 0
         User.where(email:self.email).where(admin_user:self.admin_user).first.destroy
-
+        end
 	end
 
 
