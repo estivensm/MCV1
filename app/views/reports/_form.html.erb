@@ -357,6 +357,8 @@ $( document ).ready(function() {
  
 $('.source').val("<%=@es.id%>");
 $('.reporta').val("<%=@user.id%>");
+
+console.log($('.reporta').val());
 var b = $('.source').val();
 get_source(b);
 
