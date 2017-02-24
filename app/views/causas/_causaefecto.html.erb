@@ -1,5 +1,15 @@
 <div class = "pezdiv">
- <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+ <div class="row">
+<div class="col-md-8">
+          <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+     </div>
+
+<div class="col-md-4 text-right">
+<%= Amefp.where(causa_id:@causa).count != 0 ? (link_to "Ver", show_amefp_path(Amefp.where(causa_id:@causa).first.id), class:"btn btn-primary") : "hola"%>
+         <%= link_to "Crear AMEF", new_amefp_path(@causa), remote: true, class:"btn btn-primary"%>
+     </div>          
+ </div>
+
     <table class ="pez">
         <tr>
             <th style = "width:240px">

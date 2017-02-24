@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223033014) do
+ActiveRecord::Schema.define(version: 20170224204240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,58 @@ ActiveRecord::Schema.define(version: 20170223033014) do
     t.integer "accion_id"
     t.index ["accion_id"], name: "index_accions_employeds_on_accion_id", using: :btree
     t.index ["employed_id"], name: "index_accions_employeds_on_employed_id", using: :btree
+  end
+
+  create_table "amefps", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.integer  "report_id"
+    t.integer  "causa_id"
+    t.text     "descripcion"
+    t.integer  "employed_id"
+    t.boolean  "p_valoracion"
+    t.date     "frp_valoracion"
+    t.text     "dp_valoracion"
+    t.integer  "p_valor"
+    t.boolean  "s_valoracion"
+    t.date     "frs_valoracion"
+    t.text     "ds_valoracion"
+    t.integer  "s_valor"
+    t.boolean  "t_valoracion"
+    t.date     "frt_valoracion"
+    t.text     "dt_valoracion"
+    t.integer  "t_valor"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "amefs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.integer  "report_id"
+    t.integer  "causa_id"
+    t.string   "efecto_fallo"
+    t.integer  "grado"
+    t.string   "tipo"
+    t.string   "modo_fallo"
+    t.string   "causa_fallo"
+    t.integer  "p_ocurrencia"
+    t.string   "c_actuales"
+    t.integer  "pn_deteccion"
+    t.integer  "npr"
+    t.integer  "employed_id"
+    t.integer  "sgrado"
+    t.integer  "tgrado"
+    t.integer  "sp_ocurrencia"
+    t.integer  "tp_ocurrencia"
+    t.integer  "spn_deteccion"
+    t.integer  "tpn_deteccion"
+    t.integer  "snpr"
+    t.integer  "tnpr"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "amefp_id"
+    t.integer  "causa_efecto_id"
   end
 
   create_table "aseguimientos", force: :cascade do |t|

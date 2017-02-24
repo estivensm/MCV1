@@ -24,6 +24,7 @@
 #  fp_seguimiento :date
 #  tag            :boolean
 #  eficaz         :boolean
+#  cierra_id      :integer
 #
 
 class Accion < ApplicationRecord

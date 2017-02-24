@@ -13,6 +13,8 @@
 #  report_id   :integer
 #  causa_id    :integer
 #  name        :string
+#  frecuencia  :integer
+#  porcentaje  :float
 #
 
 require 'test_helper'

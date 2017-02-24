@@ -31,6 +31,7 @@
 #  clinte_proveedor_id :integer
 #  contact_id          :integer
 #  tag                 :boolean
+#  cierra_id           :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

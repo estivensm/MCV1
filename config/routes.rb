@@ -4,12 +4,15 @@ Rails.application.routes.draw do
           
 
   
-         
+  get 'amefps/show/:causa' , to: "amefps#show", as: "show_amefp"
+  get 'new_amefp/:causa', to: 'causas#new_amefp', as: "new_amefp"
+
+  #Analisis de Causas       
+  get 'amefs/index' 
   get 'causa_efectos/create'
-
   get 'causa_efectos/udpate'
-
   get 'causa_efectos/destroy'
+  post 'crear_amefp' , to: "causas#crear_amefp", as: "crear_amefp"
 
   resources :clinte_proveedors
   resources :contacts

@@ -1,5 +1,4 @@
 
-
 body{
   font-family: "Open Sans", sans-serif;
 
@@ -9,10 +8,12 @@ body{
 }
 .app{
        background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), 
- url('https://c1.staticflickr.com/1/380/32109350242_c2465948ac_h.jpg')no-repeat center top;
+ url('https://c1.staticflickr.com/1/640/32932852872_58a605e3e8_h.jpg')no-repeat center top;
   background-size: cover;
   
 }
+
+
 .bar-top{
   background-color: #8c8c8c !important;
   border-bottom: 0 !important;
@@ -266,6 +267,8 @@ background: #f2f2f2;
     }
     .login1
     {    padding: 30px;
+        padding-left: 60px !important;
+    padding-right: 60px  !important;
        background: rgba(255, 255, 255, 0);
       p
       {

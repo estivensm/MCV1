@@ -1,0 +1,74 @@
+<div id="contact-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Crear AMEF</h4>
+      </div>
+<%= form_tag crear_amefp_path do %>
+  <div class="alert alert-danger" style="display:none;padding: 10px;">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+<div class="row">
+  <div class="col-md-12">
+     <div class="form-group">
+    <%= label_tag "Descripcion" %>
+    <%= text_area_tag :descripcion, nil , class: "form-control formus" %>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+     <div class="form-group">
+    <%= label_tag "Fecha Valoracion" %>
+    <%= date_field_tag :frp_valoracion, nil , class: "form-control formus"%>
+   
+  </div>
+
+  </div>
+   <div class="col-md-2">
+     <div class="form-group">
+    <%= label_tag "Gravedad" %>
+    <%= number_field_tag :p_valor, nil , class: "form-control formus"%>
+   
+  </div>
+
+  </div>
+   <div class="col-md-5">
+     <div class="form-group">
+    <%= label_tag "Descripcion" %>
+    <%= text_area_tag :dp_valoracion, nil , class: "form-control formus"%>
+   
+  </div>
+
+  </div>
+</div>
+  
+</div>
+        
+
+
+
+<%= hidden_field_tag :user_id ,current_user.id %>
+<%= hidden_field_tag :admin_user ,current_user.admin_user %>
+<%= hidden_field_tag :causa_id ,causa.id %>
+<%= hidden_field_tag :report_id ,causa.report_id %>
+
+ 
+<br>
+
+      <div class="modal-footer text-center">
+       
+        <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+<% end %>
+
+    </div>
+  </div>
+</div>
+</div>

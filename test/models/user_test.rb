@@ -21,6 +21,7 @@
 #  company                :string
 #  rol_id                 :integer
 #  role                   :string
+#  employed_id            :integer
 #
 
 require 'test_helper'

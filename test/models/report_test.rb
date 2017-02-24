@@ -31,6 +31,7 @@
 #  clinte_proveedor_id :integer
 #  contact_id          :integer
 #  tag                 :boolean
+#  cierra_id           :integer
 #
 
 require 'test_helper'

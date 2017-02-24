@@ -16,12 +16,12 @@
    
 
   <% if devise_mapping.rememberable? -%>
-   <div class="form-group">
+   <div class="form-group display-none">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
   <% end %>
-
+<br>
  <div class="form-group">
     <%= f.submit "Iniciar Sesión", :class => 'btn btn-primary btn-block' %>
   </div>

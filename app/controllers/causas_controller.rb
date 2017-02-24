@@ -109,6 +109,24 @@ def show_caef
   
 end
 
+def crear_amef
+
+redirect_to amef_path
+
+  
+end
+
+ def new_amefp
+    @causa = Causa.find(params[:causa])
+  end
+
+  def crear_amefp
+    @amefp = Amefp.create(user_id:params[:user_id],admin_user:params[:admin_user],report_id:params[:report_id],causa_id:params[:causa_id],descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor])
+    if @amefp.save 
+    redirect_to show_amefp_path(@amefp)
+  end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

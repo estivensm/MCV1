@@ -27,3 +27,61 @@ You can use the following SFTP credentials to upload your files (using FileZilla
 You can use the following Postgres database credentials:
   * User: rails
   * Pass: Fw37XbLg39
+
+
+def delete_procesos
+    a = params[:idp]
+    b = params[:nombres]
+    x = 0
+    a.each do |i|
+      Proceso.find(i).update(name: b[x])
+     
+      x = x + 1
+    end
+    #Proceso.where(:id => params[:proceso_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to procesos_path }
+    format.json { head :no_content }
+  end
+end
+
+
+post "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
+
+
+<%= form_tag delete_procesos_path do %>
+<p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
+   <table class="table">
+      <thead>
+         <tr class = "tr-table">
+          <th><%= check_box_tag "all_id", 0 %></th>
+            <th>Nombre</th>
+            <th>Descripcion</th|>
+        
+            <th colspan="3"></th>
+         </tr>
+      </thead>
+      <tbody>
+         <% @procesos.each do |proceso| %>
+         <tr>
+         <td><%= check_box_tag "proceso_ids[]", proceso.id ,false ,class:"ck"%></td>
+            <td><%= proceso.name %><%= text_field_tag "nombres[]", proceso.name ,class:"ck"%>
+            <%=hidden_field_tag "idp[]", proceso.id ,class:"ck"%>
+              
+
+            </td>
+            <td><%= proceso.description %></td>
+            <td><%= link_to  proceso, :class => "opciones" do %>
+               <i class="fa fa-eye" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  edit_proceso_path(proceso), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  proceso,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+            </td>
+         </tr>
+         <% end %>
+      </tbody>
+   </table>

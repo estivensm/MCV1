@@ -13,6 +13,8 @@
 #  report_id   :integer
 #  causa_id    :integer
 #  name        :string
+#  frecuencia  :integer
+#  porcentaje  :float
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

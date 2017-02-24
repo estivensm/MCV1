@@ -27,6 +27,7 @@ class Causa < ApplicationRecord
 	accepts_nested_attributes_for :causa_efectos, :allow_destroy => true
 	after_create :eliminar_causas_basura
 	after_update :crear_porcentaje
+	has_many :amefps
 
         
 	def eliminar_causas_basura

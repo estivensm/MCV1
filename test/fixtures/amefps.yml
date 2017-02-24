@@ -1,0 +1,68 @@
+# == Schema Information
+#
+# Table name: amefps
+#
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  admin_user     :integer
+#  report_id      :integer
+#  causa_id       :integer
+#  descripcion    :text
+#  employed_id    :integer
+#  p_valoracion   :boolean
+#  frp_valoracion :date
+#  dp_valoracion  :text
+#  p_valor        :integer
+#  s_valoracion   :boolean
+#  frs_valoracion :date
+#  ds_valoracion  :text
+#  s_valor        :integer
+#  t_valoracion   :boolean
+#  frt_valoracion :date
+#  dt_valoracion  :text
+#  t_valor        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  report_id: 1
+  causa_id: 1
+  descripcion: MyText
+  employed_id: 1
+  p_valoracion: false
+  frp_valoracion: 2017-02-24
+  dp_valoracion: MyText
+  p_valor: 1
+  s_valoracion: false
+  frs_valoracion: 2017-02-24
+  ds_valoracion: MyText
+  s_valor: 1
+  t_valoracion: false
+  frt_valoracion: 2017-02-24
+  dt_valoracion: MyText
+  t_valor: 1
+
+two:
+  user_id: 1
+  admin_user: 1
+  report_id: 1
+  causa_id: 1
+  descripcion: MyText
+  employed_id: 1
+  p_valoracion: false
+  frp_valoracion: 2017-02-24
+  dp_valoracion: MyText
+  p_valor: 1
+  s_valoracion: false
+  frs_valoracion: 2017-02-24
+  ds_valoracion: MyText
+  s_valor: 1
+  t_valoracion: false
+  frt_valoracion: 2017-02-24
+  dt_valoracion: MyText
+  t_valor: 1

@@ -179,3 +179,8 @@ input, select, textarea
 {
   color:gray!important;
 }
+
+.display-none
+{
+  display: none !important;
+}

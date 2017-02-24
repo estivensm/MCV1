@@ -1,0 +1,80 @@
+# == Schema Information
+#
+# Table name: amefs
+#
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  admin_user    :integer
+#  report_id     :integer
+#  causa_id      :integer
+#  efecto_fallo  :string
+#  grado         :integer
+#  tipo          :string
+#  modo_fallo    :string
+#  causa_fallo   :string
+#  p_ocurrencia  :integer
+#  c_actuales    :string
+#  pn_deteccion  :integer
+#  npr           :integer
+#  employed_id   :integer
+#  sgrado        :integer
+#  tgrado        :integer
+#  sp_ocurrencia :integer
+#  tp_ocurrencia :integer
+#  spn_deteccion :integer
+#  tpn_deteccion :integer
+#  snpr          :integer
+#  tnpr          :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  report_id: 1
+  causa_id: 1
+  efecto_fallo: MyString
+  grado: 1
+  tipo: MyString
+  modo_fallo: MyString
+  causa_fallo: MyString
+  p_ocurrencia: 1
+  c_actuales: MyString
+  pn_deteccion: 1
+  npr: 1
+  employed_id: 1
+  sgrado: 1
+  tgrado: 1
+  sp_ocurrencia: 1
+  tp_ocurrencia: 1
+  spn_deteccion: 1
+  tpn_deteccion: 1
+  snpr: 1
+  tnpr: 1
+
+two:
+  user_id: 1
+  admin_user: 1
+  report_id: 1
+  causa_id: 1
+  efecto_fallo: MyString
+  grado: 1
+  tipo: MyString
+  modo_fallo: MyString
+  causa_fallo: MyString
+  p_ocurrencia: 1
+  c_actuales: MyString
+  pn_deteccion: 1
+  npr: 1
+  employed_id: 1
+  sgrado: 1
+  tgrado: 1
+  sp_ocurrencia: 1
+  tp_ocurrencia: 1
+  spn_deteccion: 1
+  tpn_deteccion: 1
+  snpr: 1
+  tnpr: 1
