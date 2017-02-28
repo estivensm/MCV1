@@ -5,15 +5,15 @@ module CausasHelper
   cau = Causa.find(causa)
   if nivel == "1"
     cau.primera_m
-  elsif nivel = "2"
+  elsif nivel == "2"
     cau.seguna_m
-    elsif nivel = "3"
+    elsif nivel == "3"
     cau.tercera_m
-    elsif nivel = "4"
+    elsif nivel == "4"
     cau.cuarta_m
-    elsif nivel = "5"
+    elsif nivel == "5"
     cau.quinta_m
-    elsif nivel = "6"
+    elsif nivel == "6"
     cau.sexta_m
   end    
   end  

@@ -116,17 +116,73 @@ redirect_to amef_path
   
 end
 
+#LLama el popup para crear el AMEF padre
  def new_amefp
     @causa = Causa.find(params[:causa])
   end
 
+#Crea el AMEF padre
   def crear_amefp
-    @amefp = Amefp.create(user_id:params[:user_id],admin_user:params[:admin_user],report_id:params[:report_id],causa_id:params[:causa_id],descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor])
+    @amefp = Amefp.create(user_id:params[:user_id],admin_user:params[:admin_user],report_id:params[:report_id],causa_id:params[:causa_id],descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor],p_valoracion:params[:p_valoracion])
+    @amefp.s_valoracion = 0
+    @amefp.t_valoracion = 0
     if @amefp.save 
     redirect_to show_amefp_path(@amefp)
   end
 end
 
+
+  def update_amefp
+   @amefp = Amefp.find(params[:id])  
+    if @amefp.update(descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor],p_valoracion:params[:p_valoracion],frs_valoracion:params[:frs_valoracion],ds_valoracion:params[:ds_valoracion],s_valor:params[:s_valor],s_valoracion:params[:s_valoracion],frt_valoracion:params[:frt_valoracion],dt_valoracion:params[:dt_valoracion],t_valor:params[:t_valor],t_valoracion:params[:t_valoracion])
+    redirect_to show_amefp_path(@amefp)
+  end
+end
+
+def edit_amefp
+    @amefp = Amefp.find(params[:id])  
+    @causa = Causa.find(@amefp.causa_id)
+  end
+
+
+
+
+
+#Actualiza los valores del AMEF
+def update_vcaef
+    amefp = Amefp.find(params[:amefp])
+    a = params[:ids]# Array de los ids
+    b = params[:p_ocurrencia] #propbabilidad de ocurrencia primera valoracion
+    c = params[:pn_deteccion] #propbabilidad de no deteccion primera valoracion
+    e = params[:a_tomar]
+    bs = params[:sp_ocurrencia]#propbabilidad de ocurrencia segunda valoracion
+    cs = params[:spn_deteccion]#propbabilidad de no deteccion segunda valoracion
+    bt = params[:tp_ocurrencia]#propbabilidad de ocurrencia tercera valoracion
+    ct = params[:tpn_deteccion]#propbabilidad de no deteccion tercera valoracion
+    ca = params[:c_actuales]
+    x = 0
+    a.each do |i|
+      g = b[x].to_i * c[x].to_i * params[:grado].to_i
+     
+      
+      if amefp.p_valoracion && amefp.s_valoracion && amefp.t_valoracion
+         gs = bs[x].to_i * cs[x].to_i * params[:sgrado].to_i
+      gt = bt[x].to_i * ct[x].to_i * params[:tgrado].to_i
+      Amef.find(i).update(grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
+          
+       elsif amefp.p_valoracion && amefp.s_valoracion && !amefp.t_valoracion
+         gs = bs[x].to_i * cs[x].to_i * params[:sgrado].to_i
+
+      Amef.find(i).update(p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
+           elsif amefp.p_valoracion && !amefp.s_valoracion && !amefp.t_valoracion
+            Amef.find(i).update(p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x])
+
+           end    
+      x = x + 1
+    end
+  redirect_to show_amefp_path(params[:amefp])
+
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

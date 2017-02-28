@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'causa_efectos/udpate'
   get 'causa_efectos/destroy'
   post 'crear_amefp' , to: "causas#crear_amefp", as: "crear_amefp"
+  get 'edit_amefp/:id' , to: "causas#edit_amefp", as: "edit_amefp"
+  patch "update_amefp/:id", to: "causas#update_amefp", as: "update_amefp"
 
   resources :clinte_proveedors
   resources :contacts
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   get '/show_caef/:id', to: 'causas#show_caef', as: "show_caef"
   patch "update_caef/:id", to: "causas#update_caef", as: "update_caef"
   delete "delete_caef/:id", to: "causas#destroy_caef", as: "delete_caef"
+  post "update_vcaef", to: "causas#update_vcaef", as: "update_vcaef"
 
 
   resources :rols

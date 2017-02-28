@@ -72,7 +72,8 @@
         <hr>
 <div class="row rtr">
    <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-   <div class="col-md-8 rtd text-left"> <strong>Descripcion:</strong> <%= @report.description%></div>
+   <div class="col-md-8 rtd text-left"><strong>Nombre:</strong> <%= @report.name%><br> 
+   <strong>Descripcion:</strong> <%= @report.description%></div>
    <div class="col-md-4 rtd text-left">
       <strong>Evidencia:</strong> <%= @report.evidencia%><br><strong>Adjunto:</strong>  <% if @report.archivo_url%>
       <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>

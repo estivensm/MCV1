@@ -42,68 +42,65 @@
 
     
       <div class ="container-fluid menusp">
-         
-         <div class="row menum">
-            <div class="col-xs-12 col-md-2 col-lg-2 sidebar barleft">
-               
-                 
-                        <p class = "logo">Visual<span>iso</span>ft</p>
-                  </div>
-                  <div class="col-xs-8 col-md-8 col-lg-8 sidebar barleft menumi">
-                        <% menu %>
-
-                       <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]} hidden-xs"  do %>
+       <div class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand logo" href="#">Visual<span>iso</span>ft</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+          <% menu %>
+            <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
                         <i class="fa fa-cogs ic" aria-hidden="true"></i>
-                        <span class="hidden-xs">Configuracion</span>
+                        <span>Configuracion</span>
                         <% end %>
-                        <%end%>
-                      <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                        <%end%></li>
+            <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                         <%= link_to reports_path,:class => "Reportes #{@menum[1]}" do %>
                         <i class="fa fa-search ic" aria-hidden="true"></i>
-                        <span class="hidden-xs">Reportes</span>
+                        <span >Reportes</span>
                         <% end %>
-                        <% end %>
-
-                        <%= link_to misreports_path,:class => "#{@menum[3]}" do %>
+                        <% end %></li>
+            <li><%= link_to misreports_path,:class => "#{@menum[3]}" do %>
                         <i class="fa fa-money ic" aria-hidden="true"></i>
-                        <span class="hidden-xs">Mis Reportes</span>
-                        <% end %>
-                  
-                        <%= link_to misacciones_path,:class => "#{@menum[2]}" do %>
+                        <span>Mis Reportes</span>
+                        <% end %></li>
+             <li><%= link_to misacciones_path,:class => "#{@menum[2]}" do %>
                         <span class="fa fa-book ic"></span>
-                        <span class="hidden-xs">Mis Acciones</span>
-                        <% end %>
-              
-                   
+                        <span ">Mis Acciones</span>
+                        <% end %></li>
+              <li> 
                         <%= link_to root_path,:class => "indicadores hidden-xs" do %>
                         <i class="fa fa-line-chart ic" aria-hidden="true"></i>
-                        <span class="hidden-xs">Indicadores y Analisis</span>
-                        <% end %>
-                        </div>
-                    <div class="col-xs-4 col-md-2 col-lg-2 sidebar barleft">
-                     <div class="dropdown dp">
-                        <a style = "width: 20px;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i style = "margin:0px 10px 0px 0px;" class="fa fa-user ic hidden-xs" aria-hidden="true"></i>
-                      <span class="hidden-xs"><%=current_user.name  %></span><span class="caret"></span></a>
-                        <ul style = "width:200px;" class="dropdown-menu">
-                           <li >
-                              <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+                        <span >Indicadores y Analisis</span>
+                        <% end %></li>
+                           
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:#ccc"><%=current_user.name  %> </span><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
                               <span class="fa fa-sign-out"></span>
-                              <span class="hidden-xs ">Cerrar Sesión</span>
-                              <% end %>
-                              <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
+                              <span style = "color:gray!important">Cerrar Sesión</span>
+                              <% end %></li>
+            <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
                               <span class="fa fa-sign-out"></span>
-                              <span class="hidden-xs ">Ver Usuario</span>
-                              <% end %>
-                           </li>
-                        </ul>
-                     </div>
-                     
-                 
-                </div>
-          
-
-         </div>
+                              <span style = "color:gray!important" >Ver Usuario</span>
+                              <% end %></li>
+      
+          </ul>
+        </li>
+      </ul>
+        </div>
+      </div>
+    </div>
+         
+        
             <!--/sidebar-->
             <div class="row submenu-main">
                  
@@ -212,6 +209,42 @@
       <!-- /container -->
    </body>
 </html>
+
+
+
+
+
+
+
+
+  <style>
+  .navbar-default
+  {
+    margin-bottom: 0px !important;
+    background: #737882 !important;
+
+  }
+  .navbar-nav a
+  {
+    color: #ccc !important;
+
+
+  }
+  .logo
+  {
+
+    padding: 15px 37px;
+    color:#e8e8e8 !important;
+    font-size: 20px;
+  }
+
+    
+  </style>
+  
+ 
+
+
+
 
 
 

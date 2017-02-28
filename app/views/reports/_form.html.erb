@@ -268,9 +268,15 @@ $('.pri').addClass("chosen-select");
       <hr>
        <br>
        <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+               <%= f.label "Description Corta" %>
+               <%= f.text_field :name,  class: "form-control" %>
+            </div>
+         </div>
          <div class="col-md-6">
             <div class="form-group">
-               <%= f.label "Description" %>
+               <%= f.label "Description Detallada" %>
                <%= f.text_area :description,  class: "form-control area" %>
             </div>
          </div>
@@ -351,7 +357,7 @@ $('.pri').addClass("chosen-select");
 
 <script>
 $( document ).ready(function() {
-  if ("<%=action_name%>" != "edit")
+  if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
 {
 
  

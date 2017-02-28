@@ -105,7 +105,7 @@ def bootstrap_class_for flash_type
     @menum = ["","", "", ""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
     @menum = ["active1","", "", ""]
-  elsif controller.controller_name == "reports"  || controller.controller_name == "accions" || controller.controller_name == "causas" 
+  elsif controller.controller_name == "reports"  || controller.controller_name == "accions" 
     @menum = ["","active1","", ""]
   elsif controller.controller_name == "my_accions"  
     @menum = ["","","active1", ""]
@@ -120,25 +120,25 @@ def bootstrap_class_for flash_type
       
     @menu = ["","","","","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["active","","","","","","","",""]
+    @menu = ["actives","","","","","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","active","","","","","","","",""]
+@menu = ["","actives","","","","","","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","active","","","","","",""]
+    @menu = ["","","actives","","","","","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","active","","","","",""]
+ @menu = ["","","","actives","","","","",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","","active","","","",""]
+ @menu = ["","","","","actives","","","",""]
  elsif controller.controller_name == "normas"
- @menu = ["","","","","","active","","",""]
+ @menu = ["","","","","","actives","","",""]
 elsif controller.controller_name == "numerals"
- @menu = ["","","","","","active","","",""]
+ @menu = ["","","","","","actives","","",""]
  elsif controller.controller_name == "sources"
- @menu = ["","","","","","","active","",""]
+ @menu = ["","","","","","","actives","",""]
  elsif controller.controller_name == "rols"
- @menu = ["","","","","","","","active",""]
+ @menu = ["","","","","","","","actives",""]
 elsif controller.controller_name == "clinte_proveedors"
- @menu = ["","","","","","","","","active"]
+ @menu = ["","","","","","","","","actives"]
     end
     return @menu
 
@@ -159,13 +159,13 @@ def menu_hallazgo
 @menu_a = ["","",""]
 if  action_name == "abiertos"
   
-@menu_a = ["active","",""]
+@menu_a = ["actives","",""]
 elsif action_name  =="cerrados"
-  @menu_a = ["","active",""]
+  @menu_a = ["","actives",""]
   
 else
 
-  @menu_a = ["","","active"]
+  @menu_a = ["","","actives"]
 end
  return @menu_a
 
@@ -176,11 +176,11 @@ end
 @menu_ma = ["",""]
 if  action_name == "asignado_por_mi"
   
-@menu_ma = ["active",""]
+@menu_ma = ["actives",""]
  
 else
 
-  @menu_ma = ["","active"]
+  @menu_ma = ["","actives"]
 end
  return @menu_ma
 
