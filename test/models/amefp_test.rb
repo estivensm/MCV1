@@ -23,6 +23,7 @@
 #  t_valor        :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  npr_tage       :integer
 #
 
 require 'test_helper'

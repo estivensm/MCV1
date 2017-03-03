@@ -1,3 +1,49 @@
 // Place all the styles related to the Amefps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.table td
+{
+   border: 1px solid #f2f2f2;
+   font-size:10px !important;
+}
+.table th
+{
+   
+   font-size:10px !important;
+   text-align:center;
+}
+.pri td
+{
+       
+    }
+
+
+.input input
+{
+    width: 35px;
+    text-align: center;
+ }  
+ .po input
+{
+    width: 35px;
+    text-align: center;
+ }  
+  .pn input
+{
+    width: 35px;
+    text-align: center;
+ }  
+  .spo input
+{
+    width: 35px;
+    text-align: center;
+ }  
+  .spn input
+{
+    width: 35px;
+    text-align: center;
+ }  
+ .btn-danger
+ {
+   background:#d43f3a !important;
+ }

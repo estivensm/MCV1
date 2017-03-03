@@ -15,6 +15,7 @@
 #  name        :string
 #  frecuencia  :integer
 #  porcentaje  :float
+#  estado      :string
 #
 
 require 'test_helper'

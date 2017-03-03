@@ -100,6 +100,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def source_params
-      params.require(:source).permit(:name, :description, :user_id, :admin_user, :state, :accion, :correccion, :causa, :puede_ac,:tipo,:codigo)
+      params.require(:source).permit(:name, :description, :user_id, :admin_user, :state, :accion, :correccion, :causa, :puede_ac,:tipo,:codigo,:balon)
     end
 end

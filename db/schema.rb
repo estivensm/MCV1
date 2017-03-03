@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228214937) do
+ActiveRecord::Schema.define(version: 20170303205941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170228214937) do
     t.integer  "t_valor"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "npr_tage"
   end
 
   create_table "amefs", force: :cascade do |t|
@@ -100,6 +101,8 @@ ActiveRecord::Schema.define(version: 20170228214937) do
     t.integer  "causa_efecto_id"
     t.string   "a_tomar"
     t.string   "estado"
+    t.string   "sestado"
+    t.string   "testado"
   end
 
   create_table "aseguimientos", force: :cascade do |t|
@@ -140,6 +143,7 @@ ActiveRecord::Schema.define(version: 20170228214937) do
     t.string   "name"
     t.integer  "frecuencia"
     t.float    "porcentaje"
+    t.string   "estado"
   end
 
   create_table "causas", force: :cascade do |t|
@@ -293,6 +297,7 @@ ActiveRecord::Schema.define(version: 20170228214937) do
     t.boolean  "tag"
     t.integer  "cierra_id"
     t.string   "name"
+    t.string   "balon"
   end
 
   create_table "rols", force: :cascade do |t|
@@ -335,6 +340,7 @@ ActiveRecord::Schema.define(version: 20170228214937) do
     t.boolean  "puede_ac"
     t.string   "codigo"
     t.string   "tipo"
+    t.boolean  "balon"
   end
 
   create_table "users", force: :cascade do |t|

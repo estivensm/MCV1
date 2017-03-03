@@ -25,6 +25,7 @@
 #  tag            :boolean
 #  eficaz         :boolean
 #  cierra_id      :integer
+#  name           :string
 #
 
 class Accion < ApplicationRecord

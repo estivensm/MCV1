@@ -32,11 +32,13 @@
 #  contact_id          :integer
 #  tag                 :boolean
 #  cierra_id           :integer
+#  name                :string
 #
 
 class Report < ApplicationRecord
   has_and_belongs_to_many :employeds, dependent: :destroy
   belongs_to :cierra, :class_name => 'Employed'
+  belongs_to :employed, :class_name => 'Employed'
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
   belongs_to :proceso
@@ -63,7 +65,7 @@ class Report < ApplicationRecord
       
       if self.tag 
 
-      self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
+        self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1

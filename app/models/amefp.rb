@@ -23,6 +23,7 @@
 #  t_valor        :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  npr_tage       :integer
 #
 
 class Amefp < ApplicationRecord
@@ -43,7 +44,14 @@ class Amefp < ApplicationRecord
         end
         CausaEfecto.where(causa_id: self.causa_id).where(nivel: "4").each do | n1 |
             Amef.create(causa_efecto_id:n1.id, admin_user:self.admin_user, user_id:self.user_id, report_id: self.report_id, causa_id:self.causa_id, efecto_fallo: causa.descripcion, grado: self.p_valor,modo_fallo: causa.cuarta_m, causa_fallo: n1.name,p_ocurrencia:0,pn_deteccion:0,npr:0, amefp_id:self.id, tipo:n1.nivel)
-        end      
+        end  
+         CausaEfecto.where(causa_id: self.causa_id).where(nivel: "5").each do | n1 |
+            Amef.create(causa_efecto_id:n1.id, admin_user:self.admin_user, user_id:self.user_id, report_id: self.report_id, causa_id:self.causa_id, efecto_fallo: causa.descripcion, grado: self.p_valor,modo_fallo: causa.quinta_m, causa_fallo: n1.name,p_ocurrencia:0,pn_deteccion:0,npr:0, amefp_id:self.id, tipo:n1.nivel)
+        end 
+         CausaEfecto.where(causa_id: self.causa_id).where(nivel: "6").each do | n1 |
+            Amef.create(causa_efecto_id:n1.id, admin_user:self.admin_user, user_id:self.user_id, report_id: self.report_id, causa_id:self.causa_id, efecto_fallo: causa.descripcion, grado: self.p_valor,modo_fallo: causa.sexta_m, causa_fallo: n1.name,p_ocurrencia:0,pn_deteccion:0,npr:0, amefp_id:self.id, tipo:n1.nivel)
+        end 
+
 
     end
 

@@ -209,6 +209,7 @@ end
     @report.codigo = code
     @report.contador = num
     @report.costo = 0
+    @report.balon = "responsable"
     @employed = Employed.find(@report.employed_id)
     respond_to do |format|
       if @report.save

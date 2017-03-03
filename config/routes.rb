@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :rols
   get 'my_accions/index', as: "misacciones"
   get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
+  get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
   get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"

@@ -32,6 +32,7 @@
 #  contact_id          :integer
 #  tag                 :boolean
 #  cierra_id           :integer
+#  name                :string
 #
 
 require 'test_helper'

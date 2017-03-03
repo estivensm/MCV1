@@ -15,6 +15,7 @@
 #  name        :string
 #  frecuencia  :integer
 #  porcentaje  :float
+#  estado      :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

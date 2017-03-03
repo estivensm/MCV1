@@ -70,8 +70,8 @@ padding: 15px 15px;
 
 
        margin-right: 0px;
-        color: #737373;
-    padding: 13px 11px;
+           color: #8c8c8c;
+    padding: 16px 13px;
    
     border-radius: 0px;
     font-size: 13px;
@@ -90,7 +90,7 @@ border-right: none;
 .submenu 
 {
 
-    padding: 10px;
+    padding: 14px;
          background: -webkit-linear-gradient(#fbfbfb, #d6d6d6);
     margin-top: 0px;
     }
@@ -184,3 +184,29 @@ label
 {
   display: none !important;
 }
+
+  .navbar-default
+  {
+    margin-bottom: 0px !important;
+    background: #737882 !important;
+
+  }
+  .navbar-nav a
+  {
+    color: #f1f1f1 !important;border-left-width: medium;
+
+
+  }
+  .logo
+  {
+
+    padding: 15px 37px;
+    color:#e8e8e8 !important;
+    font-size: 20px;
+  }
+
+    .submenu-main .fa
+    {
+      display: none;
+    }
+    

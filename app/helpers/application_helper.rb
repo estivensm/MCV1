@@ -173,14 +173,16 @@ end
  
  def menu_misreports
 
-@menu_ma = ["",""]
+@menu_ma = ["","",""]
 if  action_name == "asignado_por_mi"
   
-@menu_ma = ["actives",""]
+@menu_ma = ["actives","", ""]
  
+ elsif action_name == "invitado"
+@menu_ma = ["","","actives"]   
 else
 
-  @menu_ma = ["","actives"]
+  @menu_ma = ["","actives",""]
 end
  return @menu_ma
 

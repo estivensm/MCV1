@@ -27,5 +27,18 @@ class Rseguimiento < ApplicationRecord
 		report.fp_seguimiento = Time.at(Time.now + (report.f_seguimiento*60*60*24))
 		report.save
 	end
+        
+           if employed.id == report.employed_id
+                
+                report.balon = "asignador"
+                report.save
+             
+        elsif employed.id == report.employed_reporta
+             report.balon = "responsable" 	
+             report.save
+          end
+
+
+
 end
 end

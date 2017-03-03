@@ -1,8 +1,64 @@
 
+<script>
+   $(document).on('turbolinks:load',function() {
+   $('.input input').hide();
+     $('.input textarea').hide();
+     $('.po input').hide();
+     $('.pn input').hide();
+     $('.spo input').hide();
+     $('.spn input').hide();
+     $('.subact').hide();
+     
+  
+
+   $('.actu').click(function(){
+          
+          if (<%=@amefp.s_valoracion%> != true)
+          {
+            $('.po input').toggle();
+            $('.pn input').toggle();
+            $('.po span').toggle();
+            $('.pn span').toggle();
+          
+          }
+          if (<%=@amefp.t_valoracion%> != true)
+          {
+          
+            $('.spo input').toggle();
+            $('.spn input').toggle();
+            $('.spo span').toggle();
+            $('.spn span').toggle();
+          }
+          
+
+         $('.input input').toggle();
+     $('.input textarea').toggle();
+       $('.input span').toggle();
+      
+
+        $('.subact').toggle();
+   
+
+   });
+
+ });
+   /*$('.num').change(function(){
+     var a = $(this).val(); 
+     console.log(a)
+    alert($(this).val() )
+    if ($(this).val() > 10)
+    {
+      alert("El valor debe ser entre 0 y 10")
+     $(this).val(0); 
+    }
+
+
+   });*/
+</script>
 <div class="row">
     <div class="col-md-6">
         <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@amefp.causa.report.codigo})",  @amefp.causa.report, :class => "linka" %>
-           <%= link_to "| Causa y Efecto ",  :back, :class => "linka" %>
+           <%= link_to "| Causa y Efecto ",  report_causa_path(@amefp.causa.report,@amefp.causa), :class => "linka" %>
         </p>
     </div>
 
@@ -15,7 +71,7 @@
      <%=link_to "Editar Información General" ,edit_amefp_path(@amefp.id),remote:true , class: "btn btn-primary"%>
       <button type="" class="actu btn btn-primary">Editar</button>
       <%= form_tag update_vcaef_path do %>
-        <%= submit_tag "Actualizar", class: "btn btn-danger subact" %>
+        <%= submit_tag "Actualizar", class: "btn btn-danger subact", style: "display:none"%>
    </div>
 
    </div>
@@ -25,9 +81,9 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">AMEF</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Resultados</a></li>
-      <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Información para Valoración</a></li>
+    <li role="presentation" class="active"><a href="#home" class="linka" aria-controls="home" role="tab" data-toggle="tab">AMEF</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" class="linka" role="tab" data-toggle="tab">Resultados</a></li>
+      <li role="presentation"><a href="#messages" aria-controls="messages" class="linka" role="tab" data-toggle="tab">Información para Valoración</a></li>
   </ul>
 
   <!-- Tab panes -->
@@ -109,11 +165,11 @@
          <%end%>
         
            <td><%= causa.causa_fallo %></td>
-           <td class="input num"><span><%= causa.p_ocurrencia %></span><%= number_field_tag "p_ocurrencia[]", causa.p_ocurrencia   %></td>
+           <td class="po num"><span><%= causa.p_ocurrencia %></span><%= number_field_tag "p_ocurrencia[]", causa.p_ocurrencia   %></td>
             <td class="input"><span><%= causa.c_actuales %></span><%= text_area_tag "c_actuales[]", causa.c_actuales  %></td>
 
             
-             <td class="input num"><span><%= causa.pn_deteccion %></span><%= number_field_tag "pn_deteccion[]", causa.pn_deteccion %></td>
+             <td class="pn num"><span><%= causa.pn_deteccion %></span><%= number_field_tag "pn_deteccion[]", causa.pn_deteccion %></td>
              <td><%= causa.npr %></td>
             <%= hidden_field_tag "ids[]", causa.id %>
             
@@ -126,8 +182,8 @@
             <% if @amefp.s_valoracion %>
              <%= hidden_field_tag "sgrado", @amefp.s_valor %>
           <td><%= causa.sgrado %></td>
-            <td class="input num"><span><%= causa.sp_ocurrencia %></span><%= number_field_tag "sp_ocurrencia[]", causa.sp_ocurrencia  %></td>
-             <td class="input num"><span><%= causa.spn_deteccion %></span><%= number_field_tag "spn_deteccion[]", causa.spn_deteccion %></td>
+            <td class="spo num"><span><%= causa.sp_ocurrencia %></span><%= number_field_tag "sp_ocurrencia[]", causa.sp_ocurrencia  %></td>
+             <td class="spn num"><span><%= causa.spn_deteccion %></span><%= number_field_tag "spn_deteccion[]", causa.spn_deteccion %></td>
               <td><%= causa.snpr %></td>
               <% end %>
               <% if @amefp.t_valoracion %>
@@ -159,40 +215,9 @@
  
 
    <%end%>
-<style>
-.table td
-{
-   border: 1px solid #f2f2f2;
-   font-size:10px !important;
-}
-.table th
-{
-   
-   font-size:10px !important;
-   text-align:center;
-}
-.pri td
-{
-       
-    }
 
 
-.input input
-{
-    width: 35px;
-    text-align: center;
- }  
- .btn-danger
- {
-   background:#d43f3a !important;
- }
-</style>
-
-<script>
-   $('.pri').css('height', $('.sg tbody').height());
-   console.log( $('.sg tbody').height());
-
-</script></div>
+</div>
     <div role="tabpanel" class="tab-pane" id="profile">
        
 
@@ -209,34 +234,3 @@
 
 </div>
 
-<script>
-   
-   $('.input input').hide();
-     $('.input textarea').hide();
-     $('.subact').hide();
-
-
-   $('.actu').click(function(){
-      
-         $('.input input').toggle();
-     $('.input textarea').toggle();
-       $('.input span').toggle();
-        $('.subact').toggle();
-   
-
-   });
-
-
-   /*$('.num').change(function(){
-     var a = $(this).val(); 
-     console.log(a)
-    alert($(this).val() )
-    if ($(this).val() > 10)
-    {
-      alert("El valor debe ser entre 0 y 10")
-     $(this).val(0); 
-    }
-
-
-   });*/
-</script>

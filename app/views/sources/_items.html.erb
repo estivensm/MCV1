@@ -9,6 +9,7 @@
         <td class = "bool"><%= get_state(source.causa).html_safe %></td>
         <td class = "bool"><%= get_state(source.accion).html_safe %></td>
         <td class = "bool"><%= get_state(source.puede_ac).html_safe %></td>
+         <td class = "bool"><%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (source.balon)%></td>
         <%if params[:page] == nil
           @a = 1
         else

@@ -26,16 +26,16 @@
     },
     series: [{
         type: 'column',
-        name: 'Jane',
+        name: 'npr',
         data: [<% @causas.order(npr: :desc).each do |causa|%>
             parseInt("<%=causa.npr%>.to_i"),
 
         <%end%>]
     }, {
         type: 'spline',
-        name: 'Average',
+        name: 'npr tage',
         data: [<% @causas.order(npr: :desc).each do |causa|%>
-            300,
+            parseInt("<%=@nprm%>.to_i"),
 
         <%end%>],
      
@@ -48,7 +48,35 @@
 
 </div>
 <div class="col-md-6">
-    <p>Analsis</p>
+    
+   
+    <p class = "titctp"><strong>Fecha propuesta de Valoracion:</strong> <%= get_date(@amefp.frp_valoracion) %></p>
+  
+    
+
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Vitales </div>
+  <div class="panel-body ph">
+     <% @causas.where(estado: "vital").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Triviales</div>
+  <div class="panel-body ph">
+     <% @causas.where(estado: "trivial").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
+
+
+
 </div>
 </div>
 <hr>
@@ -82,16 +110,16 @@
     },
     series: [{
         type: 'column',
-        name: 'Jane',
+        name: 'npr',
         data: [<% @causas.order(npr: :desc).each do |causa|%>
             parseInt("<%=causa.snpr%>.to_i"),
 
         <%end%>]
     }, {
         type: 'spline',
-        name: 'Average',
+        name: 'npr tage',
         data: [<% @causas.order(npr: :desc).each do |causa|%>
-            300,
+             parseInt("<%=@nprm%>.to_i"),
 
         <%end%>],
      
@@ -104,7 +132,27 @@
 
 </div>
 <div class="col-md-6">
-        <p>Analsis</p>
+          <p class = "titctp"><strong>Fecha propuesta de Valoracion:</strong> <%= get_date(@amefp.frs_valoracion) %></p>
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Vitales </div>
+  <div class="panel-body ph">
+     <% @causas.where(sestado: "vital").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Triviales</div>
+  <div class="panel-body ph">
+     <% @causas.where(sestado: "trivial").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
 </div>
 
 </div>
@@ -141,16 +189,16 @@
     },
     series: [{
         type: 'column',
-        name: 'Jane',
+        name: 'npr',
         data: [<% @causas.order(npr: :desc).each do |causa|%>
             parseInt("<%=causa.tnpr%>.to_i"),
 
         <%end%>]
     }, {
         type: 'spline',
-        name: 'Average',
+        name: 'npr tage',
         data: [<% @causas.order(npr: :desc).each do |causa|%>
-            300,
+             parseInt("<%=@nprm%>.to_i"),
 
         <%end%>],
      
@@ -163,7 +211,37 @@
 
 </div>
 <div class="col-md-6">
-        <p>Analsis</p>
+         <p class = "titctp"><strong>Fecha propuesta de Valoracion:</strong> <%= get_date(@amefp.frt_valoracion) %></p>
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Información</div>
+  <div class="panel-body ph">
+     <% @causas.where(testado: "vital").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Vitales </div>
+  <div class="panel-body ph">
+     <% @causas.where(testado: "vital").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
+  <div class="panel panel-default">
+   <div class="panel-heading ph">Causas Triviales</div>
+  <div class="panel-body ph">
+     <% @causas.where(testado: "trivial").each do |causa|%>
+    <p class = "titctp">* <%=causa.causa_fallo %></p>
+    <%end%>
+     </div>
+  
+  </div>
+
 </div>
 </div>
 <%end%>

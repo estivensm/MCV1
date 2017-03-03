@@ -30,6 +30,9 @@
 #  amefp_id        :integer
 #  causa_efecto_id :integer
 #  a_tomar         :string
+#  estado          :string
+#  sestado         :string
+#  testado         :string
 #
 
 class Amef < ApplicationRecord

@@ -76,8 +76,8 @@
 
 
 
-<% @reports.each do |report1| 
-      report = Report.find(report1)%>
+<% @reports.each do |report| 
+      %>
 
 
 <%= link_to  report_path(report) do %>
@@ -126,7 +126,10 @@
 
 </div>
   <div class="col-md-1 ball">
-	<%= image_tag "https://cdn2.iconfinder.com/data/icons/iconslandsport/PNG/128x128/Soccer_Ball.png" if (employed.email == current_user.email)%> 
+  <%if report.source.balon%>
+	<%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "resp" && report.balon == "responsable")%> 
+  <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "asig" && report.balon == "asignador")%>
+  <%end%> 
 </div>
 </div>
   

@@ -5,22 +5,22 @@
      </div>
 
 <div class="col-md-4 text-right">
-<%= Amefp.where(causa_id:@causa).count != 0 ? (link_to "Ver", show_amefp_path(Amefp.where(causa_id:@causa).first.id), class:"btn btn-primary") : "hola"%>
-         <%= link_to "Crear AMEF", new_amefp_path(@causa), remote: true, class:"btn btn-primary"%>
+<%= Amefp.where(causa_id:@causa).count != 0 ? (link_to "Ver AMEF", show_amefp_path(@causa.amefps.first.id), class:"btn btn-primary") : (link_to "Crear AMEF", new_amefp_path(@causa), remote: true, class:"btn btn-primary")%>
+        
      </div>          
  </div>
 
     <table class ="pez">
         <tr>
             <th style = "width:240px">
-            <%= link_to @causa.primera_m, new_caef_path(@causa,"1"), remote: true, class:"linka vertical-bottom"%>
+            <%= link_to @causa.primera_m, new_caef_path(@causa,"1"), remote: true, class:"linkg vertical-bottom"%>
              
             </th>
             <th style = "width:240px">
-                <%= link_to @causa.seguna_m, new_caef_path(@causa,"2"), remote: true , class:"linka vertical-bottom"%>
+                <%= link_to @causa.seguna_m, new_caef_path(@causa,"2"), remote: true , class:"linkg vertical-bottom"%>
             </th>
             <th style = "width:240px">
-             <%= link_to @causa.tercera_m, new_caef_path(@causa,"3"), remote: true, class:"linka vertical-bottom" %></th>
+             <%= link_to @causa.tercera_m, new_caef_path(@causa,"3"), remote: true, class:"linkg vertical-bottom" %></th>
             <th></th>
             <th></th>
         </tr>
@@ -90,9 +90,9 @@
     </table>
     <table class ="pez">
         <tr>
-            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,"4"), remote: true, class:"linka vertical-bottom" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,"5"), remote: true, class:"linka vertical-bottom" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,"6"), remote: true, class:"linka vertical-bottom" %></th></button></th>
+            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,"4"), remote: true, class:"linkg vertical-bottom" %></th></th>
+            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,"5"), remote: true, class:"linkg vertical-bottom" %></th></th>
+            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,"6"), remote: true, class:"linkg vertical-bottom" %></th></button></th>
             <th></th>
             <th></th>
         </tr>
@@ -116,3 +116,12 @@
         <% end %>
     </div>
 </div>
+
+<style>
+.linkg
+{
+    color: #b3b3b3 !important;
+}
+
+    
+</style>

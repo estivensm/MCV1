@@ -7,10 +7,6 @@
          </div>
          <%= form_tag update_amefp_path(@amefp.id), method: :patch do %>
 
-         <%=@amefp.p_valoracion%>
-         <%=@amefp.s_valoracion%>
-         <%=@amefp.t_valoracion%>
-
          <div class="alert alert-danger" style="display:none;padding: 10px;">
             <ul>
             </ul>
@@ -18,23 +14,27 @@
          <div class="modal-body">
             <div class="row">
                
-               <div class="col-md-10">
+               <div class="col-md-8">
                   <div class="form-group">
                      <%= label_tag "Descripcion" %>
                      <%= text_area_tag :descripcion, @amefp.descripcion , class: "form-control formus" %>
                   </div>
                </div>
+                 <div class="col-md-4">
+     <div class="form-group">
+    <%= label_tag "NPR Tague(%)" %>
+    <%= number_field_tag :npr_tage, @amefp.npr_tage, class: "form-control formus" %>
+  </div>
+  </div>
             </div>
             <div class="row">
             <h4 class="color-gray">Primera Valoración</h4>
             <div class="col-md-1">
-                  <div class="form-group">
-                  <%= label_tag "Habilitar" %><br>
-                  <%= check_box_tag :p_valoracion, @amefp.p_valoracion, @amefp.p_valoracion %>
-               </div>
+                 <%= hidden_field_tag :p_valoracion, true%>
                </div>
                <div class="col-md-3">
                   <div class="form-group">
+
                      <%= label_tag "Fecha Valoracion" %>
                      <%= date_field_tag :frp_valoracion, @amefp.frp_valoracion , class: "form-control formus"%>
                   </div>
@@ -57,7 +57,7 @@
             <div class="col-md-1">
                   <div class="form-group">
                   <%= label_tag "Habilitar" %><br>
-                  <%=  check_box_tag :s_valoracion, @amefp.s_valoracion,@amefp.s_valoracion %>
+                  <%=  check_box_tag :s_valoracion , 1 ,@amefp.s_valoracion%>
 
                </div>
                </div>
@@ -85,7 +85,7 @@
             <div class="col-md-1">
                   <div class="form-group">
                   <%= label_tag "Habilitar" %><br>
-                  <%= check_box_tag :t_valoracion,@amefp.t_valoracion,@amefp.t_valoracion  %>
+                  <%= check_box_tag :t_valoracion, 1 , @amefp.t_valoracion  %>
                </div>
                </div>
                <div class="col-md-3">

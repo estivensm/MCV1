@@ -13,10 +13,16 @@
   </div>
       <div class="modal-body">
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8">
      <div class="form-group">
     <%= label_tag "Descripcion" %>
     <%= text_area_tag :descripcion, nil , class: "form-control formus" %>
+  </div>
+  </div>
+   <div class="col-md-4">
+     <div class="form-group">
+    <%= label_tag "NPR Tague(%)" %>
+    <%= number_field_tag :npr_tage, 20 , class: "form-control formus" %>
   </div>
   </div>
 </div>

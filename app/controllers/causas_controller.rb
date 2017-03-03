@@ -85,7 +85,7 @@ class CausasController < ApplicationController
   end
 
    def create_caef
-        @causa = CausaEfecto.create(user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
+        @causa = CausaEfecto.create(estado: "vital" , user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
   if @causa.save
     
     redirect_to :back
@@ -123,9 +123,12 @@ end
 
 #Crea el AMEF padre
   def crear_amefp
-    @amefp = Amefp.create(user_id:params[:user_id],admin_user:params[:admin_user],report_id:params[:report_id],causa_id:params[:causa_id],descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor],p_valoracion:params[:p_valoracion])
-    @amefp.s_valoracion = 0
-    @amefp.t_valoracion = 0
+    @amefp = Amefp.create(user_id:params[:user_id],admin_user:params[:admin_user],report_id:params[:report_id],causa_id:params[:causa_id],descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor],npr_tage:params[:npr_tage])
+    @amefp.p_valoracion = true
+    @amefp.s_valoracion = false
+    @amefp.t_valoracion = false
+    @amefp.s_valor = 0
+    @amefp.t_valor = 0
     if @amefp.save 
     redirect_to show_amefp_path(@amefp)
   end
@@ -134,7 +137,9 @@ end
 
   def update_amefp
    @amefp = Amefp.find(params[:id])  
-    if @amefp.update(descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor],p_valoracion:params[:p_valoracion],frs_valoracion:params[:frs_valoracion],ds_valoracion:params[:ds_valoracion],s_valor:params[:s_valor],s_valoracion:params[:s_valoracion],frt_valoracion:params[:frt_valoracion],dt_valoracion:params[:dt_valoracion],t_valor:params[:t_valor],t_valoracion:params[:t_valoracion])
+   params[:s_valoracion] == "1" ? sval = true : sval = false
+   params[:t_valoracion] == "1" ? tval = true : tval = false
+    if @amefp.update(descripcion:params[:descripcion],frp_valoracion:params[:frp_valoracion],dp_valoracion:params[:dp_valoracion],p_valor:params[:p_valor],p_valoracion:params[:p_valoracion],frs_valoracion:params[:frs_valoracion],ds_valoracion:params[:ds_valoracion],s_valor:params[:s_valor],s_valoracion: sval,frt_valoracion:params[:frt_valoracion],dt_valoracion:params[:dt_valoracion],t_valor:params[:t_valor],t_valoracion:tval,npr_tage:params[:npr_tage])
     redirect_to show_amefp_path(@amefp)
   end
 end
@@ -150,7 +155,11 @@ def edit_amefp
 
 #Actualiza los valores del AMEF
 def update_vcaef
+
+[1,2].each do 
     amefp = Amefp.find(params[:amefp])
+    nprmayor = (Amef.where(amefp_id: amefp).maximum(:npr) * (amefp.npr_tage.to_f/100)).to_i
+
     a = params[:ids]# Array de los ids
     b = params[:p_ocurrencia] #propbabilidad de ocurrencia primera valoracion
     c = params[:pn_deteccion] #propbabilidad de no deteccion primera valoracion
@@ -168,19 +177,48 @@ def update_vcaef
       if amefp.p_valoracion && amefp.s_valoracion && amefp.t_valoracion
          gs = bs[x].to_i * cs[x].to_i * params[:sgrado].to_i
       gt = bt[x].to_i * ct[x].to_i * params[:tgrado].to_i
-      Amef.find(i).update(grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
+      am = Amef.find(i)
+      estado = ""
+      am.tnpr > nprmayor ?  estado = "vital" : estado = "trivial"
+
+      Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
+      
           
+          #Mira si es vital o trivial de acurdo al npr tage que se puso
+     CausaEfecto.find(am.causa_efecto).update(estado: estado) 
+            
+
+
        elsif amefp.p_valoracion && amefp.s_valoracion && !amefp.t_valoracion
-         gs = bs[x].to_i * cs[x].to_i * params[:sgrado].to_i
+                      gs = bs[x].to_i * cs[x].to_i * params[:sgrado].to_i
+                      am = Amef.find(i)
+                      estado = ""
+                      am.snpr > nprmayor ?  estado = "vital" : estado = "trivial"
+                      Amef.find(i).update(sestado: estado,grado:params[:grado],sgrado:params[:sgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
+                      CausaEfecto.find(am.causa_efecto).update(estado: estado)  
+                      
 
-      Amef.find(i).update(p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
+
+
            elsif amefp.p_valoracion && !amefp.s_valoracion && !amefp.t_valoracion
-            Amef.find(i).update(p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x])
-
+                      am = Amef.find(i)
+                   
+                      estado = ""
+                      am.npr > nprmayor ?  estado = "vital" : estado = "trivial"
+                      puts am.npr
+                      puts nprmayor
+                      puts "hola"
+                      Amef.find(i).update(estado: estado ,grado:params[:grado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x])
+                       
+                        CausaEfecto.find(am.causa_efecto_id).update(estado: estado) 
            end    
       x = x + 1
     end
+
+  end
   redirect_to show_amefp_path(params[:amefp])
+
+
 
 end
 
@@ -192,6 +230,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def causa_params
-      params.require(:causa).permit(:tipo, :descripcion, :archivo, :admin_user, :user_id, :report_id,:primera_m, :seguna_m,:tercera_m,:cuarta_m,:quinta_m, :sexta_m, causa_efectos_attributes: [:id, :name, :user_id,:nivel,:descripcion,:tipo,:report_id,:causa_id,:admin_user,:frecuencia, :porcentaje, :_destroy])
+      params.require(:causa).permit(:tipo, :descripcion, :archivo, :admin_user, :user_id, :report_id,:primera_m, :seguna_m,:tercera_m,:cuarta_m,:quinta_m, :sexta_m, causa_efectos_attributes: [:id,:estado, :name, :user_id,:nivel,:descripcion,:tipo,:report_id,:causa_id,:admin_user,:frecuencia, :porcentaje, :_destroy])
     end
 end

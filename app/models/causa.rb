@@ -27,7 +27,7 @@ class Causa < ApplicationRecord
 	accepts_nested_attributes_for :causa_efectos, :allow_destroy => true
 	after_create :eliminar_causas_basura
 	after_update :crear_porcentaje
-	has_many :amefps
+	has_many :amefps , dependent: :destroy
 
         
 	def eliminar_causas_basura
@@ -42,6 +42,7 @@ class Causa < ApplicationRecord
 
 	def crear_porcentaje
 
+if self.tipo == "Pareto"
         sum = CausaEfecto.where(causa_id: self.id).sum(:frecuencia)
         CausaEfecto.where(causa_id: self.id).update_all(porcentaje: 0)
         sump = 0
@@ -51,12 +52,20 @@ class Causa < ApplicationRecord
             porc = ((causa.frecuencia.to_f / sum) * 100).round(0) 
             causa.porcentaje = porc + sump 
             sump = causa.porcentaje
-            causa.save
+           
+            if sump <= 80
+                causa.estado = "vital"
+                
+            else
+                   causa.estado = "tribial" 
+                   
+            end
 
-
+                 causa.save
         end
 
 
+end
 
 	end
 
