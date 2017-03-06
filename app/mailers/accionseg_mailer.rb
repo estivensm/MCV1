@@ -1,7 +1,7 @@
 class AccionsegMailer < ApplicationMailer
-	def noty_accion(employed , report, tipo)
+	def noty_accion(employed , accion)
   @employed = employed
-  @report = report
+  @accion = accion
   @tipo = tipo
   mail(to: @employed.email, subject: "Proximo Seguimiento")
 end

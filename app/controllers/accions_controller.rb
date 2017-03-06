@@ -69,7 +69,7 @@ class AccionsController < ApplicationController
         ReportMailer.noty_accion(@accion,@employed)
         @accion.employeds.each do |employed|
         
-           ReportMailer.noty_accion(@employed, @accion).deliver
+           ReportMailer.invitado_accion(@employed, @accion).deliver
           
        end
         format.html { redirect_to report_accion_path(@report,@accion), notice: 'La Accion fue creada correctamente.' }

@@ -1,9 +1,8 @@
 
 <h3>Hola <%=@employed.first_name%> <%=@employed.first_last_name%></h3>
- <p><%= Employed.where(email: @accion.user.email).first.first_name%> <%=Employed.where(email: @accion.user.email).first.first_last_name%> te ha asignado una <%=@accion.tipo%></p>
+ <p><%= Employed.where(email: @accion.user.email).first.first_name%> <%=Employed.where(email: @accion.user.email).first.first_last_name%> te ha invitado a participar de una <%=@accion.tipo%></p>
 <hr>
 <p><strong>Codigo:</strong> <%=@accion.codigo%></p>
 <p><strong>Nombre:</strong> <%=@accion.name%></p>
 <p><strong>Descripcion:</strong> <%=@accion.descripcion%></p>
 <p><strong>Fecha de Entrega:</strong> <%= @accion.f_compromiso%></p>
-

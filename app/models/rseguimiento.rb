@@ -18,7 +18,7 @@ class Rseguimiento < ApplicationRecord
 	belongs_to :user
 	mount_uploader :evidencia, ArchivoRepUploader
 	before_create :seguimiento
-
+    after_create :email
 
 	def seguimiento
         report = Report.find(self.report_id)
@@ -41,4 +41,12 @@ class Rseguimiento < ApplicationRecord
 
 
 end
+
+
+
+def email
+
+
+
+    end
 end

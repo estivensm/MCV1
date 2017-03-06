@@ -42,7 +42,7 @@ class Report < ApplicationRecord
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
   belongs_to :proceso
-  belongs_to :user
+  belongs_to :user, :class_name => 'Employed'
   has_many :accions, dependent: :destroy
   has_many :rseguimientos, dependent: :destroy
   has_many :causas, dependent: :destroy
@@ -112,7 +112,7 @@ class Report < ApplicationRecord
 
       self.employeds.each do |employed|
 	      
-      ReportMailer.noty_report(employed, self).deliver
+      ReportMailer.invitado_report(employed, self).deliver
           
 	  end
   end
