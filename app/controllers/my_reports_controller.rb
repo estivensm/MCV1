@@ -1,9 +1,7 @@
 class MyReportsController < ApplicationController
+
   def index
   	@employed = Employed.where(email: current_user.email).first
- 
-    
-    
     @report_search1 = Report.where(employed_id: @employed)
     if params[:search]
     	
@@ -14,21 +12,13 @@ class MyReportsController < ApplicationController
 
     end
 
-@resp = "resp"
-
-
-  
-
-
+    @resp = "resp"
 
   end
 
   def asignado_por_mi
      
- 
-    
-     
-    
+  
             
     
     @report_search1 = Report.where(user_id: current_user.id)

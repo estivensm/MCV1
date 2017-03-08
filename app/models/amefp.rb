@@ -29,7 +29,7 @@
 class Amefp < ApplicationRecord
 	after_create :crear_amef
 	belongs_to  :causa
-	has_many :amefs
+	has_many :amefs, dependent: :destroy
 
     def crear_amef
             causa = Causa.find(self.causa_id)

@@ -179,7 +179,7 @@ def update_vcaef
       gt = bt[x].to_i * ct[x].to_i * params[:tgrado].to_i
       am = Amef.find(i)
       estado = ""
-      am.tnpr > nprmayor ?  estado = "vital" : estado = "trivial"
+      gs > nprmayor ?  estado = "vital" : estado = "trivial"
 
       Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
       
@@ -193,7 +193,7 @@ def update_vcaef
                       gs = bs[x].to_i * cs[x].to_i * params[:sgrado].to_i
                       am = Amef.find(i)
                       estado = ""
-                      am.snpr > nprmayor ?  estado = "vital" : estado = "trivial"
+                      gs > nprmayor ?  estado = "vital" : estado = "trivial"
                       Amef.find(i).update(sestado: estado,grado:params[:grado],sgrado:params[:sgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
                       CausaEfecto.find(am.causa_efecto).update(estado: estado)  
                       

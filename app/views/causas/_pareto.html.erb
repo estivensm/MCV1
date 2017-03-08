@@ -44,7 +44,7 @@
             }
         }, 
         min:0,
-        max:90
+        max: <%=(CausaEfecto.where(causa_id:@causa.id).maximum(:frecuencia) * 1.1).to_i%>
     }, { // Secondary yAxis
           tickInterval: 20,
         title: {

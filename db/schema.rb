@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303205941) do
+ActiveRecord::Schema.define(version: 20170308163636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20170303205941) do
     t.boolean  "eficaz"
     t.integer  "cierra_id"
     t.string   "name"
+  end
+
+  create_table "accions_causa_efectos", id: false, force: :cascade do |t|
+    t.integer "accion_id"
+    t.integer "causa_efecto_id"
+    t.index ["accion_id"], name: "index_accions_causa_efectos_on_accion_id", using: :btree
+    t.index ["causa_efecto_id"], name: "index_accions_causa_efectos_on_causa_efecto_id", using: :btree
   end
 
   create_table "accions_employeds", id: false, force: :cascade do |t|

@@ -23,7 +23,9 @@ class CausaEfecto < ApplicationRecord
 	belongs_to :report
 	belongs_to :causa  , inverse_of: :causa_efectos
 	has_many :amefs, dependent: :destroy
+	has_and_belongs_to_many :accions, dependent: :destroy
 	after_create :crear_amef
+
 
 	def crear_amef
 

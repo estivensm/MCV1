@@ -77,6 +77,7 @@ Numeral.where(admin_user: current_user.admin_user)
 
 end
 
+
 def company_x
     @company = Company.where(user_id: current_user.admin_user)
     return @company.last.id

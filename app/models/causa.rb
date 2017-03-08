@@ -50,9 +50,15 @@ if self.tipo == "Pareto"
             
             
             porc = ((causa.frecuencia.to_f / sum) * 100).round(0) 
+           
             causa.porcentaje = porc + sump 
             sump = causa.porcentaje
-           
+            
+            if sump > 100
+            causa.porcentaje = 100
+            puts "hoollllllllllllllllllllllalllllllllllllllllllllllllllllll"
+            end
+
             if sump <= 80
                 causa.estado = "vital"
                 
