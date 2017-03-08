@@ -32,109 +32,100 @@
 <%end%>
 <%= render 'form_close', report: @report %>
 <h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
-
-
 <div class="conteinter reporte cnt">
-        <div class="row rtr">
-          <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
-          <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
-          <div class="col-md-2 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
-          <% employed1 = Employed.find(@report.employed_reporta)%>
-          <div class="col-md-2 rtd"><strong>Reporta: </strong>
-
+   <div class="row rtr">
+      <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
+      <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
+      <div class="col-md-2 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
+      <% employed1 = Employed.find(@report.employed_reporta)%>
+      <div class="col-md-2 rtd"><strong>Reporta: </strong>
          <%= render "employed" , employed: employed1 %>
-
-
-          </div>
-          <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
-          <div class="col-md-2 rtd"><strong>Costo Actual: </strong><%= number_to_currency(@report.costo) %></div>
-        </div>
-          <hr>
-        <div class="row rtr">
-          <div class="col-md-6 rtd"><strong>Responsable de Ejecución:</strong> <% employed = Employed.find(@report.employed_id)
-            cierra_r = Employed.find(@report.cierra_id)%>
-              
-                 <%= render "employed" , employed: employed %>
-<strong> , Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
-              <br><strong>Otros Interesados: </strong><% 
-                cm = 0 
-                @report.employeds.each do |resp|
-                  %><%= "," if cm != 0 %> 
-             
-                     <%= render "employed" , employed: resp %>
-
-
-              <%  cm = cm + 1 %> 
-              <%end%>
-          </div>
-          <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
-        </div>
-        <%if @report.source.tipo == "Externa"%>
-        <hr>
-        <div class="row rtr">
-        <div class="col-md-4 rtd"><strong><%= @report.clinte_proveedor.tipo%> </strong> <%= @report.clinte_proveedor.name%></div>
-        <div class="col-md-8 rtd"><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%></div>
-
-        </div>
-        <%end%>
-        <hr>
-<div class="row rtr">
-   <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-   <div class="col-md-8 rtd text-left"><strong>Nombre:</strong> <%= @report.name%><br> 
-   <div class="descnum"><strong>Descripcion:</strong> <%= @report.description%></div></div>
-   <div class="col-md-4 rtd text-left">
-      <strong>Evidencia:</strong> <%= @report.evidencia%><br><strong>Adjunto:</strong>  <% if @report.archivo_url%>
-      <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
-      <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
-      <%else%>
-      No hay archivo
-      <%end%>
+      </div>
+      <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
+      <div class="col-md-2 rtd"><strong>Costo Actual: </strong><%= number_to_currency(@report.costo) %></div>
    </div>
-</div>   
+   <hr>
+   <div class="row rtr">
+      <div class="col-md-6 rtd"><strong>Responsable de Ejecución:</strong> <% employed = Employed.find(@report.employed_id)
+         cierra_r = Employed.find(@report.cierra_id)%>
+         <%= render "employed" , employed: employed %>
+         <strong> , Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
+         <br><strong>Otros Interesados: </strong><% 
+            cm = 0 
+            @report.employeds.each do |resp|
+              %><%= "," if cm != 0 %> 
+         <%= render "employed" , employed: resp %>
+         <%  cm = cm + 1 %> 
+         <%end%>
+      </div>
+      <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
+   </div>
+   <%if @report.source.tipo == "Externa"%>
+   <hr>
+   <div class="row rtr">
+      <div class="col-md-4 rtd"><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></div>
+      <div class="col-md-8 rtd"><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%></div>
+   </div>
+   <%end%>
+   <hr>
+   <div class="row rtr">
+      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+      <div class="col-md-8 rtd text-left">
+         <strong>Nombre:</strong> <%= @report.name%><br> 
+         <div class="descnum"><strong>Descripcion:</strong> <%= @report.description%></div>
+      </div>
+      <div class="col-md-4 rtd text-left">
+         <strong>Evidencia:</strong> <%= @report.evidencia%><br><strong>Adjunto:</strong>  <% if @report.archivo_url%>
+         <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
+         <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
+         <%else%>
+         No hay archivo
+         <%end%>
+      </div>
+   </div>
    <hr>
    <div class="row rtr">
       <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
       <div class="col-md-6 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
-            <div class="col-md-4 rtd text-left">
-              <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
-              <!-- Large modal -->
-              <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
-              <!-- Modal -->
-              <br>
-              <%end%></strong> 
-              <script>
-                  $('.numerb').click(function(){
-                  a = $(this).prop('value');
-                  b = $(this).text();
-                  
-                  $('.modalp').html(a);
-                  $('.modalp1').text(b);
-                  
-                  });
-                  
-                    
-              </script>
-              <div class="modal fade" id="myModal" role="dialog">
-                  <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title modalp1">Modal Header</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p class = "modalp"></p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+      <div class="col-md-4 rtd text-left">
+         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
+         <!-- Large modal -->
+         <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
+         <!-- Modal -->
+         <br>
+         <%end%></strong> 
+         <script>
+            $('.numerb').click(function(){
+            a = $(this).prop('value');
+            b = $(this).text();
+            
+            $('.modalp').html(a);
+            $('.modalp1').text(b);
+            
+            });
+            
+              
+         </script>
+         <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+               <!-- Modal content-->
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title modalp1">Modal Header</h4>
                   </div>
-              </div>
+                  <div class="modal-body">
+                     <p class = "modalp"></p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+               </div>
             </div>
-       </div>
+         </div>
+      </div>
+   </div>
 </div>
-
 <div class="row flujo">
    <div class="col-md-3">
       <div class="panel panel-default">
@@ -195,10 +186,6 @@
       </div>
    </div>
 </div>
-
-
-
-
 <style>
    .imaacc img
    {
@@ -327,6 +314,3 @@
    </tr>
    </table>
        <%end%></td>-->
-
-
-     

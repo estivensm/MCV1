@@ -3,7 +3,7 @@
       <p >Empleados</p>
    </div>
    <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" %>
+      <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
    </div>
 </div>
 <div class = "row">
@@ -36,7 +36,7 @@
          <% @employeds.each do |employed| %>
          <tr>
             <td class = "imgav"><%= employed.avatare? ? image_tag(employed.avatare_url(:thumb)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %></td>
-            <td><%= employed.id %> <%= employed.first_name   %> <%= employed.first_last_name %></td>
+            <td> <%= employed.first_name   %> <%= employed.first_last_name %></td>
             <td><%= employed.document_type %>:<%= employed.document %></td>
             <td><%= employed.email %></td>
             <td><%= employed.cargo.name if employed.cargo_id? %></td>
