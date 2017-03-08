@@ -56,7 +56,7 @@ emp = Employed.where(admin_user: self.admin_user).count
         rol = Rol.where(name: "Basico").first.id
         user =User.create(email:self.email,password:self.document,password_confirmation:self.document,rol_id: rol,admin_user:self.admin_user,role:"Basico")
         if user.save
-    WelcomeMailer.welcome(self).deliver
+    #WelcomeMailer.welcome(self).deliver
             end
   end
 	end
