@@ -16,6 +16,7 @@
 
 class Contact < ApplicationRecord
 	belongs_to :clinte_proveedor , inverse_of: :contacts
+	has_many :reports
   
 
 

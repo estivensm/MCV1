@@ -45,7 +45,14 @@ end
 
 
 def email
+    employed = Employed.find(self.report.employed_id)
+    ReportMailer.seguimiento_report(employed, self).deliver
+    report = Report.find(self.report_id)
+    report.employeds.each do |emp|
 
+        ReportMailer.seguimiento_report(emp, self).deliver
+
+    end
 
 
     end

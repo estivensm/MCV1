@@ -87,6 +87,18 @@ border-right: none;
   text-decoration:none;
         border-right: none !important;
 }
+.submenu a:active
+{
+
+border-right: none;
+   background: #0db497;
+  color:white!important;
+  text-decoration:none;
+        border-right: none !important;
+}
+
+
+
 .submenu 
 {
 
@@ -209,4 +221,11 @@ label
     {
       display: none;
     }
-    
+  
+  .navbar-brand {
+   
+    padding: 15px 30px !important;
+    font-size: 22px !important;
+   
+   
+  }

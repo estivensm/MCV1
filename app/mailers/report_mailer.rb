@@ -25,14 +25,14 @@ end
 def seguimiento_report(employed , seg)
   @employed = employed
   @seg = seg
-  mail(to: @employed.email, subject: "Se hizo un seguimiento a un  Reporte")
+  mail(to: @employed.email, subject: "Se hizo un seguimiento al Reporte #{@seg.report.codigo}")
 end
 
 
 def seguimiento_accion(employed , seg)
   @employed = employed
   @seg = seg
-  mail(to: @employed.email, subject: "Se hizo un seguimiento una Accion")
+  mail(to: @employed.email, subject: "Se hizo un seguimiento la Accion #{@seg.accion.codigo}")
 end
 
 end

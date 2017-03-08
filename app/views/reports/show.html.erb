@@ -69,11 +69,19 @@
           </div>
           <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
         </div>
+        <%if @report.source.tipo == "Externa"%>
+        <hr>
+        <div class="row rtr">
+        <div class="col-md-4 rtd"><strong><%= @report.clinte_proveedor.tipo%> </strong> <%= @report.clinte_proveedor.name%></div>
+        <div class="col-md-8 rtd"><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%></div>
+
+        </div>
+        <%end%>
         <hr>
 <div class="row rtr">
    <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
    <div class="col-md-8 rtd text-left"><strong>Nombre:</strong> <%= @report.name%><br> 
-   <strong>Descripcion:</strong> <%= @report.description%></div>
+   <div class="descnum"><strong>Descripcion:</strong> <%= @report.description%></div></div>
    <div class="col-md-4 rtd text-left">
       <strong>Evidencia:</strong> <%= @report.evidencia%><br><strong>Adjunto:</strong>  <% if @report.archivo_url%>
       <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>

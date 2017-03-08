@@ -22,6 +22,7 @@ class Aseguimiento < ApplicationRecord
 	belongs_to :user
 	mount_uploader :evidencia, ArchivoSegUploader
 	after_create :cerrar_accion
+    after_create :email
 
 	def cerrar_accion
 
@@ -53,6 +54,20 @@ class Aseguimiento < ApplicationRecord
 
 
 	end
+
+
+    def email
+    employed = Employed.find(self.accion.employed_id)
+    ReportMailer.seguimiento_accion(employed, self).deliver
+    accion = Accion.find(self.accion_id)
+    accion.employeds.each do |emp|
+
+        ReportMailer.seguimiento_accion(emp, self).deliver
+
+    end
+
+
+    end
   
 end
 

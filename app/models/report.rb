@@ -41,7 +41,9 @@ class Report < ApplicationRecord
   belongs_to :employed, :class_name => 'Employed'
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
+  belongs_to :clinte_proveedor
   belongs_to :proceso
+  belongs_to :contact
   belongs_to :user, :class_name => 'Employed'
   has_many :accions, dependent: :destroy
   has_many :rseguimientos, dependent: :destroy

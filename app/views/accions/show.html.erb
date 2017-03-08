@@ -112,7 +112,17 @@
           <hr>
         <div class="row rtr">
           <div class="col-md-6 rtd"><strong>Responsable:</strong> <% employed = Employed.find(@accion.employed_id)%>
-              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br><strong>Otros Interesados: </strong><% 
+              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>,
+              <strong>Responsable de Cierre:</strong> <% employed = Employed.find(@accion.cierra_id)%>
+              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+
+
+
+
+
+              <br>
+
+            <strong>Otros Interesados: </strong><% 
                 cm = 0 
                 @accion.employeds.each do |resp|
                   %><%= "," if cm != 0 %> 
@@ -125,7 +135,10 @@
         <hr>
           <div class="row rtr">
             <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-            <div class="col-md-8 rtd text-left"> <strong>Descripcion:</strong> <%= @accion.descripcion%></div>
+            <div class="col-md-8 rtd text-left"><strong>Nombre:</strong> <%= @report.name%><br> 
+   <div class="descnum"><strong>Descripcion:</strong> <%= @accion.descripcion%></div>
+</div>
+
             <div class="col-md-4 rtd text-left">
                 <strong>Posible Evidencia:</strong> <%= @accion.evidencia%>
                 
@@ -134,8 +147,6 @@
           </div>   
 
 </div> 
-
-
 
 
 

@@ -1,6 +1,6 @@
 
 <h3>Hola <%=@employed.first_name%> <%=@employed.first_last_name%></h3>
- <p><%= Employed.where(email: @seg.user.email).first.first_name%> <%=Employed.where(email: @seg.user.email).first.first_last_name%> creo un seguimiento a un Reporte</p>
+ <p><%= Employed.where(email: @seg.user.email).first.first_name%> <%=Employed.where(email: @seg.user.email).first.first_last_name%> creo un seguimiento al Reporte <%=@seg.report.codigo%></p>
 <hr>
 <p><strong>Codigo del Reporte:</strong> <%=@seg.report.codigo%></p>
 <p><strong>Nombre del Reporte:</strong> <%=@seg.report.name%></p>
