@@ -63,7 +63,10 @@ Rails.application.routes.draw do
                 
 
           end
-          resources :employeds
+          resources :employeds do
+  collection { post :import }
+
+end
           resources :companies #, only: [:show, :create, :edit, :update, :index]
           resources :cargos
           resources :procesos

@@ -176,8 +176,19 @@
 
           <td class="input"><span><%= causa.a_tomar %></span><%= text_area_tag "a_tomar[]", causa.a_tomar  %></td>
         
-          <td ></td>
-          <td ></td>
+          <td >           
+
+
+
+          </td>
+          <td >
+            <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each do |accion| %>
+                <%= "- " + accion.name%><br>
+            <% end %>
+
+
+
+          </td>
           
             <% if @amefp.s_valoracion %>
              <%= hidden_field_tag "sgrado", @amefp.s_valor %>

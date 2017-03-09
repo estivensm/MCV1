@@ -62,6 +62,7 @@ gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'wicked_pdf'
+gem 'roo'
 gem 'wkhtmltopdf-binary'
 gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
 group :development do

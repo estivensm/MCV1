@@ -1,6 +1,7 @@
 <div class = "row title-table">
    <div class = "col-md-10">
-      <p >Empleados</p>
+      <p >Empleados </p>
+
    </div>
    <div class = "col-md-2">
       <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
@@ -14,6 +15,10 @@
          <%= submit_tag "Buscar", :class => "btn btn-primary" %>
          <% end %>
       </div>
+       <!--<%= form_tag import_employeds_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>-->
    </div>
    <div class = "col-md-6">
       <%= will_paginate @employeds%>

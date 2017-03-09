@@ -4,6 +4,15 @@ class EmployedsController < ApplicationController
     before_action :configuracion
 
   
+  
+  def import
+  Employed.import(params[:file], current_user.admin_user, current_user.admin_user )
+  redirect_to employeds_path, notice: "Empleados Importados"
+end
+
+
+
+
   def configuracion
 
     if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
