@@ -16,9 +16,16 @@
    <h3 class = "color-gray"><%=@user.email%></h3> 
    <p class = "color-gray">Para editar el Email debes hacerlo por Empleado</p>   
    <br>
+
+
+<div class="form-group">
+    <%= label_tag "Name" %>
+    <%= text_field_tag :name, @user.name,:class => 'form-control' %>
+  </div>
+
     <div class="form-group">
     <%= label_tag "Rol" %><br>
-   <%=select_tag 'rol_id', options_from_collection_for_select(Rol.all , "id", "name", @user.rol.id),{class: "form-control cs1" }%>
+   <%=select_tag 'rol_id', options_from_collection_for_select(Rol.where(admin_user:current_user.admin_user) , "id", "name", @user.rol.id),{class: "form-control cs1" }%>
   </div>
 
   
