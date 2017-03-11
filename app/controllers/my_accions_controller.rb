@@ -1,6 +1,6 @@
 class MyAccionsController < ApplicationController
   def index
-  	@employed = Employed.where(email: current_user.email).first
+  	@employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
   	@acciones = []
     
     @accion_search = Accion.where(admin_user: current_user.admin_user)

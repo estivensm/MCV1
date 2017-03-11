@@ -238,6 +238,13 @@ end
             Employed.where(email: email).first
             
       end
+
+      def get_admin
+
+            current_user.admin_user
+
+      end
+
       def get_employed1
             Employed.where(email: current_user.email).first # Devuelve el empleado relacionado con el Usuario
             

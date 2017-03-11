@@ -60,7 +60,7 @@ class User < ApplicationRecord
   #before_destroy :validar_detele
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable ,:authentication_keys => [:name]
 
   mount_uploader :avatar, AvatarUploader
   has_many :procesos
@@ -80,7 +80,23 @@ class User < ApplicationRecord
     #  raise "Destroy aborted; you can't do that!"
     #end
   #end
+validates :name,
+  :presence => true,
+  :uniqueness => {
+    :case_sensitive => false
+  }
+  validates :email,
+  :presence => false,
+  :uniqueness => false
+  
 
+
+def email_required?
+  false
+end
+def email_changed?
+  false
+end
 
 def self.search(search)
             where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  
