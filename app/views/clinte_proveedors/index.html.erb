@@ -1,22 +1,51 @@
+
 <div class = "row title-table">
-   <div class = "col-md-10">
-      <p >Clientes</p>
+   <div class = "col-md-6">
+      <p>Clientes y Proveedores <span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
+
+
+     
    </div>
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @clinte_proveedors%>
+   </div>
+
    <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_clinte_proveedor_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.role == "Admin" %>
+      <%= link_to 'Nuevo', new_clinte_proveedor_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
    </div>
 </div>
-<div class = "row">
-   <div class = "col-md-6">
+
+
+<hr>
+<%= (link_to "Opciones", clinte_proveedors_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true"  %>
+<%= (link_to "Cancelar Opciones", clinte_proveedors_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+
+<div class = "row busqueda" style="display:none">
+   <div class = "col-md-9">
       <div class="form-group">
          <%= form_tag(clinte_proveedors_path, :method => "get", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Ingresa texto", class: "form-control search1" %>
+   
+         <%= text_field_tag :search, params[:search], placeholder: "Nombre", class: "form-control search1 shi1" %>
+         <%= text_field_tag :search1, params[:search1], placeholder: "Nit/Cedula", class: "form-control search1 shi1" %>
+         <%= text_field_tag :search2, params[:search2], placeholder: "Email", class: "form-control search1 shi1" %>
+      
          <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+    
          <% end %>
       </div>
    </div>
-   <div class = "col-md-6">
-      
+   <div class = "col-md-3">
+      <%= form_tag import_clinte_proveedors_path, multipart: true do %>
+  <div class = "col-md-12 text-right">
+  <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
+  <label for="file"><i class="fa fa-upload" aria-hidden="true"></i>
+
+ <span>Adjuntar</span></label>
+  <%= submit_tag "Importar", :class => "btn btn-primary", style: "margin-left:20px !important;" %>
+</div>
+
+<% end %>
    </div>
 </div>
 <div class = "row">
@@ -31,10 +60,8 @@
       <th>Direccion</th>
       <th>Nit</th>
       <th>Correo Empresa</th>
-      <th>Nombre Contacto</th>
-      <th>Telefono del Contacto</th>
-      <th>Email del Contacto</th>
       <th>Web</th>
+        <th>Tipo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -48,11 +75,10 @@
         <td><%= clinte_proveedor.address %></td>
         <td><%= clinte_proveedor.nit %></td>
         <td><%= clinte_proveedor.correo_empresa %></td>
-        <td><%= clinte_proveedor.contact_name %></td>
-        <td><%= clinte_proveedor.contact_telephone %></td>
-        <td><%= clinte_proveedor.contact_email %></td>
+   
         
         <td><%= clinte_proveedor.web %></td>
+         <td><%= clinte_proveedor.tipo %></td>
         <td><%= link_to  clinte_proveedor, :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
@@ -70,3 +96,102 @@
 <br>
 
 
+<style>
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+        font-size: 1em;
+    font-weight: 100!important;
+    color: white;
+    background-color: #f3f3f3;
+    padding: 8px;
+    display: inline-block;
+    border-bottom: 2px solid gray;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.shi1
+   {
+   width: 150px !important;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+      }
+         .busqueda
+   {
+        display: block;
+    padding: 10px;
+    background: #e8e8e8;
+   }
+  
+</style>
+
+<script>
+  
+'use strict';
+
+;( function ( document, window, index )
+{
+  var inputs = document.querySelectorAll( '.inputfile' );
+  Array.prototype.forEach.call( inputs, function( input )
+  {
+    var label  = input.nextElementSibling,
+      labelVal = label.innerHTML;
+
+    input.addEventListener( 'change', function( e )
+    {
+      var fileName = '';
+      if( this.files && this.files.length > 1 )
+        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+      else
+        fileName = e.target.value.split( '\\' ).pop();
+
+      if( fileName )
+        label.querySelector( 'span' ).innerHTML = fileName;
+      else
+        label.innerHTML = labelVal;
+    });
+
+    // Firefox bug fix
+    input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+    input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+  });
+}( document, window, 0 ));
+</script>
+
+
+<script>
+   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+   {
+ $('.busqueda').show();
+
+
+   }
+   else
+   {
+    $('.busqueda').hide();
+
+
+   }
+</script>

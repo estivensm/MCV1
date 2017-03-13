@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   get 'edit_amefp/:id' , to: "causas#edit_amefp", as: "edit_amefp"
   patch "update_amefp/:id", to: "causas#update_amefp", as: "update_amefp"
 
-  resources :clinte_proveedors
+  resources :clinte_proveedors do
+  collection { post :import }
+
+end
+
   resources :contacts
   get 'my_reports/index', as: "misreports"
   post "crear_caef", to: "causas#create_caef", as: "crear_caef"
@@ -32,6 +36,7 @@ Rails.application.routes.draw do
   get 'my_accions/index', as: "misacciones"
   get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
   get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
+  get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
   get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
@@ -41,6 +46,7 @@ Rails.application.routes.draw do
           resources :accions
           resources :sources
           resources :reports do 
+            get :get_reportsc, on: :collection
             resources :accions do 
                 resources :aseguimientos
             end

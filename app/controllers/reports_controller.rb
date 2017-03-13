@@ -4,6 +4,46 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   
+respond_to :json
+  def get_reportsc
+    @task = Report.where( employed_id: current_user.id)
+    events = []
+    @task.each do |task|
+      if task.contador > 0
+        @color = "green"
+      else
+          @color = "red"
+      end
+      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}"}
+    end
+    render :text => events.to_json
+
+end
+
+
+def reports_calendar
+
+    
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def abiertos
     
    

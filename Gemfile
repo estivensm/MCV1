@@ -64,6 +64,8 @@ gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 gem 'wicked_pdf'
 gem 'roo'
 gem 'wkhtmltopdf-binary'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

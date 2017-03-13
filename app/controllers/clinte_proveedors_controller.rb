@@ -13,11 +13,21 @@ class ClinteProveedorsController < ApplicationController
     
   end
 
+
+   def import
+  ClinteProveedor.import(params[:file], current_user.admin_user, current_user.admin_user )
+  redirect_to clinte_proveedors_path, notice: "Los Registros fueron importados Exitosamente"
+end
+
+
+
+
+
   # GET /clinte_proveedors
   # GET /clinte_proveedors.json
   def index
    if params[:search]
-     @clinte_proveedors1 = ClinteProveedor.search(params[:search])
+     @clinte_proveedors1 = ClinteProveedor.search(params[:search],params[:search1],params[:search2])
   else
      @clinte_proveedors1 = ClinteProveedor.all
   end

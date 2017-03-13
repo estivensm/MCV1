@@ -174,16 +174,19 @@ end
  
  def menu_misreports
 
-@menu_ma = ["","",""]
+@menu_ma = ["","","",""]
 if  action_name == "asignado_por_mi"
   
-@menu_ma = ["actives","", ""]
+@menu_ma = ["actives","", "",""]
  
  elsif action_name == "invitado"
-@menu_ma = ["","","actives"]   
+@menu_ma = ["","","actives",""] 
+ elsif action_name == "reports_calendar"
+@menu_ma = ["","","", "actives"]   
 else
 
-  @menu_ma = ["","actives",""]
+  @menu_ma = ["","actives","",""]
+
 end
  return @menu_ma
 
@@ -199,7 +202,7 @@ def page_entries_info(collection, options = {})
       collection.first.class.name.split('::').last.titleize)
   if collection.total_pages < 2
     case collection.size
-    when 0; "No #{entry_name.pluralize}Encontrados"
+    when 0; "No hay #{entry_name.pluralize} registrados"
     else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
       collection.length ,
       collection.total_entries
