@@ -1,5 +1,5 @@
 class AccionsegMailer < ApplicationMailer
-	def noty_accion(employed , accion)
+	def noty_accion(employed , accion, tipo)
   @employed = employed
   @accion = accion
   @tipo = tipo
