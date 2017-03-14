@@ -10,9 +10,9 @@ respond_to :json
     @task = Report.where( employed_id: user.id)
     events = []
     @task.each do |task|
-      if task.contador > 0
+      if task.contador_seg > 5
         @color = "green"
-      else
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "red"
       end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}"}
