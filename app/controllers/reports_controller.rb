@@ -14,7 +14,9 @@ respond_to :json
         @color = "green"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "red"
-      end
+      else
+          @color = "orange"
+    end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}"}
     end
     render :text => events.to_json
