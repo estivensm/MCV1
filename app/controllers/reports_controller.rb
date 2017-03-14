@@ -6,7 +6,8 @@ class ReportsController < ApplicationController
   
 respond_to :json
   def get_reportsc
-    @task = Report.where( employed_id: current_user.id)
+    user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
+    @task = Report.where( employed_id: user.id)
     events = []
     @task.each do |task|
       if task.contador > 0
