@@ -16,6 +16,15 @@
 
 <p><strong>Descripcion </strong><%=@caef.descripcion%></p>
 
+<% CausaEfecto.where(subnivel: @caef.id).each do |causa|%>
+     
+
+     <p><%=causa.name%></p>
+
+
+
+<% end %>
+
 <div class="modal-footer text-center">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 

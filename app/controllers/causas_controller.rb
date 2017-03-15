@@ -70,6 +70,7 @@ class CausasController < ApplicationController
       @causa = Causa.find(params[:causa])
        @report = Report.find(@causa.report_id)
        @m = params[:m]
+        @sub = params[:sub]
      
       
   end
@@ -85,7 +86,7 @@ class CausasController < ApplicationController
   end
 
    def create_caef
-        @causa = CausaEfecto.create(estado: "vital" , user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
+        @causa = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
   if @causa.save
     
     redirect_to :back

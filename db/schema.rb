@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311181128) do
+ActiveRecord::Schema.define(version: 20170314211423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20170311181128) do
     t.integer  "frecuencia"
     t.float    "porcentaje"
     t.string   "estado"
+    t.string   "subnivel"
   end
 
   create_table "causas", force: :cascade do |t|

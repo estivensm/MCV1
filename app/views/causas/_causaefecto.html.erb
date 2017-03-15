@@ -13,34 +13,41 @@
     <table class ="pez">
         <tr>
             <th style = "width:240px">
-            <%= link_to @causa.primera_m, new_caef_path(@causa,"1"), remote: true, class:"linkg vertical-bottom"%>
+            <%= link_to @causa.primera_m, new_caef_path(@causa,"1","0"), remote: true, class:"linkg vertical-bottom"%>
              
             </th>
             <th style = "width:240px">
-                <%= link_to @causa.seguna_m, new_caef_path(@causa,"2"), remote: true , class:"linkg vertical-bottom"%>
+                <%= link_to @causa.seguna_m, new_caef_path(@causa,"2","0"), remote: true , class:"linkg vertical-bottom"%>
             </th>
             <th style = "width:240px">
-             <%= link_to @causa.tercera_m, new_caef_path(@causa,"3"), remote: true, class:"linkg vertical-bottom" %></th>
+             <%= link_to @causa.tercera_m, new_caef_path(@causa,"3","0"), remote: true, class:"linkg vertical-bottom" %></th>
             <th></th>
             <th></th>
         </tr>
     </table>
     <table class ="pez">
         <%= render 'form_cauefe', report: @report , causa: @causa, m: @m%>
-        <% a = CausaEfecto.where(causa_id: @causa.id).where(nivel: "1").order(:created_at)%>
-        <% b = CausaEfecto.where(causa_id: @causa.id).where(nivel: "2").order(:created_at)%>
-        <% c = CausaEfecto.where(causa_id: @causa.id).where(nivel: "3").order(:created_at)%>
-        <% d = CausaEfecto.where(causa_id: @causa.id).where(nivel: "4").order(:created_at)%>
-        <% e = CausaEfecto.where(causa_id: @causa.id).where(nivel: "5").order(:created_at)%>
-        <% f = CausaEfecto.where(causa_id: @causa.id).where(nivel: "6").order(:created_at)%>
+        <% a = CausaEfecto.where(causa_id: @causa.id).where(nivel: "1").where(subnivel: "0").order(:created_at)%>
+        <% b = CausaEfecto.where(causa_id: @causa.id).where(nivel: "2").where(subnivel: "0").order(:created_at)%>
+        <% c = CausaEfecto.where(causa_id: @causa.id).where(nivel: "3").where(subnivel: "0").order(:created_at)%>
+        <% d = CausaEfecto.where(causa_id: @causa.id).where(nivel: "4").where(subnivel: "0").order(:created_at)%>
+        <% e = CausaEfecto.where(causa_id: @causa.id).where(nivel: "5").where(subnivel: "0").order(:created_at)%>
+        <% f = CausaEfecto.where(causa_id: @causa.id).where(nivel: "6").where(subnivel: "0").order(:created_at)%>
         <tr class="thed">
             <th>
-                <p class="p1"><%= (link_to a.first.name, show_caef_path(a.first.id), remote: true) if a.exists? %></p>
+               
+                    <% p = 1 
+                    a.each do |ca|%>
+                    <p class="p<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
+                    <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"  %></p>
+                    <% p += 1;
+                    end%>                    
+                
 
-                <p class="p2">  <%= (link_to a.limit(2).offset(1).first.name, show_caef_path(a.limit(2).offset(1).first.id), remote: true) if a.limit(2).offset(1).exists? %></p>
-                <p class="p3"><%= (link_to a.limit(3).offset(2).first.name, show_caef_path(a.limit(3).offset(2).first.id), remote: true) if a.limit(3).offset(2).exists? %></p>
-                <p class="p4"><%= (link_to a.limit(4).offset(3).first.name, show_caef_path(a.limit(4).offset(3).first.id), remote: true) if a.limit(4).offset(3).exists? %></p>
-                <p class="p5"><%= (link_to a.limit(5).offset(4).first.name, show_caef_path(a.limit(5).offset(4).first.id), remote: true) if a.limit(5).offset(4).exists? %></p>
+
+
+
+
             </th>
             <th>
                 <p class="p1"><%= (link_to b.first.name, show_caef_path(b.first.id), remote: true) if b.exists? %></p>
@@ -90,9 +97,9 @@
     </table>
     <table class ="pez">
         <tr>
-            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,"4"), remote: true, class:"linkg vertical-bottom" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,"5"), remote: true, class:"linkg vertical-bottom" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,"6"), remote: true, class:"linkg vertical-bottom" %></th></button></th>
+            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,"4","0"), remote: true, class:"linkg vertical-bottom" %></th></th>
+            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,"5","0"), remote: true, class:"linkg vertical-bottom" %></th></th>
+            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,"6","0"), remote: true, class:"linkg vertical-bottom" %></th></button></th>
             <th></th>
             <th></th>
         </tr>
