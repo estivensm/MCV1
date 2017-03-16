@@ -1,3 +1,4 @@
+
 <div class = "pezdiv">
  <div class="row">
 <div class="col-md-8">
@@ -30,7 +31,7 @@
         <% a = CausaEfecto.where(causa_id: @causa.id).where(nivel: "1").where(subnivel: "0").order(:created_at)%>
         <% b = CausaEfecto.where(causa_id: @causa.id).where(nivel: "2").where(subnivel: "0").order(:created_at)%>
         <% c = CausaEfecto.where(causa_id: @causa.id).where(nivel: "3").where(subnivel: "0").order(:created_at)%>
-        <% d = CausaEfecto.where(causa_id: @causa.id).where(nivel: "4").where(subnivel: "0").order(:created_at)%>
+        <% d = CausaEfecto.where(causa_id: @causa.id).where(nivel: "4").where(subnivel: "0").order(created_at: :desc)%>
         <% e = CausaEfecto.where(causa_id: @causa.id).where(nivel: "5").where(subnivel: "0").order(:created_at)%>
         <% f = CausaEfecto.where(causa_id: @causa.id).where(nivel: "6").where(subnivel: "0").order(:created_at)%>
         <tr class="thed">
@@ -39,10 +40,32 @@
                     <% p = 1 
                     a.each do |ca|%>
                     <p class="p<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
-                    <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"  %></p>
+                 
+                        <%if CausaEfecto.where(subnivel: ca.id).count. != 0%>
+
+                        <span type="button" class="" data-toggle="popover" title="Sub Causas" data-content="<% CausaEfecto.where(subnivel: ca.id).each  do |a|
+                            
+                %><p>- <%= a.name%><p><%end%>"> <span class="label label-warning lbc"><%= CausaEfecto.where(subnivel: ca.id).count %></span></span>
+                <%end%>
+
+
+                       <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%>
+                 
+                    
+
+                    </p>
                     <% p += 1;
                     end%>                    
+                     <% if a.count < 6 
+                     for i in (a.count + 1)..6%>
+                    <p class="p<%=i%>"></p>
+                    <%end
+                    end%> 
                 
+
+      
+               
+
 
 
 
@@ -50,20 +73,58 @@
 
             </th>
             <th>
-                <p class="p1"><%= (link_to b.first.name, show_caef_path(b.first.id), remote: true) if b.exists? %></p>
-                <p class="p2"> <%= (link_to b.limit(2).offset(1).first.name, show_caef_path(b.limit(2).offset(1).first.id), remote: true) if b.limit(2).offset(1).exists? %></p>
-                <p class="p3"><%= (link_to b.limit(3).offset(2).first.name, show_caef_path(b.limit(3).offset(2).first.id), remote: true) if b.limit(3).offset(2).exists? %></p>
-                <p class="p4"><%= (link_to b.limit(4).offset(3).first.name, show_caef_path(b.limit(4).offset(3).first.id), remote: true) if b.limit(4).offset(3).exists? %></p>
-                <p class="p5"><%= (link_to b.limit(5).offset(4).first.name, show_caef_path(b.limit(5).offset(4).first.id), remote: true) if b.limit(5).offset(4).exists? %></p>
+                 <% p = 1 
+                    b.each do |ca|%>
+                    <p class="p<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
+                    <%if CausaEfecto.where(subnivel: ca.id).count. != 0%>
+
+                        <span type="button" class="" data-toggle="popover" title="Sub Causas" data-content="<% CausaEfecto.where(subnivel: ca.id).each  do |a|
+                            
+                %><p>- <%= a.name%><p><%end%>"> <span class="label label-warning lbc"><%= CausaEfecto.where(subnivel: ca.id).count %></span></span>
+                <%end%>
+
+
+                       <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%>
+                        
+
+
+
+                    </p>
+                    <% p += 1;
+                    end%>                    
+                     <% if b.count < 6 
+                     for i in (b.count + 1)..6%>
+                    <p class="p<%=i%>"></p>
+                    <%end
+                    end%> 
+
             </th>
             <th>
                 
                 
- <p class="p1"><%= (link_to c.first.name, show_caef_path(c.first.id), remote: true) if c.exists? %></p>
-                <p class="p2"> <%= (link_to c.limit(2).offset(1).first.name, show_caef_path(c.limit(2).offset(1).first.id), remote: true) if c.limit(2).offset(1).exists? %></p>
-                <p class="p3"><%= (link_to c.limit(3).offset(2).first.name, show_caef_path(c.limit(3).offset(2).first.id), remote: true) if c.limit(3).offset(2).exists? %></p>
-                <p class="p4"><%= (link_to c.limit(4).offset(3).first.name, show_caef_path(c.limit(4).offset(3).first.id), remote: true) if c.limit(4).offset(3).exists? %></p>
-                <p class="p5"><%= (link_to c.limit(5).offset(4).first.name, show_caef_path(c.limit(5).offset(4).first.id), remote: true) if c.limit(5).offset(4).exists? %></p>
+            
+                <% p = 1 
+                    c.each do |ca|%>
+                    <p class="p<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
+                     <%if CausaEfecto.where(subnivel: ca.id).count. != 0%>
+
+                        <span type="button" class="" data-toggle="popover" title="Sub Causas" data-content="<% CausaEfecto.where(subnivel: ca.id).each  do |a|
+                            
+                %><p>- <%= a.name%><p><%end%>"> <span class="label label-warning lbc"><%= CausaEfecto.where(subnivel: ca.id).count %></span></span>
+                <%end%>
+
+
+                       <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%></p>
+                    <% p += 1;
+                    end%>                    
+                     <% if c.count < 6 
+                     for i in (c.count + 1)..6%>
+                    <p class="p<%=i%>"></p>
+                    <%end
+                    end%> 
+                    
+
+               
             </th>
             <td class="punta"></td>
             <td class="pro" rowspan="2">
@@ -72,25 +133,91 @@
         </tr>
         <tr class="tbod">
             <th>
-                <p class="b1"><%= (link_to d.limit(5).offset(4).first.name, show_caef_path(d.limit(5).offset(4).first.id), remote: true) if d.limit(5).offset(4).exists? %></p>
-                <p class="b2"><%= (link_to d.limit(4).offset(3).first.name, show_caef_path(d.limit(4).offset(3).first.id), remote: true) if d.limit(4).offset(3).exists? %></p>
-                <p class="b3"><%= (link_to d.limit(3).offset(2).first.name, show_caef_path(d.limit(3).offset(2).first.id), remote: true) if d.limit(3).offset(2).exists? %></p>
-                <p class="b4"> <%= (link_to d.limit(2).offset(1).first.name, show_caef_path(d.limit(2).offset(1).first.id), remote: true) if d.limit(2).offset(1).exists? %></p>
-                <p class="b5"><%= (link_to d.first.name, show_caef_path(d.first.id), remote: true) if d.exists? %></p>
+                                  
+                     <% if d.count < 6
+                     for i in (1)..(6 -d.count)%>
+                    <p class="b<%=i%>"></p>
+                    <%end
+                    end%> 
+
+                    
+                    <% hs = { "1"=> 6 , "2"=>5 , "3"=>4 , "4"=>3, "5"=> 2 , "6"=> 1   } 
+                    cou = d.count.to_s
+                    p = hs[cou]
+                    d.each do |ca|%>
+                    <p class="b<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
+                   <%if CausaEfecto.where(subnivel: ca.id).count. != 0%>
+
+                        <span type="button" class="" data-toggle="popover" title="Sub Causas" data-content="<% CausaEfecto.where(subnivel: ca.id).each  do |a|
+                            
+                %><p>- <%= a.name%><p><%end%>"> <span class="label label-warning lbc"><%= CausaEfecto.where(subnivel: ca.id).count %></span></span>
+                <%end%>
+
+
+                       <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%></p>
+                    <% p += 1;
+                    end%>    
+
+
+
+
             </th>
             <th>
-                 <p class="b1"><%= (link_to e.limit(5).offset(4).first.name, show_caef_path(e.limit(5).offset(4).first.id), remote: true) if e.limit(5).offset(4).exists? %></p>
-                <p class="b2"><%= (link_to e.limit(4).offset(3).first.name, show_caef_path(e.limit(4).offset(3).first.id), remote: true) if e.limit(4).offset(3).exists? %></p>
-                <p class="b3"><%= (link_to e.limit(3).offset(2).first.name, show_caef_path(e.limit(3).offset(2).first.id), remote: true) if e.limit(3).offset(2).exists? %></p>
-                <p class="b4"> <%= (link_to e.limit(2).offset(1).first.name, show_caef_path(e.limit(2).offset(1).first.id), remote: true) if e.limit(2).offset(1).exists? %></p>
-                <p class="b5"><%= (link_to e.first.name, show_caef_path(e.first.id), remote: true) if e.exists? %></p>
+                             
+                     <% if e.count < 6
+                     for i in (1)..(6 -e.count)%>
+                    <p class="b<%=i%>"></p>
+                    <%end
+                    end%> 
+
+                    
+                    <% hs = { "1"=> 6 , "2"=>5 , "3"=>4 , "4"=>3, "5"=> 2 , "6"=> 1   } 
+                    cou = e.count.to_s
+                    p = hs[cou]
+                    e.each do |ca|%>
+                    <p class="b<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
+                   <%if CausaEfecto.where(subnivel: ca.id).count. != 0%>
+
+                        <span type="button" class="" data-toggle="popover" title="Sub Causas" data-content="<% CausaEfecto.where(subnivel: ca.id).each  do |a|
+                            
+                %><p>- <%= a.name%><p><%end%>"> <span class="label label-warning lbc"><%= CausaEfecto.where(subnivel: ca.id).count %></span></span>
+                <%end%>
+
+
+                       <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%></p>
+                    <% p += 1;
+                    end%>  
+
+
+
+
             </th>
             <th>
-                 <p class="b1"><%= (link_to f.limit(5).offset(4).first.name, show_caef_path(f.limit(5).offset(4).first.id), remote: true) if f.limit(5).offset(4).exists? %></p>
-                <p class="b2"><%= (link_to f.limit(4).offset(3).first.name, show_caef_path(f.limit(4).offset(3).first.id), remote: true) if f.limit(4).offset(3).exists? %></p>
-                <p class="b3"><%= (link_to f.limit(3).offset(2).first.name, show_caef_path(f.limit(3).offset(2).first.id), remote: true) if f.limit(3).offset(2).exists? %></p>
-                <p class="b4"> <%= (link_to f.limit(2).offset(1).first.name, show_caef_path(f.limit(2).offset(1).first.id), remote: true) if f.limit(2).offset(1).exists? %></p>
-                <p class="b5"><%= (link_to f.first.name, show_caef_path(f.first.id), remote: true) if f.exists? %></p>
+                   <% if f.count < 6
+                     for i in (1)..(6 -f.count)%>
+                    <p class="b<%=i%>"></p>
+                    <%end
+                    end%> 
+
+                    
+                    <% hs = { "1"=> 6 , "2"=>5 , "3"=>4 , "4"=>3, "5"=> 2 , "6"=> 1   } 
+                    cou = f.count.to_s
+                    p = hs[cou]
+                    f.each do |ca|%>
+                    <p class="b<%=p%>"> <%= (link_to ca.name, show_caef_path(ca.id), remote: true)%>
+                   <%if CausaEfecto.where(subnivel: ca.id).count. != 0%>
+
+                        <span type="button" class="" data-toggle="popover" title="Sub Causas" data-content="<% CausaEfecto.where(subnivel: ca.id).each  do |a|
+                            
+                %><p>- <%= a.name%><p><%end%>"> <span class="label label-warning lbc"><%= CausaEfecto.where(subnivel: ca.id).count %></span></span>
+                <%end%>
+
+
+                       <%=link_to "+", new_caef_path(@causa, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%></p>
+                    <% p += 1;
+                    end%>  
+
+
             </th>
             <td class="punta1"></td>
         </tr>

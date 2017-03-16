@@ -19,7 +19,12 @@
 <% CausaEfecto.where(subnivel: @caef.id).each do |causa|%>
      
 
-     <p><%=causa.name%></p>
+     <p><%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  delete_caef_path(causa.id),  method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %></p>
 
 
 

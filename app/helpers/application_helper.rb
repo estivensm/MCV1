@@ -238,7 +238,7 @@ def get_reports_source
 end
 
   def get_employed(email)
-            Employed.where(email: email).first
+            Employed.where(email: email).where(admin_user: current_user.admin_user).first
             
       end
 
@@ -249,12 +249,12 @@ end
       end
 
       def get_employed1
-            Employed.where(email: current_user.email).first # Devuelve el empleado relacionado con el Usuario
+            Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first # Devuelve el empleado relacionado con el Usuario
             
       end
  
   def view_report(report)
-      a = get_employed(current_user.email)
+      a = get_employed(current_user.email )
     if report.employed_id == a.id || current_user.role == "SuperAdmin"
         return true
        

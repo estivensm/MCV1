@@ -100,10 +100,14 @@
     <%= f.label "Fecha de Compromiso" %>
     <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @accion.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
   </div>
+   
+  <%if @tipo == "Accion"%> 
    <div class="form-group">
-               <%= f.label "Otros interesados" %><br>
+               <%= f.label "Causas" %><br>
                <%= f.select :causa_efecto_ids, CausaEfecto.where(report_id:@report.id).where(estado:"vital").collect {|ca| ["#{ca.name}", ca.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
             </div>
+
+            <%end%>
 
 
 <script>

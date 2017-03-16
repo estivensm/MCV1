@@ -27,7 +27,7 @@ class SourcesController < ApplicationController
 
 
 
-   @sources = @sources1.paginate(page: params[:page],:per_page => 5).where(admin_user: current_user.admin_user).order(created_at: :desc)
+   @sources = @sources1.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(created_at: :desc)
    
   end
 
@@ -77,7 +77,7 @@ def change
 
 
 
-   @sources = @sources1.paginate(page: params[:page],:per_page => 5).where(admin_user: current_user.admin_user).order(created_at: :desc)
+   @sources = @sources1.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(created_at: :desc)
     
     
 end

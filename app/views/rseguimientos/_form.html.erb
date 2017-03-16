@@ -27,6 +27,29 @@
     <%= f.label "Evidencia" %>
     <%= f.file_field :evidencia,  class: "form-control" %>
   </div>
+<br>
+                 <div class="form-group">
+                  <%= f.label "Solicitar Cierre" %>
+                  <%= f.check_box :s_cierre ,  class: ""  %>
+               </div>
+
+               <div class="form-group">
+                  <%= f.label "Cerrar" %>
+                  <%= f.check_box :cerrar ,  class: "cierra1"  %>
+               </div>
+               
+               <div class="form-group cierra">
+                  <%= f.label "Eficacia" %>
+                  <%= f.check_box :eficaz  %>
+               </div>
+               <div class="form-group cierra">
+                  <%= f.label "Conclución" %>
+                  <%= f.text_area :conclucion ,  class: "form-control area"%>
+               </div>
+              
+
+
+               </div>
  
 
   <br>

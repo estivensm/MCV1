@@ -87,7 +87,8 @@ eventClick: function(event, jsEvent, view) {
   $(function () {
   $('[data-toggle="popover"]').popover({
   	trigger: 'hover',
-  	html: true
+  	html: true,
+    container: 'body'
     
   
   })
