@@ -16,6 +16,7 @@
 #  frecuencia  :integer
 #  porcentaje  :float
 #  estado      :string
+#  subnivel    :string
 #
 
 require 'test_helper'

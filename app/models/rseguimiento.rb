@@ -19,6 +19,46 @@ class Rseguimiento < ApplicationRecord
 	mount_uploader :evidencia, ArchivoRepUploader
 	before_create :seguimiento
     after_create :email
+    after_create :cerrar_report
+
+
+
+
+    def cerrar_report
+report = Report.find(self.report_id)
+report.s_cierre = self.s_cierre
+        if self.cerrar
+
+          
+            report.f_compromiso >= Time.now ? (report.cumplio = true) : (report.cumplio = false)
+            report.f_real = Time.now
+            report.conclucion = self.conclucion
+            report.eficaz = self.eficaz
+            report.state = "Cerrado"
+            
+            #report = Report.find(accion.report_id)
+            
+            #accion.update(estado: "Cerrada", costo: self.costo, eficaz: self.eficaz)
+
+             #accion.save
+            #report.costo = self.costo + report.costo
+            #report.save 
+
+       
+            
+                       
+            
+        #end
+
+            #accion = Accion.find(self.accion_id)
+        #employed = Employed.where(email: self.user.email).take     
+    #if accion.employed_id.to_i == employed.id
+       # accion.fp_seguimiento = Time.at(Time.now.to_i + (accion.f_seguimiento*60*60*24))
+        #accion.save
+    end
+report.save
+
+  end
 
 	def seguimiento
         report = Report.find(self.report_id)

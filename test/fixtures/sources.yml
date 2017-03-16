@@ -17,6 +17,7 @@
 #  puede_ac    :boolean
 #  codigo      :string
 #  tipo        :string
+#  balon       :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

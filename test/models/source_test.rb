@@ -17,6 +17,7 @@
 #  puede_ac    :boolean
 #  codigo      :string
 #  tipo        :string
+#  balon       :boolean
 #
 
 require 'test_helper'

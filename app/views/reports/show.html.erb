@@ -13,10 +13,11 @@
       </p>
    </div>
 </div>
-<% if cerrar_reporte( @report.source.correccion , @report.source.causa  ,@report.source.accion, @report.id )%>
-<% if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id || (current_user.role == "SuperAdmin" && @report.state != "Cerrado")%>
+
+<% #|| (current_user.role == "SuperAdmin" && @report.state != "Cerrado")
+if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
 <div class="alert alert-success text-center" > 
-   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡FELICITACIONES YA PUEDES CERRAR EL REPORTE! <button type="button" data-toggle="modal" data-target="#contact-modal" class="btn btn-primary" style = "margin-left: 15px;">Cerrar</button>
+   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL RESPONSABLE DE LA EJECUCION SOLICITO EL CIERRE DEL REPORTE! <%= link_to  "Ir a Seguimientos", report_seguimientos_path(@report) , class: 'btn btn-primary'%>
 </div>
 <%elsif @report.state == "Cerrado" %>
 <% if @report.cumplio %>
@@ -29,7 +30,8 @@
 </div>
 <%end%>
 <%end%> 
-<%end%>
+
+
 <%= render 'form_close', report: @report %>
 <h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
 <div class="conteinter reporte cnt">

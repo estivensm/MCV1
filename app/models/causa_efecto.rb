@@ -16,6 +16,7 @@
 #  frecuencia  :integer
 #  porcentaje  :float
 #  estado      :string
+#  subnivel    :string
 #
 
 class CausaEfecto < ApplicationRecord

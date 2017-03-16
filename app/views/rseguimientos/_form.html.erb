@@ -28,16 +28,19 @@
     <%= f.file_field :evidencia,  class: "form-control" %>
   </div>
 <br>
+         <% if @report.state != "Cerrado" && get_employed1.id == @report.employed_id %>
                  <div class="form-group">
                   <%= f.label "Solicitar Cierre" %>
                   <%= f.check_box :s_cierre ,  class: ""  %>
                </div>
-
+               <%end%> 
+         <% if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id %>
+      
                <div class="form-group">
                   <%= f.label "Cerrar" %>
                   <%= f.check_box :cerrar ,  class: "cierra1"  %>
                </div>
-               
+         <%end%>      
                <div class="form-group cierra">
                   <%= f.label "Eficacia" %>
                   <%= f.check_box :eficaz  %>
@@ -59,3 +62,24 @@
    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
   </div>
 <% end %>
+
+
+<script>
+   $('.cierra').hide();
+   $('.cierra1').change(function(){
+   
+   
+              if ( $(this).is(':checked') )
+     {
+             $('.cierra').fadeIn();
+             
+        }
+         else{
+               
+     $('.cierra').fadeOut();
+           
+          }
+     });
+   
+   
+</script>

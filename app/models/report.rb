@@ -33,6 +33,10 @@
 #  tag                 :boolean
 #  cierra_id           :integer
 #  name                :string
+#  balon               :string
+#  s_cierre            :boolean
+#  eficaz              :boolean
+#  conclucion          :text
 #
 
 class Report < ApplicationRecord
