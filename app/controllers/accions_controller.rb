@@ -39,7 +39,7 @@ class AccionsController < ApplicationController
 
   # GET /accions/1/edit
   def edit
-     @tipo = params[:tipo]
+     @tipo = @accion.tipo
      @report = Report.find(params[:report_id]) 
   end
 
