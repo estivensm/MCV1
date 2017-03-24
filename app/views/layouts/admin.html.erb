@@ -82,7 +82,7 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right" style = "background:white">
-         <li  > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)%></li>
+         <li style = "height: 51px;" > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)%></li>
               <li class="dropdown">
           <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
           <ul class="dropdown-menu">

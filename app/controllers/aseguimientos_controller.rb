@@ -52,9 +52,11 @@ class AseguimientosController < ApplicationController
   # DELETE /aseguimientos/1
   # DELETE /aseguimientos/1.json
   def destroy
+    @accion = Accion.find(params[:accion_id])
+     @report = Report.find(params[:report_id])
     @aseguimiento.destroy
     respond_to do |format|
-      format.html { redirect_to aseguimientos_url, notice: 'Aseguimiento was successfully destroyed.' }
+      format.html { redirect_to report_accion_path(@report,@accion), notice: 'Aseguimiento was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

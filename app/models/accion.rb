@@ -33,6 +33,7 @@ class Accion < ApplicationRecord
 	has_and_belongs_to_many :employeds, dependent: :destroy
   has_and_belongs_to_many :causa_efectos, dependent: :destroy
     has_many :aseguimientos, dependent: :destroy
+    has_many :riesgos
     belongs_to :user
     validate :start_must_be_before_end_time
     validates :employed_id, presence: true

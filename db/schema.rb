@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321162151) do
+ActiveRecord::Schema.define(version: 20170324202114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -312,6 +312,18 @@ ActiveRecord::Schema.define(version: 20170321162151) do
     t.boolean  "s_cierre"
     t.boolean  "eficaz"
     t.text     "conclucion"
+  end
+
+  create_table "riesgos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.integer  "report_id"
+    t.integer  "accion_id"
+    t.text     "descripcion"
+    t.string   "clasificacion"
+    t.string   "nivel"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "rols", force: :cascade do |t|

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
           
 
   
+  
   get 'amefps/show/:causa' , to: "amefps#show", as: "show_amefp"
   get 'new_amefp/:causa', to: 'causas#new_amefp', as: "new_amefp"
 
@@ -49,6 +50,7 @@ end
             get :get_reportsc, on: :collection
             resources :accions do 
                 resources :aseguimientos
+                resources :riesgos
             end
             resources :causas
             resources :rseguimientos

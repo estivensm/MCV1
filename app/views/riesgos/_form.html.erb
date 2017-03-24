@@ -1,0 +1,56 @@
+
+
+
+<div id="contact-modal" class="modal fade">
+<div class="modal-dialog">
+   <div class="modal-content modal-graph col-lg-12 col-xs-8 col-md-12">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+         <h4 class="modal-title"><%= action_type %> Riesgo</h4>
+      </div>
+      <%= form_for([@report,@accion,@riesgo], remote: true) do |f| %>
+      <div class="alert alert-danger" style="display:none">
+         <ul>
+         </ul>
+      </div>
+      <div class="modal-body">
+       
+              <p><strong>Accion: </strong><%=@accion.name%></p>
+               
+               <div class="form-group">
+<%val1 = "" 
+ action_name == "edit" ? val1 = @riesgo.clasificacion : val1 = "" %>
+    <%= f.label "Clasificacion" %>
+     <%= f.select 'clasificacion', options_for_select(["Ambiental", "Cliente", "Cumpliminto","Desastre","Estrategico", "Financiero","Humano", "Legal","Operacional", "Tecnologico"], val1), {},{:class => 'form-control'}%>
+  </div> 
+
+         <div class="form-group">
+<%val2 = "" 
+ action_name == "edit" ? val2 = @riesgo.nivel : val2 = "" %>
+    <%= f.label "Nivel" %>
+     <%= f.select 'nivel', options_for_select(["Alto", "Medio", "Bajo"], val2), {},{:class => 'form-control'}%>
+  </div> 
+
+
+               <div class="form-group">
+                  <%= f.label "Descripcion" %>
+                  <%= f.text_area :descripcion,  class: "form-control area" %>
+               </div>
+                
+            
+          
+        
+          <%= f.hidden_field :report_id , :value => @report.id %>
+         <%= f.hidden_field :accion_id , :value => @accion.id %>
+         <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
+         <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+         <br>
+         <hr>
+         <div class="form-group text-center">
+            <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+         </div>
+         <% end %>
+      </div>
+   </div>
+</div>

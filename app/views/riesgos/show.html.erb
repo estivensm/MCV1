@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @riesgo.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @riesgo.admin_user %>
+</p>
+
+<p>
+  <strong>Report:</strong>
+  <%= @riesgo.report_id %>
+</p>
+
+<p>
+  <strong>Accion:</strong>
+  <%= @riesgo.accion_id %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @riesgo.descripcion %>
+</p>
+
+<p>
+  <strong>Clasificacion:</strong>
+  <%= @riesgo.clasificacion %>
+</p>
+
+<p>
+  <strong>Nivel:</strong>
+  <%= @riesgo.nivel %>
+</p>
+
+<%= link_to 'Edit', edit_riesgo_path(@riesgo) %> |
+<%= link_to 'Back', riesgos_path %>

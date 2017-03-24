@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Riesgos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Report</th>
+      <th>Accion</th>
+      <th>Descripcion</th>
+      <th>Clasificacion</th>
+      <th>Nivel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @riesgos.each do |riesgo| %>
+      <tr>
+        <td><%= riesgo.user_id %></td>
+        <td><%= riesgo.admin_user %></td>
+        <td><%= riesgo.report_id %></td>
+        <td><%= riesgo.accion_id %></td>
+        <td><%= riesgo.descripcion %></td>
+        <td><%= riesgo.clasificacion %></td>
+        <td><%= riesgo.nivel %></td>
+        <td><%= link_to 'Show', riesgo %></td>
+        <td><%= link_to 'Edit', edit_riesgo_path(riesgo) %></td>
+        <td><%= link_to 'Destroy', riesgo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Riesgo', new_riesgo_path %>

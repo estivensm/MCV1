@@ -26,6 +26,7 @@ class AccionsController < ApplicationController
   def show
     @report = Report.find(params[:report_id]) 
     @seguimientos = @accion.aseguimientos.order(created_at: :desc)
+    @riesgos = @accion.riesgos.order(created_at: :desc)
 
   
   end
