@@ -28,6 +28,10 @@ class LogoUploader < CarrierWave::Uploader::Base
   version :thumb, :from_version => :medium do
     process resize_to_fit: [50, 50]
   end
+
+  version :logo do
+    process resize_to_fill: [150, 50]
+  end
  
   version :square do
     process :resize_to_fill => [500, 500]
