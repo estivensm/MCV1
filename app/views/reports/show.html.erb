@@ -263,7 +263,7 @@
    <div class="row rtr">
    <div class="col-md-1">
    <%  idemp = User.find(seg.user_id).email
-         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp)
+         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
          %>
 <img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
    </div>
