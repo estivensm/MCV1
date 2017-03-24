@@ -166,7 +166,7 @@
    <div class="col-md-12">
       <div class="panel panel-default">
         
-         <div class="panel-body">
+         <div class="panel-body pbody">
            <div class="col-md-9">
               
            
@@ -178,7 +178,7 @@
            
            </div>
            <div class="col-md-3">
-             <p class="text-right"> <%= link_to  "Ver",report_correcciones_path(@report) , class: 'btn btn-primary'%></p>   
+             <p class="text-right  margin-cero"> <%= link_to  "Ver",report_correcciones_path(@report) , class: 'btn btn-primary'%></p>   
            </div>
             
          </div>
@@ -204,7 +204,7 @@
             <div class="col-md-9">
              </div>
              <div class="col-md-3">
-            <p class="text-right"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>
+            <p class="text-right  margin-cero"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>
             </div>
             <%end%>
            
@@ -232,7 +232,7 @@
            
            </div>
            <div class="col-md-3">
-             <p class="text-right"><%= link_to  "Ver", report_accions_path(@report) , class: 'btn btn-primary'%></p>   
+             <p class="text-right margin-cero"><%= link_to  "Ver", report_accions_path(@report) , class: 'btn btn-primary '%></p>   
            </div>
       
          </div>
