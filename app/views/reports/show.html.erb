@@ -148,11 +148,11 @@
 <%if @report.source.correccion || @report.source.causa || @report.source.accion  %>
 <div class="row flujo">
   <ul class="nav nav-tabs" role="tablist">
-   <%if @report.source.correccion && @report.accion == "Si" %>
+   <%if @report.source.correccion %>
     <li role="presentation" class="active"><a href="#home" class="linka" aria-controls="home" role="tab" data-toggle="tab">Correciones (<%=@correa + @correc%>)</a></li><% end %>
-     <%if @report.source.causa && @report.accion == "Si"%>
+     <%if @report.source.causa %>
     <li role="presentation"><a href="#profile" aria-controls="profile" class="linka" role="tab" data-toggle="tab">Analisis de Causas</a></li><% end %>
-     <%if @report.source.accion && @report.accion == "Si"%>
+     <%if @report.source.accion %>
       <li role="presentation"><a href="#messages" aria-controls="messages" class="linka" role="tab" data-toggle="tab">Acciones (<%=@accionsca + @accionscc%>)</a></li><% end %>
   </ul>
 
@@ -263,7 +263,7 @@
    <div class="row rtr">
    <div class="col-md-1">
    <%  idemp = User.find(seg.user_id).email
-         employed1 = get_employed(idemp)
+         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp)
          %>
 <img class ="seg-img" src='<%= employed.avatare_url(:thumb) %>'>
    </div>
