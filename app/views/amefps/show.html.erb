@@ -68,16 +68,19 @@
       <p >AMEF</p>
    </div>
      <div class = "col-md-4 text-right">
-     <%=link_to "Editar Información General" ,edit_amefp_path(@amefp.id),remote:true , class: "btn btn-primary"%>
-      <button type="" class="actu btn btn-primary">Editar</button>
+     <%=link_to "Editar AMEF" ,edit_amefp_path(@amefp.id),remote:true , class: "btn btn-primary"%>
+      <button type="" class="actu btn btn-primary">Editar Cuadro</button>
+   </div>
+
+   </div>
+
+     
+   
+   
       <%= form_tag update_vcaef_path do %>
-        <%= submit_tag "Actualizar", class: "btn btn-danger subact", style: "display:none"%>
-   </div>
+       <p class="text-right" = ""> <%= submit_tag "Actualizar", class: "btn btn-danger subact", style: "display:none"%></p>   
 
-   </div>
-      
 
-<div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -117,6 +120,7 @@
             <th style = "width:3%">D</th>
             <th style = "width:3%">NPR</th>
             <th style = "width:20%">Acciones a tomar</th>
+            <th style = "width:5%">Ok</th>
             <th style = "width:10%">Responsable</th>
             <th style = "width:20%">Acciones tomadas</th>
              <% if @amefp.s_valoracion %>
@@ -165,17 +169,18 @@
          <%end%>
         
            <td><%= causa.causa_fallo %></td>
-           <td class="po num"><span><%= causa.p_ocurrencia %></span><%= number_field_tag "p_ocurrencia[]", causa.p_ocurrencia   %></td>
+           <td class="po num text-center"><span><%= causa.p_ocurrencia %></span><%= number_field_tag "p_ocurrencia[]", causa.p_ocurrencia   %></td>
             <td class="input"><span><%= causa.c_actuales %></span><%= text_area_tag "c_actuales[]", causa.c_actuales  %></td>
 
             
-             <td class="pn num"><span><%= causa.pn_deteccion %></span><%= number_field_tag "pn_deteccion[]", causa.pn_deteccion %></td>
+             <td class="pn num text-center"><span><%= causa.pn_deteccion %></span><%= number_field_tag "pn_deteccion[]", causa.pn_deteccion %></td>
              <td><%= causa.npr %></td>
             <%= hidden_field_tag "ids[]", causa.id %>
             
 
           <td class="input"><span><%= causa.a_tomar %></span><%= text_area_tag "a_tomar[]", causa.a_tomar  %></td>
-        
+          <td class="input text-center"><span><%= get_state(causa.accion_ok).html_safe %></span>  <%= check_box_tag "accion_ok[]", causa.id ,causa.accion_ok,class:""%></td>
+       
           <td >           
 
 
@@ -193,15 +198,15 @@
             <% if @amefp.s_valoracion %>
              <%= hidden_field_tag "sgrado", @amefp.s_valor %>
           <td><%= causa.sgrado %></td>
-            <td class="spo num"><span><%= causa.sp_ocurrencia %></span><%= number_field_tag "sp_ocurrencia[]", causa.sp_ocurrencia  %></td>
-             <td class="spn num"><span><%= causa.spn_deteccion %></span><%= number_field_tag "spn_deteccion[]", causa.spn_deteccion %></td>
+            <td class="spo num text-center"><span><%= causa.sp_ocurrencia %></span><%= number_field_tag "sp_ocurrencia[]", causa.sp_ocurrencia  %></td>
+             <td class="spn num text-center"><span><%= causa.spn_deteccion %></span><%= number_field_tag "spn_deteccion[]", causa.spn_deteccion %></td>
               <td><%= causa.snpr %></td>
               <% end %>
               <% if @amefp.t_valoracion %>
-              <%= hidden_field_tag "tgrado", @amefp.t_valor %>
+              <%= hidden_field_tag "tgrado text-center", @amefp.t_valor %>
               <td><%= causa.tgrado %></td>
-                <td class="input num"><span><%= causa.tp_ocurrencia %></span><%= number_field_tag "tp_ocurrencia[]", causa.tp_ocurrencia  %></td>
-             <td class="input num"><span><%= causa.tpn_deteccion %></span><%= number_field_tag "tpn_deteccion[]", causa.tpn_deteccion %></td>
+                <td class="input num text-center"><span><%= causa.tp_ocurrencia %></span><%= number_field_tag "tp_ocurrencia[]", causa.tp_ocurrencia  %></td>
+             <td class="input num text-center"><span><%= causa.tpn_deteccion %></span><%= number_field_tag "tpn_deteccion[]", causa.tpn_deteccion %></td>
               <td><%= causa.tnpr %></td>
               <% end %>
          </tr>

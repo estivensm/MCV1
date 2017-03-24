@@ -170,6 +170,15 @@ def update_vcaef
     bt = params[:tp_ocurrencia]#propbabilidad de ocurrencia tercera valoracion
     ct = params[:tpn_deteccion]#propbabilidad de no deteccion tercera valoracion
     ca = params[:c_actuales]
+    ok = params[:accion_ok]
+    Amef.where(amefp_id: amefp.id).update_all(accion_ok:false)
+    if ok != nil
+    ok.each do |ame|
+       amef = Amef.find(ame)
+       amef.accion_ok = true
+       amef.save
+    end
+  end
     x = 0
     a.each do |i|
       g = b[x].to_i * c[x].to_i * params[:grado].to_i
@@ -182,7 +191,7 @@ def update_vcaef
       estado = ""
       gs > nprmayor ?  estado = "vital" : estado = "trivial"
 
-      Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
+      Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x], sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
       
           
           #Mira si es vital o trivial de acurdo al npr tage que se puso

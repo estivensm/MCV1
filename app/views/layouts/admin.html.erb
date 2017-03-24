@@ -80,16 +80,18 @@
                         <% end %></li>
                            
           </ul>
-          <ul class="nav navbar-nav navbar-right">
+
+          <ul class="nav navbar-nav navbar-right" style = "background:white">
+         <li  > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:medium), style: "width:150px"%></li>
               <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:#ccc"><%=current_user.name  %> </span><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
-                              <span class="fa fa-sign-out"></span>
+                              <span class="fa fa-sign-out" style = "color:gray"></span>
                               <span style = "color:gray!important">Cerrar Sesión</span>
                               <% end %></li>
             <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
-                              <span class="fa fa-sign-out"></span>
+                              <span class="fa fa-sign-out" style = "color:gray"></span>
                               <span style = "color:gray!important" >Ver Usuario</span>
                               <% end %></li>
       
@@ -222,7 +224,20 @@
 
 
 
+<style>
+.user:hover, .user:focus , .user:active, .user:focus:over
+{
+  background:#e7e7e7!important;
+    color:white!important;
+}
+  
+  .nav .open > a:hover, .nav .open > a:focus {
+ background:#e7e7e7 !important;
+    color:white!important;
+  }
 
+ 
+</style>
 
 
 
@@ -230,9 +245,6 @@
 
 
   
-
-
-
 
 
 

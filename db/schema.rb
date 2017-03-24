@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316202229) do
+ActiveRecord::Schema.define(version: 20170321162151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20170316202229) do
     t.string   "estado"
     t.string   "sestado"
     t.string   "testado"
+    t.boolean  "accion_ok"
   end
 
   create_table "aseguimientos", force: :cascade do |t|
@@ -142,8 +143,8 @@ ActiveRecord::Schema.define(version: 20170316202229) do
     t.integer  "admin_user"
     t.string   "nivel"
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.string   "tipo"
     t.integer  "report_id"
     t.integer  "causa_id"
@@ -152,6 +153,8 @@ ActiveRecord::Schema.define(version: 20170316202229) do
     t.float    "porcentaje"
     t.string   "estado"
     t.string   "subnivel"
+    t.integer  "accion_id"
+    t.boolean  "estado_accion"
   end
 
   create_table "causas", force: :cascade do |t|

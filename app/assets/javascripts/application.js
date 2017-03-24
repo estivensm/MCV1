@@ -77,6 +77,15 @@ eventClick: function(event, jsEvent, view) {
 
 
   });
+ $(function () {
+  $('[data-toggle="popover"]').popover({
+    trigger: 'hover',
+    html: true,
+    container: 'body'
+    
+  
+  })
+})
 
 
 
@@ -84,14 +93,5 @@ eventClick: function(event, jsEvent, view) {
 });
 
 
-  $(function () {
-  $('[data-toggle="popover"]').popover({
-  	trigger: 'hover',
-  	html: true,
-    container: 'body'
-    
-  
-  })
-})
-
+ 
  

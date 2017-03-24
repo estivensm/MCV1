@@ -34,7 +34,7 @@ class RseguimientosController < ApplicationController
     @rseguimiento = Rseguimiento.new(rseguimiento_params)
 
     if @rseguimiento.save
-      redirect_to report_seguimientos_path(@report)
+      redirect_to report_path(@report)
     end
  
     

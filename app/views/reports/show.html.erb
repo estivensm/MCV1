@@ -13,11 +13,10 @@
       </p>
    </div>
 </div>
-
 <% #|| (current_user.role == "SuperAdmin" && @report.state != "Cerrado")
-if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
+   if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
 <div class="alert alert-success text-center" > 
-   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL RESPONSABLE DE LA EJECUCION SOLICITO EL CIERRE DEL REPORTE! <%= link_to  "Ir a Seguimientos", report_seguimientos_path(@report) , class: 'btn btn-primary'%>
+   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL RESPONSABLE DE LA EJECUCION SOLICITO EL CIERRE DEL REPORTE!
 </div>
 <%elsif @report.state == "Cerrado" %>
 <% if @report.cumplio %>
@@ -30,21 +29,26 @@ if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @repo
 </div>
 <%end%>
 <%end%> 
-
-
 <%= render 'form_close', report: @report %>
+
+
+<div class="row">
+  
+<div class="col-md-6 wihtout-padding">
 <h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
+
 <div class="conteinter reporte cnt">
    <div class="row rtr">
-      <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
-      <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
-      <div class="col-md-2 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
+      <div class="col-md-4 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
+      <div class="col-md-4 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
+      <div class="col-md-4 rtd"><strong>Estado: </strong><%= @report.state %></div>
+      <div class="col-md-5 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
       <% employed1 = Employed.find(@report.employed_reporta)%>
-      <div class="col-md-2 rtd"><strong>Reporta: </strong>
+      <div class="col-md-5 rtd"><strong>Reporta: </strong>
          <%= render "employed" , employed: employed1 %>
       </div>
-      <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
-      <div class="col-md-2 rtd"><strong>Costo Actual: </strong><%= number_to_currency(@report.costo) %></div>
+      
+      <div class="col-md-2 rtd"><strong>Costo: </strong><%= number_to_currency(@report.costo) %></div>
    </div>
    <hr>
    <div class="row rtr">
@@ -72,20 +76,28 @@ if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @repo
    <hr>
    <div class="row rtr">
       <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-      <div class="col-md-8 rtd text-left">
-         <strong>Nombre:</strong> <%= @report.name%><br> 
-         <div class="descnum"><strong>Descripcion:</strong> <%= @report.description%></div>
+      <div class="col-md-12 rtd text-left">
+         <strong>Descripción corta:</strong> <%= @report.name%><br> 
+         <div class="descnum"><strong>Descripción detallada:</strong> <%= @report.description%></div>
       </div>
-      <div class="col-md-4 rtd text-left">
-         <strong>Evidencia:</strong> <%= @report.evidencia%><br><strong>Adjunto:</strong>  <% if @report.archivo_url%>
+
+   </div>
+   <hr>
+      <div class="row rtr">
+      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+     
+      <div class="col-md-12 rtd text-left">
+     <strong>Adjunto:</strong>  <% if @report.archivo_url%>
          <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
          <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
          <%else%>
          No hay archivo
-         <%end%>
+         <%end%><br>
+         <div class="descnum"> <strong>Evidencia:</strong> <%= @report.evidencia%> </div>
       </div>
    </div>
    <hr>
+
    <div class="row rtr">
       <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
       <div class="col-md-6 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
@@ -128,65 +140,164 @@ if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @repo
       </div>
    </div>
 </div>
+
+
+</div>
+
+<div class="col-md-6 wihtout-padding">
+<%if @report.source.correccion || @report.source.causa || @report.source.accion  %>
 <div class="row flujo">
-   <div class="col-md-3">
+  <ul class="nav nav-tabs" role="tablist">
+   <%if @report.source.correccion && @report.accion == "Si" %>
+    <li role="presentation" class="active"><a href="#home" class="linka" aria-controls="home" role="tab" data-toggle="tab">Correciones (<%=@correa + @correc%>)</a></li><% end %>
+     <%if @report.source.causa && @report.accion == "Si"%>
+    <li role="presentation"><a href="#profile" aria-controls="profile" class="linka" role="tab" data-toggle="tab">Analisis de Causas</a></li><% end %>
+     <%if @report.source.accion && @report.accion == "Si"%>
+      <li role="presentation"><a href="#messages" aria-controls="messages" class="linka" role="tab" data-toggle="tab">Acciones (<%=@accionsca + @accionscc%>)</a></li><% end %>
+  </ul>
+
+
+<div class="tab-content">
+  <br>
+  
+    <div role="tabpanel" class="tab-pane active" id="home">
+
+
+   <div class="col-md-12">
       <div class="panel panel-default">
-         <div class="panel-heading">Correcciones (<%=@correa + @correc%>)</div>
+        
          <div class="panel-body">
-            <%if @report.source.correccion && @report.accion == "Si" %>
-            <p class="color-gray">Tienes <%=@correa%> <%=@correa == 1 ? "Correccion Abierta" : "Correcciones Abiertas"%>
+           <div class="col-md-9">
+              
+           
+            <p class="color-gray"><%=@correa%> <%=@correa == 1 ? "Abierta" : "Abiertas"%> <i class="fa fa-unlock" aria-hidden="true"></i>
+             <span style = "margin: 0 10px">|</span> <%=@correc%> <%=@correc == 1 ? "Cerrada" : "Cerradas"%> <i class="fa fa-lock" aria-hidden="true"></i>
             </p>
-            <p class="color-gray">Tienes <%=@correc%> <%=@correc == 1 ? "Correccion Cerrada" : "Correcciones Cerradas"%></p>
-            <p class="text-right"> <%= link_to  "Ver",report_correcciones_path(@report) , class: 'btn btn-primary'%></p>
-            <%else%>
-            <p class="color-gray">Este Reporte no necesita Correcciones </p>
-            <% end %>
+            <p class="color-gray"></p>
+          
+           
+           </div>
+           <div class="col-md-3">
+             <p class="text-right"> <%= link_to  "Ver",report_correcciones_path(@report) , class: 'btn btn-primary'%></p>   
+           </div>
+            
          </div>
       </div>
    </div>
-   <div class="col-md-3">
+   </div>
+
+
+   <div role="tabpanel" class="tab-pane" id="profile">
+   <div class="col-md-12">
       <div class="panel panel-default">
-         <div class="panel-heading">Analisis de Causa</div>
+        
          <div class="panel-body">
-            <%if @report.source.causa && @report.accion == "Si"%>
+           
             <% if @report.causas.count == 0 %>
+            <div class="col-md-9">
             <p class="color-gray">No se ha creado el Analisis de Causa</p>
+            </div>
+            <div class="col-md-3">
             <%= (link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary') if view_report(@report) %>
+             </div>
             <%else%>
-            <p class = "color-gray"><%= @report.causas.last.tipo%></p>
+            <div class="col-md-9">
+             </div>
+             <div class="col-md-3">
             <p class="text-right"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>
+            </div>
             <%end%>
-            <%else%>
-            <p class="color-gray">Este Reporte no necesita Analisis de Causa </p>
-            <% end %>
+           
          </div>
       </div>
    </div>
-   <div class="col-md-3">
+
+ </div>
+
+ <div role="tabpanel" class="tab-pane" id="messages">
+
+   <div class="col-md-12">
       <div class="panel panel-default">
-         <div class="panel-heading">Acciones (<%=@accionsca + @accionscc%>)</div>
+         
          <div class="panel-body">
-            <%if @report.source.accion && @report.accion == "Si"%>
-            <p class="color-gray">Tienes <%=@accionsca%> <%=@accionsca == 1 ? "Accion Abierta" : "Acciones Abiertas"%>
+
+          <div class="col-md-9">
+              
+           
+            <p class="color-gray"><%=@accionsca%> <%=@accionsca== 1 ? "Abierta" : "Abiertas"%> <i class="fa fa-unlock" aria-hidden="true"></i>
+             <span style = "margin: 0 10px">|</span><%=@accionscc%> <%=@accionscc == 1 ? "Cerrada" : "Cerradas"%> <i class="fa fa-lock" aria-hidden="true"></i>
             </p>
-            <p class="color-gray">Tienes <%=@accionscc%> <%=@accionscc == 1 ? "Accion Cerrada" : "Acciones Cerradas"%>  </p>
-            <p class="text-right"><%= link_to  "Ver", report_accions_path(@report) , class: 'btn btn-primary'%>
-            <p>
-               <%else%>
-            <p class="color-gray">Este Reporte no necesita Acciones </p>
-            <%end%>
+            <p class="color-gray"></p>
+          
+           
+           </div>
+           <div class="col-md-3">
+             <p class="text-right"><%= link_to  "Ver", report_accions_path(@report) , class: 'btn btn-primary'%></p>   
+           </div>
+      
          </div>
       </div>
    </div>
-   <div class="col-md-3">
-      <div class="panel panel-default">
-         <div class="panel-heading">Seguimientos(<%=@seguimientos.count%>)</div>
-         <div class="panel-body">
-            <p class="text-right"><%= link_to  "Ver", report_seguimientos_path(@report) , class: 'btn btn-primary'%>
-            <p>
-         </div>
-      </div>
    </div>
+
+</div>
+</div>
+<% end %>
+
+
+<div class="conteinter htitle" style = "padding:0px">
+   <div class="row rtr">
+      
+      <div class="col-md-8">
+         <h3 class="htitle linka">Seguimientos (<%=@seguimientos.count %>)</h3>
+      </div>
+      <div class="col-md-4 rtd"><% if @seguimientos.count > 0 %><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %><%end%></div>
+   </div>
+</div>
+<% if @seguimientos.count > 0 %>
+
+
+<div class="height-rep"> 
+<% @seguimientos.each do |seg| %>
+<div class="conteinter reporte cnt ">
+   <div class="row rtr">
+   <div class="col-md-1">
+   <%  idemp = User.find(seg.user_id).email
+         employed1 = get_employed(idemp)
+         %>
+<img class ="seg-img" src='<%= employed.avatare_url(:thumb) %>'>
+   </div>
+      <div class="col-md-11">
+      
+      <div class="col-md-4 rtd">
+         <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+      </div>
+      <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
+      <div class="col-md-3 rtd"><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
+      <div class="col-md-2 rtd text-right"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
+      </div>
+<div class="col-md-12 wihtout-padding-top text-left"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
+  </div>
+   </div>
+   
+</div>
+<% end %>
+<%else%>
+<div class="jumbotron jumbacc">
+   <h3 class="display-3 color-gray">No se ha creado ningun seguimiento</h3>
+   <hr>
+   <br>
+   <%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
+   </p>
+</div>
+<%end%>
+</div>
+</div>
 </div>
 <style>
    .imaacc img
@@ -226,93 +337,3 @@ if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @repo
    })
    
 </script>
-<!-- 
-   <table class = "reporte hidden-xs" ">
-   
-   <tr>
-     
-     <th>Fecha de Apertura</th>
-     <td><%= get_date(@report.created_at) %></td>
-     <th>Fuente</th>
-     <td><%= @report.source.name %></td>
-     <th>Proceso</th>
-     <td><%= @report.proceso.name %></td>
-   </tr>
-   <tr>
-     
-     <th>Reporta</th>
-     <td><%= Employed.find(@report.employed_reporta).first_name + " " + Employed.find(@report.employed_reporta).first_last_name %></td>
-     <th>Estado del Hallazgo</th>
-     <td><%= @report.state %></td>
-     <th>Costo Actual</th>
-     <td><%= number_to_currency(@report.costo)%></td>
-   </tr>
-   <tr>
-     
-    
-     <th>Responsabilidad</th>
-     
-    
-     <% employed = Employed.find(@report.employed_id)%>
-        <td colspan="2" class = "imaacc">Principal: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>Otros Interesados: <% 
-      cm = 0 
-      @report.employeds.each do |resp|
-       %><%= "," if cm != 0 %> 
-       <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= resp.avatare_url(:thumb) %>'></p><br><strong>Cargo: </strong><%=resp.cargo.name %><br> <strong>Email:</strong> <%= resp.email%><br><strong>Cedula:</strong> <%= resp.document %>"><%= resp.first_name %> <%= resp.first_last_name %></button>
-       
-       <%  cm = cm + 1 %> 
-       <%end%>
-     </td>
-      <th>Fechas</th>
-     
-    
-     
-        <td colspan="2" class = "imaacc">
-        Cierre: <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><br>Proximo Seguimiento: <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br>Dias para el cierre: <%=@report.contador_seg %></td>
-   </tr>
-   
-   <tr>
-     
-     <th colspan="6">Description</th>
-      
-   </tr>
-   <tr>
-     
-    
-     <td colspan="6" class = "text-left"><%= @report.description %></td>
-      
-   </tr>
-   <tr>
-     
-     <th>Evidencia</th>
-     <td colspan="2" class = "text-left"><%= @report.evidencia %></td>
-     <th>Evidencia Adjunta</th>
-     <td colspan="2">
-     <% if @report.archivo_url%>
-    <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
-    <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
-<!--<%else%>
-   No hay archivo
-   <%end%>
-   
-    </td>
-     
-   </tr>
-   
-   <tr>
-     
-     <th>Requisito Legal o Interno</th>
-     <td colspan="2" class = "text-left"><%= @report.requisito %></td>
-     <th>Requisto Aplicable</th>
-     <td colspan="2"><% @report.numerals.each do |numr|%>
-      
-   
-   
-   
-   <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
-   
-   
-     <br>
-   </tr>
-   </table>
-       <%end%></td>-->

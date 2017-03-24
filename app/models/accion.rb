@@ -38,7 +38,7 @@ class Accion < ApplicationRecord
     validates :employed_id, presence: true
     after_destroy :restar_costo
     after_create :send_mail
-    
+    before_update :causas    
 
 def self.search(search0,search, search2, search3, search5, search6)
 
@@ -65,11 +65,18 @@ def self.search(search0,search, search2, search3, search5, search6)
       #end
 
   end	
+  def causas
+      
+      
+      #CausaEfecto.where(accion_id: self.id).update_all(accion_id: 0 , estado_accion: false)
+      #self.causa_efectos.update_all(accion_id: self.id, estado_accion: true)
+
+  end
 
 
   def send_mail
 
-
+     # self.causa_efectos.update_all(accion_id: self.id, estado_accion: true)
 
       self.employeds.each do |employed|
         
