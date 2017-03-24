@@ -265,7 +265,7 @@
    <%  idemp = User.find(seg.user_id).email
          employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp)
          %>
-<img class ="seg-img" src='<%= employed.avatare_url(:thumb) %>'>
+<img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
    </div>
       <div class="col-md-11">
       
