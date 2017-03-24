@@ -30,52 +30,7 @@
 
 <div class="col-md-7 height-rep">
 
-<% if @seguimientos.count > 0 %>
 
-<div class="conteinter htitle" style = "padding:0px">
-   <div class="row rtr">
-      
-      <div class="col-md-8 rtd">
-         <h3 class="htitle linka">Seguimientos (<%=@seguimientos.count %>)</h3>
-      </div>
-      <div class="col-md-4 rtd"><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %></div>
-   </div>
-</div>
-
-
-
-
-<% @seguimientos.each do |seg| %>
-<div class="conteinter reporte cnt">
-   <div class="row rtr">
-      <div class="col-md-2 rtd"><strong>Creacion:</strong> <%=  get_date(seg.created_at)  %></div>
-      <div class="col-md-2 rtd"><strong>Responsable:</strong> <%  idemp = User.find(seg.user_id).email
-         employed = Employed.find_by(email: idemp)
-         %>
-         <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
-      </div>
-      <div class="col-md-2 rtd"><strong>Evidencia: </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
-      <div class="col-md-6 rtd text-right"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-      </div>
-   </div>
-   <div class="row rtr">
-      <div class="col-md-12 rtd text-left"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
-   </div>
-</div>
-<% end %>
-<%else%>
-<div class="jumbotron jumbacc">
-   <h1 class="display-3">No se ha creado ningun seguimiento</h1>
-   <hr class="my-4">
-   <%= (link_to "Nueva Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
-   </p>
-</div>
-<%end%>
 
 </div>
 
