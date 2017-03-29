@@ -67,11 +67,7 @@ buttonText:{
     week:     'Semana',
     day:      'Dia',
     list:     'Lista'
-},
-eventClick: function(event, jsEvent, view) {
-        window.location.href = "/reports/" + event.id;
-
-      }
+}
 
 
 
