@@ -333,6 +333,10 @@ end
 
       end
 
+
+
+      
+
       def seguimiento
         @report = Report.find(params[:id])
         @seguimientos = @report.rseguimientos.order(created_at: :desc)
