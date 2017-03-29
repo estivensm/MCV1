@@ -24,7 +24,7 @@ respond_to :json
     @task1.each do |task1|
       if task1.contador_seg > 5
         @color = "green"
-      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+      elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color = "#d82c2c"
       else
           @color = "orange"
