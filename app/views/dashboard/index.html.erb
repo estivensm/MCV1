@@ -25,8 +25,9 @@
 <% @reports.each do |report|%>
 <%= link_to report_path(report) do %>
    <div class="row rtr rtr1">
+   <%employed = Employed.find(report.employed_reporta)%>
       <div class="col-md-3 rtd"><%=get_date(report.f_compromiso)%></div>
-      
+      <div class="col-md-3 rtd"><%=get_employed(employed.email).first_name%></div>
 
       <div class="col-md-6 rtd"><%=report.name%></div>
         
@@ -41,7 +42,7 @@
    <div class="row rtr rtr1">
 
       <div class="col-md-3 rtd"><%=get_date(accion.f_compromiso)%></div>
-    
+      
 
       <div class="col-md-6 rtd"><%=accion.name%></div>
         
