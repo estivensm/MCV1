@@ -8,6 +8,7 @@ respond_to :json
   def get_reportsc
     user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
     @task = Report.where( employed_id: user.id).where(state: "Abierto")
+    @task1 = Accion.where( employed_id: user.id).where(estado: "Abierta")
     events = []
     @task.each do |task|
       if task.contador_seg > 5
@@ -18,6 +19,17 @@ respond_to :json
           @color = "orange"
     end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}"}
+    end
+
+    @task1.each do |task1|
+      if task1.contador_seg > 5
+        @color = "green"
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+          @color = "#d82c2c"
+      else
+          @color = "orange"
+    end
+      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color}"}
     end
     render :text => events.to_json
 
