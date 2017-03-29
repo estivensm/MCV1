@@ -33,6 +33,7 @@
 #  estado          :string
 #  sestado         :string
 #  testado         :string
+#  accion_ok       :boolean
 #
 
 require 'test_helper'

@@ -13,7 +13,7 @@ respond_to :json
       if task.contador_seg > 5
         @color = "green"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
-          @color = "red"
+          @color = "#d82c2c"
       else
           @color = "orange"
     end

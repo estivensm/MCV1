@@ -44,7 +44,7 @@ $("#calendar").fullCalendar({
 
     
 
- height: 650,
+ height: 500,
 
     selectable:true,
     selectHelper:true,

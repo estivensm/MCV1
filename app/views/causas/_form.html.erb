@@ -92,7 +92,7 @@
   <% end %>
   <% @causa.tipo == "Pareto"  ? nom = "Causas" : nom = "Porques"%>
     <%= pareto.label nom %>
-   <%= pareto.text_area :name, :class => 'form-control' %>
+   <%= pareto.text_field :name, :class => 'form-control' %>
     </div>
 
 <%if @causa.tipo == "Pareto"%>

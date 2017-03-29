@@ -11,6 +11,10 @@
 #  evidencia     :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  s_cierre      :boolean
+#  cerrar        :boolean
+#  eficaz        :boolean
+#  conclucion    :text
 #
 
 class Rseguimiento < ApplicationRecord

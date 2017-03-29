@@ -129,6 +129,45 @@
   </div>
     </div>
 </div>
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-default">
+   <div class="panel-heading ph">PARETO</div>
+  <div class="panel-body ph">
+  <div class="row">
+      <div class="col-md-12">
+         <div class="col-md-8">
+             <p class = "titctp">Causa</p>
+         </div>
+         <div class="col-md-2">
+              <p class = "titctp">Frecuencia</p>
+         </div>
+         <div class="col-md-2">
+              <p class = "titctp">porcentaje</p>
+         </div>
+     </div>
+    </div>
+     <%     @causa_paret.each do  |cpt| %>
+     <div class="row">
+      <div class="col-md-12">
+         <div class="col-md-8">
+             <p class = "titctp"><%=cpt.name %></p>
+         </div>
+         <div class="col-md-2">
+              <p class = "titctp"><%=cpt.frecuencia %></p>
+         </div>
+         <div class="col-md-2">
+              <p class = "titctp"><%=cpt.porcentaje.to_i %>%</p>
+         </div>
+     </div>
+    </div>
+    <hr style = "margin-top:0px;margin-bottom:0px">
+    <%end%>
+     </div>
+     <br>
+  </div>
+  </div>
+    </div>
 
 <style>
 .titct
@@ -138,6 +177,7 @@ margin-top: : 0px
 .titctp
 {
 font-size: 12px !important;    
+margin-bottom: 5px;
 }
 
     

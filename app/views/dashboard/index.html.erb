@@ -1,0 +1,199 @@
+<div class="row">
+<p class="myd">DASHBOARD</p>
+</div>
+
+
+<div class="row">
+<div class="col-md-6">
+
+<div class="conteinter reporte cnt">
+
+ <div class="row rtr">
+ <p class = "prox">Reportes</p>
+ <hr class="hr">
+</div>
+
+
+   <div class="row rtr">
+      <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
+      <div class="col-md-3 rtd"><strong>Asigno:</strong> </div>
+    
+      <div class="col-md-6 rtd"><strong>Descripcion:</strong></div>
+        
+</div>
+
+<% @reports.each do |report|%>
+<%= link_to report_path(report) do %>
+   <div class="row rtr rtr1">
+      <div class="col-md-3 rtd"><%=get_date(report.f_compromiso)%></div>
+      <div class="col-md-3 rtd"><%=report.user.first_name%></div>
+
+      <div class="col-md-6 rtd"><%=report.name%></div>
+        
+</div>
+<%end%>
+<%end%>
+<br>
+<p class = "prox">Acciones</p>
+ <hr class="hr">
+<% @accions.each do |accion|%>
+  <%= link_to accion_path(accion) do %>
+   <div class="row rtr rtr1">
+
+      <div class="col-md-3 rtd"><%=get_date(accion.f_compromiso)%></div>
+      <div class="col-md-3 rtd"><%=get_employed(accion.user.email).first_name%></div>
+
+      <div class="col-md-6 rtd"><%=accion.name%></div>
+        
+</div>
+<%end%>
+
+<%end%>
+</div>
+
+
+
+
+	<div id="container" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+</div>
+	<div class="col-md-6">
+	<div id="calendar"></div>
+</div>
+</div>
+
+
+ 
+
+
+<script >
+
+
+
+Highcharts.chart('container', {
+
+    chart: {
+        type: 'column'
+    },
+
+    title: {
+        text: 'Mi Actividad por mes'
+    },
+
+    xAxis: {
+        categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo']
+    },
+
+    yAxis: {
+        allowDecimals: false,
+        min: 0,
+        title: {
+            text: 'Cantidad'
+        }
+    },
+
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.x + '</b><br/>' +
+                this.series.name + ': ' + this.y + '<br/>' +
+                'Total: ' + this.point.stackTotal;
+        }
+    },
+
+    plotOptions: {
+        column: {
+            stacking: 'normal'
+        }
+    },
+
+    series: [ {
+        name: 'Joe',
+        data: [3, 4, 4, 2, 5],
+        stack: 'male'
+    }, {
+        name: 'Jane',
+        data: [2, 5, 6, 2, 1],
+        stack: 'female'
+    }]
+});
+
+
+
+</script>
+
+<style>
+	.fc-toolbar h2 {
+margin: 0;
+color: #0db497;
+}
+
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
+    color:#0db497;
+
+    }
+
+ .fc-view, .fc-view > table {
+    
+}
+</style>
+
+<style>
+.imaacc img
+{
+border-radius: 40px;
+}
+.cnt
+{
+border: 1px solid #c3c3c3;
+margin-bottom: 10px;
+-webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+transition: box-shadow 0.3s;
+    padding: 13px;
+}
+.rtr1
+{
+-webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+transition: box-shadow 0.3s;
+  color:gray;
+
+}
+.rtr1:hover
+{
+box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+background: #0db493;
+color:white;
+
+}
+
+
+.rtd
+{
+padding: 5px;
+
+}
+.titulo
+{
+background:#f2f2f2;
+}
+.cnt:hover
+{
+
+}
+.myd
+{
+
+    font-size: 26px;
+    background: #e8e8e8;
+    color: #0db493;
+    font-family: 'Days One', sans-serif;
+    padding-left: 32px;
+}
+.prox
+{
+  font-size: 16px;
+    color: #0db4a4;
+}
+.rtr1
+{
+
+}
+</style>

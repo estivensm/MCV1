@@ -15,7 +15,7 @@ class CausasController < ApplicationController
      @report = Report.find(params[:report_id])
      @causa_pareto = CausaEfecto.where(causa_id: @causa.id).where(tipo: "Pareto").where("porcentaje <= ?", 80)
      @causa_paretot = CausaEfecto.where(causa_id: @causa.id).where(tipo: "Pareto").where("porcentaje > ?" , 80)
-
+     @causa_paret = CausaEfecto.where(causa_id: @causa.id).order(porcentaje: :desc)
   end
 
   # GET /causas/new

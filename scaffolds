@@ -618,3 +618,6 @@ font-size: 12px !important;
 </style>
 
 
+
+
+rails g scaffold Riesgo user_id:integer admin_user:integer report_id:integer accion_id:integer descripcion:text clasificacion:integer nivel:string

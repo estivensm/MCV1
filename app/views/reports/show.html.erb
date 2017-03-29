@@ -202,6 +202,7 @@
              </div>
             <%else%>
             <div class="col-md-9">
+             <p class="margin-cero"><%=@report.causas.last.tipo%></p>
              </div>
              <div class="col-md-3">
             <p class="text-right  margin-cero"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>

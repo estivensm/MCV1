@@ -109,7 +109,7 @@
 <div class="conteinter htitle" style = "padding:0px">
  
 <div class="row rtr">
- <div class="col-md-4 rtd color-gray"><img src="http://www.pattaya.go.th/wp-content/uploads/2011/11/alert-icon.png" style="width:30px;"> Bajo: <i class="fa fa-arrow-down" aria-hidden="true" style="color:green"></i>
+ <div class="col-md-4 rtd color-gray"> Bajo: <i class="fa fa-arrow-down" aria-hidden="true" style="color:green"></i>
 Medio: <i class="fa fa-arrow-right" aria-hidden="true" style="color:orange"></i>
 alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
  </div>
@@ -117,7 +117,7 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
 
 <div class="col-md-4 rtd">
 <% if @riesgos.count > 0 %>
-<%= link_to 'Nuevo Seguimiento', new_report_accion_riesgo_path(@report,@accion), remote: true,:class => 'btn btn-primary pull-right' %><%end%></div>
+<%= link_to 'Crear Riesgo', new_report_accion_riesgo_path(@report,@accion), remote: true,:class => 'btn btn-primary pull-right' %><%end%></div>
 </div>
 </div>
 
@@ -144,7 +144,7 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
               <div class="col-md-4 rtd"><strong>Creacion:</strong> <%= get_date(riesgo.created_at) %></div>
                                       
                         
-                        <div class="col-md-4 rtd"><strong>Clasificacion: </strong></div>
+                        <div class="col-md-4 rtd"><strong>Clasificacion: </strong><%=riesgo.clasificacion%></div>
                         <div class="col-md-2 rtd"><strong>Nivel: </strong> 
                         <% if riesgo.nivel == "Bajo"%>
 <i class="fa fa-arrow-down" aria-hidden="true" style="color:green"></i>

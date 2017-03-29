@@ -11,6 +11,8 @@
       <script src="https://code.highcharts.com/highcharts.js"></script>
       <script src="https://code.highcharts.com/modules/data.js"></script>
       <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script type="text/javascript" src="/assets/canvasjs.min.js"></script>
+
       <title><%= content_for?(:title) ? yield(:title) : "Rails College" %></title>
       <%= csrf_meta_tags %>
       <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -104,14 +106,14 @@
          
         
             <!--/sidebar-->
-            <div class="row submenu-main">
+            <div class="row submenu-main" >
                  
 
                   
                      
                      <% sub_menu %>
                      <% if @menum[0] == "active1" %>
-                     <div class="col-md-12 submenu hidden-xs">
+                     <div class="col-md-12 submenu hidden-xs" style="box-shadow:rgba(191, 191, 191, 0.49) -4px 3px 7px 4px;">
                      <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
                      <i class="fa fa-building-o" aria-hidden="true"></i>
                      <span class="hidden-xs">Empresa</span>
@@ -156,7 +158,7 @@
 
 
                      <% if @menum[1] == "active1" %>
-                     <div class="col-md-12 submenu">
+                     <div class="col-md-12 submenu" style="box-shadow:rgba(191, 191, 191, 0.49) -4px 3px 7px 4px;">
                      <% menu_hallazgo 
                      if show_reports %>
                      <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
@@ -205,7 +207,7 @@
        </div>
               
                   
-               <div class = "container-fluid conte">
+               <div class = "container-fluid conte" style="    padding-top: 0px;">
                <div class = "row">
                      <div class = "contenido">
                      <%= flash_messages %>

@@ -33,6 +33,7 @@
 #  estado          :string
 #  sestado         :string
 #  testado         :string
+#  accion_ok       :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
