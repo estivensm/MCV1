@@ -14,22 +14,22 @@ respond_to :json
       if task.contador_seg > 5
         @color = "green"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
-          @color = "#d82c2c"
-      else
           @color = "orange"
+      else
+          @color = "#d82c2c"
     end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color = "green"
+        @color1 = "green"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
-          @color = "#d82c2c"
+          @color1 = "orange"
       else
-          @color = "orange"
+          @color1 = "#d82c2c"
     end
-      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
+      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
     end
     render :text => events.to_json
 
