@@ -88,12 +88,7 @@ else
 
   @contactss = Contact.where(admin_user: current_user.admin_user)
 end %>
-            <%= f.label "Contacto" %><br>
-               <%= f.select :contact_id,
-                 @contactss.map { |u| [u.name, u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select form-control ch pri'  }
-                  %>
+            <%=render "contacts", f: f%>
             </div>
 
 <script>

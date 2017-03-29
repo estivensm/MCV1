@@ -21,7 +21,7 @@
       <div class="col-md-6 rtd"><strong>Descripcion:</strong></div>
         
 </div>
-
+<div class="descnum1">
 <% @reports.each do |report|%>
 <%= link_to report_path(report) do %>
    <div class="row rtr rtr1">
@@ -34,9 +34,11 @@
 </div>
 <%end%>
 <%end%>
+</div>
 <br>
 <p class = "prox">Acciones</p>
  <hr class="hr">
+<div class="descnum1">
 <% @accions.each do |accion|%>
   <%= link_to accion_path(accion) do %>
    <div class="row rtr rtr1">
@@ -50,6 +52,9 @@
 <%end%>
 
 <%end%>
+</div>
+
+
 </div>
 
 
