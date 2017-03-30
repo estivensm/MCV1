@@ -45,6 +45,12 @@ def get_contacts
 
 end
 
+def get_users
+
+  User.where(admin_user: current_user.admin_user)
+
+end
+
 def get_cargos
 
   Cargo.where(admin_user: current_user.admin_user)
@@ -76,13 +82,23 @@ def get_numerals
 Numeral.where(admin_user: current_user.admin_user)
 
 end
+def get_rols
+Rol.where(admin_user: current_user.admin_user)
 
+end
+def get_clientes
+ClinteProveedor.where(admin_user: current_user.admin_user)
+
+end
 
 def company_x
     @company = Company.where(user_id: current_user.admin_user)
     return @company.last.id
 end
+def get_normas
+Norma.where(admin_user: current_user.admin_user)
 
+end
 
 def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s

@@ -1,23 +1,184 @@
-
-
-
-
-
-
-<div class="jumbotron">
 <div class="row show-user" >
-<div class="col-md-6">
-	<%= @company.logo? ? image_tag(@company.logo_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
-</div>
-	<div class="col-md-6">
-<h2><%= @company.name %></h2>
-  <p><strong>Telefono:</strong> <%= @company.phone %></p>
-  <p><strong>Direccion:</strong> <%= @company.address %></p>
-   <p><strong>Nit:</strong> <%= @company.nit %></p>
-  <p><%= link_to 'Editar', edit_company_path(@company), remote: true, class: "btn btn-primary btn-lg" %></p>
-  <%= link_to 'Regresar', companies_path %>
-</div>
-</div>
+   <div class="col-md-4">
+      <%= @company.logo? ? image_tag(@company.logo_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
+      <div class="col-md-10 col-md-offset-1">
+         <h2><%= @company.name %></h2>
+         <p><strong>Telefono:</strong> <%= @company.phone %></p>
+         <p><strong>Direccion:</strong> <%= @company.address %></p>
+         <p><strong>Nit:</strong> <%= @company.nit %></p>
+         <p><%= link_to 'Editar', edit_company_path(@company), remote: true, class: "btn btn-primary btn-lg" %></p>
+      </div>
+   </div>
+   <div class="col-md-8">
+      <div class="col-md-2 cuadro">
+         <div class="col-md-5">
+            <i class="fa fa-cogs fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_procesos.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Procesos</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-5">
+            <i class="fa fa-briefcase fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_cargos.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Cargos</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-5">
+            <i class="fa fa-users fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_employeds.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Empleados</p>
+         </div>
+      </div>
+    
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-5">
+            <i class="fa fa-search fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_sources.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Fuentes</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-5">
+            <i class="fa fa-share-alt fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_rols.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Roles</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-5">
+           <i class="fa fa-gavel fas" aria-hidden="true"></i>
 
-  
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_normas.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Normas</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-5">
+            <i class="fa fa-list-ol fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_numerals.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Numerales</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-5">
+           <i class="fa fa-users fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_clientes.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Clientes</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-5">
+            <i class="fa fa-cubes fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_clientes.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Proveedores</p>
+         </div>
+      </div>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-5">
+          <i class="fa fa-building-o fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-7">
+            <h1><%=get_clientes.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Otros Externos</p>
+         </div>
+      </div>
+   
+   </div>
 </div>
+<style>
+   .cuadro
+   {
+   background: #0db497;
+   color: white;
+   padding: 5px;
+   margin: 10px;
+   }
+   .cuadro p
+   {
+   color: #0db497;
+   padding-top: 5px;
+   font-size: 13px;
+   background: whitesmoke;
+   }
+   .cuadro1
+   {
+   background: #50aad4;
+   color: white;
+   padding: 5px;
+   margin: 10px;
+   }
+   .cuadro1 p
+   {
+   color: #50aad4;
+   padding-top: 5px;
+   font-size: 13px;
+   background: whitesmoke;
+   }
+   .cuadro h1
+   {
+   text-align: right;
+   color: white !important;
+   font-size: 35px !important;
+   padding: 10px;
+   }
+   .cuadro1 h1
+   {
+   text-align: right;
+   color: white !important;
+   font-size: 35px !important;
+   padding: 10px;
+   }
+   .fas
+   {
+   color:white;
+   font-size: 40px;
+   padding: 15px 0px 0px 0px;
+   }
+   .pc
+   {
+   background: whitesmoke;
+   }
+</style>
