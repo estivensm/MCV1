@@ -18,6 +18,9 @@
 #  codigo      :string
 #  tipo        :string
 #  balon       :boolean
+#  evidencia   :boolean
+#  requisito   :boolean
+#  numerales   :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -68,7 +68,7 @@
           <hr>
         <div class="row rtr">
           <div class="col-md-6 rtd"><strong>Responsable:</strong> <% employed = Employed.find(@accion.employed_id)%>
-              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>,
+              <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button><br>
               <strong>Responsable de Cierre:</strong> <% employed = Employed.find(@accion.cierra_id)%>
               <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
 
@@ -307,37 +307,34 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
 
 
 
-<div class="conteinter reporte cnt">
- 
-            <div class="row rtr">
-              <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(seg.created_at) %></div>
+<div class="conteinter reporte cnt ">
+   <div class="row rtr">
+   <div class="col-md-1">
+   <%  idemp = User.find(seg.user_id).email
+         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
+         %>
+<img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
+   </div>
+      <div class="col-md-11">
+      
+      <div class="col-md-4 rtd">
+         <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+      </div>
+      <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
+      <div class="col-md-3 rtd"><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
+      <div class="col-md-2 rtd text-right"><%= link_to  edit_report_accion_aseguimiento_path(@report,@accion,seg),remote: true, :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report_accion_aseguimiento_path(@report,@accion,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
+      </div>
+<div class="col-md-12 wihtout-padding-top text-left"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
+  </div>
+   </div>
+   
+</div>
 
-                        <div class="col-md-2 rtd"><strong>Responsable:</strong> <%  idemp = User.find(seg.user_id).email
-                                    employed = Employed.where(email: idemp).take
-                                    %>
-                                  <td  class = "imaacc"> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
-
-                        
-                        
-                        <div class="col-md-2 rtd"><strong>Evidencia: </strong><%= link_to "Ver Evidencia", seg.evidencia_url if seg.evidencia_url %><%=image_tag get_extension(seg.evidencia.file.extension) if seg.evidencia_url%></div>
-                        
-                        <div class="col-md-6 rtd text-right"><%= link_to  edit_report_accion_aseguimiento_path(@report,@accion,seg),remote: true, :class => "opciones" do %>
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    <% end %>
-                                    <%= link_to  report_accion_aseguimiento_path(@report,@accion,seg),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                    <% end %>
-                      </div>
-              
-            </div>
-            <hr>
-            <div class="row rtr">
-                        <div class="col-md-12 rtd text-left"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
-
-                        </div>
-
-              
- </div>
 <% end %>
 
  <% end %>

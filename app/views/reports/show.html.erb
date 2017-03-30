@@ -93,15 +93,20 @@
          <%else%>
          No hay archivo
          <%end%><br>
+         <%if @report.source.evidencia%>
          <div class="descnum"> <strong>Evidencia:</strong> <%= @report.evidencia%> </div>
+         <%end%> 
       </div>
    </div>
    <hr>
 
    <div class="row rtr">
       <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-      <div class="col-md-6 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
-      <div class="col-md-4 rtd text-left">
+       <%if @report.source.requisito%>
+      <div class="col-md-12 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
+ <%end%>
+ <%if @report.source.numerales%>
+      <div class="col-md-12 rtd text-left">
          <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
          <!-- Large modal -->
          <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
@@ -138,6 +143,7 @@
             </div>
          </div>
       </div>
+       <%end%>
    </div>
 </div>
 
@@ -338,3 +344,14 @@
    })
    
 </script>
+
+
+
+
+
+
+
+
+
+
+

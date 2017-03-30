@@ -28,26 +28,33 @@
     <%= f.label "Codigo" %>
     <%= f.text_field :codigo,  class: "form-control" %>
   </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group acc1">
+
+    <div class="form-group acc1">
                <label for="">Tipo</label><br>
                <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Interna', class: 'rb cksi check' %>Interna
+               <%= f.radio_button :tipo, 'Interna', class: 'rb cksi check1' %>Interna
                </label>
               <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Externa', class: 'rb ckno check' %>Externa
+               <%= f.radio_button :tipo, 'Externa', class: 'rb ckno check1' %>Externa
+                </label>
     </div>
+
+      </div>
+
+
+
+      <div class="col-md-6">
+      
         <div class="form-group">
   <%= f.label "Tratamiento" %><br>
-    <%= f.label "Correcciones" %>
+    <%= f.label "Correcciones", class: "lb1" %>
     <%= f.check_box :correccion, class:"scorrecion check" %>
     <%= f.label "Analisis de Causa", class: "lb1" %>
     <%= f.check_box :causa, class: "scausa check" %>
     <%= f.label "Acciones", class: "lb1" %>
     <%= f.check_box :accion, class: "saccion check" %>
   </div>
-  <br>
+ 
   <div class="form-group">
     <strong>¿</strong><%= f.label "El tratamiento es opcional?" %>
     <%= f.check_box :puede_ac, class: "spuede check" %>
@@ -55,11 +62,23 @@
 
   <p style = "color:gray" >Al señalar la anterior casilla tienes la opción de no hacer el tratamiento pero con su respectiva justificación</p>
     <div class="form-group">
+     <hr>
     <strong>¿</strong><%= f.label "Quieres que se pase la pelota?" %>
     <%= f.check_box :balon, class: "spuede form-control check" %>
     <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px")%>
   </div>
-  
+   <hr>
+  <div class="form-group">
+  <%= f.label "Campos Opcionales" %><br>
+    <%= f.label "Evidencia que soporta el Reporte", class: "lb1" %>
+    <%= f.check_box :evidencia, class:"check" %>
+    <%= f.label "Requisito Legal o Interno", class: "lb1" %>
+    <%= f.check_box :requisito, class: "check" %><br>
+    <%= f.label "Numerales de Normas", class: "lb1" %>
+    <%= f.check_box :numerales, class: "check" %>
+  </div>
+
+
 
 
       </div>
@@ -109,6 +128,7 @@
 .lb1 
 {
    margin-left: 10px !important;
+   font-weight: 100;
 }
   </style>
 }
@@ -149,6 +169,14 @@ $(document).on('turbolinks:load',function() {
   display: inline-block;
   width: 5% !important;
   height: 25px !important;
+      margin-left: 10px !important;
+}
+.check1
+{
+  display: inline-block;
+  width: 5% !important;
+  height: 25px !important;
+ 
 }
   
 </style>

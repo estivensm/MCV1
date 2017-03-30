@@ -18,6 +18,9 @@
 #  codigo      :string
 #  tipo        :string
 #  balon       :boolean
+#  evidencia   :boolean
+#  requisito   :boolean
+#  numerales   :boolean
 #
 
 class Source < ApplicationRecord

@@ -263,46 +263,45 @@ $('.pri').addClass("chosen-select");
       <hr>
        <br>
        <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="form-group">
                <%= f.label "Descriptión Corta" %>
                <%= f.text_field :name,  class: "form-control" %>
             </div>
+              <div class="form-group">
+    <%= f.label "Adjuntar Evidencia" %>
+    <%= f.file_field :archivo,  class: "form-control" %>
+  </div>
          </div>
-         <div class="col-md-6">
+          <div class="col-md-6">
             <div class="form-group">
                <%= f.label "Descriptión Detallada" %>
                <%= f.text_area :description,  class: "form-control area" %>
             </div>
          </div>
+         </div>
+         <div class="row">
          <div class="col-md-6">
-            <div class="form-group">
+            <div class="form-group evi">
+               <%= f.label "Evidencia que soporta el Reporte" %>
+               <%= f.text_area :evidencia ,  class: "form-control comment area"%>
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="form-group req">
                <%= f.label "Requisito Legal y/o Interno" %>
                <%= f.text_area :requisito,  class: "form-control area" %>
             </div>
          </div>
       </div>
       
-      <div class="row">
-         <div class="col-md-6">
-            <div class="form-group">
-               <%= f.label "Evidencia que soporta el Reporte" %>
-               <%= f.text_area :evidencia ,  class: "form-control comment area"%>
-            </div>
-         </div>
-         <div class="col-md-6">
-            <div class="form-group">
-    <%= f.label "Adjuntar Evidencia" %>
-    <%= f.file_field :archivo,  class: "form-control" %>
-  </div>
-         </div>
-      </div>
+    
       <br>
       <hr>
       <div class="rowt">
          <div class="col-lg-6">
 
-<div class="form-group">
+<div class="form-group num">
                <%= f.label "Numerales de Norma" %><br>
                <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
             </div>
@@ -400,7 +399,37 @@ function get_source(b)
               $('.pru').hide();
               $('.cli').hide();
             }
-        
+
+            if (data.evidencia)
+            {
+              $('.evi').fadeIn();
+              
+            }
+            else
+            {
+              $('.evi').fadeOut();
+              
+            }
+            if (data.requisito)
+            {
+              $('.req').fadeIn();
+              
+            }
+            else
+            {
+              $('.req').fadeOut();
+              
+            }
+            if (data.evidencia)
+            {
+              $('.num').fadeIn();
+              
+            }
+            else
+            {
+              $('.num').fadeOut();
+              
+            }
 
     });
 }
@@ -436,6 +465,36 @@ $('.source').change(function() {
             {
               $('.cli').fadeOut();
               $('.pru').fadeOut();
+            }
+             if (data.evidencia)
+            {
+              $('.evi').fadeIn();
+              
+            }
+            else
+            {
+              $('.evi').fadeOut();
+              
+            }
+            if (data.requisito)
+            {
+              $('.req').fadeIn();
+              
+            }
+            else
+            {
+              $('.req').fadeOut();
+              
+            }
+            if (data.numerales)
+            {
+              $('.num').fadeIn();
+              
+            }
+            else
+            {
+              $('.num').fadeOut();
+              
             }
         
 

@@ -5,12 +5,8 @@
     </div>
     <div class="col-md-6 text-right">
         <p>
-            <%= link_to  edit_report_causa_path(@report,@causa), remote: true, :class => "opciones2" do %>
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to  report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones2" do %>
-            <i class="fa fa-trash" aria-hidden="true"></i>
-            <% end %>
+          <%= link_to  "Editar #{@causa.tipo}" ,edit_report_causa_path(@report,@causa), remote: true, :class => " btn btn-primary"  %>
+            <%= link_to  "Eliminar #{@causa.tipo}", report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "btn btn-danger" %>
     </div>
 </div>
 <% if @causa.tipo == "5 Porques"%>

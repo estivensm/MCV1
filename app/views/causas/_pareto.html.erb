@@ -1,5 +1,12 @@
+
+
+<%if  @causa_paret.count != 0%>
+
+
+
 <div class="row">
-<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+
+
 <div class="col-md-8">
 
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -169,7 +176,46 @@
   </div>
     </div>
 
+
+<%else%>
+
+
+<div class="row">
+<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+  <div class="col-md-8 col-md-offset-2 entrada">
+
+            
+            
+   <p>Ingresa las Causas y las frecuencias</p>
+
+   <img src="http://www.rca2go.com/site/sites/default/files/icon-7qt-02.png" alt=""><hr>
+      <%= link_to  "Crear Causas" ,edit_report_causa_path(@report,@causa), remote: true, :class => "btn btn-primary"  %>
+  </div>
+
+</div>
+
+
+
+<%end%>
+
+
 <style>
+.entrada img
+{
+width:300px;
+}
+.entrada
+{
+  text-align: center;
+  background: whitesmoke;
+  padding-bottom: 20px;
+  margin-top:30px;
+  margin-bottom:100px ; 
+}
+.entrada p
+{
+font-size: 30px;
+}
 .titct
 {
 margin-top: : 0px

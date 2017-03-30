@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324202114) do
+ActiveRecord::Schema.define(version: 20170329213425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -371,6 +371,9 @@ ActiveRecord::Schema.define(version: 20170324202114) do
     t.string   "codigo"
     t.string   "tipo"
     t.boolean  "balon"
+    t.boolean  "evidencia"
+    t.boolean  "requisito"
+    t.boolean  "numerales"
   end
 
   create_table "users", force: :cascade do |t|

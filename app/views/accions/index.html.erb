@@ -35,7 +35,7 @@
       </div>
 
 <% if @accions.count > 0 %>
-      <div class="col-md-2 rtd"><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || (!view_report(@report) &&  myproces_report(@report)) %></div><%end%>
+      <div class="col-md-2 rtd"><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || current_user.role == "SuperAdmin" %></div><%end%>
    </div>
 
 <% if @accions.count > 0 %>
@@ -86,7 +86,7 @@
 <div class="jumbotron jumbacc">
 <h3 class="display-3 text-gray">No se ha creado ninguna <%= @tipo%></h3>
 <hr class="my-4">
-<%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (!view_report(@report) &&  myproces_report(@report)) %>
+<%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") %>
 </p>
 <%end%>
 </div>

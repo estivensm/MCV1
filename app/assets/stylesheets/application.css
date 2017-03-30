@@ -63,6 +63,11 @@ padding: 15px 15px;
         border-color: #0db497 !important;
 }
 
+.btn-primary:hover {
+    color:white !important;
+    
+}
+
 .btn-danger:visited {
     color:white !important;
 }
