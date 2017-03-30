@@ -26,7 +26,10 @@
 <%= link_to report_path(report) do %>
    <div class="row rtr rtr1">
    <%employed = Employed.find(report.employed_reporta)%>
-      <div class="col-md-3 rtd"><%=get_date(report.f_compromiso)%></div>
+   <%color = ""
+   report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"%>
+  
+      <div class="col-md-3 rtd" style= "background:<%=color%>;color:white"><%=get_date(report.f_compromiso)%></div>
       <div class="col-md-3 rtd"><%=get_employed(employed.email).first_name%></div>
 
       <div class="col-md-6 rtd"><%=report.name%></div>
@@ -43,8 +46,9 @@
 <% @accions.each do |accion|%>
   <%= link_to accion_path(accion) do %>
    <div class="row rtr rtr1">
-
-      <div class="col-md-3 rtd"><%=get_date(accion.f_compromiso)%></div>
+ <%color = ""
+   accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"%>
+      <div class="col-md-3 rtd" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
       <div class="col-md-3 rtd"><%=get_employed(accion.user.email).first_name%></div>
 
       <div class="col-md-6 rtd"><%=accion.name%></div>

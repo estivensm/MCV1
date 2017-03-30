@@ -306,7 +306,8 @@ $('.pri').addClass("chosen-select");
                <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
             </div>
                    </div>
- <div class="col-md-6">
+
+ <!--<div class="col-md-6">
          
             <div class="form-group acc1">
                <label for="">¿Acciones?</label><br>
@@ -323,7 +324,7 @@ $('.pri').addClass("chosen-select");
                <%= f.label "Justificacion" %>
                <%= f.text_area :justificacion ,  class: "form-control area" %>
             </div>
-         </div>
+         </div>-->
          
 
          
@@ -377,7 +378,7 @@ function get_source(b)
 
   $.get("/sourcee/" + b, function(data) {
         
-            if (data.accion && data.puede_ac)
+           /* if (data.accion && data.puede_ac)
             {
               $('.acc1').fadeIn();
               
@@ -385,7 +386,7 @@ function get_source(b)
             else
             {
               $('.acc1').fadeOut();
-            }
+            }*/
              if (data.tipo == "Externa")
            
             {
@@ -445,7 +446,7 @@ $('.source').change(function() {
     $.get("/sourcee/" + $('.source').val(), function(data) {
 
       
-            if (data.accion && data.puede_ac)
+          /*  if (data.accion && data.puede_ac)
             {
               $('.acc1').fadeIn();
              
@@ -453,7 +454,7 @@ $('.source').change(function() {
             else
             {
               $('.acc1').fadeOut();
-            }
+            }*/
              if (data.tipo == "Externa")
            
             {
