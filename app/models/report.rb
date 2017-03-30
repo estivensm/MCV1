@@ -58,7 +58,8 @@ class Report < ApplicationRecord
   validate :archivo_size_validation, :if => "archivo?"  
   validate :start_must_be_before_end_time, on: [:create, :update]
 
-
+ scope :cerrados, -> { where(state: "Cerrado") }
+scope :abiertos, -> { where(state: "Abierto") }
 
 
   def archivo_size_validation

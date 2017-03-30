@@ -39,7 +39,12 @@ class Accion < ApplicationRecord
     validates :employed_id, presence: true
     after_destroy :restar_costo
     after_create :send_mail
-    before_update :causas    
+    before_update :causas   
+
+
+  scope :cerradas, -> { where(estado: "Cerrada") }
+scope :abiertas, -> { where(estado: "Abierta") }
+
 
 def self.search(search0,search, search2, search3, search5, search6)
 
