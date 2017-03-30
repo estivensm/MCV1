@@ -9,7 +9,7 @@
 <div class="conteinter reporte cnt">
 
  <div class="row rtr">
- <p class = "prox">Mis Reportes Vencidos y Proximos a Vencer (<%@accions.count%>)</p>
+ <p class = "prox">Mis Reportes Vencidos <span class="label label-danger"><%=@reportspv.count%></span> y Proximos a Vencer <span class="label label-warning"><%=@reportsv.count%></span></p>
  <hr class="hr">
 </div>
 
@@ -36,7 +36,8 @@
 <%end%>
 </div>
 <br>
-<p class = "prox">Mis Acciones Vencidas y Proximos a Vencer (<%@accions.count%>)</p>
+<p class = "prox">Mis Acciones Vencidas <span class="label label-danger"><%=@accionspv.count%></span> y Proximas a Vencer 
+<span class="label label-warning"><%=@accionsv.count%></span></p>
  <hr class="hr">
 <div class="descnum1">
 <% @accions.each do |accion|%>
