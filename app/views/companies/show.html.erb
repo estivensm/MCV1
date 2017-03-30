@@ -1,4 +1,4 @@
-<div class="row show-user" >
+<div class="row show-user company" >
    <div class="col-md-4">
       <%= @company.logo? ? image_tag(@company.logo_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
       <div class="col-md-10 col-md-offset-1">
@@ -180,5 +180,10 @@
    .pc
    {
    background: whitesmoke;
+   }
+   .company
+   {
+   	padding-top: 50px;
+   	padding-bottom: 50px
    }
 </style>
