@@ -98,8 +98,14 @@ def email_changed?
   false
 end
 
-def self.search(search)
-            where("name like '%#{search}%' or email like '%#{search}%' or rol like '%#{search}%'"  )  
+def self.search(search, search1)
+          
+
+           search != "" ? (scope :emailsc, -> { where(email: search) }) : (scope :emailsc, -> { where.not(id: nil) })
+           search1 != "" ? (scope :rolsc, -> { where(rol_id: search1) }) : (scope :rolsc, -> { where.not(id: nil) })
+
+            emailsc.rolsc
+
         end
 
          def add_adminid

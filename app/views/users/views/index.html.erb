@@ -1,37 +1,65 @@
+
+
+
 <div class = "row title-table">
-   <div class = "col-md-10">
-      <p >Usuarios</p>
+   <div class = "col-md-6">
+      <p>Usuarios <span class="label label-primary"><%=@users.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @users, :entry_name => 'Usuarios' %></span> </p>
+
+
+     
    </div>
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @users%>
+   </div>
+
    <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_user_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" %>
+      <%= link_to 'Nuevo', new_user_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
    </div>
 </div>
-<div class = "row">
-   <div class = "col-md-6">
-      <div class="form-group">
+
+
+
+
+
+
+
+<hr class="hr">
+<%= (link_to "Filtros", users_index_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
+<%= (link_to "Cancelar Filtros", users_index_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+
+<div class = "row busqueda" style="display:none">
+   <div class = "col-md-9">
+      <div class="form-group fil">
          <%= form_tag(users_index_path, :method => "get", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Buscar", class: "form-control search1" %>
+   
+         <%=select_tag 'search', options_for_select(get_users_noadmin.collect{ |u| [u.email, u.email, ] }),{:class => "form-control sh filter shi", include_blank: true , placeholder: "hola"}%>
+
+         <%=select_tag 'search1', options_for_select(get_rols.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh1 filter shi", include_blank: true , placeholder: "hola"}%>
+      
          <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+    
          <% end %>
       </div>
    </div>
-   <div class = "col-md-6">
-      <%= will_paginate @users%>
-   </div>
+
 </div>
+<%= form_tag delete_users_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Usuarios' } do %>
+<p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
 <div class = "row">
    <table class="table">
       <thead>
          <tr class = "tr-table">
-            <th></th>
-            <th>Id </th>
+            <th class="text-left"><%= check_box_tag "all_id", 0 %></th>   
+            
+           
             <th>
-               <%= render partial: "options", locals: {row: "email", tipo1: "asc",tipo2: "desc"} %>
+               <!--<%= render partial: "options", locals: {row: "email", tipo1: "asc",tipo2: "desc"} %>-->
                Email 
             </th>
-            <th>adminid</th>
-            <th><%= render partial: "options", locals: {row: "rol", tipo1: "asc",tipo2: "desc"} %>rol</th>
-            <th><%= render partial: "options", locals: {row: "name", tipo1: "asc",tipo2: "desc"} %>Usuario</th>
+            
+            <th> <!--<%= render partial: "options", locals: {row: "rol", tipo1: "asc",tipo2: "desc"} %>-->rol</th>
+            <th> <!--<%= render partial: "options", locals: {row: "name", tipo1: "asc",tipo2: "desc"} %>-->Usuario</th>
             <th colspan="3"></th>
          </tr>
       </thead>
@@ -39,4 +67,138 @@
          <%= render "rows" %>
       </tbody>
    </table>
+<% end %>
 </div>
+
+
+
+<style>
+
+.shi1
+   {
+   width: 150px !important;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+      }
+         .busqueda
+   {
+        display: block;
+    padding: 10px;
+    background: #e8e8e8;
+   }
+.fil
+{margin: 0px;
+}
+  .btn-danger{background-color: #d9534f
+ !important} 
+</style>
+
+
+
+
+<script>
+
+
+//Seleccionar los items
+ $('.btn-danger').hide();
+
+$('#all_id').click(function(){
+
+    if ( $(this).is(':checked') )
+    {
+            $('.ck').prop('checked', true);
+            $('.btn-danger').fadeIn();
+             $('td').css('background-color', 'whitesmoke');
+       }
+        else{
+            $('.ck').prop('checked', false);
+            $('.btn-danger').fadeOut();
+            $('td').css('background-color', 'white');
+         }
+    });
+
+$('.ck').click(function(){
+var a = 0;
+  if ( $(this).is(':checked') )
+    {
+            $('td').css('background-color', 'whitesmoke');
+            $('.btn-danger').fadeIn();
+       }
+        else{
+            $('td').css('background-color', 'white');
+$(".ck").each(function(){  //todos los que sean de la clase row1
+    if($(this).is(':checked')){
+       a  = 1;
+    }
+});
+            if (a != 1)
+            {
+            $('.btn-danger').fadeOut();
+            $('#all_id').prop('checked', false);
+          }
+         }
+    });
+
+//Seleccionar
+
+
+
+
+
+
+
+
+
+ $(document).on('turbolinks:load',function() {
+   
+      
+      
+       $('.sh').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '200px',
+            placeholder_text_single: "Email",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+
+   
+      $('.sh1').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '200px',
+            placeholder_text_single: "Rol",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+
+
+
+   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+   {
+ $('.busqueda').show();
+
+
+   }
+   else
+   {
+    $('.busqueda').hide();
+
+
+   }
+
+
+
+
+ });
+
+ $('.sh').val("<%=params[:search]%>") ;
+    $('.sh1').val("<%=params[:search1]%>") ;
+</script>

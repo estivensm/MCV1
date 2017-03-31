@@ -17,8 +17,11 @@ class Proceso < ApplicationRecord
 	has_many :cargos
 	has_many :reports
 
-	def self.search(search)
-            where("name like '%#{search}%' or description like '%#{search}%' "  )  
+	def self.search(search, search1)
+           search!= "" ? (scope :namesc, -> { where("name like '%#{search.downcase}%' or name like '%#{search.upcase}%'  or name like '%#{search.capitalize}%' ") }) : (scope :namesc, -> { where.not(id: nil) }) 
+                      search1 != "" ? (scope :descriptionsc, -> { where("description like '%#{search1.downcase}%' or description like '%#{search1.upcase}%'  or description like '%#{search1.capitalize}%' ") }) : (scope :descriptionsc, -> { where.not(id: nil) }) 
+ 
+     namesc.descriptionsc
         end
 
 

@@ -67,6 +67,7 @@ end
           get "source1/:id/:page/:search", to: "sources#change", as: "change"
           delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
           delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
+          delete "delete_cargos", to: "cargos#delete_cargos", as: "delete_cargos"
           post "cerrar_report", to: "reports#cerrar_report", as: "cerrar_report"
           resources :normas do 
                 resources :numerals
@@ -90,7 +91,7 @@ end
             get '/users/new', to: 'users/views#new_user', as: "new_user"
             post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
             delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
-            
+             delete "delete_users", to: "users/views#delete_users", as: "delete_users"
             
           end
         devise_for :users

@@ -15,10 +15,10 @@ class Users::ViewsController < Devise::RegistrationsController
   end
 def index
 
-   if params[:search]
-     @users1 = User.search(params[:search])
+   if params[:search] || params[:search1]
+     @users1 = User.where(admin_user: current_user.admin_user).search(params[:search],params[:search1])
   else
-     @users1 = User.all
+     @users1 = User.where(admin_user: current_user.admin_user)
   end
 
   
@@ -48,9 +48,14 @@ else
    @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(name: :asc)
    
 end
+
+
+
+
+
 else
 
-  @users = @users1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).where.not(role: "SuperAdmin").order(created_at: :desc)
+  @users = @users1.paginate(page: params[:page],:per_page => 10).where.not(role: "SuperAdmin").order(created_at: :desc)
    
 end
 
@@ -111,14 +116,19 @@ end
 
 def order_user
 
-  
-
-
-
-
-
-
 end
+
+def delete_users
+    User.where(:id => params[:user_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to users_index_path }
+    format.json { head :no_content }
+  end
+end
+
+
+
+
   # GET /resource/sign_up
   # def new
   #   super

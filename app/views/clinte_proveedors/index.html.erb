@@ -17,8 +17,8 @@
 </div>
 
 
-<hr>
-<%= (link_to "Opciones", clinte_proveedors_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true"  %>
+<hr class="hr">
+<%= (link_to "Opciones", clinte_proveedors_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar" %>
 <%= (link_to "Cancelar Opciones", clinte_proveedors_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 
 <div class = "row busqueda" style="display:none">
@@ -179,8 +179,8 @@
   });
 }( document, window, 0 ));
 
-
-   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+$(document).on('turbolinks:load',function() {
+    if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
    {
  $('.busqueda').show();
 
@@ -193,4 +193,6 @@
 
    }
 
+ });
 </script>
+

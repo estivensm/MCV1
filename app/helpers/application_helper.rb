@@ -50,6 +50,11 @@ def get_users
   User.where(admin_user: current_user.admin_user)
 
 end
+def get_users_noadmin
+
+  User.where(admin_user: current_user.admin_user).where.not(role:"SuperAdmin")
+
+end
 
 def get_cargos
 

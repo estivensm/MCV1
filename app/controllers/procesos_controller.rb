@@ -20,15 +20,15 @@ class ProcesosController < ApplicationController
  
     
    
-   if params[:search]
-     @procesos1 = Proceso.search(params[:search])
+   if params[:search] || params[:search1]
+     @procesos1 = Proceso.where(admin_user: current_user.admin_user).search(params[:search], params[:search1])
   else
-     @procesos1 = Proceso.all
+     @procesos1 = Proceso.where(admin_user: current_user.admin_user)
   end
 
 
 
-   @procesos = @procesos1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
+   @procesos = @procesos1.paginate(page: params[:page],:per_page => 30)
     
 
   end

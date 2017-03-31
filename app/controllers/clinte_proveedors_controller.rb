@@ -27,7 +27,7 @@ end
   # GET /clinte_proveedors.json
   def index
    if params[:search]
-     @clinte_proveedors1 = ClinteProveedor.search(params[:search],params[:search1],params[:search2])
+     @clinte_proveedors1 = ClinteProveedor.search(params[:search],params[:search1],params[:search2]).order(created_at: :desc)
   else
      @clinte_proveedors1 = ClinteProveedor.all
   end

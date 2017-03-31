@@ -17,9 +17,16 @@ class Cargo < ApplicationRecord
 	belongs_to :user
 	has_many :employeds
 
-def self.search(search)
+def self.search(search, search1, search2)
 	
-            where("name like '%#{search}%' or description like '%#{search}%' "  )  
-        end
+            search != "" ? (scope :namesc, -> { where("name like '%#{search.downcase}%' or name like '%#{search.upcase}%'  or name like '%#{search.capitalize}%' ") }) : (scope :namesc, -> { where.not(id: nil) }) 
+            search1 != "" ? (scope :descriptionsc, -> { where("description like '%#{search1.downcase}%' or description like '%#{search1.upcase}%'  or description like '%#{search1.capitalize}%' ") }) : (scope :descriptionsc, -> { where.not(id: nil) }) 
+            search2 != "" ? (scope :procesosc, -> { where(proceso_id: search2) }) : (scope :procesosc, -> { where.not(id: nil) })
+            namesc.descriptionsc.procesosc
+
+
+             end
+
+
 
 end

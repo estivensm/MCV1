@@ -16,9 +16,11 @@ class CargosController < ApplicationController
   def index
    
    
-   if params[:search]
-     @cargos1 = Cargo.search(params[:search]).where(admin_user: current_user.admin_user)
+   if params[:search] || params[:search1] || params[:search2]
+
+     @cargos1 = Cargo.where(admin_user: current_user.admin_user).search(params[:search], params[:search1], params[:search2])
   else
+
      @cargos1 = Cargo.where(admin_user: current_user.admin_user)
   end
 
@@ -27,6 +29,9 @@ class CargosController < ApplicationController
    @cargos = @cargos1.paginate(page: params[:page],:per_page => 20)
    
   end
+
+
+
 
   # GET /cargos/1
   # GET /cargos/1.json
@@ -93,6 +98,16 @@ class CargosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+def delete_cargos
+    Cargo.where(:id => params[:cargo_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to cargos_path }
+    format.json { head :no_content }
+  end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
