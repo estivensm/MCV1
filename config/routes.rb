@@ -4,7 +4,8 @@ Rails.application.routes.draw do
           
 
   root 'dashboard#index'
-
+  get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
+  get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
   
   
   get 'amefps/show/:causa' , to: "amefps#show", as: "show_amefp"
@@ -91,7 +92,9 @@ end
             get '/users/new', to: 'users/views#new_user', as: "new_user"
             post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
             delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
-             delete "delete_users", to: "users/views#delete_users", as: "delete_users"
+            delete "delete_users", to: "users/views#delete_users", as: "delete_users"
+            delete "delete_employeds", to: "employeds#delete_employeds", as: "delete_employeds"
+            delete "delete_clientes", to: "clinte_proveedors#delete_clientes", as: "delete_clientes"
             
           end
         devise_for :users

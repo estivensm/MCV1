@@ -39,7 +39,7 @@ $('.translation_missing').html("Siguiente");
 $('.ckeditor').ckeditor({
   // optional config
 });
-
+///calendar1
 $("#calendar").fullCalendar({
 
     
@@ -73,6 +73,12 @@ buttonText:{
 
 
   });
+///
+///calendar2
+
+///
+
+
  $(function () {
   $('[data-toggle="popover"]').popover({
     trigger: 'hover',

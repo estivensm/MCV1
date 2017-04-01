@@ -81,6 +81,16 @@ end
     end
   end
 
+def delete_clientes
+    ClinteProveedor.where(:id => params[:cliente_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to clinte_proveedors_path }
+    format.json { head :no_content }
+  end
+end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clinte_proveedor

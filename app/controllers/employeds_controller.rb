@@ -25,15 +25,15 @@ end
   def index
      
    
-   if params[:search]
-     @employeds1 = Employed.search(params[:search])
+   if params[:search] || params[:search1] || params[:search2] || params[:search3]
+     @employeds1 = Employed.where(admin_user: current_user.admin_user).search(params[:search],params[:search1],params[:search2],params[:search3])
   else
-     @employeds1 = Employed.all
+     @employeds1 = Employed.where(admin_user: current_user.admin_user)
   end
 
 
 
-   @employeds = @employeds1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @employeds = @employeds1.paginate(page: params[:page],:per_page => 30)
    
 
   end
@@ -85,6 +85,15 @@ end
       format.json { head :no_content }
     end
   end
+
+def delete_employeds
+    Employed.where(:id => params[:employed_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to employeds_path }
+    format.json { head :no_content }
+  end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -34,9 +34,19 @@ before_destroy :destroy_user
 
 mount_uploader :avatare, AvatareUploader
 
-def self.search(search)
-            where("first_name like '%#{search}%' or second_name like '%#{search}%' or first_last_name like '%#{search}%' or second_last_name like '%#{search}%' or documente like '%#{search}%' or first_name like '%#{search.upcase}%'"  )  
-        end
+def self.search(search, search1, search2, search3)
+  
+            search  != "" ? (scope :nombres, -> { where("first_name like '%#{search.downcase}%' or first_name like '%#{search.upcase}%'  or first_name like '%#{search.capitalize}%' or second_name like '%#{search.downcase}%' or second_name like '%#{search.upcase}%'  or second_name like '%#{search.capitalize}%' ") }) : (scope :nombres, -> { where.not(id: nil) }) 
+            search1 != ""  ? (scope :apellidos, -> { where("first_last_name like '%#{search1.downcase}%' or first_last_name like '%#{search1.upcase}%'  or first_last_name like '%#{search1.capitalize}%' or second_last_name like '%#{search1.downcase}%' or second_last_name like '%#{search1.upcase}%'  or second_last_name like '%#{search1.capitalize}%'") }) : (scope :apellidos, -> { where.not(id: nil) }) 
+            search2 != ""  ? (scope :emailsc, -> { where("email like '%#{search2.downcase}%' or email like '%#{search2.upcase}%'  or email like '%#{search2.capitalize}%' ") }) : (scope :emailsc, -> { where.not(id: nil) }) 
+            search3 != "" ? (scope :cargosc, -> { where(cargo_id: search3) }) : (scope :cargosc, -> { where.not(id: nil) })
+            nombres.apellidos.emailsc.cargosc
+
+
+ end
+
+
+
 def update_user
     
     user = User.where(employed_id: self.id).first
