@@ -60,62 +60,7 @@
 
 </div>
 
-<div class="conteinter reporte cnt">
 
- <div class="row rtr">
- <p class = "prox"><strong>(Asigne) </strong>
- <p class = "prox">Reportes Vencidos <span class="label label-danger br"><%=@ireportsv.count%></span> y Proximos a Vencer <span class="label label-warning br"><%=@ireportspv.count%></span></p>
- <hr class="hr">
-</div>
-
-
-   <div class="row rtr">
-      <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
-      <div class="col-md-3 rtd"><strong>Responsable:</strong> </div>
-    
-      <div class="col-md-6 rtd"><strong>Descripcion:</strong></div>
-        
-</div>
-<div class="descnum1">
-<% @ireports.each do |report|%>
-<%= link_to report_path(report) do %>
-   <div class="row rtr rtr1">
-   <%employed = Employed.find(report.employed_reporta)%>
-   <%color = ""
-   report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"%>
-  
-      <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(report.f_compromiso)%></div>
-      <div class="col-md-3 rtd"><%= Employed.find(report.employed_id).first_name%> <%= Employed.find(report.employed_id).first_last_name%></div>
-
-      <div class="col-md-6 rtd"><%=report.name%></div>
-        
-</div>
-<%end%>
-<%end%>
-</div>
-<br>
-<p class = "prox"><strong>(Asigne)</strong> Acciones Vencidas <span class="label label-danger br"><%=@iaccionsv.count%></span> y Proximas a Vencer 
-<span class="label label-warning br"><%=@iaccionspv.count%></span></p>
- <hr class="hr">
-<div class="descnum1">
-<% @iaccions.each do |accion|%>
-  <%= link_to accion_path(accion) do %>
-   <div class="row rtr rtr1">
- <%color = ""
-   accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"%>
-      <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
-      <div class="col-md-3 rtd"><%= Employed.find(accion.employed_id).first_name%> <%= Employed.find(accion.employed_id).first_last_name%></div>
-
-      <div class="col-md-6 rtd"><%=accion.name%></div>
-        
-</div>
-<%end%>
-
-<%end%>
-</div>
-
-
-</div>
 
 
   
