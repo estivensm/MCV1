@@ -42,7 +42,7 @@
  <hr class="hr">
 <div class="descnum1">
 <% @accions.each do |accion|%>
-  <%= link_to accion_path(accion) do %>
+  <%= link_to report_accion_path(accion.report_id,accion) do %>
    <div class="row rtr rtr1">
  <%color = ""
    accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"%>
