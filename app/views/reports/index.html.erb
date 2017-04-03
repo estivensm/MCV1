@@ -161,7 +161,7 @@
 <div class="row seg">
 
 
-<div class="col-md-10 name text-left" style = "padding:0px 10px !important;margin-left:15px;color:<%=estado_contador(report.contador_seg)%>">
+<div class="col-md-10 name text-left" style = "padding:0px 10px !important;margin-left:15px">
 
   <strong><%= report.name%></strong>
 
@@ -200,7 +200,7 @@
  <strong>Costo:</strong> <%=report.costo%>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-3" style = "background:<%=estado_contador(report.contador_seg)%>;color:white">
   <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
 </div>
 
