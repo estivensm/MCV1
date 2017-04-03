@@ -229,6 +229,30 @@
                      </ul>
                      <% end %>
 
+                        <% if @menum[2] == "active1" %>
+
+                      <ul class="nav nav-tabs" role="tablist">
+                    
+                     <% menu_misaccions %>
+                      <li role="presentation" class ="<%=@menu_mac[1]%>">    <%= link_to misacciones_path,:class => "#{@menu_mac[1]}" do %>
+                     <i class="fa fa-building-o" aria-hidden="true"></i>
+                     <span class="hidden-xs">Me Asignaron</span>
+                      <% end %></li>
+                      <li role="presentation" class ="<%=@menu_mac[0]%>"> 
+                     <%= link_to accions_asignados_path,:action => :reports_asignados,:class => "#{@menu_mac[0]}" do %>
+                     <span class="fa fa-users"></span>
+                     <span class="hidden-xs">Asignados</span>
+                     <% end %></li>
+                    <li role="presentation" class ="<%=@menu_mac[2]%>">   <%= link_to accions_invitado_path,:action => :reports_asignados,:class => "#{@menu_mac[2]}" do %>
+                     <span class="fa fa-users"></span>
+                     <span class="hidden-xs">Invitado</span>
+                     <% end %></li>
+                      
+                   
+                    
+                     </ul>
+                     <% end %>
+
                   </div>
 
 

@@ -38,6 +38,8 @@ end
 
   resources :rols
   get 'my_accions/index', as: "misacciones"
+   get 'my_accions/asignados', to: "my_accions#asignado_por_mi", as: "accions_asignados"
+    get 'my_accions/invitado', to: "my_accions#invitado", as: "accions_invitado"
   get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
   get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
   get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"

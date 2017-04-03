@@ -196,20 +196,41 @@ end
  def menu_misreports
 
 @menu_ma = ["","","",""]
-if  action_name == "asignado_por_mi"
+if  controller_name == "my_reports" && action_name == "asignado_por_mi"
   
 @menu_ma = ["active","", "",""]
  
- elsif action_name == "invitado"
+ elsif controller_name == "my_reports" && action_name == "invitado"
 @menu_ma = ["","","active",""] 
- elsif action_name == "reports_calendar"
+ elsif controller_name == "my_reports" &&  action_name == "reports_calendar"
 @menu_ma = ["","","", "active"]   
-else
+elsif controller_name == "my_reports" &&  action_name == "index"
 
   @menu_ma = ["","active","",""]
 
 end
  return @menu_ma
+
+ end 
+
+
+
+   def menu_misaccions
+
+@menu_mac = ["","","",""]
+if  controller_name == "my_accions" && action_name == "asignado_por_mi"
+  
+@menu_mac = ["active","", "",""]
+ 
+ elsif controller_name == "my_accions" && action_name == "invitado"
+@menu_mac = ["","","active",""] 
+  
+elsif controller_name == "my_accions" &&  action_name == "index"
+
+  @menu_mac = ["","active","",""]
+
+end
+ return @menu_mac
 
  end 
 
