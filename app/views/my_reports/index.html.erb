@@ -82,8 +82,22 @@
 
 <%= link_to  report_path(report) do %>
 <div class="row seg">
-
 <div class="col-md-12">
+<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:15px">
+
+  <strong><%= report.name%></strong>
+
+
+</div>
+  <div class="col-md-1 ball">
+  <%if report.source.balon%>
+  <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "resp" && report.balon == "responsable")%> 
+  <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "asig" && report.balon == "asignador")%>
+  <%end%> 
+</div>
+</div>
+<div class="col-md-12">
+<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
 <div class="col-md-3">
 <strong>Creación:</strong> <%= get_date(report.created_at)%>
 </div>
@@ -113,25 +127,13 @@
  <strong>Costo:</strong> <%=report.costo%>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-3" style = "background:<%=estado_contador(report.contador_seg)%>;color:white">
   <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
 </div>
 
   
 </div>
-<hr style = "    border: 0.5px solid #dedede !important;">
-<div class="col-md-12">
-<div class="col-md-11">
-	<strong>Nombre de Actividad: </strong><%= report.name%>
 
-</div>
-  <div class="col-md-1 ball">
-  <%if report.source.balon%>
-	<%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "resp" && report.balon == "responsable")%> 
-  <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "asig" && report.balon == "asignador")%>
-  <%end%> 
-</div>
-</div>
   
 </div>
  <% end %>

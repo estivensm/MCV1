@@ -198,15 +198,15 @@ end
 @menu_ma = ["","","",""]
 if  action_name == "asignado_por_mi"
   
-@menu_ma = ["actives","", "",""]
+@menu_ma = ["active","", "",""]
  
  elsif action_name == "invitado"
-@menu_ma = ["","","actives",""] 
+@menu_ma = ["","","active",""] 
  elsif action_name == "reports_calendar"
-@menu_ma = ["","","", "actives"]   
+@menu_ma = ["","","", "active"]   
 else
 
-  @menu_ma = ["","actives","",""]
+  @menu_ma = ["","active","",""]
 
 end
  return @menu_ma

@@ -79,56 +79,88 @@
       accion = Accion.find(accion1)
       report = Report.find(accion.report_id)%>
 <%= link_to  report_accion_path(report,accion) do %>
+
+
+
+
 <div class="row seg">
 
-<div class="col-md-12">
-<div class="col-md-4">
-  <p>Codigo: <%=accion.codigo%></p>
-</div>
-<div class="col-md-4">
-<% employed = Employed.find(accion.employed_id)%>
-  <p> Responsable: <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></p>
-</div>
-<div class="col-md-4">
-  <p>Fecha de compromiso: <%= accion.f_compromiso%></p>
-</div>
-  
-</div>
-<hr style = "    border: 0.5px solid #dedede !important;">
-<div class="col-md-12">
-<div class="col-md-11">
-  <strong>Descripcion: </strong><%= report.description%>
+<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:15px">
+
+  <strong><%= accion.name%></strong>
+
+
+
 
 </div>
-  <div class="col-md-1 ball">
- 
+<div class="col-md-12">
+<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
+<div class="col-md-3">
+<strong>Creación:</strong> <%= get_date(accion.created_at)%>
+</div>
+<div class="col-md-3">
+ <strong>Codigo:</strong> <%=accion.codigo%>
+</div>
+<div class="col-md-3">
+<% employed = Employed.find(accion.employed_id)%>
+   <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+</div>
+
+<div class="col-md-3 text-right">
+<%if accion.estado == "Abierta"  %>
+         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+         <%else%>
+         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+         <%end%>
 </div>
   
 </div>
+<div class="col-md-12">
+
+
+<div class="col-md-3">
+ <strong>Costo:</strong> <%=accion.costo%>
+</div>
+
+<div class="col-md-3" style = "background:<%=estado_contador(accion.contador_seg)%>;color:white">
+  <strong>Compromiso:</strong> <%= get_date(accion.f_compromiso)%>
+</div>
+
   
 </div>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  <% end %>
 <br>
  <% end %>
 
-<style>
-  .seg
-  {
-    background: whitesmoke;
-    padding: 10px;
-    color: gray;
-    border-radius: 10px;
-    border: 1px solid #cecece;
-  
-     -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
-    transition: box-shadow 0.3s;
-  }
-  .seg:hover
-  {
-  
-    box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
-  }
-</style>
 
 <script>
     $(document).on('turbolinks:load',function() {
@@ -268,4 +300,25 @@
    {
     width: 30px;
    }
+</style>
+
+
+
+<style>
+  .seg
+  {
+   
+    padding: 10px;
+    color: gray;
+    
+    border: 1px solid #cecece;
+  font-size: 13px !important;
+     -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.3s;
+  }
+  .seg:hover
+  {
+  
+    box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+  }
 </style>
