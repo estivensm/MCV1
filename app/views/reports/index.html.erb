@@ -158,7 +158,16 @@
 <%= link_to  report_path(report) do %>
 <div class="row seg">
 
+
+<div class="col-md-10 name text-left" style = "padding:0px 10px !important;">
+
+  <strong><%= report.name%></strong>
+
+
+</div>
+
 <div class="col-md-12">
+<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
 <div class="col-md-3"> <strong>Creado:</strong> <%= get_date(report.created_at)%>
 </div>
 <div class="col-md-3">
@@ -195,13 +204,7 @@
 
   
 </div>
-<hr style = "    border: 0.5px solid #dedede !important;">
-<div class="col-md-10">
 
-  <strong>Nombre del Reporte: </strong><%= report.name%>
-
-
-</div>
 
   
 </div>

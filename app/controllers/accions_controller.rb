@@ -62,7 +62,7 @@ class AccionsController < ApplicationController
     @accion = Accion.new(accion_params)
     @report = Report.find(params[:report_id]) 
     @accion.estado = "Abierta"
-    @num = Accion.where(admin_user: current_user.admin_user).where(report_id: @report.id).maximum(:contador)
+    @num = Accion.where(admin_user: current_user.admin_user).where(report_id: @report.id).where(tipo: @accion.tipo).maximum(:contador)
     if @num != nil
         @num = @num + 1
 
@@ -71,8 +71,10 @@ class AccionsController < ApplicationController
     end
     @ano = Time.now.year.to_s
     @ano = @ano.remove("20") 
- 
-    @code= "ACC-#{@num}-#{@ano}" 
+   
+    @accion.tipo== "Accion" ? tp = "ACC" : tp = "CORR" 
+
+    @code= "#{tp}-#{@num}-#{@ano}" 
     @accion.codigo = @code
     @accion.contador = @num
     @accion.costo = 0
