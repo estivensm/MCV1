@@ -28,13 +28,13 @@ aacicion = "active"
 
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="<%=areport%>"><%= link_to "Reporte", report_path(@report)%></li>
-    <li role="presentation" class="<%=acorre%>"value=""><%= link_to "Correcciones (#{@correc})", report_correcciones_path(@report)%></a></li>
+    <li role="presentation" class="<%=acorre%>"value=""><%= link_to "Correcciones (#{@correa})", report_correcciones_path(@report)%></a></li>
     <li role="presentation" class="<%=aana%>">
      <% if @report.causas.count == 0 %>
    <%= (link_to  "Crear Analisis de Causa",  new_report_causa_path(@report), remote: true ) if view_report(@report) %>
     <%else%>
     
-<%= link_to "Analisis de Causas", report_causa_path(@report,@report.causas.last.id)%>
+<%= link_to "Analisis de Causas (#{@report.causas.last.tipo})", report_causa_path(@report,@report.causas.last.id)%>
     <%end%></li>
-    <li role="presentation" class="<%=aacicion%>"><%= link_to  "Acciones (#{@accionscc})", report_accions_path(@report) %></li>
+    <li role="presentation" class="<%=aacicion%>"><%= link_to  "Acciones (#{@accionsca})", report_accions_path(@report) %></li>
   </ul>
