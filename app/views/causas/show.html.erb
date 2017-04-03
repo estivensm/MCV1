@@ -9,6 +9,7 @@
             <%= link_to  "Eliminar #{@causa.tipo}", report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "btn btn-danger" %>
     </div>
 </div>
+<%= render 'tabs'%>
 <% if @causa.tipo == "5 Porques"%>
 <%= render 'porques' %>
 <%elsif @causa.tipo == "Causa Efecto"%>

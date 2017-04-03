@@ -1,3 +1,4 @@
+
 <div class="row">
    <div class="col-md-6 ">
       <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>
@@ -16,6 +17,7 @@
       </p>
    </div>
 </div>
+<%= render 'tabs'%>
 <div class="modal fade" id="myModal" role="dialog">
    <div class="modal-dialog">
       <!-- Modal content-->

@@ -13,6 +13,9 @@
       </p>
    </div>
 </div>
+
+<%= render "tabs" %>
+
 <% #|| (current_user.role == "SuperAdmin" && @report.state != "Cerrado")
    if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
 <div class="alert alert-success text-center" > 
@@ -38,6 +41,11 @@
 <h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
 
 <div class="conteinter reporte cnt">
+ <div class="row rtr name">
+      <div class="col-md-12 rtd"><%=@report.name%></div>
+    
+   </div>
+   <hr>
    <div class="row rtr">
       <div class="col-md-4 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
       <div class="col-md-4 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
@@ -77,7 +85,7 @@
    <div class="row rtr">
       <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
       <div class="col-md-12 rtd text-left">
-         <strong>Descripción corta:</strong> <%= @report.name%><br> 
+        
          <div class="descnum"><strong>Descripción detallada:</strong> <%= @report.description%></div>
       </div>
 
@@ -151,7 +159,8 @@
 </div>
 
 <div class="col-md-6 wihtout-padding">
-<%if @report.source.correccion || @report.source.causa || @report.source.accion  %>
+
+<!--<%if @report.source.correccion || @report.source.causa || @report.source.accion  %>
 <div class="row flujo">
   <ul class="nav nav-tabs" role="tablist">
    <%if @report.source.correccion %>
@@ -249,7 +258,7 @@
 
 </div>
 </div>
-<% end %>
+<% end %>-->
 
 
 <div class="conteinter htitle" style = "padding:0px">
@@ -331,6 +340,12 @@
    {
    margin-top: 0px;
    margin-bottom: 0px;
+   }
+   .name
+   {
+    font-size: 20px;
+        font-weight: bold;
+    text-align: center;
    }
 </style>
 <script>

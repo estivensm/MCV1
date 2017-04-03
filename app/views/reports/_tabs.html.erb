@@ -1,0 +1,40 @@
+<%if (controller_name == "reports" && action_name == "show")
+areport = "active"
+acorre= ""
+aana = ""
+aacicion = ""
+
+elsif (controller_name == "accions" && action_name == "correcciones")
+	areport = ""
+acorre= "active"
+aana = ""
+aacicion = ""
+
+elsif (controller_name == "causas" && action_name == "show")
+	areport = ""
+acorre= ""
+aana = "actvie"
+aacicion = ""
+elsif (controller_name == "accions" && action_name == "index")
+	areport = ""
+acorre= ""
+aana = ""
+aacicion = "active"
+
+
+
+	end%>
+
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="<%=areport%>"><%= link_to "Reporte", report_path(@report)%></li>
+    <li role="presentation" class="<%=acorre%>"value=""><%= link_to "Correcciones (#{@correc})", report_correcciones_path(@report)%></a></li>
+    <li role="presentation" class="<%=aana%>">
+     <% if @report.causas.count == 0 %>
+   <%= (link_to  "Crear Analisis de Causa",  new_report_causa_path(@report), remote: true ) if view_report(@report) %>
+    <%else%>
+    
+<%= link_to "Analisis de Causas", report_causa_path(@report,@report.causas.last.id)%>
+    <%end%></li>
+    <li role="presentation" class="<%=aacicion%>"><%= link_to  "Acciones (#{@accionscc})", report_accions_path(@report) %></li>
+  </ul>

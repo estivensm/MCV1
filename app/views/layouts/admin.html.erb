@@ -109,51 +109,60 @@
             <div class="row submenu-main" >
                  
 
-                  
+
+
+
+
+
+
+
+
+
+
                      
                      <% sub_menu %>
                      <% if @menum[0] == "active1" %>
-                     <div class="col-md-12 submenu hidden-xs" style="box-shadow:rgba(191, 191, 191, 0.49) -4px 3px 7px 4px;">
-                     <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
+                   <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="<%=@menu[0]%>"> <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
                      <i class="fa fa-building-o" aria-hidden="true"></i>
                      <span class="hidden-xs">Empresa</span>
-                      <% end %>
-                     <%= link_to users_index_path,:class => "#{@menu[3]}" do %>
+                      <% end %></li>
+    <li role="presentation" class="<%=@menu[3]%>"><%= link_to users_index_path,:class => "#{@menu[3]}" do %>
                      <span class="fa fa-users"></span>
                      <span class="hidden-xs">Usuarios</span>
-                     <% end %>
-                    
-                     <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+                     <% end %></li>
+    <li role="presentation" class="<%=@menu[1]%>">
+     <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
                      <i class="fa fa-cogs" aria-hidden="true"></i>
                      <span class="hidden-xs">Procesos</span>
-                     <% end %>
-                     <%= link_to cargos_path,:class => "#{@menu[2]}" do %>
+                     <% end %></li>
+    <li role="presentation" class="<%=@menu[2]%>"><%= link_to cargos_path,:class => "#{@menu[2]}" do %>
                     <i class="fa fa-share-alt" aria-hidden="true"></i>
                      <span class="hidden-xs">Cargos</span>
-                     <% end %>
-                     <%= link_to employeds_path,:class => "#{@menu[4]}" do %>
+                     <% end %></li>
+                      <li role="presentation" class="<%=@menu[4]%>"> <%= link_to employeds_path,:class => "#{@menu[4]}" do %>
                      <i class="fa fa-user" aria-hidden="true"></i>
 
                      <span class="hidden-xs">Empleados</span>
-                     <% end %>
-                     <%= link_to normas_path,:class => "#{@menu[5]}" do %>
+                     <% end %></li>
+                      <li role="presentation" class="<%=@menu[5]%>"> <%= link_to normas_path,:class => "#{@menu[5]}" do %>
                      <i class="fa fa-gavel" aria-hidden="true"></i>
                      <span class="hidden-xs">Normas</span>
-                     <% end %>
-                     <%= link_to sources_path,:class => "#{@menu[6]}" do %>
+                     <% end %></li>
+                      <li role="presentation" class="<%=@menu[6]%>"><%= link_to sources_path,:class => "#{@menu[6]}" do %>
                      <i class="fa fa-share" aria-hidden="true"></i>
                      <span class="hidden-xs">Fuentes</span>
-                     <% end %>
-                      <%= link_to rols_path,:class => "#{@menu[7]}" do %>
+                     <% end %></li>
+                       <li role="presentation" class="<%=@menu[7]%>"> <%= link_to rols_path,:class => "#{@menu[7]}" do %>
                      <i class="fa fa-male" aria-hidden="true"></i>
 
                      <span class="hidden-xs">Roles</span>
-                     <% end %>
-                     <%= link_to clinte_proveedors_path,:class => "#{@menu[8]}" do %>
+                     <% end %></li>
+                        <li role="presentation" class="<%=@menu[8]%>">     <%= link_to clinte_proveedors_path,:class => "#{@menu[8]}" do %>
                       <i class="fa fa-briefcase" aria-hidden="true"></i>
                      <span class="hidden-xs">Clientes y Proveedores</span>
-                     <% end %>
-                     </div>
+                     <% end %></li>
+  </ul>
                      <% end %>
 
 
@@ -203,6 +212,9 @@
                      <% end %>
 
                   </div>
+
+
+
                </div>
        </div>
               

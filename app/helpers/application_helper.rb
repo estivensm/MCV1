@@ -127,7 +127,7 @@ def bootstrap_class_for flash_type
     @menum = ["","", "", ""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
     @menum = ["active1","", "", ""]
-  elsif controller.controller_name == "reports"  || controller.controller_name == "accions" 
+  elsif (controller.controller_name == "reports" && action_name =="index") 
     @menum = ["","active1","", ""]
   elsif controller.controller_name == "my_accions"  
     @menum = ["","","active1", ""]
@@ -142,25 +142,25 @@ def bootstrap_class_for flash_type
       
     @menu = ["","","","","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["actives","","","","","","","",""]
+    @menu = ["active","","","","","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","actives","","","","","","","",""]
+@menu = ["","active","","","","","","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","actives","","","","","",""]
+    @menu = ["","","active","","","","","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","actives","","","","",""]
+ @menu = ["","","","active","","","","",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","","actives","","","",""]
+ @menu = ["","","","","active","","","",""]
  elsif controller.controller_name == "normas"
- @menu = ["","","","","","actives","","",""]
+ @menu = ["","","","","","active","","",""]
 elsif controller.controller_name == "numerals"
- @menu = ["","","","","","actives","","",""]
+ @menu = ["","","","","","active","","",""]
  elsif controller.controller_name == "sources"
- @menu = ["","","","","","","actives","",""]
+ @menu = ["","","","","","","active","",""]
  elsif controller.controller_name == "rols"
- @menu = ["","","","","","","","actives",""]
+ @menu = ["","","","","","","","active",""]
 elsif controller.controller_name == "clinte_proveedors"
- @menu = ["","","","","","","","","actives"]
+ @menu = ["","","","","","","","","active"]
     end
     return @menu
 

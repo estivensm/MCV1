@@ -239,5 +239,13 @@ label
   .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus
   {
     color: #0db493 !important;
-    font-weight: bold !important;
+    /*font-weight: bold !important;*/
+  }
+
+
+  .nav-tabs>li>a 
+
+  {
+    color:#969696  !important;
+    font-size:13px;
   }
