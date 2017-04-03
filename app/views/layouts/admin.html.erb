@@ -167,25 +167,40 @@
 
 
                      <% if @menum[1] == "active1" %>
-                     <div class="col-md-12 submenu" style="box-shadow:rgba(191, 191, 191, 0.49) -4px 3px 7px 4px;">
+                     
+
+
+                       <ul class="nav nav-tabs" role="tablist">
+                     
                      <% menu_hallazgo 
                      if show_reports %>
-                     <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
+
+                       <li role="presentation" class="<%=@menu_a[0]%>">  <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
                      <i class="fa fa-building-o" aria-hidden="true"></i>
                      <span class="hidden-xs">Reportes Abiertos</span>
-                      <% end %>
-                     <%= link_to reports_cerrados_path,:action => :cerrados,:class => "#{@menu_a[1]}" do %>
+                      <% end %></li>
+                       <li role="presentation" class="<%=@menu_a[1]%>">  <%= link_to reports_cerrados_path,:action => :cerrados,:class => "#{@menu_a[1]}" do %>
                      <span class="fa fa-users"></span>
                      <span class="hidden-xs">Reportes Cerrados</span>
-                     <% end %>
+                     <% end %></li>
+
+                      <li role="presentation" class ="<%=@menu_a[2]%>">     
                      <%= link_to reports_path, :class => "#{@menu_a[2]}" do %>
                      <span class="fa fa-users"></span>
                      <span class="hidden-xs">Reportes</span>
-                     <% end %>
+                     <% end %></li>
+
+
+
+                     
+                
                     <% else%>
                      <% end %>
-                     </div>
+                      </ul>
                      <% end %>
+
+
+
                      <% if @menum[3] == "active1" %>
                      <div class="col-md-12 submenu">
                      <% menu_misreports %>
