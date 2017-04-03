@@ -55,12 +55,13 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
           <% menu %>
-            <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
-                        <i class="fa fa-cogs ic" aria-hidden="true"></i>
-                        <span>Configuracion</span>
-                        <% end %>
-                        <%end%></li>
+           <li> 
+                        <%= link_to root_path,:class => "Reportes #{@menum[4]}" do %>
+                        <i class="fa fa-line-chart ic" aria-hidden="true"></i>
+                        <span >DashBoard</span>
+                        <% end %></li>
+
+
             <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                         <%= link_to reports_path,:class => "Reportes #{@menum[1]}" do %>
                         <i class="fa fa-search ic" aria-hidden="true"></i>
@@ -75,12 +76,14 @@
                         <span class="fa fa-book ic"></span>
                         <span ">Mis Acciones</span>
                         <% end %></li>
-              <li> 
-                        <%= link_to root_path,:class => "indicadores hidden-xs" do %>
-                        <i class="fa fa-line-chart ic" aria-hidden="true"></i>
-                        <span >Indicadores y Analisis</span>
-                        <% end %></li>
-                           
+
+                        <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
+                        <i class="fa fa-cogs ic" aria-hidden="true"></i>
+                        <span>Configuracion</span>
+                        <% end %>
+                        <%end%></li>
+                                         
           </ul>
 
           <ul class="nav navbar-nav navbar-right" style = "background:white">
