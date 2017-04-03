@@ -296,6 +296,26 @@ end
   end
 end
 
+def estado_contador(cont)
+
+    if cont >5 
+
+      "#0db497 !important"
+    elsif cont <=5 && cont >= 0
+
+      "orange !important"
+      
+      else
+
+        "#e23434 !important"
+
+    end
+      
+end
+
+
+
+
 def show_reports
 if current_user.role !=  "Basico" || current_user.rol.report_ver || current_user.rol.report_procesos
 

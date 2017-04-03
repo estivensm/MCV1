@@ -139,6 +139,8 @@
 <%if @reports.count != 0%><p class="linka"> <%= check_box_tag "all_id", 0 %> Seleccionar totos</p><%end%>
 <% @reports.each do |report| %>
 
+
+
 <div class="col-md-2 text-left hidden-xs" style = "padding-left: 40px !importan;padding-top: 5px !important;
     padding-bottom: 0px !important;">
   <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> </div>
@@ -159,7 +161,7 @@
 <div class="row seg">
 
 
-<div class="col-md-10 name text-left" style = "padding:0px 10px !important;">
+<div class="col-md-10 name text-left" style = "padding:0px 10px !important;margin-left:15px;color:<%=estado_contador(report.contador_seg)%>">
 
   <strong><%= report.name%></strong>
 
