@@ -1,5 +1,5 @@
 <h3>Hola <%=@task.employed.first_name%> <%=@task.employed.first_last_name%></h3>
- <p><%= Employed.find(@task.user_id).first_name%> <%=Employed.find(@task.user_id).first_last_name%> te ha asignado una Tarea</p>
+ <p><%= Employed.find(@task.employed_id).first_name%> <%=Employed.find(@task.employed_id).first_last_name%> te ha asignado una Tarea</p>
 <hr>
 <p><strong>Codigo:</strong> <%=@task.codigo%></p>
 <p><strong>Tarea:</strong> <%=@task.name%></p>
