@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
           
 
+  
   root 'dashboard#index'
   get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
   get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
@@ -57,6 +58,7 @@ end
                 resources :aseguimientos
                 resources :riesgos
             end
+            resources :tasks
             resources :causas
             resources :rseguimientos
             get "correcciones", to: "accions#correcciones" , as: "correcciones" 

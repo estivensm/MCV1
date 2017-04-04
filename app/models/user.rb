@@ -56,7 +56,7 @@ class User < ApplicationRecord
   before_save :add_adminid1
   before_create :add_adminid2
 
-
+  has_many :tasks
   #before_destroy :validar_detele
 
   devise :database_authenticatable, :registerable,

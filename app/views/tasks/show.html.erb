@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @task.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @task.admin_user %>
+</p>
+
+<p>
+  <strong>Employed:</strong>
+  <%= @task.employed_id %>
+</p>
+
+<p>
+  <strong>Report:</strong>
+  <%= @task.report_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong>Observacion:</strong>
+  <%= @task.observacion %>
+</p>
+
+<p>
+  <strong>Costo:</strong>
+  <%= @task.costo %>
+</p>
+
+<p>
+  <strong>F compromiso:</strong>
+  <%= @task.f_compromiso %>
+</p>
+
+<p>
+  <strong>F real:</strong>
+  <%= @task.f_real %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @task.estado %>
+</p>
+
+<p>
+  <strong>Cumplio:</strong>
+  <%= @task.cumplio %>
+</p>
+
+<p>
+  <strong>Contador:</strong>
+  <%= @task.contador %>
+</p>
+
+<p>
+  <strong>Contador seg:</strong>
+  <%= @task.contador_seg %>
+</p>
+
+<p>
+  <strong>Anexo:</strong>
+  <%= @task.anexo %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @task.codigo %>
+</p>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

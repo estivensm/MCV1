@@ -48,6 +48,7 @@ class Report < ApplicationRecord
   belongs_to :clinte_proveedor
   belongs_to :proceso
   belongs_to :contact
+  has_many :tasks
   belongs_to :user, :class_name => 'Employed'
   has_many :accions, dependent: :destroy
   has_many :rseguimientos, dependent: :destroy

@@ -29,7 +29,7 @@ belongs_to :cargo
 before_update :update_user
 after_create :create_user
 before_destroy :destroy_user
-
+has_many :tasks
 
 
 mount_uploader :avatare, AvatareUploader

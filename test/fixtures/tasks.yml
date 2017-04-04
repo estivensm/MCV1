@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  admin_user: 1
+  employed_id: 1
+  report_id: 1
+  name: MyString
+  observacion: MyText
+  costo: 1
+  f_compromiso: 2017-04-04
+  f_real: 2017-04-04
+  estado: false
+  cumplio: false
+  contador: 1
+  contador_seg: 1
+  anexo: MyString
+  codigo: MyString
+
+two:
+  user_id: 1
+  admin_user: 1
+  employed_id: 1
+  report_id: 1
+  name: MyString
+  observacion: MyText
+  costo: 1
+  f_compromiso: 2017-04-04
+  f_real: 2017-04-04
+  estado: false
+  cumplio: false
+  contador: 1
+  contador_seg: 1
+  anexo: MyString
+  codigo: MyString

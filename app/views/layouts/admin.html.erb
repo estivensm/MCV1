@@ -3,7 +3,6 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-      
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -12,7 +11,6 @@
       <script src="https://code.highcharts.com/modules/data.js"></script>
       <script src="https://code.highcharts.com/modules/exporting.js"></script>
       <script type="text/javascript" src="/assets/canvasjs.min.js"></script>
-
       <title><%= content_for?(:title) ? yield(:title) : "Rails College" %></title>
       <%= csrf_meta_tags %>
       <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
@@ -32,278 +30,243 @@
       <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
       <!-- Size should be 57 x 57 pixels -->
       <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
-      
       <!-- For all other devices -->
       <!-- Size should be 32 x 32 pixels -->
       <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-      
    </head>
    <body class="admin">
 
-    
       <div class ="container-fluid menusp">
-       <div class="navbar navbar-default navbar-static-top">
-      <div class="container-fluid">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand logo" href="#">Mejora<span>App</span></a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-          <% menu %>
-           <li> 
+   
+<nav class="navbar navbar-default">
+  
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style = "    border: 0px;
+    border-radius: 0px;">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="navbar-brand logo" href="#">Mejora<span>App</span></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% menu %>
+                     <li> 
                         <%= link_to root_path,:class => "Reportes #{@menum[4]}" do %>
                         <i class="fa fa-line-chart ic" aria-hidden="true"></i>
                         <span >DashBoard</span>
-                        <% end %></li>
-
-
-            <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                        <% end %>
+                     </li>
+        <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                         <%= link_to reports_path,:class => "Reportes #{@menum[1]}" do %>
                         <i class="fa fa-search ic" aria-hidden="true"></i>
                         <span >Reportes</span>
                         <% end %>
-                        <% end %></li>
-            <li><%= link_to misreports_path,:class => "#{@menum[3]}" do %>
+                        <% end %>
+                     </li>
+                     <li><%= link_to misreports_path,:class => "#{@menum[3]}" do %>
                         <i class="fa fa-money ic" aria-hidden="true"></i>
                         <span>Mis Reportes</span>
-                        <% end %></li>
-             <li><%= link_to misacciones_path,:class => "#{@menum[2]}" do %>
+                        <% end %>
+                     </li>
+                     <li><%= link_to misacciones_path,:class => "#{@menum[2]}" do %>
                         <span class="fa fa-book ic"></span>
                         <span ">Mis Acciones</span>
-                        <% end %></li>
-
-                        <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                        <% end %>
+                     </li>
+                     <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                         <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
                         <i class="fa fa-cogs ic" aria-hidden="true"></i>
                         <span>Configuracion</span>
                         <% end %>
-                        <%end%></li>
-                                         
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right" style = "background:white">
-         <li style = "height: 51px;" > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)%></li>
-              <li class="dropdown">
-          <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
-                              <span class="fa fa-sign-out" style = "color:gray"></span>
-                              <span style = "color:gray!important">Cerrar Sesión</span>
-                              <% end %></li>
-            <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
-                              <span class="fa fa-sign-out" style = "color:gray"></span>
-                              <span style = "color:gray!important" >Ver Usuario</span>
-                              <% end %></li>
-      
+                        <%end%>
+                     </li>
+       
           </ul>
         </li>
       </ul>
-        </div>
-      </div>
-    </div>
-         
+      
+      <ul class="nav navbar-nav navbar-right" style = "background:white">
+                     <li style = "height: 51px;" > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)%></li>
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+                              <span class="fa fa-sign-out" style = "color:gray"></span>
+                              <span style = "color:gray!important">Cerrar Sesión</span>
+                              <% end %>
+                           </li>
+                           <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
+                              <span class="fa fa-sign-out" style = "color:gray"></span>
+                              <span style = "color:gray!important" >Ver Usuario</span>
+                              <% end %>
+                           </li>
+                        </ul>
+                     </li>
+                  </ul>
+    </div><!-- /.navbar-collapse -->
+  
+</nav>
+
         
-            <!--/sidebar-->
-            <div class="row submenu-main" >
-                 
-
-
-
-
-
-
-
-
-
-
-
-                     
-                     <% sub_menu %>
-                     <% if @menum[0] == "active1" %>
-                   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="<%=@menu[0]%>"> <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
-                     <i class="fa fa-building-o" aria-hidden="true"></i>
-                     <span class="hidden-xs">Empresa</span>
-                      <% end %></li>
-    <li role="presentation" class="<%=@menu[3]%>"><%= link_to users_index_path,:class => "#{@menu[3]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Usuarios</span>
-                     <% end %></li>
-    <li role="presentation" class="<%=@menu[1]%>">
-     <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
-                     <i class="fa fa-cogs" aria-hidden="true"></i>
-                     <span class="hidden-xs">Procesos</span>
-                     <% end %></li>
-    <li role="presentation" class="<%=@menu[2]%>"><%= link_to cargos_path,:class => "#{@menu[2]}" do %>
-                    <i class="fa fa-share-alt" aria-hidden="true"></i>
-                     <span class="hidden-xs">Cargos</span>
-                     <% end %></li>
-                      <li role="presentation" class="<%=@menu[4]%>"> <%= link_to employeds_path,:class => "#{@menu[4]}" do %>
-                     <i class="fa fa-user" aria-hidden="true"></i>
-
-                     <span class="hidden-xs">Empleados</span>
-                     <% end %></li>
-                      <li role="presentation" class="<%=@menu[5]%>"> <%= link_to normas_path,:class => "#{@menu[5]}" do %>
-                     <i class="fa fa-gavel" aria-hidden="true"></i>
-                     <span class="hidden-xs">Normas</span>
-                     <% end %></li>
-                      <li role="presentation" class="<%=@menu[6]%>"><%= link_to sources_path,:class => "#{@menu[6]}" do %>
-                     <i class="fa fa-share" aria-hidden="true"></i>
-                     <span class="hidden-xs">Fuentes</span>
-                     <% end %></li>
-                       <li role="presentation" class="<%=@menu[7]%>"> <%= link_to rols_path,:class => "#{@menu[7]}" do %>
-                     <i class="fa fa-male" aria-hidden="true"></i>
-
-                     <span class="hidden-xs">Roles</span>
-                     <% end %></li>
-                        <li role="presentation" class="<%=@menu[8]%>">     <%= link_to clinte_proveedors_path,:class => "#{@menu[8]}" do %>
-                      <i class="fa fa-briefcase" aria-hidden="true"></i>
-                     <span class="hidden-xs">Clientes y Proveedores</span>
-                     <% end %></li>
-  </ul>
-                     <% end %>
-
-
-                     <% if @menum[1] == "active1" %>
-                     
-
-
-                       <ul class="nav nav-tabs" role="tablist">
-                     
-                     <% menu_hallazgo 
-                     if show_reports %>
-
-                       <li role="presentation" class="<%=@menu_a[0]%>">  <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
-                     <i class="fa fa-building-o" aria-hidden="true"></i>
-                     <span class="hidden-xs">Reportes Abiertos</span>
-                      <% end %></li>
-                       <li role="presentation" class="<%=@menu_a[1]%>">  <%= link_to reports_cerrados_path,:action => :cerrados,:class => "#{@menu_a[1]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Reportes Cerrados</span>
-                     <% end %></li>
-
-                      <li role="presentation" class ="<%=@menu_a[2]%>">     
-                     <%= link_to reports_path, :class => "#{@menu_a[2]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Reportes</span>
-                     <% end %></li>
-
-
-
-                     
-                
-                    <% else%>
-                     <% end %>
-                      </ul>
-                     <% end %>
-
-                    
-
-                     <% if @menum[3] == "active1" %>
-
-                      <ul class="nav nav-tabs" role="tablist">
-                    
-                     <% menu_misreports %>
-                      <li role="presentation" class ="<%=@menu_ma[1]%>">    <%= link_to misreports_path,:class => "#{@menu_ma[1]}" do %>
-                     <i class="fa fa-building-o" aria-hidden="true"></i>
-                     <span class="hidden-xs">Me Asignaron</span>
-                      <% end %></li>
-                      <li role="presentation" class ="<%=@menu_ma[0]%>"> 
-                     <%= link_to reports_asignados_path,:action => :reports_asignados,:class => "#{@menu_ma[0]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Asignados</span>
-                     <% end %></li>
-                    <li role="presentation" class ="<%=@menu_ma[2]%>">   <%= link_to invitado_path,:action => :reports_asignados,:class => "#{@menu_ma[2]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Invitado</span>
-                     <% end %></li>
-                      <li role="presentation" class ="<%=@menu_ma[3]%>"> <%= link_to reports_calendar_path,:action => :reports_calendar,:class => "#{@menu_ma[3]}" do %>
-                     <i class="fa fa-calendar" aria-hidden="true" style="display:inline-block; !important;" ></i>
-
-                   
-                     <% end %></li>
-                   
-                    
-                     </ul>
-                     <% end %>
-
-                        <% if @menum[2] == "active1" %>
-
-                      <ul class="nav nav-tabs" role="tablist">
-                    
-                     <% menu_misaccions %>
-                      <li role="presentation" class ="<%=@menu_mac[1]%>">    <%= link_to misacciones_path,:class => "#{@menu_mac[1]}" do %>
-                     <i class="fa fa-building-o" aria-hidden="true"></i>
-                     <span class="hidden-xs">Me Asignaron</span>
-                      <% end %></li>
-                      <li role="presentation" class ="<%=@menu_mac[0]%>"> 
-                     <%= link_to accions_asignados_path,:action => :reports_asignados,:class => "#{@menu_mac[0]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Asignados</span>
-                     <% end %></li>
-                    <li role="presentation" class ="<%=@menu_mac[2]%>">   <%= link_to accions_invitado_path,:action => :reports_asignados,:class => "#{@menu_mac[2]}" do %>
-                     <span class="fa fa-users"></span>
-                     <span class="hidden-xs">Invitado</span>
-                     <% end %></li>
-                      
-                   
-                    
-                     </ul>
-                     <% end %>
-
-                  </div>
-
-
-
-               </div>
-       </div>
-              
-                  
-               <div class = "container-fluid conte" style="    padding-top: 0px;">
-               <div class = "row">
-                     <div class = "contenido">
-                     <%= flash_messages %>
-                     <%= yield %>
-                  
-                  </div>
-                  </div>
-           </div>
-         <!--/row-->
-         
-     
+         <!--/sidebar-->
+         <div class="row submenu-main" >
+            <% sub_menu %>
+            <% if @menum[0] == "active1" %>
+            <ul class="nav nav-tabs" role="tablist">
+               <li role="presentation" class="<%=@menu[0]%>"> <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Empresa</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[3]%>"><%= link_to users_index_path,:class => "#{@menu[3]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Usuarios</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[1]%>">
+                  <%= link_to procesos_path,:class => "#{@menu[1]}" do %>
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  <span class="hidden-xs">Procesos</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[2]%>"><%= link_to cargos_path,:class => "#{@menu[2]}" do %>
+                  <i class="fa fa-share-alt" aria-hidden="true"></i>
+                  <span class="hidden-xs">Cargos</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[4]%>"> <%= link_to employeds_path,:class => "#{@menu[4]}" do %>
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="hidden-xs">Empleados</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[5]%>"> <%= link_to normas_path,:class => "#{@menu[5]}" do %>
+                  <i class="fa fa-gavel" aria-hidden="true"></i>
+                  <span class="hidden-xs">Normas</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[6]%>"><%= link_to sources_path,:class => "#{@menu[6]}" do %>
+                  <i class="fa fa-share" aria-hidden="true"></i>
+                  <span class="hidden-xs">Fuentes</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[7]%>"> <%= link_to rols_path,:class => "#{@menu[7]}" do %>
+                  <i class="fa fa-male" aria-hidden="true"></i>
+                  <span class="hidden-xs">Roles</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[8]%>">     <%= link_to clinte_proveedors_path,:class => "#{@menu[8]}" do %>
+                  <i class="fa fa-briefcase" aria-hidden="true"></i>
+                  <span class="hidden-xs">Clientes y Proveedores</span>
+                  <% end %>
+               </li>
+            </ul>
+            <% end %>
+            <% if @menum[1] == "active1" %>
+            <ul class="nav nav-tabs" role="tablist">
+               <% menu_hallazgo 
+                  if show_reports %>
+               <li role="presentation" class="<%=@menu_a[0]%>">  <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Reportes Abiertos</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu_a[1]%>">  <%= link_to reports_cerrados_path,:action => :cerrados,:class => "#{@menu_a[1]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Reportes Cerrados</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_a[2]%>">     
+                  <%= link_to reports_path, :class => "#{@menu_a[2]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Reportes</span>
+                  <% end %>
+               </li>
+               <% else%>
+               <% end %>
+            </ul>
+            <% end %>
+            <% if @menum[3] == "active1" %>
+            <ul class="nav nav-tabs" role="tablist">
+               <% menu_misreports %>
+               <li role="presentation" class ="<%=@menu_ma[1]%>">    <%= link_to misreports_path,:class => "#{@menu_ma[1]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Me Asignaron</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_ma[0]%>"> 
+                  <%= link_to reports_asignados_path,:action => :reports_asignados,:class => "#{@menu_ma[0]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Asignados</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_ma[2]%>">   <%= link_to invitado_path,:action => :reports_asignados,:class => "#{@menu_ma[2]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Invitado</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_ma[3]%>"> <%= link_to reports_calendar_path,:action => :reports_calendar,:class => "#{@menu_ma[3]}" do %>
+                  <i class="fa fa-calendar" aria-hidden="true" style="display:inline-block; !important;" ></i>
+                  <% end %>
+               </li>
+            </ul>
+            <% end %>
+            <% if @menum[2] == "active1" %>
+            <ul class="nav nav-tabs" role="tablist">
+               <% menu_misaccions %>
+               <li role="presentation" class ="<%=@menu_mac[1]%>">    <%= link_to misacciones_path,:class => "#{@menu_mac[1]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Me Asignaron</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_mac[0]%>"> 
+                  <%= link_to accions_asignados_path,:action => :reports_asignados,:class => "#{@menu_mac[0]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Asignados</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_mac[2]%>">   <%= link_to accions_invitado_path,:action => :reports_asignados,:class => "#{@menu_mac[2]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Invitado</span>
+                  <% end %>
+               </li>
+            </ul>
+            <% end %>
+         </div>
+      </div>
+      </div>
+      <div class = "container-fluid conte" style="    padding-top: 0px;">
+         <div class = "row">
+            <div class = "contenido">
+               <%= flash_messages %>
+               <%= yield %>
+            </div>
+         </div>
+      </div>
+      <!--/row-->
       <!-- /container -->
    </body>
 </html>
-
-
-
-
 <style>
-.user:hover, .user:focus , .user:active, .user:focus:over
-{
-  background:#e7e7e7!important;
-    color:white!important;
-}
-  
-  .nav .open > a:hover, .nav .open > a:focus {
- background:#e7e7e7 !important;
-    color:white!important;
-  }
-
-
+   .user:hover, .user:focus , .user:active, .user:focus:over
+   {
+   background:#e7e7e7!important;
+   color:white!important;
+   }
+   .nav .open > a:hover, .nav .open > a:focus {
+   background:#e7e7e7 !important;
+   color:white!important;
+   }
 </style>
 
 
-
-
-
-
-  
 
 
 

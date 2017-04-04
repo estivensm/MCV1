@@ -1,0 +1,2 @@
+json.extract! task, :id, :user_id, :admin_user, :employed_id, :report_id, :name, :observacion, :costo, :f_compromiso, :f_real, :estado, :cumplio, :contador, :contador_seg, :anexo, :codigo, :created_at, :updated_at
+json.url task_url(task, format: :json)
