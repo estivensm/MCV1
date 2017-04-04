@@ -45,8 +45,11 @@
    <% @tasks.each do |task| %>
    <div class="conteinter reporte cnt">
       <div class="row rtr">
+     
          <div class="col-md-9 rtd text-left" style = "    padding: 5px !important;
-            padding-left: 17px !important;"><strong class="name"><%= task.name %></strong></div>
+            padding-left: 17px !important;font-size:13px;"><strong ><%= task.name %></strong></div>
+
+
          <div class="col-md-3 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
             padding-bottom: 0px !important;   padding-right: 40px !important;"> 
             <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
@@ -57,6 +60,7 @@
             <% end %>
          </div>
       </div>
+      <hr class="hr">
       <div class="row rtr">
          <div class="col-md-4 rtd">
             <strong><i class="fa fa-user" aria-hidden="true"></i>
@@ -66,7 +70,10 @@
             <td  class = "imaacc">
                <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
          </div>
-         <div class="col-md-4 rtd"><strong><strong><i class="fa fa-calendar" aria-hidden="true"></i>
+          <%color = ""
+                     task.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
+                     color = "#0db4a0" if task.contador_seg > 5%>
+         <div class="col-md-4 rtd" style = "color:white;background:<%=color%>"><strong><strong><i class="fa fa-calendar" aria-hidden="true"></i>
          </strong> <%=  get_date(task.f_compromiso)  %></div>
          <div class="col-md-4 rtd" style = "    font-size: 12px;
             color: gray;"><%=  task.codigo  %></div>
