@@ -42,8 +42,8 @@
          <h3 class="linka margin-cero">Tareas por Hacer</h3>
       </div>
 
-
-      <div class="col-md-2 rtd"><%= (link_to "Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'btn btn-primary pull-right', style:"padding-bottom:2px;padding-top:2px") if view_report(@report) || current_user.role == "SuperAdmin" %></div>
+<% if @tasks_all.count > 0 %>
+      <div class="col-md-2 rtd"><%= (link_to "Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'btn btn-primary pull-right', style:"padding-bottom:2px;padding-top:2px") if view_report(@report) || current_user.role == "SuperAdmin" %></div><% end %>
    </div>
 </div>
 <% if @tasks_all.count > 0 %>

@@ -48,11 +48,13 @@
         <div class="form-group">
   <%= f.label "Tratamiento" %><br>
     <%= f.label "Correcciones", class: "lb1" %>
-    <%= f.check_box :correccion, class:"scorrecion check" %>
+    <%= f.check_box :correccion, class:"scorrecion check" %><br>
     <%= f.label "Analisis de Causa", class: "lb1" %>
-    <%= f.check_box :causa, class: "scausa check" %>
+    <%= f.check_box :causa, class: "scausa check" %><br>
     <%= f.label "Acciones", class: "lb1" %>
-    <%= f.check_box :accion, class: "saccion check" %>
+    <%= f.check_box :accion, class: "saccion check" %><br>
+    <%= f.label "Tareas", class: "lb1" %>
+    <%= f.check_box :task, class: "stask check" %>
   </div>
  
     <div class="form-group">
@@ -64,11 +66,11 @@
    <hr>
   <div class="form-group">
   <%= f.label "Campos Opcionales" %><br>
-    <%= f.label "Evidencia que soporta el Reporte", class: "lb1" %>
+    <%= f.label "Evidencia que soporta el Reporte", class: "lb2" %>
     <%= f.check_box :evidencia, class:"check" %>
-    <%= f.label "Requisito Legal o Interno", class: "lb1" %>
+    <%= f.label "Requisito Legal o Interno", class: "lb2" %>
     <%= f.check_box :requisito, class: "check" %><br>
-    <%= f.label "Numerales de Normas", class: "lb1" %>
+    <%= f.label "Numerales de Normas", class: "lb2" %>
     <%= f.check_box :numerales, class: "check" %>
   </div>
 
@@ -123,6 +125,13 @@
 {
    margin-left: 10px !important;
    font-weight: 100;
+       width: 110px;
+}
+.lb2 
+{
+   margin-left: 10px !important;
+   font-weight: 100;
+       width: 205px;
 }
   </style>
 }

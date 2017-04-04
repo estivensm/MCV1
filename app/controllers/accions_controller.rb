@@ -11,7 +11,8 @@ class AccionsController < ApplicationController
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
-   
+       @tasks = Task.where(report_id: @report.id)
+
    end
 
   
@@ -24,6 +25,7 @@ class AccionsController < ApplicationController
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @tasks = Task.where(report_id: @report.id)
 
     render 'index'
     
@@ -39,6 +41,7 @@ class AccionsController < ApplicationController
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @tasks = Task.where(report_id: @report.id)
 
   
   end

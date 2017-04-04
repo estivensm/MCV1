@@ -35,6 +35,19 @@ def seguimiento_accion(employed , seg)
   mail(to: @employed.email, subject: "Se hizo un seguimiento la Accion #{@seg.accion.codigo}")
 end
 
+
+def noty_task(employed , task)
+  @employed = employed
+  @task= task
+  mail(to: @employed.email, subject: "Se creo la Tarea #{@task.codigo}")
+end
+
+
+
+
+
+
+
 end
 
 

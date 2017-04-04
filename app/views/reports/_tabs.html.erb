@@ -5,19 +5,19 @@ aana = ""
 aacicion = ""
 atask = ""
 elsif (controller_name == "accions" && action_name == "correcciones")
-	areport = ""
+  areport = ""
 acorre= "active"
 aana = ""
 aacicion = ""
 atask = ""
 elsif (controller_name == "causas" && action_name == "show")
-	areport = ""
+  areport = ""
 acorre= ""
-aana = "actvie"
+aana = "active"
 aacicion = ""
 atask = ""
 elsif (controller_name == "accions" && action_name == "index")
-	areport = ""
+  areport = ""
 acorre= ""
 aana = ""
 aacicion = "active"
@@ -31,12 +31,18 @@ atask = "active"
 
 
 
-	end%>
+  end%>
 
 
 <ul class="nav nav-tabs" role="tablist">
+
+
     <li role="presentation" class="<%=areport%>"><%= link_to "Reporte", report_path(@report)%></li>
+<% if @report.source.correccion%>
     <li role="presentation" class="<%=acorre%>"value=""><%= link_to "Correcciones (#{@correa})", report_correcciones_path(@report)%></a></li>
+
+    <%end%>
+   <% if @report.source.causa%>
     <li role="presentation" class="<%=aana%>">
      <% if @report.causas.count == 0 %>
    <%= (link_to  "Crear Analisis de Causa",  new_report_causa_path(@report), remote: true ) if view_report(@report) %>
@@ -44,6 +50,11 @@ atask = "active"
     
 <%= link_to "Analisis de Causas (#{@report.causas.last.tipo})", report_causa_path(@report,@report.causas.last.id)%>
     <%end%></li>
+     <%end%>
+    <% if @report.source.accion%>
     <li role="presentation" class="<%=aacicion%>"><%= link_to  "Acciones (#{@accionsca})", report_accions_path(@report) %></li>
-     <li role="presentation" class="<%=atask%>"><%= link_to  "Tareas (#{@accionsca})", report_tasks_path(@report) %></li>
+    <%end%>
+     <% if @report.source.task%>
+     <li role="presentation" class="<%=atask%>"><%= link_to  "Tareas (#{@tasks.count})", report_tasks_path(@report) %></li>
+      <%end%>
   </ul>

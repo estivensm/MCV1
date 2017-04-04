@@ -21,6 +21,8 @@ class CausasController < ApplicationController
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
     @accions = Accion.where(report_id: @report.id)
+        @tasks = Task.where(report_id: @report.id)
+
   end
 
   # GET /causas/new

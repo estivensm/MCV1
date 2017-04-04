@@ -90,6 +90,35 @@ namespace :email do
 
 
     end 
+
+
+      Task.where(estado: false).each do |task|
+        employed = Employed.find(task.employed_id)    
+        times = task.f_compromiso.to_time
+        time =  times.to_i - Time.now.to_i
+        task.contador_seg = (time / 60 / 60/ 24) + 1
+        task.save
+        
+
+        if task.contador_seg < 5 && task.contador_seg > 0
+            
+           TaskMailer.noty_task(employed,task,"proximo").deliver
+            
+        elsif task.contador_seg < 0
+
+           TaskMailer.noty_task(employed,task, "vencido").deliver
+
+        elsif task.contador_seg == 0
+
+            TaskMailer.noty_task(employed,task, "hoy").deliver
+
+        end
+
+                 
+      
+
+
+    end 
 end
   end
 

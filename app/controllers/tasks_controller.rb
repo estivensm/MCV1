@@ -8,6 +8,11 @@ class TasksController < ApplicationController
     @tasks_all = @report.tasks
     @tasks = @report.tasks.abiertas
     @tasksc = @report.tasks.cerradas
+       @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
+ @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
     
   end
 
@@ -45,7 +50,9 @@ class TasksController < ApplicationController
     @task.codigo = @code
     @task.contador = @num
     @task.costo = 0
+    @employed = Employed.find(@task.employed_id)
     if @task.save
+      ReportMailer.noty_task(@employed,@task).deliver
       redirect_to report_tasks_path(@report)
     end
   end
@@ -62,6 +69,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+     @report = Report.find(params[:report_id]) 
     @task.destroy
     respond_to do |format|
       format.html { redirect_to report_tasks_path(@report), notice: 'Task was successfully destroyed.' }
