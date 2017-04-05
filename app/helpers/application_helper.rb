@@ -337,6 +337,16 @@ def estado_contador(cont)
 end
 
 
+def get_color(color)
+   
+  c = ""
+  color < 0 ? c = "#d82c2c" : c = "orange"
+  c = "#0db4a0" if color > 5
+  return c
+
+  end
+
+
 
 
 def show_reports
