@@ -54,6 +54,8 @@ end
           resources :sources
           resources :reports do 
             get :get_reportsc, on: :collection
+            get :get_invitadoc, on: :collection
+             get :get_asignadosc, on: :collection
             resources :accions do 
                 resources :aseguimientos
                 resources :riesgos

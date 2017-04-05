@@ -4,7 +4,7 @@
    <div class="col-md-6" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px;"> Reportes</strong> Vencidos <span class="label label-danger br"><%=@reportsv.count%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv.count%></span> Vigentes <span class="label label-success br"><%=@reportsvi.count%></span></p>
+            <p class = "prox"><strong style="font-size:25px;"> Reportes</strong><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></span> Vigentes <span class="label label-success br"><%=@reportsvi%></span></p>
             <hr class="hr">
          </div>
          <div class="row rtr">
@@ -36,9 +36,9 @@
    <div class="col-md-6" style= "    border-right: 1px solid gainsboro;    padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px";>Acciones</strong> Vencidas <span class="label label-danger br"><%=@accionsv.count%></span>  Proximas a Vencer 
-               <span class="label label-warning br"><%=@accionspv.count%></span>Vigentes
-               <span class="label label-success br"><%=@accionsvi.count%></span>
+            <p class = "prox"><strong style="font-size:25px";>Acciones y Correcciones</strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
+               <span class="label label-warning br"><%=@accionspv%></span>Vigentes
+               <span class="label label-success br"><%=@accionsvi%></span>
             </p>
             <hr class="hr">
             <div class="row rtr">
@@ -77,9 +77,9 @@
     <div class="col-md-6" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px;">Tareas</strong> Vencidas <span class="label label-danger br"><%=@accionsv.count%></span> Proximas a Vencer 
-               <span class="label label-warning br"><%=@accionspv.count%></span>Vigentes 
-               <span class="label label-warning br"><%=@accionspv.count%></span>
+            <p class = "prox"><strong style="font-size:25px;">Tareas</strong><br> Vencidas <span class="label label-danger br"><%=@tasksv%></span> Proximas a Vencer 
+               <span class="label label-warning br"><%=@taskspv%></span>Vigentes 
+               <span class="label label-success br"><%=@tasksvi%></span>
             </p>
             <hr class="hr">
             <div class="row rtr">
@@ -117,57 +117,7 @@
   
 </div>
 <hr>
-<script >
-   Highcharts.chart('container', {
-   
-       chart: {
-           type: 'column'
-       },
-   
-       title: {
-           text: 'Mi Actividad por mes'
-       },
-   
-       xAxis: {
-           categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo']
-       },
-   
-       yAxis: {
-           allowDecimals: false,
-           min: 0,
-           title: {
-               text: 'Cantidad'
-           }
-       },
-   
-       tooltip: {
-           formatter: function () {
-               return '<b>' + this.x + '</b><br/>' +
-                   this.series.name + ': ' + this.y + '<br/>' +
-                   'Total: ' + this.point.stackTotal;
-           }
-       },
-   
-       plotOptions: {
-           column: {
-               stacking: 'normal'
-           }
-       },
-   
-       series: [ {
-           name: 'Joe',
-           data: [3, 4, 4, 2, 5],
-           stack: 'male'
-       }, {
-           name: 'Jane',
-           data: [2, 5, 6, 2, 1],
-           stack: 'female'
-       }]
-   });
-   
-   
-   
-</script>
+
 
 <style>
 .nh

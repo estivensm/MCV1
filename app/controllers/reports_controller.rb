@@ -9,6 +9,7 @@ respond_to :json
     user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
     @task = Report.where( employed_id: user.id).where(state: "Abierto")
     @task1 = Accion.where( employed_id: user.id).where(estado: "Abierta")
+    @task2 = Task.where( employed_id: user.id).where(estado: false)
     events = []
     @task.each do |task|
       if task.contador_seg > 5
@@ -31,17 +32,96 @@ respond_to :json
     end
       events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
     end
+
+    @task2.each do |task2|
+      if task2.contador_seg > 5
+        @color2 = "green"
+      elsif task2.contador_seg <= 5 && task2.contador_seg >= 0
+          @color2 = "orange"
+      else
+          @color2 = "#d82c2c"
+    end
+      events << {:id => task2.id, :title => "#{task2.name} ", :start => "#{task2.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task2.report_id}/tasks"}
+    end
     render :text => events.to_json
 
 end
 
 
-def reports_calendar
+respond_to :json
+  def get_invitadoc
+    user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
+    @task = user.reports.where(state: "Abierto")
+    @task1 = user.accions.where(estado: "Abierta")
+    events = []
+    @task.each do |task|
+      if task.contador_seg > 5
+        @color = "green"
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+          @color = "orange"
+      else
+          @color = "#d82c2c"
+    end
+      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+    end
 
-    
+    @task1.each do |task1|
+      if task1.contador_seg > 5
+        @color1 = "green"
+      elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
+          @color1 = "orange"
+      else
+          @color1 = "#d82c2c"
+    end
+      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
+    end
+
+    render :text => events.to_json
+
 end
 
+respond_to :json
+  def get_asignadosc
+    user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
+    @task = Report.where( employed_reporta: @user.id).where(state: "Abierto")
+    @task1 = Accion.where( user_id: current_user.id).where(estado: "Abierta")
+    @task2 = Task.where( user_id: current_user.id).where(estado: false)
+    events = []
+    @task.each do |task|
+      if task.contador_seg > 5
+        @color = "green"
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+          @color = "orange"
+      else
+          @color = "#d82c2c"
+    end
+      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+    end
 
+    @task1.each do |task1|
+      if task1.contador_seg > 5
+        @color1 = "green"
+      elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
+          @color1 = "orange"
+      else
+          @color1 = "#d82c2c"
+    end
+      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
+    end
+
+    @task2.each do |task2|
+      if task2.contador_seg > 5
+        @color2 = "green"
+      elsif task2.contador_seg <= 5 && task2.contador_seg >= 0
+          @color2 = "orange"
+      else
+          @color2 = "#d82c2c"
+    end
+      events << {:id => task2.id, :title => "#{task2.name} ", :start => "#{task2.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task2.report_id}/tasks"}
+    end
+    render :text => events.to_json
+
+end
 
 
 
