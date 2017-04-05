@@ -13,7 +13,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "green"
+        @color = "#0db4a0"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -24,7 +24,7 @@ respond_to :json
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color1 = "green"
+        @color1 = "#0db4a0"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color1 = "orange"
       else
@@ -35,7 +35,7 @@ respond_to :json
 
     @task2.each do |task2|
       if task2.contador_seg > 5
-        @color2 = "green"
+        @color2 = "#0db4a0"
       elsif task2.contador_seg <= 5 && task2.contador_seg >= 0
           @color2 = "orange"
       else
@@ -56,7 +56,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "green"
+        @color = "#0db4a0"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -67,7 +67,7 @@ respond_to :json
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color1 = "green"
+        @color1 = "#0db4a0"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color1 = "orange"
       else
@@ -89,7 +89,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "green"
+        @color = "#0db4a0"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -100,7 +100,7 @@ respond_to :json
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color1 = "green"
+        @color1 = "#0db4a0"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color1 = "orange"
       else
@@ -111,7 +111,7 @@ respond_to :json
 
     @task2.each do |task2|
       if task2.contador_seg > 5
-        @color2 = "green"
+        @color2 = "#0db4a0"
       elsif task2.contador_seg <= 5 && task2.contador_seg >= 0
           @color2 = "orange"
       else
