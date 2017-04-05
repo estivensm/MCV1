@@ -83,7 +83,7 @@ end
 respond_to :json
   def get_asignadosc
     user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
-    @task = Report.where( employed_reporta: @user.id).where(state: "Abierto")
+    @task = Report.where( employed_reporta: user.id).where(state: "Abierto")
     @task1 = Accion.where( user_id: current_user.id).where(estado: "Abierta")
     @task2 = Task.where( user_id: current_user.id).where(estado: false)
     events = []
