@@ -83,9 +83,9 @@
 <%= link_to  report_path(report) do %>
 <div class="row seg">
 <div class="col-md-12">
-<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:15px">
+<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:0px">
 
-  <strong><%= report.name%></strong>
+ <strong style="margin-right: 10px"><%=report.source.name%>:</strong><%= report.name%>
 
 
 </div>
@@ -120,9 +120,7 @@
 </div>
 <div class="col-md-12">
 
-<div class="col-md-3">
- <strong>Fuente:</strong> <%=report.source.name%>
-</div>
+
 <div class="col-md-3">
  <strong>Costo:</strong> <%=report.costo%>
 </div>
