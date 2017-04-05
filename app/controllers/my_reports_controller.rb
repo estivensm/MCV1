@@ -5,10 +5,10 @@ class MyReportsController < ApplicationController
     @report_search1 = Report.where(employed_id: @employed)
     if params[:search]
     	
-    	@reports = @report_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5])
+    	@reports = @report_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
 
     else 
-    	@reports = @report_search1
+    	@reports = @report_search1.order(created_at: :desc)
 
     end
 
@@ -24,10 +24,10 @@ class MyReportsController < ApplicationController
     @report_search1 = Report.where(user_id: current_user.id).where(admin_user: current_user.admin_user)
     if params[:search]
       
-      @reports = @report_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5])
+      @reports = @report_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
 
     else 
-      @reports = @report_search1
+      @reports = @report_search1.order(created_at: :desc)
 
     end
 
@@ -51,10 +51,10 @@ def invitado
     @report_search1 = @employed.reports
     if params[:search]
       
-      @reports = @report_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
+      @reports = @report_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6]).order(created_at: :desc)
 
     else 
-      @reports = @report_search1
+      @reports = @report_search1.order(created_at: :desc)
 
     end
     

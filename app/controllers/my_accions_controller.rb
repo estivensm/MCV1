@@ -5,10 +5,10 @@ class MyAccionsController < ApplicationController
     @accion_search = Accion.where(employed_id: @employed.id)
     if params[:search]
     	
-    	@acciones = @accion_search.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6])
+    	@acciones = @accion_search.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
 
     else 
-    	@acciones = @accion_search
+    	@acciones = @accion_search.order(created_at: :desc)
 
     end
 
@@ -25,10 +25,10 @@ class MyAccionsController < ApplicationController
     @accion_search1 = Accion.where(user_id: current_user.id).where(admin_user: current_user.admin_user)
     if params[:search]
       
-      @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5])
+      @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
 
     else 
-     @acciones = @accion_search1
+     @acciones = @accion_search1.order(created_at: :desc)
 
     end
 
@@ -52,10 +52,10 @@ def invitado
 
     if params[:search]
       
-      @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
+      @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6]).order(created_at: :desc)
 
     else 
-      @acciones = @accion_search1
+      @acciones = @accion_search1.order(created_at: :desc)
 
     end
     
