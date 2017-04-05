@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404192415) do
+ActiveRecord::Schema.define(version: 20170405202627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170404192415) do
     t.boolean  "eficaz"
     t.integer  "cierra_id"
     t.string   "name"
+    t.boolean  "s_cierre"
   end
 
   create_table "accions_causa_efectos", id: false, force: :cascade do |t|
@@ -126,6 +127,7 @@ ActiveRecord::Schema.define(version: 20170404192415) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "accion_id"
+    t.boolean  "s_cierre"
   end
 
   create_table "cargos", force: :cascade do |t|

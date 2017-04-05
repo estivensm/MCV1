@@ -21,6 +21,7 @@
 #  evidencia   :boolean
 #  requisito   :boolean
 #  numerales   :boolean
+#  task        :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

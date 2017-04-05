@@ -26,6 +26,7 @@
 #  eficaz         :boolean
 #  cierra_id      :integer
 #  name           :string
+#  s_cierre       :boolean
 #
 
 require 'test_helper'

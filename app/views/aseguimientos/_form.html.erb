@@ -26,7 +26,13 @@
                   </div>
                </div>
             
-          
+            <% if  get_employed1.id == @accion.employed_id || current_user.role == "SuperAdmin" %>
+               <div class="form-group">
+                  <%= f.label "Solicitar Cierre" %>
+                  <%= f.check_box :s_cierre ,  class: ""  %>
+               </div>
+
+
               
                <br>
                <% if @accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin"%>

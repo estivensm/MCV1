@@ -15,7 +15,7 @@
 #  cerrar        :boolean
 #  eficaz        :boolean
 #  conclucion    :text
-#
+
 
 class Rseguimiento < ApplicationRecord
 	belongs_to :report

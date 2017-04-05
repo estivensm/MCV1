@@ -15,6 +15,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  accion_id     :integer
+#  s_cierre      :boolean
 #
 
 require 'test_helper'

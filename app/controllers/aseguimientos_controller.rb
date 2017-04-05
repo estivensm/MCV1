@@ -69,6 +69,6 @@ class AseguimientosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aseguimiento_params
-      params.require(:aseguimiento).permit(:user_id, :admin_user, :f_seguimiento, :descripcion, :cierra, :eficaz, :conclucion, :costo, :evidencia, :accion_id)
+      params.require(:aseguimiento).permit(:user_id, :admin_user, :f_seguimiento, :descripcion, :cierra, :eficaz, :conclucion, :costo, :evidencia, :accion_id, :s_cierre)
     end
 end

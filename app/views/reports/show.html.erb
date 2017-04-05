@@ -285,19 +285,19 @@
    </div>
       <div class="col-md-11">
       
-      <div class="col-md-4 rtd">
+      <div class="col-md-4 rtd wihtout-padding-bot">
          <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
       </div>
-      <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
-      <div class="col-md-3 rtd"><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
-      <div class="col-md-2 rtd text-right"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+      <div class="col-md-3 rtd wihtout-padding-bot"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
+      <div class="col-md-3 rtd wihtout-padding-bot"><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
+      <div class="col-md-2 rtd text-right wihtout-padding-bot"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
          <i class="fa fa-pencil" aria-hidden="true"></i>
          <% end %>
          <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
          <i class="fa fa-trash" aria-hidden="true"></i>
          <% end %>
       </div>
-<div class="col-md-12 wihtout-padding-top text-left"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
+<div class="col-md-12 wihtout-padding-top text-left name1"><%= seg.descripcion %></div>
   </div>
    </div>
    

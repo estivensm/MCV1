@@ -26,6 +26,7 @@
 #  eficaz         :boolean
 #  cierra_id      :integer
 #  name           :string
+#  s_cierre       :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

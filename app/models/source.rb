@@ -21,6 +21,7 @@
 #  evidencia   :boolean
 #  requisito   :boolean
 #  numerales   :boolean
+#  task        :boolean
 #
 
 class Source < ApplicationRecord

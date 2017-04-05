@@ -9,21 +9,27 @@
                <hr class="hr">
             </div>
             <div class="row rtr">
+               <div class="col-md-3 rtd"><strong>Asigno</strong> </div>
                <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
-               <div class="col-md-3 rtd"><strong>Asigno:</strong> </div>
-               <div class="col-md-6 rtd"><strong>Descripcion:</strong></div>
+               
+               <div class="col-md-6 rtd"><strong>Descripcion</strong></div>
             </div>
             <div class="descnum1">
                <%if @reports.count > 0 %>
                <% @reports.each do |report|%>
                <%= link_to report_path(report) do %>
                <div class="row rtr rtr1">
+
                   <%employed = Employed.find(report.employed_reporta)%>
                   <%color = ""
                      report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
                      color = "#0db4a0" if report.contador_seg > 5 %>
-                  <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(report.f_compromiso)%></div>
-                  <div class="col-md-3 rtd"><%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></div>
+                  
+                  <div class="col-md-3 rtd">
+                  <%if report.s_cierre %>
+                  <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
+              <%end%><%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></div>
+              <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(report.f_compromiso)%></div>
                   <div class="col-md-6 rtd"><%=report.name%></div>
                </div>
                <%end%>
@@ -44,8 +50,8 @@
                <hr class="hr">
                <div class="row rtr">
                   <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
-                  <div class="col-md-3 rtd"><strong>Asigno:</strong> </div>
-                  <div class="col-md-6 rtd"><strong>Descripcion:</strong></div>
+                  <div class="col-md-3 rtd"><strong>Asigno</strong> </div>
+                  <div class="col-md-6 rtd"><strong>Descripcion</strong></div>
                </div>
                <div class="descnum1">
                   <%if @accions.count > 0 %>
@@ -55,8 +61,13 @@
                      <%color = ""
                         accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
                          color = "#0db4a0" if accion.contador_seg > 5 %>
-                     <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
-                     <div class="col-md-3 rtd"><%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
+                  
+                     <div class="col-md-3 rtd">
+                      <%if accion.s_cierre %>
+                  <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
+              <%end%>
+                     <%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
+                        <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
                      <div class="col-md-6 rtd"><%=accion.name%></div>
                   </div>
                   <%end%>

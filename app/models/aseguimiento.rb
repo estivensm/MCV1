@@ -15,6 +15,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  accion_id     :integer
+#  s_cierre      :boolean
 #
 
 class Aseguimiento < ApplicationRecord
@@ -25,7 +26,11 @@ class Aseguimiento < ApplicationRecord
     after_create :email
 
 	def cerrar_accion
-
+    accion = Accion.find(self.accion_id)
+    accion.s_cierre = self.s_cierre
+    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    puts accion.s_cierre
+    accion.save
         if self.cierra
 
             accion = Accion.find(self.accion_id)
@@ -51,7 +56,7 @@ class Aseguimiento < ApplicationRecord
         accion.fp_seguimiento = Time.at(Time.now.to_i + (accion.f_seguimiento*60*60*24))
         accion.save
     end
-
+    
 
 	end
 
