@@ -74,6 +74,14 @@ class RolsController < ApplicationController
     end
   end
 
+def delete_roles
+    Rol.where(:id => params[:rol_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to rols_path }
+    format.json { head :no_content }
+  end
+end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rol

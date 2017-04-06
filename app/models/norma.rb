@@ -19,9 +19,10 @@ class Norma < ApplicationRecord
 	mount_uploader :archivo, ArchivoUploader
   
 
-
 def self.search(search)
-            where("name like '%#{search}%' or name like '%#{search.upcase}%' "  )  
+           search!= "" ? (scope :namesc, -> { where("name like '%#{search.downcase}%' or name like '%#{search.upcase}%'  or name like '%#{search.capitalize}%' ") }) : (scope :namesc, -> { where.not(id: nil) }) 
+ 
+     namesc
         end
 
 end

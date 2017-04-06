@@ -1,4 +1,8 @@
 
+<div class="row" >
+   <div class="col-md-12 ">
+      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
+   </div>
 
 <div class = "row title-table">
    <div class = "col-md-10">
@@ -19,13 +23,28 @@
       </div>
    </div>
    <div class="col-md-8">
-
-   <%= link_to root_path do%>
+   <%= link_to users_index_path do%>
       <div class="col-md-2 cuadro">
-         <div class="col-md-5">
+         <div class="col-md-3">
+            <i class="fa fa-list-ol fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_users.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Usuarios</p>
+         </div>
+      </div>
+       <%end%>
+
+
+   <%= link_to procesos_path do%>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-3">
             <i class="fa fa-cogs fas" aria-hidden="true"></i>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_procesos.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -33,12 +52,12 @@
          </div>
       </div>
       <%end%>
-      <%= link_to root_path do%>
+      <%= link_to cargos_path do%>
       <div class="col-md-2 cuadro1">
-         <div class="col-md-5">
+         <div class="col-md-3">
             <i class="fa fa-briefcase fas" aria-hidden="true"></i>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_cargos.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -46,12 +65,12 @@
          </div>
       </div>
       <%end%>
-      <%= link_to root_path do%>
+      <%= link_to employeds_path do%>
       <div class="col-md-2 cuadro">
-         <div class="col-md-5">
+         <div class="col-md-3">
             <i class="fa fa-users fas" aria-hidden="true"></i>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_employeds.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -59,12 +78,12 @@
          </div>
       </div>
      <%end%>
-      <%= link_to root_path do%>
+      <%= link_to sources_path do%>
       <div class="col-md-2 cuadro1">
-         <div class="col-md-5">
+         <div class="col-md-3">
             <i class="fa fa-search fas" aria-hidden="true"></i>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_sources.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -72,12 +91,12 @@
          </div>
       </div>
        <%end%>
-      <%= link_to root_path do%>
+      <%= link_to rols_path do%>
       <div class="col-md-2 cuadro">
-         <div class="col-md-5">
+         <div class="col-md-3">
             <i class="fa fa-share-alt fas" aria-hidden="true"></i>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_rols.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -85,13 +104,13 @@
          </div>
       </div>
        <%end%>
-      <%= link_to root_path do%>
+      <%= link_to normas_path do%>
       <div class="col-md-2 cuadro1">
-         <div class="col-md-5">
+         <div class="col-md-3">
            <i class="fa fa-gavel fas" aria-hidden="true"></i>
 
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_normas.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -99,27 +118,14 @@
          </div>
       </div>
        <%end%>
-      <%= link_to root_path do%>
-      <div class="col-md-2 cuadro">
-         <div class="col-md-5">
-            <i class="fa fa-list-ol fas" aria-hidden="true"></i>
-
-         </div>
-         <div class="col-md-7">
-            <h1><%=get_numerals.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Numerales</p>
-         </div>
-      </div>
-       <%end%>
-      <%= link_to root_path do%>
+      
+      <%= link_to clinte_proveedors_path do%>
       <div class="col-md-2 cuadro1">
-         <div class="col-md-5">
+         <div class="col-md-3">
            <i class="fa fa-users fas" aria-hidden="true"></i>
 
          </div>
-         <div class="col-md-7">
+         <div class="col-md-9">
             <h1><%=get_clientes.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -127,13 +133,13 @@
          </div>
       </div>
        <%end%>
-      <%= link_to root_path do%>
+      <%= link_to clinte_proveedors_path do%>
       <div class="col-md-2 cuadro">
-         <div class="col-md-5">
+         <div class="col-md-3">
             <i class="fa fa-cubes fas" aria-hidden="true"></i>
 
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_clientes.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -141,12 +147,12 @@
          </div>
       </div>
        <%end%>
-      <%= link_to root_path do%>
+      <%= link_to clinte_proveedors_path do%>
       <div class="col-md-2 cuadro1">
-         <div class="col-md-5">
+         <div class="col-md-3">
           <i class="fa fa-building-o fas" aria-hidden="true"></i>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-8">
             <h1><%=get_clientes.count%></h1>
          </div>
          <div class="col-md-12 pc">
@@ -202,7 +208,7 @@
    .fas
    {
    color:white;
-   font-size: 40px;
+   font-size: 30px;
    padding: 15px 0px 0px 0px;
    }
    .pc

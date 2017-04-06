@@ -1,32 +1,61 @@
-<div class = "row title-table">
-   <div class = "col-md-10">
-      <p >Numerales de Norma <%= @norma.name%></p>
-   </div>
-   <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.role == "Admin" %>
+
+<div class="row" >
+   <div class="col-md-12 ">
+      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> | <%= link_to "Normas",  normas_path, :class => "linka" %> </p>
    </div>
 </div>
-<div class = "row">
+<div class = "row title-table">
    <div class = "col-md-6">
-      <div class="form-group">
+      <p>  Numerales de Norma  <span class="label label-primary"><%=@numerals.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
+
+
+     
+   </div>
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @numerals%>
+   </div>
+
+   <div class = "col-md-2">
+       <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   </div>
+</div>
+
+
+
+
+<hr class="hr">
+<%= (link_to "Filtros", norma_numerals_path(@norma) + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
+<%= (link_to "Cancelar Filtros",norma_numerals_path(@norma), class: "linka canf") if (params[:commit] || params[:filtros])  %>
+
+<div class = "row busqueda" style="display:none">
+   <div class = "col-md-9">
+      <div class="form-group fil">
          <%= form_tag(norma_numerals_path(@norma), :method => "get", id: "search-form") do %>
-         <%= text_field_tag :search, params[:search], placeholder: "Ingrese Texto", class: "form-control search1" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Numeral", class: "form-control search" %>
+  <%= text_field_tag :search2, params[:search2], placeholder: "Nombre", class: "form-control search" %>
+  <%= text_field_tag :search1, params[:search1], placeholder: "Descripción", class: "form-control search" %>
+
+  
+      
          <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+        
+    
          <% end %>
       </div>
    </div>
-   <div class = "col-md-6">
-      <%= will_paginate @numerals%>
-   </div>
+
 </div>
 <div class = "row">
+
+<%= form_tag delete_numerals_path(@norma.id), method: :delete, data: { confirm: 'Esta seguro de eliminar estas Normas' } do %>
+<p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">
       <thead>
          <tr class = "tr-table">
+          <th class="text-left" style="width: 5%"><%= check_box_tag "all_id", 0 %></th>
             <th>Numeral</th>
             <th>Nombre</th>
-            <th>User</th>
-            <th>Admin user</th>
             <th>Descripción</th>
             <th colspan="3"></th>
          </tr>
@@ -34,10 +63,10 @@
       <tbody>
          <% @numerals.each do |numeral| %>
          <tr>
+         <td><%= check_box_tag "numeral_ids[]", numeral.id ,false ,class:"ck"%></td>
             <td><%= numeral.numeral %></td>
             <td><%= numeral.name %></td>
-            <td><%= numeral.user_id %></td>
-            <td><%= numeral.admin_user %></td>
+   
             <td><div class="descnum"><%== numeral.description %></div></td>
             <td><%= link_to norma_numeral_path(@norma,numeral), :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
@@ -53,6 +82,125 @@
          <% end %>
       </tbody>
    </table>
-   <%= link_to 'Volver', normas_path %>
+
+   <%end%>
 </div>
 
+
+<style>
+.btn-danger{background-color: #d9534f
+ !important}
+   .shi1
+   {
+   width: 150px !important;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+      }
+         .busqueda
+   {
+        display: block;
+    padding: 10px;
+    background: #e8e8e8;
+   }
+.fil
+{margin: 0px;
+}
+.search
+   {
+   width:200px !important;
+   height: 27px!important;
+   display:inline-block !important;
+   }
+   
+</style>
+
+<script>
+//seleccionr campos
+
+    $('.btn-danger').hide();
+
+$('#all_id').click(function(){
+
+    if ( $(this).is(':checked') )
+    {
+            $('.ck').prop('checked', true);
+            $('.btn-danger').fadeIn();
+             $('td').css('background-color', 'whitesmoke');
+       }
+        else{
+            $('.ck').prop('checked', false);
+            $('.btn-danger').fadeOut();
+            $('td').css('background-color', 'white');
+         }
+    });
+
+$('.ck').click(function(){
+var a = 0;
+  if ( $(this).is(':checked') )
+    {
+            $('td').css('background-color', 'whitesmoke');
+            $('.btn-danger').fadeIn();
+       }
+        else{
+            $('td').css('background-color', 'white');
+$(".ck").each(function(){  //todos los que sean de la clase row1
+    if($(this).is(':checked')){
+       a  = 1;
+    }
+});
+            if (a != 1)
+            {
+            $('.btn-danger').fadeOut();
+            $('#all_id').prop('checked', false);
+          }
+         }
+    });
+
+
+
+
+   //filtros
+$(document).on('turbolinks:load',function() {
+   
+      
+      
+       $('.sh').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '200px',
+            placeholder_text_single: "Proceso",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+
+   
+   
+
+
+
+   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+   {
+ $('.busqueda').show();
+
+
+   }
+   else
+   {
+    $('.busqueda').hide();
+
+
+   }
+
+
+
+
+ });
+
+ 
+
+</script>

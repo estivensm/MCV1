@@ -17,15 +17,15 @@ class NumeralsController < ApplicationController
     @norma = Norma.find(params[:norma_id])
      
    
-   if params[:search]
-     @numerals1 = @norma.numerals.search(params[:search])
+   if params[:search] || params[:search1] || params[:search2]
+     @numerals1 = @norma.numerals.search(params[:search], params[:search1], params[:search2])
   else
      @numerals1 =@norma.numerals
   end
 
 
 
-   @numerals = @numerals1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @numerals = @numerals1.paginate(page: params[:page],:per_page => 10)
    
   end
 
@@ -63,6 +63,18 @@ class NumeralsController < ApplicationController
     end
         
   end
+
+ def delete_numerals
+   @norma = Norma.find(params[:norma_id])
+    Numeral.where(:id => params[:numeral_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to norma_numerals_path(@norma.id) }
+    format.json { head :no_content }
+  end
+end
+
+
+
 
   # DELETE /numerals/1
   # DELETE /numerals/1.json

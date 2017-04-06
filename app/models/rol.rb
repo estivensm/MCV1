@@ -18,4 +18,10 @@
 
 class Rol < ApplicationRecord
 	has_many :users
+
+	def self.search(search)
+           search != "" ? (scope :namesc, -> { where("name like '%#{search.downcase}%' or name like '%#{search.upcase}%'  or name like '%#{search.capitalize}%' ") }) : (scope :namesc, -> { where.not(id: nil) }) 
+ 
+     namesc
+        end
 end

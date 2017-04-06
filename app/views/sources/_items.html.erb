@@ -1,5 +1,6 @@
  <% @sources.each do |source| %>
       <tr>
+       <td><%= check_box_tag "source_ids[]", source.id ,false ,class:"ck"%></td>
         <td><%= source.name %></td>
         <td><%= source.codigo%></td>
          <td><%= source.tipo%></td>

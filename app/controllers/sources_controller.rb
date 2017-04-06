@@ -18,16 +18,16 @@ class SourcesController < ApplicationController
 
 
 
-   if params[:search] 
-     @sources1 = Source.search(params[:search])
+   if params[:search] || params[:search1]  || params[:search2] 
+     @sources1 = Source.where(admin_user: current_user.admin_user).search(params[:search], params[:search1], params[:search2])
   else
       @ja = nil
-     @sources1 = Source.all
+     @sources1 = Source.where(admin_user: current_user.admin_user)
   end
 
 
 
-   @sources = @sources1.paginate(page: params[:page],:per_page => 20).where(admin_user: current_user.admin_user).order(created_at: :desc)
+   @sources = @sources1.paginate(page: params[:page],:per_page => 20).order(created_at: :desc)
    
   end
 
@@ -91,6 +91,14 @@ end
       format.json { head :no_content }
     end
   end
+
+def delete_sources
+    Source.where(:id => params[:source_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to sources_path }
+    format.json { head :no_content }
+  end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

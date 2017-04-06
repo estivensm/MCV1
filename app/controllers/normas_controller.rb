@@ -19,14 +19,14 @@ class NormasController < ApplicationController
    
    
    if params[:search]
-     @normas1 = Norma.search(params[:search])
+     @normas1 = Norma.where(admin_user: current_user.admin_user).search(params[:search])
   else
-     @normas1 =Norma.all
+     @normas1 =Norma.where(admin_user: current_user.admin_user)
   end
 
 
 
-   @normas = @normas1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user)
+   @normas = @normas1.paginate(page: params[:page],:per_page => 30)
     
   end
 
@@ -70,6 +70,14 @@ class NormasController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def delete_normas
+    Norma.where(:id => params[:norma_ids]).destroy_all
+    respond_to do |format|
+    format.html { redirect_to normas_path }
+    format.json { head :no_content }
+  end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

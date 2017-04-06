@@ -103,6 +103,10 @@ end
             delete "delete_users", to: "users/views#delete_users", as: "delete_users"
             delete "delete_employeds", to: "employeds#delete_employeds", as: "delete_employeds"
             delete "delete_clientes", to: "clinte_proveedors#delete_clientes", as: "delete_clientes"
+            delete "delete_normas", to: "normas#delete_normas", as: "delete_normas"
+            delete "delete_numerals/:norma_id", to: "numerals#delete_numerals", as: "delete_numerals"
+            delete "delete_roles", to: "rols#delete_roles", as: "delete_roles"
+            delete "delete_sources", to: "sources#delete_sources", as: "delete_sources"
             
           end
         devise_for :users

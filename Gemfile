@@ -49,6 +49,7 @@ gem 'chosen-rails'
 gem 'jquery-ui-rails'
 #Guardar en amazon
 gem 'fog', '~> 1.38'
+gem 'figaro'
 #Frontend
 gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 gem 'ransack'
