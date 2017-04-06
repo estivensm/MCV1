@@ -14,7 +14,8 @@ class MyAccionsController < ApplicationController
 
 
 @resp = "resp"
-  
+  @route = misacciones_path
+
   end
 
  def asignado_por_mi
@@ -34,6 +35,7 @@ class MyAccionsController < ApplicationController
 
     
 @resp = "asig"
+@route = accions_asignados_path
 
     render "index"
   end
@@ -60,6 +62,8 @@ def invitado
     end
     
 @resp = "n/a"
+@route = accions_invitado_path
+
     render "index"
   end
 

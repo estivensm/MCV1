@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
  
 
-          
+         root 'dashboard#index'   
 
   
-  root 'dashboard#index'
+  get 'my_tasks/index' , as: "mistasks"
+  get 'my_tasks/asignados', to: "my_tasks#asignado_por_mi", as: "tasks_asignados"
+
   get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
   get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
   

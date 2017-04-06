@@ -124,18 +124,19 @@ def bootstrap_class_for flash_type
 
 
   def menu
-    @menum = ["","", "", "" ,""]
+    @menum = ["","", "", "" ,"", ""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || controller.controller_name == "companies"|| controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
-    @menum = ["active1","", "", "", ""]
+    @menum = ["active1","", "", "", "", ""]
   elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados")) 
-    @menum = ["","active1","", "",""]
+    @menum = ["","active1","", "","", ""]
   elsif controller.controller_name == "my_accions"  
-    @menum = ["","","active1", "",""]
+    @menum = ["","","active1", "","", ""]
      elsif controller.controller_name == "my_reports"  
-    @menum = ["","","", "active1",""]
-  elsif controller.controller_name == "dashboard"  
-    @menum = ["","","","", "active1"]
-  
+    @menum = ["","","", "active1","", ""]
+    elsif controller.controller_name == "dashboard"  
+    @menum = ["","","","", "active1", ""]
+  elsif controller.controller_name == "my_tasks"  
+    @menum = ["","","", "","","active1",]
   end
   return @menum
   end
@@ -235,6 +236,30 @@ end
  return @menu_mac
 
  end 
+
+
+  def menu_mistasks
+
+@menu_tak = ["",""]
+if  controller_name == "my_tasks" && action_name == "asignado_por_mi"
+  
+@menu_tak = ["active",""]
+ 
+ 
+  
+elsif controller_name == "my_tasks" &&  action_name == "index"
+
+  @menu_tak = ["","active","",""]
+
+end
+ return @menu_tak
+
+ end 
+
+
+
+
+
 
 
 

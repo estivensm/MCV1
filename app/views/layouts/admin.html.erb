@@ -71,16 +71,28 @@
                         <% end %>
                         <% end %>
                      </li>
-                     <li><%= link_to misreports_path,:class => "#{@menum[3]}" do %>
+                    
+
+                      <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[6]%>" >
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi Actividad<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+               <li><%= link_to misreports_path,:class => "" do %>
                         <i class="fa fa-money ic" aria-hidden="true"></i>
-                        <span>Mis Reportes</span>
+                        <span class = "color-gray">Mis Reportes</span>
                         <% end %>
                      </li>
-                     <li><%= link_to misacciones_path,:class => "#{@menum[2]}" do %>
+                     <li><%= link_to misacciones_path,:class => "" do %>
                         <span class="fa fa-book ic"></span>
-                        <span ">Mis Acciones</span>
+                        <span class = "color-gray">Mis Acciones</span>
                         <% end %>
                      </li>
+                      <li><%= link_to mistasks_path,:class => "" do %>
+                        <span class="fa fa-book ic"></span>
+                        <span class = "color-gray">Mis Tareas</span>
+                        <% end %>
+                     </li>
+          </ul>
+        </li>
                      <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                         <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
                         <i class="fa fa-cogs ic" aria-hidden="true"></i>
@@ -239,6 +251,24 @@
                </li>
             </ul>
             <% end %>
+                <% if @menum[5] == "active1" %>
+                <%menu_mistasks%>
+            <ul class="nav nav-tabs" role="tablist">
+               <% menu_misaccions %>
+               <li role="presentation" class ="<%=@menu_tak[1]%>">    <%= link_to mistasks_path,:class => "#{@menu_tak[1]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Me Asignaron</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_tak[0]%>"> 
+                  <%= link_to tasks_asignados_path,:action => :reports_asignados,:class => "#{@menu_tak[0]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Asignados</span>
+                  <% end %>
+               </li>
+            
+            </ul>
+            <% end %>
          </div>
       </div>
       </div>
@@ -263,6 +293,11 @@
    .nav .open > a:hover, .nav .open > a:focus {
    background:#e7e7e7 !important;
    color:white!important;
+   }
+   .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus
+   {
+      background: #424242 !important;
+
    }
 </style>
 

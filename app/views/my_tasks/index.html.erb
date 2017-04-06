@@ -2,21 +2,15 @@
 
 <div class = "row title-table">
    <div class = "col-md-12">
-      <p >Mis Acciones (<%=@acciones.count%>)</p>
+      <p >Mis Tareas (<%=@tasks.count%>)</p>
    </div>
   
 </div>
 <% if action_name == "index"%>
-<%= (link_to "filtros", misacciones_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
+<%= (link_to "filtros", mistasks_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 
 <%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "filtros", accions_asignados_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "filtros", accions_invitado_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-
-
-
-
+<%= (link_to "filtros", tasks_asignados_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 <%end%>
 <div class="row busqueda" style = "display:none;">
    <div class="col-md-12">
@@ -60,11 +54,11 @@
    
    
 </script>
-<%= select_tag "search2", options_for_select(["","Acciones", "Correcciones" ] ), {class: "form-control shi sh ", include_blank: true } %>
 
 
-<%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
-<%= select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true } %>
+
+<%= text_field_tag :search5, params[:search5], placeholder: "Nombre", class: "form-control shi sh3" %>
+<!--<%= select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true } %>-->
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
    </div>
@@ -72,11 +66,9 @@
 
 <div class = "row">
 <% if action_name == "index"%>
-<%= (link_to "Cancelar filtros", misacciones_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+<%= (link_to "Cancelar filtros", mistasks_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 <%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "Cancelar filtros", accions_asignados_path , class: "linka canf") if (params[:commit] || params[:filtros]) %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "Cancelar filtros", accions_invitado_path , class: "linka canf") if (params[:commit] || params[:filtros] ) %>
+<%= (link_to "Cancelar filtros", tasks_asignados_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 
 <%end%>
 
@@ -88,10 +80,10 @@
 
 
 
-<% @acciones.each do |accion1| 
-      accion = Accion.find(accion1)
-      report = Report.find(accion.report_id)%>
-<%= link_to  report_accion_path(report,accion) do %>
+<% @tasks.each do |task| 
+      
+      report = Report.find(task.report_id)%>
+<%= link_to  report_tasks_path(report,task) do %>
 
 
 
@@ -100,7 +92,7 @@
 
 <div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:15px">
 
-  <strong><%= accion.name%></strong>
+  <strong><%= task.name%></strong>
 
 
 
@@ -109,18 +101,18 @@
 <div class="col-md-12">
 <hr class = "hr" style = "border: 0.5px solid #dedede !important;">
 <div class="col-md-3">
-<strong>Creación:</strong> <%= get_date(accion.created_at)%>
+<strong>Creación:</strong> <%= get_date(task.created_at)%>
 </div>
 <div class="col-md-3">
- <strong>Codigo:</strong> <%=accion.codigo%>
+ <strong>Codigo:</strong> <%=task.codigo%>
 </div>
 <div class="col-md-3">
-<% employed = Employed.find(accion.employed_id)%>
+<% employed = Employed.find(task.employed_id)%>
    <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
 </div>
 
 <div class="col-md-3 text-right">
-<%if accion.estado == "Abierta"  %>
+<%if task.estado  %>
          <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
          <%else%>
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
@@ -132,11 +124,11 @@
 
 
 <div class="col-md-3">
- <strong>Costo:</strong> <%=accion.costo%>
+ <strong>Costo:</strong> <%=task.costo%>
 </div>
 
-<div class="col-md-3" style = "background:<%=estado_contador(accion.contador_seg)%>;color:white">
-  <strong>Compromiso:</strong> <%= get_date(accion.f_compromiso)%>
+<div class="col-md-3" style = "background:<%=estado_contador(task.contador_seg)%>;color:white">
+  <strong>Compromiso:</strong> <%= get_date(task.f_compromiso)%>
 </div>
 
   
