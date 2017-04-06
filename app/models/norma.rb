@@ -15,7 +15,7 @@
 class Norma < ApplicationRecord
 
 	belongs_to :user
-	has_many :numerals
+	has_many :numerals , dependent: :destroy
 	mount_uploader :archivo, ArchivoUploader
   
 

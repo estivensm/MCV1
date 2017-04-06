@@ -108,6 +108,7 @@
 </style>
 
       <script>
+      $(document).on('turbolinks:load',function() {
   $('.btn-danger').hide();
 
 $('#all_id').click(function(){
@@ -149,17 +150,7 @@ $(".ck").each(function(){  //todos los que sean de la clase row1
 
 
 //filtros
-$(document).on('turbolinks:load',function() {
-    $('.sh').chosen(
-          {
-      
-            allow_single_deselect: true,
-            no_results_text: 'No hay resultados',
-            width: '150px',
-            placeholder_text_single: "Tipo",
-            placeholder_text_multiple: "Seleccione una varias opciones"
-      
-          });
+
 
    if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
    {
@@ -174,12 +165,21 @@ $(document).on('turbolinks:load',function() {
 
    }
 
-
+$('.sh').val("<%=params[:search1]%>") ;
+    $('.sh').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '150px',
+            placeholder_text_single: "Tipo",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
 
 
  });
 //filtros
 
-$('.sh').val("<%=params[:search1]%>") ;
 
 </script>
