@@ -60,7 +60,8 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-  @report = Report.find(params[:report_id]) 
+  @report = Report.find(params[:report_id])
+  
       if @task.update(task_params)
       redirect_to report_tasks_path(@report)
       end

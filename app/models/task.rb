@@ -27,9 +27,10 @@ class Task < ApplicationRecord
 	belongs_to :user
 	belongs_to :employed
 	mount_uploader :anexo, AnexoTaskUploader
-    after_create :start_must_be_before_end_time
+  after_create :start_must_be_before_end_time
+  before_update :cerrar_task
 	scope :cerradas, -> { where(estado: true) }
-    scope :abiertas, -> { where(estado: false) }
+  scope :abiertas, -> { where(estado: false) }
 
 
 
@@ -67,13 +68,28 @@ class Task < ApplicationRecord
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         save
-
-       
+        
             
      
         
     
 
+  end
+
+
+  def cerrar_task
+
+
+ if self.estado
+
+          
+            self.f_compromiso >= Time.now ? (self.cumplio = true) : (self.cumplio = false)
+            self.f_real = Time.now
+           
+            
+          
+    end
+       
   end
 
 
