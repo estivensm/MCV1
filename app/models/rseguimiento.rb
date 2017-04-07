@@ -90,12 +90,19 @@ end
 
 def email
     employed = Employed.find(self.report.employed_id)
-    ReportMailer.seguimiento_report(employed, self).deliver
+    employed_creo = Employed.where(email: self.user.email).where(admin_user: self.admin_user).first
+    if employed.id != employed_creo.id
+
+    CreateMailer.create_seguimiento_report(employed, self).deliver
+    
+    end
+
     report = Report.find(self.report_id)
     report.employeds.each do |emp|
+         if emp.id != employed_creo.id
 
-        ReportMailer.seguimiento_report(emp, self).deliver
-
+        CreateMailer.create_seguimiento_report(emp, self).deliver
+                end
     end
 
 

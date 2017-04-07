@@ -1,8 +1,10 @@
 
-<h3>Hola <%=@employed.first_name%> <%=@employed.first_last_name%></h3>
- <p><%= Employed.where(email: @seg.user.email).first.first_name%> <%=Employed.where(email: @seg.user.email).first.first_last_name%> creo un seguimiento al Reporte <%=@seg.report.codigo%></p>
-<hr>
-<p><strong>Codigo del Reporte:</strong> <%=@seg.report.codigo%></p>
-<p><strong>Nombre del Reporte:</strong> <%=@seg.report.name%></p>
-<p><strong>Descripcion del seguimiento:</strong> <%=@seg.descripcion%></p>
 
+<h3 style="color:#0db497">Hola <%=@employed.first_name%> <%=@employed.first_last_name%></h3>
+ <p style="color:gray"><%= Employed.where(email: @seg.user.email).first.first_name%> <%=Employed.where(email: @seg.user.email).first.first_last_name%> creo un seguimiento al Reporte <%=@seg.report.codigo%></p>
+<hr style="    border: 0.5px solid #dedede !important;">
+<p style="color:gray"><strong style="color:#0db497">Reporte:</strong> <%=@seg.report.name%></p>
+<p style="color:gray"><strong style="color:#0db497">Descripcion del seguimiento:</strong> <strong style="color:gray"><%=@seg.descripcion%></strong></p>
+
+
+<a href="mejoracontinua.herokuapp.com/reports/<%=@seg.report.id%>" style="color:#0db497">Ir al Reporte</a>

@@ -1,7 +1,5 @@
-
-
 <h3 style="color:#0db497">Hola <%=@accion.employed.first_name%> <%=@accion.employed.first_last_name%></h3>
- <p style="color:gray"><%= Employed.where(email: @accion.user.email).first.first_name%> <%=Employed.where(email: @accion.user.email).first.first_last_name%> te ha asignado una <%=@accion.tipo%></p>
+ <p>La siguiente <%=@accion.tipo%> <%=@var%></p>
 <hr style="    border: 0.5px solid #dedede !important;">
 <p style="color:gray"><strong style="color:#0db497">Codigo: </strong> <%=@accion.codigo%></p>
 <p style="color:gray"><strong style="color:#0db497">Fecha de Entrega: </strong> <%= @accion.f_compromiso%></p>

@@ -62,13 +62,17 @@ class Aseguimiento < ApplicationRecord
 
 
     def email
+
     employed = Employed.find(self.accion.employed_id)
-    ReportMailer.seguimiento_accion(employed, self).deliver
+    employed_creo = Employed.where(email: self.user.email).where(admin_user: self.admin_user).first
+    if employed.id != employed_creo.id    
+    CreateMailer.create_seguimiento_accion(employed, self).deliver
+    end
     accion = Accion.find(self.accion_id)
     accion.employeds.each do |emp|
-
-        ReportMailer.seguimiento_accion(emp, self).deliver
-
+        if emp.id != employed_creo.id
+        CreateMailer.create_seguimiento_accion(emp, self).deliver
+            end
     end
 
 

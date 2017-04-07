@@ -11,15 +11,15 @@ namespace :email do
 
             if report.contador_seg < 5 && report.contador_seg > 0
             
-            ReportsegMailer.noty_report(employed,report, "proximo").deliver
+            AlertaMailer.vencimiento_report(employed,report, "proximo").deliver
             
         elsif report.contador_seg < 0
 
-            ReportsegMailer.noty_report(employed,report,"vencido").deliver
+            AlertaMailer.vencimiento_report(employed,report, "vencido").deliver
 
         elsif report.contador_seg == 0
 
-            ReportsegMailer.noty_report(employed,report, "hoy").deliver
+            AlertaMailer.vencimiento_report(employed,report, "hoy").deliver
 
         end
 
@@ -57,15 +57,15 @@ namespace :email do
 
         if accion.contador_seg < 5 && accion.contador_seg > 0
             
-            AccionsegMailer.noty_accion(employed,accion,"proximo").deliver
+            AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
             
         elsif accion.contador_seg < 0
 
-            AccionsegMailer.noty_accion(employed,accion, "vencido").deliver
+            AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
 
         elsif accion.contador_seg == 0
 
-            AccionsegMailer.noty_accion(employed,accion, "hoy").deliver
+            AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
 
         end
 
@@ -102,15 +102,15 @@ namespace :email do
 
         if task.contador_seg < 5 && task.contador_seg > 0
             
-           TaskMailer.noty_task(employed,task,"proximo").deliver
+           AlertaMailer.vencimiento_task(employed,task,"proximo").deliver
             
         elsif task.contador_seg < 0
 
-           TaskMailer.noty_task(employed,task, "vencido").deliver
+           AlertaMailer.vencimiento_task(employed,task, "vencido").deliver
 
         elsif task.contador_seg == 0
 
-            TaskMailer.noty_task(employed,task, "hoy").deliver
+            AlertaMailer.vencimiento_task(employed,task, "hoy").deliver
 
         end
 
