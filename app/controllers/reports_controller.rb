@@ -24,20 +24,6 @@ respond_to :json
   end  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 respond_to :json
   def get_reportsc
     user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
@@ -160,19 +146,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 def abiertos
     
    
@@ -217,12 +190,12 @@ def abiertos
   
 end
 
-  def index
+def index
 
     
 
 
-    
+  
        
               @es = Source.where({default: true, admin_user: current_user.admin_user}).first
               

@@ -1,13 +1,13 @@
 class CreateMailer < ApplicationMailer
 
-#Envia el correo al responsable
+#Envia el correo del Reporte al responsable
 def create_report(employed , report)
   @employed = employed
   @report = report
   mail(to: @employed.email, subject: "Te han asignado un Reporte #{@report.codigo}")
 end
 
-#Envia el correo a los Invitados
+#Envia el correo del Reporte a los Invitados
 def invitado_report(employed , report)
   @employed = employed
   @report = report
@@ -16,12 +16,14 @@ end
 
 
 
-
+#Envia el correo de la  Accion al Responsable
 def create_accion(employed , accion)
   @employed = employed
   @accion = accion
   mail(to: @employed.email, subject: "Te han asignado una #{@accion.tipo} #{@accion.codigo}")
 end
+
+#Envia el correo de la  Accion al Responsable
 def invitado_accion(employed , accion)
   @employed = employed
   @accion = accion
@@ -29,30 +31,30 @@ def invitado_accion(employed , accion)
 end
 
 
+#Envia el correo de la Tarea al Responsable
+def create_task(employed , task)
+  @employed = employed
+  @task= task
+  mail(to: @employed.email, subject: "Te han Asignado una Tarea #{@task.codigo}")
+end
 
 
 
-
-
-def seguimiento_report(employed , seg)
+#Envia el correo del seguimiento al Responsable
+def create_seguimiento_report(employed , seg)
   @employed = employed
   @seg = seg
   mail(to: @employed.email, subject: "Se hizo un seguimiento al Reporte #{@seg.report.codigo}")
 end
 
-
-def seguimiento_accion(employed , seg)
+#Envia el correo del seguimiento a la Acción
+def create_seguimiento_accion(employed , seg)
   @employed = employed
   @seg = seg
-  mail(to: @employed.email, subject: "Se hizo un seguimiento la Accion #{@seg.accion.codigo}")
+  mail(to: @employed.email, subject: "Se hizo un seguimiento a la  #{@seg.accion.tipo} #{@seg.accion.codigo}")
 end
 
 
-def noty_task(employed , task)
-  @employed = employed
-  @task= task
-  mail(to: @employed.email, subject: "Se creo la Tarea #{@task.codigo}")
-end
 
 
 

@@ -52,7 +52,7 @@ class TasksController < ApplicationController
     @task.costo = 0
     @employed = Employed.find(@task.employed_id)
     if @task.save
-      ReportMailer.noty_task(@employed,@task).deliver
+      
       redirect_to report_tasks_path(@report)
     end
   end

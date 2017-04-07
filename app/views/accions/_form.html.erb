@@ -109,13 +109,7 @@
 </script>
 </div>
 
-   <div class="col-md-6">
-
-<div class="form-group">
-    <%= f.label "Acción" %>
-    <%= f.text_field :name,  class: "form-control"  %>
-  </div>
-</div>
+   
 
 <div class="col-md-6">
   <%if @tipo == "Accion"%> 
@@ -127,12 +121,20 @@
             <%end%>
 </div>
 
+</div>
 
+<div class="row">
+<div class="col-md-6">
+
+<div class="form-group">
+    <%= f.label "Acción" %>
+    <%= f.text_field :name,  class: "form-control"  %>
+  </div>
 </div>
 
 
-
-
+</div>
+<hr class="hr">
 <div class="row">
     <p class="form-tit"">Responsabilidad</p>
 
@@ -176,7 +178,7 @@
 
 </div>
 
-
+<hr class="hr">
 <div class="row">
     <p class="form-tit"">Informacion Complementaria</p>
 
@@ -221,9 +223,10 @@
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 <%= f.hidden_field :tag ,:value =>   true%>
 
-  <div class="actions">
-    <%= f.submit "Guardar" , class: 'btn btn-primary' %>
+  <div class="actions text-center" >
+    <%= f.submit "Guardar" , class: 'btn btn-primary', style: "padding: 10px 29px;" %>
   </div>
+  <br><br>
 <% end %>
   </div>
     </div>

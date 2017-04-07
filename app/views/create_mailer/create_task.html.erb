@@ -1,0 +1,10 @@
+
+<h3 style="color:#0db497">Hola <%=@task.employed.first_name%> <%=@task.employed.first_last_name%></h3>
+ <p style="color:gray"><%= Employed.find(@task.employed_id).first_name%> <%=Employed.find(@task.employed_id).first_last_name%> te ha asignado una Tarea</p>
+<hr style="    border: 0.5px solid #dedede !important;">
+<p style="color:gray"><strong style="color:#0db497">Codigo: </strong><%=@task.codigo%></p>
+<p style="color:gray"><strong style="color:#0db497">Fecha de Entrega: </strong> <%= @task.f_compromiso%></p>
+<p style="color:gray"><strong style="color:#0db497">Tarea: </strong> <strong style="color:gray"><%=@task.name%></strong></p>
+
+
+<a href="mejoracontinua.herokuapp.com/reports/<%=@task.report_id%>/tasks" style="color:#0db497">Ir tareas</a>
