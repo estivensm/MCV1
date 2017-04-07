@@ -1,7 +1,7 @@
 
 <hr>
-<div class="row">
-   <div class="col-md-10 col-md-offset-1">
+<div class="row" style="padding: 10px 30px;">
+   <div class="col-md-12">
       <%= nested_form_for @report do |f| %>
       <% if report.errors.any? %>
       <div id="error_explanation">
@@ -13,57 +13,97 @@
          </ul>
       </div>
       <% end %>
-      <div class="row">
-         <div class="col-md-6">
+      
+    <div class="row">
+    <p class="form-tit">Informacion Basica</p>
+ <div class="col-md-3">
             <div class="form-group">
                <%= f.label "Fuente" %><br>
                <%= f.select :source_id,
                  get_sources.map { |u| [u.name, u.id] },
                              { include_blank: true },
-                             { class: 'chosen-select form-control ch source'  }
+                             { class: 'chosen-select1 form-control ch source'  }
                   %>
             </div>
-
-            
-            <div class="form-group">
-               <%= f.label "Reporta" %><br>
-               <%= f.select :employed_reporta,
-                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select form-control ch reporta'  }
-                  %>
-            </div>
-            <div class="form-group">
-               <%= f.label "Asignada a" %><br>
-               <%= f.select :employed_id,
-                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select form-control ch'  }
-                  %>
-            </div>
-                <div class="form-group">
-               <%= f.label "Responsable de Cierre" %><br>
-               <%= f.select :cierra_id,
-                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select form-control ch reporta'  }
-                  %>
-            </div>
-             <div class="form-group">
-               <%= f.label "Otros interesados" %><br>
-               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}, #{c.email}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
-            </div>
-         </div>
-         <div class="col-md-6">
-           
-            <div class="form-group">
+    </div>
+     <div class="col-md-3">
+        <div class="form-group">
                <%= f.label "Proceso" %><br>
                <%= f.select :proceso_id,
                   get_procesos.map { |u| ["#{u.name}", u.id] },
                              { include_blank: true },
-                             { class: 'chosen-select form-control ch'  }
+                             { class: 'chosen-select1 form-control ch'  }
                   %>
             </div>
+    </div>
+ <div class="col-md-3">
+              <div class="form-group">
+    <%= f.label "Frecuencia de Seguimiento" %>
+    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
+  </div>
+
+    </div>
+<div class="col-md-3">
+            
+  <div class="form-group">
+    <%= f.label "Fecha de Compromiso" %>
+    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
+  </div>
+  <script>
+  $(function() {
+    $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+  $('.datepicker').datepicker({
+    altField: "#actualDate",
+    changeMonth: true,
+    changeYear: true,
+    
+  });
+ 
+});
+
+</script>
+    </div>
+   <div class="col-md-3">
+           <div class="form-group">
+               <%= f.label "Reporta" %><br>
+               <%= f.select :employed_reporta,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch reporta'  }
+                  %>
+            </div> </div>
+
+    <div class="col-md-9">
+         <div class="form-group">
+               <%= f.label "Nombre del Reporte" %>
+               <%= f.text_field :name,  class: "form-control" %>
+            </div>
+    </div>
+
+
+
+
+
+ <div class="col-md-3">
+           
+         
 
 
           <div class="form-group cli">
@@ -71,13 +111,13 @@
                <%= f.select :clinte_proveedor_id,
                  get_clientes.map { |u| [u.name, u.id] },
                              { include_blank: true },
-                             { class: 'chosen-select form-control ch pr'  }
+                             { class: 'chosen-select1 form-control ch pr'  }
                   %>
                  
-            </div>
+            </div> </div>
 
 
-
+<div class="col-md-3">
             <div class="form-group pru">
             <% if (action_name == "edit")
 
@@ -89,7 +129,7 @@ else
   @contactss = Contact.where(admin_user: current_user.admin_user)
 end %>
             <%=render "contacts", f: f%>
-            </div>
+            </div> </div>
 
 <script>
    
@@ -127,7 +167,7 @@ $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=
          $('.pri option').remove();
           
           
-  $('.pri').removeClass("chosen-select")
+  $('.pri').removeClass("chosen-select1")
          
           }
           if (data != undefined)
@@ -141,13 +181,13 @@ $('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>
           
         }
 
-         $('.pri').addClass("chosen-select")
-         $('.chosen-select').chosen(
+         $('.pri').addClass("chosen-select1")
+         $('.chosen-select1').chosen(
         {
 
           allow_single_deselect: true,
           no_results_text: 'No results matched',
-          width: '310px'
+          width: '250px'
         });
 console.log("datfffa");
           }
@@ -156,12 +196,12 @@ console.log("datfffa");
           {$('.pri option').remove();
        $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
       $('.pri').addClass("chosen-select");
-    $('.chosen-select').chosen(
+    $('.chosen-select1').chosen(
         {
 
           allow_single_deselect: true,
           no_results_text: 'No results matched',
-          width: '310px'
+          width: '250px'
         });}
 }
 
@@ -184,13 +224,13 @@ if (make)
 $('.pri').remove();
 $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
 
-$('.pri').addClass("chosen-select");
-    $('.chosen-select').chosen(
+$('.pri').addClass("chosen-select1");
+    $('.chosen-select1').chosen(
         {
 
           allow_single_deselect: true,
           no_results_text: 'No results matched',
-          width: '310px'
+          width: '2500px'
         });
 
 
@@ -218,68 +258,81 @@ $('.pri').addClass("chosen-select");
 
 
 
+
+
+
+
+    </div><hr class="hr">
+<br>
+<div class="row">
+    <p class="form-tit"">Responsabilidad</p>
+
+     <div class="col-md-3">
             <div class="form-group">
-    <%= f.label "Frecuencia de Seguimiento" %>
-    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
-  </div>
+               <%= f.label "Asignada a" %><br>
+               <%= f.select :employed_id,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch'  }
+                  %>
+            </div>
+    </div>
+ <div class="col-md-3">
+              <div class="form-group">
+               <%= f.label "Responsable de Cierre" %><br>
+               <%= f.select :cierra_id,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch reporta'  }
+                  %>
+            </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+               <%= f.label "Otros interesados" %><br>
+               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}, #{c.email}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+            </div>
+             </div>
 
 
-  <div class="form-group">
-    <%= f.label "Fecha de Compromiso" %>
-    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
-  </div>
-  <script>
-  $(function() {
-    $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-  $('.datepicker').datepicker({
-    altField: "#actualDate",
-    changeMonth: true,
-    changeYear: true,
-    appendText: "(dd-mm-yyyy)"
-  });
- 
-});
 
-</script>
-         </div>
-      </div>
-      <hr>
-       <br>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--CCCC-->
+
+      
+
+
+      <hr class="hr">
+<br>
        <div class="row">
+       <p class="form-tit"">Informacion Complementaria</p>
         <div class="col-md-6">
             <div class="form-group">
-               <%= f.label "Descriptión Corta" %>
-               <%= f.text_field :name,  class: "form-control" %>
-            </div>
+               <%= f.label "Descriptión Detallada" %>
+               <%= f.text_area :description,  class: "form-control area" %>
+            </div></div>
+        <div class="col-md-4">
+         
               <div class="form-group">
     <%= f.label "Adjuntar Evidencia" %>
     <%= f.file_field :archivo,  class: "form-control" %>
   </div>
          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-               <%= f.label "Descriptión Detallada" %>
-               <%= f.text_area :description,  class: "form-control area" %>
-            </div>
+         
          </div>
-         </div>
+    
          <div class="row">
          <div class="col-md-6">
             <div class="form-group evi">
@@ -298,42 +351,39 @@ $('.pri').addClass("chosen-select");
     
       <br>
       <hr>
-      <div class="rowt">
+      <div class="row">
          <div class="col-lg-6">
 
-<div class="form-group num">
-               <%= f.label "Numerales de Norma" %><br>
-               <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select mn'} %>
-            </div>
-                   </div>
+            <div class="form-group num">
+                          <%= f.label "Numerales de Norma" %><br>
+                          <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+                        </div>
+                              </div>
 
- <!--<div class="col-md-6">
-         
-            <div class="form-group acc1">
-               <label for="">¿Acciones?</label><br>
-               <label class="radio-inline">
-               <%= f.radio_button :accion, 'Si', class: 'rb cksi' %>Si
-               </label>
-              <label class="radio-inline">
-               <%= f.radio_button :accion, 'No', class: 'rb ckno' %>No
-            </div>
-            <div class="form-group just">
-               <div class="alert alert-warning" role="alert">
-                  Justifica por que este hallazgo no necesito Acciones
-               </div>
-               <%= f.label "Justificacion" %>
-               <%= f.text_area :justificacion ,  class: "form-control area" %>
-            </div>
-         </div>-->
-         
+            <!--<div class="col-md-6">
+                    
+                        <div class="form-group acc1">
+                          <label for="">¿Acciones?</label><br>
+                          <label class="radio-inline">
+                          <%= f.radio_button :accion, 'Si', class: 'rb cksi' %>Si
+                          </label>
+                          <label class="radio-inline">
+                          <%= f.radio_button :accion, 'No', class: 'rb ckno' %>No
+                        </div>
+                        <div class="form-group just">
+                          <div class="alert alert-warning" role="alert">
+                              Justifica por que este hallazgo no necesito Acciones
+                          </div>
+                          <%= f.label "Justificacion" %>
+                          <%= f.text_area :justificacion ,  class: "form-control area" %>
+                        </div>
+                    </div>-->
+                    
 
          
       </div>
-       <hr>
-       <br>
-      <div class="row ">
-        
-      </div>
+     
+    
       <hr>
       
      
@@ -344,10 +394,11 @@ $('.pri').addClass("chosen-select");
          <%= f.submit "Guardar" , class: 'btn btn-primary btn-lg btnpad' %>
       </div>
       <br>
-      <br>
+     </div>     </div></div></div></div>
       <% end %>
+      
    </div>
-</div>
+
 
 
 <script>

@@ -1,9 +1,43 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-
+ before_action :authenticate_user!
   # GET /reports
   # GET /reports.json
   
+  
+respond_to :json
+  def get_misreportsc
+    user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
+    @task = Report.where( employed_id: user.id).where(state: "Abierto")
+    events = []
+    @task.each do |task|
+      if task.contador_seg > 5
+        @color = "#0db4a0"
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+          @color = "orange"
+      else
+          @color = "#d82c2c"
+    end
+      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+    end
+
+  end  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 respond_to :json
   def get_reportsc
     user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).take
@@ -346,10 +380,10 @@ end
     @report.contador = num
     @report.costo = 0
     @report.balon = "responsable"
-    @employed = Employed.find(@report.employed_id)
+   
     respond_to do |format|
       if @report.save
-        ReportMailer.noty_report(@employed,@report).deliver
+       
         format.html { redirect_to @report, notice: 'El Reporte fue creado correctamente' }
         format.json { render :show, status: :created, location: @report }
       else

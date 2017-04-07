@@ -46,6 +46,8 @@ end
   get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
   get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
   get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"
+  get 'accions_calendar' , to: "my_accions#accions_calendar", as: "accions_calendar"
+  get 'tasks_calendar' , to: "my_tasks#tasks_calendar", as: "tasks_calendar"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
   get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
@@ -57,12 +59,18 @@ end
           resources :reports do 
             get :get_reportsc, on: :collection
             get :get_invitadoc, on: :collection
-             get :get_asignadosc, on: :collection
+            get :get_asignadosc, on: :collection
+            get :get_misreportsc, on: :collection
+            
+
             resources :accions do 
                 resources :aseguimientos
                 resources :riesgos
+                get :get_misaccionsc, on: :collection
             end
-            resources :tasks
+            resources :tasks do 
+              get :get_tasksc, on: :collection
+              end
             resources :causas
             resources :rseguimientos
             get "correcciones", to: "accions#correcciones" , as: "correcciones" 

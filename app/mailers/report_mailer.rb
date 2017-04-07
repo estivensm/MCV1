@@ -1,15 +1,21 @@
 class ReportMailer < ApplicationMailer
-	def noty_report(employed , report)
+
+#Envia el correo al responsable
+def create_report(employed , report)
   @employed = employed
   @report = report
   mail(to: @employed.email, subject: "Se creo el reporte #{@report.codigo}")
 end
 
+#Envia el correo a los Invitados
 def invitado_report(employed , report)
   @employed = employed
   @report = report
-  mail(to: @employed.email, subject: "Se creo el reporte #{@report.codigo}")
+  mail(to: @employed.email, subject: "Estas Invitado a un reporte #{@report.codigo}")
 end
+
+
+
 
 def noty_accion(employed , accion)
   @employed = employed

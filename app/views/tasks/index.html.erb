@@ -37,7 +37,7 @@
             <h3 class="linka margin-cero">Tareas por Hacer</h3>
          </div>
          <% if @tasks_all.count > 0 %>
-         <div class="col-md-2 rtd"><%= (link_to "Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'btn btn-primary pull-right', style:"padding-bottom:2px;padding-top:2px") if view_report(@report) || current_user.role == "SuperAdmin" %></div>
+         <div class="col-md-2 rtd"><%= (link_to "Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'btn btn-primary pull-right', style:"padding-bottom:5px;padding-top:5px") if view_report(@report) || current_user.role == "SuperAdmin" %></div>
          <% end %>
       </div>
    </div>
@@ -126,8 +126,7 @@
                <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
          </div>
           <%color = ""
-                     task.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                     color = "#0db4a0" if task.contador_seg > 5%>
+                     task.contador_seg < 0 ?  color = "#d82c2c" : color = "#0db4a0"%>
          <div class="col-md-4 rtd" style = "color:white;background:<%=color%>"><strong><strong><i class="fa fa-calendar" aria-hidden="true"></i>
          </strong> <%=  get_date(task.f_compromiso)  %></div>
          <div class="col-md-4 rtd" style = "    font-size: 12px;
