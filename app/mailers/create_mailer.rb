@@ -1,32 +1,38 @@
-class ReportMailer < ApplicationMailer
+class CreateMailer < ApplicationMailer
 
 #Envia el correo al responsable
 def create_report(employed , report)
   @employed = employed
   @report = report
-  mail(to: @employed.email, subject: "Se creo el reporte #{@report.codigo}")
+  mail(to: @employed.email, subject: "Te han asignado un Reporte #{@report.codigo}")
 end
 
 #Envia el correo a los Invitados
 def invitado_report(employed , report)
   @employed = employed
   @report = report
-  mail(to: @employed.email, subject: "Estas Invitado a un reporte #{@report.codigo}")
+  mail(to: @employed.email, subject: "Estas Invitado a participar en un reporte #{@report.codigo}")
 end
 
 
 
 
-def noty_accion(employed , accion)
+def create_accion(employed , accion)
   @employed = employed
   @accion = accion
-  mail(to: @employed.email, subject: "Se creo la accion #{@accion.codigo}")
+  mail(to: @employed.email, subject: "Te han asignado una #{@accion.tipo} #{@accion.codigo}")
 end
 def invitado_accion(employed , accion)
   @employed = employed
   @accion = accion
-  mail(to: @employed.email, subject: "Se creo la accion #{@accion.codigo}")
+  mail(to: @employed.email, subject: "Estas Invitado a participar en una accion #{@accion.codigo}")
 end
+
+
+
+
+
+
 
 def seguimiento_report(employed , seg)
   @employed = employed

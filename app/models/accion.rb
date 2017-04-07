@@ -36,6 +36,7 @@ class Accion < ApplicationRecord
     has_many :aseguimientos, dependent: :destroy
     has_many :riesgos
     belongs_to :user
+    belongs_to :employed, :class_name => 'Employed'
     validate :start_must_be_before_end_time
     validates :employed_id, presence: true
     after_destroy :restar_costo
@@ -85,12 +86,21 @@ puts search2
   def send_mail
 
      # self.causa_efectos.update_all(accion_id: self.id, estado_accion: true)
-
-      self.employeds.each do |employed|
+        employed = Employed.find(self.employed_id)
+      
+        CreateMailer.create_accion(employed, self).deliver
+      
+       self.employeds.each do |employed|
         
-      ReportMailer.noty_accion(employed, self).deliver
+           CreateMailer.invitado_accion(employed, self).deliver
+           
           
-    end
+       end
+
+
+
+
+     
   end
 
 

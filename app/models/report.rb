@@ -116,11 +116,11 @@ scope :abiertos, -> { where(state: "Abierto") }
 
   def accions_create
        employed = Employed.find(self.employed_id)
-       ReportMailer.create_report(employed,self).deliver
+       CreateMailer.create_report(employed,self).deliver
 
       self.employeds.each do |employed|
 	      
-      ReportMailer.invitado_report(employed, self).deliver
+      CreateMailer.invitado_report(employed, self).deliver
           
 	  end
   end
