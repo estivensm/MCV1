@@ -52,8 +52,40 @@ def vencimiento_task(employed , task, tipo)
 end
 
 
+def seguimiento_report(employed , report, tipo)
+ @employed = employed
+ @report = report
+
+  if tipo == "vencido"
+
+    var = "Hoy debes hacer seguiemiento al"
+
+ else
+  
+    var = "Tienes pendiente el seguiemiento al "
+  
+  end
+  @var = var
+ mail(to: @employed.email, subject: "#{var} al Reporte #{@report.codigo}")
+end
 
 
+
+def seguimiento_accion(employed , report, tipo)
+ @employed = employed
+ @report = report
+ if tipo == "vencida"
+
+    var = "Hoy debes hacer seguiemiento a la"
+
+ else
+  
+    var = "Tienes pendiente el seguiemiento a la "
+  
+  end
+  @var = var
+ mail(to: @employed.email, subject: "#{var} Acción #{@report.codigo}")
+end
 
 
 
