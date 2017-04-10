@@ -23,7 +23,7 @@ def vencimiento_accion(employed , accion, tipo)
   if tipo == "proxima"
     var = "esta proxima a vencer"
   elsif tipo == "vencida"
-    var = "se ha vencida"
+    var = "se ha vencido"
   else
     var = "vence hoy"
   end
@@ -40,7 +40,7 @@ def vencimiento_task(employed , task, tipo)
     var = "esta proxima a vencer"
   elsif tipo == "vencida"
 
-    var = "se ha vencida"
+    var = "se ha vencido"
   
   else
   
