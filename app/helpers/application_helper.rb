@@ -393,6 +393,16 @@ def get_color(color)
   end
 
 
+  def get_color_porcentaje(color)
+   
+  c = ""
+  color < 60 ? c = "#d82c2c" : c = "orange"
+  c = "#0db4a0" if color > 90
+  return c
+
+  end
+
+
 
 
 def show_reports

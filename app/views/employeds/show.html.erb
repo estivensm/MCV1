@@ -1,39 +1,126 @@
+<div class="row">
+   <div class = "col-md-4">
+      <div class="col-md-4 img" >
+         <%= @employed.avatare? ? image_tag(@employed.avatare_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
+         <br><br>  
+         <p class="text-center">
+            <%= link_to 'Edit', edit_employed_path(@employed), remote: true, class: "btn btn-primary btn-lg" %>
+         </p>
+      </div>
+      <div class="col-md-8">
+         <h3><%= @employed.first_name %> <%= @employed.second_name %> <%= @employed.first_last_name %> <%= @employed.second_last_name %></h3>
+         <p><strong><i class="fa fa-envelope" aria-hidden="true"></i>
+            </strong>  <%= @employed.email %>
+         </p>
+         <p><strong><i class="fa fa-user" aria-hidden="true"></i>
+            </strong>  <%= @employed.document_type%> - <%= @employed.document%>
+         </p>
+         <p><strong><i class="fa fa-birthday-cake" aria-hidden="true"></i>
+            </strong>  <%= @employed.birth_date %>
+         </p>
+         <p><strong><i class="fa fa-venus-mars" aria-hidden="true"></i>
+            </strong>  <%= @employed.genero %>
+         </p>
+         </p>
+      </div>
+   </div>
+   <div class = "col-md-8">
+       <table class="table indicadores">
+      <thead>
+         <tr class = "tr-table">
+          
+            <th></th>
+            <th>Total</th>
+            <th>Abiertos</th>
+            <th>Cerrados</th>
+            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;" aria-hidden="true"></i>
+ Cumplio </th>
+            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;"></i>
+No Cumplio</th>
+<th>% Cumplimiento</th>
+         </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td class="text-left" style = "font-weight:bold">Reportes</td>
+        <td><%= @reports.count %></td>
+        <td><%= @rabiertos %></td>
+        <td><%= @rcerrados %></td>
+        <td><%= @rcumplio %></td>
+        <td><%= @rnocumplio %></td>
+         <%if @acerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+         <tr>
+        <td class="text-left" style = "font-weight:bold">Correcciones</td>
+        <td><%= @correcciones %></td>
+        <td><%= @cabiertas %></td>
+        <td><%= @ccerradas %></td>
+        
+        <td><%= @ccumplio %></td>
+        <td><%= @cnocumplio %></td>
+        <%if @ccerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@cporcentaje)%>">% <%= @cporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr>
+        <td class="text-left" style = "font-weight:bold">Acciones</td>
+       <td><%= @acciones %></td>
+        <td><%= @aabiertas %></td>
+        <td><%= @acerradas %></td>
+       
+        <td><%= @acumplio %></td>
+         <td><%= @anocumplio %></td>
+         <%if @acerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr>
+        <td class="text-left" style = "font-weight:bold">Tareas</td>
+             <td><%= @tasks%></td>
+        <td><%= @tabiertas %></td>
+        <td><%= @tcerradas %></td>
+        
+        <td><%= @tcumplio %></td>
+        <td><%= @tnocumplio %></td>
+         <%if @tcerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@tporcentaje)%>">% <%= @tporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr>
+        <td class="text-right" style = "font-weight:bold">Totales</td>
+             <td><%= @total1%></td>
+        <td><%= @total2%></td>
+        <td><%= @total3 %></td>
+        <td><%= @total4 %></td>
+        <td><%= @total5 %></td>
+         <%if @total3 != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@total6)%>">% <%= @total6%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+      </tbody>
+   </table>
 
-
-
-
-
-
-<div class="jumbotron">
-<div class="row show-user" >
-<div class="col-md-6">
-  <%= @employed.avatare? ? image_tag(@employed.avatare_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
+   </div>
 </div>
-  <div class="col-md-6">
-<h2><%= @employed.first_name %> <%= @employed.second_name %> <%= @employed.first_last_name %> <%= @employed.second_last_name %></h2><br>
-  <p><strong><i class="fa fa-envelope" aria-hidden="true"></i>
- </strong>  <%= @employed.email %></p>
-
-  <p><strong><i class="fa fa-user" aria-hidden="true"></i>
-
-</strong>  <%= @employed.document_type%> - <%= @employed.document%></p>
-
-  <p><strong><i class="fa fa-birthday-cake" aria-hidden="true"></i>
-</strong>  <%= @employed.birth_date %></p>
-
-<p><strong><i class="fa fa-venus-mars" aria-hidden="true"></i>
-
-</strong>  <%= @employed.genero %></p>
-
-    
-
-  <p>
-  <%= link_to 'Edit', edit_employed_path(@employed), remote: true, class: "btn btn-primary btn-lg" %></p>
-  
-  </p>
-<%= link_to 'Back', employeds_path %>
-</div>
-</div>
-
-  
-</div>
+<style>
+   .img img
+   {
+   width: 100px;
+   border-radius: 45%;}
+   .indicadores
+   {
+   	text-align: center;
+   }
+</style>
