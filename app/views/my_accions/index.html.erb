@@ -85,66 +85,59 @@
 
 
 
+  
 
+<table class="table table">
+   <thead>
+      <tr class = "tr-table">
+ 
+          <th  style = "width:2%"  ></th>
+         
+           <th style = "width:2%"  ></th>
+         <th style = "width:10%" class="text-left">F Creacion</th>
+         <th style = "width:10%" class="text-left">Codigo</th>
+         <th style = "width:10%" class="text-left">Me Asigno</th>
+         <th style = "width:10%" class="text-left">Entrega</th>
+         <th  class="text-left" style = "width:40%">Accion</th>
+         <th  class="text-left">Seg</th>
 
-
-<% @acciones.each do |accion1| 
+         
+         
+        
+      </tr>
+   </thead>
+   <tbody>
+     <% @acciones.each do |accion1| 
       accion = Accion.find(accion1)
       report = Report.find(accion.report_id)%>
-<%= link_to  report_accion_path(report,accion) do %>
+      <tr>
+       
 
-
-
-
-<div class="row seg">
-
-<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:15px">
-
-  <strong><%= accion.name%></strong>
-
-
-
-
-</div>
-<div class="col-md-12">
-<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
-<div class="col-md-3">
-<strong>Creación:</strong> <%= get_date(accion.created_at)%>
-</div>
-<div class="col-md-3">
- <strong>Codigo:</strong> <%=accion.codigo%>
-</div>
-<div class="col-md-3">
-<% employed = Employed.find(accion.employed_id)%>
-   <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
-</div>
-
-<div class="col-md-3 text-right">
-<%if accion.estado == "Abierta"  %>
+<td><%= link_to  report_accion_path(report,accion), :class => "opciones" do %>
+         <i class="fa fa-eye" aria-hidden="true"></i>
+         <% end %></td>
+<td><%if accion.estado == "Abierta"  %>
          <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
          <%else%>
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
-         <%end%>
-</div>
-  
-</div>
-<div class="col-md-12">
+         <%end%></td>
+         <td><%= get_date(accion.created_at) %></td>
+          <td><%= accion.codigo %></td>
+      
+        
+       
+         <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
+     
+            <td style = "background:<%=estado_contador(accion.contador_seg)%>;color:white"><%= get_date(accion.f_compromiso)%></td>
+         <td>
+           
+               <%= accion.name %>
+         </td>
+         <td> <%=accion.aseguimientos.count %></td>
+        <% end %>
+   </tbody>
 
-
-<div class="col-md-3">
- <strong>Costo:</strong> <%=accion.costo%>
-</div>
-
-<div class="col-md-3" style = "background:<%=estado_contador(accion.contador_seg)%>;color:white">
-  <strong>Compromiso:</strong> <%= get_date(accion.f_compromiso)%>
-</div>
-
-  
-</div>
-
-  
-</div>
-
+</table>
 
 
 
@@ -159,20 +152,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
- <% end %>
-<br>
- <% end %>
 
 
 <script>

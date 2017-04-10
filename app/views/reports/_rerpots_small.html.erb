@@ -1,0 +1,77 @@
+
+<%if @reports.count != 0%><p class="linka"> <%= check_box_tag "all_id", 0 %> Seleccionar totos</p><%end%>
+<% @reports.each do |report| %>
+
+
+
+<div class="col-md-2 text-left hidden-xs" style = "padding-left: 40px !importan;padding-top: 5px !important;
+    padding-bottom: 0px !important;">
+  <%= check_box_tag "report_ids[]", report.id ,false ,class:"ck"%> </div>
+
+  
+<div class="col-md-10 text-right" style = "padding-left: 40px !importan;padding-top: 5px !important;
+    padding-bottom: 0px !important;">
+  
+         <%= link_to  edit_report_path(report), :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report,  method: :delete, class: "",data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
+</div>
+
+<%= link_to  report_path(report) do %>
+<div class="row seg">
+
+
+<div class="col-md-10 name text-left" style = "padding:0px 10px !important;margin-left:15px">
+
+  <strong style="margin-right: 10px"><%=report.source.name%>:</strong><%= report.name%>
+
+
+</div>
+
+<div class="col-md-12">
+<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
+<div class="col-md-3"> <strong>Creado:</strong> <%= get_date(report.created_at)%>
+</div>
+<div class="col-md-3">
+ <strong>Codigo:</strong> <%=report.codigo%>
+</div>
+<div class="col-md-3">
+<% employed = Employed.find(report.employed_id)%>
+   <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+</div>
+
+<div class="col-md-1">
+<%if report.state == "Abierto"  %>
+         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+         <%else%>
+         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+         <%end%>
+</div>
+
+  
+</div>
+
+<div class="col-md-12">
+
+
+<div class="col-md-3">
+ <strong>Costo:</strong> <%=report.costo%>
+</div>
+
+<div class="col-md-3" style = "background:<%=estado_contador(report.contador_seg)%>;color:white">
+  <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
+</div>
+
+  
+</div>
+
+
+  
+</div>
+<br>
+
+ <% end %>
+<% end %>

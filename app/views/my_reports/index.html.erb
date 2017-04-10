@@ -82,68 +82,87 @@
 <hr>
 
 
+<div class="descnum3">
+  
 
-<% @reports.each do |report| 
-      %>
+<table class="table table-hidden">
+   <thead>
+      <tr class = "tr-table">
+     
+         
+          <th ></th>
+           <th ></th>
+         <th style = "width:8%" class="text-left">F Creacion</th>
+         <th style = "width:10%" class="text-left">Codigo</th>
+         <th style = "width:10%" class="text-left">Fuente</th>
+         <th style = "width:10%" class="text-left">Me Asigno</th>
+         <th style = "width:10%" class="text-left">Proceso</th>
+         <th style = "width:10%" class="text-left">Entrega</th>
+         <th  class="text-left" style = "width:30%">Descripcion</th>
+         <th  class="text-left">Seg</th>
+         <th  class="text-left">Cor</th>
+         <th  class="text-left">AC</th>
+         <th  class="text-left">Acc</th>
+         <th  class="text-left">Tar</th>
+
+         
+         
+        
+      </tr>
+   </thead>
+   <tbody>
+      <% @reports.each do |report| %>
+      <tr>
+        
 
 
-<%= link_to  report_path(report) do %>
-<div class="row seg">
-<div class="col-md-12">
-<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:0px">
-
- <strong style="margin-right: 10px"><%=report.source.name%>:</strong><%= report.name%>
-
-
-</div>
-  <div class="col-md-1 ball">
-  <%if report.source.balon%>
-  <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "resp" && report.balon == "responsable")%> 
-  <%=  (image_tag "https://www.ecured.cu/images/thumb/7/7a/PELOTA_TENIS.jpg/260px-PELOTA_TENIS.jpg", style:"width:30px") if (@resp == "asig" && report.balon == "asignador")%>
-  <%end%> 
-</div>
-</div>
-<div class="col-md-12">
-<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
-<div class="col-md-3">
-<strong>Creación:</strong> <%= get_date(report.created_at)%>
-</div>
-<div class="col-md-3">
- <strong>Codigo:</strong> <%=report.codigo%>
-</div>
-<div class="col-md-3">
-<% employed = Employed.find(report.employed_id)%>
-   <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
-</div>
-
-<div class="col-md-3 text-right">
-<%if report.state == "Abierto"  %>
+        <td><%= link_to  report, :class => "opciones" do %>
+         <i class="fa fa-eye" aria-hidden="true"></i>
+         <% end %></td>
+<td><%if report.state == "Abierto"  %>
          <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
          <%else%>
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
-         <%end%>
+         <%end%></td>
+         <td><%= get_date(report.created_at) %></td>
+          <td><%= report.codigo %></td>
+      
+        
+         <td><%= report.source.name %></td>
+         <td><%= Employed.find(report.employed_reporta).first_name %> <%= Employed.find(report.employed_reporta).first_last_name %></td>
+         <td><%= report.proceso.name %></td>
+            <td style = "background:<%=estado_contador(report.contador_seg)%>;color:white"><%= get_date(report.f_compromiso)%></td>
+         <td>
+            <div class="descnum">
+               <%= report.description %>
+         </td>
+         <td> <%=report.rseguimientos.count %></td>
+       <td> <%=report.source.correccion ? get_state_report(report.source.correccion, report.id, "C") : get_state_report(report.source.correccion, report.id, "C").html_safe %></td>
+       <td><%= report.source.causa ? get_state_report(report.source.causa, report.id, "AC") : get_state_report(report.source.causa, report.id, "AC").html_safe %></td>
+       <td><%= report.source.accion ? get_state_report(report.source.accion, report.id, "ACC") : get_state_report(report.source.accion, report.id, "ACC").html_safe %></td>
+       <td><%= report.source.task ? get_state_report(report.source.task, report.id, "T") : get_state_report(report.source.task, report.id, "T").html_safe %></td>
+      </tr>
+      <% end %>
+   </tbody>
+</table>
 </div>
-  
-</div>
-<div class="col-md-12">
 
 
-<div class="col-md-3">
- <strong>Costo:</strong> <%=report.costo%>
-</div>
 
-<div class="col-md-3" style = "background:<%=estado_contador(report.contador_seg)%>;color:white">
-  <strong>Compromiso:</strong> <%= get_date(report.f_compromiso)%>
-</div>
 
-  
-</div>
 
-  
-</div>
- <% end %>
-<br>
- <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
   .seg

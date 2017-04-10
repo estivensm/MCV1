@@ -39,6 +39,27 @@ def get_state(state)
   state == true ? a = "<i class='fa fa-check' aria-hidden='true'></i>" : a = "<i class='fa fa-times' aria-hidden='true'></i>"
   
 end
+
+def get_state_report(state, id, tipo)
+  if tipo == "C"
+
+  state == true ? Report.find(id).accions.where(tipo: "Correccion").count : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+  elsif tipo == "AC"
+      state == true ? (Report.find(id).causas.first.tipo if Report.find(id).causas.first)  : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+
+
+     elsif tipo == "ACC"
+        state == true ? Report.find(id).accions.where(tipo: "Accion").count : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+
+
+       elsif tipo == "T"
+  state == true ? Report.find(id).tasks.count : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+
+       end
+
+
+end
+
 def get_contacts
 
   Contact.where(admin_user: current_user.admin_user)

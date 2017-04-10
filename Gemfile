@@ -68,6 +68,7 @@ gem 'wkhtmltopdf-binary'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
+ gem 'draper', '3.0.0.pre1'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'

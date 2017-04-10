@@ -1,0 +1,94 @@
+
+
+
+
+
+
+
+
+
+<% @tasks.each do |task| 
+      
+      report = Report.find(task.report_id)%>
+<%= link_to  report_tasks_path(report,task) do %>
+
+
+
+
+<div class="row seg">
+
+<div class="col-md-11 name text-left" style = "padding:0px 10px !important;margin-left:15px">
+
+  <strong><%= task.name%></strong>
+
+
+
+
+</div>
+<div class="col-md-12">
+<hr class = "hr" style = "border: 0.5px solid #dedede !important;">
+<div class="col-md-3">
+<strong>Creación:</strong> <%= get_date(task.created_at)%>
+</div>
+<div class="col-md-3">
+ <strong>Codigo:</strong> <%=task.codigo%>
+</div>
+<div class="col-md-3">
+<% employed = Employed.find(task.employed_id)%>
+   <strong>Responsable:</strong> <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+</div>
+
+<div class="col-md-3 text-right">
+<%if task.estado  %>
+         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+         <%else%>
+         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+         <%end%>
+</div>
+  
+</div>
+<div class="col-md-12">
+
+
+<div class="col-md-3">
+ <strong>Costo:</strong> <%=task.costo%>
+</div>
+
+<div class="col-md-3" style = "background:<%=estado_contador(task.contador_seg)%>;color:white">
+  <strong>Compromiso:</strong> <%= get_date(task.f_compromiso)%>
+</div>
+
+  
+</div>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <% end %>
+<br>
+ <% end %>
