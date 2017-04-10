@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
          root 'dashboard#index'   
 
-  
+  get 'home/index'
   get 'my_tasks/index' , as: "mistasks"
   get 'my_tasks/asignados', to: "my_tasks#asignado_por_mi", as: "tasks_asignados"
 

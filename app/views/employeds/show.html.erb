@@ -27,27 +27,45 @@
    <div class = "col-md-8">
        <table class="table indicadores">
       <thead>
+      <tr class = "tr-table">
+          
+            <th style = "border-bottom: none !important;"></th>
+            <th style = "border-bottom: none !important;"></th>
+            <th  colspan="3" style = "border-right: 1px solid gray;
+    border-left: 1px solid gray;border-bottom: none !important;">Abiertos</th>
+            <th  colspan="4" style = "border-left: 1px solid gray;border-bottom: none !important;">Cerrados</th>
+        
+
          <tr class = "tr-table">
           
             <th></th>
             <th>Total</th>
-            <th>Abiertos</th>
-            <th>Cerrados</th>
-            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;" aria-hidden="true"></i>
- Cumplio </th>
+
+           <th style = "border-left:1px solid gray"> <i class="fa fa-thumbs-o-up" style="font-size: 16px;" aria-hidden="true"></i>
+</th>
+  
             <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;"></i>
-No Cumplio</th>
+</th><th style = "border-right:1px solid gray">Total</th>
+            
+            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;" aria-hidden="true"></i>
+</th>
+            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;"></i>
+</th><th >Total</th>
 <th>% Cumplimiento</th>
          </tr>
       </thead>
       <tbody>
         <tr>
         <td class="text-left" style = "font-weight:bold">Reportes</td>
-        <td><%= @reports.count %></td>
-        <td><%= @rabiertos %></td>
-        <td><%= @rcerrados %></td>
+        <td ><%= @reports.count %></td>
+      
+         <td><%= @racumplio %></td>
+          <td><%= @ranocumplio %></td>
+            <td><%= @rabiertos %></td>
+        
         <td><%= @rcumplio %></td>
         <td><%= @rnocumplio %></td>
+         <td><%= @rcerrados %></td>
          <%if @acerradas != 0 %>
         <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
         <%else%>
@@ -57,11 +75,15 @@ No Cumplio</th>
          <tr>
         <td class="text-left" style = "font-weight:bold">Correcciones</td>
         <td><%= @correcciones %></td>
-        <td><%= @cabiertas %></td>
-        <td><%= @ccerradas %></td>
+       
+       <td><%= @cacumplio %></td>
+        <td><%= @canocumplio %></td>
+         <td><%= @cabiertas %></td>
+        
         
         <td><%= @ccumplio %></td>
         <td><%= @cnocumplio %></td>
+        <td><%= @ccerradas %></td>
         <%if @ccerradas != 0 %>
         <td style = "color:white;background:<%=get_color_porcentaje(@cporcentaje)%>">% <%= @cporcentaje%></td>
         <%else%>
@@ -71,11 +93,15 @@ No Cumplio</th>
           <tr>
         <td class="text-left" style = "font-weight:bold">Acciones</td>
        <td><%= @acciones %></td>
-        <td><%= @aabiertas %></td>
-        <td><%= @acerradas %></td>
+       
+   <td><%= @aacumplio %></td>
+         <td><%= @aanocumplio %></td>
+          <td><%= @aabiertas %></td>
+        
        
         <td><%= @acumplio %></td>
          <td><%= @anocumplio %></td>
+         <td><%= @acerradas %></td>
          <%if @acerradas != 0 %>
         <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
         <%else%>
@@ -85,11 +111,15 @@ No Cumplio</th>
           <tr>
         <td class="text-left" style = "font-weight:bold">Tareas</td>
              <td><%= @tasks%></td>
-        <td><%= @tabiertas %></td>
-        <td><%= @tcerradas %></td>
+       
+    <td><%= @tacumplio %></td>
+        <td><%= @tanocumplio %></td>
+         <td><%= @tabiertas %></td>
+        
         
         <td><%= @tcumplio %></td>
         <td><%= @tnocumplio %></td>
+        <td><%= @tcerradas %></td>
          <%if @tcerradas != 0 %>
         <td style = "color:white;background:<%=get_color_porcentaje(@tporcentaje)%>">% <%= @tporcentaje%></td>
         <%else%>
@@ -100,11 +130,14 @@ No Cumplio</th>
         <td class="text-right" style = "font-weight:bold">Totales</td>
              <td><%= @total1%></td>
         <td><%= @total2%></td>
-        <td><%= @total3 %></td>
-        <td><%= @total4 %></td>
+         <td><%= @total3%></td>
+         
+        <td><%= @total4%></td>
         <td><%= @total5 %></td>
-         <%if @total3 != 0 %>
-        <td style = "color:white;background:<%=get_color_porcentaje(@total6)%>">% <%= @total6%></td>
+        <td><%= @total6 %></td>
+        <td><%= @total7 %></td>
+         <%if @total7 != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@total8)%>">% <%= @total8%></td>
         <%else%>
         <td>Sin Datos</td>
         <%end%>
@@ -113,6 +146,13 @@ No Cumplio</th>
    </table>
 
    </div>
+</div>
+<div class="row">
+<div class="col-md-4">
+	<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+</div>
+	
 </div>
 <style>
    .img img
@@ -123,4 +163,66 @@ No Cumplio</th>
    {
    	text-align: center;
    }
+
 </style>
+
+
+
+<script >
+	
+	$(function () {
+
+    // Radialize the colors
+    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        return {
+            radialGradient: {
+                cx: 0.5,
+                cy: 0.3,
+                r: 0.7
+            },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    });
+
+    // Build the chart
+    Highcharts.chart('container1', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Actividad'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b><br>cant:{point.y}:<br> {point.percentage:.1f}% ',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    },
+                    connectorColor: 'silver'
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            data: 
+                [{name: "Reportes", y: <%=@reports.count%>},{name: "Correcciones", y: <%=@correcciones%>},{name: "Acciones", y: <%=@acciones%>},
+                    {name: "Tareas", y: <%=@tasks%>}
+                ]
+        }]
+
+    });
+});
+</script>

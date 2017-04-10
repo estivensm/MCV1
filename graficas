@@ -171,8 +171,3 @@
 });
 </script>
 
-<select class="form-control pri chosen-select" name="report[contact_id]" id="report_contact_id" style="display: none;">
- <%=@contactss.each do |cont| %>
- <option value="<%=cont.id%>"><%=cont.name%></option>
- <%end%>
- </select>                 
