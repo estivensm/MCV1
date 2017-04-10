@@ -168,7 +168,7 @@ def abiertos
 
                 #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
                 @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
-                @reports = @reports2.paginate(page: params[:page],:per_page => 10)
+                @reports = @reports2.paginate(page: params[:page],:per_page => 30)
                 @route = reports_abiertos_path
 
    
@@ -176,7 +176,7 @@ def abiertos
     
     render 'index'
               else
-                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 30).where(admin_user: current_user.admin_user).order(created_at: :desc)
 @route = reports_abiertos_path
 
    
@@ -219,10 +219,10 @@ def index
 
                 #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
                 @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
-                @reports = @reports2.paginate(page: params[:page],:per_page => 10)
+                @reports = @reports2.paginate(page: params[:page],:per_page => 30)
                 
               else
-                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 30).where(admin_user: current_user.admin_user).order(created_at: :desc)
 
               end
 
@@ -256,10 +256,10 @@ def cerrados
 
                 #@reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).or(Report.where(employed_id: a.id )).order(created_at: :desc)
                 @reports2 = @reports1.where(admin_user: current_user.admin_user).where(proceso_id: a.cargo.proceso_id ).order(created_at: :desc)
-                @reports = @reports2.paginate(page: params[:page],:per_page => 10)
+                @reports = @reports2.paginate(page: params[:page],:per_page => 30)
                 
               else
-                    @reports = @reports1.paginate(page: params[:page],:per_page => 10).where(admin_user: current_user.admin_user).order(created_at: :desc)
+                    @reports = @reports1.paginate(page: params[:page],:per_page => 30).where(admin_user: current_user.admin_user).order(created_at: :desc)
 
               end
 
