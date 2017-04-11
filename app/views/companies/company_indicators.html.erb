@@ -1,0 +1,346 @@
+<div class="row">
+<p class="myd">INDICADORES</p>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    
+    <div id="container" style="min-width: 250px; max-width: 350px; height: 250px; margin: 0 auto"></div>
+   </div>
+   <div class = "col-md-8">
+
+   <p style = "font-size: 12px;
+"><i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Vigentes</span>
+   <i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">Vencidos</span>
+   <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Cumplio Fecha de Entrega</span>
+   <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">No Cumplio Fecha de Entrega</span>
+
+   </p>
+       <table class="table indicadores">
+      <thead>
+      <tr class = "tr-table">
+          
+            <th style = "border-bottom: none !important;"></th>
+            <th style = "border-bottom: none !important;"></th>
+            <th  colspan="3" style = "border-right: 1px solid gray;
+    border-left: 1px solid gray;border-bottom: none !important;">Abiertos</th>
+            <th  colspan="4" style = "border-left: 1px solid gray;border-bottom: none !important;">Cerrados</th>
+        
+
+         <tr class = "tr-table">
+          
+            <th></th>
+            <th>Total</th>
+
+           <th style = "border-left:1px solid gray"> <i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i>
+</th>
+  
+            <th><i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i>
+</th><th style = "border-right:1px solid gray">Total</th>
+            
+            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i>
+</th>
+            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: red;"></i>
+</th><th >Total</th>
+<th>% Cumplimiento</th>
+         </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td class="text-left" style = "font-weight:bold">Reportes</td>
+        <td ><%= @reports.count %></td>
+      
+         <td><%= @racumplio %></td>
+          <td><%= @ranocumplio %></td>
+            <td><%= @rabiertos %></td>
+        
+        <td><%= @rcumplio %></td>
+        <td><%= @rnocumplio %></td>
+         <td><%= @rcerrados %></td>
+         <%if @rcerrados != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@rporcentaje)%>">% <%= @rporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+      
+          <tr>
+        <td class="text-left" style = "font-weight:bold">Acciones</td>
+       <td><%= @acciones %></td>
+       
+   <td><%= @aacumplio %></td>
+         <td><%= @aanocumplio %></td>
+          <td><%= @aabiertas %></td>
+        
+       
+        <td><%= @acumplio %></td>
+         <td><%= @anocumplio %></td>
+         <td><%= @acerradas %></td>
+         <%if @acerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr>
+        <td class="text-left" style = "font-weight:bold">Tareas</td>
+             <td><%= @tasks%></td>
+       
+    <td><%= @tacumplio %></td>
+        <td><%= @tanocumplio %></td>
+         <td><%= @tabiertas %></td>
+        
+        
+        <td><%= @tcumplio %></td>
+        <td><%= @tnocumplio %></td>
+        <td><%= @tcerradas %></td>
+         <%if @tcerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@tporcentaje)%>">% <%= @tporcentaje%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr class="total">
+        <td class="text-right" style = "font-weight:bold">Totales</td>
+             <td><%= @total1%></td>
+        <td><%= @total2%></td>
+         <td><%= @total3%></td>
+         
+        <td><%= @total4%></td>
+        <td><%= @total5 %></td>
+        <td><%= @total6 %></td>
+        <td><%= @total7 %></td>
+         <%if @total7 != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@total8)%>">% <%= @total8%></td>
+        <%else%>
+        <td>Sin Datos</td>
+        <%end%>
+        </tr>
+      </tbody>
+   </table>
+
+   </div>
+</div>
+<hr>
+<div class="row">
+<div class="col-md-8">
+
+
+ <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+	<!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>-->
+</div>
+
+<div class="col-md-4">
+    <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
+   
+</div>
+	
+</div>
+<style>
+   .img img
+   {
+   width: 100px;
+   border-radius: 45%;}
+   .indicadores
+   {
+   	text-align: center;
+    margin-bottom: 0px !important;
+   }
+   .total td
+   {
+    font-weight: bold;
+    font-size-adjust: 16px;
+    font-size: 12px !important;
+   }
+.myd
+{
+
+    font-size: 26px;
+    background: #e8e8e8;
+    color: #0db493;
+    font-family: 'Days One', sans-serif;
+    padding-left: 32px;
+}
+</style>
+
+
+
+
+
+<script>
+    
+Highcharts.chart('container', {
+
+    chart: {
+        type: 'gauge',
+        plotBackgroundColor: null,
+        plotBackgroundImage: null,
+        plotBorderWidth: 0,
+        plotShadow: false
+    },
+
+    title: {
+        text: '% Rendimiento'
+    },
+
+    pane: {
+        startAngle: -150,
+        endAngle: 150,
+        background: [{
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#FFF'],
+                    [1, '#333']
+                ]
+            },
+            borderWidth: 0,
+            outerRadius: '109%'
+        }, {
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#333'],
+                    [1, '#FFF']
+                ]
+            },
+            borderWidth: 1,
+            outerRadius: '107%'
+        }, {
+            // default background
+        }, {
+            backgroundColor: '#DDD',
+            borderWidth: 0,
+            outerRadius: '105%',
+            innerRadius: '103%'
+        }]
+    },
+
+    // the value axis
+    yAxis: {
+        min: 0,
+        max: 100,
+
+        minorTickInterval: 'auto',
+        minorTickWidth: 1,
+        minorTickLength: 10,
+        minorTickPosition: 'inside',
+        minorTickColor: '#666',
+
+        tickPixelInterval: 30,
+        tickWidth: 2,
+        tickPosition: 'inside',
+        tickLength: 10,
+        tickColor: '#666',
+        labels: {
+            step: 2,
+            rotation: 'auto'
+        },
+        title: {
+            text: ''
+        },
+        plotBands: [{
+            from: 0,
+            to: 60,
+            color: '#d82c2c' // green
+        }, {
+            from: 60,
+            to: 80,
+            color: 'orange' // yellow
+        }, {
+            from: 80,
+            to: 100,
+            color: '#08af62' // red
+        }]
+    },
+
+    series: [{
+        name: 'Speed',
+        data: [<%=@total8%>],
+        tooltip: {
+            valueSuffix: ' Rendimiento'
+        }
+    }]
+
+},
+// Add some life
+function (chart) {
+    if (!chart.renderer.forExport) {
+        setInterval(function () {
+            var point = chart.series[0].points[0],
+                newVal,
+                inc = Math.round((Math.random() - 0.5) * 1);
+
+            newVal = point.y + inc;
+            if (newVal < 0 || newVal > 200) {
+                newVal = point.y - inc;
+            }
+
+            point.update(newVal);
+
+        }, 3000);
+    }
+});
+</script>
+
+
+
+
+
+
+
+<script>
+    Highcharts.chart('container1', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Comportamiento'
+    },
+        xAxis: {
+        categories: [
+            'Vigentes',
+            'Vencidas',
+            'Cumplidas',
+            'No Cumplidas',
+         
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Cantidad'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Reportes',
+        data: [<%=@racumplio%>, <%=@ranocumplio%>, <%=@rcumplio%>, <%=@rnocumplio%>]
+
+    },  {
+        name: 'Acciones',
+        data: [<%=@aacumplio%>, <%=@aanocumplio%>, <%=@acumplio%>, <%=@anocumplio%>]
+
+    }, {
+        name: 'Tareas',
+        data: [<%=@tacumplio%>, <%=@tanocumplio%>, <%=@tcumplio%>, <%=@tnocumplio%>]
+
+    }]
+});
+</script>
+
+

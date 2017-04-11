@@ -114,6 +114,9 @@ end
 
 end
           resources :companies #, only: [:show, :create, :edit, :update, :index]
+          get 'company_indicators', to: 'companies#company_indicators', as: "company_indicators"
+
+
           resources :cargos
           resources :procesos
           devise_scope :user do 

@@ -77,7 +77,7 @@
                      </li>
                     
 
-                      <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[6]%>" >
+                      <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[5]%>" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi Actividad<span class="caret"></span></a>
           <ul class="dropdown-menu">
                <li><%= link_to misreports_path,:class => "" do %>
@@ -97,10 +97,18 @@
                      </li>
           </ul>
         </li>
-                     <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+        <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                         <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
                         <i class="fa fa-cogs ic" aria-hidden="true"></i>
                         <span>Configuracion</span>
+                        <% end %>
+                        <%end%>
+                     </li>
+                     <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                        <%= link_to company_indicators_path,:class => "configuracion #{@menum[6]}"  do %>
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+
+                        <span>Indicadores</span>
                         <% end %>
                         <%end%>
                      </li>
