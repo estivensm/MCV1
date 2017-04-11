@@ -1,6 +1,6 @@
 <%= render 'encabezado'%>
 <br>
-<<div class="row">
+<div class="row">
    <div class = "col-md-4">
       <div class="col-md-4 img" >
          <%= @employed.avatare? ? image_tag(@employed.avatare_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
@@ -82,24 +82,7 @@
         <td>Sin Datos</td>
         <%end%>
         </tr>
-         <tr>
-        <td class="text-left" style = "font-weight:bold">Correcciones</td>
-        <td><%= @correcciones %></td>
-       
-       <td><%= @cacumplio %></td>
-        <td><%= @canocumplio %></td>
-         <td><%= @cabiertas %></td>
-        
-        
-        <td><%= @ccumplio %></td>
-        <td><%= @cnocumplio %></td>
-        <td><%= @ccerradas %></td>
-        <%if @ccerradas != 0 %>
-        <td style = "color:white;background:<%=get_color_porcentaje(@cporcentaje)%>">% <%= @cporcentaje%></td>
-        <%else%>
-        <td>Sin Datos</td>
-        <%end%>
-        </tr>
+      
           <tr>
         <td class="text-left" style = "font-weight:bold">Acciones</td>
        <td><%= @acciones %></td>
@@ -157,10 +140,19 @@
 
    </div>
 </div>
+<hr>
 <div class="row">
 <div class="col-md-4">
-	<!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+<div id="container" style="min-width: 290px; max-width: 380px; height: 250px; margin: 0 auto"></div>
+
+	<!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>-->
+</div>
+
+<div class="col-md-8">
+    <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
+    <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 </div>
 	
 </div>
@@ -172,6 +164,7 @@
    .indicadores
    {
    	text-align: center;
+    margin-bottom: 0px !important;
    }
    .total td
    {
@@ -184,109 +177,182 @@
 
 
 
-<script type="text/javascript">
-window.onload = function () {
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-        title:{
-            text: "Top Categories of New Year's Resolution"
-        },
-        exportFileName: "Pie Chart",
-        exportEnabled: true,
-                animationEnabled: true,
-        legend:{
-            verticalAlign: "bottom",
-            horizontalAlign: "center"
-        },
-        data: [
-        {       
-            type: "pie",
-            showInLegend: true,
-            toolTipContent: "{name}: <strong>{y}%</strong>",
-            indexLabel: "{name} {y}%",
-            dataPoints: [
-                {  y: 35, name: "Health", exploded: true},
-                {  y: 20, name: "Finance"},
-                {  y: 18, name: "Career"},
-                {  y: 15, name: "Education"},
-                {  y: 5,  name: "Family"},
-                {  y: 7,  name: "Real Estate"}
-            ]
-    }
-    ]
-    });
-    chart.render();
-}
-</script>
 
 
+<script>
+    
+Highcharts.chart('container', {
 
+    chart: {
+        type: 'gauge',
+        plotBackgroundColor: null,
+        plotBackgroundImage: null,
+        plotBorderWidth: 0,
+        plotShadow: false
+    },
 
+    title: {
+        text: '%Rendimiento'
+    },
 
-
-
-
-
-
-
-
-
-
-<script >
-	
-	$(function () {
-
-    // Radialize the colors
-    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-        return {
-            radialGradient: {
-                cx: 0.5,
-                cy: 0.3,
-                r: 0.7
+    pane: {
+        startAngle: -150,
+        endAngle: 150,
+        background: [{
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#FFF'],
+                    [1, '#333']
+                ]
             },
-            stops: [
-                [0, color],
-                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-            ]
-        };
-    });
+            borderWidth: 0,
+            outerRadius: '109%'
+        }, {
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                stops: [
+                    [0, '#333'],
+                    [1, '#FFF']
+                ]
+            },
+            borderWidth: 1,
+            outerRadius: '107%'
+        }, {
+            // default background
+        }, {
+            backgroundColor: '#DDD',
+            borderWidth: 0,
+            outerRadius: '105%',
+            innerRadius: '103%'
+        }]
+    },
 
-    // Build the chart
-    Highcharts.chart('container1', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
+    // the value axis
+    yAxis: {
+        min: 0,
+        max: 100,
+
+        minorTickInterval: 'auto',
+        minorTickWidth: 1,
+        minorTickLength: 10,
+        minorTickPosition: 'inside',
+        minorTickColor: '#666',
+
+        tickPixelInterval: 30,
+        tickWidth: 2,
+        tickPosition: 'inside',
+        tickLength: 10,
+        tickColor: '#666',
+        labels: {
+            step: 2,
+            rotation: 'auto'
         },
         title: {
-            text: 'Actividad'
+            text: ''
         },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b><br>cant:{point.y}:<br> {point.percentage:.1f}% ',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    },
-                    connectorColor: 'silver'
-                }
-            }
-        },
-        series: [{
-            name: 'Brands',
-            data: 
-                [{name: "Reportes", y: <%=@reports.count%>},{name: "Correcciones", y: <%=@correcciones%>},{name: "Acciones", y: <%=@acciones%>},
-                    {name: "Tareas", y: <%=@tasks%>}
-                ]
+        plotBands: [{
+            from: 0,
+            to: 60,
+            color: '#d82c2c' // green
+        }, {
+            from: 60,
+            to: 80,
+            color: 'orange' // yellow
+        }, {
+            from: 80,
+            to: 100,
+            color: '#08af62' // red
         }]
+    },
 
-    });
+    series: [{
+        name: 'Speed',
+        data: [<%=@total8%>],
+        tooltip: {
+            valueSuffix: ' Rendimiento'
+        }
+    }]
+
+},
+// Add some life
+function (chart) {
+    if (!chart.renderer.forExport) {
+        setInterval(function () {
+            var point = chart.series[0].points[0],
+                newVal,
+                inc = Math.round((Math.random() - 0.5) * 1);
+
+            newVal = point.y + inc;
+            if (newVal < 0 || newVal > 200) {
+                newVal = point.y - inc;
+            }
+
+            point.update(newVal);
+
+        }, 3000);
+    }
 });
 </script>
+
+
+
+
+
+
+
+<script>
+    Highcharts.chart('container1', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Comportamiento'
+    },
+        xAxis: {
+        categories: [
+            'Vigentes',
+            'Vencidas',
+            'Cumplidas',
+            'No Cumplidas',
+         
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Cantidad'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Reportes',
+        data: [<%=@racumplio%>, <%=@ranocumplio%>, <%=@rcumplio%>, <%=@rnocumplio%>]
+
+    },  {
+        name: 'Acciones',
+        data: [<%=@aacumplio%>, <%=@aanocumplio%>, <%=@acumplio%>, <%=@anocumplio%>]
+
+    }, {
+        name: 'Tareas',
+        data: [<%=@tacumplio%>, <%=@tanocumplio%>, <%=@tcumplio%>, <%=@tnocumplio%>]
+
+    }]
+});
+</script>
+
+
