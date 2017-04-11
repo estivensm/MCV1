@@ -44,7 +44,7 @@ end
     @reports = Report.where(employed_id: @employed.id)
     @accions = Accion.where(employed_id: @employed.id)
     @tasksd = @employed.tasks
-    @reports.cerrados.count != 0 ? @divr = @accions.cerrados.count : @divr = 1  
+    @reports.cerrados.count != 0 ? @divr = @reports.cerrados.count : @divr = 1  
     @accions.cerradas.where(tipo: "Accion").count != 0 ? @diva = @accions.cerradas.where(tipo: "Accion").count : @diva = 1   
     @accions.cerradas.where(tipo: "Correcion").count != 0 ? @divc = @accions.cerradas.where(tipo: "Accion").count : @divc = 1 
     @tasksd.cerradas.count != 0 ? @divt = @tasksd.cerradas.count : @divt = 1  
