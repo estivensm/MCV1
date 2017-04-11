@@ -1,7 +1,46 @@
 Rails.application.routes.draw do
  
 
-         root 'dashboard#index'   
+  root 'dashboard#index'   
+
+resources :reports do 
+    get :get_reportsc, on: :collection
+    get :get_invitadoc, on: :collection
+    get :get_asignadosc, on: :collection
+    get :get_misreportsc, on: :collection
+         
+
+    resources :accions do 
+        resources :aseguimientos
+        resources :riesgos
+        get :get_misaccionsc, on: :collection
+    end
+    resources :tasks do 
+          get :get_tasksc, on: :collection
+    end
+    resources :causas
+    resources :rseguimientos
+    get "correcciones", to: "accions#correcciones" , as: "correcciones" 
+end
+
+get 'my_reports/index', as: "misreports"
+get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
+get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
+get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"
+get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
+get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"
+get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
+delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
+get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
+post 'change_state' , to: "reports#change_state", as: "change_state"
+
+
+
+
+
+
+
+
 
   get 'home/index'
   get 'my_tasks/index' , as: "mistasks"
@@ -29,7 +68,7 @@ Rails.application.routes.draw do
 end
 
   resources :contacts
-  get 'my_reports/index', as: "misreports"
+  
   post "crear_caef", to: "causas#create_caef", as: "crear_caef"
   get 'new_caef/:causa/:m/:sub', to: 'causas#new_caef', as: "new_caef"
   get '/edit_caef/:id/edit', to: 'causas#edit_caef', as: "edit_caef"
@@ -43,47 +82,26 @@ end
   get 'my_accions/index', as: "misacciones"
    get 'my_accions/asignados', to: "my_accions#asignado_por_mi", as: "accions_asignados"
     get 'my_accions/invitado', to: "my_accions#invitado", as: "accions_invitado"
-  get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
-  get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
-  get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"
+  
   get 'accions_calendar' , to: "my_accions#accions_calendar", as: "accions_calendar"
   get 'tasks_calendar' , to: "my_tasks#tasks_calendar", as: "tasks_calendar"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
-  get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
-  get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
+  
+  
   
 
           resources :tipos
-          resources :accions
+          #resources :accions
           resources :sources
-          resources :reports do 
-            get :get_reportsc, on: :collection
-            get :get_invitadoc, on: :collection
-            get :get_asignadosc, on: :collection
-            get :get_misreportsc, on: :collection
-            
-
-            resources :accions do 
-                resources :aseguimientos
-                resources :riesgos
-                get :get_misaccionsc, on: :collection
-            end
-            resources :tasks do 
-              get :get_tasksc, on: :collection
-              end
-            resources :causas
-            resources :rseguimientos
-            get "correcciones", to: "accions#correcciones" , as: "correcciones" 
-          end
+       
             
           
-          get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"
-          get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
+          
           get "normass/:id", to: "reports#get_normas", as: "get_normas"
           get "sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
           get "source1/:id/:page/:search", to: "sources#change", as: "change"
           delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
-          delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
+         
           delete "delete_cargos", to: "cargos#delete_cargos", as: "delete_cargos"
           post "cerrar_report", to: "reports#cerrar_report", as: "cerrar_report"
           resources :normas do 

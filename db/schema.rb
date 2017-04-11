@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405202627) do
+ActiveRecord::Schema.define(version: 20170411134457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170405202627) do
     t.integer  "contador_seg"
     t.integer  "user_id"
     t.integer  "admin_user"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "report_id"
     t.date     "fp_seguimiento"
     t.boolean  "tag"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20170405202627) do
     t.integer  "cierra_id"
     t.string   "name"
     t.boolean  "s_cierre"
+    t.boolean  "change_cumplio"
+    t.text     "justificacion_cumplio"
   end
 
   create_table "accions_causa_efectos", id: false, force: :cascade do |t|
@@ -290,8 +292,8 @@ ActiveRecord::Schema.define(version: 20170405202627) do
     t.text     "justificacion"
     t.integer  "user_id"
     t.integer  "admin_user"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "state"
     t.string   "codigo"
     t.integer  "contador"
@@ -314,6 +316,8 @@ ActiveRecord::Schema.define(version: 20170405202627) do
     t.boolean  "s_cierre"
     t.boolean  "eficaz"
     t.text     "conclucion"
+    t.boolean  "change_cumplio"
+    t.text     "justificacion_cumplio"
   end
 
   create_table "riesgos", force: :cascade do |t|
@@ -395,8 +399,10 @@ ActiveRecord::Schema.define(version: 20170405202627) do
     t.integer  "contador_seg"
     t.string   "anexo"
     t.string   "codigo"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.boolean  "change_cumplio"
+    t.text     "justificacion_cumplio"
   end
 
   create_table "users", force: :cascade do |t|
