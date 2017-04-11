@@ -45,7 +45,7 @@ class RseguimientosController < ApplicationController
   def update
      @report = Report.find(params[:report_id]) 
       if @rseguimiento.update(rseguimiento_params)
-       redirect_to report_seguimientos_path(@report)
+       redirect_to report_path(@report)
       end
     
  
