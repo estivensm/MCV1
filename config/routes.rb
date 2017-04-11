@@ -48,7 +48,7 @@ post 'change_state' , to: "reports#change_state", as: "change_state"
 
   get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
   get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
-  
+  get 'employed_indicators', to: 'dashboard#employed_indicators', as: "employed_indicators"
   
   get 'amefps/show/:causa' , to: "amefps#show", as: "show_amefp"
   get 'new_amefp/:causa', to: 'causas#new_amefp', as: "new_amefp"

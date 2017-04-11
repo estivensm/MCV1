@@ -11,6 +11,8 @@
     
     <li role="presentation" class="inv active"><%= link_to "Invitado", invitado_d_path %></li>
     <li role="presentation" class="asi active"><%= link_to "Asignados", asignados_d_path %></li>
+    <li role="presentation" class="indi active"><%= link_to "indicadores", employed_indicators_path %></li>
+
   </ul>
 
 <style>
@@ -107,16 +109,24 @@ if ("<%=action_name%>" == "index")
 {	$('.res').addClass('active');
 $('.asi').removeClass('active');
 $('.inv').removeClass('active');
+$('.indi').removeClass('active');
 }
 else if ("<%=action_name%>" == "asignados_d")
 {$('.res').removeClass('active');
 $('.asi').addClass('active');
 $('.inv').removeClass('active');
+ $('.indi').removeClass('active');
+ }
+ else if ("<%=action_name%>" == "employed_indicators")
+{$('.res').removeClass('active');
+$('.asi').removeClass('active');
+$('.inv').removeClass('active');
+ $('.indi').addClass('active');
  }
 else
 
 	{
-
+$('.indi').removeClass('active');
 		$('.res').removeClass('active');
 $('.asi').removeClass('active');
 $('.inv').addClass('active');

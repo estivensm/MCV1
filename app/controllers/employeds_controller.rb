@@ -57,7 +57,7 @@ end
     @rcerrados =    @reports.cerrados.count 
     @rcumplio =    @reports.cerrados.where("contador_seg >= ?" ,1).count 
     @rnocumplio =    @reports.cerrados.where("contador_seg < ?" ,1).count 
-    @rporcentaje=    ((@reports.cerrados.where("contador_seg >= ?" ,1).count/@divr)*100).to_i 
+    @rporcentaje=    ((@reports.cerrados.where("contador_seg >= ?" ,1).count.to_f/@divr)*100).to_i 
       
     @correcciones =      @accions.where(tipo: "Correcion").count 
     @canocumplio =     @accions.abiertas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
@@ -66,7 +66,7 @@ end
     @ccerradas =     @accions.cerradas.where(tipo: "Correcion").count 
     @cnocumplio =     @accions.cerradas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
     @ccumplio =    @accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count 
-     @cporcentaje =  ((@accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count/ @divc)*100).to_i 
+     @cporcentaje =  ((@accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count.to_f/ @divc)*100).to_i 
 
       @acciones =   @accions.where(tipo: "Accion").count 
       @aabiertas=   @accions.abiertas.where(tipo: "Accion").count 
@@ -75,7 +75,7 @@ end
       @acerradas=  @accions.cerradas.where(tipo: "Accion").count 
       @anocumplio =   @accions.cerradas.where(tipo: "Accion").where("contador_seg < ?" ,1).count 
       @acumplio =   @accions.cerradas.where(tipo: "Accion").where("contador_seg >= ?" ,1).count 
-      @aporcentaje = ((@accions.cerradas.where(tipo: "Accion").where("contador_seg >= ?" ,1).count/ @diva)*100).to_i 
+      @aporcentaje = ((@accions.cerradas.where(tipo: "Accion").where("contador_seg >= ?" ,1).count.to_f/ @diva)*100).to_i 
      
       @tasks =  @employed.tasks.count 
       @tabiertas =  @employed.tasks.abiertas.count 
@@ -84,7 +84,11 @@ end
       @tcerradas =   @employed.tasks.cerradas.count 
       @tnocumplio =  @employed.tasks.cerradas.where("contador_seg < ?" ,1).count 
       @tcumplio =  @employed.tasks.cerradas.where("contador_seg >= ?" ,1).count 
-      @tporcentaje = ((@employed.tasks.cerradas.where("contador_seg >= ?" ,1).count/@divt)*100).to_i
+      @tporcentaje = ((@employed.tasks.cerradas.where("contador_seg >= ?" ,1).count.to_f/@divt)*100).to_i
+      
+
+     
+      
 
       @total1 = @reports.count + @correcciones + @acciones + @tasks
       @total2 = @racumplio + @cacumplio + @aacumplio + @tacumplio
@@ -93,8 +97,19 @@ end
       @total5 = @rcumplio + @ccumplio + @acumplio + @tcumplio
       @total6 = @rnocumplio +@cnocumplio + @anocumplio + @tnocumplio
       @total7 = @rcerrados+ @ccerradas + @acerradas + @tcerradas
-      @total8 = @rporcentaje +@cporcentaje + @aporcentaje + @tporcentaje
-     
+      @total8 =((@total5.to_f/@total7.to_f)*100).to_i
+
+      
+
+
+
+
+      puts @rporcentaje
+      puts @cporcentaje 
+      puts @aporcentaje
+      puts @tporcentaje
+      puts @total8
+      puts "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
    
 
 
