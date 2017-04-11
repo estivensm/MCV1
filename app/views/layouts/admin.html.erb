@@ -78,20 +78,23 @@
                     
 
                       <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[5]%>" >
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi Actividad<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumb-tack ic" aria-hidden="true"></i>
+ Mi Actividad<span class="caret"></span></a>
           <ul class="dropdown-menu">
                <li><%= link_to misreports_path,:class => "" do %>
-                        <i class="fa fa-money ic" aria-hidden="true"></i>
+                       <i class="fa fa-file-text-o color-gray" aria-hidden="true"></i>
+
                         <span class = "color-gray">Mis Reportes</span>
                         <% end %>
                      </li>
                      <li><%= link_to misacciones_path,:class => "" do %>
-                        <span class="fa fa-book ic"></span>
+                       <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
+
                         <span class = "color-gray">Mis Acciones</span>
                         <% end %>
                      </li>
                       <li><%= link_to mistasks_path,:class => "" do %>
-                        <span class="fa fa-book ic"></span>
+                      <i class="fa fa-calendar color-gray" aria-hidden="true"></i>
                         <span class = "color-gray">Mis Tareas</span>
                         <% end %>
                      </li>
