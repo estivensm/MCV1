@@ -11,8 +11,8 @@
    <p style = "font-size: 12px;
 "><i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Vigentes</span>
    <i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">Vencidos</span>
-   <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Cumplio Fecha de Entrega</span>
-   <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">No Cumplio Fecha de Entrega</span>
+   <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#279afd" aria-hidden="true"></i> <span style = "margin-right:25px">Cumplio Fecha de Entrega</span>
+   <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: #d27f37;"></i> <span style = "margin-right:25px">No Cumplio Fecha de Entrega</span>
 
    </p>
        <table class="table indicadores">
@@ -37,9 +37,9 @@
             <th><i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i>
 </th><th style = "border-right:1px solid gray">Total</th>
             
-            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i>
+            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#279afd" aria-hidden="true"></i>
 </th>
-            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: red;"></i>
+            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: #d27f37;"></i>
 </th><th >Total</th>
 <th>% Cumplimiento</th>
          </tr>
@@ -57,7 +57,7 @@
         <td><%= @rnocumplio %></td>
          <td><%= @rcerrados %></td>
          <%if @rcerrados != 0 %>
-        <td style = "color:white;background:<%=get_color_porcentaje(@rporcentaje)%>">% <%= @rporcentaje%></td>
+        <td style = "color:<%=get_color_porcentaje(@rporcentaje)%>">% <%= @rporcentaje%></td>
         <%else%>
         <td>Sin Datos</td>
         <%end%>
@@ -76,7 +76,7 @@
          <td><%= @anocumplio %></td>
          <td><%= @acerradas %></td>
          <%if @acerradas != 0 %>
-        <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
+        <td style = "color:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
         <%else%>
         <td>Sin Datos</td>
         <%end%>
@@ -94,7 +94,7 @@
         <td><%= @tnocumplio %></td>
         <td><%= @tcerradas %></td>
          <%if @tcerradas != 0 %>
-        <td style = "color:white;background:<%=get_color_porcentaje(@tporcentaje)%>">% <%= @tporcentaje%></td>
+        <td style = "color:<%=get_color_porcentaje(@tporcentaje)%>">% <%= @tporcentaje%></td>
         <%else%>
         <td>Sin Datos</td>
         <%end%>
@@ -110,7 +110,7 @@
         <td><%= @total6 %></td>
         <td><%= @total7 %></td>
          <%if @total7 != 0 %>
-        <td style = "color:white;background:<%=get_color_porcentaje(@total8)%>">% <%= @total8%></td>
+        <td style = "color:<%=get_color_porcentaje(@total8)%>">% <%= @total8%></td>
         <%else%>
         <td>Sin Datos</td>
         <%end%>
