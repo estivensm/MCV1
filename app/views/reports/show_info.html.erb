@@ -1,14 +1,14 @@
 <div class="info">
   
 
-  <table class="table1" style = "width:1000px;font-size:16px;">
+  <table class="table1" >
         <tr>
          <td  colspan="5" class=""><strong>Descripcion Corta: </strong> <%=@report.name%></td>
       </tr>
 
 </table>
 <hr>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1">
    
     
       <tr>
@@ -22,7 +22,7 @@
 <hr>
 
 <%if @report.source.tipo == "Externa"%>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
    
     
       <tr>
@@ -36,7 +36,7 @@
 
  <%end%>
 
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
        <tr>
          <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
           <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
@@ -57,7 +57,7 @@
       </tr>
 </table>
 <hr>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
      
       <tr>
          <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
@@ -68,7 +68,7 @@
    
 </table>
 <hr>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
      
       <tr>
          <td><strong>Descripción detallada:</strong> <%= @report.description%></td>
@@ -99,7 +99,7 @@
 </table>
 
 <hr>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
      
       <tr>
          <td><%cm = 0
@@ -122,7 +122,129 @@
       </tr>  
    
 </table>
+
+
+<hr>
+<%if @report.source.correccion%>
+<table class="table1" >
+     
+      <tr>
+        <td colspan="2" class="text-center">CORRECCIONES</td>
+         </tr>  
+         <tr>
+        <th>Descripcion</th>
+        <th>Eficaz</th>
+         </tr> 
+        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
+        <tr>
+        <td><%=correccion.name%></td>
+        <td><%=correccion.eficaz%></td>
+         </tr>
+        <%end%>
+            
+      </tr>  
+   
+</table>
+<hr>
+<%end%>
+<%if @report.source.causa%>
+<table class="table1">
+     
+      <tr>
+        <td colspan="2" class="text-center">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
+         </tr>  
+         <tr>
+        <th>Descripcion</th>
+        <th>Eficaz</th>
+         </tr> 
+        <%@report.accions.where(tipo:"Accion").each do |correccion|%>
+        <tr>
+        <td><%=correccion.name%></td>
+        <td><%=correccion.eficaz%></td>
+         </tr>
+        <%end%>
+            
+      </tr>  
+   
+</table>
+<hr>
+<%end%>
+<%if @report.source.accion%>
+<table class="table1" >
+     
+      <tr>
+        <td colspan="2" class="text-center">ACCIONS</td>
+         </tr>  
+         <tr>
+        <th>Descripcion</th>
+        <th>Eficaz</th>
+         </tr> 
+        <%@report.accions.where(tipo:"Accion").each do |accion|%>
+        <tr>
+        <td><%=accion.name%></td>
+        <td><%=accion.eficaz%></td>
+         </tr>
+        <%end%>
+            
+      </tr>  
+   
+</table>
+<hr>
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
 .info
 {
@@ -133,9 +255,8 @@
 
         color: #7a7a7a;
         font-size:12px;
-        padding-left: 20px;
-    padding-right: 20px;
-    
+       
+    width:1200px;font-size:16px;
 
 
 
@@ -146,160 +267,6 @@
     
   }
 </style>
-
-
-
-
-
-
-
-<div class="row" >
-  
-<div class="col-md-12 wihtout-padding" style = "width: 1200px;">
-<h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
-
-<div class="conteinter reporte cnt">
- <div class="row rtr name">
-      <div class="col-md-12 rtd"><%=@report.name%></div>
-    
-   </div>
-   <hr>
-   <div class="row rtr">
-      <div class="col-md-2 rtd"><strong>Creado:</strong> <%= get_date(@report.created_at) %></div>
-      <div class="col-md-2 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
-      
-      <div class="col-md-3 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
-      <div class="col-md-2 rtd"><strong>Estado: </strong><%= @report.state %></div>
-   
-      <div class="col-md-2 rtd"><strong>Costo: </strong><%= number_to_currency(@report.costo) %></div>
-   </div>
-   <hr>
-   <div class="row rtr">
-    
-  <div class="col-md-4 rtd"><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></div>
-   <div class="col-md-4 rtd"><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></div>
-   <div class="col-md-4 rtd"><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></div>
-   <div class="col-md-12 rtd"><strong>Otros Interesados: </strong><% 
-            cm = 0 
-            @report.employeds.each do |resp|
-              %><%= "," if cm != 0 %> 
-         <%= resp.first_name%> <%=resp.first_last_name%>
-         <%  cm = cm + 1 %> 
-         <%end%></div>
-
-   </div>
-   <%if @report.source.tipo == "Externa"%>
-   <hr>
-   <div class="row rtr">
-      <div class="col-md-4 rtd"><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></div>
-     
-   </div>
-   <%end%>
-   <hr>
-   <div class="row rtr">
-      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-      <div class="col-md-12 rtd text-left">
-        
-         <div class="descnum"><strong>Descripción detallada:</strong> <%= @report.description%></div>
-      </div>
-
-   </div>
-   <hr>
-      <div class="row rtr">
-      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-     
-      <div class="col-md-12 rtd text-left">
-     <strong>Adjunto:</strong>  <% if @report.archivo_url%>
-         <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
-         <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
-         <%else%>
-         No hay archivo
-         <%end%><br>
-         <%if @report.source.evidencia%>
-         <div class="descnum"> <strong>Evidencia:</strong> <%= @report.evidencia%> </div>
-         <%end%> 
-      </div>
-   </div>
-   <hr>
-
-   <div class="row rtr">
-      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-       <%if @report.source.requisito%>
-      <div class="col-md-12 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
- <%end%>
- <%if @report.source.numerales%>
-      <div class="col-md-12 rtd text-left">
-         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
-         <!-- Large modal -->
-         <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
-         <!-- Modal -->
-         <br>
-         <%end%></strong> 
-         <script>
-            $('.numerb').click(function(){
-            a = $(this).prop('value');
-            b = $(this).text();
-            
-            $('.modalp').html(a);
-            $('.modalp1').text(b);
-            
-            });
-            
-              
-         </script>
-    
-<%end%>
-
-</div>
-
-
-<style>
-   .imaacc img
-   {
-   border-radius: 40px;
-   }
-   .cnt
-   {
-   border: 1px solid #c3c3c3;
-   margin-bottom: 10px;
-   }
-   .rtr
-   {
-   }
-   .rtd
-   {
-   padding: 10px;
-   }
-   .titulo
-   {
-   background:#f2f2f2;
-   }
-   hr
-   {
-   margin-top: 0px;
-   margin-bottom: 0px;
-   }
-
-</style>
-<script>
-   $(function () {
-   $('[data-toggle="popover"]').popover({
-     trigger: 'hover',
-     html: true
-     
-   
-   })
-   })
-   
-</script>
-
-
-
-
-
-
-
-
 
 
 

@@ -1,14 +1,14 @@
 <div class="info">
   
 
-  <table class="table1" style = "width:1000px;font-size:16px;">
+  <table class="table1" >
         <tr>
          <td  colspan="5" class=""><strong>Descripcion Corta: </strong> <%=@report.name%></td>
       </tr>
 
 </table>
 <hr>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1">
    
     
       <tr>
@@ -22,7 +22,7 @@
 <hr>
 
 <%if @report.source.tipo == "Externa"%>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
    
     
       <tr>
@@ -36,7 +36,7 @@
 
  <%end%>
 
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
        <tr>
          <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
           <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
@@ -57,7 +57,7 @@
       </tr>
 </table>
 <hr>
-<table class="table1" style = "width:1000px;font-size:16px;">
+<table class="table1" >
      
       <tr>
          <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
@@ -67,8 +67,136 @@
       </tr>   
    
 </table>
+<hr>
+<table class="table1" >
+     
+      <tr>
+         <td><strong>Descripción detallada:</strong> <%= @report.description%></td>
+          
+         
+            
+      </tr>  
+      <tr>
+         <td><%if @report.source.evidencia%>
+         <strong>Evidencia que soporta el Reporte:</strong> <%= @report.evidencia%> </div>
+         <%end%> 
+      </td>
+          
+         
+            
+      </tr>  
+
+         <tr>
+         <td> <%if @report.source.requisito%>
+      <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%>
+ <%end%> 
+      </td>
+          
+         
+            
+      </tr>  
+   
+</table>
+
+<hr>
+<table class="table1" >
+     
+      <tr>
+         <td><%cm = 0
+          if @report.source.numerales%>
+            
+         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
+<%= "," if cm != 0 %> 
+       <%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%>
+
+       
+         <%cm = cm + 1
+         end%>
+      
+    
+<%end%>
+      </td>
+    
+         
+            
+      </tr>  
+   
+</table>
+
+
+<hr>
+<%if @report.source.correccion%>
+<table class="table1" >
+     
+      <tr>
+        <td colspan="2" class="text-center tit">CORRECCIONES</td>
+         </tr>  
+         <tr>
+        <th>Descripcion</th>
+        <th>Eficaz</th>
+         </tr> 
+        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
+        <tr>
+        <td><%=correccion.name%></td>
+        <td><%=correccion.eficaz%></td>
+         </tr>
+        <%end%>
+            
+      </tr>  
+   
+</table>
+<hr>
+<%end%>
+<%if @report.source.causa%>
+<table class="table1">
+     
+      <tr>
+        <td colspan="2" class="text-center tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
+         </tr>  
+         <tr>
+        <th>Descripcion</th>
+        <th>Eficaz</th>
+         </tr> 
+        <%@report.accions.where(tipo:"Accion").each do |correccion|%>
+        <tr>
+        <td><%=correccion.name%></td>
+        <td><%=correccion.eficaz%></td>
+         </tr>
+        <%end%>
+            
+      </tr>  
+   
+</table>
+<hr>
+<%end%>
+<%if @report.source.accion%>
+<table class="table1" >
+     
+      <tr>
+        <td colspan="2" class="text-center tit">ACCIONES</td>
+         </tr>  
+         <tr>
+        <th>Descripcion</th>
+        <th>Eficaz</th>
+         </tr> 
+        <%@report.accions.where(tipo:"Accion").each do |accion|%>
+        <tr>
+        <td><%=accion.name%></td>
+        <td><%=accion.eficaz%></td>
+         </tr>
+        <%end%>
+            
+      </tr>  
+   
+</table>
+<hr>
+<%end%>
+
 
 </div>
+
+
+
 <style>
 .info
 {
@@ -79,9 +207,8 @@
 
         color: #7a7a7a;
         font-size:12px;
-        padding-left: 20px;
-    padding-right: 20px;
-    
+       
+    width:1100px;font-size:16px;
 
 
 
@@ -91,4 +218,12 @@
         padding: 6px 20px;
     
   }
+  .tit
+  {
+   font-size: 22px;
+
+  }
 </style>
+
+
+
