@@ -7,10 +7,10 @@ class AccionsController < ApplicationController
     @tipo = "Accion"
     @report = Report.find(params[:report_id]) 
     @accions = @report.accions.where(tipo: "Accion").order(created_at: :desc)
- @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
-    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
-    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
-    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
        @tasks = Task.where(report_id: @report.id)
 
    end
@@ -21,10 +21,10 @@ class AccionsController < ApplicationController
     @tipo = "Correccion"
      @report = Report.find(params[:report_id]) 
     @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
- @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
-    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
-    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
-    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @tasks = Task.where(report_id: @report.id)
 
     render 'index'
@@ -37,10 +37,10 @@ class AccionsController < ApplicationController
     @report = Report.find(params[:report_id]) 
     @seguimientos = @accion.aseguimientos.order(created_at: :desc)
     @riesgos = @accion.riesgos.order(created_at: :desc)
- @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
-    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
-    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
-    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @tasks = Task.where(report_id: @report.id)
 
   

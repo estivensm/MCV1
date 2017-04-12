@@ -9,10 +9,10 @@ class TasksController < ApplicationController
     @tasks = @report.tasks.abiertas
     @tasksc = @report.tasks.cerradas
        @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
- @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
-    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
-    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
-    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     
   end
 
