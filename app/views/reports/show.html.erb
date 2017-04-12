@@ -75,7 +75,7 @@
          <%  cm = cm + 1 %> 
          <%end%>
       </div>
-      <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
+      <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %><strong style = "margin-left:10px;"><br>Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
    </div>
    <%if @report.source.tipo == "Externa"%>
    <hr>

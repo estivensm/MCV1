@@ -37,10 +37,10 @@
    <div class="row rtr">
       <div class="col-md-2 rtd"></div>
       <div class="col-md-8 rtd">
-         <h3 class="linka margin-cero"><%=@tipo + "es"%> (<%=@accions.count %>)</h3>
+         <h3 class="linka margin-cero"><%=@tipo + "es Abiertas"%> (<%=@accions.abiertas.count %>)</h3>
       </div>
 
-<% if @accions.count > 0 %>
+<% if @accions.abiertas.count > 0 %>
       <div class="col-md-2 rtd"><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || current_user.role == "SuperAdmin" %></div><%end%>
    </div>
 
@@ -50,7 +50,7 @@
 
 </div>
 
-<% @accions.where(id:0).each do |accion| %>
+<% @accions.abiertas.each do |accion| %>
 <!--<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
    padding-bottom: 0px !important;   padding-right: 40px !important;">
    <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
@@ -91,32 +91,34 @@
 <% end %>
 <%else%>
 <div class="jumbotron jumbacc">
-<h3 class="display-3 text-gray">No se ha creado ninguna <%= @tipo%></h3>
+<br>
+<h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
 <hr class="my-4">
 <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") %>
+</div>
 </p>
 <%end%>
 </div>
-
+</div>
 <div class="col-md-6 wihtout-padding">
 <div class="conteinter htitle" style = "padding:0px">
    <div class="row rtr">
       <div class="col-md-2 rtd"></div>
       <div class="col-md-8 rtd">
-         <h3 class="linka margin-cero"><%=@tipo + "es"%> (<%=@accions.count %>)</h3>
+         <h3 class="linka margin-cero"><%=@tipo + "es Cerradas"%> (<%=@accions.cerradas.count %>)</h3>
       </div>
 
-<% if @accions.count > 0 %>
+<% if @accions.cerradas.count > 0 %>
       <div class="col-md-2 rtd"><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || current_user.role == "SuperAdmin" %></div><%end%>
    </div>
 
-<% if @accions.count > 0 %>
+<% if @accions.cerradas.count > 0 %>
 
 
 
 </div>
 
-<% @accions.each do |accion| %>
+<% @accions.cerradas.each do |accion| %>
 <!--<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
    padding-bottom: 0px !important;   padding-right: 40px !important;">
    <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
@@ -157,10 +159,12 @@
 <% end %>
 <%else%>
 <div class="jumbotron jumbacc">
-<h3 class="display-3 text-gray">No se ha creado ninguna <%= @tipo%></h3>
+<br>
+<h4 class="display-3 text-gray">No hay  <%= @tipo + "es Cerradas" %></h4>
 <hr class="my-4">
-<%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") %>
+
 </p>
+</div>
 <%end%>
 </div>
 </div>
