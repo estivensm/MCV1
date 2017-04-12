@@ -53,7 +53,7 @@
 </div>
 
 <% @accions.each do |accion| %>
-<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
+<!--<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
    padding-bottom: 0px !important;   padding-right: 40px !important;">
    <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
    <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
    <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
    <i class="fa fa-trash" aria-hidden="true"></i>
    <% end %>
-</div>
+</div>-->
 <%= link_to  report_accion_path(@report,accion) do %>
 <div class="conteinter reporte cnt">
    <div class="row rtr">
