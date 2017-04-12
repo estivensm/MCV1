@@ -16,21 +16,51 @@
 
 <p><strong>Descripcion </strong><%=@caef.descripcion%></p>
 
+<a class="" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+  Acciones 
+</a>
+<br><br>
+<div class="collapse" id="collapseExample1">
+  <div class="">
+   <%@caef.accions.each do |accion| %>
+   <p>- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
+   <%end%>
+  </div>
+</div>
+
+
+
+
+<hr>
+
+<p><strong>Sub Causas </strong></p>
 <% CausaEfecto.where(subnivel: @caef.id).each do |causa|%>
      
 
-     <p><%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
-               <i class="fa fa-pencil" aria-hidden="true"></i>
-               <% end %>
-               <%= link_to  delete_caef_path(causa.id),  method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones" do %>
+    <p style = "margin-left:40px;"> - <%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" style = "margin-left:20px" aria-hidden="true"></i>
+               <% end %><%= link_to  delete_caef_path(causa.id),  method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %></p>
+               <a style = "margin-left:40px" class="" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
+  Acciones 
+</a>
+<br><br>
+<div class="collapse" id="collapseExample<%=causa.id%>">
+  <div class="">
+    <%causa.accions.each do |accion| %>
+   <p style = "margin-left:40px">- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
 
+   <%end%>
+  </div>
+</div>
 
+    
+ <hr>
 
 <% end %>
 
-<div class="modal-footer text-center">
+<div class=" text-center">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 
     </div>

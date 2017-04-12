@@ -115,7 +115,7 @@
   <%if @tipo == "Accion"%> 
    <div class="form-group">
                <%= f.label "Causas" %><br>
-               <%= f.select :causa_efecto_ids, CausaEfecto.where(report_id:@report.id).where(estado:"vital").collect {|ca| ["#{ca.name}", ca.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+               <%= f.select :causa_efecto_ids, CausaEfecto.where(report_id:@report.id).where(estado:"vital").collect {|ca| ["#{ca.name}-#{ca.accions.count}", ca.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
             </div>
 
             <%end%>
