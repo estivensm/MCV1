@@ -1,101 +1,94 @@
-<table class = "reporte">
-<tr>
+<div class="info">
   
-  <th>Fecha de Apertura</th>
-  <td><%= @report.created_at.strftime("%m/%d/%Y") %></td>
-  <th>Fuente</th>
-  <td><%= @report.source.name %></td>
-  <th>Proceso</th>
-  <td><%= @report.proceso.name %></td>
-</tr>
-<tr>
-  
-  <th>Tipo de NC</th>
-  <td><%= @report.nc_type %></td>
-  <th>Estado del Hallazgo</th>
-  <td><%= @report.state %></td>
-  <th></th>
-  <td>0</td>
-</tr>
-<tr>
-  
-  <th>Reporta</th>
-  <td><%= @report.user.name %></td>
-  <th>Asignado Responsable</th>
-  <td><%= Employed.find(@report.employed_id).first_name %> <%= Employed.find(@report.employed_id).first_last_name %></td>
-  <th>Otros interesados</th>
-  <td><% @responsables.each do |resp| %>
-    <%= resp.first_name%> <%= resp.first_last_name%><br>
-    <%end%>
-  </td>
-</tr>
-<tr>
-  
-  <th colspan="6">Description</th>
-   
-</tr>
-<tr>
-  
- 
-  <td colspan="6"><%= @report.description %></td>
-   
-</tr>
-<tr>
-  
-  <th>Evidencia</th>
-  <td colspan="2"><%= @report.nc_type %></td>
-  <th>Evidencia Adjunta</th>
-  <td colspan="2"><%= link_to "Descargar Archivo", @report.archivo_url if @report.archivo_url %></td>
-  
-</tr>
 
-<tr>
-  
-  <th>Requisito Legal o Interno</th>
-  <td colspan="2"><%= @report.requisito %></td>
-  <th>Requisto Aplicable</th>
-  <td colspan="2"><% @requisitos.each do |req|
-   numr = Numeral.find(req.numeral_id)%>
-   
-<!-- Large modal -->
+  <table class="table1" style = "width:1000px;font-size:16px;">
+        <tr>
+         <td  colspan="5" class=""><strong>Descripcion Corta: </strong> <%=@report.name%></td>
+      </tr>
 
-
-<button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
-
-  <!-- Modal -->
-  <br>
-
-    <%end%></td>
-  <script>
-    
-$('.numerb').click(function(){
-a = $(this).prop('value');
-b = $(this).text();
-
-$('.modalp').html(a);
-$('.modalp1').text(b);
-
-});
-
-  </script>
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title modalp1">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p class = "modalp"></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</tr>
 </table>
+<hr>
+<table class="table1" style = "width:1000px;font-size:16px;">
+   
+    
+      <tr>
+         <td><strong>Creado:</strong> <%= get_date(@report.created_at) %></td>
+          <td><strong>Fuente:</strong> <%= @report.source.name %></td>
+           <td><strong>Proceso:</strong> <%= @report.proceso.name %></td>
+            <td><strong>Estado: </strong><%= @report.state %></td>
+            
+      </tr></table>
+
+<hr>
+
+<%if @report.source.tipo == "Externa"%>
+<table class="table1" style = "width:1000px;font-size:16px;">
+   
+    
+      <tr>
+         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
+          <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
+         
+            
+      </tr></table>
+
+<hr>
+
+ <%end%>
+
+<table class="table1" style = "width:1000px;font-size:16px;">
+       <tr>
+         <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
+          <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
+           <td><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></td>
+        
+      </tr>
+
+      <tr>
+         <td colspan="3"><strong>Otros Interesados: </strong><% 
+            cm = 0 
+            @report.employeds.each do |resp|
+              %><%= "," if cm != 0 %> 
+         <%= resp.first_name%> <%=resp.first_last_name%>
+         <%  cm = cm + 1 %> 
+         <%end%></td>
+ 
+           
+      </tr>
+</table>
+<hr>
+<table class="table1" style = "width:1000px;font-size:16px;">
+     
+      <tr>
+         <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
+          <td><strong>Fecha de Cierre: </strong> <%= get_date(@report.f_real) if @report.f_real %></td>
+         
+            
+      </tr>   
+   
+</table>
+
+</div>
+<style>
+.info
+{
+  border:1px solid #cecece;
+}
+ .table1
+    {
+
+        color: #7a7a7a;
+        font-size:12px;
+        padding-left: 20px;
+    padding-right: 20px;
+    
+
+
+
+    }
+  .table1 td, th
+  {
+        padding: 6px 20px;
+    
+  }
+</style>

@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :set_report, only: [:show, :edit, :update, :destroy, :show_info]
  before_action :authenticate_user!
   # GET /reports
   # GET /reports.json
@@ -295,6 +295,9 @@ end
         render :pdf => 'file_name',
         :template => 'reports/pdfs/report.pdf.erb',
         :layout => 'pdf.html.erb',
+        margin: {
+                    top: 30
+                     },
         :header => {
                   :spacing => 5,
                   :html => {
@@ -312,6 +315,25 @@ end
       end
     end
   end
+
+
+  def show_info
+    @responsables = @report.employeds
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @accions = Accion.where(report_id: @report.id)
+    @tasks = Task.where(report_id: @report.id)
+    @seguimientos = @report.rseguimientos.order(created_at: :desc)
+    @accion_eficaz = @report.accions.where(eficaz: true).count
+    @accion_noeficaz = @report.accions.where(eficaz: false).count
+    
+  end
+
+
+
+
 
   # GET /reports/new
   def new

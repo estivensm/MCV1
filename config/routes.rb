@@ -33,6 +33,7 @@ get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
 delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
 get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
 post 'change_state' , to: "reports#change_state", as: "change_state"
+get 'show_info/:id' ,to: "reports#show_info", as: "show_info"
 
 
 

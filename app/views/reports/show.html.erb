@@ -7,6 +7,9 @@
          <%= link_to  edit_report_path(@report), :class => "opciones2" do %>
          <i class="fa fa-pencil" aria-hidden="true"></i>
          <% end %>
+          <%= link_to show_info_path(@report),:class => 'opciones2' do %>
+         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+         <% end %>
          <%= link_to report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'opciones2' do %>
          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
          <% end %>
@@ -63,7 +66,7 @@
       <div class="col-md-6 rtd"><strong>Responsable de Ejecución:</strong> <% employed = Employed.find(@report.employed_id)
          cierra_r = Employed.find(@report.cierra_id)%>
          <%= render "employed" , employed: employed %>
-         <strong> , Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
+         <strong> Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
          <br><strong>Otros Interesados: </strong><% 
             cm = 0 
             @report.employeds.each do |resp|
@@ -72,13 +75,15 @@
          <%  cm = cm + 1 %> 
          <%end%>
       </div>
-      <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
+      <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
    </div>
    <%if @report.source.tipo == "Externa"%>
    <hr>
    <div class="row rtr">
       <div class="col-md-4 rtd"><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></div>
-      <div class="col-md-8 rtd"><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%></div>
+      <div class="col-md-8 rtd"><strong>Contacto: </strong><%if @report.contact%>
+        <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%>
+        <%end%></div>
    </div>
    <%end%>
    <hr>
