@@ -132,8 +132,8 @@
         <td colspan="2" class="text-center tit">CORRECCIONES</td>
          </tr>  
          <tr>
-        <th>Descripcion</th>
-        <th>Eficaz</th>
+        <th style="width:80%">Descripcion</th>
+        <th style="width:20%">Eficaz</th>
          </tr> 
         <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
         <tr>
@@ -154,13 +154,13 @@
         <td colspan="2" class="text-center tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
          </tr>  
          <tr>
-        <th>Descripcion</th>
-        <th>Eficaz</th>
+               <th style="width:80%">Descripcion</th>
+        <th style="width:20%">Eficaz</th>
          </tr> 
         <%@report.accions.where(tipo:"Accion").each do |correccion|%>
         <tr>
-        <td><%=correccion.name%></td>
-        <td><%=correccion.eficaz%></td>
+        <td style="width:80%"><%=correccion.name%></td>
+        <td style="width:20%"><%=correccion.eficaz%></td>
          </tr>
         <%end%>
             
@@ -176,8 +176,8 @@
         <td colspan="2" class="text-center tit">ACCIONES</td>
          </tr>  
          <tr>
-        <th>Descripcion</th>
-        <th>Eficaz</th>
+      <th style="width:80%">Descripcion</th>
+        <th style="width:20%">Eficaz</th>
          </tr> 
         <%@report.accions.where(tipo:"Accion").each do |accion|%>
         <tr>
