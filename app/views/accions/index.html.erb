@@ -53,8 +53,8 @@
       <%= link_to  report_accion_path(@report,accion) do %>
       <div class="conteinter reporte cnt">
             <div class="row rtr">
-               <div class="col-md-8 rtd text-left name1"><%= accion.name %></div>
-               <div class="col-md-4 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
+               <div class="col-md-12 rtd text-left"><strong>Accion: <strong><%= accion.name %></div>
+               <div class="col-md-12 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
                </div>
                   <div class="row rtr">
                      <div class="col-md-2 rtd"><%=  accion.codigo  %></div>
@@ -112,8 +112,8 @@
    <%= link_to  report_accion_path(@report,accion) do %>
       <div class="conteinter reporte cnt">
       <div class="row rtr">
-            <div class="col-md-8 rtd text-left name1"><%= accion.name %></div>
-            <div class="col-md-4 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
+           <div class="col-md-12 rtd text-left"><strong>Accion: <strong><%= accion.name %></div>
+            <div class="col-md-12 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
             </div>
             <div class="row rtr">
             <div class="col-md-2 rtd"><%=  accion.codigo  %></div>
