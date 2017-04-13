@@ -120,6 +120,23 @@ class AccionsController < ApplicationController
     end
   end
 
+
+
+ def accion_change_state
+ 
+    @accion = Accion.find(params[:accion])
+    if @accion.update(justificacion_cumplio: params[:justificacion_cumplio],contador_seg: 1, cumplio: true , tag: false)
+    redirect_to report_accion_path(@accion.report_id,@accion)
+  end
+ 
+    
+
+
+ end 
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_accion

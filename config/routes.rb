@@ -35,6 +35,8 @@ get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
 post 'change_state' , to: "reports#change_state", as: "change_state"
 get 'show_info/:id' ,to: "reports#show_info", as: "show_info"
 
+post 'accion_change_state' , to: "accions#accion_change_state", as: "accion_change_state"
+post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state"
 
 
 
