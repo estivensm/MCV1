@@ -372,10 +372,14 @@ def estado_contador(cont)
     if cont >5 
 
       "#0db497 !important"
-    elsif cont <=5 && cont >= 0
+    elsif cont <=5 && cont >= 1
+
+      if action_name != "cerrados"
 
       "orange !important"
-      
+      else
+"#0db497 !important"
+      end
       else
 
         "#e23434 !important"
