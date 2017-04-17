@@ -125,71 +125,144 @@
 
 
 <hr>
+
 <%if @report.source.correccion%>
 <table class="table1" >
      
       <tr>
-        <td colspan="2" class="text-center tit">CORRECCIONES</td>
+        <th colspan="4" class="tit">CORRECCIONES</th>
          </tr>  
          <tr>
-        <th style="width:80%">Descripcion</th>
+        <th style="width:40%">Descripcion</th>
+        <th style="width:20%">Entrega</th>
+        <th style="width:20%">Cumplio</th>
         <th style="width:20%">Eficaz</th>
+        
          </tr> 
         <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
         <tr>
         <td><%=correccion.name%></td>
-        <td><%=correccion.eficaz%></td>
+        <td><%=correccion.f_compromiso%></td>
+        <td><%=if correccion.estado == "Cerrada"
+                  correccion.contador_seg > 0  ? "Si" : "No"
+              else
+                 "Sin Cerrar"
+               end %></td>
+        <td><%=if correccion.estado == "Cerrada"
+                  correccion.eficaz  ? "Si" : "No"
+              else
+                 "Sin Cerrar"
+               end %>
+        </td>
          </tr>
         <%end%>
             
       </tr>  
    
 </table>
-<hr>
+
 <%end%>
+
+<hr>
+
 <%if @report.source.causa%>
 <table class="table1">
      
       <tr>
-        <td colspan="2" class="text-center tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
+        <th colspan="4" class="tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
          </tr>  
-         <tr>
-               <th style="width:80%">Descripcion</th>
+       <% @report.causa_efectos.each do |causa|%>
+          <tr><td><strong>Causa</strong><%= causa.name %></td></tr>
+        <tr><td>Acciones</td></tr>
+       <tr>
+        <th style="width:40%">Descripcion</th>
+        <th style="width:20%">Entrega</th>
+        <th style="width:20%">Cumplio</th>
         <th style="width:20%">Eficaz</th>
+        
          </tr> 
-        <%@report.accions.where(tipo:"Accion").each do |correccion|%>
+        <%causa.accions.where(tipo:"Accion").each do |accion|%>
         <tr>
-        <td style="width:80%"><%=correccion.name%></td>
-        <td style="width:20%"><%=correccion.eficaz%></td>
+        <td><%=accion.name%></td>
+        <td><%=accion.f_compromiso%></td>
+        <td><%=if accion.estado == "Cerrada"
+                  accion.contador_seg > 0  ? "Si" : "No"
+              else
+                 "Sin Cerrar"
+               end %></td>
+        <td><%=if accion.estado == "Cerrada"
+                  accion.eficaz  ? "Si" : "No"
+              else
+                 "Sin Cerrar"
+               end %>
+        </td>
          </tr>
         <%end%>
             
-      </tr>  
-   
+      </tr>
+      <tr><td colspan="4"><hr></td></tr>     
+    <%end%>
 </table>
-<hr>
+
 <%end%>
+
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+
 <%if @report.source.accion%>
+<% ax = 0
+ @report.accions.where(tipo:"Accion").each do |acc|
+    if acc.causa_efectos.count < 1 
+        ax = 1
+    end
+
+  end%>
+
+  <% if ax == 1 %>
 <table class="table1" >
      
       <tr>
-        <td colspan="2" class="text-center tit">ACCIONES</td>
+        <th colspan="4" class=" tit">ACCIONES</td>
          </tr>  
-         <tr>
-      <th style="width:80%">Descripcion</th>
+       <tr>
+        <th style="width:40%">Descripcion</th>
+        <th style="width:20%">Entrega</th>
+        <th style="width:20%">Cumplio</th>
         <th style="width:20%">Eficaz</th>
+        
          </tr> 
         <%@report.accions.where(tipo:"Accion").each do |accion|%>
         <tr>
         <td><%=accion.name%></td>
-        <td><%=accion.eficaz%></td>
+        <td><%=accion.f_compromiso%></td>
+        <td><%=if accion.estado == "Cerrada"
+                  accion.contador_seg > 0  ? "Si" : "No"
+              else
+                 "Sin Cerrar"
+               end %></td>
+        <td><%=if accion.estado == "Cerrada"
+                  accion.eficaz  ? "Si" : "No"
+              else
+                 "Sin Cerrar"
+               end %>
+        </td>
          </tr>
         <%end%>
             
-      </tr>  
+      </tr>   
    
 </table>
-<hr>
+<%end%>
 <%end%>
 
 

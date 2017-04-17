@@ -34,7 +34,7 @@
             <div class="col-md-8 rtd">
                <h3 class="linka margin-cero"><%=@tipo + "es Abiertas"%> (<%=@accions.abiertas.count %>)</h3>
             </div>
-            <% if @accions.abiertas.count > 0 %>
+            <% if @accions.count > 0 %>
             <div class="col-md-2 rtd"><%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary pull-right') if view_report(@report) || current_user.role == "SuperAdmin" %></div>
             <%end%>
          </div>
