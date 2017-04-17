@@ -171,7 +171,7 @@
       <tr>
         <th colspan="4" class="tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
          </tr>  
-       <% @report.causa_efectos.each do |causa|%>
+       <% @report.causa_efectos.where(esatdo: "vital").each do |causa|%>
           <tr><td><strong>Causa</strong><%= causa.name %></td></tr>
         <tr><td>Acciones</td></tr>
        <tr>
