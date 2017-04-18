@@ -63,7 +63,7 @@ if self.tipo == "Pareto"
                 causa.estado = "vital"
                 
             else
-                   causa.estado = "tribial" 
+                   causa.estado = "trivial" 
                    
             end
 

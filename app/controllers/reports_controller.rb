@@ -150,7 +150,7 @@ def abiertos
     
    
    if params[:search]
-     @reports1 = Report.where(state: "Abierto").search(params[:search0],params[:search],params[:search2],params[:search4],params[:search5])
+     @reports1 = Report.where(state: "Abierto").search(params[:search0],params[:search],params[:search3],params[:search2],params[:search4],params[:search5])
   else
      @reports1 = Report.all.where(state: "Abierto")
   end
@@ -200,7 +200,7 @@ def index
               @es = Source.where({default: true, admin_user: current_user.admin_user}).first
               
               if params[:search]
-                   @reports1 = Report.search(params[:search0],params[:search],params[:search2],params[:search4],params[:search5])
+                   @reports1 = Report.search(params[:search0],params[:search],params[:search3],params[:search2],params[:search4],params[:search5])
               else
                    @reports1 = Report.all
               end
@@ -238,7 +238,7 @@ def index
 def cerrados
     
    if params[:search] 
-     @reports1 = Report.where(state: "Cerrado").search(params[:search0],params[:search],params[:search2],params[:search4],params[:search5])
+     @reports1 = Report.where(state: "Cerrado").search(params[:search0],params[:search],params[:search3],params[:search2],params[:search4],params[:search5])
   else
      @reports1 = Report.all.where(state: "Cerrado")
   end
