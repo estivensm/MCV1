@@ -1,7 +1,10 @@
 
-<div class = "row title-table">
+<%= render "encabezado"%>
+
+<br><div class = "row title-table">
    <div class = "col-md-6">
-      <p>Clientes y Proveedores <span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
+
+      <p><%=@title%> <span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
 
 
      
@@ -18,13 +21,13 @@
 
 
 <hr class="hr">
-<%= (link_to "Opciones", clinte_proveedors_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar" %>
-<%= (link_to "Cancelar Opciones", clinte_proveedors_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+<%= (link_to "Opciones", @route + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar" %>
+<%= (link_to "Cancelar Opciones", @route, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 
 <div class = "row busqueda" style="display:none">
    <div class = "col-md-9">
       <div class="form-group">
-         <%= form_tag(clinte_proveedors_path, :method => "get", id: "search-form") do %>
+         <%= form_tag(@route, :method => "get", id: "search-form") do %>
    
          <%= text_field_tag :search, params[:search], placeholder: "Nombre", class: "form-control search1 shi1" %>
          <%= text_field_tag :search1, params[:search1], placeholder: "Nit/Cedula", class: "form-control search1 shi1" %>

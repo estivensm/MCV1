@@ -69,6 +69,9 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
   collection { post :import }
 
 end
+ get 'proveedores' , to: 'clinte_proveedors#proveedores' , as: "proveedores"
+  get 'entidades_gubernamentales' , to: 'clinte_proveedors#entidades_gubernamentales' , as: "entidades_gubernamentales"
+  get 'entidades_certificacion' , to: 'clinte_proveedors#entidades_certificacion' , as: "entidades_certificacion"
 
   resources :contacts
   

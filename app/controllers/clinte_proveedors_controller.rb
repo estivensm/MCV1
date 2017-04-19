@@ -27,16 +27,71 @@ end
   # GET /clinte_proveedors.json
   def index
    if params[:search]
-     @clinte_proveedors1 = ClinteProveedor.search(params[:search],params[:search1],params[:search2]).order(created_at: :desc)
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Cliente").search(params[:search],params[:search1],params[:search2]).order(created_at: :desc)
   else
-     @clinte_proveedors1 = ClinteProveedor.all
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Cliente")
   end
+
+
+    @route = clinte_proveedors_path    
+    @title = "Clientes"
+   @clinte_proveedors = @clinte_proveedors1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
+    
+  end
+
+def proveedores
+   if params[:search]
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Proveedor").search(params[:search],params[:search1],params[:search2]).order(created_at: :desc)
+  else
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Proveedor")
+  end 
+
 
 
 
    @clinte_proveedors = @clinte_proveedors1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
-    
+    @route = proveedores_path  
+    @title = "Proveedores"  
+    render "index"
+
   end
+
+
+  def entidades_gubernamentales
+   if params[:search]
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Entidad Gubernamental").search(params[:search],params[:search1],params[:search2]).order(created_at: :desc)
+  else
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Entidad Gubernamental")
+  end 
+
+
+
+
+   @clinte_proveedors = @clinte_proveedors1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
+    @route = entidades_gubernamentales_path 
+    @title = "Entidades Gubernamentales"   
+    render "index"
+
+  end
+
+    def entidades_certificacion
+   if params[:search]
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Entidad de Certificación").search(params[:search],params[:search1],params[:search2]).order(created_at: :desc)
+  else
+     @clinte_proveedors1 = ClinteProveedor.where(tipo: "Entidad de Certificación")
+  end 
+
+
+
+
+   @clinte_proveedors = @clinte_proveedors1.paginate(page: params[:page],:per_page => 50).where(admin_user: current_user.admin_user)
+    @route = entidades_certificacion_path    
+    @title = "Entidades de Certificación"
+    render "index"
+
+  end
+
+
 
   # GET /clinte_proveedors/1
   # GET /clinte_proveedors/1.json
@@ -57,7 +112,16 @@ end
   def create
    @clinte_proveedor = ClinteProveedor.new(clinte_proveedor_params)
     if @clinte_proveedor.save
+
+      if @clinte_proveedor.tipo == "Cliente"
         redirect_to clinte_proveedors_path
+        elsif @clinte_proveedor.tipo == "Proveedor"
+          redirect_to proveedores_path
+           elsif @clinte_proveedor.tipo == "Entidad Gubernamental"
+          redirect_to entidades_gubernamentales_path
+           elsif @clinte_proveedor.tipo == "Entidad de Certificación"
+          redirect_to entidades_certificacion_path
+      end
     end
   end
 

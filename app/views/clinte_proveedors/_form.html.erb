@@ -44,7 +44,7 @@
 
   <div class="form-group">
     <%= f.label "Tipo de Documento" %>
-     <%= f.select 'tipo', options_for_select(["Cliente", "Proveedor", "Entidad Gubernamental", "Entidad de Certificación"]), {},{:class => 'form-control'}%>
+     <%= f.select 'tipo', options_for_select(["Cliente", "Proveedor", "Entidad de Certificación", "Entidad Gubernamental"]), {},{:class => 'form-control'}%>
   </div>
 
   <div class="field">
@@ -61,9 +61,9 @@
 
   <hr>
 <div class="col-lg-12">
-   <div class="col-lg-10">
-    <h3 class = "titulo" style = "margin :0px 0px 5px 0;">Contactos</h3>
-    </div>
+   
+    <h3 class = "" style = "margin :0px 0px 5px 0;color:gray">Contactos</h3>
+
     <%= f.fields_for :contacts do |contact|  %>
   <div class="clearfix">
  <div class="col-md-12" >
@@ -94,6 +94,7 @@
     </div>
 <%= contact.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= contact.hidden_field :user_id ,:value =>  current_user.id %>
+
    
    </div>
     </div>
@@ -119,6 +120,7 @@
 
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+  
   <br>
 <hr>
   <div class="form-group text-center">

@@ -113,15 +113,15 @@
             <div class="col-md-12 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
             </div>
             <div class="row rtr">
-            <div class="col-md-2 rtd"><%=  accion.codigo  %></div>
-            <div class="col-md-2 rtd">
+            <div class="col-md-3 rtd"><%=  accion.codigo  %></div>
+            <div class="col-md-3 rtd">
                      <strong><i class="fa fa-user" aria-hidden="true"></i> </strong> <%  
                   employed = Employed.find(accion.employed_id)
                   %>
                <td  class = "imaacc">
                <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
             </div>
-                     <div class="col-md-2 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %></div>
+                     <div class="col-md-3 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %></div>
                   <div class="col-md-3 rtd text-right">
                   </div>
          </div>
