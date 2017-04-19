@@ -17,3 +17,7 @@ es:
         name: "Nombre"
       accion:
         employed_id: "Asignada a"
+  devise:
+    failure:
+      not_found_in_database: "Usuario o Password invalidos"
+      invalid: "El Usuario no puede estar vacio"

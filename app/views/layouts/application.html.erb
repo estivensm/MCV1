@@ -12,6 +12,16 @@
   </head>
 
   <body class="app">
+   <%= flash_messages %>
     <%= yield %>
   </body>
 </html>
+
+
+
+<style>
+  .alert
+  {
+    text-align: center !important;
+  }
+</style>

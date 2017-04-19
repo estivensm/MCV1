@@ -112,10 +112,24 @@ def get_rols
 Rol.where(admin_user: current_user.admin_user)
 
 end
+
 def get_clientes
-ClinteProveedor.where(admin_user: current_user.admin_user)
+ClinteProveedor.where(tipo: "Cliente").where(admin_user: current_user.admin_user)
 
 end
+
+def get_proveedores
+ClinteProveedor.where(tipo: "Proveedor").where(admin_user: current_user.admin_user)
+
+end
+
+def get_otros
+ClinteProveedor.where.not(tipo: "Cliente").where.not(tipo: "Proveedor").where(admin_user: current_user.admin_user)
+
+end
+
+
+
 
 def company_x
     @company = Company.where(user_id: current_user.admin_user)
