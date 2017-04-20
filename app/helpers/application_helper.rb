@@ -325,7 +325,7 @@ end
 
 def get_date(fecha)
    
-
+if fecha != nil
     ds = fecha.strftime("%w") #Dia de la semana
     y = fecha.strftime("%Y") #Año
     dm = fecha.strftime("%d") #Dia del mes
@@ -333,7 +333,8 @@ def get_date(fecha)
     meses = {"01" => "Ene", "02" => "Feb","03"=>"Mar","04" => "Abr", "05" => "May","06"=> "Jun" ,"07"=> "Jul", "08" => "Ago", "09"=> "Sep" ,"10"=> "Oct","11" => "Nov" ,"12" => "Dic" }
     dias = {"1" => "Domingo", "2" => "Lunes","3"=>"Martes","4" => "Miercoles", "5" => "Jueves","6"=> "Viernes" ,"0" =>"Sabado"}
     return  dm + " " + meses[m] + ", " + y 
-#dias[ds] + ", " + 
+#dias[ds] + ", " +
+end 
 end
 
 

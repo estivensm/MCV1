@@ -91,7 +91,7 @@
    <thead>
       <tr class = "tr-table">
  
-          <th  style = "width:2%"  ></th>
+          
          
            <th style = "width:2%"  ></th>
          <th style = "width:10%" class="text-left">F Creacion</th>
@@ -113,16 +113,14 @@
       <tr>
        
 
-<td><%= link_to  report_accion_path(report,accion), :class => "opciones" do %>
-         <i class="fa fa-eye" aria-hidden="true"></i>
-         <% end %></td>
+
 <td><%if accion.estado == "Abierta"  %>
          <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
          <%else%>
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
          <%end%></td>
          <td><%= get_date(accion.created_at) %></td>
-          <td><%= accion.codigo %></td>
+          <td><%= link_to  "#{accion.codigo}", report_accion_path(report,accion), :class => "linka"  %></td>
       
         
        

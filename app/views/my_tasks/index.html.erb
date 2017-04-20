@@ -82,7 +82,7 @@
    <thead>
       <tr class = "tr-table">
  
-          <th  style = "width:2%"  ></th>
+      
          
            <th style = "width:2%"  ></th>
          <th style = "width:10%" class="text-left">F Creacion</th>
@@ -104,16 +104,14 @@
       <tr>
        
 
-<td><%= link_to  report_tasks_path(report,task), :class => "opciones" do %>
-         <i class="fa fa-eye" aria-hidden="true"></i>
-         <% end %></td>
+
 <td><%if task.estado == "Abierto"  %>
          <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
          <%else%>
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
          <%end%></td>
          <td><%= get_date(task.created_at) %></td>
-          <td><%= task.codigo %></td>
+          <td><%= link_to "#{task.codigo}", report_tasks_path(report,task), :class => "linka"  %></td>
       
         
        

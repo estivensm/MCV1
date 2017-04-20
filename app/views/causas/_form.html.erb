@@ -90,7 +90,7 @@
     position: relative;
     left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
   <% end %>
-  <% @causa.tipo == "Pareto"  ? nom = "Causas" : nom = "Porques"%>
+  <% @causa.tipo == "Pareto"  ? nom = "Causas" : nom = "Porque"%>
     <%= pareto.label nom %>
    <%= pareto.text_field :name, :class => 'form-control' %>
     </div>
@@ -117,7 +117,7 @@
     </div>
    
 <%end%>
-<br>
+
 <%= f.link_to_add "Causa", :causa_efectos, :class => 'btn btn-primary top10'  %>
  </div>
 </div>

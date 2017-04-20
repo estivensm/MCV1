@@ -121,7 +121,11 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right" style = "background:white">
+                     <li style = "height: 51px; background: #737882;padding: 10px
+" ><p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %> </p></li>
+
                      <li style = "height: 51px;" > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)%></li>
+
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -191,7 +195,7 @@
                </li>
                <li role="presentation" class="<%=@menu[8]%>">     <%= link_to clinte_proveedors_path,:class => "#{@menu[8]}" do %>
                   <i class="fa fa-briefcase" aria-hidden="true"></i>
-                  <span class="hidden-xs">Clientes y Proveedores</span>
+                  <span class="hidden-xs">Partes Interesadas</span>
                   <% end %>
                </li>
             </ul>
@@ -313,6 +317,10 @@
    {
       background: #424242 !important;
 
+   }
+   .nuevor
+   {
+          border-bottom: 3px solid #396b2b !important;
    }
 </style>
 
