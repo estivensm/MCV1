@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
  
 
-  root 'dashboard#index'   
+  
 
 resources :reports do 
     get :get_reportsc, on: :collection
@@ -146,6 +146,13 @@ end
           end
         devise_for :users
           
+  #authenticated :user do
+    root to: 'dashboard#index'#, as: :authenticated_root
+ # end
+ 
+ # root to: 'home#index'
+
+
           match "*path" => redirect("/"), via: :get 
           # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

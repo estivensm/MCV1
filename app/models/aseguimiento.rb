@@ -24,6 +24,8 @@ class Aseguimiento < ApplicationRecord
 	mount_uploader :evidencia, ArchivoSegUploader
 	after_create :cerrar_accion
     after_create :email
+    validates :costo, presence: true 
+
 
 	def cerrar_accion
     accion = Accion.find(self.accion_id)

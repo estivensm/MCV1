@@ -21,3 +21,4 @@ es:
     failure:
       not_found_in_database: "Usuario o Password invalidos"
       invalid: "El Usuario no puede estar vacio"
+      unauthenticated: "Debes iniciar sesion para ingresar a esta pagina"

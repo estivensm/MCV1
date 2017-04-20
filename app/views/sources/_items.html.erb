@@ -42,7 +42,8 @@
                <%= link_to  edit_source_path(source), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
-               <%= link_to  source,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <% source.reports.count == 1 ? aso = "Reporte Asociado" : aso = "Reportes Asociados"%>
+               <%= link_to  source,  method: :delete, data: { confirm: "Esta Seguro de elminar esta  fuente hay #{source.reports.count  } #{aso}" }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i><% end %>
 </td>
       </tr>

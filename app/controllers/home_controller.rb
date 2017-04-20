@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-before_action :authenticate_user!
-layout 'admin'
+
+layout 'application'
 
   def index
   end

@@ -26,7 +26,7 @@
 
 class Source < ApplicationRecord
 	has_many :reports
-	after_create :validar_default
+	after_create :validar_default, dependent: :destroy
 	def self.search(search,search1, search2)
 
    search1 = search1.chomp("s") if search1 != ""
