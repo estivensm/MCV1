@@ -14,8 +14,9 @@
       <div class="modal-body">
 
 <div class="row">
-<div class="col-md-6" id = "part">
-    <div class="form-group">
+  <div class="col-md-12" id = "part">
+    <div class="col-md-6" id = "part">
+      <div class="form-group">
        <label for="">¿Acciones?</label><br>
                <label class="radio-inline">
                <%= f.radio_button :tipo, '5 Porques', class: 'rb pq' %>5 Porques
@@ -26,22 +27,27 @@
                  <label class="radio-inline">
                <%= f.radio_button :tipo, 'Causa Efecto', class: 'rb cf' %>Causa Efecto
                </label>
-                 <label class="radio-inline">
-               <%= f.radio_button :tipo, 'Lluvia de Ideas', class: 'rb' %>Otro
-               </label>
+               <!--  <label class="radio-inline">
+               <%= f.radio_button :tipo, 'Otro', class: 'rb' %>Otro
+               </label>-->
                
   </div>
-
- <div class="form-group">
-    <%= f.label :descripcion %>
-    <%= f.text_area :descripcion, class: "form-control area"  %>
   </div>
+<div class="col-md-6" id = "part">
 <div class="form-group">
     <%= f.label :archivo %>
     <%= f.file_field :archivo, class: "form-control"  %>
   </div>
+ </div>
+ <div class="col-md-10" id = "part">
+ <div class="form-group">
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion, class: "form-control area"  %>
+  </div>
+</div>
 </div>
 
+<div class="col-md-12 caef">
 <div class="col-md-6 caef">
   <div class="form-group caef">
     <%= f.label "Primera" %>
@@ -55,6 +61,8 @@
     <%= f.label "Tercera" %>
     <%= f.text_field :tercera_m, :value => ( action_name == "new" ? "Métodos" : @causa.tercera_m), class: "form-control"  %>
   </div>
+  </div>
+  <div class="col-md-6 caef">
    <div class="form-group caef">
     <%= f.label "Cuarta" %>
     <%= f.text_field  :cuarta_m, :value => ( action_name == "new" ? "Maquinaria" : @causa.cuarta_m),   class: "form-control"  %>
@@ -68,10 +76,10 @@
     <%= f.text_field  :sexta_m, :value =>  ( action_name == "new" ? "Medio Ambiente" : @causa.sexta_m) , class: "form-control"  %>
   </div>
 </div>
-  
+  </div>
 
 
- <div class="col-lg-6 pareto">
+ <div class="col-lg-12 pareto">
    <div class="col-lg-10">
     <h3 class = "linka" style = "margin :0px 0px 5px 0;"><%=  @causa.tipo == "Pareto"  ? "Causas" : "Porques"%></h3>
     <br>
@@ -96,7 +104,7 @@
     </div>
 
 <%if @causa.tipo == "Pareto"%>
- <div class="col-md-3 pdd" >
+ <div class="col-md-2 pdd" >
      
     <%= pareto.label "Frecuencia" %>
    <%= pareto.text_field :frecuencia, :class => 'form-control' %>
@@ -117,9 +125,10 @@
     </div>
    
 <%end%>
-
+<div class="col-md-12" >
 <%= f.link_to_add "Causa", :causa_efectos, :class => 'btn btn-primary top10'  %>
- </div>
+ 
+ </div></div>
 </div>
 
 
@@ -172,9 +181,9 @@ if ("<%=action_name%>" == "edit")
     
      $('.pareto').hide();
      
-     $('#part').addClass("col-md-6")
-      $('#mdg').addClass("modal-lg")
-      $('#part').removeClass("col-md-12")
+     //$('#part').addClass("col-md-6")
+      //$('#mdg').addClass("modal-lg")
+      //$('#part').removeClass("col-md-12")
 
 }
 else if ($('.pq').is(':checked') && $('.pq').val() ==  "5 Porques" )
@@ -182,9 +191,9 @@ else if ($('.pq').is(':checked') && $('.pq').val() ==  "5 Porques" )
      $('.caef').hide();
      
       $('.pareto').fadeIn();
-     $('#part').addClass("col-md-6")
-      $('#mdg').addClass("modal-lg")
-      $('#part').removeClass("col-md-12")
+     //$('#part').addClass("col-md-6")
+      //$('#mdg').addClass("modal-lg")
+      //$('#part').removeClass("col-md-12")
 
       
 
@@ -196,9 +205,9 @@ else if ($('.par').is(':checked') && $('.par').val() ==  "Pareto" )
      $('.caef').hide();
      
       $('.pareto').fadeIn();
-     $('#part').addClass("col-md-6")
-      $('#mdg').addClass("modal-lg")
-      $('#part').removeClass("col-md-12")
+     //$('#part').addClass("col-md-6")
+      //$('#mdg').addClass("modal-lg")
+      //$('#part').removeClass("col-md-12")
 
 }
 else
@@ -206,9 +215,9 @@ else
    $('.caef').hide();
     $('.pareto').hide();
    
-   $('#part').removeClass("col-md-6")
-   $('#mdg').removeClass("modal-lg")
-  $('#part').addClass("col-md-12")
+   //$('#part').removeClass("col-md-6")
+   //$('#mdg').removeClass("modal-lg")
+  //$('#part').addClass("col-md-12")
   
 }
 
@@ -222,9 +231,9 @@ else
    $('.pareto').hide();
    $('.porques').hide();
    $('.pq').prop('checked', true)
-   $('#part').removeClass("col-md-6")
-   $('#mdg').removeClass("modal-lg")
-  $('#part').addClass("col-md-12")
+   //$('#part').removeClass("col-md-6")
+   //$('#mdg').removeClass("modal-lg")
+ // $('#part').addClass("col-md-12")
 
 }
 
