@@ -33,15 +33,17 @@
 
 <hr>
 
-<p><strong>Sub Causas </strong></p>
+<p ><strong>Sub Causas </strong></p>
 <% CausaEfecto.where(subnivel: @caef.id).each do |causa|%>
      
 
-    <p style = "margin-left:40px;"> - <%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
+    <p style = "margin-left:40px;"><strong>Causa:</strong> <%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
+
                <i class="fa fa-pencil" style = "margin-left:20px" aria-hidden="true"></i>
                <% end %><%= link_to  delete_caef_path(causa.id),  method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %></p>
+         <p style = "margin-left:40px;"><strong>Descripcion:</strong> <%=causa.descripcion%></p>      
                <a style = "margin-left:40px" class="" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
   Acciones (<%= causa.accions.count%>) 
 </a>
