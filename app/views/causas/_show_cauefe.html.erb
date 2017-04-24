@@ -17,7 +17,7 @@
 <p><strong>Descripcion </strong><%=@caef.descripcion%></p>
 
 <a class="" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-  Acciones 
+  Acciones (<%= @caef.accions.count%>)
 </a>
 <br><br>
 <div class="collapse" id="collapseExample1">
@@ -43,7 +43,7 @@
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %></p>
                <a style = "margin-left:40px" class="" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
-  Acciones 
+  Acciones (<%= causa.accions.count%>) 
 </a>
 <br><br>
 <div class="collapse" id="collapseExample<%=causa.id%>">

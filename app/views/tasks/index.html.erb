@@ -5,8 +5,8 @@
 </div>
 <%= render 'tabs'%>
 <div class = "row">
-<div class="col-md-12 wihtout-padding">
-   <h3 class = "linka htitle text-center">Reporte</h3>
+<div class="col-md-12 wihtout-padding" >
+   <h4 class = "linka htitle text-center">REPORTE</h4>
    <div class="conteinter reporte cnt">
       <div class="row rtr name">
          <div class="col-md-12 rtd"><%=@report.name%></div>
@@ -22,20 +22,22 @@
       </div>
      
    
-   </div>
-</div>
+   </div><br>
+
 <div class="col-md-6 wihtout-padding">
    <div class="conteinter htitle" style = "padding:0px">
       <div class="row rtr">
-         <div class="col-md-1 rtd"></div>
-         <div class="col-md-9 rtd">
-            <h3 class="linka margin-cero">Tareas por Hacer</h3>
+         <div class="col-md-2 rtd"></div>
+         <div class="col-md-7 rtd">
+            <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> TAREAS ABIERTAS (<%= @tasks.count %>)</h4>
          </div>
          <% if @tasks_all.count > 0 %>
-         <div class="col-md-2 rtd"><%= (link_to "Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'btn btn-primary pull-right', style:"padding-bottom:5px;padding-top:5px") if view_report(@report) || current_user.role == "SuperAdmin" %></div>
+
+         <div class="col-md-3 rtd"><strong><%= (link_to "+ Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'linka pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" %></strong></div>
          <% end %>
       </div>
    </div>
+  
    <% if @tasks_all.count > 0 %>
    <% @tasks.each do |task| %>
    <div class="conteinter reporte cnt">
@@ -95,10 +97,11 @@
 <div class="row rtr">
 <div class="col-md-2 rtd"></div>
 <div class="col-md-8 rtd">
-<h3 class="linka margin-cero">Tareas Hechas</h3>
+<h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> TAREAS CERRADAS (<%= @tasksc.count%>)</h4>
 </div>
 </div>
 </div>
+
 <% @tasksc.each do |task| %>
  <div class="conteinter reporte cnt">
       <div class="row rtr">
