@@ -35,7 +35,7 @@
                <h4 class="linka margin-cero"><%=@tipo.upcase + "ES ABIERTAS"%> (<%=@accions.abiertas.count %>)</h4>
             </div>
             <% if @accions.count > 0 %>
-            <div class="col-md-3 rtd"><strong><%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) || current_user.role == "SuperAdmin" %></strong></div>
+            <div class="col-md-3 rtd"><strong><%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) || current_user.role == "SuperAdmin" || (current_user.rol ? current_user.rol.configuracion : false) %></strong></div>
             <%end%>
          </div>
          </div>
@@ -79,7 +79,7 @@
       <br>
       <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
       <hr class="my-4">
-      <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") %>
+      <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") || (current_user.rol ? current_user.rol.configuracion : false)%>
       </div>
       <%end%>
    </div>
