@@ -88,7 +88,7 @@
    <div class="jumbotron jumbacc">
    <h3 class="display-3 text-gray">No se ha creado ninguna Tarea</h3>
    <hr class="my-4">
-   <%= (link_to "Nueva Tarea", new_report_task_path(@report) ,remote: true, :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") %>
+   <%= (link_to "Nueva Tarea", new_report_task_path(@report) ,remote: true, :class => 'btn btn-primary btn-lg') if (current_user.rol ? current_user.rol.configuracion : false) || (current_user.role == "SuperAdmin") %>
    </p></div>
    <%end%>
 </div>

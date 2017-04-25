@@ -100,14 +100,7 @@
                      </li>
           </ul>
         </li>
-        <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
-                        <i class="fa fa-cogs ic" aria-hidden="true"></i>
-                        <span>Configuracion</span>
-                        <% end %>
-                        <%end%>
-                     </li>
-                     <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+           <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                         <%= link_to company_indicators_path,:class => "configuracion #{@menum[6]}"  do %>
                         <i class="fa fa-bar-chart" aria-hidden="true"></i>
 
@@ -115,6 +108,14 @@
                         <% end %>
                         <%end%>
                      </li>
+        <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                        <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
+                        <i class="fa fa-cogs ic" aria-hidden="true"></i>
+                        <span>Configuracion</span>
+                        <% end %>
+                        <%end%>
+                     </li>
+                  
        
           </ul>
         </li>
