@@ -134,7 +134,7 @@ end
 
       if @employed.update(employed_params)
       
-        redirect_to employed_path(@employed)
+        redirect_to employeds_path
       end
     
   end
