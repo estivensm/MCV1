@@ -2,7 +2,7 @@ class MyReportsController < ApplicationController
 
   def index
   	@employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
-    @report_search1 = Report.where(employed_id: @employed)
+    @report_search1 = Report.where(employed_id: @employed).abiertos
     if params[:search]
 
     	@reports = @report_search1.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
@@ -22,7 +22,7 @@ class MyReportsController < ApplicationController
   
             
     
-    @report_search1 = Report.where(user_id: current_user.id).where(admin_user: current_user.admin_user)
+    @report_search1 = Report.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertos
     if params[:search]
       
       @reports = @report_search1.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
@@ -49,7 +49,7 @@ def invitado
     
             
     
-    @report_search1 = @employed.reports
+    @report_search1 = @employed.reports.abiertos
     if params[:search]
       
       @reports = @report_search1.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)

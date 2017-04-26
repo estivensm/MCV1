@@ -2,7 +2,7 @@ class MyAccionsController < ApplicationController
   def index
   	@employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
   	    
-    @accion_search = Accion.where(employed_id: @employed.id)
+    @accion_search = Accion.where(employed_id: @employed.id).abiertas
     if params[:search]
     	
     	@acciones = @accion_search.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
@@ -23,7 +23,7 @@ class MyAccionsController < ApplicationController
   
             
     
-    @accion_search1 = Accion.where(user_id: current_user.id).where(admin_user: current_user.admin_user)
+    @accion_search1 = Accion.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertas
     if params[:search]
       
       @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
@@ -50,7 +50,7 @@ def invitado
     
             
     
-   @accion_search1 = @employed.accions
+   @accion_search1 = @employed.accions.abiertas
 
     if params[:search]
       
