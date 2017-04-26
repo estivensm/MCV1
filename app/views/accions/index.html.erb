@@ -121,8 +121,10 @@
                <td  class = "imaacc">
                <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
             </div>
-                     <div class="col-md-3 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %></div>
-                  <div class="col-md-3 rtd text-right">
+                     <div class="col-md-3 rtd" %><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %></div>
+                  <div class="col-md-3 rtd text-center">
+                  <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+     <%=  get_date(accion.f_real)  %> <%= cumplio(accion.contador_seg).html_safe%>
                   </div>
          </div>
       </div>

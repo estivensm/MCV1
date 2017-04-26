@@ -140,9 +140,12 @@
          </div>
           <%color = ""
                      task.contador_seg < 0 ?  color = "#d82c2c" : color = "#0db4a0"%>
-         <div class="col-md-4 rtd" style = "color:white;background:<%=color%>"><strong><strong><i class="fa fa-calendar" aria-hidden="true"></i>
+         <div class="col-md-3 rtd" ><strong><strong><i class="fa fa-calendar" aria-hidden="true"></i>
          </strong> <%=  get_date(task.f_compromiso)  %></div>
-         <div class="col-md-4 rtd" style = "    font-size: 12px;
+         <div class="col-md-3 rtd" ><strong><strong>
+         </strong><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+     <%=  get_date(task.f_real)  %> <%= cumplio(task.contador_seg).html_safe%></div>
+         <div class="col-md-2 rtd" style = "    font-size: 12px;
             color: gray;"><%=  task.codigo  %></div>
       </div>
    </div>

@@ -40,6 +40,15 @@ def get_state(state)
   
 end
 
+
+
+def cumplio(state)
+
+  state >= 1 ? a = "<i class='fa fa-thumbs-o-up' aria-hidden='true' style = 'color:green;font-size:20px;margin-left:5px'></i>" : a = "<i class='fa fa-thumbs-o-down' aria-hidden='true' style = 'color:red;font-size:20px;margin-left:5px'></i>"
+  
+end
+
+
 def get_state_report(state, id, tipo)
   if tipo == "C"
 
