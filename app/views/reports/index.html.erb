@@ -106,7 +106,7 @@
          <th style = "width:10%" class="text-left">Compromiso</th>
          <%if action_name == "cerrados"%>
           <th style = "width:10%" class="text-left">Entrega</th>
-          <th style = "width:10%" class="text-left">¿Cumplio?</th>
+          <th style = "width:5%" class="text-left">¿Cumplio?</th>
           <%end%>
          <th style = "width:10%" class="text-left">Fuente</th>
          <th style = "width:10%" class="text-left">Responsable</th>
@@ -170,7 +170,7 @@
 
          <%if action_name == "cerrados"%>
           <td><%= get_date(report.f_real)%> </td>
-           <td><%= cumplio(report.contador_seg).html_safe%></td>
+           <td class="text-center"><%= cumplio(report.contador_seg).html_safe%></td>
           <%end%>
 
 
