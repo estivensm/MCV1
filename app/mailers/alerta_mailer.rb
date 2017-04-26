@@ -71,9 +71,9 @@ end
 
 
 
-def seguimiento_accion(employed , report, tipo)
+def seguimiento_accion(employed , accion, tipo)
  @employed = employed
- @report = report
+ @accion = accion
  if tipo == "vencida"
 
     var = "Hoy debes hacer seguiemiento a la"
@@ -84,7 +84,7 @@ def seguimiento_accion(employed , report, tipo)
   
   end
   @var = var
- mail(to: @employed.email, subject: "#{var} Acción #{@report.codigo}")
+ mail(to: @employed.email, subject: "#{var} Acción #{@accion.codigo}")
 end
 
 
