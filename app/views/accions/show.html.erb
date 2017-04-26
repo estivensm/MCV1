@@ -114,7 +114,7 @@
               <%  cm = cm + 1 %> 
               <%end%>
           </div>
-          <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@accion.f_compromiso) if @accion.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@accion.fp_seguimiento) if @accion.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@accion.contador_seg %><strong  style = "margin-left:10px;"">Frecuencia de Seguimiento: </strong><%=f_seguimiento(@accion.f_seguimiento) %></div>
+          <div class="col-md-6 rtd"><strong>Fecha de Entrega: </strong> <%= get_date(@accion.f_compromiso) if @accion.fp_seguimiento %><strong style = "margin-left:10px;">Fecha de seguimiento: </strong> <%= get_date(@accion.fp_seguimiento) if @accion.fp_seguimiento %><br><strong>Dias para el cierre: </strong><%=@accion.contador_seg %><strong  style = "margin-left:10px;"">Frecuencia de Seguimiento: </strong><%=f_seguimiento(@accion.f_seguimiento) %></div>
         </div>
         <hr>
           <div class="row rtr">

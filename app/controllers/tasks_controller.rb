@@ -46,7 +46,7 @@ class TasksController < ApplicationController
         @num = 1001
     end
     @ano = Time.now.year.to_s
-    @code = "#{@report.codigo}-T#{@num}" 
+    @code = "T#{@num}" 
     @task.codigo = @code
     @task.contador = @num
     @task.costo = 0

@@ -19,7 +19,7 @@
             <% employed = Employed.find(@report.employed_id)%>
             <div class="col-md-3 rtd text-left"><strong>Responsable: </strong><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
             <div class="col-md-2 rtd text-left"><strong>Estado: </strong><%= @report.state %></div>
-            <div class="col-md-3 rtd text-left"><strong>Compromiso:</strong> <%= get_date(@report.f_compromiso) %></div>
+            <div class="col-md-3 rtd text-left"><strong>Entrega:</strong> <%= get_date(@report.f_compromiso) %></div>
          </div>
          <hr style = "margin:0px">
          <div class="row">
