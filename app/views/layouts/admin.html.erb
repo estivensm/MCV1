@@ -68,14 +68,61 @@
                         <span >DashBoard</span>
                         <% end %>
                      </li>
-        <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+        <!--<li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                         <%= link_to reports_abiertos_path,:class => "Reportes #{@menum[1]}" do %>
                         <i class="fa fa-search ic" aria-hidden="true"></i>
                         <span >Reportes</span>
                         <% end %>
                         <% end %>
-                     </li>
+                     </li>-->
                     
+
+<li class="dropdown <%=@menum[1]%> <%=@menum[7]%> <%=@menum[1]%>" >
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumb-tack ic" aria-hidden="true"></i>
+ Toda la Actividad<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                        <%= link_to reports_abiertos_path,:class => "" do %>
+                        <i class="fa fa-search color-gray" aria-hidden="true"></i>
+                        <span class = "color-gray">Reportes</span>
+                        <% end %>
+                        <% end %>
+                     </li>
+              
+               <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                        <%= link_to acciones_abiertas_path,:class => "" do %>
+                        <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
+                        <span class = "color-gray">Acciones</span>
+                        <% end %>
+                        <% end %>
+                     </li>
+
+
+                    
+                      <li><%= link_to mistasks_path,:class => "" do %>
+                      <i class="fa fa-calendar color-gray" aria-hidden="true"></i>
+                        <span class = "color-gray">Mis Tareas</span>
+                        <% end %>
+                     </li>
+          </ul>
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                       <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[5]%>" >
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumb-tack ic" aria-hidden="true"></i>
@@ -125,7 +172,7 @@
                      <li style = "height: 51px; background: #737882;padding: 10px
 " ><p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %> </p></li>
 
-                     <li style = "height: 51px;" > <%= image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)%></li>
+                     <li style = "height: 51px;" > <%= (image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)) if Company.where(user_id: current_user.admin_user).first.logo_url %></li>
 
                      <li class="dropdown">
                         <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
@@ -231,6 +278,53 @@
                <% end %>
             </ul>
             <% end %>
+
+            
+
+          <% if @menum[7] == "active1" %>
+            <ul class="nav nav-tabs" role="tablist">
+               <% menu_acciones 
+                  if show_reports %>
+               
+                <li role="presentation" class="<%=@menu_acc[1]%>">  <%= link_to acciones_abiertas_path,:action => :acciones_todas,:class => "#{@menu_acc[1]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Abiertas</span>
+                  <% end %>
+               </li>
+                <li role="presentation" class="<%=@menu_acc[3]%>">  <%= link_to acciones_cerradas_path,:action => :acciones_todas,:class => "#{@menu_acc[3]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Cerradas</span>
+                  <% end %>
+               </li>
+              <li role="presentation" class="<%=@menu_acc[0]%>">  <%= link_to acciones_todas_path,:action => :acciones_todas,:class => "#{@menu_acc[0]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Todas</span>
+                  <% end %>
+               </li>
+               <% else%>
+               <% end %>
+            </ul>
+            <% end %>
+          
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
             <% if @menum[3] == "active1" %>
             <ul class="nav nav-tabs" role="tablist">
                <% menu_misreports %>

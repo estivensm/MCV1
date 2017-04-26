@@ -1,16 +1,40 @@
 
 
-<div class = "row title-table"><div class = "col-md-12">
+
+
+
+<div class = "row title-table">
+   <div class = "col-md-5">
+      <p>Mis Reportes  <span class="label label-primary"><%=@reports.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @reports, :entry_name => 'Reporte' %></span> </p>
+
+
      
-   <div class = "col-md-10">
-      <p >Mis Reportes (<%=@reports.count%>)</p>
    </div>
-    <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_report_path, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %>
+   <div class = "col-md-5 paginate text-left title-table1">
+     
+<%= will_paginate @reports%>
    </div>
+
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_report_path, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %>
    </div>
-  
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <% if action_name == "index"%>
 <%= (link_to "filtros", misreports_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 <%elsif action_name == "asignado_por_mi"%>

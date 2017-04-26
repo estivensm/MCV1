@@ -1,9 +1,8 @@
 
 
-
 <div class = "row title-table">
    <div class = "col-md-5">
-      <p>Mis Acciones  <span class="label label-primary"><%=@acciones.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @acciones, :entry_name => 'Acciones' %></span> </p>
+      <p><%=@resp%> <span class="label label-primary"><%=@acciones.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @acciones, :entry_name => 'Reporte' %></span> </p>
 
 
      
@@ -13,7 +12,7 @@
 <%= will_paginate @acciones%>
    </div>
 
- 
+
 </div>
 
 
@@ -28,18 +27,16 @@
 
 
 
-<% if action_name == "index"%>
-<%= (link_to "filtros", misacciones_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 
-<%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "filtros", accions_asignados_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "filtros", accions_invitado_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
+
+<%= (link_to "filtros", @route + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 
 
 
 
-<%end%>
+
+
+
 <div class="row busqueda" style = "display:none;">
    <div class="col-md-12">
    <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>

@@ -90,6 +90,10 @@ end
   get 'my_accions/index', as: "misacciones"
    get 'my_accions/asignados', to: "my_accions#asignado_por_mi", as: "accions_asignados"
     get 'my_accions/invitado', to: "my_accions#invitado", as: "accions_invitado"
+
+     get 'accions/acciones_todas', to: "accions#acciones_todas", as: "acciones_todas"
+     get 'accions/acciones_abiertas', to: "accions#acciones_abiertas", as: "acciones_abiertas"
+     get 'accions/acciones_cerradas', to: "accions#acciones_cerradas", as: "acciones_cerradas"
   
   get 'accions_calendar' , to: "my_accions#accions_calendar", as: "accions_calendar"
   get 'tasks_calendar' , to: "my_tasks#tasks_calendar", as: "tasks_calendar"

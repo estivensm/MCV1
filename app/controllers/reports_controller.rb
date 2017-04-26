@@ -373,7 +373,7 @@ end
   # GET /reports/new
   def new
     @report = Report.new
-    @user = Employed.where(email: current_user.email).first
+    @user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     
   end

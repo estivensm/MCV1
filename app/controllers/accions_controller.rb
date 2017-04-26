@@ -46,6 +46,73 @@ class AccionsController < ApplicationController
   
   end
 
+
+  def acciones_todas
+      
+        
+    @accion_search = Accion.where(admin_user:current_user.admin_user)
+    if params[:search]
+      
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+
+    else 
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+
+    end
+
+
+@resp = "Todas las Acciones"
+  @route = acciones_todas_path
+
+  end
+
+  def acciones_abiertas
+      
+        
+    @accion_search = Accion.where(admin_user:current_user.admin_user).abiertas
+    if params[:search]
+      
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+
+    else 
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+
+    end
+
+
+@resp = "Acciones Abiertas"
+  @route = acciones_abiertas_path
+
+  render "acciones_todas"
+
+  end
+
+
+  def acciones_cerradas
+      
+        
+    @accion_search = Accion.where(admin_user:current_user.admin_user).cerradas
+    if params[:search]
+      
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+
+    else 
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+
+    end
+
+
+@resp = "Acciones Cerradas"
+  @route = acciones_cerradas_path
+
+  render "acciones_todas"
+
+  end
+
+
+
+
+
   # GET /accions/new
   def new
      @tipo = params[:tipo]

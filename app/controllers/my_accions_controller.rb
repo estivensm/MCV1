@@ -5,10 +5,10 @@ class MyAccionsController < ApplicationController
     @accion_search = Accion.where(employed_id: @employed.id).abiertas
     if params[:search]
     	
-    	@acciones = @accion_search.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+    	@acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
 
     else 
-    	@acciones = @accion_search.order(created_at: :desc)
+    	@acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
 
@@ -26,10 +26,10 @@ class MyAccionsController < ApplicationController
     @accion_search1 = Accion.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertas
     if params[:search]
       
-      @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
+      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
 
     else 
-     @acciones = @accion_search1.order(created_at: :desc)
+     @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
 
@@ -54,10 +54,10 @@ def invitado
 
     if params[:search]
       
-      @acciones = @accion_search1.search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6]).order(created_at: :desc)
+      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6]).order(created_at: :desc)
 
     else 
-      @acciones = @accion_search1.order(created_at: :desc)
+      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
     

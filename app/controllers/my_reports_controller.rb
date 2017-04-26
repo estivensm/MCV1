@@ -5,10 +5,10 @@ class MyReportsController < ApplicationController
     @report_search1 = Report.where(employed_id: @employed).abiertos
     if params[:search]
 
-    	@reports = @report_search1.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
+    	@reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
 
     else 
-    	@reports = @report_search1.order(created_at: :desc)
+    	@reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
 
@@ -25,10 +25,10 @@ class MyReportsController < ApplicationController
     @report_search1 = Report.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertos
     if params[:search]
       
-      @reports = @report_search1.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
 
     else 
-      @reports = @report_search1.order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
 
@@ -52,10 +52,10 @@ def invitado
     @report_search1 = @employed.reports.abiertos
     if params[:search]
       
-      @reports = @report_search1.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
 
     else 
-      @reports = @report_search1.order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
     

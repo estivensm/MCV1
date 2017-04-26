@@ -1,11 +1,27 @@
 
 
+
+
+
 <div class = "row title-table">
-   <div class = "col-md-12">
-      <p >Mis Tareas (<%=@tasks.count%>)</p>
+   <div class = "col-md-5">
+      <p> Mis Tareas  <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tasks, :entry_name => 'Tareas' %></span> </p>
+
+
+     
    </div>
-  
+   <div class = "col-md-5 paginate text-left title-table1">
+     
+<%= will_paginate @tasks%>
+   </div>
+
+ 
 </div>
+
+
+
+
+
 <% if action_name == "index"%>
 <%= (link_to "filtros", mistasks_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 
