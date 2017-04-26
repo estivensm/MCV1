@@ -104,6 +104,9 @@
          <th style = "width:10%" class="text-left">Codigo</th>
          <th  class="text-left" style = "width:30%">Reporte</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
+         <%if action_name == "cerrados"%>
+          <th style = "width:10%" class="text-left">Entrega</th>
+          <%end%>
          <th style = "width:10%" class="text-left">Fuente</th>
          <th style = "width:10%" class="text-left">Responsable</th>
          <th style = "width:10%" class="text-left">Proceso</th>
@@ -151,8 +154,18 @@
                <%= report.name %>
          </td>
          <td style = "background:<%=estado_contador(report.contador_seg)%>;color:white"><%= get_date(report.f_compromiso)%></td>
+        
+         <%if action_name == "cerrados"%>
+          <td><%= get_date(report.f_real)%> <%= cumplio(report.contador_seg)%></td>
+          <%end%>
+
+
          <td><%= report.source.name %></td>
          <td><%= Employed.find(report.employed_id).first_name %> <%= Employed.find(report.employed_id).first_last_name %></td>
+        
+
+
+
          <td><%= report.proceso.name %></td>
            
         

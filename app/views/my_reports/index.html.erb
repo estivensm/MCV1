@@ -96,6 +96,8 @@
          <th style = "width:10%" class="text-left">Codigo</th>
          <th  class="text-left" style = "width:30%">Reporte</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
+         
+    
          <th style = "width:10%" class="text-left">Fuente</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Proceso</th>
@@ -130,7 +132,7 @@
    
                <%= report.name %>
          </td>
-      <td style = "background:<%=estado_contador(report.contador_seg)%>;color:white"><%= get_date(report.f_compromiso)%></td>
+      <td><%= get_date(report.f_compromiso)%></td>
          
        
          <td><%= report.source.name %></td>
