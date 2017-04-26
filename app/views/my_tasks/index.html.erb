@@ -89,6 +89,7 @@
          <th style = "width:10%" class="text-left">Codigo</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
+         <th style = "width:10%" class="text-left">Entrega</th>
          <th  class="text-left" style = "width:40%">Tarea</th>
 
 
@@ -118,6 +119,8 @@
          <td><%= get_employed(task.user.email).first_name %> <%= get_employed(task.user.email).first_last_name %></td>
      
             <td style = "background:<%=estado_contador(task.contador_seg)%>;color:white"><%= get_date(task.f_compromiso)%></td>
+
+            <td ><%= get_date(task.f_real)%> <%= cumplio(task.contador_seg)%></td>
          <td>
            
                <%= task.name %>
