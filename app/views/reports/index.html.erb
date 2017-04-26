@@ -153,10 +153,10 @@
             
                <%= report.name %>
          </td>
-         <td style = "background:<%=estado_contador(report.contador_seg)%>;color:white"><%= get_date(report.f_compromiso)%></td>
+         <td ><%= get_date(report.f_compromiso)%></td>
         
          <%if action_name == "cerrados"%>
-          <td><%= get_date(report.f_real)%> <%= cumplio(report.contador_seg)%></td>
+          <td><%= get_date(report.f_real)%> <%= cumplio(report.contador_seg.html_safe%></td>
           <%end%>
 
 
