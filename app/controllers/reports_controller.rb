@@ -4,6 +4,28 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   
+
+respond_to :json
+  def get_reportodos
+    @task = Report.where( admin_user: current_user.admin_user).abiertos
+    events = []
+    @task.each do |task|
+      if task.contador_seg > 5
+        @color = "#0db4a0"
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+          @color = "orange"
+      else
+          @color = "#d82c2c"
+    end
+      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+    end
+render :text => events.to_json
+  end 
+
+
+
+
+
   
 respond_to :json
   def get_misreportsc
@@ -191,6 +213,17 @@ def abiertos
 
   
 end
+
+
+def reportst_calendar
+
+  
+
+end
+
+
+
+
 
 def index
 

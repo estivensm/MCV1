@@ -171,7 +171,7 @@ def bootstrap_class_for flash_type
     @menum = ["","", "", "" ,"", "",""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
     @menum = ["active1","", "", "", "", "",""]
-  elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados")) 
+  elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados" ) || (controller.controller_name == "reports" && action_name =="reportst_calendar" ) ) 
     @menum = ["","active1","", "","", "",""]
   elsif controller.controller_name == "my_accions"  
     @menum = ["","","active1", "","", "",""]
@@ -227,16 +227,17 @@ end
 
 def menu_hallazgo
 
-@menu_a = ["","",""]
+@menu_a = ["","","",""]
 if  action_name == "abiertos"
   
-@menu_a = ["active","",""]
+@menu_a = ["active","","", ""]
 elsif action_name  =="cerrados"
   @menu_a = ["","active",""]
-  
+  elsif action_name  =="reportst_calendar"
+  @menu_a = ["","","","active"]
 else
 
-  @menu_a = ["","","active"]
+  @menu_a = ["","","active",""]
 end
  return @menu_a
 

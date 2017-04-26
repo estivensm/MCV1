@@ -221,6 +221,12 @@
                   <span class="hidden-xs">Todos</span>
                   <% end %>
                </li>
+                <li role="presentation" class ="<%=@menu_a[3]%>">     
+                  <%= link_to reportst_calendar_path, :class => "#{@menu_a[3]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Calendar</span>
+                  <% end %>
+               </li>
                <% else%>
                <% end %>
             </ul>

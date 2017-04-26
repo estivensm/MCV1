@@ -8,6 +8,7 @@ resources :reports do
     get :get_invitadoc, on: :collection
     get :get_asignadosc, on: :collection
     get :get_misreportsc, on: :collection
+    get :get_reportodos, on: :collection
          
 
     resources :accions do 
@@ -26,6 +27,7 @@ end
 get 'my_reports/index', as: "misreports"
 get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
 get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
+get 'reportst_calendar' , to: "reports#reportst_calendar", as: "reportst_calendar"
 get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"
 get 'reports/:id/seguimiento', to: "reports#seguimiento", as: "report_seguimientos"
 get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"

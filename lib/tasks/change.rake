@@ -4,7 +4,7 @@ namespace :change do
     #ReportMailer.noty_report(Employed.last, Report.first).deliver_now
     Task.all.each do |task|
             
-            task.codigo = task.codigo[1..5] # new_s = "abcde"
+            task.codigo = "T" +  task.consecutivo # new_s = "abcde"
             task.save
     end
     
