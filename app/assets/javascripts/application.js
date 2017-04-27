@@ -214,6 +214,75 @@ buttonText:{
 
 
 
+$("#calendaratodos").fullCalendar({
+
+    
+
+  height: 700,
+
+    selectable:true,
+    selectHelper:true,
+    editable:true,
+     events: "/reports/get_acciontodosi",
+     timeFormat: "h:mm t{ - h:mm t} ",
+     monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+         dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+    dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+    buttonText: ['Hoy', 'month', 'week', 'day', 'list'],
+header: {
+                left: 'prev,next Hoy',
+                center: 'title',
+                right: 'month,agendaWeek,today'
+            },
+buttonText:{
+    today:    'Hoy',
+    month:    'Mes',
+    week:     'Semana',
+    day:      'Dia',
+    list:     'Lista'
+}
+
+
+
+
+  });
+
+
+$("#calendarttodos").fullCalendar({
+
+    
+
+  height: 700,
+
+    selectable:true,
+    selectHelper:true,
+    editable:true,
+     events: "/reports/get_tasktodos",
+     timeFormat: "h:mm t{ - h:mm t} ",
+     monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+         dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+    dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+    buttonText: ['Hoy', 'month', 'week', 'day', 'list'],
+header: {
+                left: 'prev,next Hoy',
+                center: 'title',
+                right: 'month,agendaWeek,today'
+            },
+buttonText:{
+    today:    'Hoy',
+    month:    'Mes',
+    week:     'Semana',
+    day:      'Dia',
+    list:     'Lista'
+}
+
+
+
+
+  });
+
 
  $(function () {
   $('[data-toggle="popover"]').popover({

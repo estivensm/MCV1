@@ -9,12 +9,16 @@ resources :reports do
     get :get_asignadosc, on: :collection
     get :get_misreportsc, on: :collection
     get :get_reportodos, on: :collection
-         
+        get :get_acciontodosi, on: :collection 
+         get :get_tasktodos, on: :collection 
 
     resources :accions do 
         resources :aseguimientos
         resources :riesgos
         get :get_misaccionsc, on: :collection
+        get :get_acciontodos, on: :collection
+
+
     end
     resources :tasks do 
           get :get_tasksc, on: :collection
@@ -94,9 +98,17 @@ end
      get 'accions/acciones_todas', to: "accions#acciones_todas", as: "acciones_todas"
      get 'accions/acciones_abiertas', to: "accions#acciones_abiertas", as: "acciones_abiertas"
      get 'accions/acciones_cerradas', to: "accions#acciones_cerradas", as: "acciones_cerradas"
+     get 'accions/acciones_calendar', to: "accions#acciones_calendar", as: "acciones_calendar"
   
   get 'accions_calendar' , to: "my_accions#accions_calendar", as: "accions_calendar"
   get 'tasks_calendar' , to: "my_tasks#tasks_calendar", as: "tasks_calendar"
+
+
+
+  get 'tasks/tasks_todas', to: "tasks#tasks_todas", as: "tasks_todas"
+     get 'tasks/tasks_abiertas', to: "tasks#tasks_abiertas", as: "tasks_abiertas"
+     get 'tasks/tasks_cerradas', to: "tasks#tasks_cerradas", as: "tasks_cerradas"
+   get 'taskst_calendar' , to: "tasks#taskst_calendar", as: "taskst_calendar"
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   
   

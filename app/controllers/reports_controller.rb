@@ -23,6 +23,40 @@ render :text => events.to_json
   end 
 
 
+respond_to :json
+  def get_acciontodosi
+    @task4 = Accion.where( admin_user: current_user.admin_user).abiertas
+    events = []
+    @task4.each do |task4|
+      if task4.contador_seg > 5
+        @color4 = "#0db4a0"
+      elsif task4.contador_seg <= 5 && task4.contador_seg >= 0
+          @color4 = "orange"
+      else
+          @color4 = "#d82c2c"
+    end
+      events << {:id => task4.id, :title => "#{task4.name} ", :start => "#{task4.f_compromiso}" , :color => "#{@color4}", :url =>"reports/#{task4.report_id}/accions/#{task4.id}"}
+    end
+        render :text => events.to_json
+  end 
+
+respond_to :json
+  def get_tasktodos
+    @task5 = Task.where( admin_user: current_user.admin_user).abiertas
+    events = []
+    @task5.each do |task5|
+      if task5.contador_seg > 5
+        @color5 = "#0db4a0"
+      elsif task5.contador_seg <= 5 && task5.contador_seg >= 0
+          @color5 = "orange"
+      else
+          @color5 = "#d82c2c"
+    end
+      events << {:id => task5.id, :title => "#{task5.name} ", :start => "#{task5.f_compromiso}" , :color => "#{@color5}", :url =>"reports/#{task5.report_id}/accions/#{task5.id}"}
+    end
+        render :text => events.to_json
+  end 
+
 
 
 

@@ -3,6 +3,31 @@ class AccionsController < ApplicationController
 
   # GET /accions
   # GET /accions.json
+ 
+
+respond_to :json
+  def get_acciontodos
+    @task = Accion.where( admin_user: current_user.admin_user).abiertas
+    events = []
+    @task.each do |task|
+      if task.contador_seg > 5
+        @color = "#0db4a0"
+      elsif task.contador_seg <= 5 && task.contador_seg >= 0
+          @color = "orange"
+      else
+          @color = "#d82c2c"
+    end
+      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task.report_id}/accions/#{task.id}"}
+    end
+        render :text => events.to_json
+  end 
+
+
+
+
+
+
+
   def index
     @tipo = "Accion"
     @report = Report.find(params[:report_id]) 
@@ -101,6 +126,8 @@ class AccionsController < ApplicationController
 
     end
 
+   
+
 
 @resp = "Acciones Cerradas"
   @route = acciones_cerradas_path
@@ -110,7 +137,11 @@ class AccionsController < ApplicationController
   end
 
 
+ def acciones_calendar
 
+
+
+    end
 
 
   # GET /accions/new

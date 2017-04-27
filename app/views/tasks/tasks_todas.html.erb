@@ -1,0 +1,311 @@
+
+
+
+
+
+<div class = "row title-table">
+   <div class = "col-md-5">
+      <p> <%=@nombre%> <span class="label label-primary"><%=@tasks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @tasks, :entry_name => 'Tareas' %></span> </p>
+
+
+     
+   </div>
+   <div class = "col-md-5 paginate text-left title-table1">
+     
+<%= will_paginate @tasks%>
+   </div>
+
+ 
+</div>
+
+
+
+
+
+
+<%= (link_to "filtros", @route + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
+
+<div class="row busqueda" style = "display:none;">
+   <div class="col-md-12">
+   <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
+<%= text_field_tag :search0, params[:search0], placeholder: "Fecha Desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "Fecha Hasta",class: "form-control datepicker1 shi1 sh00" %>
+<script>
+   $(function() {
+   $.datepicker.regional['es'] = {
+   closeText: 'Cerrar',
+   prevText: '< Ant',
+   nextText: 'Sig >',
+   currentText: 'Hoy',
+   monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+   monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+   dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+   dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+   dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+   weekHeader: 'Sm',
+   dateFormat: 'dd/mm/yy',
+   firstDay: 1,
+   isRTL: false,
+   showMonthAfterYear: false,
+   yearSuffix: ''
+   };
+   $.datepicker.setDefaults($.datepicker.regional['es']);
+   $('.datepicker').datepicker({
+     altField: "#actualDate",
+     changeMonth: true,
+     changeYear: true,
+     dateFormat: 'mm-dd-yy'
+   });
+   $.datepicker.setDefaults($.datepicker.regional['es']);
+   $('.datepicker1').datepicker({
+     altField: "#actualDate",
+     changeMonth: true,
+     changeYear: true,
+      dateFormat: 'mm-dd-yy'
+   });
+   
+   });
+   
+   
+</script>
+
+
+
+<%= text_field_tag :search5, params[:search5], placeholder: "Nombre", class: "form-control shi sh3" %>
+<!--<%= select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true } %>-->
+<%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
+<% end %>
+   </div>
+</div>
+
+<div class = "row">
+<% if action_name == "index"%>
+<%= (link_to "Cancelar filtros", mistasks_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+<%elsif action_name == "asignado_por_mi"%>
+<%= (link_to "Cancelar filtros", tasks_asignados_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+
+<%end%>
+
+<hr>
+
+
+
+
+
+<table class="table table">
+   <thead>
+      <tr class = "tr-table">
+ 
+      
+         
+           <th style = "width:2%"  ></th>
+         <th style = "width:10%" class="text-left">F Creacion</th>
+         <th style = "width:10%" class="text-left">Codigo</th>
+         <th style = "width:10%" class="text-left">Me Asigno</th>
+         <th style = "width:10%" class="text-left">Compromiso</th>
+         <th  class="text-left" style = "width:40%">Tarea</th>
+
+
+         
+         
+        
+      </tr>
+   </thead>
+   <tbody>
+    <% @tasks.each do |task| 
+      
+      report = Report.find(task.report_id)%>
+      <tr>
+       
+
+
+<td><%if task.estado == false  %>
+         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+         <%else%>
+         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+         <%end%></td>
+         <td><%= get_date(task.created_at) %></td>
+          <td><%= link_to "#{task.codigo}", report_tasks_path(report,task), :class => "linka"  %></td>
+      
+        
+       
+         <td><%= get_employed(task.user.email).first_name %> <%= get_employed(task.user.email).first_last_name %></td>
+     
+            <td style = "background:<%=estado_contador(task.contador_seg)%>;color:white"><%= get_date(task.f_compromiso)%></td>
+         <td>
+           
+               <%= task.name %>
+         </td>
+        </tr>
+        <% end %>
+   </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).on('turbolinks:load',function() {
+   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+   {
+ $('.busqueda').show();
+ $('.canf').show();
+ $('.canf1').hide();
+
+   }
+   else
+   {
+    $('.busqueda').hide();
+     $('.canf1').show();
+
+   }
+
+     
+
+ });
+
+      
+   
+</script>
+<script>
+   $(document).on('turbolinks:load',function() {
+   
+      
+     /*$(".sh1").imagepicker({
+                  hide_select : true,
+                  show_label: true
+          
+      })*/
+      
+   
+      $('.sh').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '150px',
+            placeholder_text_single: "Tipo",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+   
+      $('.sh4').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '150px',
+            placeholder_text_single: "Estado",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+     
+      
+     
+   
+      $('.sh1').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '150px',
+            placeholder_text_single: "Responsable",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+      
+     
+      
+      $('.sh2').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '150px',
+            placeholder_text_single: "Tipo",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+    $('.chosen-container span').addClass("shi") ;
+     }); 
+   $('.sh').val("<%=params[:search2]%>") ;
+    $('.sh2').val("<%=params[:search4]%>") ;
+      $('.sh3').val("<%=params[:search5]%>") ;
+       $('.sh1').val("<%=params[:search3]%>") ;
+      $('.sh4').val("<%=params[:search6]%>") ;
+      $('.sh0').val("<%=params[:search0]%>") ;
+      $('.sh00').val("<%=params[:search]%>") ;
+      
+     
+      /*$('.filtrost').hide();
+      if ("<%=params[:commit]%>" != "")
+      {
+      $('.filtrost').fadeIn();
+      $('.filtros1').fadeOut();
+      }
+      
+      $('.filtros1').click(function(){
+      
+      $('.filtrost').fadeIn();
+      $('.filtros1').fadeOut();
+      
+      });*/
+      
+      
+      
+      
+</script>
+<style>
+   .shi
+   {
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   }
+   .shi1
+   {
+   width: 60px;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+   text-align: center;
+   }
+   .busqueda
+   {
+        display: block;
+    padding: 10px;
+    background: #e8e8e8;
+   }
+   .ball img
+   {
+    width: 30px;
+   }
+</style>
+
+
+
+<style>
+  .seg
+  {
+   
+    padding: 10px;
+    color: gray;
+    
+    border: 1px solid #cecece;
+  font-size: 13px !important;
+     -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 0.3s;    border-bottom: 3px solid #ababab
+  }
+  .seg:hover
+  {
+  
+    box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+  }
+</style>

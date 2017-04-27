@@ -168,24 +168,29 @@ def bootstrap_class_for flash_type
 
 
   def menu
-    @menum = ["","", "", "" ,"", "","",""]
+    @menum = ["","", "", "" ,"", "","","",""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
-    @menum = ["active1","", "", "", "", "",""]
+    @menum = ["active1","", "", "", "", "","",""]
   elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados" ) || (controller.controller_name == "reports" && action_name =="reportst_calendar" ) ) 
-    @menum = ["","active1","", "","", "","",""]
+    @menum = ["","active1","", "","", "","","",""]
   elsif controller.controller_name == "my_accions"  
-    @menum = ["","","active1", "","", "","",""]
+    @menum = ["","","active1", "","", "","","",""]
      elsif controller.controller_name == "my_reports"  
     @menum = ["","","", "active1","", "","",""]
     elsif controller.controller_name == "dashboard"  
-    @menum = ["","","","", "active1", "","",""]
+    @menum = ["","","","", "active1", "","","",""]
   elsif controller.controller_name == "my_tasks"  
-    @menum = ["","","", "","","active1","",""]
+    @menum = ["","","", "","","active1","","",""]
       elsif controller.controller_name == "companies" && action_name = "company_indicators"  
-    @menum = ["","","", "","","","active1",""]
+    @menum = ["","","", "","","","active1","",""]
   elsif controller.controller_name == "accions" && (action_name = "acciones_todas" || action_name = "acciones_abiertas" || action_name = "acciones_cerradas")   
-    @menum = ["","","", "","","","","active1"]
+    @menum = ["","","", "","","","","active1",""]
+
+     elsif controller.controller_name == "tasks" && (action_name = "tasks_todas" || action_name = "tasks_abiertas" || action_name = "tasks_cerradas")   
+    @menum = ["","","", "","","","","","active1"]
   end
+
+
   return @menum
   end
 
@@ -263,6 +268,25 @@ else
   @menu_acc = ["","","active",""]
 end
  return @menu_acc
+
+ end 
+
+
+ def menu_tareas
+
+@menu_tar = ["","","",""]
+if  action_name == "tasks_todas"
+  
+@menu_tar = ["active","","", ""]
+elsif action_name  =="tasks_abiertas"
+  @menu_tar = ["","active",""]
+  elsif action_name  =="tasks_cerradas"
+  @menu_tar = ["","","","active"]
+else
+
+  @menu_tar = ["","","active",""]
+end
+ return @menu_tar
 
  end 
 

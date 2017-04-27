@@ -3,6 +3,79 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
+ 
+def tasks_todas
+@tasks_search1 = Task.where(admin_user: current_user.admin_user)
+    if params[:search]
+        
+        @tasks = @tasks_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search5]).order(created_at: :desc)
+
+    else 
+        @tasks = @tasks_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+
+    end
+@route = tasks_todas_path
+
+@nombre = "Todas las Tareas"
+
+end
+
+def tasks_abiertas
+
+@tasks_search1 = Task.where(admin_user: current_user.admin_user).abiertas
+    if params[:search]
+        
+        @tasks = @tasks_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search5]).order(created_at: :desc)
+
+    else 
+        @tasks = @tasks_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+
+    end
+@route = tasks_abiertas_path
+
+@nombre = "Tarea Abiertas"
+render "tasks_todas"
+end
+
+
+def tasks_cerradas
+@tasks_search1 = Task.where(admin_user: current_user.admin_user).cerradas
+    if params[:search]
+        
+        @tasks = @tasks_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search5]).order(created_at: :desc)
+
+    else 
+        @tasks = @tasks_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+
+    end
+@route = tasks_cerradas_path
+@nombre = "Tareas Cerradas"
+render "tasks_todas"
+end
+
+
+def taskst_calendar
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   def index
     @report = Report.find(params[:report_id])
     @tasks_all = @report.tasks
