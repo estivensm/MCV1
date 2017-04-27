@@ -29,7 +29,13 @@ resources :reports do
 end
 
 get 'my_reports/index', as: "misreports"
+get 'my_reports/mis_reports_cerrados', to: "my_reports#mis_reports_cerrados", as: "mis_reports_cerrados"
+
 get 'my_reports/asignados', to: "my_reports#asignado_por_mi", as: "reports_asignados"
+get 'my_reports/asignados_cerrados', to: "my_reports#asignados_cerrados", as: "asignados_cerrados"
+
+
+
 get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
 get 'reportst_calendar' , to: "reports#reportst_calendar", as: "reportst_calendar"
 get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"
@@ -53,7 +59,9 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
 
   get 'home/index'
   get 'my_tasks/index' , as: "mistasks"
+  get 'my_tasks/mytask_cerradas', to: "my_tasks#mytask_cerradas", as: "mytask_cerradas"
   get 'my_tasks/asignados', to: "my_tasks#asignado_por_mi", as: "tasks_asignados"
+  get 'my_tasks/mytask_asignadas_cerradas', to: "my_tasks#mytask_asignadas_cerradas", as: "mytask_asignadas_cerradas"
 
   get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
   get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
@@ -92,6 +100,9 @@ end
 
   resources :rols
   get 'my_accions/index', as: "misacciones"
+    get 'my_accions/myaccions_cerradas', to: "my_accions#myaccions_cerradas", as: "myaccions_cerradas"
+
+  get 'my_accions/myaccions_asignadas_cerradas', to: "my_accions#myaccions_asignadas_cerradas", as: "myaccions_asignadas_cerradas"
    get 'my_accions/asignados', to: "my_accions#asignado_por_mi", as: "accions_asignados"
     get 'my_accions/invitado', to: "my_accions#invitado", as: "accions_invitado"
 

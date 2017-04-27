@@ -300,7 +300,7 @@ end
  def menu_misreports
 
 @menu_ma = ["","","",""]
-if  controller_name == "my_reports" && action_name == "asignado_por_mi"
+if  controller_name == "my_reports" && (action_name == "asignado_por_mi" || action_name == "asignados_cerrados")
   
 @menu_ma = ["active","", "",""]
  
@@ -308,7 +308,7 @@ if  controller_name == "my_reports" && action_name == "asignado_por_mi"
 @menu_ma = ["","","active",""] 
  elsif controller_name == "my_reports" &&  action_name == "reports_calendar"
 @menu_ma = ["","","", "active"]   
-elsif controller_name == "my_reports" &&  action_name == "index"
+elsif controller_name == "my_reports" &&  (action_name == "index" || action_name == "mis_reports_cerrados")
 
   @menu_ma = ["","active","",""]
 
@@ -322,14 +322,14 @@ end
    def menu_misaccions
 
 @menu_mac = ["","","",""]
-if  controller_name == "my_accions" && action_name == "asignado_por_mi"
+if  controller_name == "my_accions" && (action_name == "asignado_por_mi" ||  action_name == "myaccions_asignadas_cerradas")
   
 @menu_mac = ["active","", "",""]
  
  elsif controller_name == "my_accions" && action_name == "invitado"
 @menu_mac = ["","","active",""] 
   
-elsif controller_name == "my_accions" &&  action_name == "index"
+elsif controller_name == "my_accions" &&  (action_name == "index" || action_name == "myaccions_cerradas")
 
   @menu_mac = ["","active","",""]
 
@@ -342,13 +342,13 @@ end
   def menu_mistasks
 
 @menu_tak = ["",""]
-if  controller_name == "my_tasks" && action_name == "asignado_por_mi"
+if  controller_name == "my_tasks" && (action_name == "asignado_por_mi" || action_name == "mytask_asignadas_cerradas")
   
 @menu_tak = ["active",""]
  
  
   
-elsif controller_name == "my_tasks" &&  action_name == "index"
+elsif controller_name == "my_tasks" && ( action_name == "index" || action_name == "mytask_cerradas")
 
   @menu_tak = ["","active","",""]
 

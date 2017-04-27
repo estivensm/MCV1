@@ -1,11 +1,22 @@
 
+<%if action_name == "index" || action_name == "mis_reports_cerrados"%>
+
+<p><%=link_to   misreports_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> Abiertos<%end%> / 
+  <%=link_to  mis_reports_cerrados_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerrados<%end%>
+</p>
+
+<%elsif action_name == "asignado_por_mi" || action_name == "asignados_cerrados"%>
+<p><%=link_to   reports_asignados_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> Abiertos<%end%> / 
+  <%=link_to  asignados_cerrados_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerrados<%end%>
+</p>
 
 
+<%end%>
 
 
 <div class = "row title-table">
-   <div class = "col-md-5">
-      <p>Mis Reportes  <span class="label label-primary"><%=@reports.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @reports, :entry_name => 'Reporte' %></span> </p>
+   <div class = "col-md-7">
+      <p><%=@resp%>  <span class="label label-primary"><%=@reports.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @reports, :entry_name => 'Reporte' %></span> </p>
 
 
      
@@ -15,9 +26,7 @@
 <%= will_paginate @reports%>
    </div>
 
-   <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_report_path, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %>
-   </div>
+
 </div>
 
 
@@ -35,13 +44,9 @@
 
 
 
-<% if action_name == "index"%>
-<%= (link_to "filtros", misreports_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-<%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "filtros", reports_asignados_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "filtros", invitado_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-<%end%>
+
+<%= (link_to "filtros", @route + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
+
 <div class="row busqueda" style = "display:none;">
    <div class="col-md-12">
    <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
@@ -84,9 +89,9 @@
    
    
 </script>
-<%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh filter", include_blank: true , placeholder: "hola"}%>
+<%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sht filter", include_blank: true , placeholder: "hola"}%>
 
-<%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2 filter shi", include_blank: true , placeholder: "hola"}%>
+<%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2t filter shi", include_blank: true , placeholder: "hola"}%>
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
 <!--<%= select_tag "search6", options_for_select(["","Abiertos", "Cerrados" ] ), {class: "form-control shi sh4 ", include_blank: true } %>-->
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
@@ -120,7 +125,10 @@
          <th style = "width:10%" class="text-left">Codigo</th>
          <th  class="text-left" style = "width:30%">Reporte</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
-        
+        <%if action_name == "mis_reports_cerrados" || action_name == "asignados_cerrados"%>
+          <th style = "width:10%" class="text-left">Entrega</th>
+          <th style = "width:5%" class="text-left">¿Cumplio?</th>
+          <%end%>
          <th style = "width:10%" class="text-left">Fuente</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Proceso</th>
@@ -155,8 +163,36 @@
    
                <%= report.name %>
          </td>
-      <td style = "background:<%=estado_contador(report.contador_seg)%>;color:white"><%= get_date(report.f_compromiso)%></td>
-          
+     
+
+
+
+
+     <%if action_name == "mis_reports_cerrados" || action_name == "asignados_cerrados"%>
+           <td  ><%= get_date(report.f_compromiso)%></td>
+           <%else%>
+ <td  style = "background:<%=estado_contador(report.contador_seg)%>;color:white" ><%= get_date(report.f_compromiso)%></td>
+          <%end%>
+
+
+
+
+
+
+         <%if action_name == "mis_reports_cerrados" || action_name == "asignados_cerrados"%>
+          <td><%= get_date(report.f_real)%> </td>
+           <td class="text-center"><%= cumplio(report.contador_seg).html_safe if report.state == "Cerrado"%></td>
+          <%end%>
+
+
+
+
+
+
+
+
+
+
          <td><%= report.source.name %></td>
          <td><%= Employed.find(report.employed_reporta).first_name %> <%= Employed.find(report.employed_reporta).first_last_name %></td>
          <td><%= report.proceso.name %></td>
@@ -241,7 +277,7 @@
       
       
    
-      $('.sh').chosen(
+      $('.sht').chosen(
           {
       
             allow_single_deselect: true,
@@ -279,7 +315,7 @@
       
      
       
-      $('.sh2').chosen(
+      $('.sh2t').chosen(
           {
       
             allow_single_deselect: true,
