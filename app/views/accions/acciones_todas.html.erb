@@ -117,7 +117,11 @@
          <th style = "width:10%" class="text-left">Codigo</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
-         <th  class="text-left" style = "width:40%">Accion</th>
+          <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
+         <th  class="text-left" style = "width:10%">Entrega</th>
+         <th style = "width:5%" class="text-left">¿Cumplio?</th>
+         <%end%>
+          <th  class="text-left" style = "width:40%">Accion</th>
          <th  class="text-left">Seg</th>
 
          
@@ -145,8 +149,25 @@
        
          <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
      
-            <td style = "background:<%=estado_contador(accion.contador_seg)%>;color:white"><%= get_date(accion.f_compromiso)%></td>
-         <td>
+
+ <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
+           <td  ><%= get_date(accion.f_compromiso)%></td>
+           <%else%>
+ <td  style = "background:<%=estado_contador(accion.contador_seg)%>;color:white" ><%= get_date(accion.f_compromiso)%></td>
+          <%end%>
+
+
+          <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
+          <td><%= get_date(accion.f_real)%> </td>
+           <td class="text-center"><%= cumplio(accion.contador_seg).html_safe if accion.estado == "Cerrada"%></td>
+          <%end%>
+
+
+
+
+
+
+             <td>
            
                <%= accion.name %>
          </td>
