@@ -143,7 +143,7 @@
 
           <%if action_name == "tasks_cerradas" || action_name == "tasks_todas" %>
           <td><%= get_date(task.f_real)%> </td>
-           <td class="text-center"><%= cumplio(task.contador_seg).html_safe if task.estado %></td>
+           <td class="text-center"><%= cumplio(task.contador_seg).html_safe if task.estado %> <%= task.contador_seg%></td>
           <%end%>
          <td>
            
