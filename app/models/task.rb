@@ -84,7 +84,7 @@ class Task < ApplicationRecord
  if self.estado
 
           
-            self.f_compromiso >= Time.now ? (self.cumplio = true) : (self.cumplio = false)
+            self.f_compromiso >= Time.now.to_date ? (self.cumplio = true) : (self.cumplio = false)
             self.f_real = Time.now
            
             

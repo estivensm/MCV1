@@ -44,7 +44,7 @@ end
 
 def cumplio(state)
 
-  state >= 1 ? a = "<i class='fa fa-thumbs-o-up' aria-hidden='true' style = 'color:green;font-size:20px;margin-left:5px'></i>" : a = "<i class='fa fa-thumbs-o-down' aria-hidden='true' style = 'color:red;font-size:20px;margin-left:5px'></i>"
+  state >= 0 ? a = "<i class='fa fa-thumbs-o-up' aria-hidden='true' style = 'color:green;font-size:20px;margin-left:5px'></i>" : a = "<i class='fa fa-thumbs-o-down' aria-hidden='true' style = 'color:red;font-size:20px;margin-left:5px'></i>"
   
 end
 
@@ -451,7 +451,7 @@ def estado_contador(cont)
     if cont >5 
 
       "#0db497 !important"
-    elsif cont <=5 && cont >= 1
+    elsif cont <=5 && cont >= 0
 
       if action_name != "cerrados"
 

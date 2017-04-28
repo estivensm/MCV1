@@ -105,8 +105,10 @@
          <%if action_name == "tasks_cerradas" || action_name == "tasks_todas" %>
          <th  class="text-left" style = "width:10%">Entrega</th>
          <th style = "width:5%" class="text-left">¿Cumplio?</th>
+         
          <%end%>
-         <th  class="text-left" style = "width:40%">Tarea</th>
+         <th style = "width:5%" class="text-center">Días</th>
+         <th  class="text-left" style = "width:40%">Contador</th>
 
 
          
@@ -143,8 +145,10 @@
 
           <%if action_name == "tasks_cerradas" || action_name == "tasks_todas" %>
           <td><%= get_date(task.f_real)%> </td>
-           <td class="text-center"><%= cumplio(task.contador_seg).html_safe if task.estado %> <%= task.contador_seg%></td>
+           <td class="text-center"><%= cumplio(task.contador_seg).html_safe if task.estado %> </td>
+           
           <%end%>
+          <td class="text-center"> <%= task.contador_seg%>  <%= task.cumplio%></td>
          <td>
            
                <%= task.name %>
