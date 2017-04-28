@@ -95,17 +95,17 @@ namespace :email do
         time =  times.to_i - Time.now.to_i
         task.contador_seg = (time / 60 / 60/ 24) + 1
         task.save
-        
+        puts task.contador_seg
 
-        if task.contador_seg < 5 && task.contador_seg > 1
+        if task.contador_seg < 5 && task.contador_seg > 0
             
            AlertaMailer.vencimiento_task(employed,task,"proxima").deliver
             
-        elsif task.contador_seg < 1
+        elsif task.contador_seg < 0
 
            AlertaMailer.vencimiento_task(employed,task, "vencida").deliver
 
-        elsif task.contador_seg == 1
+        elsif task.contador_seg == 0
 
             AlertaMailer.vencimiento_task(employed,task, "hoy").deliver
 

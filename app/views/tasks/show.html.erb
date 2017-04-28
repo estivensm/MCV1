@@ -1,79 +1,58 @@
-<p id="notice"><%= notice %></p>
+<%task = @task%>
 
-<p>
-  <strong>User:</strong>
-  <%= @task.user_id %>
-</p>
+<%= link_to "Tareas del Reporte", report_tasks_path(@report), class:"linka"%>
+<div style="padding:20px">
+  
 
-<p>
-  <strong>Admin user:</strong>
-  <%= @task.admin_user %>
-</p>
+    <div class="conteinter reporte cnt">
+      <div class="row rtr">
+      <div class="col-md-12 rtd" style = "    font-size: 16px;
+            color: gray;"><%=  task.report.codigo  %>-<%=  task.codigo  %><hr></div>
+          <div class="col-md-9 rtd text-left" style = "    padding: 5px !important;
+            padding-left: 17px !important;font-size:13px; font-weight: 100;"><strong >Tarea:</strong> <%= task.name %></div>
+          <%= render 'form_close', task: task %>
+          <div class="col-md-3 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
+            padding-bottom: 0px !important;   padding-right: 40px !important;"> 
+            <%= link_to  edit_report_task_path(@report,task) + "?tipo=do",remote:true, :class => "opciones" do %>
+           <i class="fa fa-thumb-tack" aria-hidden="true"></i>
 
-<p>
-  <strong>Employed:</strong>
-  <%= @task.employed_id %>
-</p>
-
-<p>
-  <strong>Report:</strong>
-  <%= @task.report_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
-
-<p>
-  <strong>Observacion:</strong>
-  <%= @task.observacion %>
-</p>
-
-<p>
-  <strong>Costo:</strong>
-  <%= @task.costo %>
-</p>
-
-<p>
-  <strong>F compromiso:</strong>
-  <%= @task.f_compromiso %>
-</p>
-
-<p>
-  <strong>F real:</strong>
-  <%= @task.f_real %>
-</p>
-
-<p>
-  <strong>Estado:</strong>
-  <%= @task.estado %>
-</p>
-
-<p>
-  <strong>Cumplio:</strong>
-  <%= @task.cumplio %>
-</p>
-
-<p>
-  <strong>Contador:</strong>
-  <%= @task.contador %>
-</p>
-
-<p>
-  <strong>Contador seg:</strong>
-  <%= @task.contador_seg %>
-</p>
-
-<p>
-  <strong>Anexo:</strong>
-  <%= @task.anexo %>
-</p>
-
-<p>
-  <strong>Codigo:</strong>
-  <%= @task.codigo %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+            <% end %>
+            <% if current_user.id == task.user_id%>
+            <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to  report_task_path(@report,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+            <% end %>
+          </div>
+          <div class="col-md-12 rtd text-left" style = "    padding: 5px !important;
+            padding-left: 17px !important;font-size:13px;font-weight: 100;"><strong >Comentarios: </strong><%= task.observacion %></div>
+          <div class="col-md-4 rtd text-left" style = "    padding: 5px !important;
+            padding-left: 17px !important;font-size:13px;"><strong><i class="fa fa-paperclip" aria-hidden="true"></i> Anexo: <%= (link_to task.anexo.file.name,task.anexo_url, class:"linka") if task.anexo_url %>
+          </div>
+      </div>
+      <hr class="hr">
+      <div class="row rtr">
+          <div class="col-md-4 rtd">
+            <strong><i class="fa fa-user" aria-hidden="true"> </i> Responsable :
+            </strong> <%  
+                employed = Employed.find(task.employed_id)
+                %>
+            <td  class = "imaacc">
+            
+                <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+          </div>
+          <%color = ""
+            task.contador_seg < 0 ?  color = "#d82c2c" : color = "#0db4a0"%>
+          <div class="col-md-3 rtd" ><strong><i class="fa fa-calendar" aria-hidden="true"></i>  Fecha de Compromiso:
+          </strong> <%=  get_date(task.f_compromiso)  %></div>
+          <div class="col-md-3 rtd" ><strong><strong>
+          </strong><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha de Entrega: 
+          <%=  get_date(task.f_real)  %> <%= cumplio(task.contador_seg).html_safe%></div>
+          <div class="col-md-2 rtd" style = "    font-size: 12px;
+            color: gray;"></div>
+      </div>
+    </div>
+    <%if task.estado && !task.cumplio %><button style = "margin-left:50px" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#task_change_state">¿Cumplio?</button><%end%>
+</div>

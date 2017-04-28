@@ -249,3 +249,11 @@ label
     color:#969696  !important;
     font-size:13px;
   }
+
+  .tip
+{
+  padding: 0px 4px;
+    background: orange;
+    color: white;
+    border: none;
+}

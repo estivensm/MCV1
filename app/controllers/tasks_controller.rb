@@ -53,6 +53,15 @@ def tasks_cerradas
 render "tasks_todas"
 end
 
+ def task_change_state
+   
+    @task= Task.find(params[:task])
+     @report = Report.find(@task.report_id)
+    if @task.update(justificacion_cumplio: params[:justificacion_cumplio], cumplio: params[:cumplio] , change_cumplio: params[:cumplio])
+    redirect_to report_tasks_path(@report)
+  end
+
+end
 
 def taskst_calendar
 
@@ -92,6 +101,7 @@ end
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @report = Report.find(params[:report_id]) 
   end
 
   # GET /tasks/new

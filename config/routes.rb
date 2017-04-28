@@ -120,6 +120,9 @@ end
      get 'tasks/tasks_abiertas', to: "tasks#tasks_abiertas", as: "tasks_abiertas"
      get 'tasks/tasks_cerradas', to: "tasks#tasks_cerradas", as: "tasks_cerradas"
    get 'taskst_calendar' , to: "tasks#taskst_calendar", as: "taskst_calendar"
+   
+
+
   get 'set_cargos/:id', to: "cargos#set_cargos", as: "set_cargos"
   
   

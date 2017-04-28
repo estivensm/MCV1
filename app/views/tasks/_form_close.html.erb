@@ -1,0 +1,42 @@
+<div id="task_change_state" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Cumplio</h4>
+      </div>
+<%= form_tag task_change_state_path do %>
+  <div class="alert alert-danger" style="display:none;padding: 10px;">
+    <ul>
+    
+    </ul>
+  </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+    <%= label_tag "Justificacion" %>
+    <%= text_area_tag :justificacion_cumplio,nil , class: "form-control formus" %>
+  </div>
+
+<div style = "background:whitesmoke;color:gray;">
+ 
+  </div>
+
+<%= hidden_field_tag :task , task.id %>
+<%= hidden_field_tag :cumplio , true %>
+
+
+ 
+<br>
+
+      <div class="modal-footer text-center">
+       
+        <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+<% end %>
+
+    </div>
+  </div>
+</div>
+</div>

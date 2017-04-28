@@ -54,6 +54,8 @@
            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
 
             <% end %>
+            <%= link_to  report_task_path(@report,task), :class => "opciones" do %>
+            <i class="fa fa-eye" aria-hidden="true"></i><%end%>
             <% if current_user.id == task.user_id%>
             <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -61,7 +63,8 @@
              
             <%= link_to  report_task_path(@report,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
-            <% end %><% end %>
+
+            <% end %> <% end %>
          </div>
       </div>
       <hr class="hr">
@@ -109,9 +112,11 @@
          <div class="col-md-9 rtd text-left" style = "    padding: 5px !important;
             padding-left: 17px !important;font-size:13px; font-weight: 100;"><strong >Tarea:</strong> <%= task.name %></div>
 
-
+                
          <div class="col-md-3 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
             padding-bottom: 0px !important;   padding-right: 40px !important;"> 
+                 <%= link_to  report_task_path(@report,task), :class => "opciones" do %>
+            <i class="fa fa-eye" aria-hidden="true"></i>
               <% if current_user.id == task.user_id%>
             <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -121,6 +126,8 @@
             <i class="fa fa-trash" aria-hidden="true"></i>
             <% end %>
                  <% end %>
+             
+            <% end %>
          </div>
 
           <div class="col-md-9 rtd text-left" style = "    padding: 5px !important;
@@ -144,12 +151,14 @@
          </strong> <%=  get_date(task.f_compromiso)  %></div>
          <div class="col-md-3 rtd" ><strong><strong>
          </strong><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-     <%=  get_date(task.f_real)  %> <%= cumplio(task.contador_seg).html_safe%></div>
+     <%=  get_date(task.f_real)  %> <%= cumplio(task.cumplio).html_safe%></div>
          <div class="col-md-2 rtd" style = "    font-size: 12px;
             color: gray;"><%=  task.codigo  %></div>
       </div>
    </div>
 <% end %>
+
+
 </div>
 <style>
 .imaacc img

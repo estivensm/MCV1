@@ -2,24 +2,26 @@
 #
 # Table name: tasks
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  admin_user   :integer
-#  employed_id  :integer
-#  report_id    :integer
-#  name         :string
-#  observacion  :text
-#  costo        :integer
-#  f_compromiso :date
-#  f_real       :date
-#  estado       :boolean
-#  cumplio      :boolean
-#  contador     :integer
-#  contador_seg :integer
-#  anexo        :string
-#  codigo       :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                    :integer          not null, primary key
+#  user_id               :integer
+#  admin_user            :integer
+#  employed_id           :integer
+#  report_id             :integer
+#  name                  :string
+#  observacion           :text
+#  costo                 :integer
+#  f_compromiso          :date
+#  f_real                :date
+#  estado                :boolean
+#  cumplio               :boolean
+#  contador              :integer
+#  contador_seg          :integer
+#  anexo                 :string
+#  codigo                :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  change_cumplio        :boolean
+#  justificacion_cumplio :text
 #
 
 class Task < ApplicationRecord
@@ -81,7 +83,7 @@ class Task < ApplicationRecord
   def cerrar_task
 
 
- if self.estado
+ if self.estado 
 
           
             self.f_compromiso >= Time.now.to_date ? (self.cumplio = true) : (self.cumplio = false)
@@ -90,6 +92,12 @@ class Task < ApplicationRecord
             
           
     end
+
+
+ if self.change_cumplio
+ 
+      self.cumplio = true
+ end   
        
   end
 
