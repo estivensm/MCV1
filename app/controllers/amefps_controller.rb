@@ -1,4 +1,5 @@
 class AmefpsController < ApplicationController
+  
   def show
   
     @amefp = Amefp.find(params[:causa])
