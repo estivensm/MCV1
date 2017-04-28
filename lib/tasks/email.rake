@@ -99,11 +99,11 @@ namespace :email do
 
         if task.contador_seg < 5 && task.contador_seg > 1
             
-           AlertaMailer.vencimiento_task(employed,task,"proximo").deliver
+           AlertaMailer.vencimiento_task(employed,task,"proxima").deliver
             
         elsif task.contador_seg < 1
 
-           AlertaMailer.vencimiento_task(employed,task, "vencido").deliver
+           AlertaMailer.vencimiento_task(employed,task, "vencida").deliver
 
         elsif task.contador_seg == 1
 
