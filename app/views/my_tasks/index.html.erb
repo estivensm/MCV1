@@ -142,7 +142,7 @@
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
          <%end%></td>
          <td><%= get_date(task.created_at) %></td>
-          <td><%= link_to "#{task.codigo}", report_tasks_path(report,task), :class => "linka"  %></td>
+          <td><%= link_to "#{task.report.codigo}-#{task.codigo}", report_tasks_path(report,task), :class => "linka"  %></td>
       
         
        
