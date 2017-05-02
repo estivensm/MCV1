@@ -24,8 +24,15 @@ class Rseguimiento < ApplicationRecord
 	before_create :seguimiento
     after_create :email
     after_create :cerrar_report
+    validate :archivo_size_validation, :if => "evidencia?"
+    validates :descripcion, presence: true
 
-
+    
+def archivo_size_validation
+      
+      errors[:archivo] << "should be less than 1MB" if evidencia.size > 1.megabytes
+  
+  end
 
 
     def cerrar_report
@@ -34,6 +41,7 @@ report.s_cierre = self.s_cierre
         if self.cerrar
 
           
+
             report.f_compromiso >= Time.now ? (report.cumplio = true) : (report.cumplio = false)
             report.f_real = Time.now
             report.conclucion = self.conclucion

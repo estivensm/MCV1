@@ -17,7 +17,7 @@
    </div>
 </div>
 
-<%= render "tabs" %>
+<%= render "tabs" %><br>
 
 <% #|| (current_user.role == "SuperAdmin" && @report.state != "Cerrado")
    if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
@@ -40,10 +40,10 @@
 
 <div class="row">
   
-<div class="col-md-6 wihtout-padding">
+<div class="col-md-6 wihtout-padding " style="border-right: 1px solid #e0e0e0;">
 <h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
 
-<div class="conteinter reporte cnt">
+<div class="conteinter reporte ">
  <div class="row rtr name">
       <div class="col-md-12 rtd"><%=@report.name%></div>
     
@@ -304,11 +304,11 @@
          <i class="fa fa-trash" aria-hidden="true"></i>
          <% end %>
       </div>
-<div class="col-md-12 wihtout-padding-top text-left name1"><%= seg.descripcion %></div>
+<div class="col-md-12 wihtout-padding-top text-left"><%= seg.descripcion %></div>
   </div>
    </div>
    
-</div>
+</div> <hr>
 <% end %>
 <%else%>
 <div class="jumbotron jumbacc">
@@ -329,7 +329,7 @@
    }
    .cnt
    {
-   border: 1px solid #c3c3c3;
+ 
    margin-bottom: 10px;
    }
    .rtr

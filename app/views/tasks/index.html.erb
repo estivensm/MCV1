@@ -40,6 +40,7 @@
   
    <% if @tasks_all.count > 0 %>
    <% @tasks.each do |task| %>
+   <%=link_to report_task_path(@report,task) do %>
    <div class="conteinter reporte cnt">
       <div class="row rtr">
      
@@ -50,7 +51,7 @@
          <div class="col-md-4 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
             padding-bottom: 0px !important;   padding-right: 40px !important;"> 
             
-              <%= link_to  edit_report_task_path(@report,task) + "?tipo=do",remote:true, :class => "opciones" do %>
+              <!--<%= link_to  edit_report_task_path(@report,task) + "?tipo=do",remote:true, :class => "opciones" do %>
            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
 
             <% end %>
@@ -64,7 +65,7 @@
             <%= link_to  report_task_path(@report,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
 
-            <% end %> <% end %>
+            <% end %> <% end %>-->
          </div>
       </div>
       <hr class="hr">
@@ -87,6 +88,7 @@
       </div>
    </div>
    <% end %>
+   <%end%>
    <%else%>
    <div class="jumbotron jumbacc">
    <h3 class="display-3 text-gray">No se ha creado ninguna Tarea</h3>
@@ -106,6 +108,7 @@
 </div>
 
 <% @tasksc.each do |task| %>
+<%=link_to report_task_path(@report,task) do %>
  <div class="conteinter reporte cnt">
       <div class="row rtr">
      
@@ -115,7 +118,7 @@
                 
          <div class="col-md-3 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
             padding-bottom: 0px !important;   padding-right: 40px !important;"> 
-                 <%= link_to  report_task_path(@report,task), :class => "opciones" do %>
+              <!--   <%= link_to  report_task_path(@report,task), :class => "opciones" do %>
             <i class="fa fa-eye" aria-hidden="true"></i>
               <% if current_user.id == task.user_id%>
             <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
@@ -127,7 +130,7 @@
             <% end %>
                  <% end %>
              
-            <% end %>
+            <% end %>-->
          </div>
 
           <div class="col-md-9 rtd text-left" style = "    padding: 5px !important;
@@ -157,7 +160,7 @@
       </div>
    </div>
 <% end %>
-
+<% end %>
 
 </div>
 <style>

@@ -1,3 +1,35 @@
+<%= link_to  edit_report_task_path(@report,task) + "?tipo=do",remote:true, :class => "opciones" do %>
+           <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+
+            <% end %>
+            <%= link_to  report_task_path(@report,task), :class => "opciones" do %>
+            <i class="fa fa-eye" aria-hidden="true"></i><%end%>
+            <% if current_user.id == task.user_id%>
+            <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <% end %>
+             
+            <%= link_to  report_task_path(@report,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+
+            <% end %> <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 rails g scaffold Report source employed_id:integer proceso_id:integer description:text requisito:text evidencia:text nc_type accion justificacion:text user_id:integer admin_user:integer
 
 
