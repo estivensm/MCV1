@@ -66,8 +66,11 @@ atask = "active"
     <% if @report.source.accion%>
     <li role="presentation" class="<%=aacicion%>"><%= link_to  "Acciones (#{@accionsca})", report_accions_path(@report) %></li>
     <%end%>
+     <% if @report.source.actividad%>
+      <li role="presentation" class="<%=actividad%>" value=""><%= link_to "Actividades (#{@actividad})", report_actividades_path(@report)%></a></li>
+      <%end%>
      <% if @report.source.task%>
      <li role="presentation" class="<%=atask%>"><%= link_to  "Tareas (#{@tasks.count})", report_tasks_path(@report) %></li>
       <%end%>
-      <li role="presentation" class="<%=actividad%>" value=""><%= link_to "Actividades (#{@correa})", report_actividades_path(@report)%></a></li>
+     
   </ul>

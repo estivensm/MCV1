@@ -353,6 +353,7 @@ end
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos.order(created_at: :desc)
@@ -392,6 +393,7 @@ end
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos.order(created_at: :desc)

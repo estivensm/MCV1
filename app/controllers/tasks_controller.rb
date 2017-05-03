@@ -95,6 +95,7 @@ end
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     
   end
 

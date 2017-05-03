@@ -36,6 +36,7 @@ respond_to :json
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
        @tasks = Task.where(report_id: @report.id)
 
    end
@@ -50,6 +51,7 @@ respond_to :json
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
 
     render 'index'
@@ -65,6 +67,7 @@ def actividades
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
 
     render 'index'
@@ -82,6 +85,7 @@ def actividades
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
 
   
