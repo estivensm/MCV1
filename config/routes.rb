@@ -25,7 +25,8 @@ resources :reports do
     end
     resources :causas
     resources :rseguimientos
-    get "correcciones", to: "accions#correcciones" , as: "correcciones" 
+    get "correcciones", to: "accions#correcciones" , as: "correcciones"
+    get "actividades", to: "accions#actividades" , as: "actividades" 
 end
 
 get 'my_reports/index', as: "misreports"

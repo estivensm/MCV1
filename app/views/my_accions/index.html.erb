@@ -1,6 +1,6 @@
 <%if action_name == "index" || action_name == "myaccions_cerradas"%>
 
-<p><%=link_to   mistasks_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> Abiertas<%end%> / 
+<p><%=link_to   misacciones_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> Abiertas<%end%> / 
   <%=link_to  myaccions_cerradas_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerradas<%end%>
 </p>
 
@@ -136,6 +136,7 @@
          <th  class="text-left" style = "width:10%">Entrega</th>
          <th style = "width:5%" class="text-left">¿Cumplio?</th>
          <%end%>
+         <th style = "width:5%" class="text-center">Días</th>
          <th  class="text-left" style = "width:40%">Accion</th>
          <th  class="text-left">Seguimientos</th>
 
@@ -165,7 +166,8 @@
          <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
      
            <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
-           <td  ><%= get_date(accion.f_compromiso)%></td>
+           <td  ><%= get_date(accion.f_compromiso)%><%if accion.change_cumplio%>
+           <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=accion.justificacion_cumplio%></p>">?</button><%end%></td>
            <%else%>
  <td  style = "background:<%=estado_contador(accion.contador_seg)%>;color:white" ><%= get_date(accion.f_compromiso)%></td>
           <%end%>
@@ -173,8 +175,9 @@
 
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
           <td><%= get_date(accion.f_real)%> </td>
-           <td class="text-center"><%= cumplio(accion.contador_seg).html_safe if accion.estado == "Cerrada"%></td>
+           <td class="text-center"><%= cumplio(accion.cumplio).html_safe if accion.estado == "Cerrada"%></td>
           <%end%>
+          <td class="text-center"> <%= accion.contador_seg%> </td>
          <td>
            
                <%= accion.name %>

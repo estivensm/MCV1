@@ -29,7 +29,8 @@ class Task < ApplicationRecord
 	belongs_to :user
 	belongs_to :employed
 	mount_uploader :anexo, AnexoTaskUploader
-  after_create :start_must_be_before_end_time
+  after_create :generar_fechas_create
+  before_update :generar_fechas_update
   before_update :cerrar_task
 	scope :cerradas, -> { where(estado: true) }
   scope :abiertas, -> { where(estado: false) }
@@ -62,7 +63,7 @@ class Task < ApplicationRecord
 
   end
 
- def start_must_be_before_end_time
+ def generar_fechas_create
       
       
 
@@ -72,6 +73,22 @@ class Task < ApplicationRecord
         save
         employed = Employed.find(self.employed_id)
         CreateMailer.create_task(employed,self).deliver
+            
+     
+        
+    
+
+  end
+   def generar_fechas_update
+      
+      
+
+        @times = self.f_compromiso.to_time
+        @time =  @times.to_i - Time.now.to_i  
+        self.contador_seg = (@time / 60 / 60/ 24) + 1
+        
+        #employed = Employed.find(self.employed_id)
+        #reateMailer.create_task(employed,self).deliver
             
      
         

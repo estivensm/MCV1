@@ -121,6 +121,7 @@
          <th  class="text-left" style = "width:10%">Entrega</th>
          <th style = "width:5%" class="text-left">¿Cumplio?</th>
          <%end%>
+          <th style = "width:5%" class="text-center">Días</th>
           <th  class="text-left" style = "width:40%">Accion</th>
          <th  class="text-left">Seguimientos</th>
 
@@ -158,9 +159,19 @@
 
 
           <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
-          <td><%= get_date(accion.f_real)%> </td>
-           <td class="text-center"><%= cumplio(accion.contador_seg).html_safe if accion.estado == "Cerrada"%></td>
+          <td><%= get_date(accion.f_real)%> <%if accion.change_cumplio%>
+           <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=accion.justificacion_cumplio%></p>">?</button><%end%> </td>
+           <td class="text-center"><%= cumplio(accion.cumplio).html_safe if accion.estado == "Cerrada"%></td>
           <%end%>
+
+
+
+
+<td class="text-center">
+          
+<%= accion.contador_seg%> </td>
+
+
 
 
 

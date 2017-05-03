@@ -1,29 +1,41 @@
 <%if (controller_name == "reports" && action_name == "show")
+actividad = ""
 areport = "active"
 acorre= ""
 aana = ""
 aacicion = ""
 atask = ""
 elsif (controller_name == "accions" && action_name == "correcciones")
-  areport = ""
+areport = ""
 acorre= "active"
 aana = ""
 aacicion = ""
 atask = ""
+actividad = ""
+elsif (controller_name == "accions" && action_name == "actividades")
+areport = ""
+acorre= ""
+aana = ""
+aacicion = ""
+atask = ""
+actividad = "active"
 elsif (controller_name == "causas" && action_name == "show")
-  areport = ""
+actividad = ""
+areport = ""
 acorre= ""
 aana = "active"
 aacicion = ""
 atask = ""
 elsif (controller_name == "accions" && action_name == "index")
-  areport = ""
+actividad = ""
+areport = ""
 acorre= ""
 aana = ""
 aacicion = "active"
 atask = ""
 elsif (controller_name == "tasks" && action_name == "index")
-  areport = ""
+actividad = ""
+areport = ""
 acorre= ""
 aana = ""
 aacicion = ""
@@ -39,7 +51,7 @@ atask = "active"
 
     <li role="presentation" class="<%=areport%>"><%= link_to "Reporte", report_path(@report)%></li>
 <% if @report.source.correccion%>
-    <li role="presentation" class="<%=acorre%>"value=""><%= link_to "Correcciones (#{@correa})", report_correcciones_path(@report)%></a></li>
+    <li role="presentation" class="<%=acorre%>" value=""><%= link_to "Correcciones (#{@correa})", report_correcciones_path(@report)%></a></li>
 
     <%end%>
    <% if @report.source.causa%>
@@ -57,4 +69,5 @@ atask = "active"
      <% if @report.source.task%>
      <li role="presentation" class="<%=atask%>"><%= link_to  "Tareas (#{@tasks.count})", report_tasks_path(@report) %></li>
       <%end%>
+      <li role="presentation" class="<%=actividad%>" value=""><%= link_to "Actividades (#{@correa})", report_actividades_path(@report)%></a></li>
   </ul>

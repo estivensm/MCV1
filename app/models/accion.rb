@@ -111,7 +111,7 @@ puts search2
 
     def start_must_be_before_end_time
       if self.tag 
-    	self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
+    	  self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1

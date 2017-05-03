@@ -417,7 +417,7 @@ end
 
     @user = Employed.where(email: current_user.email).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
-
+@report.tag = false
   end
 
   # POST /reports

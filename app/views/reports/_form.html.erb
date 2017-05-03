@@ -40,6 +40,10 @@
               <div class="form-group">
     <%= f.label "Frecuencia de Seguimiento" %>
     <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
+        <%if action_name != "new" %>
+    <%= f.label "Actualizar Fecha y/o Frecuencia", class: "lb2" %>
+    <%= f.check_box :tag, class:"check" %>
+    <%end%>
   </div>
 
     </div>
@@ -47,7 +51,7 @@
             
   <div class="form-group">
     <%= f.label "Fecha de Compromiso" %>
-    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
+    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker fecha" %>
   </div>
   <script>
   $(function() {
@@ -80,6 +84,10 @@
 
 </script>
     </div>
+    </div>
+    <div class="row">
+      
+    
    <div class="col-md-3">
            <div class="form-group">
                <%= f.label "Reporta" %><br>
@@ -421,6 +429,61 @@ else
  get_source(c);
 }
 });
+
+
+
+
+        if ("<%=action_name%>" != "edit")
+{
+
+ 
+
+$('.reporta').val("<%=get_employed1.id%>");
+
+
+}
+else
+{
+  $('.fecha').attr('disabled','disabled');
+  $('.fecha').attr('style','background: #dadada !important');
+   $('.fsg').attr('disabled','disabled');
+  $('.fsg').attr('style','background: #dadada !important');
+   
+}
+
+
+$('.check').change(function(){
+
+             if ( $(this).is(':checked') )
+    {
+            $('.fecha').removeAttr('disabled');
+  $('.fecha').attr('style','background: #f9f9f9 !important');
+  $('.fsg').removeAttr('disabled');
+  $('.fsg').attr('style','background: #f9f9f9 !important');
+     
+            
+       }
+       else
+{
+  $('.fecha').attr('disabled','disabled');
+  $('.fecha').attr('style','background: #dadada !important');
+  $('.fsg').attr('disabled','disabled');
+  $('.fsg').attr('style','background: #dadada !important');
+   
+}
+
+
+
+
+});
+
+
+
+
+
+
+
+
 
 
 function get_source(b)
