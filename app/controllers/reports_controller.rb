@@ -529,7 +529,7 @@ end
  def change_state
  
     @report = Report.find(params[:report])
-    if @report.update(justificacion_cumplio: params[:justificacion_cumplio],contador_seg: 1, cumplio: true , tag: false)
+    if @report.update(justificacion_cumplio: params[:justificacion_cumplio], cumplio: true, change_cumplio: true , tag: false)
     redirect_to @report
   end
  

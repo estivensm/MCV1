@@ -129,6 +129,7 @@
           <th style = "width:10%" class="text-left">Entrega</th>
           <th style = "width:5%" class="text-left">¿Cumplio?</th>
           <%end%>
+           <th style = "width:5%" class="text-center">Días</th>
          <th style = "width:10%" class="text-left">Fuente</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Proceso</th>
@@ -180,15 +181,16 @@
 
 
          <%if action_name == "mis_reports_cerrados" || action_name == "asignados_cerrados"%>
-          <td><%= get_date(report.f_real)%> </td>
-           <td class="text-center"><%= cumplio(report.contador_seg).html_safe if report.state == "Cerrado"%></td>
+          <td><%= get_date(report.f_real)%> <%if report.change_cumplio%>
+           <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=report.justificacion_cumplio%></p>">?</button><%end%></td>
+           <td class="text-center"><%= cumplio(report.cumplio).html_safe if report.state == "Cerrado"%></td>
           <%end%>
 
 
 
 
 
-
+<td class="text-center"> <%= report.contador_seg%> </td>
 
 
 

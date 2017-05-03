@@ -166,15 +166,15 @@
          <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
      
            <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
-           <td  ><%= get_date(accion.f_compromiso)%><%if accion.change_cumplio%>
-           <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=accion.justificacion_cumplio%></p>">?</button><%end%></td>
+           <td  ><%= get_date(accion.f_compromiso)%></td>
            <%else%>
  <td  style = "background:<%=estado_contador(accion.contador_seg)%>;color:white" ><%= get_date(accion.f_compromiso)%></td>
           <%end%>
 
 
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
-          <td><%= get_date(accion.f_real)%> </td>
+          <td><%= get_date(accion.f_real)%><%if accion.change_cumplio%>
+           <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=accion.justificacion_cumplio%></p>">?</button><%end%> </td>
            <td class="text-center"><%= cumplio(accion.cumplio).html_safe if accion.estado == "Cerrada"%></td>
           <%end%>
           <td class="text-center"> <%= accion.contador_seg%> </td>
