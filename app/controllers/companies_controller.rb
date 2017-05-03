@@ -87,9 +87,9 @@ class CompaniesController < ApplicationController
     @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,1).count 
     @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,1).count 
     @rcerrados =    @reports.cerrados.count 
-    @rcumplio =    @reports.cerrados.where("contador_seg >= ?" ,1).count 
-    @rnocumplio =    @reports.cerrados.where("contador_seg < ?" ,1).count 
-    @rporcentaje=    ((@reports.cerrados.where("contador_seg >= ?" ,1).count.to_f/@divr)*100).to_i 
+    @rcumplio =    @reports.cerrados.where(cumplio: true).count 
+    @rnocumplio =    @reports.cerrados.where(cumplio: false).count 
+    @rporcentaje=    ((@reports.cerrados.where(cumplio: true).count.to_f/@divr)*100).to_i 
       
     #@correcciones =      @accions.where(tipo: "Correcion").count 
     #@canocumplio =     @accions.abiertas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
@@ -105,18 +105,18 @@ class CompaniesController < ApplicationController
       @aanocumplio =   @accions.abiertas.where("contador_seg < ?" ,1).count 
       @aacumplio =   @accions.abiertas.where("contador_seg >= ?" ,1).count 
       @acerradas=  @accions.cerradas.count 
-      @anocumplio =   @accions.cerradas.where("contador_seg < ?" ,1).count 
-      @acumplio =   @accions.cerradas.where("contador_seg >= ?" ,1).count 
-      @aporcentaje = ((@accions.cerradas.where("contador_seg >= ?" ,1).count.to_f/ @diva)*100).to_i 
+      @anocumplio =   @accions.cerradas.where(cumplio: false).count 
+      @acumplio =   @accions.cerradas.where(cumplio: true).count 
+      @aporcentaje = ((@accions.cerradas.where(cumplio: true).count.to_f/ @diva)*100).to_i 
      
       @tasks =  @tasksd.count 
       @tabiertas =  @tasksd.abiertas.count 
       @tanocumplio =  @tasksd.abiertas.where("contador_seg < ?" ,1).count 
       @tacumplio =  @tasksd.abiertas.where("contador_seg >= ?" ,1).count 
       @tcerradas =   @tasksd.cerradas.count 
-      @tnocumplio =  @tasksd.cerradas.where("contador_seg < ?" ,1).count 
-      @tcumplio =  @tasksd.cerradas.where("contador_seg >= ?" ,1).count 
-      @tporcentaje = ((@tasksd.cerradas.where("contador_seg >= ?" ,1).count.to_f/@divt)*100).to_i
+      @tnocumplio =  @tasksd.cerradas.where(cumplio: false).count 
+      @tcumplio =  @tasksd.cerradas.where(cumplio: true).count 
+      @tporcentaje = ((@tasksd.cerradas.where(cumplio: true).count.to_f/@divt)*100).to_i
       
 
      
