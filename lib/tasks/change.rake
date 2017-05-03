@@ -24,7 +24,7 @@ namespace :change do
          #  accion.save
     #end
 
-    Report.where(estado: "Cerrado").each do |report|
+    Report.where(state: "Cerrado").each do |report|
        @times = report.f_compromiso.to_time
        @time =  @times.to_i - report.f_real.to_time.to_i 
        report.contador_seg = (@time / 60 / 60/ 24) 
