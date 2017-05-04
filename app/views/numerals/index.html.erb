@@ -17,7 +17,8 @@
    </div>
 
    <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   <%if current_user.admin || @norma.admin_user == current_user.admin_user %>
+       <%= link_to 'Nuevo', new_norma_numeral_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %><%end%>
    </div>
 </div>
 
