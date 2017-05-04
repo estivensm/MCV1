@@ -107,7 +107,7 @@
 </div>
 </div>
 
-<% @tasksc.each do |task| %>
+<% @tasksc.order(f_real: :desc).each do |task| %>
 <%=link_to report_task_path(@report,task) do %>
  <div class="conteinter reporte cnt">
       <div class="row rtr">
