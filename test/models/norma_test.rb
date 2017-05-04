@@ -10,6 +10,7 @@
 #  link       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  tipo       :boolean
 #
 
 require 'test_helper'

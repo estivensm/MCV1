@@ -11,6 +11,14 @@ class NumeralsController < ApplicationController
     
   end
 
+
+def import
+  norma = Norma.find(params[:norma_id])
+  Numeral.import(params[:file], current_user.admin_user, current_user.id, norma.id  )
+  redirect_to norma_numerals_path(norma.id), notice: "Los Registros fueron importados Exitosamente"
+end
+
+
   # GET /numerals
   # GET /numerals.json
   def index

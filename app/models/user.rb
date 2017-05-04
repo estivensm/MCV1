@@ -22,6 +22,7 @@
 #  rol_id                 :integer
 #  role                   :string
 #  employed_id            :integer
+#  admin                  :boolean
 #
 
  # == Schema Information

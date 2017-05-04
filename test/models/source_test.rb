@@ -22,6 +22,7 @@
 #  requisito   :boolean
 #  numerales   :boolean
 #  task        :boolean
+#  actividad   :boolean
 #
 
 require 'test_helper'

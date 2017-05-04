@@ -21,7 +21,7 @@ class NormasController < ApplicationController
    if params[:search]
      @normas1 = Norma.where(admin_user: current_user.admin_user).search(params[:search])
   else
-     @normas1 =Norma.where(admin_user: current_user.admin_user)
+     @normas1 =Norma.where(admin_user: current_user.admin_user).or(Norma.where(tipo:true))
   end
 
 

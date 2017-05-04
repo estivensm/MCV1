@@ -6,7 +6,7 @@
 </div>
 <div class = "row title-table">
    <div class = "col-md-6">
-      <p>  Numerales de Norma  <span class="label label-primary"><%=@numerals.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
+      <p>  Numerales de la  Norma  <%=@norma.name%> <span class="label label-primary"><%=@numerals.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
 
 
      
@@ -44,7 +44,18 @@
          <% end %>
       </div>
    </div>
+ <div class = "col-md-3">
+      <%= form_tag import_norma_numerals_path, multipart: true do %>
+  <div class = "col-md-12 text-right">
+  <%= file_field_tag :file , class: 'inputfile', id: 'file' %>
+  <label for="file"><i class="fa fa-upload" aria-hidden="true"></i>
 
+ <span>Adjuntar</span></label>
+  <%= submit_tag "Importar", :class => "btn btn-primary", style: "margin-left:20px !important;" %>
+</div>
+
+<% end %>
+   </div>
 </div>
 <div class = "row">
 
@@ -88,6 +99,48 @@
 
 
 <style>
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+        font-size: 1em;
+    font-weight: 100!important;
+    color: white;
+    background-color: #f3f3f3;
+    padding: 8px;
+    display: inline-block;
+    border-bottom: 2px solid gray;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+
+
+
+
+
+
+
+
 .btn-danger{background-color: #d9534f
  !important}
    .shi1
@@ -179,7 +232,35 @@ $(document).on('turbolinks:load',function() {
           });
 
    
-   
+   'use strict';
+
+;( function ( document, window, index )
+{
+  var inputs = document.querySelectorAll( '.inputfile' );
+  Array.prototype.forEach.call( inputs, function( input )
+  {
+    var label  = input.nextElementSibling,
+      labelVal = label.innerHTML;
+
+    input.addEventListener( 'change', function( e )
+    {
+      var fileName = '';
+      if( this.files && this.files.length > 1 )
+        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+      else
+        fileName = e.target.value.split( '\\' ).pop();
+
+      if( fileName )
+        label.querySelector( 'span' ).innerHTML = fileName;
+      else
+        label.innerHTML = labelVal;
+    });
+
+    // Firefox bug fix
+    input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+    input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+  });
+}( document, window, 0 ));
 
 
 

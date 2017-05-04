@@ -144,8 +144,9 @@ end
           delete "delete_cargos", to: "cargos#delete_cargos", as: "delete_cargos"
           post "cerrar_report", to: "reports#cerrar_report", as: "cerrar_report"
           resources :normas do 
-                resources :numerals
-                
+                resources :numerals do 
+                collection { post :import }
+                end                
 
           end
           resources :employeds do
