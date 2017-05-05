@@ -65,6 +65,8 @@ class Aseguimiento < ApplicationRecord
 
     def email
 
+        if self.send_mail
+
     employed = Employed.find(self.accion.employed_id)
     employed_creo = Employed.where(email: self.user.email).where(admin_user: self.admin_user).first
     if employed.id != employed_creo.id    
@@ -78,6 +80,7 @@ class Aseguimiento < ApplicationRecord
     end
 
 
+end
     end
   
 end

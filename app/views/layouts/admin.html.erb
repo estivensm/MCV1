@@ -92,7 +92,7 @@
                <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                         <%= link_to acciones_abiertas_path,:class => "" do %>
                         <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
-                        <span class = "color-gray">Acciones</span>
+                        <span class = "color-gray">Acciones, Correcciones y Actividades</span>
                         <% end %>
                         <% end %>
                      </li>
@@ -141,7 +141,7 @@
                      <li style = "margin-bottom:5px"><%= link_to misacciones_path,:class => "" do %>
                        <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
 
-                        <span class = "color-gray">Mis Acciones</span>
+                        <span class = "color-gray">Mis Acciones, Correcciones y Actividades</span>
                         <% end %>
                      </li>
                       <li><%= link_to mistasks_path,:class => "" do %>
