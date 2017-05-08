@@ -4,7 +4,7 @@ namespace :view do
     #ReportMailer.noty_report(Employed.last, Report.first).deliver_now
         
         User.where(role: "SuperAdmin").each do |user|
-                puts user.company + " " + user.email
+                puts user.company + " " + user.email + " " + user.name
                 
             
         end    
