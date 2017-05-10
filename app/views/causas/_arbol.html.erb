@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>jQuery orgChart Plugin Demo</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
-
+   
+<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
    
 <style type="text/css">
 #orgChart{
@@ -23,8 +19,7 @@
 }
 
     </style>
-</head>
-<body>
+
 <!--<a href="#" class="actualizar" ">Actualizar</a>-->
 <%=link_to "Actualizar", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar"%>
     <div id="orgChartContainer">
@@ -167,8 +162,6 @@ $(".node").each(function(){
 
 
 </script>
-</body>
-</html>
 
 
  

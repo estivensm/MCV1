@@ -221,7 +221,7 @@
                 descString = '<p>'+self.data.description+'</p>';
             }
             if(opts.showControls){
-                var buttonsHtml = "<div class='org-add-button'>"+opts.newNodeText+"</div><div class='org-del-button'></div>";
+                var buttonsHtml = "<div class='org-add-button'>"+opts.newNodeText+"</div><div class='org-del-button'>Eliminar</div>";
             }
             else{
                 buttonsHtml = '';
