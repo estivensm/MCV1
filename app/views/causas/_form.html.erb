@@ -26,10 +26,14 @@
                </label>
                  <label class="radio-inline">
                <%= f.radio_button :tipo, 'Causa Efecto', class: 'rb cf' %>Causa Efecto
+               </label><br><br>
+                <label class="radio-inline">
+               <%= f.radio_button :tipo, 'Arbol de Fallos', class: 'rb af' %>Arbol de Fallos
                </label>
-               <!--  <label class="radio-inline">
+                 <label class="radio-inline">
                <%= f.radio_button :tipo, 'Otro', class: 'rb' %>Otro
-               </label>-->
+               </label>
+               <br><br>
                
   </div>
   </div>
@@ -39,9 +43,10 @@
     <%= f.file_field :archivo, class: "form-control"  %>
   </div>
  </div>
+
  <div class="col-md-10" id = "part">
  <div class="form-group">
-    <%= f.label :descripcion %>
+    <%= f.label "Observaciones"%>
     <%= f.text_area :descripcion, class: "form-control area"  %>
   </div>
 </div>

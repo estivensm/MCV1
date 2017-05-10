@@ -21,6 +21,9 @@
 <%elsif @causa.tipo == "Pareto"%>
 <%=render 'pareto' , report: @report, causa_pareto: @causa_pareto, causa_paretot: @causa_paretot%>
 
+<%elsif @causa.tipo == "Arbol de Fallos"%>
+<%=render 'arbol' , report: @report, causa: @causa%>
+
 
 <%end%>
 

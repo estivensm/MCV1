@@ -125,6 +125,26 @@ redirect_to amef_path
   
 end
 
+def delete_arbol
+ 
+  
+  CausaEfecto.where(report_id: params[:report_id]).destroy_all
+   #redirect_to report_causa_path(params[:report_id],params[:causa_id])
+end
+
+def crear_arbol
+
+
+  
+
+  if CausaEfecto.where(report_id: params[:report_id]).where(nivel:params[:node]).count == 0  
+   
+  #puts "fasddddddddddddddddddddddddddddddddddddddddddddddd"
+  #puts CausaEfecto.where(report_id: params[:report_id]).where(nivel:params[:nivel]).count
+  CausaEfecto.create(user_id:current_user.id, admin_user:current_user.admin_user, report_id: params[:report_id],causa_id: params[:causa_id],name: params[:name],nivel:params[:node],subnivel: params[:parent] )
+  end
+end
+
 #LLama el popup para crear el AMEF padre
  def new_amefp
     @causa = Causa.find(params[:causa])

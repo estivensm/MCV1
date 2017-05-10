@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery orgChart Plugin Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />    
+
+   
+<style type="text/css">
+#orgChart{
+    width: auto;
+    height: auto;
+}
+
+#orgChartContainer{
+    width: 100%;
+    height: 500px;
+    overflow: auto;
+    background: #eeeeee;
+}
+.org-input
+{
+    width: 200px;
+}
+
+    </style>
+</head>
+<body>
+<!--<a href="#" class="actualizar" ">Actualizar</a>-->
+<%=link_to "Actualizar", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar"%>
+    <div id="orgChartContainer">
+      <div id="orgChart"></div>
+    </div>
+    <div id="consoleOutput">
+    </div>
+
+    <script type="text/javascript">
+
+
+
+
+
+    var testData = [
+        {id: 1, name: "<%=@report.name%>", parent: 0},
+        <%@causa.causa_efectos.each do |causa| %>
+        {id: <%=causa.nivel.to_i%>, name: '<%=causa.name%>', parent: <%=causa.subnivel.to_i%>},
+        
+        <%end%>
+    ];
+    $(function(){
+        org_chart = $('#orgChart').orgChart({
+            data: testData,
+            showControls: true,
+            allowEdit: true,
+            onAddNode: function(node){ 
+                //log('Created new node on node '+node.data.id);
+                org_chart.newNode(node.data.id); 
+            },
+            onDeleteNode: function(node){
+                //log('Deleted node '+node.data.id);
+                org_chart.deleteNode(node.data.id); 
+            },
+            onClickNode: function(node){
+                //log('Clicked node '+node.data.id);
+                
+                
+            }
+
+        });
+    });
+
+    // just for example purpose
+    function log(text){
+        $('#consoleOutput').append('<p>'+text+'</p>')
+    }
+    </script>
+
+
+
+    <script type="text/javascript">
+
+  /*var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();*/
+$(document).on('turbolinks:load',function() {
+
+var a = $('.node');
+
+
+
+
+
+
+
+$(".actualizar").click(function() {
+
+
+$.ajax({
+    url: '/delete_arbol',
+    type: 'DELETE',
+    data: {
+        "report_id": <%=@report.id%>,
+        "primero": 1,
+         
+      },
+    success: function(result) {
+        // Do something with the result
+    }
+});
+
+
+
+
+    
+setTimeout(function(){
+$(".node").each(function(){
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+ var name = $(this).children('h2').text();
+ var node = $(this).attr('node-id');
+ var parent = $(this).attr('name');
+        $.ajax({
+     url :"/crear_arbol",
+     type: "POST",
+     data: {
+        "report_id": <%=@report.id%>,
+         "causa_id": <%=@causa.id%>,
+          "name": name,
+           "node": node,
+           "parent": parent,
+     },
+     success: function(response){
+      
+
+     },
+     error:function(response){
+         
+     }
+ });
+
+ } 
+
+ });
+
+
+},1000);
+
+
+ });
+
+
+});
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+ 
+    

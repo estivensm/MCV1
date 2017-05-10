@@ -80,6 +80,9 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
   get 'edit_amefp/:id' , to: "causas#edit_amefp", as: "edit_amefp"
   patch "update_amefp/:id", to: "causas#update_amefp", as: "update_amefp"
 
+  delete '/delete_arbol' , to: "causas#delete_arbol", as: "delete_arbol"
+  post 'crear_arbol' , to: "causas#crear_arbol", as: "crear_arbol"
+
   resources :clinte_proveedors do
   collection { post :import }
 
