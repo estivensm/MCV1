@@ -113,6 +113,11 @@ def get_sources
   Source.where(admin_user: current_user.admin_user)
 
 end
+def get_source_parents
+
+  SourceParent.where(admin_user: current_user.admin_user)
+
+end
 def get_numerals
 Numeral.where(admin_user: current_user.admin_user)
 
@@ -169,7 +174,7 @@ def bootstrap_class_for flash_type
 
   def menu
     @menum = ["","", "", "" ,"", "","","",""]
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors"
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || controller.controller_name == "employeds" || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors" ||controller.controller_name == "source_parents"
     @menum = ["active1","", "", "", "", "","",""]
   elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados" ) || (controller.controller_name == "reports" && action_name =="reportst_calendar" ) ) 
     @menum = ["","active1","", "","", "","","",""]
@@ -196,27 +201,29 @@ def bootstrap_class_for flash_type
 
    def sub_menu
       
-    @menu = ["","","","","","","","",""]
+    @menu = ["","","","","","","","","",""]
   if  controller.controller_name == "companies" 
-    @menu = ["active","","","","","","","",""]
+    @menu = ["active","","","","","","","","",""]
   elsif controller.controller_name == "procesos"
-@menu = ["","active","","","","","","","",""]
+@menu = ["","active","","","","","","","","",""]
   elsif controller.controller_name == "cargos"
-    @menu = ["","","active","","","","","",""]
+    @menu = ["","","active","","","","","","",""]
     elsif controller.controller_name == "views"
- @menu = ["","","","active","","","","",""]
+ @menu = ["","","","active","","","","","",""]
  elsif controller.controller_name == "employeds"
- @menu = ["","","","","active","","","",""]
+ @menu = ["","","","","active","","","","",""]
  elsif controller.controller_name == "normas"
- @menu = ["","","","","","active","","",""]
+ @menu = ["","","","","","active","","","",""]
 elsif controller.controller_name == "numerals"
- @menu = ["","","","","","active","","",""]
+ @menu = ["","","","","","active","","","",""]
  elsif controller.controller_name == "sources"
- @menu = ["","","","","","","active","",""]
+ @menu = ["","","","","","","active","","",""]
  elsif controller.controller_name == "rols"
- @menu = ["","","","","","","","active",""]
+ @menu = ["","","","","","","","active","",""]
 elsif controller.controller_name == "clinte_proveedors"
- @menu = ["","","","","","","","","active"]
+ @menu = ["","","","","","","","","active",""]
+ elsif controller.controller_name == "source_parents"
+ @menu = ["","","","","","","","","","active"]
     end
     return @menu
 
@@ -491,13 +498,13 @@ def get_color(color)
 
 
 def show_reports
-if current_user.role !=  "Basico" || current_user.rol.report_ver || current_user.rol.report_procesos
+  if current_user.role !=  "Basico" || current_user.rol.report_ver || current_user.rol.report_procesos
 
-  true
+    true
 
-else 
-  false
-end
+  else 
+    false
+  end
 end
 
 

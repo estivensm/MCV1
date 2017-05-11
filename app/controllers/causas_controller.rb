@@ -127,9 +127,45 @@ end
 
 def delete_arbol
  
-  
-  CausaEfecto.where(report_id: params[:report_id]).destroy_all
-   #redirect_to report_causa_path(params[:report_id],params[:causa_id])
+  puts params[:name]
+  puts params[:node]
+  puts params[:parent]
+  name = params[:name]
+  node =  params[:node]
+  parent =  params[:parent]
+  size = params[:size].to_i 
+
+if size != 0
+  CausaEfecto.where(report_id: params[:report_id]).each do |causa| 
+
+        if !node.include?(causa.nivel)
+
+            causa.destroy
+        end
+
+  end
+
+else
+CausaEfecto.where(report_id: params[:report_id]).destroy_all
+end
+
+
+
+  size.times do |i|
+    
+     
+
+
+    if CausaEfecto.where(report_id: params[:report_id]).where(nivel: node[i]).count == 0
+
+        CausaEfecto.create(user_id:current_user.id, admin_user:current_user.admin_user, report_id: params[:report_id],causa_id: params[:causa_id],name: name[i],nivel:node[i],subnivel: parent[i] )
+        #CausaEfecto.where(report_id: params[:report_id]).destroy_all
+        #redirect_to report_causa_path(params[:report_id],params[:causa_id])
+   
+    else
+      CausaEfecto.where(report_id: params[:report_id]).where(nivel: node[i]).first.update(name: name[i])
+    end
+  end
 end
 
 def crear_arbol

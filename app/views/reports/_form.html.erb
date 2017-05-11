@@ -16,9 +16,19 @@
       
     <div class="row">
     <p class="form-tit">Informacion Basica</p>
- <div class="col-md-3">
+    <div class="col-md-3">
             <div class="form-group">
                <%= f.label "Fuente" %><br>
+               <%= f.select :source_id,
+                 get_source_parents.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch sparent'  }
+                  %>
+            </div>
+    </div>
+ <div class="col-md-3">
+            <div class="form-group">
+               <%= f.label "Tipo" %><br>
                <%= f.select :source_id,
                  get_sources.map { |u| [u.name, u.id] },
                              { include_blank: true },
@@ -47,6 +57,8 @@
   </div>
 
     </div>
+    </div>
+    <div class="row">
 <div class="col-md-3">
             
   <div class="form-group">
@@ -84,8 +96,7 @@
 
 </script>
     </div>
-    </div>
-    <div class="row">
+    
       
     
    <div class="col-md-3">
@@ -98,7 +109,7 @@
                   %>
             </div> </div>
 
-    <div class="col-md-9">
+    <div class="col-md-6">
          <div class="form-group">
                <label>Descripcion corta del <span style="text-transform: capitalize;">Reporte</span></label> 
                <%= f.text_field :name,  class: "form-control" %>
@@ -115,7 +126,7 @@
 
 
           <div class="form-group cli">
-               <%= f.label "Cliente" %><br>
+               <%= f.label "Parte Interesada" %><br>
                <%= f.select :clinte_proveedor_id,
                  get_clientes.map { |u| [u.name, u.id] },
                              { include_blank: true },
@@ -415,17 +426,17 @@ $( document ).ready(function() {
 {
 
  
-$('.source').val("<%=@es.id%>");
+//$('.source').val("<%=@es.id%>");
 $('.reporta').val("<%=@user.id%>");
 console.log("<%=@user.id%>");
 console.log($('.reporta').val());
-var b = $('.source').val();
-get_source(b);
+//var b = $('.source').val();
+//get_source(b);
 
 }
 else
 {
-  var c = "<%=@report.source_id%>";
+ var c = "<%=@report.source_id%>";
  get_source(c);
 }
 });
@@ -437,7 +448,9 @@ else
 {
 
  
-
+ $('.evi').hide();
+  $('.num').hide();
+  $('.req').hide();
 $('.reporta').val("<%=get_employed1.id%>");
 
 
@@ -484,7 +497,7 @@ $('.check').change(function(){
 
 
 
-
+ 
 
 function get_source(b)
 {
@@ -492,16 +505,8 @@ function get_source(b)
 
   $.get("/sourcee/" + b, function(data) {
         
-           /* if (data.accion && data.puede_ac)
-            {
-              $('.acc1').fadeIn();
-              
-            }
-            else
-            {
-              $('.acc1').fadeOut();
-            }*/
-             if (data.tipo == "Externa")
+         
+            /* if (data.tipo == "Externa")
            
             {
               
@@ -514,7 +519,7 @@ function get_source(b)
               $('.pru').hide();
               $('.cli').hide();
             }
-
+              */
             if (data.evidencia)
             {
               $('.evi').fadeIn();
@@ -553,23 +558,13 @@ function get_source(b)
 
 
 $('.source').change(function() {
-     $('.just').fadeOut();
-     $('.cksi').prop('checked', true);
-     $('.ckno').prop('checked', false);
+
   
     $.get("/sourcee/" + $('.source').val(), function(data) {
 
       
-          /*  if (data.accion && data.puede_ac)
-            {
-              $('.acc1').fadeIn();
-             
-            }
-            else
-            {
-              $('.acc1').fadeOut();
-            }*/
-             if (data.tipo == "Externa")
+          
+            /* if (data.tipo == "Externa")
            
             {
               $('.pru').fadeIn();
@@ -580,7 +575,7 @@ $('.source').change(function() {
             {
               $('.cli').fadeOut();
               $('.pru').fadeOut();
-            }
+            }*/
              if (data.evidencia)
             {
               $('.evi').fadeIn();
@@ -614,7 +609,7 @@ $('.source').change(function() {
         
 
     });
-})
+});
     
  
 

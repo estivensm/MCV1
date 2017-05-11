@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   
 
+  resources :source_parents
 resources :reports do 
     get :get_reportsc, on: :collection
     get :get_invitadoc, on: :collection
@@ -80,7 +81,7 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
   get 'edit_amefp/:id' , to: "causas#edit_amefp", as: "edit_amefp"
   patch "update_amefp/:id", to: "causas#update_amefp", as: "update_amefp"
 
-  delete '/delete_arbol' , to: "causas#delete_arbol", as: "delete_arbol"
+  get '/delete_arbol' , to: "causas#delete_arbol", as: "delete_arbol"
   post 'crear_arbol' , to: "causas#crear_arbol", as: "crear_arbol"
 
   resources :clinte_proveedors do
@@ -179,6 +180,7 @@ end
             delete "delete_numerals/:norma_id", to: "numerals#delete_numerals", as: "delete_numerals"
             delete "delete_roles", to: "rols#delete_roles", as: "delete_roles"
             delete "delete_sources", to: "sources#delete_sources", as: "delete_sources"
+            delete "delete_source_parent", to: "source_parents#delete_source_parent", as: "delete_source_parent"
             
           end
         devise_for :users

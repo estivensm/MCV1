@@ -5,7 +5,7 @@
     }
 
     $.fn.orgChart.defaults = {
-        data: [{id:1, name:'Root', parent: 0}],
+        data: [{id:1, name:'Root', parent: 0 , idi: 3}],
         showControls: false,
         allowEdit: false,
         onAddNode: null,
@@ -226,7 +226,7 @@
             else{
                 buttonsHtml = '';
             }
-            return "<div class='node' name='"+this.data.parent +"' node-id='"+this.data.id+"'>"+nameString+descString+buttonsHtml+"</div>";
+            return "<div class='node' idi='"+this.data.idi +"' name='"+this.data.parent +"' node-id='"+this.data.id+"'>"+nameString+descString+buttonsHtml+"<a href='www.google.com' target='_blank'>hola</></div>";
         }
     }
 

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @source_parent.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @source_parent.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @source_parent.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @source_parent.admin_user %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @source_parent.codigo %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @source_parent.tipo %>
+</p>
+
+<%= link_to 'Edit', edit_source_parent_path(@source_parent) %> |
+<%= link_to 'Back', source_parents_path %>

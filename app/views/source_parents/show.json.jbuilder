@@ -1,0 +1,1 @@
+json.partial! "source_parents/source_parent", source_parent: @source_parent

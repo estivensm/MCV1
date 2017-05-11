@@ -1,0 +1,1 @@
+json.array! @source_parents, partial: 'source_parents/source_parent', as: :source_parent

@@ -19,9 +19,13 @@
 }
 
     </style>
+<p><a href="#" data-remote="true"  class="actualizar1 btn btn-primary">Actualizar</a><p>
+ <div class="alert alert-success info" style = "display:none">
+  <strong>Success!</strong> Indicates a successful or positive action.
+</div>
+<!--<%=link_to "Actualizar1", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar1"%>
+<%=link_to "Actualizar", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar"%>-->
 
-<!--<a href="#" class="actualizar" ">Actualizar</a>-->
-<%=link_to "Actualizar", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar"%>
     <div id="orgChartContainer">
       <div id="orgChart"></div>
     </div>
@@ -35,9 +39,9 @@
 
 
     var testData = [
-        {id: 1, name: "<%=@report.name%>", parent: 0},
+        {id: 1, name: "<%=@report.name%>", parent: 0, idi: 3},
         <%@causa.causa_efectos.each do |causa| %>
-        {id: <%=causa.nivel.to_i%>, name: '<%=causa.name%>', parent: <%=causa.subnivel.to_i%>},
+        {id: <%=causa.nivel.to_i%>, name: '<%=causa.name%>', parent: <%=causa.subnivel.to_i%>, idi: <%=causa.id.to_i%>},
         
         <%end%>
     ];
@@ -89,6 +93,67 @@ var a = $('.node');
 
 
 
+$(".actualizar1").click(function() {
+
+var h2a = []
+var nodea = []
+var parenta = []
+
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+
+$(".node").each(function(){
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+ h2a.push($(this).children('h2').text());
+ nodea.push($(this).attr('node-id'));
+ parenta.push($(this).attr('name'));
+
+}
+
+});
+}
+
+console.log(h2a);
+console.log(nodea);
+console.log(parenta);
+
+setTimeout(function(){
+
+
+$.ajax({
+    url: '/delete_arbol',
+    type: 'get',
+    data: {
+      "report_id": <%=@report.id%>,
+         "causa_id": <%=@causa.id%>,
+        "size": h2a.length,
+        "name": h2a,
+        "node": nodea,
+        "parent": parenta,
+         
+      },
+    success: function(result) {
+        $('.info').show();
+        setTimeout(function(){
+        $('.info').fadeOut();
+},2000);
+
+
+    }
+});
+
+
+
+
+  });
+
+
+});
 
 
 

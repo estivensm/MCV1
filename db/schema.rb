@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505192439) do
+ActiveRecord::Schema.define(version: 20170511150315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,6 +322,7 @@ ActiveRecord::Schema.define(version: 20170505192439) do
     t.boolean  "change_cumplio"
     t.text     "justificacion_cumplio"
     t.boolean  "send_mail"
+    t.integer  "source_parent_id"
   end
 
   create_table "riesgos", force: :cascade do |t|
@@ -364,6 +365,17 @@ ActiveRecord::Schema.define(version: 20170505192439) do
     t.boolean  "eficaz"
     t.text     "conclucion"
     t.boolean  "send_mail"
+  end
+
+  create_table "source_parents", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.string   "codigo"
+    t.string   "tipo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "sources", force: :cascade do |t|

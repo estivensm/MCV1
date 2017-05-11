@@ -25,6 +25,16 @@
 #  actividad   :boolean
 #
 
+
+
+
+
+
+
+
+
+
+
 class Source < ApplicationRecord
 	has_many :reports
 	after_create :validar_default, dependent: :destroy

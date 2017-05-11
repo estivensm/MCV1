@@ -5,13 +5,19 @@
    </div>
 </div>
 <div class = "row title-table">
-   <div class = "col-md-6">
-      <p>  Numerales de la  Norma  <%=@norma.name%> <span class="label label-primary"><%=@numerals.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
+   <div class = "col-md-12">
+      <p>  Numerales de la  Norma  <%=@norma.name%> <span class="label label-primary"><%=@numerals.count%></span></p>
 
 
      
    </div>
-   <div class = "col-md-4 paginate text-left title-table1">
+     <div class = "col-md-4">
+      <p>  <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
+
+
+     
+   </div>
+   <div class = "col-md-6 paginate text-left title-table1">
      
 <%= will_paginate @numerals%>
    </div>
