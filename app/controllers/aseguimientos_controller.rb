@@ -1,4 +1,5 @@
 class AseguimientosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_aseguimiento, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token
   # GET /aseguimientos

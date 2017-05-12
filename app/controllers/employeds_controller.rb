@@ -1,7 +1,8 @@
 class EmployedsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_employed, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token  
-    before_action :configuracion
+  before_action :configuracion
 
   
   

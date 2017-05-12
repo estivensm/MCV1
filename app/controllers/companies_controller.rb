@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-    before_action :configuracion
+  before_action :configuracion
 
   
   def configuracion
@@ -141,6 +142,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :logo, :phone, :address, :nit)
+      params.require(:company).permit(:name, :logo, :phone, :address, :nit, :admin_user)
     end
 end

@@ -7,10 +7,14 @@ body{
         background:#f2f2f2;
 }
 .app{
-       background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), 
- url('https://c1.staticflickr.com/1/640/32932852872_58a605e3e8_h.jpg')no-repeat center top;
-  background-size: cover;
+       
   
+}
+.img-right
+{
+   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
+ url('https://c1.staticflickr.com/5/4194/34486640051_2a5a465ef7_o.jpg')no-repeat center top;
+  background-size: cover;
 }
 
 
@@ -271,10 +275,17 @@ background: #f2f2f2;
     margin-right:5px;
     }
     .login1
-    {    padding: 30px;
-        padding-left: 60px !important;
-    padding-right: 60px  !important;
+    {
+    margin-top:10px;    
+    padding-top: 50px;
+    padding-bottom: 20px;
+    padding-left: 50px !important;
+    padding-right: 50px  !important;
        background: white;
+
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
       p
       {
         padding:10px;
@@ -630,4 +641,10 @@ margin-top: 10px;
     color: #0db493;
     font-family: 'Days One', sans-serif;
     padding-left: 32px;
+}
+
+.is
+{padding: 12px !important;
+    font-size: 17px !important;
+    box-shadow: #cccccc 7px 6px 10px !important;
 }

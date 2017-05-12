@@ -1,6 +1,7 @@
 class ClinteProveedorsController < ApplicationController
-  before_action :set_clinte_proveedor, only: [:show, :edit, :update, :destroy]
-      before_action :configuracion
+before_action :authenticate_user!
+before_action :set_clinte_proveedor, only: [:show, :edit, :update, :destroy]
+before_action :configuracion
 
   
   def configuracion

@@ -1,4 +1,5 @@
 class NumeralsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_numeral, only: [:show, :edit, :update, :destroy]
     before_action :configuracion
 

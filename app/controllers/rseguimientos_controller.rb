@@ -1,4 +1,5 @@
 class RseguimientosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_rseguimiento, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token
 

@@ -1,4 +1,5 @@
 class CargosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_cargo, only: [:show, :edit, :update, :destroy]
   before_action :configuracion
 

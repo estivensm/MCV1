@@ -1,5 +1,5 @@
 class CausaEfectosController < ApplicationController
- 
+ before_action :authenticate_user!
         
 
 

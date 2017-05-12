@@ -1,5 +1,5 @@
 class AmefpsController < ApplicationController
-  
+  before_action :authenticate_user!
   def show
   
     @amefp = Amefp.find(params[:causa])

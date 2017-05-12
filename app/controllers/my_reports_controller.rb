@@ -1,5 +1,5 @@
 class MyReportsController < ApplicationController
-
+before_action :authenticate_user!
   def index
   	@employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
     @report_search1 = Report.where(employed_id: @employed).abiertos

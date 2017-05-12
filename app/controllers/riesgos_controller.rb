@@ -1,5 +1,6 @@
 class RiesgosController < ApplicationController
-  before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
+before_action :authenticate_user!
+before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
 
   # GET /riesgos
   # GET /riesgos.json

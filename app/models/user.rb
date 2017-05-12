@@ -112,7 +112,7 @@ def self.search(search, search1)
          def add_adminid
 
             if self.role == "SuperAdmin"
-         	     Company.create(name: self.company, user_id: self.id)
+         	     Company.create(name: self.company, user_id: self.id, admin_user: self.id)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id)
                self.employed_id =  Employed.where(admin_user: self.id).last.id
                save

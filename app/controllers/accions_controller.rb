@@ -1,6 +1,7 @@
 class AccionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_accion, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!
+
   # GET /accions
   # GET /accions.json
  

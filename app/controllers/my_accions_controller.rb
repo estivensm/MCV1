@@ -1,4 +1,5 @@
 class MyAccionsController < ApplicationController
+before_action :authenticate_user!
   def index
   	@employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
   	    

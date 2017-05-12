@@ -1,6 +1,6 @@
 class SourceParentsController < ApplicationController
-  before_action :set_source_parent, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_source_parent, only: [:show, :edit, :update, :destroy]
   before_action :configuracion
 
   

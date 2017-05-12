@@ -35,7 +35,7 @@ namespace :email do
         
         if m < 0
            
-            AlertaMailer.seguimiento_report(employed,report, "vencida").deliver
+            #AlertaMailer.seguimiento_report(employed,report, "vencida").deliver
                 
         elsif m == 0
             AlertaMailer.seguimiento_report(employed,report, "hoy").deliver
@@ -77,7 +77,7 @@ namespace :email do
         
         if m < 0 
            
-        AlertaMailer.seguimiento_accion(employed,accion, "vencida").deliver
+        #AlertaMailer.seguimiento_accion(employed,accion, "vencida").deliver
 
     elsif m == 0
             AlertaMailer.seguimiento_accion(employed,accion, "hoy").deliver

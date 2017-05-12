@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%;">
   <head>
     <title>MCV1</title>
     <%= csrf_meta_tags %>
@@ -12,9 +12,72 @@
       <title><%= content_for?(:title) ? yield(:title) : "Mejorapp" %></title>
   </head>
 
-  <body class="app">
+  <body class="app" style="height:100%;">
    <%= flash_messages %>
-    <%= yield %>
+   <div class="container-fluid" style="height:100%;">
+   <div class="row" style="height:100%;">
+
+   <div class="col-md-5">
+   <div class="row" style="height:100%;">
+     <%= yield %>
+  </div>
+     
+   </div>
+   <div class="col-md-7 img-right">
+    <div class="info-mejoraapp">
+
+   
+
+
+
+<p class = "logop" style = "color:#9a9a9a;    font-size: 40px;color:white;margin: 0px;margin-top:0px">
+      <a font-weight: bold;" href="https://www.wowza.com/slack" target="_blank"><img style= "width:80px;" id="slack" src="http://jyunkanshigen.com/jyunkan/wp-content/uploads/2013/05/0115.png"> Mejorando<span> Ahora</span></p></a>
+    </p>
+
+    <p style="text-align:justify">
+      
+      Con MejoraApp controla todas esas actividades diarias que ayudan al mejoramiento continuo de tu Empresa tales como:
+    </p >
+    <p class="check"> <i class="fa fa-check" aria-hidden="true"></i> No Conformidades de Auditorias</p>
+    <p class="check"><i class="fa fa-check" aria-hidden="true"></i> Oportunidades de Mejora</p>
+    <p class="check"><i class="fa fa-check" aria-hidden="true"></i> Observaciones</p>
+    <p class="check"><i class="fa fa-check" aria-hidden="true"></i> Quejas y Reclamos</p>
+    <p class="check"> <i class="fa fa-check" aria-hidden="true"></i> Oportunidades de Negocio</p>
+    <p class="check" ><i class="fa fa-check" aria-hidden="true"></i> Compromisos de Actas</p>
+    <p class="check" ><i class="fa fa-check" aria-hidden="true"></i> Mejoras en Procesos</p>
+     <p class="check" ><i class="fa fa-check" aria-hidden="true"></i> Actividades de los Empleados</p>
+
+
+
+   
+    
+
+  
+
+</div>
+   </div>
+   <div class="col-lg-12 copyright" style="margin-bottom: 0;
+    padding-bottom: 15px;
+    background: #f5f5f5;
+    padding-top: 15px;
+    position: fixed;">
+            <div class="row">
+            <div class="col-lg-12 text-center notice " style="color: #a0a0a0">
+
+            © 2017 MejorApp S.A.S, Todos los derechos reservados.
+            </div>
+            <div class="col-lg-12 text-center links">
+            <!--<span><a target="_blank" href="http://www.wowza.com/privacy">Privacy Policy</a></span>
+            <span><a target="_blank" href="http://www.wowza.com/legal">Legal Notice</a></span>
+            <span><a target="_blank" href="https://status.wowza.com">System Status</a></span>-->
+            </div>
+            </div>
+      </div>
+     
+   </div>
+     
+   </div>
+    
   </body>
 </html>
 
@@ -26,3 +89,72 @@
     text-align: center !important;
   }
 </style>
+
+ <style>
+      .marketing-container {
+        background-image: url("//s3.amazonaws.com/wcl-marketing/prod/global/default_slack/slack-bg.jpg");
+      }
+
+      .marketing-container {
+        background-position: center bottom;
+      }
+
+      .info-mejoraapp h1 {
+        color: #ffffff !important;
+        text-align: center;
+      }
+
+      .info-mejoraapp p {
+        color: #dddddd;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        margin-left: 15%;
+        margin-right: 15%;
+      
+        text-align: center;
+        font-size: 1.3em;
+      }
+
+      .info-mejoraapp strong, .info-mejoraapp a {
+        color: #ffffff;
+      }
+
+      .info-mejoraapp img#slack {
+        width: 100%
+      }
+      .info-mejoraapp
+      {
+    margin-top: 25px;
+    padding: 40px 60px;
+}
+.img-right
+      {
+        padding: 0;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    
+}
+.copyright
+{ margin-top:20px;
+     
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.check
+{
+  text-align: left !important;
+    font-size: 15px!important;
+    margin-top:10px !important;
+     margin-top:10px !important;
+    margin-left:130px!important;
+}
+.check i
+{
+
+}
+
+    </style>
