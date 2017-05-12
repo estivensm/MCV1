@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-layout 'application'
+layout 'home'
 
   def index
   end
