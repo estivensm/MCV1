@@ -185,11 +185,11 @@ end
           end
         devise_for :users
           
-  #authenticated :user do
+  authenticated :user do
     root to: 'dashboard#index'#, as: :authenticated_root
- # end
+  end
  
- # root to: 'home#index'
+  root to: 'home#index'
 
 
           match "*path" => redirect("/"), via: :get 

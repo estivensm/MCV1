@@ -1,6 +1,6 @@
 <div class="row sign_form">
-<div class="col-md-10 col-md-offset-1 login1">
-<p class = "logop" style = "color:#9a9a9a;">Mejora<span>App</span></p>
+<div class="col-md-10 col-md-offset-1 login1" style="padding-top: 10px;">
+<p class = "logop" style = "color:#9a9a9a;"><img style= "width:40px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 <% if  devise_error_messages? %> 
@@ -50,5 +50,7 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<div class="col-md-10 col-md-offset-1 text-center color-gray" style="margin-top:10px;">
+Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name), class:"linka" %><br />
+</div>
   </div>  </div>
