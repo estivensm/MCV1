@@ -10,10 +10,17 @@ body{
        
   
 }
+.ppal
+{
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
+ url('https://c1.staticflickr.com/1/640/32932852872_58a605e3e8_h.jpg')no-repeat center top;
+  background-size: cover;
+  height:500px;
+}
 .img-right
 {
    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
- url('https://c1.staticflickr.com/5/4194/34486640051_2a5a465ef7_o.jpg')no-repeat center top;
+ url('https://c1.staticflickr.com/1/640/32932852872_39ed7b004d_o.jpg')no-repeat center top;
   background-size: cover;
 }
 

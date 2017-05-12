@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+  <head>
+    <title>MCV1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Raleway|Tenor+Sans" rel="stylesheet">
+      <title><%= content_for?(:title) ? yield(:title) : "Mejorapp" %></title>
+  </head>
+
+  <body class="app" style="height:100%;">
+  
+     <%= yield %>
+ 
+   
+    
+  </body>
+</html>
+
+
