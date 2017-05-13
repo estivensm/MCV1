@@ -13,54 +13,18 @@
       <title><%= content_for?(:title) ? yield(:title) : "Mejorapp" %></title>
   </head>
 
-  <body class="app" style="height:100%;">
+  <body class="app " style="height:100%;">
    <%= flash_messages %>
-   <div class="container-fluid" style="height:100%;    background: #f3f3f3;">
+   <div class="container-fluid img-right1" style="height:100%;">
    <div class="row" style="height:100%;">
 
-   <div class="col-md-5">
+   <div class="col-md-12 ">
    <div class="row" style="height:100%;">
      <%= yield %>
   </div>
      
    </div>
-   <div class="col-md-7 img-right hidden-xs" ">
-    <div class="info-mejoraapp">
-
    
-
-
-
-<!--<p class = "logop" style = "color:#9a9a9a;    font-size: 40px;color:white;margin: 0px;margin-top:0px">
-      <a font-weight: bold;" href="https://www.wowza.com/slack" target="_blank"> Mejorando<span> Ahora</span></p></a>
-    </p>-->
-
-    <p  style="text-align:justify;font-family: 'Raleway', sans-serif;
-">
-      
-      Con <span style="font-size: 25px;
-    color: white;
-    font-weight: bold;">Mejora</span><span style ="font-size: 25px;
-    color: #0db497;
-    font-weight: bold;">App</span> controla todas esas actividades diarias que ayudan al mejoramiento continuo de tu Empresa tales como:
-    </p >
-    <p class="check"> <i class="fa fa-check" aria-hidden="true"></i> No Conformidades de Auditorias</p>
-    <p class="check"><i class="fa fa-check" aria-hidden="true"></i> Oportunidades de Mejora</p>
-    <p class="check"><i class="fa fa-check" aria-hidden="true"></i> Observaciones</p>
-    <p class="check"><i class="fa fa-check" aria-hidden="true"></i> Quejas y Reclamos</p>
-    <p class="check"> <i class="fa fa-check" aria-hidden="true"></i> Oportunidades de Negocio</p>
-    <p class="check" ><i class="fa fa-check" aria-hidden="true"></i> Compromisos de Actas</p>
-    <p class="check" ><i class="fa fa-check" aria-hidden="true"></i> Mejoras en Procesos</p>
-     <p class="check" ><i class="fa fa-check" aria-hidden="true"></i> Actividades de los Empleados</p>
-
-
-
-   
-    
-
-  
-
-</div>
    </div>
    <div class="col-lg-12 copyright" style="margin-bottom: 0;
     padding-bottom: 15px;
@@ -130,7 +94,7 @@
       }
       .info-mejoraapp
       {
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 40px 60px;
 }
 .img-right
