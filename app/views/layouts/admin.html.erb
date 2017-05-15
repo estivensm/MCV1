@@ -197,11 +197,13 @@
     </div><!-- /.navbar-collapse -->
   
 </nav>
-<%if !enable_report%>
+<%if !enable_report%><div style="padding:10px 0px;background:white">
+  
+
 <div class="alert alert-warning alert-dismissable" style = "margin-bottom:0px;">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>TERMINA LA CONFIGURACION INICAL PARA PODER CREAR TU PRIMER REPORTE<hr class="hr"> </strong>Procesos: <%= get_state(get_procesos.exists?).html_safe %>&nbsp;&nbsp;&nbsp;&nbsp; Cargos: <%= get_state(get_cargos.exists?).html_safe %>&nbsp;&nbsp;&nbsp;&nbsp; Completar Empleado: <%= get_state(compled_employed).html_safe %>&nbsp;&nbsp;&nbsp;&nbsp; Tipos: <%= get_state(get_sources.exists?).html_safe %>
-</div>
+</div></div>
 <%end%>
         
          <!--/sidebar-->
