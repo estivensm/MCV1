@@ -257,3 +257,12 @@ font-size: 13px !important;
     color: white;
     border: none;
 }
+
+
+
+@media (max-width: 900px) {
+    .ch {
+       width : 10px;
+
+    }
+}
