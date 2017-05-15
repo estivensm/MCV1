@@ -174,7 +174,7 @@
       
       <ul class="nav navbar-nav navbar-right" style = "background:white">
                      <li style = "height: 51px; background: #737882;padding: 10px
-" ><p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if current_user.role == "SuperAdmin" || current_user.rol.report_crear %> </p></li>
+" ><p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if (current_user.role == "SuperAdmin" || current_user.rol.report_crear) && enable_report %> </p></li>
 
                      <li style = "height: 51px;" > <%= (image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)) if Company.where(user_id: current_user.admin_user).first.logo_url %></li>
 
@@ -197,7 +197,12 @@
     </div><!-- /.navbar-collapse -->
   
 </nav>
-
+<%if !enable_report%>
+<div class="alert alert-warning alert-dismissable" style = "margin-bottom:0px;">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>TERMINA LA CONFIGURACION INICAL PARA PODER CREAR TU PRIMER REPORTE<hr class="hr"> </strong>Procesos: <%= get_state(get_procesos.exists?).html_safe %>&nbsp;&nbsp;&nbsp;&nbsp; Cargos: <%= get_state(get_cargos.exists?).html_safe %>&nbsp;&nbsp;&nbsp;&nbsp; Completar Empleado: <%= get_state(compled_employed).html_safe %>&nbsp;&nbsp;&nbsp;&nbsp; Tipos: <%= get_state(get_sources.exists?).html_safe %>
+</div>
+<%end%>
         
          <!--/sidebar-->
          <div class="row submenu-main" >
@@ -230,11 +235,7 @@
                   <span class="hidden-xs">Empleados</span>
                   <% end %>
                </li>
-               <li role="presentation" class="<%=@menu[5]%>"> <%= link_to normas_path,:class => "#{@menu[5]}" do %>
-                  <i class="fa fa-gavel" aria-hidden="true"></i>
-                  <span class="hidden-xs">Normas</span>
-                  <% end %>
-               </li>
+               
                <li role="presentation" class="<%=@menu[9]%>"><%= link_to source_parents_path,:class => "#{@menu[9]}" do %>
                   <i class="fa fa-share" aria-hidden="true"></i>
                   <span class="hidden-xs">Fuentes</span>
@@ -253,6 +254,11 @@
                <li role="presentation" class="<%=@menu[8]%>">     <%= link_to clinte_proveedors_path,:class => "#{@menu[8]}" do %>
                   <i class="fa fa-briefcase" aria-hidden="true"></i>
                   <span class="hidden-xs">Partes Interesadas</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu[5]%>"> <%= link_to normas_path,:class => "#{@menu[5]}" do %>
+                  <i class="fa fa-gavel" aria-hidden="true"></i>
+                  <span class="hidden-xs">Normas</span>
                   <% end %>
                </li>
             </ul>

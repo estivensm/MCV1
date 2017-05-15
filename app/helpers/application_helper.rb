@@ -10,6 +10,47 @@ else
 end
 
 
+def enable_report
+
+  Proceso.where(admin_user: current_user.admin_user).exists? ?  procesos = true : procesos = false
+  Cargo.where(admin_user: current_user.admin_user).exists? ?  cargos = true : cargos = false
+  Source.where(admin_user: current_user.admin_user).exists? ?  sources = true : sources = false
+  Employed.where(admin_user: current_user.admin_user).first.first_name != nil  &&  !Employed.where(admin_user: current_user.admin_user).first.first_name.empty? ?  employeds = true : employeds = false
+puts "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+ 
+ if procesos && cargos && sources && employeds
+    
+    true
+  else
+
+    false   
+ end
+
+
+end
+
+def compled_employed
+
+
+  Employed.where(admin_user: current_user.admin_user).first.first_name != nil  &&  !Employed.where(admin_user: current_user.admin_user).first.first_name.empty? ?  employeds = true : employeds = false
+ 
+ if  employeds
+    
+    true
+  else
+
+    false   
+ end
+
+
+end
+
+
+
+
+
+
+
 def get_extension(ext)
 
   case ext
