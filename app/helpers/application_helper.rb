@@ -227,12 +227,12 @@ def bootstrap_class_for flash_type
     @menum = ["","","","", "active1", "","","",""]
   elsif controller.controller_name == "my_tasks"  
     @menum = ["","","", "","","active1","","",""]
-      elsif controller.controller_name == "companies" && action_name = "company_indicators"  
+      elsif controller.controller_name == "companies" && action_name == "company_indicators"  
     @menum = ["","","", "","","","active1","",""]
-  elsif controller.controller_name == "accions" && (action_name = "acciones_todas" || action_name = "acciones_abiertas" || action_name = "acciones_cerradas")   
+  elsif controller.controller_name == "accions" && (action_name == "acciones_todas" || action_name == "acciones_abiertas" || action_name == "acciones_cerradas")   
     @menum = ["","","", "","","","","active1",""]
 
-     elsif controller.controller_name == "tasks" && (action_name = "tasks_todas" || action_name = "tasks_abiertas" || action_name = "tasks_cerradas")   
+     elsif controller.controller_name == "tasks" && (controller.action_name == "tasks_todas" || controller.action_name == "tasks_abiertas" || controller.action_name == "tasks_cerradas")   
     @menum = ["","","", "","","","","","active1"]
   end
 

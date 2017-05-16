@@ -4,7 +4,7 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 <% if  devise_error_messages? %> 
-   <div class="alert alert-danger">
+   <div class="alert alert-danger alert-devise">
    <%= devise_error_messages!  %></div>
 <% end %>
 
@@ -20,7 +20,7 @@
 
  
 <div class="form-group">
-    <%= f.label "Nombre Empresa" %><br />
+    <%= f.label "Empresa" %><br />
     <%= f.text_field :company , :class => 'form-control'%>
   </div>
 
@@ -40,7 +40,7 @@
   </div>
 
    <div class="form-group">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label "Confirmar Contraseña" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" , :class => 'form-control'%>
   </div>
 
@@ -54,3 +54,21 @@
 Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name), class:"linka" %><br />
 </div>
   </div>  </div>
+
+
+  <style>
+  .alert-devise h2
+ {
+     font-size: 18px !important;
+     text-align: left !important;
+
+ }
+   .alert-devise li
+ {
+
+     text-align: left !important;
+
+ }
+   
+    
+  </style>  }

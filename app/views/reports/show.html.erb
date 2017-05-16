@@ -35,6 +35,7 @@
 </div>
 <%end%>
 <%end%> 
+<br>
 <%= render 'form_close', report: @report %>
 
 
@@ -275,7 +276,7 @@
       <div class="col-md-8">
          <h3 class="htitle linka">Seguimientos (<%=@seguimientos.count %>)</h3>
       </div>
-      <div class="col-md-4 rtd"><% if @seguimientos.count > 0 %><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %><%end%></div>
+      <div class="col-md-4 rtd"><% if @seguimientos.count > 0 %><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'linka')  %><%end%></div>
    </div>
 </div>
 <% if @seguimientos.count > 0 %>
@@ -283,7 +284,11 @@
 
 <div class="height-rep"> 
 <% @seguimientos.each do |seg| %>
-<div class="conteinter reporte cnt ">
+<div class="conteinter reporte cnt " style = "    margin-top: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #e2e2e2;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;">
    <div class="row rtr">
    <div class="col-md-1">
    <%  idemp = User.find(seg.user_id).email
@@ -293,20 +298,28 @@
    </div>
       <div class="col-md-11">
       
-      <div class="col-md-4 rtd wihtout-padding-bot">
-         <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
-      </div>
-      <div class="col-md-3 rtd wihtout-padding-bot"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
-      <div class="col-md-3 rtd wihtout-padding-bot"><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
-      <div class="col-md-2 rtd text-right wihtout-padding-bot"><%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+     
+<div class="col-md-12 text-left"><%= seg.descripcion %></div>
+
+  </div>
+  </div>
+  <hr class="hr">
+   <div class="row rtr">
+  <div class="col-md-10 rtd wihtout-padding-bot">
+         <span>Creo:<span>
+      <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"> <%= employed.first_name %> <%= employed.first_last_name %></button>
+       <span style="margin-left:15px;">Fecha: </span><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %>
+     <span style="margin-left:15px;">Evidencia: </span><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %>
+    </div>
+     <div class="col-md-2 rtd wihtout-padding-bot">
+      <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
          <i class="fa fa-pencil" aria-hidden="true"></i>
          <% end %>
          <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
          <i class="fa fa-trash" aria-hidden="true"></i>
          <% end %>
       </div>
-<div class="col-md-12 wihtout-padding-top text-left"><%= seg.descripcion %></div>
-  </div>
+
    </div>
    
 </div> <hr>

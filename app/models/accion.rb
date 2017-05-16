@@ -44,6 +44,9 @@ class Accion < ApplicationRecord
     after_destroy :restar_costo
     after_create :send_mail
     before_update :causas   
+    validates :employed_id, :cierra_id, :name ,presence: true
+
+ scope :cerrados, -> { where(state: "Cerrado") }
 
 
   scope :cerradas, -> { where(estado: "Cerrada") }

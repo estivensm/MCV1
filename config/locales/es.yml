@@ -3,24 +3,39 @@ es:
     messages:
       blank: "no puede estar en blanco"
       invalid: "es inválido"
-      not_saved:
+      not_saved: 
         one: "Ha ocurrido 1 error:"
         other: "Han ocurrido %{count} errores:"
-      confirmation: "and password deberian ser iguales."  
-
+      confirmation: "y contraseña deberian ser iguales."  
+    
   activerecord:
     attributes:
       user:
         name: "Nombre"
         password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
       proceso:
         name: "Nombre"
       accion:
         employed_id: "Asignada a"
+        cierra_id: "Responsable de cierre"
+        name: "Descripción corta"
+
+      report:
+        employed_id: "Asignada a"
+        source_id: "Fuente"
+        cierra_id: "Responsable de Cierre"
+        employed_reporta: "Empleado que Reporta"
+        name: "Descripción corta"
   devise:
     failure:
-      not_found_in_database: "Usuario o Password invalidos"
-      invalid: "El Usuario no puede estar vacio"
+      not_found_in_database: "Usuario o Contraseña inválido"
+      invalid: "El Usuario no puede estar vacío"
       unauthenticated: "Debes iniciar sesion para ingresar a esta pagina"
     sessions:
       signed_in: "Bienvenido a MejoraApp."  
+      signed_out: "Cerraste Sesión Gracias por usar MejoraApp"
+    registrations:
+      signed_up: "Bienvenido, has iniciado Sesión correctamente"
+
+

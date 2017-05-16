@@ -4,8 +4,8 @@
    <div class="col-md-12">
       <%= nested_form_for @report do |f| %>
       <% if report.errors.any? %>
-      <div id="error_explanation">
-         <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+     <div class="alert alert-danger alert-devise">
+         <h2><%= pluralize(report.errors.count, "error") %> No permite que guardes el Reporte:</h2>
          <ul>
             <% report.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -14,6 +14,11 @@
       </div>
       <% end %>
       
+
+
+
+
+
     <div class="row">
     <p class="form-tit">Informacion Basica</p>
   
@@ -607,3 +612,21 @@ $('.source').change(function() {
 
 
 </script>
+
+
+  <style>
+   .alert-devise h2
+ {
+     font-size: 25px !important;
+     text-align: left !important;
+
+ }
+   .alert-devise li
+ {
+
+     text-align: left !important;
+
+ }
+   
+    
+  </style>  

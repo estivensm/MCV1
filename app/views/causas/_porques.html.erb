@@ -10,12 +10,26 @@
    <div class="panel-heading ph">Porque <%=i%> </div>
   <div class="panel-body ph">
      <p><%= cf.name %></p>
+    <%if cf.accions.exists?%>
+     <a class="" role="button" data-toggle="collapse" href="#collapseExample<%=cf.id%>" aria-expanded="false" aria-controls="collapseExample<%=cf.id%>">
+  Acciones (<%= cf.accions.count%>)
+</a>
+<%end%>
+     <div class="collapse" id="collapseExample<%=cf.id%>">
+  <div class="">
+
+   <%cf.accions.each do |accion| %>
+   <p>- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
+   <%end%>
+  </div>
+</div>
      </div>
   
   </div>
         <% i += 1
         end%>    
         
+
 
         
     </div>

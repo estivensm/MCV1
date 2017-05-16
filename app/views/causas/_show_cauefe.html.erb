@@ -1,72 +1,58 @@
 <div id="contact-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><%= nivel(@causa, @caef.nivel)%></h4>
-      </div>
-       <div style="padding-top:5px !important;" class="modal-body text-gray">
-<p class="text-right"><%= link_to  edit_caef_path(@caef), remote:true, :class => "opciones" do %>
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"><%= nivel(@causa, @caef.nivel)%></h4>
+         </div>
+         <div style="padding-top:5px !important;" class="modal-body text-gray">
+            <p class="text-right"><%= link_to  edit_caef_path(@caef), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
                <%= link_to  delete_caef_path(@caef),  method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
-               <% end %></p>
-<p><strong>Causa: </strong><%=@caef.name%></p>
-
-<p><strong>Descripcion </strong><%=@caef.descripcion%></p>
-
-<a class="" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
-  Acciones (<%= @caef.accions.count%>)
-</a>
-<br><br>
-<div class="collapse" id="collapseExample1">
-  <div class="">
-   <%@caef.accions.each do |accion| %>
-   <p>- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
-   <%end%>
-  </div>
-</div>
-
-
-
-
-<hr>
-
-<p ><strong>Sub Causas </strong></p>
-<% CausaEfecto.where(subnivel: @caef.id).each do |causa|%>
-     
-
-    <p style = "margin-left:40px;"><strong>Causa:</strong> <%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
-
+               <% end %>
+            </p>
+            <p><strong>Causa: </strong><%=@caef.name%></p>
+            <p><strong>Descripcion </strong><%=@caef.descripcion%></p>
+            <a class="" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+            Acciones (<%= @caef.accions.count%>)
+            </a>
+            <br><br>
+            <div class="collapse" id="collapseExample1">
+               <div class="">
+                  <%@caef.accions.each do |accion| %>
+                  <p>- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
+                  <%end%>
+               </div>
+            </div>
+            <hr>
+            <p ><strong>Sub Causas </strong></p>
+            <% CausaEfecto.where(subnivel: @caef.id).each do |causa|%>
+            <p style = "margin-left:40px;"><strong>Causa:</strong> <%=causa.name%> <%= link_to  edit_caef_path(causa.id), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" style = "margin-left:20px" aria-hidden="true"></i>
                <% end %><%= link_to  delete_caef_path(causa.id),  method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
-               <% end %></p>
-         <p style = "margin-left:40px;"><strong>Descripcion:</strong> <%=causa.descripcion%></p>      
-               <a style = "margin-left:40px" class="" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
-  Acciones (<%= causa.accions.count%>) 
-</a>
-<br><br>
-<div class="collapse" id="collapseExample<%=causa.id%>">
-  <div class="">
-    <%causa.accions.each do |accion| %>
-   <p style = "margin-left:40px">- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
-
-   <%end%>
-  </div>
-</div>
-
-    
- <hr>
-
-<% end %>
-
-<div class=" text-center">
-<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-
-    </div>
-    </div>
-  </div>
-</div>
+               <% end %>
+            </p>
+            <p style = "margin-left:40px;"><strong>Descripcion:</strong> <%=causa.descripcion%></p>
+            <a style = "margin-left:40px" class="" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
+            Acciones (<%= causa.accions.count%>) 
+            </a>
+            <br><br>
+            <div class="collapse" id="collapseExample<%=causa.id%>">
+               <div class="">
+                  <%causa.accions.each do |accion| %>
+                  <p style = "margin-left:40px">- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
+                  <%end%>
+               </div>
+            </div>
+            <hr>
+            <% end %>
+            <div class=" text-center">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>

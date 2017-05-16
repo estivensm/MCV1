@@ -80,12 +80,17 @@
 <div class="conteinter reporte cnt">
 <div class="row rtr name">
       <div class="col-md-12 rtd"><%=@accion.name%></div>
+
     
+  
    </div>
    <hr>
 
 
         <div class="row rtr">
+        <%if @accion.causa_efectos.exists?%>
+        <div class="col-md-12 rtd"><strong>Causas: </strong><%= @accion.causa_efectos.pluck(:name).join(", ") %></div>
+          <%end%>
           <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(@accion.created_at) %></div>
            <div class="col-md-2 rtd"><strong>Codigo:</strong> <%= @accion.codigo %></div>
           <% employed1 = Employed.find(@accion.employed_id)%>
@@ -357,7 +362,7 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
          <i class="fa fa-trash" aria-hidden="true"></i>
          <% end %>
       </div>
-<div class="col-md-12 wihtout-padding-top text-left name1"><%= seg.descripcion %></div>
+<div class="col-md-12 wihtout-padding-top text-left"><%= seg.descripcion %></div>
   </div>
    </div>
    
