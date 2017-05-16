@@ -11,11 +11,11 @@
     width: 100%;
     height: 500px;
     overflow: auto;
-    background: #eeeeee;
+    background: white;
 }
 .org-input
 {
-    width: 200px;
+    width: 250px;
 }
 
     </style>
@@ -41,7 +41,7 @@
     var testData = [
         {id: 1, name: "<%=@report.name%>", parent: 0, idi: 3},
         <%@causa.causa_efectos.each do |causa| %>
-        {id: <%=causa.nivel.to_i%>, name: '<%=causa.name%>', parent: <%=causa.subnivel.to_i%>, idi: <%=causa.id.to_i%>},
+        {id: <%=causa.nivel.to_i%>, name: '<%=causa.name%>', parent: <%=causa.subnivel.to_i%>, idi: <%=causa.id.to_i%>, estado: "<%=causa.estado%>"},
         
         <%end%>
     ];
@@ -98,6 +98,8 @@ $(".actualizar1").click(function() {
 var h2a = []
 var nodea = []
 var parenta = []
+var estado = []
+
 
 
         if ($(this).attr('node-id') != 1)
@@ -112,6 +114,7 @@ $(".node").each(function(){
  h2a.push($(this).children('h2').text());
  nodea.push($(this).attr('node-id'));
  parenta.push($(this).attr('name'));
+ estado.push($(this).children("select").val());
 
 }
 
@@ -121,7 +124,7 @@ $(".node").each(function(){
 console.log(h2a);
 console.log(nodea);
 console.log(parenta);
-
+console.log(estado)
 setTimeout(function(){
 
 
@@ -135,6 +138,7 @@ $.ajax({
         "name": h2a,
         "node": nodea,
         "parent": parenta,
+        "estado": estado,
          
       },
     success: function(result) {

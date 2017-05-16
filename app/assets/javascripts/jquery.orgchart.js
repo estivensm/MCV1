@@ -5,7 +5,7 @@
     }
 
     $.fn.orgChart.defaults = {
-        data: [{id:1, name:'Root', parent: 0 , idi: 3}],
+        data: [{id:1, name:'Root', parent: 0 , idi: 3, estado: ""}],
         showControls: false,
         allowEdit: false,
         onAddNode: null,
@@ -214,7 +214,19 @@
         this.formatNode = function(opts){
             var nameString = '',
                 descString = '';
-            if(typeof data.name !== 'undefined'){
+             if (this.data.estado == "vital")
+             {v = "selected=selected";}
+             else
+             {v = "";}       
+
+console.log(this.data.idi);
+console.log(this.data.estado);
+
+
+                
+var html = "<select class = 'select_node' id ='id"+this.data.id+"'><option value='trivial'>Trivial</option><option "+ v+"  value='vital'>Vital</option></select>"
+
+   if(typeof data.name !== 'undefined'){
                 nameString = '<h2>'+self.data.name+'</h2>';
             }
             if(typeof data.description !== 'undefined'){
@@ -226,7 +238,7 @@
             else{
                 buttonsHtml = '';
             }
-            return "<div class='node' idi='"+this.data.idi +"' name='"+this.data.parent +"' node-id='"+this.data.id+"'>"+nameString+descString+buttonsHtml+"<a href='www.google.com' target='_blank'>hola</></div>";
+            return "<div class='node' idi='"+this.data.idi +"' name='"+this.data.parent +"' node-id='"+this.data.id+"'>"+nameString+descString+buttonsHtml+ html+ "</div>";
         }
     }
 

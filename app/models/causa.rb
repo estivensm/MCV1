@@ -54,7 +54,7 @@ if self.tipo == "Pareto"
             causa.porcentaje = porc + sump 
             sump = causa.porcentaje
             
-            if sump > 100
+            if sump > 100 || sump >= 99
             causa.porcentaje = 100
             puts "hoollllllllllllllllllllllalllllllllllllllllllllllllllllll"
             end

@@ -104,3 +104,17 @@ background: url(./delete.png) no-repeat;
 .org-input { width: 90px; }
 
 .org-confirm-del-button { display: none; }
+
+.select_node 
+{
+      bottom: 3px;
+    left: 108px;
+    padding-left: 13px;
+    color: #797979;
+    
+    position: absolute;
+}
+#id1
+{
+  display: none;
+}

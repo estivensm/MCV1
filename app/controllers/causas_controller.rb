@@ -128,12 +128,11 @@ end
 
 def delete_arbol
  
-  puts params[:name]
-  puts params[:node]
-  puts params[:parent]
+
   name = params[:name]
   node =  params[:node]
   parent =  params[:parent]
+  estado =  params[:estado]
   size = params[:size].to_i 
 
 if size != 0
@@ -159,12 +158,12 @@ end
 
     if CausaEfecto.where(report_id: params[:report_id]).where(nivel: node[i]).count == 0
 
-        CausaEfecto.create(user_id:current_user.id, admin_user:current_user.admin_user, report_id: params[:report_id],causa_id: params[:causa_id],name: name[i],nivel:node[i],subnivel: parent[i] )
+        CausaEfecto.create(user_id:current_user.id, admin_user:current_user.admin_user, report_id: params[:report_id],causa_id: params[:causa_id],name: name[i],nivel:node[i],subnivel: parent[i], estado: estado[i] )
         #CausaEfecto.where(report_id: params[:report_id]).destroy_all
         #redirect_to report_causa_path(params[:report_id],params[:causa_id])
    
     else
-      CausaEfecto.where(report_id: params[:report_id]).where(nivel: node[i]).first.update(name: name[i])
+      CausaEfecto.where(report_id: params[:report_id]).where(nivel: node[i]).first.update(name: name[i], estado: estado[i])
     end
   end
 end
@@ -178,7 +177,7 @@ def crear_arbol
    
   #puts "fasddddddddddddddddddddddddddddddddddddddddddddddd"
   #puts CausaEfecto.where(report_id: params[:report_id]).where(nivel:params[:nivel]).count
-  CausaEfecto.create(user_id:current_user.id, admin_user:current_user.admin_user, report_id: params[:report_id],causa_id: params[:causa_id],name: params[:name],nivel:params[:node],subnivel: params[:parent] )
+  CausaEfecto.create(user_id:current_user.id, admin_user:current_user.admin_user, report_id: params[:report_id],causa_id: params[:causa_id],name: params[:name],nivel:params[:node],subnivel: params[:parent], estado: "trivial")
   end
 end
 
