@@ -80,7 +80,7 @@
                      <%end%>
                   </li>
                   <li>  
-                     <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
+                     <%= link_to company_path(company_x),:class => "configuracion"  do %>
                      <i class="fa fa-question ic" aria-hidden="true"></i>
                      <span class="color-gray">Soporte</span>
                      <% end %>
@@ -221,7 +221,7 @@
          <!--/sidebar-->
          <div class="row submenu-main" >
             <% sub_menu %>
-            <% if @menum[0] == "active1" %>
+            <% if @menum[0] == "active2" %>
             <ul class="nav nav-tabs" role="tablist">
                <li role="presentation" class="<%=@menu[0]%>"> <%= link_to company_path(company_x),:class => "#{@menu[0]}" do %>
                   <i class="fa fa-building-o" aria-hidden="true"></i>
