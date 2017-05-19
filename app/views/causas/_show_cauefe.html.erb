@@ -15,9 +15,10 @@
             </p>
             <p><strong>Causa: </strong><%=@caef.name%></p>
             <p><strong>Descripcion </strong><%=@caef.descripcion%></p>
-            <a class="" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+             <%if @caef.accions.exists?%>
+            <a class="btn btn-warning acciones" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
             Acciones (<%= @caef.accions.count%>)
-            </a>
+            </a><%end%>
             <br><br>
             <div class="collapse" id="collapseExample1">
                <div class="">
@@ -36,9 +37,9 @@
                <% end %>
             </p>
             <p style = "margin-left:40px;"><strong>Descripcion:</strong> <%=causa.descripcion%></p>
-            <a style = "margin-left:40px" class="" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
+            <%if causa.accions.exists?%><a style = "margin-left:40px" class="btn btn-warning acciones" role="button" data-toggle="collapse" href="#collapseExample<%=causa.id%>" aria-expanded="false" aria-controls="collapseExample<%=causa.id%>">
             Acciones (<%= causa.accions.count%>) 
-            </a>
+            </a><%end%>
             <br><br>
             <div class="collapse" id="collapseExample<%=causa.id%>">
                <div class="">
@@ -56,3 +57,5 @@
       </div>
    </div>
 </div>
+
+

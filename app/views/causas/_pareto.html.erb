@@ -119,8 +119,26 @@
    <div class="panel-heading ph">Causas Vitales </div>
   <div class="panel-body ph">
      <% causa_pareto.each do  |cp| %>
-    <p class = "titctp">* <%=cp.name %></p>
+    <p class = "titctp"> <%=cp.name %>
+
+    <%if cp.accions.exists?%>
+     <p><a  class="btn-warning acciones" role="button" data-toggle="collapse" href="#collapseExample<%=cp.id%>" aria-expanded="false" aria-controls="collapseExample<%=cp.id%>">
+  Acciones (<%= cp.accions.count%>)
+</a></p>
+<%end%>
+     <div class="collapse" id="collapseExample<%=cp.id%>">
+  <div class="">
+
+   <%cp.accions.each do |accion| %>
+   
+   <p style= "margin-left: 30px">- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
+   <%end%>
+  </div>
+</div>
+</p>
+<hr class="hr">
     <%end%>
+
      </div>
   
   </div>
@@ -129,8 +147,10 @@
    <div class="panel-heading ph">Causas Triviales</div>
   <div class="panel-body ph">
      <% causa_paretot.each do  |cpt| %>
-    <p class = "titctp">* <%=cpt.name %></p>
+    <p class = "titctp"><%=cpt.name %></p>
+    <hr class="hr">
     <%end%>
+
      </div>
   
   </div>
@@ -139,42 +159,44 @@
 <div class="row">
 <div class="col-md-8">
 <div class="panel panel-default">
-   <div class="panel-heading ph">PARETO</div>
-  <div class="panel-body ph">
-  <div class="row">
-      <div class="col-md-12">
-         <div class="col-md-8">
-             <p class = "titctp">Causa</p>
-         </div>
-         <div class="col-md-2">
-              <p class = "titctp">Frecuencia</p>
-         </div>
-         <div class="col-md-2">
-              <p class = "titctp">porcentaje</p>
-         </div>
-     </div>
-    </div>
-     <%     @causa_paret.each do  |cpt| %>
-     <div class="row">
-      <div class="col-md-12">
-         <div class="col-md-8">
-             <p class = "titctp"><%=cpt.name %></p>
-         </div>
-         <div class="col-md-2">
-              <p class = "titctp"><%=cpt.frecuencia %></p>
-         </div>
-         <div class="col-md-2">
-              <p class = "titctp"><%=cpt.porcentaje.to_i %>%</p>
-         </div>
-     </div>
-    </div>
-    <hr style = "margin-top:0px;margin-bottom:0px">
-    <%end%>
-     </div>
-     <br>
-  </div>
-  </div>
-    </div>
+        <div class="panel-heading ph">PARETO</div>
+        <div class="panel-body ph">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-8">
+                  <p class = "titctp tit">Causa</p>
+              </div>
+              <div class="col-md-2">
+                    <p class = "titctp tit">Frecuencia</p>
+              </div>
+              <div class="col-md-2">
+                    <p class = "titctp tit">porcentaje</p>
+              </div>
+          </div>
+
+          </div>
+            <hr class="hr">
+          <%     @causa_paret.each do  |cpt| %>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-8">
+                  <p class = "titctp"><%=cpt.name %></p>
+              </div>
+              <div class="col-md-2">
+                    <p class = "titctp"><%=cpt.frecuencia %></p>
+              </div>
+              <div class="col-md-2">
+                    <p class = "titctp"><%=cpt.porcentaje.to_i %>%</p>
+              </div>
+          </div>
+          </div>
+          <hr style = "margin-top:0px;margin-bottom:0px">
+          <%end%>
+          </div>
+          <br>
+        </div>
+      </div>
+</div>
 
 
 <%else%>
@@ -223,9 +245,23 @@ margin-top: : 0px
 .titctp
 {
 font-size: 12px !important;    
-margin-bottom: 5px;
+margin:8px;
+
+}
+.tit
+{
+font-weight: bold;
+
 }
 
-    
+  .acciones
+  {
+    margin-left: 20px;
+    padding:2px 8px;
+    border-radius: 2px;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
 </style>
 

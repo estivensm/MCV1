@@ -11,17 +11,36 @@
      </div>          
  </div>
 
-    <table class ="pez">
+    <table class ="pez"> 
         <tr>
             <th style = "width:240px">
-            <%= link_to @causa.primera_m, new_caef_path(@causa,"1","0"), remote: true, class:"linkg vertical-bottom"%>
+            
+            
+            <span class="vertical-bottom causa-pr"%><%=@causa.primera_m%></span>
+            <%if @causa.causa_efectos.where(nivel: "1").where(subnivel: "0").count < 6%>
+            
+            <%= link_to "+", new_caef_path(@causa,"1","0"), remote: true, class:"linkg vertical-bottom"%>
+            <%end%>
              
             </th>
             <th style = "width:240px">
-                <%= link_to @causa.seguna_m, new_caef_path(@causa,"2","0"), remote: true , class:"linkg vertical-bottom"%>
+
+                <span class="vertical-bottom causa-pr"%><%=@causa.seguna_m%></span>
+            <%if @causa.causa_efectos.where(nivel: "2").where(subnivel: "0").count < 6%>
+            
+            <%= link_to "+", new_caef_path(@causa,"2","0"), remote: true, class:"linkg vertical-bottom"%>
+            <%end%>
+
             </th>
             <th style = "width:240px">
-             <%= link_to @causa.tercera_m, new_caef_path(@causa,"3","0"), remote: true, class:"linkg vertical-bottom" %></th>
+            
+ <span class="vertical-bottom causa-pr" style = "margin-left:50px;"%><%=@causa.tercera_m%></span>
+            <%if @causa.causa_efectos.where(nivel: "3").where(subnivel: "0").count < 6%>
+            
+            <%= link_to "+", new_caef_path(@causa,"3","0"), remote: true, class:"linkg vertical-bottom"%>
+            <%end%>
+
+                </th>
             <th></th>
             <th></th>
         </tr>
@@ -224,9 +243,37 @@
     </table>
     <table class ="pez">
         <tr>
-            <th style = "width:240px"> <%= link_to @causa.cuarta_m, new_caef_path(@causa,"4","0"), remote: true, class:"linkg vertical-bottom" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.quinta_m, new_caef_path(@causa,"5","0"), remote: true, class:"linkg vertical-bottom" %></th></th>
-            <th style = "width:240px"> <%= link_to @causa.sexta_m, new_caef_path(@causa,"6","0"), remote: true, class:"linkg vertical-bottom" %></th></button></th>
+            <th style = "width:240px">
+
+ <span class="vertical-bottom causa-pr"%><%=@causa.cuarta_m%></span>
+            <%if @causa.causa_efectos.where(nivel: "4").where(subnivel: "0").count < 6%>
+            
+            <%= link_to "+", new_caef_path(@causa,"4","0"), remote: true, class:"linkg vertical-bottom"%>
+            <%end%>
+
+         </th>
+            <th style = "width:240px"> 
+ <span class="vertical-bottom causa-pr"%><%=@causa.quinta_m%></span>
+            <%if @causa.causa_efectos.where(nivel: "5").where(subnivel: "0").count < 6%>
+            
+            <%= link_to "+", new_caef_path(@causa,"5","0"), remote: true, class:"linkg vertical-bottom"%>
+            <%end%>
+
+            </th>
+            <th style = "width:240px">
+ <span class="vertical-bottom causa-pr" style = "margin-left:50px;"%><%=@causa.sexta_m%></span>
+            <%if @causa.causa_efectos.where(nivel: "6").where(subnivel: "0").count < 6%>
+            
+            <%= link_to "+", new_caef_path(@causa,"6","0"), remote: true, class:"linkg vertical-bottom"%>
+            <%end%>
+
+
+
+            <th style = "width:240px"> 
+                
+
+
+            </th></button></th>
             <th></th>
             <th></th>
         </tr>
@@ -257,5 +304,13 @@
     color: #b3b3b3 !important;
 }
 
-    
+     .acciones
+  {
+   
+    padding:0px 6px;
+    border-radius: 2px;
+    font-weight: bold;
+    text-decoration: none !important;
+    margin-bottom: 10px;
+}
 </style>

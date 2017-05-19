@@ -498,7 +498,7 @@ def estado_contador(cont)
 
     if cont >5 
 
-      "#0db497 !important"
+      "#22c488 !important"
     elsif cont <=5 && cont >= 0
 
       if action_name != "cerrados"
@@ -520,7 +520,7 @@ def get_color(color)
    
   c = ""
   color < 0 ? c = "#d82c2c" : c = "orange"
-  c = "#0db4a0" if color > 5
+  c = "#22c488" if color > 5
   return c
 
   end
@@ -530,7 +530,7 @@ def get_color(color)
    
   c = ""
   color < 60 ? c = "#d82c2c" : c = "orange"
-  c = "#0db4a0" if color > 90
+  c = "#22c488" if color > 90
   return c
 
   end

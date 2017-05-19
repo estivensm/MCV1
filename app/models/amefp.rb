@@ -24,12 +24,13 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  npr_tage       :integer
-#
+#:f_compromiso,presence: true
 
 class Amefp < ApplicationRecord
 	after_create :crear_amef
 	belongs_to  :causa
 	has_many :amefs, dependent: :destroy
+    validates :p_valor,  presence: true
 
     def crear_amef
             causa = Causa.find(self.causa_id)
