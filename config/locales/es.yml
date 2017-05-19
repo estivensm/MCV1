@@ -20,7 +20,12 @@ es:
         employed_id: "Asignada a"
         cierra_id: "Responsable de cierre"
         name: "Descripción corta"
-
+      amefp:
+        p_valor: "Gravedad"
+        s_valor: "Gravedad"
+        t_valor: "Gravedad"
+        t_valor: "Gravedad"
+        npr_tage: "NPR Tage"
       report:
         employed_id: "Asignada a"
         source_id: "Fuente"

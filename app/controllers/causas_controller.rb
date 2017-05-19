@@ -76,31 +76,31 @@ class CausasController < ApplicationController
       
   end
   def new_caef
-      @causa = Causa.find(params[:causa])
-       @report = Report.find(@causa.report_id)
-       @m = params[:m]
-        @sub = params[:sub]
-     
+  
+     @causa = Causa.find(params[:causa])
+     @report = Report.find(@causa.report_id)
+     @m = params[:m]
+     @sub = params[:sub]
+        
+  end
+
+  def update_caef
+
+      @causa = CausaEfecto.find(params[:id])
+  
+          if @causa.update(descripcion:params[:descripcion],name:params[:name])
+               redirect_to :back
+          end
       
   end
 
-   def update_caef
-
-  @causa = CausaEfecto.find(params[:id])
-  if @causa.update(descripcion:params[:descripcion],name:params[:name])
+  def create_caef
+    @causa = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
+       if @causa.save
     
-    redirect_to :back
+           redirect_to :back
+      end
   end
-      
-  end
-
-   def create_caef
-        @causa = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
-  if @causa.save
-    
-    redirect_to :back
-  end
-end
 
   def destroy_caef
 @causa = CausaEfecto.find(params[:id])

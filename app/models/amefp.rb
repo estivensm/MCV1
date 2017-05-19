@@ -30,7 +30,7 @@ class Amefp < ApplicationRecord
 	after_create :crear_amef
 	belongs_to  :causa
 	has_many :amefs, dependent: :destroy
-    validates :p_valor,  presence: true
+    validates :p_valor,:s_valor, :t_valor ,:npr_tage, presence: true
 
     def crear_amef
             causa = Causa.find(self.causa_id)

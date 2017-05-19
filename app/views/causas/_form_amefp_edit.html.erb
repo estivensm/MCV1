@@ -6,7 +6,7 @@
             <h4 class="modal-title">Configuracion General AMEF</h4>
          </div>
          
-         <div class="alert alert-warning text-center">
+         <div class="alert-warning text-center" style = "padding:15px;">
   <strong>¡ RECUERDA QUE AL MODIFICAR LOS DATOS, DEBES ACTUALIZAR EL CUADRO DEL AMEF !</strong>
 </div>
          <%= form_tag update_amefp_path(@amefp.id), method: :patch, remote:true do %>
@@ -20,7 +20,7 @@
                
                <div class="col-md-8">
                   <div class="form-group">
-                     <%= label_tag "Descripcion" %>
+                     <%= label_tag "Observaciones" %>
                      <%= text_area_tag :descripcion, @amefp.descripcion , class: "form-control formus" %>
                   </div>
                </div>
