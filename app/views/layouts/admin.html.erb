@@ -69,9 +69,23 @@
                  
                </ul>
                </li>
+
                </ul>
                <ul class="nav navbar-nav navbar-right" style = "background:white">
-                  
+                  <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                     <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
+                     <i class="fa fa-cogs ic" aria-hidden="true"></i>
+                     <span class="color-gray">Configuracion</span>
+                     <% end %>
+                     <%end%>
+                  </li>
+                  <li>  
+                     <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
+                     <i class="fa fa-question ic" aria-hidden="true"></i>
+                     <span class="color-gray">Soporte</span>
+                     <% end %>
+                    
+                  </li>
                   <li style = "height: 51px;" > <%= (image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)) if Company.where(user_id: current_user.admin_user).first.logo_url %></li>
                   <li class="dropdown">
                      <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
@@ -176,13 +190,7 @@
                      <% end %>
                      <%end%>
                   </li>
-                  <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                     <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
-                     <i class="fa fa-cogs ic" aria-hidden="true"></i>
-                     <span>Configuracion</span>
-                     <% end %>
-                     <%end%>
-                  </li>
+                  
                </ul>
                </li>
                </ul>
@@ -191,7 +199,7 @@
                      " >
                      <p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if (current_user.role == "SuperAdmin" || current_user.rol.report_crear) && enable_report %> </p>
                   </li>
-                  <li style = "height: 51px;" > <%= (image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo)) if Company.where(user_id: current_user.admin_user).first.logo_url %></li>
+                  
                 
                </ul>
             </div>
