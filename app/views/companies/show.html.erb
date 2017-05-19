@@ -13,7 +13,7 @@
 <hr class = "hr">
 <div class="row show-user company" >
    <div class="col-md-4">
-      <%= @company.logo? ? image_tag(@company.logo_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe")  %>
+      <%= @company.logo? ? image_tag(@company.logo_url(:medium)) : ""  %>
       <div class="col-md-10 col-md-offset-1">
          <h2><%= @company.name %></h2>
          <p><strong>Telefono:</strong> <%= @company.phone %></p>
@@ -23,189 +23,56 @@
       </div>
    </div>
    <div class="col-md-8">
-   <%= link_to users_index_path do%>
-      <div class="col-md-2 cuadro">
-         <div class="col-md-3">
-            <i class="fa fa-list-ol fas" aria-hidden="true"></i>
-
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_users.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Usuarios</p>
-         </div>
-      </div>
-       <%end%>
-
-
-   <%= link_to procesos_path do%>
-      <div class="col-md-2 cuadro">
-         <div class="col-md-3">
-            <i class="fa fa-cogs fas" aria-hidden="true"></i>
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_procesos.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Procesos</p>
-         </div>
-      </div>
-      <%end%>
-      <%= link_to cargos_path do%>
-      <div class="col-md-2 cuadro1">
-         <div class="col-md-3">
-            <i class="fa fa-briefcase fas" aria-hidden="true"></i>
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_cargos.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Cargos</p>
-         </div>
-      </div>
-      <%end%>
-      <%= link_to employeds_path do%>
-      <div class="col-md-2 cuadro">
-         <div class="col-md-3">
-            <i class="fa fa-users fas" aria-hidden="true"></i>
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_employeds.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Empleados</p>
-         </div>
-      </div>
-     <%end%>
-      <%= link_to sources_path do%>
-      <div class="col-md-2 cuadro1">
-         <div class="col-md-3">
-            <i class="fa fa-search fas" aria-hidden="true"></i>
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_sources.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Fuentes</p>
-         </div>
-      </div>
-       <%end%>
-      <%= link_to rols_path do%>
-      <div class="col-md-2 cuadro">
-         <div class="col-md-3">
-            <i class="fa fa-share-alt fas" aria-hidden="true"></i>
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_rols.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Roles</p>
-         </div>
-      </div>
-       <%end%>
-      <%= link_to normas_path do%>
-      <div class="col-md-2 cuadro1">
-         <div class="col-md-3">
-           <i class="fa fa-gavel fas" aria-hidden="true"></i>
-
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_normas.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Normas</p>
-         </div>
-      </div>
-       <%end%>
+   
       
-      <%= link_to clinte_proveedors_path do%>
-      <div class="col-md-2 cuadro1">
-         <div class="col-md-3">
-           <i class="fa fa-users fas" aria-hidden="true"></i>
+      
+      <div class="col-md-10 cuadro1">
+        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OlxPUgBPAUgtf9szCHOhaN_A2moHDszXs1ChXxTaoxPGqGK6jg" alt=""> Almacenamiento <span><%=get_size%> de 20 GB</span></p>
 
-         </div>
-         <div class="col-md-9">
-            <h1><%=get_clientes.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Clientes</p>
-         </div>
       </div>
-       <%end%>
-      <%= link_to proveedores_path do%>
-      <div class="col-md-2 cuadro">
-         <div class="col-md-3">
-            <i class="fa fa-cubes fas" aria-hidden="true"></i>
+      <div class="col-md-10 cuadro1">
+        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeZ0XmsB1Quoj6F9llD0yjOrPQPl_SdlGOuk6gusx6FmWs27X1Xg" alt=""> Usuarios Activos <span><%=get_users.count%> de 10 </span></p>
 
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_proveedores.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Proveedores</p>
-         </div>
       </div>
-       <%end%>
-      <%= link_to entidades_certificacion_path do%>
-      <div class="col-md-2 cuadro1">
-         <div class="col-md-3">
-          <i class="fa fa-building-o fas" aria-hidden="true"></i>
-         </div>
-         <div class="col-md-8">
-            <h1><%=get_otros.count%></h1>
-         </div>
-         <div class="col-md-12 pc">
-            <p>Otros Externos</p>
-         </div>
-      </div>
-   <%end%>
+     
+
+      
+     
    </div>
 </div>
 <style>
    .cuadro
    {
-   background: #0db497;
    color: white;
-   padding: 5px;
-   margin: 10px;
+    /* padding: 5px; */
+  
    }
    .cuadro p
    {
    color: #0db497;
    padding-top: 5px;
    font-size: 13px;
-   background: whitesmoke;
+   
+   }
+   .cuadro1 img
+   {
+      width: 100px;
    }
    .cuadro1
    {
-   background: #50aad4;
    color: white;
-   padding: 5px;
-   margin: 10px;
+    /* padding: 5px; */
+
+    margin-top: 10px;
    }
    .cuadro1 p
    {
    color: #50aad4;
    padding-top: 5px;
-   font-size: 13px;
-   background: whitesmoke;
+   font-size: 30px;
+  
    }
-   .cuadro h1
-   {
-   text-align: right;
-   color: white !important;
-   font-size: 35px !important;
-   padding: 10px;
-   }
-   .cuadro1 h1
-   {
-   text-align: right;
-   color: white !important;
-   font-size: 35px !important;
-   padding: 10px;
-   }
-   .fas
+    .fas
    {
    color:white;
    font-size: 30px;
@@ -222,14 +89,5 @@
    }
 
 
-
-.cuadro:hover
-   {
-background: #9e9e9e;
-   }
-   .cuadro1:hover
-   {
-background: #9e9e9e;
-   }
 
 </style>

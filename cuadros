@@ -1,0 +1,137 @@
+<%= link_to users_index_path do%>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-3">
+            <i class="fa fa-list-ol fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_users.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Usuarios</p>
+         </div>
+      </div>
+       <%end%>
+
+
+   <%= link_to procesos_path do%>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-3">
+            <i class="fa fa-cogs fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_procesos.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Procesos</p>
+         </div>
+      </div>
+      <%end%>
+      <%= link_to cargos_path do%>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-3">
+            <i class="fa fa-briefcase fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_cargos.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Cargos</p>
+         </div>
+      </div>
+      <%end%>
+      <%= link_to employeds_path do%>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-3">
+            <i class="fa fa-users fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_employeds.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Empleados</p>
+         </div>
+      </div>
+     <%end%>
+      <%= link_to sources_path do%>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-3">
+            <i class="fa fa-search fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_sources.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Fuentes</p>
+         </div>
+      </div>
+       <%end%>
+      <%= link_to rols_path do%>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-3">
+            <i class="fa fa-share-alt fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_rols.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Roles</p>
+         </div>
+      </div>
+       <%end%>
+      <%= link_to normas_path do%>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-3">
+           <i class="fa fa-gavel fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_normas.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Normas</p>
+         </div>
+      </div>
+       <%end%>
+      
+      <%= link_to clinte_proveedors_path do%>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-3">
+           <i class="fa fa-users fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-9">
+            <h1><%=get_clientes.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Clientes</p>
+         </div>
+      </div>
+       <%end%>
+      <%= link_to proveedores_path do%>
+      <div class="col-md-2 cuadro">
+         <div class="col-md-3">
+            <i class="fa fa-cubes fas" aria-hidden="true"></i>
+
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_proveedores.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Proveedores</p>
+         </div>
+      </div>
+       <%end%>
+      <%= link_to entidades_certificacion_path do%>
+      <div class="col-md-2 cuadro1">
+         <div class="col-md-3">
+          <i class="fa fa-building-o fas" aria-hidden="true"></i>
+         </div>
+         <div class="col-md-8">
+            <h1><%=get_otros.count%></h1>
+         </div>
+         <div class="col-md-12 pc">
+            <p>Otros Externos</p>
+         </div>
+      </div>
+   <%end%>
