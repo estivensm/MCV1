@@ -69,6 +69,8 @@
    </div>
      <div class = "col-md-4 text-right">
      <%=link_to "Editar AMEF" ,edit_amefp_path(@amefp.id),remote:true , class: "btn btn-primary"%>
+     <%=link_to "Borrar AMEF" ,delete_amefp_path(@amefp.id) ,method: :delete, data: { confirm: '¿Estas seguro?' }, class: "btn btn-danger"%>
+
       <button type="" class="actu btn btn-primary">Editar Cuadro</button>
    </div>
 

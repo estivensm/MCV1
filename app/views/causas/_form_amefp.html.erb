@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Crear AMEF</h4>
       </div>
-<%= form_tag crear_amefp_path do %>
+<%= form_tag crear_amefp_path, remote: true do %>
   <div class="alert alert-danger" style="display:none;padding: 10px;">
     <ul>
     
@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-md-8">
      <div class="form-group">
-    <%= label_tag "Descripcion" %>
+    <%= label_tag "Observaciones" %>
     <%= text_area_tag :descripcion, nil , class: "form-control formus" %>
   </div>
   </div>
@@ -31,7 +31,7 @@
   <div class="col-md-5">
      <div class="form-group">
     <%= label_tag "Fecha Valoracion" %>
-    <%= date_field_tag :frp_valoracion, nil , class: "form-control formus"%>
+    <%= date_field_tag :frp_valoracion, 0 , class: "form-control formus"%>
    
   </div>
 
@@ -39,7 +39,7 @@
    <div class="col-md-2">
      <div class="form-group">
     <%= label_tag "Gravedad" %>
-    <%= number_field_tag :p_valor, nil , class: "form-control formus"%>
+    <%= number_field_tag :p_valor, 0 , class: "form-control formus"%>
    
   </div>
 
@@ -47,7 +47,7 @@
    <div class="col-md-5">
      <div class="form-group">
     <%= label_tag "Descripcion" %>
-    <%= text_area_tag :dp_valoracion, nil , class: "form-control formus"%>
+    <%= text_area_tag :dp_valoracion, nil  , class: "form-control formus"%>
    
   </div>
 

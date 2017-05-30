@@ -100,10 +100,13 @@ def get_state_report(state, id, tipo)
 
      elsif tipo == "ACC"
         state == true ? Report.find(id).accions.where(tipo: "Accion").count : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+         elsif tipo == "ACT"
+        state == true ? Report.find(id).accions.where(tipo: "Actividad").count : a = "<i class='fa fa-times' aria-hidden='true'></i>"
 
 
        elsif tipo == "T"
   state == true ? Report.find(id).tasks.count : a = "<i class='fa fa-times' aria-hidden='true'></i>"
+
 
        end
 

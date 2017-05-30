@@ -112,11 +112,12 @@
          <th style = "width:10%" class="text-left">Proceso</th>
          
          
-         <th  class="text-left">Seg</th>
-         <th  class="text-left">Cor</th>
-         <th  class="text-left">AC</th>
-         <th  class="text-left">Acc</th>
-         <th  class="text-left">Tar</th>
+         <th  class="text-left">Seguimientos</th>
+         <th  class="text-left">Correcciones</th>
+         <th  class="text-left">A.Causa</th>
+         <th  class="text-left">Acciones</th>
+         <th  class="text-left">Actividades</th>
+         <th  class="text-left">Tareas</th>
          
          
         
@@ -183,11 +184,12 @@
          <td><%= report.proceso.name %></td>
            
         
-         <td> <%=report.rseguimientos.count %></td>
-       <td> <%=report.source.correccion ? get_state_report(report.source.correccion, report.id, "C") : get_state_report(report.source.correccion, report.id, "C").html_safe %></td>
-       <td><%= report.source.causa ? get_state_report(report.source.causa, report.id, "AC") : get_state_report(report.source.causa, report.id, "AC").html_safe %></td>
-       <td><%= report.source.accion ? get_state_report(report.source.accion, report.id, "ACC") : get_state_report(report.source.accion, report.id, "ACC").html_safe %></td>
-       <td><%= report.source.task ? get_state_report(report.source.task, report.id, "T") : get_state_report(report.source.task, report.id, "T").html_safe %></td>
+         <td class="text-center"> <%=report.rseguimientos.count %></td>
+       <td class="text-center"> <%=report.source.correccion ? get_state_report(report.source.correccion, report.id, "C") : get_state_report(report.source.correccion, report.id, "C").html_safe %></td>
+       <td class="text-center"><%= report.source.causa ? get_state_report(report.source.causa, report.id, "AC") : get_state_report(report.source.causa, report.id, "AC").html_safe %></td>
+       <td class="text-center"><%= report.source.accion ? get_state_report(report.source.accion, report.id, "ACC") : get_state_report(report.source.accion, report.id, "ACC").html_safe %></td>
+       <td class="text-center"><%= report.source.accion ? get_state_report(report.source.accion, report.id, "ACT") : get_state_report(report.source.accion, report.id, "ACT").html_safe %></td>
+       <td class="text-center"><%= report.source.task ? get_state_report(report.source.task, report.id, "T") : get_state_report(report.source.task, report.id, "T").html_safe %></td>
       </tr>
       <% end %>
    </tbody>

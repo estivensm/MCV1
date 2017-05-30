@@ -26,7 +26,7 @@
               <%end%><%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></div>
                <%color = ""
                   report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                  color = "#0db4a0" if report.contador_seg > 5 %>
+                  color = "#22c488" if report.contador_seg > 5 %>
                <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(report.f_compromiso)%></div>
 
                <div class="col-md-6 rtd"><%=report.name%></div>
@@ -42,7 +42,7 @@
    <div class="col-md-6" style= "    border-right: 1px solid gainsboro;    padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px";>Acciones y Correcciones</strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
+            <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones</strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
                <span class="label label-warning br"><%=@accionspv%></span>Vigentes
                <span class="label label-success br"><%=@accionsvi%></span>
             </p>
@@ -61,7 +61,7 @@
                <div class="row rtr rtr1">
                   <%color = ""
                      accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                      color = "#0db4a0" if accion.contador_seg > 5 %>
+                      color = "#22c488" if accion.contador_seg > 5 %>
                  
                   
                   <div class="col-md-3 rtd">
@@ -105,12 +105,12 @@
             <div class="descnum2">
              <%if @tasks.count > 0 %>
                <% @tasks.each do |task|%>
-               <%= link_to report_tasks_path(task.report_id) do %>
+               <%= link_to report_task_path(task.report_id, task.id) do %>
                <div class="row rtr rtr1">
                    <div class="col-md-3 rtd"><%=get_employed(task.user.email).first_name%> <%=get_employed(task.user.email).first_last_name%></div>
                   <%color = ""
                      task.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                     color = "#0db4a0" if task.contador_seg > 5%>
+                     color = "#22c488" if task.contador_seg > 5%>
                   <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(task.f_compromiso)%></div>
                 
                   <div class="col-md-6 rtd"><%=task.name%></div>

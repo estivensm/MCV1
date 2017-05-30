@@ -214,6 +214,17 @@ def edit_amefp
     @causa = Causa.find(@amefp.causa_id)
   end
 
+def delete_amefp
+    @amefp = Amefp.find(params[:id])
+     @report = @amefp.report_id
+     @causa = @amefp.causa_id
+    CausaEfecto.where(causa_id: @causa).update_all(estado: "vital")
+    if @amefp.destroy
+       redirect_to report_causa_path(@report,@causa)
+    end
+    
+  end  
+
 
 
 

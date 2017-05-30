@@ -12,7 +12,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "#0db4a0"
+        @color = "#22c488"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -30,7 +30,7 @@ respond_to :json
     events = []
     @task4.each do |task4|
       if task4.contador_seg > 5
-        @color4 = "#0db4a0"
+        @color4 = "#22c488"
       elsif task4.contador_seg <= 5 && task4.contador_seg >= 0
           @color4 = "orange"
       else
@@ -47,7 +47,7 @@ respond_to :json
     events = []
     @task5.each do |task5|
       if task5.contador_seg > 5
-        @color5 = "#0db4a0"
+        @color5 = "#22c488"
       elsif task5.contador_seg <= 5 && task5.contador_seg >= 0
           @color5 = "orange"
       else
@@ -69,7 +69,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "#0db4a0"
+        @color = "#22c488"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -90,7 +90,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "#0db4a0"
+        @color = "#22c488"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -101,7 +101,7 @@ respond_to :json
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color1 = "#0db4a0"
+        @color1 = "#22c488"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color1 = "orange"
       else
@@ -112,7 +112,7 @@ respond_to :json
 
     @task2.each do |task2|
       if task2.contador_seg > 5
-        @color2 = "#0db4a0"
+        @color2 = "#22c488"
       elsif task2.contador_seg <= 5 && task2.contador_seg >= 0
           @color2 = "orange"
       else
@@ -133,7 +133,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "#0db4a0"
+        @color = "#22c488"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -144,7 +144,7 @@ respond_to :json
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color1 = "#0db4a0"
+        @color1 = "#22c488"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color1 = "orange"
       else
@@ -166,7 +166,7 @@ respond_to :json
     events = []
     @task.each do |task|
       if task.contador_seg > 5
-        @color = "#0db4a0"
+        @color = "#22c488"
       elsif task.contador_seg <= 5 && task.contador_seg >= 0
           @color = "orange"
       else
@@ -177,7 +177,7 @@ respond_to :json
 
     @task1.each do |task1|
       if task1.contador_seg > 5
-        @color1 = "#0db4a0"
+        @color1 = "#22c488"
       elsif task1.contador_seg <= 5 && task1.contador_seg >= 0
           @color1 = "orange"
       else
@@ -188,7 +188,7 @@ respond_to :json
 
     @task2.each do |task2|
       if task2.contador_seg > 5
-        @color2 = "#0db4a0"
+        @color2 = "#22c488"
       elsif task2.contador_seg <= 5 && task2.contador_seg >= 0
           @color2 = "orange"
       else
