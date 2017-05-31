@@ -46,6 +46,10 @@ class RseguimientosController < ApplicationController
   def update
      @report = Report.find(params[:report_id]) 
       if @rseguimiento.update(rseguimiento_params)
+        if params[:remove_evidencia]
+        @rseguimiento.remove_evidencia!
+        @rseguimiento.save
+      end
        redirect_to report_path(@report)
       end
     
@@ -59,7 +63,7 @@ class RseguimientosController < ApplicationController
   
       @rseguimiento.destroy
     respond_to do |format|
-      format.html { redirect_to report_seguimientos_path(@report), notice: 'El seguimiento se elimino correctamente.' }
+      format.html {  redirect_to report_path(@report), notice: 'El seguimiento se elimino correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -74,6 +78,6 @@ class RseguimientosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rseguimiento_params
-      params.require(:rseguimiento).permit(:user_id, :admin_user, :f_seguimiento, :descripcion, :report_id, :evidencia,:s_cierre,:cerrar,:eficaz,:conclucion)
+      params.require(:rseguimiento).permit(:user_id, :admin_user, :f_seguimiento, :descripcion, :report_id, :evidencia,:s_cierre,:cerrar,:eficaz,:conclucion, :remove_evidencia)
     end
 end
