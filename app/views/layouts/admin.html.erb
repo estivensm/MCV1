@@ -74,6 +74,7 @@
                <ul class="nav navbar-nav navbar-right" style = "background:white">
                    <%if Company.where(user_id: current_user.admin_user).first.logo_url && !current_user.admin %>
                   <li style = "height: 51px;margin-left: 20px;margin-right: 15px;" > <%= (image_tag Company.where(user_id: current_user.admin_user).first.logo_url(:logo))  %></li> <%end%>
+                  <% if current_user.admin %>
                  <li class="dropdown">
                      <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray">Administracion</span><span style = "color:gray" class="caret"></span></a>
                      <ul class="dropdown-menu">
@@ -89,7 +90,7 @@
                         </li>
                      </ul>
                   </li>
-                  
+                  <%end%>
 
                   <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                      <%= link_to company_path(company_x),:class => "configuracion #{@menum[0]}"  do %>
