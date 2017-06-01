@@ -467,6 +467,10 @@ end
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     respond_to do |format|
       if @report.update(report_params)
+        if params[:remove_archivo]
+        @report.remove_evidencia!
+        @report.save
+      end
         format.html { redirect_to @report, notice: 'El Reporte se actualizo correctamente' }
         format.json { render :show, status: :ok, location: @report }
       else
@@ -560,6 +564,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso, :fp_seguimiento, :f_real,:clinte_proveedor_id,:contact_id,:contador_seg,:costo,:name, :tag,:source_parent_id ,:cierra_id, :employed_ids => [], :numeral_ids => [])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso, :fp_seguimiento, :f_real,:clinte_proveedor_id,:contact_id,:contador_seg,:costo,:name, :tag,:source_parent_id ,:remove_archivo,:cierra_id, :employed_ids => [], :numeral_ids => [])
     end
 end

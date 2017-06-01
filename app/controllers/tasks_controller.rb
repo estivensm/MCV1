@@ -148,6 +148,10 @@ end
   @report = Report.find(params[:report_id])
   
       if @task.update(task_params)
+        if params[:remove_anexo]
+        @task.remove_evidencia!
+        @task.save
+      end
       redirect_to report_tasks_path(@report)
       end
   end
@@ -171,6 +175,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:user_id, :admin_user, :employed_id, :report_id, :name, :observacion, :costo, :f_compromiso, :f_real, :estado, :cumplio, :contador, :contador_seg, :anexo, :codigo)
+      params.require(:task).permit(:user_id, :admin_user, :employed_id, :report_id, :name, :observacion, :costo, :f_compromiso, :f_real, :estado, :cumplio, :contador, :contador_seg, :anexo, :codigo,:remove_anexo)
     end
 end

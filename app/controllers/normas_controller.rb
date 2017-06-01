@@ -58,6 +58,10 @@ before_action :authenticate_user!
   # PATCH/PUT /normas/1.json
   def update
      if @norma.update(norma_params)
+       if params[:remove_archivo]
+        @norma.remove_archivo!
+        @norma.save
+      end
         redirect_to normas_path
          end
   end
@@ -88,6 +92,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def norma_params
-      params.require(:norma).permit(:name, :user_id, :admin_user, :archivo, :link)
+      params.require(:norma).permit(:name, :user_id, :admin_user, :archivo, :link,:remove_archivo)
     end
 end

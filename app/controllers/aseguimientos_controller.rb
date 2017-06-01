@@ -44,6 +44,10 @@ class AseguimientosController < ApplicationController
      @accion = Accion.find(params[:accion_id])
      @report = Report.find(params[:report_id])
     @aseguimiento.update(aseguimiento_params)
+     if params[:remove_evidencia]
+        @aseguimiento.remove_evidencia!
+        @aseguimiento.save
+      end
     respond_to do |format|
       format.html { redirect_to report_accion_path(@report,@accion), notice: 'Seguimiento fue creado.' }
       format.json { head :no_content }
@@ -70,6 +74,6 @@ class AseguimientosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aseguimiento_params
-      params.require(:aseguimiento).permit(:user_id, :admin_user, :f_seguimiento, :descripcion, :cierra, :eficaz, :conclucion, :costo, :evidencia, :accion_id, :s_cierre, :send_mail)
+      params.require(:aseguimiento).permit(:user_id, :admin_user, :f_seguimiento, :descripcion, :cierra, :eficaz, :conclucion, :costo, :evidencia, :accion_id, :s_cierre, :send_mail, :remove_evidencia)
     end
 end

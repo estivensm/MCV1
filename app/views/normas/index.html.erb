@@ -64,7 +64,7 @@
       <tr>
         <td><%= check_box_tag "norma_ids[]", norma.id ,false ,class:"ck"%></td>
          <td><%= norma.name %></td>
-         <td><%= link_to "Descargar #{norma.name}", (norma.archivo_url if norma.archivo_url), class: "linka"%></td>
+         <td><%= (link_to "Descargar #{norma.name}", norma.archivo_url, class: "linka") if norma.archivo_url%></td>
          <td><%= link_to "Ver", (norma.link if norma.link? ), class: "linka"%></td>
          <td><%= link_to norma_numerals_path(norma), :class => "opciones" do %>
             

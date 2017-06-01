@@ -53,6 +53,10 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
+         if params[:remove_logo]
+        @company.remove_logo!
+        @company.save
+      end
         format.html { redirect_to @company, notice: 'La Empresa fue editada exitosamente.' }
         format.json { render :show, status: :ok, location: @company }
       else
@@ -142,6 +146,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :logo, :phone, :address, :nit, :admin_user)
+      params.require(:company).permit(:name, :logo, :phone, :address, :nit, :admin_user,:remove_logo)
     end
 end

@@ -54,6 +54,10 @@ class CausasController < ApplicationController
   def update
      @report = Report.find(params[:report_id])
     if @causa.update(causa_params)
+       if params[:remove_archivo]
+        @causa.remove_archivo!
+        @causa.save
+      end
         redirect_to report_causa_path(@report,@causa)
          end
   end
@@ -315,6 +319,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def causa_params
-      params.require(:causa).permit(:tipo, :descripcion, :archivo, :admin_user, :user_id, :report_id,:primera_m, :seguna_m,:tercera_m,:cuarta_m,:quinta_m, :sexta_m, causa_efectos_attributes: [:id,:estado, :name, :user_id,:nivel,:descripcion,:tipo,:report_id,:causa_id,:admin_user,:frecuencia, :porcentaje, :_destroy])
+      params.require(:causa).permit(:tipo, :descripcion, :archivo, :admin_user, :user_id, :report_id,:primera_m, :seguna_m,:tercera_m,:cuarta_m,:quinta_m, :sexta_m,:remove_archivo, causa_efectos_attributes: [:id,:estado, :name, :user_id,:nivel,:descripcion,:tipo,:report_id,:causa_id,:admin_user,:frecuencia, :porcentaje, :_destroy])
     end
 end

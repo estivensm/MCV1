@@ -134,7 +134,10 @@ end
     
 
       if @employed.update(employed_params)
-      
+       if params[:remove_avatare]
+        @employed.remove_avatare!
+        @employed.save
+      end
         redirect_to employeds_path
       end
     
@@ -167,6 +170,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employed_params
-      params.require(:employed).permit(:first_name, :second_name, :first_last_name, :second_last_name, :document_type, :document, :birth_date, :genero, :admin_user, :user_id, :avatare, :cargo_id, :email)
+      params.require(:employed).permit(:first_name, :second_name, :first_last_name, :second_last_name, :document_type, :document, :birth_date, :genero, :admin_user, :user_id, :avatare, :cargo_id, :email,:remove_avatare)
     end
 end

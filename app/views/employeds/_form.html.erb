@@ -118,11 +118,16 @@
 
   <div class="form-group">
     <%= f.label "Foto" %>
-    <%= f.file_field :avatare , class: "form-control"%>
-  
+    <%= f.file_field :avatare , class: "form-control" , id: 'file'%>
+   <label for="file" >
+
+ <span class="levidencia" style = "margin-right:10px;"></span> <%if @employed.avatare.blank?   != true %>
+<%= f.check_box :remove_avatare %> 
+   <%= f.label "Eliminar", style: "color:red!important" %></label>
+
+   <%end%>
 
   </div>
-
 </div>
 </div>
   <br>
@@ -132,6 +137,106 @@
    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
   </div>
 <% end %>
+
+
+ <script>
+
+if ("<%=action_name%>" == "edit" && <%= @employed.avatare.blank?  %> != true)
+{
+$('.levidencia').html(" <%=@employed.avatare.file.filename if @employed.avatare.file %> ")
+
+}
+
+
+
+'use strict';
+
+;( function ( document, window, index )
+{
+  var inputs = document.querySelectorAll( '.inputfile' );
+  Array.prototype.forEach.call( inputs, function( input )
+  {
+    var label  = input.nextElementSibling,
+      labelVal = label.innerHTML;
+
+    input.addEventListener( 'change', function( e )
+    {
+      var fileName = '';
+      if( this.files && this.files.length > 1 )
+        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+      else
+        fileName = e.target.value.split( '\\' ).pop();
+
+      if( fileName )
+        label.querySelector( 'span' ).innerHTML = fileName;
+      else
+        label.innerHTML = labelVal;
+    });
+
+    // Firefox bug fix
+    input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+    input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+  });
+}( document, window, 0 ));
+
+   
+</script>
+
+
+
+<style>
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+       font-size: 1em;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    font-weight: 100!important;
+    color: white;
+    background-color: #f9f9f9;
+    padding: 4px 20px;
+    display: inline-block;
+    border-bottom: 2px solid gray;
+    margin-left: 10px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    
+}
+
+.inputfile + label {
+  cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.shi1
+   {
+   width: 150px !important;
+   display: inline-block;
+   height:  30px !important;
+   color:gray !important;
+   font-size: 10px !important;
+   padding: 6px 2px;
+      }
+         .busqueda
+   {
+        display: block;
+    padding: 10px;
+    background: #e8e8e8;
+   }
+  
+</style>
  </div>
   </div>
       </div>
