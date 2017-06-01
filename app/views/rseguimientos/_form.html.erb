@@ -25,11 +25,11 @@
   </div>
   <br>
 <div class="field">
-    <%= f.label "Evidencia" %>
+    <%= f.label "Evidencia" %><br>
     <%= f.file_field :evidencia,  class: "form-control inputfile", id: 'file' %>
     <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
 
- <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @rseguimiento.evidencia.blank?   != true %>
+ <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @rseguimiento.evidencia.blank?   != true %><br>
 <%= f.check_box :remove_evidencia %> 
    <%= f.label "Eliminar", style: "color:red!important" %></label>
 
