@@ -56,7 +56,14 @@
   <tbody>
     <% @companies.each do |company| %>
       <tr>
-
+        <td><%= company.name %></td>
+        
+        <td>Demo</td>
+        <td>10</td>
+        <td>20GB</td>
+        <td><%= link_to 'Show', company %></td>
+        <td><%= link_to 'Edit', edit_company_path(company) %></td>
+       
       </tr>
     <% end %>
   </tbody>
