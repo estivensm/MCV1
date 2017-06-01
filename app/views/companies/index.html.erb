@@ -1,8 +1,43 @@
-<p id="notice"><%= notice %></p>
+<div class="row" >
+   <div class="col-md-12 ">
+      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
+   </div>
 
-<h1>Companies</h1>
 
-<table>
+
+
+<div class = "row title-table">
+   <div class = "col-md-6">
+      <p>Empresas <span class="label label-primary"><%=@companies.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @companies, :entry_name => 'Procesos' %></span> </p>
+
+
+     
+   </div>
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @companies%>
+   </div>
+
+ 
+</div>
+
+
+
+
+<div class = "row busqueda" style="display:none">
+   <div class = "col-md-9">
+      <div class="form-group fil">
+       
+      </div>
+   </div>
+
+</div>
+
+
+
+<div class = "row">
+
+   <table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,7 +45,11 @@
       <th>Phone</th>
       <th>Address</th>
       <th>Nit</th>
-      <th colspan="3"></th>
+      <th>Email</th>
+      <th>Estado</th>
+      <th>Usuarios</th>
+      <th>Capacidad</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -18,13 +57,17 @@
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.name %></td>
-        <td><%= company.logo %></td>
+        <td><%= image_tag company.logo.url, style:"width:100px" %></td>
         <td><%= company.phone %></td>
         <td><%= company.address %></td>
         <td><%= company.nit %></td>
+        <td><%= company.user.email %></td>
+        <td>Demo</td>
+        <td>10</td>
+        <td>20GB</td>
         <td><%= link_to 'Show', company %></td>
         <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+       
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +75,3 @@
 
 <br>
 
-<%= link_to 'New Company', new_company_path %>
