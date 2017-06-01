@@ -57,7 +57,7 @@
     <% @companies.each do |company| %>
       <tr>
         <td><%= company.name %></td>
-        
+        <td><%= (image_tag company.logo.url, style:"width:100px") if company.logo? %></td>
         <td><%= company.phone %></td>
         <td><%= company.address %></td>
         <td><%= company.nit %></td>
