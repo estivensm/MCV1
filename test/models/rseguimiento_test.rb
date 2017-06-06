@@ -15,6 +15,7 @@
 #  cerrar        :boolean
 #  eficaz        :boolean
 #  conclucion    :text
+#  send_mail     :boolean
 #
 
 require 'test_helper'

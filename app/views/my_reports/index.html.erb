@@ -93,7 +93,7 @@
 
 <%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2t filter shi", include_blank: true , placeholder: "hola"}%>
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
-<!--<%= select_tag "search6", options_for_select(["","Abiertos", "Cerrados" ] ), {class: "form-control shi sh4 ", include_blank: true } %>-->
+<%=select_tag 'search6', options_for_select(get_clientes.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh4 filter shi", include_blank: true , placeholder: "hola"}%>
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
    </div>
@@ -296,7 +296,7 @@
             allow_single_deselect: true,
             no_results_text: 'No hay resultados',
             width: '150px',
-            placeholder_text_single: "Estado",
+            placeholder_text_single: "Parte Interesada",
             placeholder_text_multiple: "Seleccione una varias opciones"
       
           });

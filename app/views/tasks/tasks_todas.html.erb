@@ -78,12 +78,10 @@
 </div>
 
 <div class = "row">
-<% if action_name == "index"%>
-<%= (link_to "Cancelar filtros", mistasks_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<%elsif action_name == "asignado_por_mi"%>
+
 <%= (link_to "Cancelar filtros", tasks_asignados_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 
-<%end%>
+
 
 <hr>
 

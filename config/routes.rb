@@ -65,6 +65,13 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
   get 'my_tasks/asignados', to: "my_tasks#asignado_por_mi", as: "tasks_asignados"
   get 'my_tasks/mytask_asignadas_cerradas', to: "my_tasks#mytask_asignadas_cerradas", as: "mytask_asignadas_cerradas"
 
+ get 'my_activities/actividades_todas', to: "my_activities#actividades_todas", as: "actividades_todas"
+ 
+
+
+
+
+
   get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
   get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
   get 'employed_indicators', to: 'dashboard#employed_indicators', as: "employed_indicators"

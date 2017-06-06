@@ -170,10 +170,11 @@
                         <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                            <%= link_to acciones_abiertas_path,:class => "" do %>
                            <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
-                           <span class = "color-gray">Acciones, Correcciones y Actividades</span>
+                           <span class = "color-gray">Actividades Acciones y Correcciones </span>
                            <% end %>
                            <% end %>
                         </li>
+                      
                         <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                            <%= link_to tasks_abiertas_path,:class => "" do %>
                            <i class="fa fa-calendar color-gray" aria-hidden="true"></i>

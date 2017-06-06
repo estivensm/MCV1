@@ -1,7 +1,7 @@
 
 
 <div class = "row title-table">
-   <div class = "col-md-5">
+   <div class = "col-md-12">
       <p><%=@resp%> <span class="label label-primary"><%=@acciones.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @acciones, :entry_name => 'Reporte' %></span> </p>
 
 
@@ -20,16 +20,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
 <%= (link_to "filtros", @route + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -90,15 +91,8 @@
 </div>
 
 <div class = "row">
-<% if action_name == "index"%>
-<%= (link_to "Cancelar filtros", misacciones_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "Cancelar filtros", accions_asignados_path , class: "linka canf") if (params[:commit] || params[:filtros]) %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "Cancelar filtros", accions_invitado_path , class: "linka canf") if (params[:commit] || params[:filtros] ) %>
 
-<%end%>
-
+<%= (link_to "Cancelar filtros", @route , class: "linka canf") if (params[:commit] || params[:filtros])  %>
 <hr>
 
 
@@ -115,6 +109,7 @@
            <th style = "width:2%"  ></th>
          <th style = "width:10%" class="text-left">F Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
+          <th style = "width:10%" class="text-left">Tipo</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
           <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
@@ -145,7 +140,7 @@
          <%end%></td>
          <td><%= get_date(accion.created_at) %></td>
           <td><%= link_to  "#{accion.codigo}", report_accion_path(report,accion), :class => "linka"  %></td>
-      
+      <td><%= accion.tipo %></td>
         
        
          <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>

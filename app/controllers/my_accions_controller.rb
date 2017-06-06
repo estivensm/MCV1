@@ -14,7 +14,7 @@ before_action :authenticate_user!
     end
 
 
-@resp = "Mis Acciones Abiertas"
+@resp = "Mis Actividades, Acciones y Correcciones Abiertas"
   @route = misacciones_path
 
   end
@@ -36,7 +36,7 @@ def myaccions_cerradas
     end
 
 
-@resp = "Mis Acciones Cerradas"
+@resp = "Mis Actividades, Acciones y Correcciones Cerradas"
   @route = myaccions_cerradas_path
     render "index"
 
@@ -66,7 +66,7 @@ end
     end
 
     
-@resp = "Acciones asignadas Abiertas"
+@resp = "Actividades, Acciones y Correcciones Asignadas Abiertas"
 @route = accions_asignados_path
 
     render "index"
@@ -86,7 +86,7 @@ def myaccions_asignadas_cerradas
     end
 
     
-@resp = "Acciones Asignadas Cerradas"
+@resp = "Actividades, Acciones y Correcciones Asignadas Cerradas"
 @route = myaccions_asignadas_cerradas_path
 
     render "index"
@@ -123,7 +123,7 @@ def invitado
 
     end
     
-@resp = "Acciones Invitado"
+@resp = "Actividades, Acciones y Correcciones Invitado"
 @route = accions_invitado_path
 
     render "index"

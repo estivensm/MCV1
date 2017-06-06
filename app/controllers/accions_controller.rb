@@ -107,7 +107,7 @@ def actividades
     end
 
 
-@resp = "Todas las Acciones"
+@resp = "Actividades, Acciones y Correcciones"
   @route = acciones_todas_path
 
   end
@@ -126,7 +126,7 @@ def actividades
     end
 
 
-@resp = "Acciones Abiertas"
+@resp = "Actividades, Acciones y Correcciones Abiertas"
   @route = acciones_abiertas_path
 
   render "acciones_todas"
@@ -140,17 +140,17 @@ def actividades
     @accion_search = Accion.where(admin_user:current_user.admin_user).cerradas
     if params[:search]
       
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
 
     else 
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).order(created_at: :desc)
 
     end
 
    
 
 
-@resp = "Acciones Cerradas"
+@resp = "Actividades, Acciones y Correcciones Cerradas"
   @route = acciones_cerradas_path
 
   render "acciones_todas"

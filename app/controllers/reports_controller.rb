@@ -206,8 +206,8 @@ end
 def abiertos
     
    
-   if params[:search] || params[:search0] || params[:search2] || params[:search3]|| params[:search4] || params[:search5]
-     @reports1 = Report.where(state: "Abierto").search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4],params[:search5])
+   if params[:search] || params[:search0] || params[:search2] || params[:search3]|| params[:search4] || params[:search5] || params[:search6]
+     @reports1 = Report.where(state: "Abierto").search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
       puts "holaaaaaaaa"
       puts params[:search3]
   else
@@ -269,8 +269,8 @@ def index
        
               @es = Source.where({default: true, admin_user: current_user.admin_user}).first
               
-              if params[:search] || params[:search0] || params[:search2] || params[:search3]|| params[:search4] || params[:search5]
-                   @reports1 = Report.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4],params[:search5])
+              if params[:search] || params[:search0] || params[:search2] || params[:search3]|| params[:search4] || params[:search5] || params[:search6]
+                   @reports1 = Report.search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
               else
                    @reports1 = Report.all
               end
@@ -307,8 +307,8 @@ def index
 
 def cerrados
     
-   if params[:search] || params[:search0] || params[:search2] || params[:search3]|| params[:search4] || params[:search5]
-     @reports1 = Report.where(state: "Cerrado").search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4],params[:search5])
+   if params[:search] || params[:search0] || params[:search2] || params[:search3]|| params[:search4] || params[:search5] || params[:search6]
+     @reports1 = Report.where(state: "Cerrado").search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6])
   else
      @reports1 = Report.all.where(state: "Cerrado")
   end

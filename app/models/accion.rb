@@ -29,6 +29,7 @@
 #  s_cierre              :boolean
 #  change_cumplio        :boolean
 #  justificacion_cumplio :text
+#  send_mail             :boolean
 #
 
 class Accion < ApplicationRecord

@@ -39,6 +39,8 @@
 #  conclucion            :text
 #  change_cumplio        :boolean
 #  justificacion_cumplio :text
+#  send_mail             :boolean
+#  source_parent_id      :integer
 #
 
 class Report < ApplicationRecord
@@ -92,7 +94,7 @@ scope :abiertos, -> { where(state: "Abierto") }
 
 
   
- def self.search(search,search0, search2, search3, search4, search5)
+ def self.search(search,search0, search2, search3, search4, search5, search6)
 
    #search6 = search6.chomp("s") if search6 != ""
 
@@ -104,10 +106,10 @@ scope :abiertos, -> { where(state: "Abierto") }
     search3 != "" && search3 != nil ? (scope :employedop, -> { where(employed_id: search3) }) : (scope :employedop, -> { where.not(id: nil) }) 
     search4 != "" ? (scope :procesop, -> { where(proceso_id: search4) }) : (scope :procesop, -> { where.not(id: nil) }) 
     search5 != "" ? (scope :descop, -> { where("name like '%#{search5.downcase}%' or name like '%#{search5.upcase}%'  or name like '%#{search5.capitalize}%'  ") }) : (scope :descop, -> { where.not(id: nil) }) 
-    #search6 != "" ? (scope :estadop, -> { where(state: search6) }) : (scope :estadop, -> { where.not(id: nil) }) 
+    search6 != "" ? (scope :clientep, -> { where(clinte_proveedor_id: search6) }) : (scope :clientep, -> { where.not(id: nil) }) 
 
   
-        employedop.sourceop.procesop.descop.fdesdep.fhastap
+        employedop.sourceop.procesop.descop.fdesdep.fhastap.clientep
 
      #begin if search2 != ""
        #   where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ").where(source_id: search2).employedp

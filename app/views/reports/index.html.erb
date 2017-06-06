@@ -70,7 +70,9 @@
 <%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh filter", include_blank: true , placeholder: "hola"}%>
 <%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter", include_blank: true , placeholder: "hola"}%>
 <%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2 filter shi", include_blank: true , placeholder: "hola"}%>
+<%=select_tag 'search6', options_for_select(get_clientes.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh4 filter shi", include_blank: true , placeholder: "hola"}%>
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
+
 
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
@@ -98,7 +100,7 @@
           <th ></th>
       
           <%if action_name == "index"%> <th ></th><%end%>
-         <th style = "width:8%" class="text-left">F Creacion</th>
+         <th style = "width:8%" class="text-left">Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
          <th  class="text-left" style = "width:30%">Reporte</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
@@ -245,7 +247,7 @@
             allow_single_deselect: true,
             no_results_text: 'No hay resultados',
             width: '150px',
-            placeholder_text_single: "Estado",
+            placeholder_text_single: "Parte Interesada",
             placeholder_text_multiple: "Seleccione una varias opciones"
       
           });
@@ -276,15 +278,17 @@
             placeholder_text_multiple: "Seleccione una varias opciones"
       
           });
+    
+
     $('.chosen-container span').addClass("shi") ;
      }); 
    $('.sh').val("<%=params[:search2]%>") ;
-    $('.sh2').val("<%=params[:search4]%>") ;
-      $('.sh3').val("<%=params[:search5]%>") ;
-       $('.sh1').val("<%=params[:search3]%>") ;
-      $('.sh4').val("<%=params[:search6]%>") ;
-      $('.sh0').val("<%=params[:search0]%>") ;
-      $('.sh00').val("<%=params[:search]%>") ;
+   $('.sh2').val("<%=params[:search4]%>") ;
+   $('.sh3').val("<%=params[:search5]%>") ;
+   $('.sh1').val("<%=params[:search3]%>") ;
+   $('.sh4').val("<%=params[:search6]%>") ;
+   $('.sh0').val("<%=params[:search0]%>") ;
+   $('.sh00').val("<%=params[:search]%>") ;
       
      
       /*$('.filtrost').hide();

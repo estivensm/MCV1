@@ -16,6 +16,7 @@
 #  updated_at    :datetime         not null
 #  accion_id     :integer
 #  s_cierre      :boolean
+#  send_mail     :boolean
 #
 
 require 'test_helper'

@@ -14,13 +14,13 @@
 
 
 <div class = "row title-table">
-   <div class = "col-md-7">
+   <div class = "col-md-12">
       <p><%=@resp%> <span class="label label-primary"><%=@acciones.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @acciones, :entry_name => 'Acciones' %></span> </p>
 
 
      
    </div>
-   <div class = "col-md-5 paginate text-left title-table1">
+   <div class = "col-md-10 paginate text-left title-table1">
      
 <%= will_paginate @acciones%>
    </div>
@@ -94,7 +94,7 @@
    
    
 </script>
-<%= select_tag "search2", options_for_select(["","Acciones", "Correcciones" ] ), {class: "form-control shi sh ", include_blank: true } %>
+<%= select_tag "search2", options_for_select(["","Acciones", "Correcciones","Actividades" ] ), {class: "form-control shi sh ", include_blank: true } %>
 
 
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
@@ -130,6 +130,7 @@
            <th style = "width:2%"  ></th>
          <th style = "width:10%" class="text-left">F Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
+          <th style = "width:10%" class="text-left">Tipo</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
@@ -160,7 +161,7 @@
          <%end%></td>
          <td><%= get_date(accion.created_at) %></td>
           <td><%= link_to  "#{accion.codigo}", report_accion_path(report,accion), :class => "linka"  %></td>
-      
+       <td><%= accion.tipo %></td>
         
        
          <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>

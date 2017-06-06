@@ -22,6 +22,7 @@
 #  updated_at            :datetime         not null
 #  change_cumplio        :boolean
 #  justificacion_cumplio :text
+#  send_mail             :boolean
 #
 
 require 'test_helper'

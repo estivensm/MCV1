@@ -11,6 +11,7 @@
 #  user_id    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  admin_user :integer
 #
 
 require 'test_helper'
