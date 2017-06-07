@@ -59,7 +59,7 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
 
 
 
-  get 'home/index'
+  get 'home', to: 'home#index', as: "home_page"
   get 'my_tasks/index' , as: "mistasks"
   get 'my_tasks/mytask_cerradas', to: "my_tasks#mytask_cerradas", as: "mytask_cerradas"
   get 'my_tasks/asignados', to: "my_tasks#asignado_por_mi", as: "tasks_asignados"
@@ -193,11 +193,11 @@ end
           end
         devise_for :users
           
-  authenticated :user do
+  #authenticated :user do
     root to: 'dashboard#index'#, as: :authenticated_root
-  end
+  #end
  
-  root to: 'home#index'
+  #root to: 'home#index'
 
 
           match "*path" => redirect("/"), via: :get 

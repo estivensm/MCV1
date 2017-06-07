@@ -67,9 +67,9 @@
    
    
 </script>
-<%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh filter", include_blank: true , placeholder: "hola"}%>
+<%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control shs filter", include_blank: true , placeholder: "hola"}%>
 <%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter", include_blank: true , placeholder: "hola"}%>
-<%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh2 filter shi", include_blank: true , placeholder: "hola"}%>
+<%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control shs2 filter shi", include_blank: true , placeholder: "hola"}%>
 <%=select_tag 'search6', options_for_select(get_clientes.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh4 filter shi", include_blank: true , placeholder: "hola"}%>
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
 
@@ -230,7 +230,7 @@
       
       
    
-      $('.sh').chosen(
+      $('.shs').chosen(
           {
       
             allow_single_deselect: true,
@@ -268,7 +268,7 @@
       
      
       
-      $('.sh2').chosen(
+      $('.shs2').chosen(
           {
       
             allow_single_deselect: true,
@@ -282,8 +282,8 @@
 
     $('.chosen-container span').addClass("shi") ;
      }); 
-   $('.sh').val("<%=params[:search2]%>") ;
-   $('.sh2').val("<%=params[:search4]%>") ;
+   $('.shs').val("<%=params[:search2]%>") ;
+   $('.shs2').val("<%=params[:search4]%>") ;
    $('.sh3').val("<%=params[:search5]%>") ;
    $('.sh1').val("<%=params[:search3]%>") ;
    $('.sh4').val("<%=params[:search6]%>") ;
