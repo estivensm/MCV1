@@ -567,3 +567,6 @@ end
       params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso, :fp_seguimiento, :f_real,:clinte_proveedor_id,:contact_id,:contador_seg,:costo,:name, :tag,:source_parent_id ,:remove_archivo,:cierra_id, :employed_ids => [], :numeral_ids => [])
     end
 end
+
+
+

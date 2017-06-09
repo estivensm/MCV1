@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "info@visualisoft.com"
+  default from: "info@mejoraapp.com"
   layout 'mailer'
 end

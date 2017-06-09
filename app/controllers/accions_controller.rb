@@ -4,7 +4,7 @@ class AccionsController < ApplicationController
 
   # GET /accions
   # GET /accions.json
- 
+
 
 respond_to :json
   def get_acciontodos
@@ -17,11 +17,11 @@ respond_to :json
           @color = "orange"
       else
           @color = "#d82c2c"
-    end
+      end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task.report_id}/accions/#{task.id}"}
     end
         render :text => events.to_json
-  end 
+  end
 
 
 
@@ -31,7 +31,7 @@ respond_to :json
 
   def index
     @tipo = "Accion"
-    @report = Report.find(params[:report_id]) 
+    @report = Report.find(params[:report_id])
     @accions = @report.accions.where(tipo: "Accion").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -40,13 +40,13 @@ respond_to :json
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
        @tasks = Task.where(report_id: @report.id)
 
-   end
+  end
 
-  
+
 
   def correcciones
     @tipo = "Correccion"
-     @report = Report.find(params[:report_id]) 
+     @report = Report.find(params[:report_id])
     @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -56,13 +56,13 @@ respond_to :json
     @tasks = Task.where(report_id: @report.id)
 
     render 'index'
-    
+
   end
 
 
 def actividades
     @tipo = "Actividad"
-     @report = Report.find(params[:report_id]) 
+     @report = Report.find(params[:report_id])
     @accions = @report.accions.where(tipo: "Actividad").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -72,14 +72,14 @@ def actividades
     @tasks = Task.where(report_id: @report.id)
 
     render 'index'
-    
-  end
+
+end
 
 
   # GET /accions/1
   # GET /accions/1.json
   def show
-    @report = Report.find(params[:report_id]) 
+    @report = Report.find(params[:report_id])
     @seguimientos = @accion.aseguimientos.order(created_at: :desc)
     @riesgos = @accion.riesgos.order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -89,19 +89,19 @@ def actividades
      @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
 
-  
+
   end
 
 
   def acciones_todas
-      
-        
+
+
     @accion_search = Accion.where(admin_user:current_user.admin_user)
     if params[:search]
-      
+
       @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
 
-    else 
+    else
       @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
@@ -113,14 +113,14 @@ def actividades
   end
 
   def acciones_abiertas
-      
-        
+
+
     @accion_search = Accion.where(admin_user:current_user.admin_user).abiertas
     if params[:search]
-      
+
       @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
 
-    else 
+    else
       @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
 
     end
@@ -135,25 +135,22 @@ def actividades
 
 
   def acciones_cerradas
-      
-        
-    @accion_search = Accion.where(admin_user:current_user.admin_user).cerradas
-    if params[:search]
-      
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
-
-    else 
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).order(created_at: :desc)
-
-    end
-
-   
 
 
-@resp = "Actividades, Acciones y Correcciones Cerradas"
-  @route = acciones_cerradas_path
+      @accion_search = Accion.where(admin_user:current_user.admin_user).cerradas
+      if params[:search]
 
-  render "acciones_todas"
+        @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+
+      else
+        @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).order(created_at: :desc)
+
+      end
+
+      @resp = "Actividades, Acciones y Correcciones Cerradas"
+      @route = acciones_cerradas_path
+
+      render "acciones_todas"
 
   end
 
@@ -162,20 +159,20 @@ def actividades
 
 
 
-    end
+ end
 
 
   # GET /accions/new
   def new
      @tipo = params[:tipo]
     @accion = Accion.new
-     @report = Report.find(params[:report_id]) 
+     @report = Report.find(params[:report_id])
   end
 
   # GET /accions/1/edit
   def edit
      @tipo = @accion.tipo
-     @report = Report.find(params[:report_id]) 
+     @report = Report.find(params[:report_id])
      @accion.tag = false
   end
 
@@ -183,7 +180,7 @@ def actividades
   # POST /accions.json
   def create
     @accion = Accion.new(accion_params)
-    @report = Report.find(params[:report_id]) 
+    @report = Report.find(params[:report_id])
     @accion.estado = "Abierta"
     @num = Accion.where(admin_user: current_user.admin_user).where(report_id: @report.id).where(tipo: @accion.tipo).maximum(:contador)
     if @num != nil
@@ -193,19 +190,19 @@ def actividades
         @num = 1001
     end
     @ano = Time.now.year.to_s
-    @ano = @ano.remove("20") 
-   
-    @accion.tipo== "Accion" ? tp = "ACC" : tp = "CORR" 
+    @ano = @ano.remove("20")
+
+    @accion.tipo== "Accion" ? tp = "ACC" : tp = "CORR"
     tp = "ACT" if @accion.tipo == "Actividad"
 
-    @code= "#{tp}-#{@num}-#{@ano}" 
+    @code= "#{tp}-#{@num}-#{@ano}"
     @accion.codigo = @code
     @accion.contador = @num
     @accion.costo = 0
-    
+
     respond_to do |format|
       if @accion.save
-       
+
         format.html { redirect_to report_accion_path(@report,@accion), notice: 'La Accion fue creada correctamente.' }
         format.json { render :show, status: :created, location: @accion }
       else
@@ -218,7 +215,7 @@ def actividades
   # PATCH/PUT /accions/1
   # PATCH/PUT /accions/1.json
   def update
-     @report = Report.find(params[:report_id]) 
+     @report = Report.find(params[:report_id])
     respond_to do |format|
       if @accion.update(accion_params)
         format.html { redirect_to report_accion_path(@report,@accion), notice: 'La Accion fue editada correctamente' }
@@ -233,7 +230,7 @@ def actividades
   # DELETE /accions/1
   # DELETE /accions/1.json
   def destroy
-    @report = Report.find(params[:report_id]) 
+    @report = Report.find(params[:report_id])
     @accion.destroy
     respond_to do |format|
       format.html { redirect_to report_accions_url(@report), notice: 'La Accion fue borrada correctamente' }
@@ -244,16 +241,17 @@ def actividades
 
 
  def accion_change_state
- 
+
     @accion = Accion.find(params[:accion])
     if @accion.update(justificacion_cumplio: params[:justificacion_cumplio], cumplio: true ,change_cumplio: true, tag: false)
-    redirect_to report_accion_path(@accion.report_id,@accion)
-  end
- 
-    
+      redirect_to report_accion_path(@accion.report_id,@accion)
+
+    end
 
 
- end 
+
+
+ end
 
 
 
