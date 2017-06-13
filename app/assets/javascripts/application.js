@@ -27,6 +27,7 @@
 //= require chartkick
 //= require moment 
 //= require fullcalendar
+//= require googledocviewer
 //= require config
 //= require turbolinks
 //= require_tree .
@@ -34,6 +35,7 @@
 
 $(document).on('turbolinks:load',function() {
 
+  $('a.embed').gdocsViewer({width :'400',height : '400'});
 $('.translation_missing').html("Siguiente");
   $('.prev span').html("Anterior");
 
