@@ -35,7 +35,7 @@
 
 $(document).on('turbolinks:load',function() {
 
-  $('a.embed').gdocsViewer({width :'400',height : '400'});
+  $('a.embed').gdocsViewer({width :'400',height : '400',security : 'https'});
 $('.translation_missing').html("Siguiente");
   $('.prev span').html("Anterior");
 
