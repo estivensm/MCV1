@@ -21,7 +21,7 @@
 
   <div class="field">
     <%= f.label "Descripción" %>
-    <%= f.text_area :descripcion,  class: "form-control area" %>
+    <%= f.text_area :descripcion,  class: "ckeditor" %>
   </div>
   <br>
 <div class="field">
@@ -72,7 +72,11 @@
    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
   </div>
 <% end %>
+  <script>
 
+  $('.ckeditor').ckeditor({
+   
+});</script>
 
 <script>
    $('.cierra').hide();
