@@ -109,7 +109,7 @@
    <%= link_to  report_accion_path(@report,accion) do %>
       <div class="conteinter reporte cnt">
       <div class="row rtr">
-           <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong>Accion: </strong><%= accion.name %></div>
+           <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong><%@tipo%> </strong><%= accion.name %></div>
             <div class="col-md-12 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
             </div>
             <div class="row rtr">
