@@ -20,6 +20,7 @@ respond_to :json
     end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
+    puts events.to_json
 render :text => events.to_json
   end 
 

@@ -1,0 +1,1 @@
+json.array! @page_documents, partial: 'page_documents/page_document', as: :page_document

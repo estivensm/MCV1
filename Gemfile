@@ -48,6 +48,8 @@ gem 'annotate'
 gem 'chosen-rails'
 
 gem 'jquery-ui-rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 #Guardar en amazon
 gem 'fog', '~> 1.38'
 gem 'figaro'
@@ -67,8 +69,7 @@ gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 gem 'wicked_pdf'
 gem 'roo'
 gem 'wkhtmltopdf-binary'
-gem 'fullcalendar-rails'
-gem 'momentjs-rails'
+
 gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
  gem 'draper', '3.0.0.pre1'
 group :development do

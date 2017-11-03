@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512130354) do
+ActiveRecord::Schema.define(version: 20171103015925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,6 +274,16 @@ ActiveRecord::Schema.define(version: 20170512130354) do
     t.integer "numeral_id"
     t.index ["numeral_id"], name: "index_numerals_reports_on_numeral_id", using: :btree
     t.index ["report_id"], name: "index_numerals_reports_on_report_id", using: :btree
+  end
+
+  create_table "page_documents", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "admin_user"
+    t.string   "file"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "procesos", force: :cascade do |t|

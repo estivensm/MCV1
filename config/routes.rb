@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   
 
+  resources :page_documents
   resources :source_parents
 resources :reports do 
     get :get_reportsc, on: :collection

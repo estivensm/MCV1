@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Page Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>File</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @page_documents.each do |page_document| %>
+      <tr>
+        <td><%= page_document.name %></td>
+        <td><%= page_document.description %></td>
+        <td><%= page_document.user_id %></td>
+        <td><%= page_document.admin_user %></td>
+        <td><%= page_document.file %></td>
+        <td><%= link_to 'Show', page_document %></td>
+        <td><%= link_to 'Edit', edit_page_document_path(page_document) %></td>
+        <td><%= link_to 'Destroy', page_document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Page Document', new_page_document_path %>

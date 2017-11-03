@@ -557,37 +557,37 @@ def get_size
   report_size = 0
   Report.where(admin_user: current_user.admin_user).each do |report|
         
-      report_size = report_size + (report.archivo? ? report.archivo.file.size : 0)
+      #report_size = report_size + (report.archivo? ? report.archivo.file.size : 0)
       
 
   end
   Norma.where(admin_user: current_user.admin_user).each do |norma|
         
-      report_size = report_size + ( norma.archivo? ? norma.archivo.file.size : 0)
+      #report_size = report_size + ( norma.archivo? ? norma.archivo.file.size : 0)
       
 
   end
   Rseguimiento.where(admin_user: current_user.admin_user).each do |rseg|
         
-      report_size = report_size + ( rseg.evidencia? ? rseg.evidencia.file.size : 0)
+      #report_size = report_size + ( rseg.evidencia? ? rseg.evidencia.file.size : 0)
       
 
   end
   Aseguimiento.where(admin_user: current_user.admin_user).each do |aseg|
         
-      report_size = report_size + ( aseg.evidencia? ? aseg.evidencia.file.size : 0)
+      #report_size = report_size + ( aseg.evidencia? ? aseg.evidencia.file.size : 0)
       
 
   end
   Task.where(admin_user: current_user.admin_user).each do |task|
         
-      report_size = report_size + (task.anexo? ? task.anexo.file.size : 0 )
+      #report_size = report_size + (task.anexo? ? task.anexo.file.size : 0 )
       
 
   end
    Employed.where(admin_user: current_user.admin_user).each do |emp|
         
-      report_size = report_size + ( emp.avatare? ? emp.avatare.file.size : 0)
+      #report_size = report_size + ( emp.avatare? ? emp.avatare.file.size : 0)
       
 
   end

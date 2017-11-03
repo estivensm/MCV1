@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @page_document.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @page_document.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @page_document.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @page_document.admin_user %>
+</p>
+
+<p>
+  <strong>File:</strong>
+  <%= @page_document.file %>
+</p>
+
+<%= link_to 'Edit', edit_page_document_path(@page_document) %> |
+<%= link_to 'Back', page_documents_path %>

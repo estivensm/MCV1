@@ -1,0 +1,1 @@
+json.partial! "page_documents/page_document", page_document: @page_document
