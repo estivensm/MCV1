@@ -28,7 +28,8 @@ es:
         npr_tage: "NPR Tage"
       report:
         employed_id: "Asignada a"
-        source_id: "Fuente"
+        source_id: "Hallazgo"
+        source_parent: "Fuente"
         cierra_id: "Responsable de Cierre"
         employed_reporta: "Empleado que Reporta"
         name: "Descripción corta"

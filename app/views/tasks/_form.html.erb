@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title"> Tarea</h4>
       </div>
-<%= form_for([ @report, @task]) do |f| %>
+<%= form_for([ @report,@accion, @task]) do |f| %>
   <div class="alert alert-danger" style="display:none">
     <ul>
     
@@ -15,6 +15,7 @@
 
   <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :report_id , :value => @report.id%>
+   <%= f.hidden_field :accion_id , :value => @accion.id%>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 
  <%if params[:tipo] != "do"%>

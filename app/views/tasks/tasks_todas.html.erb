@@ -106,7 +106,7 @@
          
          <%end%>
          <th style = "width:5%" class="text-center">Días</th>
-         <th  class="text-left" style = "width:40%">Contador</th>
+         <th  class="text-left" style = "width:40%">Tarea</th>
 
 
          
@@ -117,7 +117,8 @@
    <tbody>
     <% @tasks.each do |task| 
       
-      report = Report.find(task.report_id)%>
+      report = Report.find(task.report_id)
+      accion = Accion.find(task.accion_id)%>
       <tr>
        
 
@@ -128,7 +129,7 @@
          <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
          <%end%></td>
          <td><%= get_date(task.created_at) %></td>
-          <td><%= link_to "#{task.report.codigo}-#{task.codigo}", report_task_path(report.id,task.id), :class => "linka"  %></td>
+          <td><%= link_to "#{task.report.codigo}-#{task.codigo}", report_accion_task_path(report.id,accion.id,task.id), :class => "linka"  %></td>
       
         
        

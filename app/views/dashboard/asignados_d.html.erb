@@ -105,7 +105,7 @@
             <div class="descnum2">
              <%if @tasks.count > 0 %>
                <% @tasks.each do |task|%>
-               <%= link_to report_task_path(task.report_id, task.id) do %>
+               <%= link_to report_accion_task_path(task.report_id,task.accion_id, task.id) do %>
                <div class="row rtr rtr1">
                    <div class="col-md-3 rtd"><%=get_employed(task.user.email).first_name%> <%=get_employed(task.user.email).first_last_name%></div>
                   <%color = ""

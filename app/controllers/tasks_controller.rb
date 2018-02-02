@@ -104,23 +104,27 @@ end
   # GET /tasks/1.json
   def show
     @report = Report.find(params[:report_id]) 
+    @accion = Accion.find(params[:accion_id])
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
     @report = Report.find(params[:report_id]) 
+    @accion = Accion.find(params[:accion_id])
   end
 
   # GET /tasks/1/edit
   def edit
-    @report = Report.find(params[:report_id]) 
+    @report = Report.find(params[:report_id])
+    @accion = Accion.find(params[:accion_id])
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
     @report = Report.find(params[:report_id])
+    @accion = Accion.find(params[:accion_id])
     @task = Task.new(task_params)
     @task.estado = false
       @num = Task.where(admin_user: current_user.admin_user).where(report_id: @report.id).maximum(:contador)
@@ -138,7 +142,7 @@ end
     @employed = Employed.find(@task.employed_id)
     if @task.save
       
-      redirect_to report_tasks_path(@report)
+      redirect_to report_accion_path(@report,@accion)
     end
   end
 
@@ -146,23 +150,24 @@ end
   # PATCH/PUT /tasks/1.json
   def update
   @report = Report.find(params[:report_id])
-  
+  @accion = Accion.find(params[:accion_id])
       if @task.update(task_params)
         if params[:remove_anexo]
         @task.remove_evidencia!
         @task.save
       end
-      redirect_to report_tasks_path(@report)
+     redirect_to report_accion_path(@report,@accion)
       end
   end
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-     @report = Report.find(params[:report_id]) 
+    @report = Report.find(params[:report_id]) 
+    @accion = Accion.find(params[:accion_id])
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to report_tasks_path(@report), notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to report_accion_path(@report,@accion), notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -175,6 +180,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:user_id, :admin_user, :employed_id, :report_id, :name, :observacion, :costo, :f_compromiso, :f_real, :estado, :cumplio, :contador, :contador_seg, :anexo, :codigo,:remove_anexo)
+      params.require(:task).permit(:user_id, :admin_user, :employed_id, :report_id, :name, :observacion, :costo, :f_compromiso, :f_real, :estado,:accion_id ,:cumplio, :contador, :contador_seg, :anexo, :codigo,:remove_anexo)
     end
 end

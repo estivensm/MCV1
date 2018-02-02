@@ -19,12 +19,12 @@ resources :reports do
         resources :riesgos
         get :get_misaccionsc, on: :collection
         get :get_acciontodos, on: :collection
-
-
-    end
-    resources :tasks do 
+        resources :tasks do 
           get :get_tasksc, on: :collection
+        end
+
     end
+    
     resources :causas
     resources :rseguimientos
     get "correcciones", to: "accions#correcciones" , as: "correcciones"
@@ -47,6 +47,7 @@ get "reportes/abiertos", to: "reports#abiertos", as: "reports_abiertos"
 get "reportes/cerrados", to: "reports#cerrados", as: "reports_cerrados"
 delete "delete_reports", to: "reports#delete_reports", as: "delete_reports"
 get 'set_contacts/:id', to: "reports#set_contacts", as: "set_contacts"
+get 'set_source_parents/:id', to: "reports#set_source_parents", as: "set_source_parents"
 post 'change_state' , to: "reports#change_state", as: "change_state"
 get 'show_info/:id' ,to: "reports#show_info", as: "show_info"
 
@@ -151,6 +152,7 @@ end
           
           get "normass/:id", to: "reports#get_normas", as: "get_normas"
           get "sourcee/:id", to: "reports#get_sourcee", as: "get_sourcee"
+          get "sourceep/:id", to: "reports#get_sourceep", as: "get_sourceep"
           get "source1/:id/:page/:search", to: "sources#change", as: "change"
           delete "delete_procesos", to: "procesos#delete_procesos", as: "delete_procesos"
          

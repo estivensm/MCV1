@@ -1,18 +1,16 @@
 <%task = @task%>
 <div style="padding:20px" class="row">
-   <div class="col-md-8">
-      <%= link_to "Tareas del Reporte", report_tasks_path(@report), class:"linka"%>
-   </div>
+ 
    <div class="col-md-4 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
       padding-bottom: 0px !important;   padding-right: 40px !important;"> 
-      <%= link_to  edit_report_task_path(@report,task) + "?tipo=do",remote:true, :class => "opciones" do %>
+      <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>
       <i class="fa fa-thumb-tack" aria-hidden="true"></i>
       <% end %>
       <% if current_user.id == task.user_id%>
-      <%= link_to  edit_report_task_path(@report,task),remote:true, :class => "opciones" do %>
+      <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
       <i class="fa fa-pencil" aria-hidden="true"></i>
       <% end %>
-      <%= link_to  report_task_path(@report,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+      <%= link_to  report_accion_task_path(@report,@accion,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
       <i class="fa fa-trash" aria-hidden="true"></i>
       <% end %>
       <% end %>

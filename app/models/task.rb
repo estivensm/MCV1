@@ -27,6 +27,7 @@
 
 class Task < ApplicationRecord
 	belongs_to :report
+  belongs_to :accion
 	belongs_to :user
 	belongs_to :employed
 	mount_uploader :anexo, AnexoTaskUploader

@@ -36,6 +36,7 @@
 
 
 class Source < ApplicationRecord
+  has_and_belongs_to_many :source_parents, dependent: :destroy
 	has_many :reports
 	after_create :validar_default, dependent: :destroy
 	def self.search(search,search1, search2)

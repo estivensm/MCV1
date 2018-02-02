@@ -21,17 +21,179 @@
 
     <div class="row">
     <p class="form-tit">Informacion Basica</p>
-  
- <div class="col-md-3">
-            <div class="form-group">
+  <div class="col-md-3">
+            <div class="form-group cli1">
                <%= f.label "Fuente" %><br>
-               <%= f.select :source_id,
-                 get_sources.map { |u| [u.name, u.id] },
+               <%= f.select :source_parent_id,
+                 get_source_parents.map { |u| [u.name, u.id] },
                              { include_blank: true },
-                             { class: 'chosen-select1 form-control ch source'  }
+                             { class: 'chosen-select1 form-control ch source pr1'  }
                   %>
             </div>
-    </div>
+ </div> 
+ 
+
+
+ <!--source parentes-->
+
+
+<div class="col-md-3">
+            <div class="form-group pru1">
+            <% if (action_name == "edit")
+
+@sourcess= @report.source_parent.sources
+
+
+else 
+
+  @sourcess = Source.where(admin_user: current_user.admin_user)
+end %>
+            <%=render "sources", f: f%>
+            </div> </div>
+
+<script>
+   
+   $(document).on('turbolinks:load',function() {
+         
+
+
+
+    $('.pr1').change(function(){
+        
+        cambiar1(false);
+
+    });
+
+
+
+
+
+function cambiar1(make1){
+
+
+      
+      cl1 = $('.pr1').val(); 
+         
+
+    if (cl1 != "")
+    {  
+       $.get("/set_source_parents/" + cl1 , function(data1) 
+                        {
+          
+
+
+              $('.pri1').remove();
+              $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
+                        for (var i=0; i<data1.length; i++) { 
+                
+                      $('.pri1 option').remove();
+                        
+                        
+                $('.pri1').removeClass("chosen-select1")
+                      
+                        }
+                        if (data1 != undefined)
+                        {
+              for (var i=0; i<data1.length; i++) { 
+
+                      
+              $('.pri1').append('<option value=' + data1[i].id +'>' + data1[i].name  + '</option>');
+
+                        $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data1[i].id +'>' +data1[i].name +'</li>');
+                        
+                      }
+
+                      $('.pri1').addClass("chosen-select1")
+                      $('.chosen-select1').chosen(
+                      {
+
+                        allow_single_deselect: true,
+                        no_results_text: 'No hay resultados',
+                        width: '250px'
+                      });
+              console.log("datfffa");
+                        }
+                      if (data1.length == 0)
+                      {
+                        {$('.pri1 option').remove();
+                    $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
+                    $('.pri1').addClass("chosen-select1");
+                  $('.chosen-select1').chosen(
+                      {
+
+                        allow_single_deselect: true,
+                        no_results_text: 'No hay resultados',
+                        placeholder_text_single: "Seleccione una opción",
+                        width: '250px'
+                      });}
+              }
+
+                  
+
+              console.log("ajax");
+              if (make1)
+              {
+              $('.pri1').val("<%=@report.source_id%>")
+              console.log("<%=@report.source_id%>" + "sdfd")
+              }
+         
+       
+
+                        });
+ }
+ else
+ {
+
+$('.pri1').remove();
+$('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
+
+$('.pri1').addClass("chosen-select1");
+    $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched',
+          placeholder_text_single: "Seleccione una opción",
+          width: '250px'
+        });
+
+
+   
+}
+  
+
+
+
+
+}
+
+
+
+
+
+
+ });
+
+    
+
+
+   
+  </script>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+ <!--/soucer parents-->
+
      <div class="col-md-3">
         <div class="form-group">
                <%= f.label "Proceso" %><br>
@@ -53,7 +215,10 @@
   </div>
 
     </div>
-    <div class="col-md-3">
+   
+    </div>
+    <div class="row">
+ <div class="col-md-3">
             
   <div class="form-group">
     <%= f.label "Fecha de Compromiso" %>
@@ -90,9 +255,6 @@
 
 </script>
     </div>
-    </div>
-    <div class="row">
-
     
       
     
@@ -106,7 +268,7 @@
                   %>
             </div> </div>
 
-    <div class="col-md-9">
+    <div class="col-md-6">
          <div class="form-group">
                <label>Descripcion corta del <span style="text-transform: capitalize;">Reporte</span></label> 
                <%= f.text_field :name,  class: "form-control" %>
@@ -117,12 +279,12 @@
 
 
 
- <div class="col-md-3">
+ <div class="col-md-3" >
            
          
 
 
-          <div class="form-group cli">
+          <div class="form-group cli" style="display: none">
                <%= f.label "Parte Interesada" %><br>
                <%= f.select :clinte_proveedor_id,
                  get_clientes.map { |u| [u.name, u.id] },
@@ -134,7 +296,7 @@
 
 
 <div class="col-md-3">
-            <div class="form-group pru">
+            <div class="form-group pru" style="display: none">
             <% if (action_name == "edit")
 
 @contactss= Contact.where(clinte_proveedor_id: @report.clinte_proveedor_id)
@@ -203,6 +365,7 @@ $('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>
 
           allow_single_deselect: true,
           no_results_text: 'No results matched',
+          placeholder_text_single: "Seleccione una opción",
           width: '250px'
         });
 console.log("datfffa");
@@ -217,6 +380,7 @@ console.log("datfffa");
 
           allow_single_deselect: true,
           no_results_text: 'No results matched',
+          placeholder_text_single: "Seleccione una opción",
           width: '250px'
         });}
 }
@@ -246,7 +410,8 @@ $('.pri').addClass("chosen-select1");
 
           allow_single_deselect: true,
           no_results_text: 'No results matched',
-          width: '2500px'
+          placeholder_text_single: "Seleccione una opción",
+          width: '250px'
         });
 
 
@@ -530,17 +695,24 @@ $( document ).ready(function() {
   if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
 {
 
- 
-$('.source').val("<%=@es.id%>");
+$('.pri1').attr('disabled', 'disabled'); 
+
+
 $('.reporta').val("<%=@user.id%>");
 console.log("<%=@user.id%>");
 console.log($('.reporta').val());
 var b = $('.source').val();
-get_source(b);
 
+
+}
+else if ("<%=action_name%>" == "edit")
+{
+  $('.pri1').attr('disabled', 'disabled'); 
+$('.source').attr('disabled', 'disabled'); 
 }
 else
 {
+
  var c = "<%=@report.source_id%>";
  get_source(c);
 }
@@ -664,12 +836,12 @@ function get_source(b)
 
 $('.source').change(function() {
 
-  
+    $('.pri1').attr('disabled', 'enabled'); 
     $.get("/sourcee/" + $('.source').val(), function(data) {
 
       
           
-             if (data.tipo == "Externa")
+             if (data.sourcep.tipo == "Externa")
            
             {
               $('.pru').fadeIn();
@@ -681,6 +853,58 @@ $('.source').change(function() {
               $('.cli').fadeOut();
               $('.pru').fadeOut();
             }
+
+  
+
+            if (data.source.evidencia)
+            {
+              $('.evi').fadeIn();
+              
+            }
+            else
+            {
+              $('.evi').fadeOut();
+              
+            }
+            if (data.source.requisito)
+            {
+              $('.req').fadeIn();
+              
+            }
+            else
+            {
+              $('.req').fadeOut();
+              
+            }
+            if (data.source.numerales)
+            {
+              $('.num').fadeIn();
+              
+            }
+            else
+            {
+              $('.num').fadeOut();
+              
+            }
+        
+
+    });
+
+    
+
+
+
+
+});
+    
+$(document).on('change', '.pri1', function() {
+
+
+   
+    $.get("/sourceep/" + $('.pri1').val(), function(data) {
+
+            console.log(data)
+          
              if (data.evidencia)
             {
               $('.evi').fadeIn();
@@ -715,7 +939,6 @@ $('.source').change(function() {
 
     });
 });
-    
  
 
 

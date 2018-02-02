@@ -9,8 +9,9 @@
 
 <% @tasks.each do |task| 
       
-      report = Report.find(task.report_id)%>
-<%= link_to  report_tasks_path(report,task) do %>
+      report = Report.find(task.report_id)
+       accion = Accion.find(task.accion_id)%>
+<%= link_to  report_tasks_path(report, acccion.id,task) do %>
 
 
 

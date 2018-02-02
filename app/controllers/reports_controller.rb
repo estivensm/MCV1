@@ -433,7 +433,7 @@ end
     @report = Report.new(report_params)
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @report.state = "Abierto"
-    num = Report.where(admin_user: current_user.admin_user).where(source_id: @report.source_id).maximum(:contador)
+    num = Report.where(admin_user: current_user.admin_user).where(source_id: @report.source_id).where(source_parent_id:@report.source_parent_id).maximum(:contador)
     if num != nil
         num = num + 1
 
@@ -442,16 +442,18 @@ end
     end
     ano = Time.now.year.to_s
     ano = ano.remove("20") 
-    source = Source.find(@report.source_id).codigo
-    code= "#{source}-#{num}-#{ano}" 
-    @report.codigo = code
-    @report.contador = num
-    @report.costo = 0
-    @report.balon = "responsable"
+    
    
     respond_to do |format|
       if @report.save
-       
+        source = Source.find(@report.source_id).codigo
+        source_p = SourceParent.find(@report.source_parent_id).codigo
+        code= "#{source_p}-#{source}-#{num}-#{ano}" 
+        @report.codigo = code
+        @report.contador = num
+        @report.costo = 0
+        @report.balon = "responsable"
+        @report.save
         format.html { redirect_to @report, notice: 'El Reporte fue creado correctamente' }
         format.json { render :show, status: :created, location: @report }
       else
@@ -493,9 +495,17 @@ end
 
   def get_sourcee
       
-      @source = Source.find(params[:id]) 
-      render :json => @source
+      @sourcep = SourceParent.find(params[:id])
+      @source =  @sourcep.sources.order(name: :asc).first
+      @params = { sourcep: @sourcep, source: @source }
+      render :json => @params
   end
+  def get_sourceep
+      
+      @sourcep = Source.find(params[:id]) 
+      render :json => @sourcep
+  end
+
 
 
 def delete_reports
@@ -531,6 +541,16 @@ end
 
 
       end
+
+
+    def set_source_parents
+       
+        puts params[:id]
+        @sources = SourceParent.find(params[:id]).sources.order(name: :asc)
+        render :json => @sources
+
+
+      end   
 
 
 

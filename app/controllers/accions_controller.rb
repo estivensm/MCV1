@@ -80,13 +80,16 @@ end
   # GET /accions/1.json
   def show
     @report = Report.find(params[:report_id])
+    @tasks_all = @report.tasks
+    @tasks = @report.tasks.abiertas
+    @tasksc = @report.tasks.cerradas
     @seguimientos = @accion.aseguimientos.order(created_at: :desc)
     @riesgos = @accion.riesgos.order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
-     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
 
 

@@ -15,6 +15,7 @@
 
 class SourceParent < ApplicationRecord
 	belongs_to :user
+	has_and_belongs_to_many :sources, dependent: :destroy
 	has_many :reports
 	def self.search(search, search1)
            search!= "" ? (scope :namesc, -> { where("name like '%#{search.downcase}%' or name like '%#{search.upcase}%'  or name like '%#{search.capitalize}%' ") }) : (scope :namesc, -> { where.not(id: nil) }) 

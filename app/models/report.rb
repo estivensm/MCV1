@@ -47,6 +47,7 @@ class Report < ApplicationRecord
   has_and_belongs_to_many :employeds, dependent: :destroy
   belongs_to :cierra, :class_name => 'Employed'
   belongs_to :employed, :class_name => 'Employed'
+  belongs_to :source_parent
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
   belongs_to :clinte_proveedor
@@ -62,7 +63,7 @@ class Report < ApplicationRecord
   mount_uploader :archivo, ArchivoReportUploader
   validate :archivo_size_validation, :if => "archivo?"  
   validate :start_must_be_before_end_time, on: [:create, :update]
-  validates :employed_id, :proceso_id, :source_id ,:name,:employed_reporta,:cierra_id ,:f_compromiso,presence: true
+  validates :employed_id, :proceso_id, :source_id,:source_parent_id ,:name,:employed_reporta,:cierra_id ,:f_compromiso,presence: true
 
  scope :cerrados, -> { where(state: "Cerrado") }
 scope :abiertos, -> { where(state: "Abierto") }
