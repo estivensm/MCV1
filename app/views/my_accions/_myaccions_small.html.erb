@@ -1,6 +1,6 @@
 
 <% @acciones.each do |accion1| 
-      accion = Accion.find(accion1)
+      accion = Accion.find(accion1.id)
       report = Report.find(accion.report_id)%>
 <%= link_to  report_accion_path(report,accion) do %>
 
