@@ -1,7 +1,7 @@
 class CausasController < ApplicationController
   before_action :authenticate_user!
   before_action :set_causa, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
 
   # GET /causas
   # GET /causas.json
