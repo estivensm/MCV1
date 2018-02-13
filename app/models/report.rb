@@ -50,9 +50,9 @@ class Report < ApplicationRecord
   belongs_to :source_parent
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
-  belongs_to :clinte_proveedor
+  #belongs_to :clinte_proveedor
   belongs_to :proceso
-  belongs_to :contact
+  #belongs_to :contact
   has_many :tasks , dependent: :destroy
   belongs_to :user
   has_many :accions, dependent: :destroy
