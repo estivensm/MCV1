@@ -1,5 +1,5 @@
 
-<h3 style="color:#0db497">Hola <%=@report.employed.first_name%> <%=@report.employed.first_last_name%></h3>
+<h3 style="color:#0db497">Hola <%=@employed.first_name%> <%=@employed.first_last_name%></h3>
  <p style="color:gray"><%= Employed.find(@report.employed_reporta).first_name%> <%=Employed.find(@report.employed_reporta).first_last_name%> te ha asignado un Reporte</p>
 <hr style="    border: 0.5px solid #dedede !important;">
 <p style="color:gray"><strong style="color:#0db497">Codigo: </strong> <%=@report.codigo%></p>

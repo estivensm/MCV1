@@ -97,9 +97,9 @@ puts search2
       
         CreateMailer.create_accion(employed, self).deliver
       
-       self.employeds.each do |employed|
+       self.employeds.each do |employed1|
         
-           CreateMailer.invitado_accion(employed, self).deliver
+           CreateMailer.invitado_accion(employed1, self).deliver
            
           
        end
