@@ -448,12 +448,20 @@ end
       if @report.save
         source = Source.find(@report.source_id).codigo
         source_p = SourceParent.find(@report.source_parent_id).codigo
-        code= "#{source_p}-#{source}-#{num}-#{ano}" 
+        code = "#{source_p}-#{source}-#{num}-#{ano}" 
         @report.codigo = code
         @report.contador = num
         @report.costo = 0
         @report.balon = "responsable"
         @report.save
+        employed = Employed.find(@report.employed_id)
+         CreateMailer.create_report(employed,@report).deliver
+
+           @report.employeds.each do |employed1|
+        
+                CreateMailer.invitado_report(employed1, @report).deliver
+          
+        end
         format.html { redirect_to @report, notice: 'El Reporte fue creado correctamente' }
         format.json { render :show, status: :created, location: @report }
       else

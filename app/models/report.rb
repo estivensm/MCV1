@@ -54,7 +54,7 @@ class Report < ApplicationRecord
   belongs_to :proceso
   belongs_to :contact
   has_many :tasks , dependent: :destroy
-  belongs_to :user, :class_name => 'Employed'
+  belongs_to :user
   has_many :accions, dependent: :destroy
   has_many :rseguimientos, dependent: :destroy
   has_many :causas, dependent: :destroy
@@ -121,14 +121,7 @@ scope :abiertos, -> { where(state: "Abierto") }
   end
 
   def accions_create
-       employed = Employed.find(self.employed_id)
-       CreateMailer.create_report(employed,self).deliver
-
-      self.employeds.each do |employed1|
-	      
-      CreateMailer.invitado_report(employed1, self).deliver
-          
-	  end
+       
   end
 
       
