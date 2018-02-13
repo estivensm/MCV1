@@ -52,8 +52,10 @@
    <hr>
    <div class="row rtr">
       <div class="col-md-4 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
-      <div class="col-md-4 rtd"><strong>Fuente:</strong> <%= @report.source.name %></div>
-      <div class="col-md-4 rtd"><strong>Estado: </strong><%= @report.state %></div>
+      <div class="col-md-4 rtd"><strong>Fuente:</strong> <%= @report.source_parent.name %></div>
+      <div class="col-md-4 rtd"><strong>Hallazgo:</strong> <%= @report.source.name %></div>
+
+      <div class="col-md-12 rtd"><strong>Estado: </strong><%= @report.state %></div>
       <div class="col-md-5 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
       <% employed1 = Employed.find(@report.employed_reporta)%>
       <div class="col-md-5 rtd"><strong>Reporta: </strong>
