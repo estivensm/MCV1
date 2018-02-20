@@ -18,14 +18,14 @@
 <div style="padding:20px" class="row">
 
     <div class="col-md-6">
-        <div class="col-md-8 rtd" >
+        <div class="col-md-7 rtd" >
                <h3 class = "linka "><%=  task.report.codigo  %>-<%=  task.codigo  %></h3>
                <hr>
         </div>
-        <div class="col-md-4 rtd text-right" >
-               <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>Ejecutar Tarea
+        <div class="col-md-5 rtd text-right" >
+              <h3 class = "linka ">  <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>Ejecutar Tarea
       <i class="fa fa-thumb-tack" style = "font-size:30px;" aria-hidden="true"></i>
-      <% end %>
+      <% end %></h3>
                <hr>
         </div>
         <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong >Tarea:</strong> <%= task.name %></div>
