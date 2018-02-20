@@ -20,7 +20,7 @@
     <div class="col-md-6">
         <div class="col-md-7 rtd" >
                <h3 class = "linka "><%=  task.report.codigo  %>-<%=  task.codigo  %></h3>
-               <hr>
+              
         </div>
         <div class="col-md-5 rtd text-right" >
               <h3 class = "linka ">  <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>Ejecutar Tarea
