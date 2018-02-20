@@ -31,7 +31,9 @@
         <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong >Tarea:</strong> <%= task.name %></div>
             <%= render 'form_close', task: task %>
            <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong >Comentarios: </strong><%= task.observacion %></div>
-           <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong><i class="fa fa-paperclip" aria-hidden="true"></i> Anexo: <%= (link_to "#{task.anexo.file.filename }  (Descargar)",task.anexo_url, class:"linka") if task.anexo_url %> <a class="linka" href="https://docs.google.com/viewerng/viewer?url=<%=task.anexo_url%>" >(Ver)</a>
+           <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong><i class="fa fa-paperclip" aria-hidden="true"></i> Anexo: <%= (link_to "#{task.anexo.file.filename }  (Descargar)",task.anexo_url, class:"linka") if task.anexo_url %>
+            
+            <!--<a class="linka" href="https://docs.google.com/viewerng/viewer?url=<%=task.anexo_url%>" >(Ver)</a>-->
             </div>
 
             <div class="col-md-12 " style="margin-bottom: 10px;font-size: 13px">
