@@ -81,8 +81,8 @@ end
   def show
     @report = Report.find(params[:report_id])
     @tasks_all = @report.tasks
-    @tasks = @report.tasks.abiertas
-    @tasksc = @report.tasks.cerradas
+    @tasks = @accion.tasks.abiertas
+    @tasksc = @accion.tasks.cerradas
     @seguimientos = @accion.aseguimientos.order(created_at: :desc)
     @riesgos = @accion.riesgos.order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
