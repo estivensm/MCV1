@@ -15,7 +15,11 @@
 
 <div class="row">
   <div class="col-md-12" id = "part">
-    <div class="col-md-6" id = "part">
+
+<% 
+var = ""
+action_name == "edit" ? var = "none" : var = ""%>
+    <div class="col-md-6" id = "part" style="display:<%=var%>">
       <div class="form-group">
        <label for="">¿Acciones?</label><br>
                <label class="radio-inline">
@@ -37,26 +41,10 @@
                
   </div>
   </div>
-<div class="col-md-6" id = "part">
-<div class="form-group">
-    <%= f.label :archivo %><br>
-    <%= f.file_field :archivo, class: "form-control inputfile" , id: 'file'%>
-   <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
 
- <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @causa.archivo.blank?   != true %>
-<br><%= f.check_box :remove_archivo %> 
-   <%= f.label "Eliminar", style: "color:red!important" %></label>
 
-   <%end%>
-  </div>
- </div>
 
- <div class="col-md-10" id = "part">
- <div class="form-group">
-    <%= f.label "Observaciones"%>
-    <%= f.text_area :descripcion, class: "form-control area"  %>
-  </div>
-</div>
+
 </div>
 
 <div class="col-md-12 caef">
@@ -139,9 +127,37 @@
    
 <%end%>
 <div class="col-md-12" >
-<%= f.link_to_add "Crear Causa", :causa_efectos, :class => 'btn btn-primary top10'  %>
+
+<%
+  tipo = ""
+  @causa.tipo == "5 Porques"  ?  tipo = "Porque" : tipo = "Causa"%>
+<%= f.link_to_add "Crear #{tipo}", :causa_efectos, :class => 'btn btn-primary top10'  %>
  
  </div></div>
+<div class="col-md-12" >
+<hr>
+</div>
+ <div class="col-md-6" id = "part">
+<div class="form-group">
+    <%= f.label :archivo %><br>
+    <%= f.file_field :archivo, class: "form-control inputfile" , id: 'file'%>
+   <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
+
+ <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @causa.archivo.blank?   != true %>
+<br><%= f.check_box :remove_archivo %> 
+   <%= f.label "Eliminar", style: "color:red!important" %></label>
+
+   <%end%>
+  </div>
+ </div>
+
+  <div class="col-md-10" id = "part">
+ <div class="form-group">
+    <%= f.label "Observaciones"%>
+    <%= f.text_area :descripcion, class: "form-control area"  %>
+  </div>
+</div>
+
 </div>
 
 

@@ -271,3 +271,9 @@ font-size: 13px !important;
    margin-bottom: 0px !important;
 
   }
+
+  .form-control
+  {
+
+    border-radius: 0px !important;
+  }

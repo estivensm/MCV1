@@ -1,3 +1,6 @@
+
+<%if  @causa_paret.count != 0%>
+
 <div class="row">
     <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
 
@@ -47,8 +50,35 @@
     </div>
 </div>
 
+<%else%>
+
+
+<div class="row">
+<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+  <div class="col-md-8 col-md-offset-2 entrada">
+
+            
+            
+   <p>Ingresa los porques</p>
+
+   <span class="five">¿ 5 ?</span><br><br>
+      <%= link_to  "Crear porques" ,edit_report_causa_path(@report,@causa), remote: true, :class => "btn btn-primary"  %>
+  </div>
+
+</div>
+
+
+<%end%>
 
 <style>
+
+.five
+{
+
+  font-size: 70px;
+    color: #0db497;
+    font-weight: bold;
+}
   .acciones
   {
    
@@ -57,6 +87,38 @@
     font-weight: bold;
     text-decoration: none !important;
     margin-bottom: 10px;
+}
+
+.entrada img
+{
+width:300px;
+}
+.entrada
+{
+  text-align: center;
+  background: whitesmoke;
+  padding-bottom: 20px;
+  margin-top:30px;
+  margin-bottom:100px ; 
+}
+.entrada p
+{
+font-size: 30px;
+}
+.titct
+{
+margin-top: : 0px
+}
+.titctp
+{
+font-size: 12px !important;    
+margin:8px;
+
+}
+.tit
+{
+font-weight: bold;
+
 }
   
 </style>
