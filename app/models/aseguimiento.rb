@@ -55,9 +55,11 @@ class Aseguimiento < ApplicationRecord
 
             accion = Accion.find(self.accion_id)
         employed = Employed.where(email: self.user.email).take     
-    if accion.employed_id.to_i == employed.id
+    if accion.employed_id.to_i == employed.id && accion.f_seguimiento != 0
+
         accion.fp_seguimiento = Time.at(Time.now.to_i + (accion.f_seguimiento*60*60*24))
         accion.save
+    
     end
     
 

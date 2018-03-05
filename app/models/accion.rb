@@ -121,7 +121,7 @@ puts search2
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
-        self.contador_seg > self.f_seguimiento
+        (self.contador_seg > self.f_seguimiento || self.f_seguimiento == 0) 
       end
   end
 

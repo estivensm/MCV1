@@ -3,6 +3,8 @@ module AccionsHelper
 	def f_seguimiento(fecha)
 
 		case fecha
+            when 0
+            return 'N/A'
             when 1
             return 'Diario'
             when 7
