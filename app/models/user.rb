@@ -53,9 +53,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  after_create :add_adminid
+  after_create :add_adminid2
   before_save :add_adminid1
-  before_create :add_adminid2
+  before_create :add_adminid
 
   has_many :tasks
   #before_destroy :validar_detele
@@ -109,12 +109,16 @@ def self.search(search, search1)
 
         end
 
-         def add_adminid
+         def add_adminid2
 
             if self.role == "SuperAdmin"
-         	     Company.create(name: self.company, user_id: self.id, admin_user: self.id)
+         	    Company.create(name: self.company, user_id: self.id, admin_user: self.id)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id)
+               self.employed_id =  Employed.where(admin_user: self.id).last.id
                save
+               puts "holaaaaaaaa"
+               puts  Employed.where(admin_user: self.id).last.id
+           
            
 
 
@@ -128,7 +132,8 @@ def self.search(search, search1)
 
             if self.role == "SuperAdmin"
               self.admin_user = self.id
-              
+              self.rol_id = 13
+              puts "1111111111111111111111111111111"
           else
            
 
@@ -138,10 +143,10 @@ def self.search(search, search1)
          end
 
 
-          def add_adminid2
+          def add_adminid
            if self.role != "SuperAdmin"
            self.employed_id = Employed.where(email: self.email).first.id
-          
+           
           end
          end
 

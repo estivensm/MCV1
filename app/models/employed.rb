@@ -25,7 +25,7 @@ class Employed < ApplicationRecord
 has_and_belongs_to_many :reports
 has_and_belongs_to_many :accions
 belongs_to :user
-belongs_to :cargo
+belongs_to :cargo, optional: true
 before_update :update_user
 after_create :create_user
 before_destroy :destroy_user
