@@ -116,8 +116,7 @@ def self.search(search, search1)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id)
                self.employed_id =  Employed.where(admin_user: self.id).last.id
                save
-               puts "holaaaaaaaa"
-               puts  Employed.where(admin_user: self.id).last.id
+           
 
 
 
