@@ -37,7 +37,7 @@
    
   </div>
 
-    <div class="form-group acc1">
+    <!--<div class="form-group acc1">
                <label for="">Tipo</label><br>
                <label class="radio-inline">
                <%= f.radio_button :tipo, 'Interna', class: 'rb cksi check1' %><span style = "margin-left:10px">interna</span>
@@ -45,7 +45,7 @@
               <label class="radio-inline">
                <%= f.radio_button :tipo, 'Externa', class: 'rb ckno check1' %><span style = "margin-left:10px">Externa</span>
                 </label>
-    </div>
+    </div>-->
 
   <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
