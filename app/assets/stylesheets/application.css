@@ -289,3 +289,9 @@ font-size: 13px !important;
     background: url("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/143/chosen-sprite.png") -42px 1px no-repeat !important;
     
 }
+
+.chosen-container-single .chosen-single abbr {
+
+    background: url("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/143/chosen-sprite.png") -42px 1px no-repeat !important;
+
+}
