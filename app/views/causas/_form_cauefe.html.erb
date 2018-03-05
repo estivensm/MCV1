@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Crear Causa de <%= nivel(@causa,m)%></h4>
+        <h4 class="modal-title">Crear Causa de <%= nivel(@causa.id,m)%></h4>
       </div>
 <%= form_tag crear_caef_path do %>
   <div class="alert alert-danger" style="display:none;padding: 10px;">
