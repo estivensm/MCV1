@@ -93,7 +93,7 @@ class CausasController < ApplicationController
       @causa = CausaEfecto.find(params[:id])
        @report = Report.find(@causa.report_id)
           if @causa.update(descripcion:params[:descripcion],name:params[:name])
-               report_causa_path(@report,@causa)
+             redirect_to  report_causa_path(@report,@causa)
           end
       
   end
@@ -103,7 +103,7 @@ class CausasController < ApplicationController
       @report = Report.find(@causa.report_id)
        if @causa.save
     
-           report_causa_path(@report,@causa)
+          redirect_to report_causa_path(@report,@causa)
       end
   end
 
@@ -112,7 +112,7 @@ class CausasController < ApplicationController
  @report = Report.find(@causa.report_id)
   if @causa.destroy
     
-    report_causa_path(@report,@causa)
+    redirect_to report_causa_path(@report,@causa)
   end
 end
 
