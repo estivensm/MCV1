@@ -89,9 +89,9 @@ class CausasController < ApplicationController
   end
 
   def update_caef
-
+      
       @causa = CausaEfecto.find(params[:id])
-  
+       @report = Report.find(@causa.report_id)
           if @causa.update(descripcion:params[:descripcion],name:params[:name])
                report_causa_path(@report,@causa)
           end
@@ -100,6 +100,7 @@ class CausasController < ApplicationController
 
   def create_caef
     @causa = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
+      @report = Report.find(@causa.report_id)
        if @causa.save
     
            report_causa_path(@report,@causa)
@@ -108,10 +109,10 @@ class CausasController < ApplicationController
 
   def destroy_caef
 @causa = CausaEfecto.find(params[:id])
-
+ @report = Report.find(@causa.report_id)
   if @causa.destroy
     
-    redirect_to :back
+    report_causa_path(@report,@causa)
   end
 end
 
