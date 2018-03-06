@@ -132,8 +132,8 @@ def self.search(search, search1)
 
             if self.role == "SuperAdmin"
               self.admin_user = self.id
-              self.rol_id = 13
-              puts "1111111111111111111111111111111"
+     
+               
           else
            
 
