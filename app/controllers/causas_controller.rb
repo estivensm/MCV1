@@ -102,7 +102,7 @@ class CausasController < ApplicationController
     @causa = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
        if @causa.save
     
-           redirect_to :back
+           report_causa_path(@report,@causa)
       end
   end
 
