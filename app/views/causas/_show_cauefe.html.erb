@@ -3,7 +3,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title"><%= nivel(@causa, @caef.nivel)%></h4>
+            <h4 class="modal-title"><%= nivel(@causa.id, @caef.nivel)%></h4>
          </div>
          <div style="padding-top:5px !important;" class="modal-body text-gray">
             <p class="text-right"><%= link_to  edit_caef_path(@caef), remote:true, :class => "opciones" do %>

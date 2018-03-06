@@ -93,7 +93,7 @@ class CausasController < ApplicationController
       @causa = CausaEfecto.find(params[:id])
   
           if @causa.update(descripcion:params[:descripcion],name:params[:name])
-               redirect_to :back
+               report_causa_path(@report,@causa)
           end
       
   end
