@@ -20,7 +20,7 @@ respond_to :json
       end
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task.report_id}/accions/#{task.id}"}
     end
-        render :text => events.to_json
+        render :plain => events.to_json
   end
 
 
@@ -38,7 +38,7 @@ respond_to :json
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
-       @tasks = Task.where(report_id: @report.id)
+    @tasks = Task.where(report_id: @report.id)
 
   end
 
@@ -99,6 +99,8 @@ end
   def acciones_todas
 
 
+
+
     @accion_search = Accion.where(admin_user:current_user.admin_user)
     if params[:search]
 
@@ -109,9 +111,26 @@ end
 
     end
 
-
-@resp = "Actividades, Acciones y Correcciones"
+  
+  @resp = "Actividades, Acciones y Correcciones"
   @route = acciones_todas_path
+  
+  
+  params1 = [params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]]
+  if params[:search]
+    
+    @route_csv = "#{acciones_todas_path(format: "csv")}?search0=#{params1[0]}&search=#{params1[1]}&search2=#{params1[2]}&search3=#{params1[3]}&search5=#{params1[4]}&search6=#{params1[5]}"
+  else
+    @route_csv = acciones_todas_path(format: "csv")
+
+  end
+  
+  respond_to do |format|
+       format.html
+       format.csv { send_data @acciones.to_csv, filename: "acciones.csv" }
+      
+  end
+
 
   end
 
@@ -129,20 +148,33 @@ end
     end
 
 
-@resp = "Actividades, Acciones y Correcciones Abiertas"
+  @resp = "Actividades, Acciones y Correcciones Abiertas"
   @route = acciones_abiertas_path
+  params1 = [params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]]
+  if params[:search]
+    
+    @route_csv = "#{acciones_abiertas_path(format: "csv")}?search0=#{params1[0]}&search=#{params1[1]}&search2=#{params1[2]}&search3=#{params1[3]}&search5=#{params1[4]}&search6=#{params1[5]}"
+  else
+    @route_csv = acciones_abiertas_path(format: "csv")
 
-  render "acciones_todas"
+  end
+
+  respond_to do |format|
+       format.html {render "acciones_todas"}
+       format.csv { send_data @acciones.to_csv, filename: "acciones.csv" }
+      
+  end
+
+
+
 
   end
 
 
   def acciones_cerradas
 
-
-      @accion_search = Accion.where(admin_user:current_user.admin_user).cerradas
-      if params[:search]
-
+     @accion_search = Accion.where(admin_user:current_user.admin_user).cerradas
+     if params[:search]
         @acciones = @accion_search.paginate(page: params[:page],:per_page => 2).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
 
       else
@@ -152,15 +184,28 @@ end
 
       @resp = "Actividades, Acciones y Correcciones Cerradas"
       @route = acciones_cerradas_path
+     params1 = [params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]]
+  if params[:search]
+    
+    @route_csv = "#{acciones_cerradas_path(format: "csv")}?search0=#{params1[0]}&search=#{params1[1]}&search2=#{params1[2]}&search3=#{params1[3]}&search5=#{params1[4]}&search6=#{params1[5]}"
+  else
+    @route_csv = acciones_cerradas_path(format: "csv")
 
-      render "acciones_todas"
+  end
+      
+  respond_to do |format|
+        format.html {render "acciones_todas"}
+        format.csv { send_data @acciones.to_csv, filename: "acciones.csv" }
+      
+  end
+   
 
   end
 
 
  def acciones_calendar
 
-
+    
 
  end
 

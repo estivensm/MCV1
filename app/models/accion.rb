@@ -111,6 +111,34 @@ puts search2
   end
 
 
+ def self.to_csv()
+          attributes = %w{Fecha_de_Creacion Nombre Codigo Tipo Asignada_Por}
+            CSV.generate(headers: true) do |csv|
+              csv <<  attributes
+              all.each do |accion|
+               csv << attributes.map{ |attr| accion.send(attr) }
+              end
+            end
+        end  
+
+        def Fecha_de_Creacion
+          "#{f_compromiso}"
+        end
+        def Codigo
+          "#{codigo}"
+        end
+        def Tipo
+          "#{tipo}"
+        end
+        def Asignada_Por
+          "#{Employed.find(employed.id).first_name} #{Employed.find(employed.id).first_last_name}"
+        end
+        def Nombre
+          "#{name}"
+        end
+
+
+
 
 
 

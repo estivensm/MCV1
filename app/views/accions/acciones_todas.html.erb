@@ -20,7 +20,6 @@
 
 
 
-<%= (link_to "filtros", @route + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
 
 
 
@@ -38,8 +37,8 @@
 
 
 
-<div class="row busqueda" style = "display:none;">
-   <div class="col-md-12">
+<div class="row busqueda" >
+   <div class="col-md-10">
    <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
 <%= text_field_tag :search0, params[:search0], placeholder: "Fecha Desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "Fecha Hasta",class: "form-control datepicker1 shi1 sh00" %>
 <script>
@@ -84,17 +83,24 @@
 
 
 <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
-<%= select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true } %>
+<%if action_name == "acciones_todas"%>
+<%= (select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true }) %>
+<%else%>
+<%= hidden_field_tag :search6  %>
+
+<%end%>
+
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
    </div>
+   <div class="col-md-2 text-right">
+     <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_csv-128.png"), @route_csv, class: "icon-export"%></div>
 </div>
 
 <div class = "row">
 
 <%= (link_to "Cancelar filtros", @route , class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<hr>
-
+<br>
 
 
 
@@ -199,24 +205,7 @@
 
 
 <script>
-    $(document).on('turbolinks:load',function() {
-   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
-   {
- $('.busqueda').show();
- $('.canf').show();
- $('.canf1').hide();
-
-   }
-   else
-   {
-    $('.busqueda').hide();
-     $('.canf1').show();
-
-   }
-
-     
-
- });
+ 
 
       
    
@@ -356,5 +345,9 @@
   {
   
     box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+  }
+  .icon-export img
+  {
+    width: 40px;
   }
 </style>

@@ -21,7 +21,7 @@ respond_to :json
       events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
     puts events.to_json
-render :text => events.to_json
+render :plain => events.to_json
   end 
 
 
@@ -39,8 +39,12 @@ respond_to :json
     end
       events << {:id => task4.id, :title => "#{task4.name} ", :start => "#{task4.f_compromiso}" , :color => "#{@color4}", :url =>"reports/#{task4.report_id}/accions/#{task4.id}"}
     end
-        render :text => events.to_json
+
+        
+        render :plain => events.to_json
   end 
+
+
 
 respond_to :json
   def get_tasktodos
@@ -56,7 +60,7 @@ respond_to :json
     end
       events << {:id => task5.id, :title => "#{task5.name} ", :start => "#{task5.f_compromiso}" , :color => "#{@color5}", :url =>"reports/#{task5.report_id}/accions/#{task5.id}"}
     end
-        render :text => events.to_json
+        render :plain => events.to_json
   end 
 
 
@@ -121,7 +125,7 @@ respond_to :json
     end
       events << {:id => task2.id, :title => "#{task2.name} ", :start => "#{task2.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task2.report_id}/tasks"}
     end
-    render :text => events.to_json
+    render :plain => events.to_json
 
 end
 
@@ -154,7 +158,7 @@ respond_to :json
       events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
     end
 
-    render :text => events.to_json
+    render :plain => events.to_json
 
 end
 
@@ -197,7 +201,7 @@ respond_to :json
     end
       events << {:id => task2.id, :title => "#{task2.name} ", :start => "#{task2.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task2.report_id}/tasks"}
     end
-    render :text => events.to_json
+    render :plain => events.to_json
 
 end
 
