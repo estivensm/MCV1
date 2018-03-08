@@ -1,4 +1,4 @@
-<!--<label>Tipo de Hallazgo</label>
+<label>Tipo de Hallazgo</label>
 <br>
               
 
@@ -15,14 +15,6 @@
         <option value="<%=hpc.id%>"><%=hpc.name%></option>
     <%end%> 
 <%end%>
-</select>-->
+</select>
   
 
-
-<%= f.label "Hallazgos" %><br>
-               <%= f.select :source_id,
-                 @sourcess.map { |u| [u.name, u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select1 form-control ch pri1'  }
-                  %>
-    
