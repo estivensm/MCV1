@@ -963,3 +963,14 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
                     </div>
 
         <% end %>
+
+
+
+
+
+<%= f.label "Tipo de Hallazgo" %><br>
+               <%= f.select :source_id,
+                 @sourcess.map { |u| [u.name, u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch pri1'  }
+                  %>

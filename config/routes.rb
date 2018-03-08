@@ -39,6 +39,14 @@ get 'my_reports/asignados_cerrados', to: "my_reports#asignados_cerrados", as: "a
 
 
 
+get "new_hallazgo", to: "reports#new_hallazgo", as: "new_hallazgo"
+post "crear_hallazgo", to: "reports#crear_hallazgo", as: "crear_hallazgo"
+post "crear_hallazgo_p", to: "reports#crear_hallazgo_p", as: "crear_hallazgo_p"
+
+
+
+
+
 get 'my_reports/invitado', to: "my_reports#invitado", as: "invitado"
 get 'reportst_calendar' , to: "reports#reportst_calendar", as: "reportst_calendar"
 get 'reports_calendar' , to: "my_reports#reports_calendar", as: "reports_calendar"

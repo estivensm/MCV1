@@ -1,9 +1,28 @@
+<!--<label>Tipo de Hallazgo</label>
+<br>
+              
+
+ <select class="form-control pri1 chosen-select1 mg1" name="report[source_id]" id="hpc_id">
+
+<% @sourcess.each do  |hpc|%>
+   <%if action_name == "edit"%>
+        <%if hpc.id == @report.source_id%>
+            <option selected="selected" value="<%=hpc.id%>"><%=hpc.name%></option>
+        <%else%>
+            <option value="<%=hpc.id%>"><%=hpc.name%></option>
+        <%end%>
+   <%else%>
+        <option value="<%=hpc.id%>"><%=hpc.name%></option>
+    <%end%> 
+<%end%>
+</select>-->
+  
+
+
 <%= f.label "Hallazgos" %><br>
                <%= f.select :source_id,
                  @sourcess.map { |u| [u.name, u.id] },
                              { include_blank: true },
                              { class: 'chosen-select1 form-control ch pri1'  }
                   %>
-
-
- 
+    

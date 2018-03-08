@@ -1,0 +1,20 @@
+<label>Fuente</label>
+<br>
+              
+
+ <select class="chosen-select1 form-control ch source pr1" name="report[source_parent_id_id]" id="hpc_id">
+   <option>Seleccione</option>
+<% source_parents.each do  |hpc|%>
+   <%if action_name == "edit"%>
+        <%if hpc.id == @report.source_parent_id%>
+            <option selected="selected" value="<%=hpc.id%>"><%=hpc.name%></option>
+        <%else%>
+            <option value="<%=hpc.id%>"><%=hpc.name%></option>
+        <%end%>
+   <%else%>
+
+         <option  value="<%=hpc.id%>"><%=hpc.name%></option>
+    <%end%> 
+<%end%>
+</select>
+  

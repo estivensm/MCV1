@@ -1,0 +1,15 @@
+$('#myModal_hallazgo').modal('hide');
+
+       $('.pru1').html('<%= j render "sources", sourcess: @sourcess %>');
+        $('.pri').addClass("chosen-select1");
+
+         $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched'
+          
+        });
+
+
+         

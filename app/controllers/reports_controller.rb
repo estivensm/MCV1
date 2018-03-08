@@ -417,6 +417,7 @@ end
     @report = Report.new
     @user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
+     @source_parents = SourceParent.where(admin_user: current_user.admin_user)
     
   end
 
@@ -425,6 +426,7 @@ end
 
     @user = Employed.where(email: current_user.email).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
+     @source_parents = SourceParent.where(admin_user: current_user.admin_user)
 @report.tag = false
   end
 
@@ -571,12 +573,47 @@ end
     @report = Report.find(params[:report])
     if @report.update(justificacion_cumplio: params[:justificacion_cumplio], cumplio: true, change_cumplio: true , tag: false)
     redirect_to @report
-  end
+end
  
     
 
 
  end     
+
+
+      def new_hallazgo
+
+
+        
+      end
+
+
+      def crear_hallazgo
+
+  
+            @source  =  Source.new(name:params[:name],user_id:current_user.id, admin_user:current_user.admin_user)
+            @source_parent = SourceParent.find(params[:id_source].to_i)
+            if @source.save
+              @source.source_parents << @source_parent
+                
+            end
+           
+            @sourcess = @source_parent.sources.order(created_at: :desc)
+
+       
+      end
+
+      def crear_hallazgo_p
+
+  
+            @source_parent  =  SourceParent.new(name:params[:name],user_id:current_user.id, admin_user:current_user.admin_user)
+            @source_parent.save
+            
+           
+            @source_parents = SourceParent.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
+       
+      end
 
 
 

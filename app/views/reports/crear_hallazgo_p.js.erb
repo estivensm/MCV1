@@ -1,0 +1,15 @@
+$('#myModal_parent').modal('hide');
+
+       $('.cli1').html('<%= j render "sources_parent", source_parents: @source_parents %>');
+        $('.pri').addClass("chosen-select1");
+
+         $('.chosen-select1').chosen(
+        {
+
+          allow_single_deselect: true,
+          no_results_text: 'No results matched'
+          
+        });
+
+
+         
