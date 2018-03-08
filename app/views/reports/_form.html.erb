@@ -475,7 +475,7 @@ $('.pri').addClass("chosen-select1");
             <div class="col-md-6">
                <div class="form-group">
                <%= f.label "Otros interesados" %><br>
-               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}" c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
             </div>
              </div>
 
