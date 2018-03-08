@@ -51,8 +51,8 @@ end %>
             <%=render "sources", f: f%>
            
             </div>
-             <!--<button type="button" class="bt" data-toggle="modal" data-target="#myModal_hallazgo"><i class="fa fa-plus" aria-hidden="true"></i>-->
-</button>
+             <!--<button type="button" class="bt" data-toggle="modal" data-target="#myModal_hallazgo"><i class="fa fa-plus" aria-hidden="true"></i>
+</button>-->
              </div>
 
 <script>
@@ -107,7 +107,7 @@ function cambiar1(make1){
                         
                       }
 
-                      $('.pri1').addClass("chosen-select1")
+                      $('.pri1').addClass("chosen-select1")inf
                       $('.chosen-select1').chosen(
                       {
 
@@ -475,7 +475,7 @@ $('.pri').addClass("chosen-select1");
             <div class="col-md-6">
                <div class="form-group">
                <%= f.label "Otros interesados" %><br>
-               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name} c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}" c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
             </div>
              </div>
 
