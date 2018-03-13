@@ -67,7 +67,8 @@
                   <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
               <%end%><%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
                   <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
-                  <div class="col-md-6 rtd"><%= accion.name %></div>
+                  <div class="col-md-4 rtd"><%= accion.name %></div>
+                  <div class="col-md-5 rtd"><%= accion.tipo %></div>
                </div>
                
                <%end%>
