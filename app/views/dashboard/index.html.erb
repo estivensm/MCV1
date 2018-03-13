@@ -51,7 +51,8 @@
                 <div class="col-md-3 rtd"><strong>Asigno</strong> </div>
                <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
               
-               <div class="col-md-6 rtd"><strong>Descripcion</strong></div>
+               <div class="col-md-4 rtd"><strong>Descripcion</strong></div>
+               <div class="col-md-2 rtd"><strong>Tipo</strong></div>
             </div>
            
             <div class="descnum1">
@@ -68,7 +69,7 @@
               <%end%><%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
                   <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
                   <div class="col-md-4 rtd"><%= accion.name %></div>
-                  <div class="col-md-5 rtd"><%= accion.tipo %></div>
+                  <div class="col-md-2 rtd"><%= accion.tipo %></div>
                </div>
                
                <%end%>
