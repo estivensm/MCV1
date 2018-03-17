@@ -1,3 +1,6 @@
+
+<%if  @causa_paret.count != 0%>
+
 <div class="row">
     <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
 
@@ -5,9 +8,9 @@
         <h3>Causas</h3>
         <% i = 1
          @causa.causa_efectos.each do |cf|%>
-            
+
 <div class="panel panel-default">
-   <div class="panel-heading ph">causa <%=i%> </div>
+   <div class="panel-heading ph">Porque <%=i%> </div>
   <div class="panel-body ph">
      <p><%= cf.name %></p>
     <%if cf.accions.exists?%>
@@ -24,14 +27,14 @@
   </div>
 </div>
      </div>
-  
+
   </div>
         <% i += 1
-        end%>    
-        
+        end%>
 
 
-        
+
+
     </div>
     <div class="col-md-6">
      <h3>Observaciones</h3>
@@ -47,16 +50,74 @@
     </div>
 </div>
 
+<%else%>
+
+
+<div class="row">
+<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+  <div class="col-md-8 col-md-offset-2 entrada">
+
+
+
+   <p>Ingresa las causas adquiridas en tu analisis</p>
+
+      <%= link_to  "Ingreas Causas" ,edit_report_causa_path(@report,@causa), remote: true, :class => "btn btn-primary"  %>
+
+
+</div>
+
+
+<%end%>
 
 <style>
+
+.five
+{
+
+  font-size: 70px;
+    color: #0db497;
+    font-weight: bold;
+}
   .acciones
   {
-   
+
     padding:0px 6px;
     border-radius: 2px;
     font-weight: bold;
     text-decoration: none !important;
     margin-bottom: 10px;
 }
-  
+
+.entrada img
+{
+width:300px;
+}
+.entrada
+{
+  text-align: center;
+  background: whitesmoke;
+  padding-bottom: 20px;
+  margin-top:30px;
+  margin-bottom:100px ;
+}
+.entrada p
+{
+font-size: 30px;
+}
+.titct
+{
+margin-top: : 0px
+}
+.titctp
+{
+font-size: 12px !important;
+margin:8px;
+
+}
+.tit
+{
+font-weight: bold;
+
+}
+
 </style>

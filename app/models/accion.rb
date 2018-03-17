@@ -45,7 +45,7 @@ class Accion < ApplicationRecord
     validates :employed_id, presence: true
     after_destroy :restar_costo
     after_create :send_mail
-    before_update :causas   
+    before_update :causas
     validates :employed_id, :cierra_id, :name ,presence: true
 
  scope :cerrados, -> { where(state: "Cerrado") }
@@ -62,16 +62,16 @@ def self.search(search0,search, search2, search3, search5, search6)
 
 puts "aaaaaaaaaaaaaaaaaaaaaaaaaa"
 puts search2
-    
-      
-    search0 != "" ? (scope :fdesdep, -> { where(['created_at > ?', search0]) }) : (scope :fdesdep, -> { where.not(id: nil) })       
-    search != "" ? (scope :fhastap, -> { where(['created_at < ?', search]) }) : (scope :fhastap, -> { where.not(id: nil) })   
-    search2 != "" ? (scope :tipop, -> { where(tipo: search2) }) : (scope :tipop, -> { where.not(id: nil) })   
-    search3 != "" ? (scope :employedop, -> { where(employed_id: search3) }) : (scope :employedop, -> { where.not(id: nil) }) 
-    search5 != "" ? (scope :descop, -> { where("name like '%#{search5.downcase}%' or name like '%#{search5.upcase}%'  or name like '%#{search5.capitalize}%'  ") }) : (scope :descop, -> { where.not(id: nil) }) 
-    search6 != "" ? (scope :estadop, -> { where(estado: search6) }) : (scope :estadop, -> { where.not(id: nil) }) 
 
-  
+
+    search0 != "" ? (scope :fdesdep, -> { where(['created_at > ?', search0]) }) : (scope :fdesdep, -> { where.not(id: nil) })
+    search != "" ? (scope :fhastap, -> { where(['created_at < ?', search]) }) : (scope :fhastap, -> { where.not(id: nil) })
+    search2 != "" ? (scope :tipop, -> { where(tipo: search2) }) : (scope :tipop, -> { where.not(id: nil) })
+    search3 != "" ? (scope :employedop, -> { where(employed_id: search3) }) : (scope :employedop, -> { where.not(id: nil) })
+    search5 != "" ? (scope :descop, -> { where("name like '%#{search5.downcase}%' or name like '%#{search5.upcase}%'  or name like '%#{search5.capitalize}%'  ") }) : (scope :descop, -> { where.not(id: nil) })
+    search6 != "" ? (scope :estadop, -> { where(estado: search6) }) : (scope :estadop, -> { where.not(id: nil) })
+
+
         tipop.descop.estadop.fdesdep.fhastap
 
      #begin if search2 != ""
@@ -80,10 +80,10 @@ puts search2
        #   where("description like '%#{search.downcase}%' or description like '%#{search.upcase}%'  or description like '%#{search.capitalize}%' or state like '%#{search.downcase}%' or state like '%#{search.capitalize}%' ")
       #end
 
-  end	
+  end
   def causas
-      
-      
+
+
       #CausaEfecto.where(accion_id: self.id).update_all(accion_id: 0 , estado_accion: false)
       #self.causa_efectos.update_all(accion_id: self.id, estado_accion: true)
 
@@ -94,20 +94,20 @@ puts search2
 
      # self.causa_efectos.update_all(accion_id: self.id, estado_accion: true)
         employed = Employed.find(self.employed_id)
-      
+
         CreateMailer.create_accion(employed, self).deliver
-      
+
        self.employeds.each do |employed1|
-        
+
            CreateMailer.invitado_accion(employed1, self).deliver
-           
-          
+
+
        end
 
 
 
 
-     
+
   end
 
 
@@ -119,7 +119,7 @@ puts search2
                csv << attributes.map{ |attr| accion.send(attr) }
               end
             end
-        end  
+        end
 
         def Fecha_de_Creacion
           "#{f_compromiso}"
@@ -143,13 +143,13 @@ puts search2
 
 
     def start_must_be_before_end_time
-      if self.tag 
+      if self.tag
     	  self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
-        @time =  @times.to_i - Time.now.to_i  
+        @time =  @times.to_i - Time.now.to_i
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
-        (self.contador_seg > self.f_seguimiento || self.f_seguimiento == 0) 
+        (self.contador_seg > self.f_seguimiento || self.f_seguimiento == 0)
       end
   end
 
@@ -158,10 +158,7 @@ puts search2
     report = Report.find(report_id)
     report.costo = report.costo - self.costo
     report.save
-      
-  end
- 
-end
- 
 
- 
+  end
+
+end
