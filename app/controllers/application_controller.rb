@@ -21,7 +21,7 @@ def is_admin?
 layout :layout_for_selection
 protected
   def layout_for_selection
-    if controller_name == 'sessions'  || controller_name == 'passwords' 
+    if controller_name == 'sessions'  || controller_name == 'passwords'
       'application'
     elsif controller_name == 'registrations'
 
@@ -35,16 +35,16 @@ protected
     end
   end
 
-  protected
-  def authenticate_user!
-    if user_signed_in?
-      super
-    else
-      redirect_to home_page_path
+  #protected
+  #def authenticate_user!
+    #if user_signed_in?
+    #  super
+  #  else
+    #  redirect_to home_page_path
       #, :notice => 'if you want to add a notice'
       ## if you want render 404 page
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
-    end
-  end
+  #  end
+#  end
 
 end

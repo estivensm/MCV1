@@ -68,7 +68,7 @@ class User < ApplicationRecord
   has_many :causa_efectos
   has_many :cargos
   has_many :companies
-  has_many :employeds
+  #has_many :employeds
   has_many :reports
   has_many :accions
   has_many :rseguimientos
@@ -89,7 +89,7 @@ validates :name,
   validates :email,
   :presence => false,
   :uniqueness => false
-  
+
 
 
 def email_required?
@@ -100,7 +100,7 @@ def email_changed?
 end
 
 def self.search(search, search1)
-          
+
 
            search != "" ? (scope :emailsc, -> { where(email: search) }) : (scope :emailsc, -> { where.not(id: nil) })
            search1 != "" ? (scope :rolsc, -> { where(rol_id: search1) }) : (scope :rolsc, -> { where.not(id: nil) })
@@ -118,40 +118,38 @@ def self.search(search, search1)
                save
                puts "holaaaaaaaa"
                puts  Employed.where(admin_user: self.id).last.id
-           
-           
+
+
 
 
 
 
          	end
          	puts self.id
-         	
+
          end
          def add_adminid1
 
             if self.role == "SuperAdmin"
               self.admin_user = self.id
-     
-               
-          else
-           
 
-          end 
-          
-          
+
+          else
+
+
+          end
+
+
          end
 
 
           def add_adminid
            if self.role != "SuperAdmin"
            self.employed_id = Employed.where(email: self.email).first.id
-           
+
           end
          end
 
 
-        
+
 end
-
-
