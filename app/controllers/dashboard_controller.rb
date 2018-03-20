@@ -53,7 +53,7 @@ class DashboardController < ApplicationController
   def invitado_d
 
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
-    @reports = @employed.reports.abiertos.order(f_compromiso: :asc)
+    @reports = @employed.reportsabiertos.order(f_compromiso: :asc)
     @reportspv = @employed.reports.abiertos.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @reportsv = @employed.reports.abiertos.where("contador_seg < ?", 0).count
     @reportsvi = @employed.reports.abiertos.where("contador_seg > ?", 5).count
