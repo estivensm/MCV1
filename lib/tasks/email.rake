@@ -11,15 +11,15 @@ namespace :email do
 
             if report.contador_seg < 5 && report.contador_seg > 0
             
-            ##AlertaMailer.vencimiento_report(employed,report, "proximo").deliver
+            AlertaMailer.vencimiento_report(employed,report, "proximo").deliver
             
         elsif report.contador_seg < 0
 
-            ##AlertaMailer.vencimiento_report(employed,report, "vencido").deliver
+            AlertaMailer.vencimiento_report(employed,report, "vencido").deliver
 
         elsif report.contador_seg == 0
 
-            ##AlertaMailer.vencimiento_report(employed,report, "hoy").deliver
+            AlertaMailer.vencimiento_report(employed,report, "hoy").deliver
 
         end
 
@@ -35,10 +35,10 @@ namespace :email do
         
         if m < 0
            
-            #AlertaMailer.seguimiento_report(employed,report, "vencida").deliver
+            AlertaMailer.seguimiento_report(employed,report, "vencida").deliver
                 
         elsif m == 0
-            ##AlertaMailer.seguimiento_report(employed,report, "hoy").deliver
+            AlertaMailer.seguimiento_report(employed,report, "hoy").deliver
 
 
         end
@@ -56,15 +56,15 @@ namespace :email do
 
         if accion.contador_seg < 5 && accion.contador_seg > 0
             
-            ##AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
+            AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
             
         elsif accion.contador_seg < 0
 
-            ##AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
+            AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
 
         elsif accion.contador_seg == 0
 
-            ##AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
+            AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
 
         end
 
@@ -79,10 +79,10 @@ namespace :email do
         
         if m < 0 
            
-        #AlertaMailer.seguimiento_accion(employed,accion, "vencida").deliver
+        AlertaMailer.seguimiento_accion(employed,accion, "vencida").deliver
 
     elsif m == 0
-            ##AlertaMailer.seguimiento_accion(employed,accion, "hoy").deliver
+        AlertaMailer.seguimiento_accion(employed,accion, "hoy").deliver
 
             
             end
@@ -101,15 +101,15 @@ namespace :email do
 
         if task.contador_seg < 5 && task.contador_seg > 0
             
-           ##AlertaMailer.vencimiento_task(employed,task,"proxima").deliver
+          AlertaMailer.vencimiento_task(employed,task,"proxima").deliver
             
         elsif task.contador_seg < 0
 
-           ##AlertaMailer.vencimiento_task(employed,task, "vencida").deliver
+          AlertaMailer.vencimiento_task(employed,task, "vencida").deliver
 
         elsif task.contador_seg == 0
 
-            ##AlertaMailer.vencimiento_task(employed,task, "hoy").deliver
+          AlertaMailer.vencimiento_task(employed,task, "hoy").deliver
 
         end
 
