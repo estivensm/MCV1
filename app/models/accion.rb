@@ -44,7 +44,7 @@ class Accion < ApplicationRecord
     validate :start_must_be_before_end_time
     validates :employed_id, presence: true
     after_destroy :restar_costo
-    after_create :send_mail
+    #after_create :send_mail
     before_update :causas
     validates :employed_id, :cierra_id, :name ,presence: true
 
@@ -95,11 +95,11 @@ puts search2
      # self.causa_efectos.update_all(accion_id: self.id, estado_accion: true)
         employed = Employed.find(self.employed_id)
 
-        CreateMailer.create_accion(employed, self).deliver
+        #CreateMailer.create_accion(employed, self).deliver
 
        self.employeds.each do |employed1|
 
-           CreateMailer.invitado_accion(employed1, self).deliver
+           #CreateMailer.invitado_accion(employed1, self).deliver
 
 
        end
