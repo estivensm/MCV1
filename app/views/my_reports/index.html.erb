@@ -131,6 +131,7 @@
           <%end%>
            <th style = "width:5%" class="text-center">Días</th>
          <th style = "width:10%" class="text-left">Fuente</th>
+         <th style = "width:10%" class="text-left">Tipo de Hallazgo</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Proceso</th>
          
@@ -194,7 +195,7 @@
 
 
 
-
+        <td><%= report.source_parent.name %></td>
          <td><%= report.source.name %></td>
          <td><%= Employed.find(report.employed_reporta).first_name %> <%= Employed.find(report.employed_reporta).first_last_name %></td>
          <td><%= report.proceso.name %></td>
