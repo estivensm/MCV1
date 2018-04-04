@@ -115,11 +115,13 @@
                            <span style = "color:gray!important">Cerrar Sesión</span>
                            <% end %>
                         </li>
-                        <li> <%= link_to  edit_user_registration_path(current_user.id), :class => "indicadores" do %>
+
+                        <li> <%= link_to  edit_myself_path(get_employed(current_user.email).id), :class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
-                           <span style = "color:gray!important" >Ver Usuario</span>
+                           <span style = "color:gray!important" >Editar Usuario</span>
                            <% end %>
                         </li>
+                     
                      </ul>
                   </li>
 
@@ -217,7 +219,7 @@
                </li>
                </ul>
                <ul class="nav navbar-nav navbar-right" style = "background:white">
-                  <li style = "height: 51px; background: #737882;padding: 10px
+                  <li style = "height: 51px; background: #313131;padding: 10px
                      " >
                      <p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if (current_user.role == "SuperAdmin" || current_user.rol.report_crear) && enable_report %> </p>
                   </li>

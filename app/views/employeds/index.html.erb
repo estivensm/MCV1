@@ -95,7 +95,7 @@
             <td><%= link_to  employed , :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
-               <%= link_to  edit_employed_path(employed), remote:true, :class => "opciones" do %>
+               <%= link_to  edit_employed_path(employed), :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
                <%= link_to employed,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>

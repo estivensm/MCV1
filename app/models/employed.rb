@@ -30,6 +30,11 @@ before_update :update_user
 after_create :create_user
 before_destroy :destroy_user
 has_many :tasks
+#validates :first_name,:first_last_name,presence: true
+validates :password, :password_c, length: { minimum: 6 }, if: :has_psw?
+ 
+validate :ps
+
 
 
 mount_uploader :avatare, AvatareUploader
@@ -47,12 +52,42 @@ def self.search(search, search1, search2, search3)
 
 
 
-def update_user
+def ps
+    
+    if self.password_c != self.password
+      errors.add(:base, "Las contraseñas no coinciden")
+    end
+ 
 
+end
+
+def has_psw?
+
+    self.password != nil && self.password != ""
+  
+end
+
+
+
+
+def update_user
+    
+ 
     user = User.where(employed_id: self.id).first
     if user != nil
     user.email = self.email
-    user.password_confirmation = self.document
+    user.name = self.user_name
+    
+    puts self.password
+    if self.password != nil && self.password != ""
+      user.password = self.password
+      user.password_confirmation = self.password_c
+    else
+      user.password = user.password
+      user.password_confirmation = user.password_confirmation
+    end  
+    user.password = user.password
+    user.password_confirmation = user.password_confirmation
     user.save
 end
 
@@ -60,15 +95,18 @@ end
 end
 
 def create_user
-emp = Employed.where(admin_user: self.admin_user).count
+      emp = Employed.where(admin_user: self.admin_user).count
     	if (emp > 1)
     	 rol = Rol.where(name: "Basico").first.id
-       User.create(email:self.email,password:self.document,password_confirmation:self.document,rol_id: rol,admin_user:self.admin_user,role:"Basico",name: self.first_name)
-       puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+       #ps = self.document + self.birth_date.to_s
+       usr = self.first_name + "." + self.first_last_name
+       User.create(email:self.email,password:self.document,password_confirmation:self.document,rol_id: rol,admin_user:self.admin_user,role:"Basico",name: usr)
        save
       # WelcomeMailer.welcome(self).deliver
       # end
 end
+
+
 end
 
 	def destroy_user

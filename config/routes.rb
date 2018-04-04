@@ -202,12 +202,14 @@ end
             delete "delete_source_parent", to: "source_parents#delete_source_parent", as: "delete_source_parent"
             
           end
-        devise_for :users
+        devise_for :users, controllers: { registrations: "registrations" }
           
   #authenticated :user do
     root to: 'dashboard#index'#, as: :authenticated_root
   #end
  
+  get 'editar_usuario/:id', to: 'employeds#edit_myself', as: 'edit_myself'
+
   #root to: 'home#index'
 
 

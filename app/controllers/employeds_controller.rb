@@ -16,7 +16,7 @@ end
 
   def configuracion
 
-    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion 
+    if current_user.role !=  "SuperAdmin" && !current_user.rol.configuracion && action_name != "edit_myself" && action_name != "update" && action_name != "show"
         redirect_to root_path
     end
     
@@ -114,7 +114,16 @@ end
 
   # GET /employeds/1/edit
   def edit
+    @user_name = User.where(email: @employed.email).where(admin_user: current_user.admin_user).first.name
   end
+
+  def edit_myself
+
+     @employed = Employed.find(params[:id])
+     @user_name = User.where(email: @employed.email).where(admin_user: current_user.admin_user).first.name
+
+  end
+
 
   # POST /employeds
   # POST /employeds.json
@@ -131,14 +140,16 @@ end
   # PATCH/PUT /employeds/1
   # PATCH/PUT /employeds/1.json
   def update
-    
+
+
+     
 
       if @employed.update(employed_params)
        if params[:remove_avatare]
         @employed.remove_avatare!
         @employed.save
       end
-        redirect_to employeds_path
+        redirect_to employed_path(@employed.id)
       end
     
   end
@@ -170,6 +181,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employed_params
-      params.require(:employed).permit(:first_name, :second_name, :first_last_name, :second_last_name, :document_type, :document, :birth_date, :genero, :admin_user, :user_id, :avatare, :cargo_id, :email,:remove_avatare)
+      params.require(:employed).permit(:first_name, :second_name, :first_last_name, :second_last_name, :document_type, :document, :birth_date, :genero, :admin_user, :user_id, :avatare, :cargo_id, :email,:remove_avatare,:password, :password_c,:is_user,:user_name)
     end
 end
