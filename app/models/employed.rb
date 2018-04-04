@@ -18,6 +18,10 @@
 #  cargo_id         :integer
 #  email            :string
 #  avatare          :string
+#  password         :string
+#  password_c       :string
+#  is_user          :boolean
+#  user_name        :string
 #
 
 class Employed < ApplicationRecord

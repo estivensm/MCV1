@@ -23,6 +23,7 @@
 #  change_cumplio        :boolean
 #  justificacion_cumplio :text
 #  send_mail             :boolean
+#  accion_id             :integer
 #
 
 class Task < ApplicationRecord
