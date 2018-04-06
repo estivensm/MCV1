@@ -51,7 +51,7 @@ namespace :email do
         times = accion.f_compromiso.to_time
         time =  times.to_i - Time.now.to_i
         accion.contador_seg = (time / 60 / 60/ 24) + 1
-       
+        accion.save
         
 
         if accion.contador_seg < 5 && accion.contador_seg > 0

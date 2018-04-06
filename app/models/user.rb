@@ -73,7 +73,7 @@ class User < ApplicationRecord
   has_many :accions
   has_many :rseguimientos
   has_many :aseguimientos
-  belongs_to :rol
+  belongs_to :rol, optional: true
    #before_destroy :saveable?
 
   #def saveable?
@@ -117,6 +117,7 @@ def self.search(search, search1)
                Rol.create(admin_user: self.id, user_id: self.id, configuracion: false, report_ver: false, report_crear: false, report_edit: false, report_delete: false, name: "Basico", report_procesos: false, default: true)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id, password: nil ,password_c: nil, user_name:self.name)
                self.employed_id =  Employed.where(admin_user: self.id).last.id
+               self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
                save
                puts "holaaaaaaaa"
                puts  Employed.where(admin_user: self.id).last.id
