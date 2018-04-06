@@ -93,6 +93,8 @@
             <td><%= employed.cargo.name if employed.cargo %></td>
          
             <td>
+              
+              <!--Muestra las opciones a todos menos al employed admin-->
               <%if employed.id != @admin_employed ||  (current_user.role == "SuperAdmin") %> 
             <%= link_to  employed , :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
