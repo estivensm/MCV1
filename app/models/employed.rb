@@ -22,6 +22,7 @@
 #  password_c       :string
 #  is_user          :boolean
 #  user_name        :string
+#  rol_id           :integer
 #
 
 class Employed < ApplicationRecord
@@ -30,6 +31,7 @@ has_and_belongs_to_many :reports
 has_and_belongs_to_many :accions
 #belongs_to :user
 belongs_to :cargo, optional: true
+belongs_to :rol, optional: true
 before_update :update_user
 after_create :create_user
 before_destroy :destroy_user
@@ -81,6 +83,7 @@ def update_user
     if user != nil
     user.email = self.email
     user.name = self.user_name
+    user.rol_id = self.rol_id
     
     puts self.password
     if self.password != nil && self.password != ""

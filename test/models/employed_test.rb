@@ -22,6 +22,7 @@
 #  password_c       :string
 #  is_user          :boolean
 #  user_name        :string
+#  rol_id           :integer
 #
 
 require 'test_helper'

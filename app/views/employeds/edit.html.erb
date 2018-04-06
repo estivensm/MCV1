@@ -143,6 +143,14 @@
     <%= f.label "Confirmar Contraseña" %>
     <%= f.password_field :password_c, :value => nil  , class: "form-control"%>
   </div> 
+  <div class="col-md-4">
+    <br>
+  <%= f.label "Rol" %>
+   <%= f.select :rol_id,
+   Rol.where(admin_user:current_user.admin_user).map { |u| [u.name, u.id] },
+               { include_blank: false },
+               { class: 'form-control' }
+%>
 
  
         

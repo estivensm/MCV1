@@ -75,7 +75,9 @@
         <td><%= get_state(rol.report_crear).html_safe  %></td>
         <td><%= get_state(rol.report_edit).html_safe  %></td>
         <td><%= get_state(rol.report_delete).html_safe  %></td>
-        <td><%= link_to  rol, :class => "opciones" do %>
+        <td>
+        <%if !rol.default%>
+        <%= link_to  rol, :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
                <%= link_to  edit_rol_path(rol), remote:true, :class => "opciones" do %>
@@ -83,7 +85,7 @@
                <% end %>
                <%= link_to  rol,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
-               <% end %></td>
+               <% end %><%end%></td>
       </tr>
     <% end %>
   </tbody>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180403002646) do
+ActiveRecord::Schema.define(version: 20180406043614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(version: 20180403002646) do
     t.string "password_c"
     t.boolean "is_user"
     t.string "user_name"
+    t.integer "rol_id"
   end
 
   create_table "employeds_reports", id: false, force: :cascade do |t|
@@ -364,6 +365,7 @@ ActiveRecord::Schema.define(version: 20180403002646) do
     t.string "name"
     t.boolean "report_delete"
     t.boolean "report_procesos"
+    t.boolean "default"
   end
 
   create_table "rseguimientos", id: :serial, force: :cascade do |t|
