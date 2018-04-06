@@ -1,4 +1,4 @@
-namespace :delete do
+namespace :ver do
   desc "Sends the most voted products created yesterday"
 
 
