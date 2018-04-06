@@ -113,6 +113,8 @@ def self.search(search, search1)
 
             if self.role == "SuperAdmin"
          	     Company.create(name: self.company, user_id: self.id, admin_user: self.id)
+               Rol.create(admin_user: self.id, user_id: self.id, configuracion: true, report_ver: true, report_crear: true, report_edit: true, report_delete: true, name: "Administrador", report_procesos: false, default: true)
+               Rol.create(admin_user: self.id, user_id: self.id, configuracion: false, report_ver: false, report_crear: false, report_edit: false, report_delete: false, name: "Basico", report_procesos: false, default: true)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id, password: nil ,password_c: nil, user_name:self.name)
                self.employed_id =  Employed.where(admin_user: self.id).last.id
                save

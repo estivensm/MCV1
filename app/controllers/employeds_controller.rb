@@ -33,7 +33,7 @@ end
   end
 
 
-
+   @admin_employed = Employed.where(admin_user: current_user.admin_user).first.id
    @employeds = @employeds1.paginate(page: params[:page],:per_page => 30)
    
 
@@ -110,6 +110,7 @@ end
   # GET /employeds/new
   def new
     @employed = Employed.new
+    @rol =  Rol.where(name: "Basico").where(admin_user: current_user.admin_user).where(default: true).first.id
   end
 
   # GET /employeds/1/edit

@@ -92,16 +92,21 @@
             <td><%= employed.email %></td>
             <td><%= employed.cargo.name if employed.cargo %></td>
          
-            <td><%= link_to  employed , :class => "opciones" do %>
+            <td>
+              <%if employed.id != @admin_employed ||  (current_user.role == "SuperAdmin") %> 
+            <%= link_to  employed , :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
                <%= link_to  edit_employed_path(employed), :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
+              <%if employed.id != @admin_employed %> 
                <%= link_to employed,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
-            </td>
+               <% end %>
+               <%end%>
+              </td>
          </tr>
          <% end %>
       </tbody>

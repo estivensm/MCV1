@@ -115,6 +115,8 @@
 
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+   <%= f.hidden_field :rol_id ,:value => @rol %>
+
 
   <div class="form-group">
     <%= f.label "Foto" %>
