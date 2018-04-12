@@ -62,20 +62,28 @@
    <tbody>
       <% @normas.each do |norma| %>
       <tr>
-        <td><%= check_box_tag "norma_ids[]", norma.id ,false ,class:"ck"%></td>
+      
+        <td>
+          <%if current_user.admin || norma.admin_user == current_user.admin_user %>
+        <%= check_box_tag "norma_ids[]", norma.id ,false ,class:"ck"%>
+          <% end %>
+        </td>
+         
+
          <td><%= norma.name %></td>
          <td><%= (link_to "Descargar #{norma.name}", norma.archivo_url, class: "linka") if norma.archivo_url%></td>
-         <td><%= link_to "Ver", (norma.link if norma.link? ), class: "linka"%></td>
-         <td><%= link_to norma_numerals_path(norma), :class => "opciones" do %>
+         <td><%= link_to "Ver", norma.link , class: "linka" if norma.link?%></td>
+         <td><%= norma.numerals.count %> Numerales<%= link_to norma_numerals_path(norma), :class => "opciones" do %>
             
-            <span class="label label-warning"><%= norma.numerals.count %></span>
+            <span class="label label-warning">Ver</span>
             <% end %>
          </td>
          <td>
-          <%if current_user.admin || norma.admin_user == current_user.admin_user %>
-         <%= link_to norma, :class => "opciones" do %>
+          
+        <%if current_user.admin || norma.admin_user == current_user.admin_user %>
+       <!--  <%= link_to norma, :class => "opciones" do %>
             <i class="fa fa-eye" aria-hidden="true"></i>
-            <% end %>
+            <% end %>-->
 
             <%= link_to  edit_norma_path(norma), remote:true, :class => "opciones" do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>

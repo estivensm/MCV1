@@ -209,12 +209,17 @@
   </div>
 
    </div>
-
-
-
-
-
+ <div class="col-md-3">
+   <div class="form-group">
+    <%= f.label "Costo presupuestado" %>
+    <%= f.number_field :costo_presupuestado, :value => (action_name == "edit" ? @accion.costo_presupuestado : 0 ) ,class: "form-control"  %>
+  </div>
+  </div>
 </div>
+
+
+
+
 
 
 

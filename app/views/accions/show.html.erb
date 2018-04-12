@@ -86,13 +86,19 @@
          <div class="row rtr">
             <%if @accion.causa_efectos.exists?%>
             <div class="col-md-12 rtd"><strong>Causas: </strong><%= @accion.causa_efectos.pluck(:name).join(", ") %></div>
-            <%end%>
-            <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(@accion.created_at) %></div>
-            <div class="col-md-2 rtd"><strong>Codigo:</strong> <%= @accion.codigo %></div>
+            <%end%></div>
+            <div class="row rtr">
+            <div class="col-md-4 rtd"><strong>Creacion:</strong> <%= get_date(@accion.created_at) %></div>
+            <div class="col-md-4 rtd"><strong>Codigo:</strong> <%= @accion.codigo %></div>
             <% employed1 = Employed.find(@accion.employed_id)%>
-            <div class="col-md-2 rtd"><strong>Reporta: </strong><%= employed1.first_name %> <%= employed1.first_last_name %></div>
-            <div class="col-md-2 rtd"><strong>Estado: </strong><%= @accion.estado %></div>
-            <div class="col-md-2 rtd"><strong>Costo: </strong><%= number_to_currency(@accion.costo) %></div>
+            <div class="col-md-4 rtd"><strong>Reporta: </strong><%= employed1.first_name %> <%= employed1.first_last_name %></div>
+            
+            
+            </div>
+            <div class="row rtr">
+            <div class="col-md-4 rtd"><strong>Estado: </strong><%= @accion.estado %></div>
+            <div class="col-md-4 rtd"><strong>Costo Presupuestado: </strong><%= number_to_currency(@accion.costo_presupuestado) %></div>
+            <div class="col-md-4 rtd"><strong>Costo Real: </strong><%= number_to_currency(@accion.costo) %></div>
          </div>
          <hr>
          <div class="row rtr">

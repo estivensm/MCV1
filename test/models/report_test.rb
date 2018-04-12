@@ -41,6 +41,7 @@
 #  justificacion_cumplio :text
 #  send_mail             :boolean
 #  source_parent_id      :integer
+#  costo_presupuestado   :integer
 #
 
 require 'test_helper'

@@ -11,6 +11,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  tipo       :boolean
+#  admin      :boolean
 #
 
 class Norma < ApplicationRecord
@@ -25,7 +26,7 @@ class Norma < ApplicationRecord
         user = User.where(admin: true).take
         if self.admin_user  == user.id
 
-                self.tipo = true
+                self.admin = true
                 save
 
         end

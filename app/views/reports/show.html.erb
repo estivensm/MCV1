@@ -55,14 +55,16 @@
       <div class="col-md-4 rtd"><strong>Fuente:</strong> <%= @report.source_parent.name %></div>
       <div class="col-md-4 rtd"><strong>Hallazgo:</strong> <%= @report.source.name %></div>
 
-      <div class="col-md-12 rtd"><strong>Estado: </strong><%= @report.state %></div>
-      <div class="col-md-5 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
+      <div class="col-md-4 rtd"><strong>Estado: </strong><%= @report.state %></div>
+      <div class="col-md-4 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
       <% employed1 = Employed.find(@report.employed_reporta)%>
-      <div class="col-md-5 rtd"><strong>Reporta: </strong>
+      <div class="col-md-4 rtd"><strong>Reporta: </strong>
          <%= render "employed" , employed: employed1 %>
       </div>
-      
-      <div class="col-md-2 rtd"><strong>Costo: </strong><%= number_to_currency(@report.costo) %></div>
+   </div>   
+   <div class="row rtr">
+      <div class="col-md-6 rtd"><strong>Costo Presupuestado: </strong><%= number_to_currency(@report.costo_presupuestado) %></div>
+      <div class="col-md-6 rtd"><strong>Costo Real: </strong><%= number_to_currency(@report.costo) %></div>
    </div>
    <hr>
    <div class="row rtr">

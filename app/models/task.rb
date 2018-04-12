@@ -75,7 +75,7 @@ class Task < ApplicationRecord
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         save
         employed = Employed.find(self.employed_id)
-        #CreateMailer.create_task(employed,self).deliver
+        CreateMailer.create_task(employed,self).deliver
             
      
         
@@ -90,8 +90,8 @@ class Task < ApplicationRecord
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
         
-        #employed = Employed.find(self.employed_id)
-        #reateMailer.create_task(employed,self).deliver
+        employed = Employed.find(self.employed_id)
+        CreateMailer.create_task(employed,self).deliver
             
      
         

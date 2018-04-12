@@ -312,6 +312,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accion_params
-      params.require(:accion).permit(:codigo, :employed_id, :descripcion, :tipo, :costo, :f_seguimiento, :f_compromiso, :f_real, :estado, :cumplio, :contador, :evidencia, :contador_seg, :user_id, :admin_user,:eficaz,:name ,:fp_seguimiento,:cierra_id, :tag,:s_cierre , :report_id,:employed_ids => [],:causa_efecto_ids => [])
+      params.require(:accion).permit(:codigo, :employed_id, :descripcion, :tipo, :costo, :f_seguimiento, :f_compromiso, :f_real, :estado, :cumplio, :contador, :evidencia, :contador_seg, :user_id, :admin_user,:eficaz,:name ,:fp_seguimiento,:cierra_id, :tag,:s_cierre , :report_id,:costo_presupuestado,:employed_ids => [],:causa_efecto_ids => [])
     end
 end

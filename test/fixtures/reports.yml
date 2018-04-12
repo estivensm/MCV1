@@ -41,6 +41,7 @@
 #  justificacion_cumplio :text
 #  send_mail             :boolean
 #  source_parent_id      :integer
+#  costo_presupuestado   :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

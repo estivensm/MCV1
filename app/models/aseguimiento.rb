@@ -37,7 +37,7 @@ class Aseguimiento < ApplicationRecord
         if self.cierra
 
             accion = Accion.find(self.accion_id)
-            accion.f_compromiso >= Time.now ? (accion.cumplio = true) : (accion.cumplio = false)
+            accion.f_compromiso >= Date.today ? (accion.cumplio = true) : (accion.cumplio = false)
             accion.f_real = Time.now
             report = Report.find(accion.report_id)
             

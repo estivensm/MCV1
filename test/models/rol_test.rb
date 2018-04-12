@@ -14,6 +14,7 @@
 #  name            :string
 #  report_delete   :boolean
 #  report_procesos :boolean
+#  default         :boolean
 #
 
 require 'test_helper'

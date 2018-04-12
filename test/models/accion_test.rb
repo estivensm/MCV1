@@ -30,6 +30,7 @@
 #  change_cumplio        :boolean
 #  justificacion_cumplio :text
 #  send_mail             :boolean
+#  costo_presupuestado   :integer
 #
 
 require 'test_helper'

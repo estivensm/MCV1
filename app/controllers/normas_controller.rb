@@ -20,9 +20,9 @@ before_action :authenticate_user!
    
    
    if params[:search]
-     @normas1 = Norma.where(admin_user: current_user.admin_user).search(params[:search])
+     @normas1 = Norma.where(admin_user: current_user.admin_user).or(Norma.where(admin:true)).search(params[:search])
   else
-     @normas1 =Norma.where(admin_user: current_user.admin_user).or(Norma.where(tipo:true))
+     @normas1 =Norma.where(admin_user: current_user.admin_user).or(Norma.where(admin:true))
   end
 
 
