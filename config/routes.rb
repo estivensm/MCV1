@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   
 
+  resources :cliente_proveedor_types
   resources :page_documents
   resources :source_parents
 resources :reports do 

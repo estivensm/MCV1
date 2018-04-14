@@ -1,6 +1,6 @@
 <% if @clinte_proveedor.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody').append('<%= j render "user_row", clinte_proveedor: @clinte_proveedor %>');
+ 
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");

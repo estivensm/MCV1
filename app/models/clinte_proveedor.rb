@@ -21,7 +21,7 @@
 
 class ClinteProveedor < ApplicationRecord
   has_many :contacts , inverse_of: :clinte_proveedor, dependent: :destroy
-  
+  belongs_to :cliente_proveedor_type , optional: true
     has_many :reports
   accepts_nested_attributes_for :contacts, :allow_destroy => true
 

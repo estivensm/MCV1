@@ -147,6 +147,12 @@ def get_clientes
 
 end
 
+def get_tipo_parte
+
+  ClienteProveedorType.where(admin_user: current_user.admin_user)
+
+end
+
 def get_procesos
 
   Proceso.where(admin_user: current_user.admin_user)
@@ -218,7 +224,7 @@ def bootstrap_class_for flash_type
 
   def menu
     @menum = ["","", "", "" ,"", "","","",""]
-  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || (controller.controller_name == "employeds" && action_name != "edit_myself" && (action_name == "show" && current_user.rol.configuracion) || (controller.controller_name == "employeds" && action_name == "index") ) || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" ||controller.controller_name == "clinte_proveedors" ||controller.controller_name == "source_parents"
+  if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || (controller.controller_name == "employeds" && action_name != "edit_myself" && (action_name == "show" && current_user.rol.configuracion) || (controller.controller_name == "employeds" && action_name == "index") ) || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" || controller.controller_name == "clinte_proveedors" || controller.controller_name == "cliente_proveedor_types" ||controller.controller_name == "source_parents"
     @menum = ["active2","", "", "", "", "","",""]
   elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados" ) || (controller.controller_name == "reports" && action_name =="reportst_calendar" ) ) 
     @menum = ["","active1","", "","", "","","",""]

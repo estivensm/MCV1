@@ -1,0 +1,5 @@
+$('<%= j render "form", cliente_proveedor_type: @cliente_proveedor_type %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+

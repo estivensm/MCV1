@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411153233) do
+ActiveRecord::Schema.define(version: 20180414185911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,6 +181,15 @@ ActiveRecord::Schema.define(version: 20180411153233) do
     t.string "sexta_m"
   end
 
+  create_table "cliente_proveedor_types", force: :cascade do |t|
+    t.integer "admin_user"
+    t.integer "user_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clinte_proveedors", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "admin_user"
@@ -196,6 +205,7 @@ ActiveRecord::Schema.define(version: 20180411153233) do
     t.string "web"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cliente_proveedor_type_id"
   end
 
   create_table "companies", id: :serial, force: :cascade do |t|

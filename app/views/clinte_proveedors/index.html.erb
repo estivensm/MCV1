@@ -1,10 +1,17 @@
 
+<div class="row" >
+   <div class="col-md-12 ">
+      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
+   </div>
+
+
+
 <%= render "encabezado"%>
 
 <br><div class = "row title-table">
    <div class = "col-md-6">
 
-      <p><%=@title%> <span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
+      <p>Partes Interesadas<span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
 
 
      
@@ -89,7 +96,7 @@
    
         
         <td><%= clinte_proveedor.web %></td>
-         <td><%= clinte_proveedor.tipo %></td>
+         <td><%= clinte_proveedor.cliente_proveedor_type.name %></td>
         <td><%= link_to  clinte_proveedor, :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
