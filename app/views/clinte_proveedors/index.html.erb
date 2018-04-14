@@ -96,7 +96,7 @@
    
         
         <td><%= clinte_proveedor.web %></td>
-         <td><%= clinte_proveedor.cliente_proveedor_type.name %></td>
+         <td><%= clinte_proveedor.cliente_proveedor_type.name if clinte_proveedor.cliente_proveedor_type %></td>
         <td><%= link_to  clinte_proveedor, :class => "opciones" do %>
                <i class="fa fa-eye" aria-hidden="true"></i>
                <% end %>
