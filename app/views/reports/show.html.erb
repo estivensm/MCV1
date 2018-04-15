@@ -87,7 +87,7 @@
    <% if @report.clinte_proveedor%>
     <hr>
    <div class="row rtr">
-      <div class="col-md-4 rtd"><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></div>
+      <div class="col-md-4 rtd"><strong>Parte Interesada: </strong> <%= @report.clinte_proveedor.name%></div>
       <div class="col-md-8 rtd"><strong>Contacto: </strong><%if @report.contact%>
         <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%>
         <%end%></div>

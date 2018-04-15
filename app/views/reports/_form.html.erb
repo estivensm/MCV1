@@ -1,4 +1,3 @@
-hola como estas
 
 <hr>
 <div class="row" style="padding: 10px 30px;">
@@ -290,43 +289,59 @@ $('.pri1').addClass("chosen-select1");
 
 
           <div class="form-group cli" >
-               <%= f.label "Parte Interesada" %><br>
-               <%= f.select :clinte_proveedor_id,
-                 get_clientes.map { |u| [u.name, u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select1 form-control ch pr pinter'  }
-                  %>
+              <%=render "partes", f: f, cliente_proveedors1: @cliente_proveedors1%>
                  
-            </div> </div>
+            </div>
+        
+             </div>
 
-
+            
 <div class="col-md-3">
             <div class="form-group pru">
             <% if (action_name == "edit")
 
-@contactss= Contact.where(clinte_proveedor_id: @report.clinte_proveedor_id)
+@contactss = Contact.where(clinte_proveedor_id: @report.clinte_proveedor_id)
 
 
 else 
 
-  @contactss = Contact.where(admin_user: current_user.admin_user)
+  @contactss = Contact.where(id: 0)
 end %>
             <%=render "contacts", f: f%>
             </div> </div>
 
 <script>
-   
+ 
    $(document).on('turbolinks:load',function() {
          
     $('.pr').change(function(){
-        
-        cambiar(false);
+
+            cl = $('.pr').val(); 
+            if (cl != "")
+            {
+        $.get("/set_contacts/" + cl , function(data) 
+                        {
+                          console.log(data);
+                          $('.pri').remove();
+$('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+           for (var i=0; i<data.length; i++) { 
+                  $('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>');
+           }
+
+
+                        });
+      }
+      else
+      {
+         $('.pru select').remove();
+       $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+      }
 
     });
 
+  });
 
-
-
+ /*
 
 
 function cambiar(make){
@@ -435,7 +450,7 @@ $('.pri').addClass("chosen-select1");
  });
 
     
-
+*/
 
    
   </script>

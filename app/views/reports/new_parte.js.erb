@@ -1,0 +1,6 @@
+console.log("holaaaaaaaaa")
+$('<%= j render "form_parte", clinte_proveedor: @clinte_proveedor %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+

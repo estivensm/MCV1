@@ -1,0 +1,12 @@
+<%= f.label "Parte Interesada" %><br>
+               <%= f.select :clinte_proveedor_id,
+                @cliente_proveedors1.map { |u| [u.name, u.id] },
+                             { include_blank: "Seleccione una Opcion" },
+                             { class: 'form-control ch pr pinter'  }
+%>
+
+<%= link_to new_parte_path, remote:true do %>
+
+<i class="fa fa-plus" aria-hidden="true"></i>
+ Crear
+<%end%>

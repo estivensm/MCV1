@@ -1,8 +1,8 @@
 <%= f.label "Contacto" %><br>
                <%= f.select :contact_id,
                  @contactss.map { |u| [u.name, u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select1 form-control ch pri contc'  }
+                             { include_blank: "Contacto" },
+                             { class: 'form-control ch pri contc'  }
                   %>
 
 

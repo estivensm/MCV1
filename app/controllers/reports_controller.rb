@@ -362,6 +362,8 @@ end
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
     @seguimientos = @report.rseguimientos.order(created_at: :desc)
     @accion_eficaz = @report.accions.where(eficaz: true).count
     @accion_noeficaz = @report.accions.where(eficaz: false).count
@@ -417,7 +419,9 @@ end
     @report = Report.new
     @user = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
-     @source_parents = SourceParent.where(admin_user: current_user.admin_user)
+    @source_parents = SourceParent.where(admin_user: current_user.admin_user)
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
     
   end
 
@@ -426,7 +430,9 @@ end
 
     @user = Employed.where(email: current_user.email).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
-     @source_parents = SourceParent.where(admin_user: current_user.admin_user)
+    @source_parents = SourceParent.where(admin_user: current_user.admin_user)
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
 @report.tag = false
   end
 
@@ -436,6 +442,7 @@ end
    
     
     @user = Employed.where(email: current_user.email).first
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
     @report = Report.new(report_params)
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @report.state = "Abierto"
@@ -586,6 +593,24 @@ end
 
         
       end
+
+
+ def new_parte
+    @clinte_proveedor = ClinteProveedor.new
+  end
+
+
+def crear_parte
+   @clinte_proveedor = ClinteProveedor.new(user_id:params[:user_id], admin_user:params[:admin_user], name:params[:name],cliente_proveedor_type_id: params[:cliente_proveedor_type_id],pbx: params[:pbx],address: params[:address],nit: params[:nit],correo_empresa: params[:correo_empresa] ,web: params[:web])
+   if @clinte_proveedor.save
+   @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).last
+   @contact = Contact.new(user_id:params[:user_id], admin_user:params[:admin_user],clinte_proveedor_id:@clinte_proveedor.id, name:params[:name_contact], mobil:params[:movil_contact], email:params[:email_contact], cargo:params[:cargo_contact])
+   @contact.save
+    end
+      
+           
+     
+end
 
 
       def crear_hallazgo

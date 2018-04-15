@@ -141,7 +141,7 @@ def get_employeds
 
 end
 
-def get_clientes
+def get_clientes_all
 
   ClinteProveedor.where(admin_user: current_user.admin_user)
 

@@ -32,6 +32,9 @@ resources :reports do
     get "actividades", to: "accions#actividades" , as: "actividades" 
 end
 
+get 'new_parte', to: "reports#new_parte", as: "new_parte"
+post "crear_parte", to: "reports#crear_parte", as: "crear_parte"
+
 get 'my_reports/index', as: "misreports"
 get 'my_reports/mis_reports_cerrados', to: "my_reports#mis_reports_cerrados", as: "mis_reports_cerrados"
 
