@@ -487,8 +487,10 @@ end
   # PATCH/PUT /reports/1
   # PATCH/PUT /reports/1.json
   def update
-     @user = Employed.where(email: current_user.email).first
+    @user = Employed.where(email: current_user.email).first
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+
     respond_to do |format|
       if @report.update(report_params)
         if params[:remove_archivo]
