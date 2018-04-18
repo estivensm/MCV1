@@ -89,7 +89,7 @@ scope :abiertos, -> { where(state: "Abierto") }
         puts self.contador_seg
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
-       
+        self.tag = false
 
      
         
