@@ -82,8 +82,11 @@ scope :abiertos, -> { where(state: "Abierto") }
 
         self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
+
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
+        puts "contadorrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
+        puts self.contador_seg
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         self.contador_seg > self.f_seguimiento
        
