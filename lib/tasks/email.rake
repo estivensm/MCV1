@@ -1,10 +1,13 @@
 namespace :email do
   desc "Sends the most voted products created yesterday"
   task vencimiento: :environment do
+
     #ReportMailer.noty_report(Employed.last, Report.first).deliver_now
     Report.where(state: "Abierto").each do |report|
         
         employed = Employed.find(report.employed_id)    
+        if employed.admin_user != 1
+
         times = report.f_compromiso.to_time
         time =  times.to_i - Time.now.to_i
         report.contador_seg = (time / 60 / 60/ 24) + 1
@@ -42,12 +45,14 @@ namespace :email do
 
 
         end
-       
+       end
 
     end 
 
     Accion.where(estado: "Abierta").each do |accion|
+
         employed = Employed.find(accion.employed_id)    
+         if employed.admin_user != 1
         times = accion.f_compromiso.to_time
         time =  times.to_i - Time.now.to_i
         accion.contador_seg = (time / 60 / 60/ 24) + 1
@@ -86,13 +91,14 @@ namespace :email do
 
             
             end
+        end
       end
-
     end 
 
 
       Task.where(estado: false).each do |task|
-        employed = Employed.find(task.employed_id)    
+        employed = Employed.find(task.employed_id)  
+             if employed.admin_user != 1
         times = task.f_compromiso.to_time
         time =  times.to_i - Time.now.to_i
         task.contador_seg = (time / 60 / 60/ 24) + 1
@@ -118,6 +124,7 @@ namespace :email do
 
 
     end 
+    end
 end
   end
 
