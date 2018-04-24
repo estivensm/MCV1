@@ -31,7 +31,7 @@ class Rseguimiento < ApplicationRecord
     
 def archivo_size_validation
       
-      errors[:archivo] << "should be less than 1MB" if evidencia.size > 1.megabytes
+      errors[:archivo] << "should be less than 1MB" if evidencia.size > 20.megabytes
   
   end
 

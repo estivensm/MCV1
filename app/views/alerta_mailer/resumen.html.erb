@@ -1,0 +1,87 @@
+              <%=@employed.first_name%>
+
+
+<h3>Reportes Vencidos</h3>
+<table style="width: 100%;">
+ 
+   <tr style="background:gray;color:white">
+        <th>Reporte</th>
+        <th>Fecha de Vencimiento</th>
+        <th>Dias Vencidos</th>        
+   </tr>
+   <%@report_v.each do |a|%>
+   <tr>
+        <td><%= a.name%> </td>
+        <td style="background:red"><%= a.f_compromiso%> </td>
+        <td><%= a.contador_seg%> </td>
+   </tr>
+   
+    <%end%> 
+</table>
+
+
+
+
+
+
+
+
+             
+                <hr>
+
+
+                <h3>Reportes Proximos a Vencer</h3>
+                <%@report_p.each do |a|%>
+
+        	            <p><%= a.name%> </p>
+        	            
+                <%end%> 
+                <hr>
+
+
+                <h3>Reportes que Vencen Hoy</h3>
+                <%@report_h.each do |a|%>
+
+        	             <p><%= a.name%> </p>
+                <%end%> 
+                <hr>
+
+
+                <h3>Reportes Pendientes de Seguimiento</h3>
+                <%@report_s.each do |a|%>
+
+        	           <p><%= a.name%> </p>
+                <%end%> 
+                <hr>
+
+
+                <h3>Acciones Vencidas</h3>
+                <%@accion_v.each do |a|%>
+
+        	            <p><%= a.name%> </p>
+                <%end%> 
+                <hr>
+
+
+
+                <h3>Acciones Proximas a Vencer</h3>
+                <%@accion_p.each do |a|%>
+
+        	           <p><%= a.name%> </p>
+                <%end%> 
+                <hr>
+               
+
+                <h3>Acciones que vencen hoy</h3>
+                <%@accion_h.each do |a|%>
+
+        	            <p><%= a.name%> </p>
+                <%end%> 
+        1       <hr>
+
+
+                <h3>Acciones Pendientes de Seguimiento</h3>
+                <%@accion_s.each do |a|%>
+
+        	         <p><%= a.name%> </p>
+                <%end%> 
