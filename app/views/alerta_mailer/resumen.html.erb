@@ -1,23 +1,242 @@
-              <%=@employed.first_name%>
+ <p style="color:gray">Hola <%=@employed.first_name%> <%=@employed.first_last_name%> a continuacion esta el resumen de la gestion pendiente.</p>
+ <br>  
 
 
-<h3>Reportes Vencidos</h3>
-<table style="width: 100%;">
- 
-   <tr style="background:gray;color:white">
-        <th>Reporte</th>
-        <th>Fecha de Vencimiento</th>
-        <th>Dias Vencidos</th>        
-   </tr>
-   <%@report_v.each do |a|%>
-   <tr>
-        <td><%= a.name%> </td>
-        <td style="background:red"><%= a.f_compromiso%> </td>
-        <td><%= a.contador_seg%> </td>
-   </tr>
-   
-    <%end%> 
-</table>
+<%if  @report_v.count == 0 && @accion_v.count == 0 && @task_v.count == 0 && @task_v.count == 0 && @report_p.count == 0 && @accion_p.count == 0 && @task_p.count == 0 && @task_p.count == 0&& @task_s.count == 0 && @task_s.count == 0%>
+
+
+
+<h1 style="text-align:center" ">TU GESTION ESTA AL DIA TE INVITAMOS A CONTINUAR CON TU BUEN DESEMPEÑO <br><br> <img style="width:150px;" src="http://icon-park.com/imagefiles/check_sign_icon_green.png" alt=""> </h1>
+
+
+<%else%>
+
+ <h1 style="color:gray;text-align:center">GESTION VENCIDA</h1>
+ <br>
+<%if @report_v.count != 0%>
+        <h3 style="color:gray">REPORTES</h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+                
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias Vencidos</th>        
+        </tr>
+        <%@report_v.each do |a|%>
+        <tr>
+                
+                <td style="color:gray;padding:5px;width: 60%"><%= a.name%> </td>
+                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
+        </tr>
+        
+        <%end%> 
+
+        </table>
+
+<%end%> 
+
+
+<%if @accion_v.count != 0%>
+        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES</h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+                <th style="padding:5px">Tipo</th>
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias Vencidos</th>        
+        </tr>
+        
+        <%@accion_v.each do |a|%>
+        <tr>
+                <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
+                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
+                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
+        </tr>
+        
+        <%end%> 
+        </table>
+<%end%> 
+
+<%if @task_v.count != 0%>
+        <h3 style="color:gray">TAREAS</h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+               
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias Vencidos</th>        
+        </tr>
+        
+        <%@task_v.each do |a|%>
+        <tr>
+      
+                <td style="color:gray;padding:5px;width: 60%"><%= a.name%> </td>
+                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
+        </tr>
+        
+        <%end%> 
+        </table>
+<%end%>
+
+
+
+
+
+<br>
+<h1 style="color:gray;text-align:center">GESTION PROXIMA A VENCER</h1>
+ <br>
+
+<%if @report_p.count != 0%>
+        <h3 style="color:gray">REPORTES </h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+             
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias para Vencer</th>        
+        </tr>
+        <%@report_p.each do |a|%>
+        <tr>
+             
+                <td style="color:gray;padding:5px;width: 60%"><%= a.name%> </td>
+                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%> </td>
+        </tr>
+        
+        <%end%> 
+
+        </table>
+
+<%end%> 
+
+
+<%if @accion_p.count != 0%>
+        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES</h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+                <th style="padding:5px">Tipo</th>
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias para Vencer</th>        
+        </tr>
+        
+        <%@accion_p.each do |a|%>
+        <tr>
+                <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
+                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
+                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%> </td>
+        </tr>
+        
+        <%end%> 
+        </table>
+<%end%> 
+
+<%if @task_p.count != 0%>
+        <h3 style="color:gray">TAREAS</h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+       
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias para Vencer</th>        
+        </tr>
+        
+        <%@task_p.each do |a|%>
+        <tr>
+          
+                <td style="color:gray;padding:5px;width: 60%"><%= a.name%> </td>
+                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg %> </td>
+        </tr>
+        
+        <%end%> 
+        </table>
+<%end%>
+
+
+
+
+
+
+
+<br>
+<h1 style="color:gray;text-align:center">GESTION PENDIENTE DE SEGUIMIENTO</h1>
+ <br>
+
+<%if @report_s.count != 0%>
+        <h3 style="color:gray">REPORTES </h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Dias Vencidos</th>        
+        </tr>
+        <%@report_s.each do |a|%>
+        <tr>
+        <% times1 = a.fp_seguimiento.to_time
+           time1 =  times1.to_i - Time.now.to_i
+           m = (time1 / 60 / 60/ 24) + 1 %>      
+                <td style="color:gray;padding:5px;width: 60%"><%= a.name%> </td>
+                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.fp_seguimiento%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> </td>
+        </tr>
+        
+        <%end%> 
+
+        </table>
+
+<%end%> 
+
+
+<%if @accion_s.count != 0%>
+        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES</h3>
+        <table style="width: 100%;">
+        
+        <tr style="background:#565656;color:white">
+                <th style="padding:5px">Tipo</th>
+                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Fecha de compromiso</th>
+                <th style="padding:5px">Dias Vencidos</th>        
+        </tr>
+        
+        <%@accion_s.each do |a|%>
+        <tr>
+         <% times1 = a.fp_seguimiento.to_time
+           time1 =  times1.to_i - Time.now.to_i
+           m = (time1 / 60 / 60/ 24) + 1 %>      
+                <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
+                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
+                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.fp_seguimiento%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> </td>
+        </tr>
+        
+        <%end%> 
+        </table>
+<%end%> 
+
+
+<%end%>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -27,61 +246,4 @@
 
 
              
-                <hr>
-
-
-                <h3>Reportes Proximos a Vencer</h3>
-                <%@report_p.each do |a|%>
-
-        	            <p><%= a.name%> </p>
-        	            
-                <%end%> 
-                <hr>
-
-
-                <h3>Reportes que Vencen Hoy</h3>
-                <%@report_h.each do |a|%>
-
-        	             <p><%= a.name%> </p>
-                <%end%> 
-                <hr>
-
-
-                <h3>Reportes Pendientes de Seguimiento</h3>
-                <%@report_s.each do |a|%>
-
-        	           <p><%= a.name%> </p>
-                <%end%> 
-                <hr>
-
-
-                <h3>Acciones Vencidas</h3>
-                <%@accion_v.each do |a|%>
-
-        	            <p><%= a.name%> </p>
-                <%end%> 
-                <hr>
-
-
-
-                <h3>Acciones Proximas a Vencer</h3>
-                <%@accion_p.each do |a|%>
-
-        	           <p><%= a.name%> </p>
-                <%end%> 
-                <hr>
-               
-
-                <h3>Acciones que vencen hoy</h3>
-                <%@accion_h.each do |a|%>
-
-        	            <p><%= a.name%> </p>
-                <%end%> 
-        1       <hr>
-
-
-                <h3>Acciones Pendientes de Seguimiento</h3>
-                <%@accion_s.each do |a|%>
-
-        	         <p><%= a.name%> </p>
-                <%end%> 
+            

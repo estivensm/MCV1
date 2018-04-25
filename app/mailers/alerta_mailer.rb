@@ -88,18 +88,22 @@ def seguimiento_accion(employed , accion, tipo)
 end
 
 
-def resumen(employed, report_v , report_p , report_h, report_s, accion_v , accion_p ,  accion_h,  accion_s )
+def resumen(employed, report_v , report_p, report_s, accion_v , accion_p ,  accion_s , task_v , task_p )
   @report_v = report_v
   @report_p = report_p
-  @report_h = report_h
   @report_s = report_s
+
   @accion_v = accion_v
   @accion_p = accion_p
-  @accion_h = accion_h
   @accion_s = accion_s
+
+  @task_v = task_v
+  @task_p = task_p
+
+
   @employed = employed
   
-  mail(to: @employed.email, subject: "Resumen de tus Pendientes")
+  mail(to: @employed.email, subject: "Resumen de Gestion")
 end
 
 

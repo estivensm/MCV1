@@ -6,15 +6,20 @@ namespace :resumen do
         
 
                 Employed.all.each do |empleado|
+                    if empleado.admin_user != 1
                 	@reports_alarma_vencido = []
                 	@reports_alarma_proximo = []
-                	@reports_alarma_hoy = []
+                	#@reports_alarma_hoy = []
                     @reports_seguimiento = []
                     @accion_alarma_vencido = []
                 	@accion_alarma_proximo = []
-                	@accion_alarma_hoy = []
+                	#@accion_alarma_hoy = []
                     @accion_seguimiento = []
-                Report.where(state: "Abierto").where(employed_id: empleado.id).each do |report|
+                    @task_alarma_vencido = []
+                    @task_alarma_proximo = []
+                    #@task_alarma_hoy = []
+                 
+                Report.where(state: "Abierto").where(employed_id: empleado.id).order(f_compromiso: :asc).each do |report|
                     
                               
                                 #if empleado.admin_user != 1
@@ -24,7 +29,7 @@ namespace :resumen do
                                 time =  times.to_i - Time.now.to_i
                                 report.contador_seg = (time / 60 / 60/ 24) + 1
 
-                                if report.contador_seg < 5 && report.contador_seg > 0
+                                if report.contador_seg <= 5 && report.contador_seg >= 0
                                     
                                     @reports_alarma_proximo << report             
                                     #AlertaMailer.vencimiento_report(employed,report, "proximo").deliver
@@ -34,9 +39,9 @@ namespace :resumen do
                                     @reports_alarma_vencido << report
                                     #AlertaMailer.vencimiento_report(employed,report, "vencido").deliver
 
-                                elsif report.contador_seg == 0
+                                #elsif report.contador_seg == 0
                                     
-                                    @reports_alarma_hoy << report    
+                                    #@reports_alarma_hoy << report    
                                     #AlertaMailer.vencimiento_report(employed,report, "hoy").deliver
 
                                 end
@@ -65,7 +70,7 @@ namespace :resumen do
 
                 end 
 
-                Accion.where(estado: "Abierta").where(employed_id: empleado.id).each do |accion|
+                Accion.where(estado: "Abierta").where(employed_id: empleado.id).order(f_compromiso: :asc).each do |accion|
 
                         #employed = Employed.find(accion.employed_id)    
                         #if employed.admin_user != 1
@@ -75,7 +80,7 @@ namespace :resumen do
                         accion.save
                         
 
-                        if accion.contador_seg < 5 && accion.contador_seg > 0
+                        if accion.contador_seg < 5 && accion.contador_seg >= 0
                             @accion_alarma_proximo << accion
                             #AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
                             
@@ -83,11 +88,11 @@ namespace :resumen do
                             @accion_alarma_vencido  << accion
                             #AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
 
-                        elsif accion.contador_seg == 0
+                        #elsif accion.contador_seg == 0
 
-                            @accion_alarma_hoy  << accion
+                            #accion_alarma_hoy  << accion
                             #AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
-                            puts = "0000000000000"
+                            
                         end
 
                     
@@ -107,69 +112,42 @@ namespace :resumen do
                             end
                       end
                     #end
-                    end 
+                    end
 
-                @reports_alarma_vencido.each do |a|
+        Task.where(estado: false).order(f_compromiso: :asc).each do |task|
+       
+           
+        times = task.f_compromiso.to_time
+        time =  times.to_i - Time.now.to_i
+        task.contador_seg = (time / 60 / 60/ 24) + 1
+        task.save
+        puts task.contador_seg
 
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "Report vencido"
-                end 
-                @reports_alarma_proximo.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "Report proximo"
-                end 
-                @reports_alarma_hoy.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "Repor hoy"
-                end 
-                @reports_seguimiento.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "seguimeinto"
-                end 
-
-                puts "Accioness"
-                @accion_alarma_vencido.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "accion vencido"
-                end 
-                @accion_alarma_proximo.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "accion proximo"
-                end 
-                @accion_alarma_hoy.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "accion hoy"
-                end 
-                @accion_seguimiento.each do |a|
-
-        	            puts empleado.first_name
-        	            #puts empleado.admin_user
-        	            puts a.name
-        	            puts "accion seguimeinto"
-                end 
-                            AlertaMailer.resumen(empleado, @reports_alarma_vencido,@reports_alarma_proximo,@reports_alarma_hoy,@reports_seguimiento, @accion_alarma_vencido,@accion_alarma_proximo,@accion_alarma_hoy,@accion_seguimiento).deliver
-
-            end    
+        if task.contador_seg < 5 && task.contador_seg >= 0
             
+          @task_alarma_vencido  << accion
+            
+        elsif task.contador_seg < 0
+
+          @task_alarma_proximo << accion
+
+        #elsif task.contador_seg == 0
+
+          #@accion_alarma_hoy  << accion
+
+        end
+
+                 
+      
+
+
+            
+    end 
+
+              AlertaMailer.resumen(empleado, @reports_alarma_vencido,@reports_alarma_proximo,@reports_seguimiento, @accion_alarma_vencido,@accion_alarma_proximo,@accion_seguimiento, @task_alarma_vencido,@task_alarma_proximo).deliver
+              puts "holaaaaaaaaaaa"
+              puts @reports_alarma_proximo
+            end    
+         end   
     end
   end
