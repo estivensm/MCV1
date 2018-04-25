@@ -125,11 +125,11 @@ namespace :resumen do
 
         if task.contador_seg <= 5 && task.contador_seg >= 0
             
-          @task_alarma_vencido  << accion
+          @task_alarma_vencido  << task
             
         elsif task.contador_seg < 0
 
-          @task_alarma_proximo << accion
+          @task_alarma_proximo << task
 
         #elsif task.contador_seg == 0
 
