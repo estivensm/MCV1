@@ -80,7 +80,7 @@ namespace :resumen do
                         accion.save
                         
 
-                        if accion.contador_seg < 5 && accion.contador_seg >= 0
+                        if accion.contador_seg <= 5 && accion.contador_seg >= 0
                             @accion_alarma_proximo << accion
                             #AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
                             
@@ -123,7 +123,7 @@ namespace :resumen do
         task.save
         puts task.contador_seg
 
-        if task.contador_seg < 5 && task.contador_seg >= 0
+        if task.contador_seg <= 5 && task.contador_seg >= 0
             
           @task_alarma_vencido  << accion
             
