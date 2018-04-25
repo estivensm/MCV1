@@ -84,7 +84,7 @@ namespace :resumen do
                             @accion_alarma_proximo << accion
                             #AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
                             
-                        elsif accion.contador_seg < 0
+                        elsif accion.contador_seg < 0 
                             @accion_alarma_vencido  << accion
                             #AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
 
@@ -114,7 +114,7 @@ namespace :resumen do
                     #end
                     end
 
-        Task.where(estado: false).order(f_compromiso: :asc).each do |task|
+        Task.where(estado: false).where(employed_id: empleado.id).order(f_compromiso: :asc).each do |task|
        
            
         times = task.f_compromiso.to_time
@@ -125,11 +125,11 @@ namespace :resumen do
 
         if task.contador_seg <= 5 && task.contador_seg >= 0
             
-          @task_alarma_vencido  << task
+          @task_alarma_proximo  << task
             
         elsif task.contador_seg < 0
 
-          @task_alarma_proximo << task
+          @task_alarma_vencido << task
 
         #elsif task.contador_seg == 0
 
