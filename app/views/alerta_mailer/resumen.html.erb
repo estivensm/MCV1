@@ -11,6 +11,9 @@
 
 <%else%>
 
+
+<%if  !(@report_v.count == 0 && @accion_v.count == 0 && @task_v.count == 0)%>
+
  <h1 style="color:gray;text-align:center">GESTION VENCIDA</h1>
  <br>
 <%if @report_v.count != 0%>
@@ -21,7 +24,8 @@
                 
                 <th style="padding:5px">Nombre</th>
                 <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias Vencidos</th>        
+                <th style="padding:5px">Dias Vencidos</th>  
+
         </tr>
         <%@report_v.each do |a|%>
         <tr>
@@ -84,11 +88,13 @@
         </table>
 <%end%>
 
-
+<%end%>
 
 
 
 <br>
+<%if   !(@report_p.count == 0 && @accion_p.count == 0 && @task_p.count == 0) %>
+<hr style="    border: 1px solid lightgrey;">
 <h1 style="color:gray;text-align:center">GESTION PROXIMA A VENCER</h1>
  <br>
 
@@ -163,13 +169,15 @@
         </table>
 <%end%>
 
-
+<%end%>
 
 
 
 
 
 <br>
+<%if !(@report_s.count == 0 && @accion_s.count == 0)%>
+<hr style="    border: 1px solid lightgrey;">
 <h1 style="color:gray;text-align:center">GESTION PENDIENTE DE SEGUIMIENTO</h1>
  <br>
 
@@ -231,11 +239,17 @@
 
 
 
+<%end%>
+<br><br>
+<hr style="    border: 1px solid lightgrey;">
 
-
-
-
-
+<p style="text-align:center;margin-top: 50px"><a style="background: #0db493;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 10px;" href="https://mejoracontinua.herokuapp.com/" ">Ir a MejoraApp</a><p>
 
 
 
