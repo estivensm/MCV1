@@ -4,12 +4,56 @@
    </div>
 </div>
 <div class = "row title-table">
-   <div class = "col-md-5">
+   <div class = "col-md-10">
       <p>Reportes <span class="label label-primary"><%=@reports.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @reports, :entry_name => 'Reporte' %></span> </p>
 
 
      
    </div>
+   <div class = "col-md-2">
+      <div class="col-md-12 text-right">
+         <% if action_name == "index"%>
+              <%if !params[:commit]%> 
+              <%= link_to reports_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "abiertos"%>
+              <%if !params[:commit]%> 
+              <%= link_to reports_abiertos_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "cerrados"%>
+              <%if !params[:commit]%> 
+              <%= link_to reports_cerrados_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>     
+            <%end%>
+
+
+            <% if action_name == "index"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to reports_path,  class: "linka canf" do %>
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "abiertos"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to reports_abiertos_path, class: "linka canf" do %>
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%else%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to reports_cerrados_path , class: "linka canf" do %>
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>     
+            <%end%>
+         </div>
+         </div>     
    <div class = "col-md-7 paginate text-left title-table1">
      
 <%= will_paginate @reports%>
@@ -18,17 +62,42 @@
    
 </div>
 
-<% if action_name == "index"%>
-<%= (link_to "filtros", reports_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-<%elsif action_name =="abiertos"%>
-<%= (link_to "filtros", reports_abiertos_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-<%else %>
-<%= (link_to "filtros", reports_cerrados_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-<%end%>
-<div class="row busqueda" style = "display:none;">
-   <div class="col-md-12">
-   <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="busqueda" style = "display:none;">
+<%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
+<div class="row"> 
+
+  
+
+
+
+   <div class="col-md-3">
+   
 <%= text_field_tag :search0, params[:search0], placeholder: "Fecha Desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "Fecha Hasta",class: "form-control datepicker1 shi1 sh00" %>
+
 <script>
    $(function() {
    $.datepicker.regional['es'] = {
@@ -67,26 +136,40 @@
    
    
 </script>
-<%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control shs filter", include_blank: true , placeholder: "hola"}%>
-<%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter", include_blank: true , placeholder: "hola"}%>
-<%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control shs2 filter shi", include_blank: true , placeholder: "hola"}%>
-<%=select_tag 'search6', options_for_select(get_clientes.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh4 filter shi", include_blank: true , placeholder: "hola"}%>
-<%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
+</div>
+ <div class="col-md-3">
+<%=select_tag 'search7', options_for_select(get_source_parents.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh7 filter shi input_big", include_blank: "Fuente" , placeholder: "hola"}%>
+</div>
+ <div class="col-md-3">
+<%=select_tag 'search2', options_for_select(get_sources.collect{ |u| [u.name, u.id, ] }),{:class => "form-control shs filter shi input_big", include_blank: "Tipo de Reporte" , placeholder: "hola"}%>
+</div>
 
+
+<div class="col-md-12">
+<br>
+</div>
+
+ <div class="col-md-3">
+<%=select_tag 'search3', options_for_select(get_employeds.collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id, ] }),{:class => "form-control sh1 filter shi input_big", include_blank: "Responsable" , placeholder: "hola"}%>
+
+</div>
+ <div class="col-md-3">
+<%=select_tag 'search4', options_for_select(get_procesos.collect{ |u| [u.name, u.id, ] }),{:class => "form-control shs2 filter shi input_big", include_blank: "Proceso" , placeholder: "hola"}%>
+</div>
+ <div class="col-md-3">
+<%=select_tag 'search6', options_for_select(get_clientes.collect{ |u| [u.name, u.id, ] }),{:class => "form-control sh4 filter shi input_big", include_blank: "Parte Interesada" , placeholder: "hola"}%>
+</div>
+ <div class="col-md-3">
+<%= text_field_tag :search5, params[:search5], placeholder: "Nombre del Reporte", class: "form-control shi sh3 input_big" %>
+</div>
 
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
-   </div>
-</div>
 
+</div>
+</div>
 <div class = "row">
-<% if action_name == "index"%>
-<%= (link_to "Cancelar filtros", reports_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<%elsif action_name =="abiertos"%>
-<%= (link_to "Cancelar filtros", reports_abiertos_path, class: "linka canf") if (params[:commit] || params[:filtros]) %>
-<%else %>
-<%= (link_to "Cancelar filtros", reports_cerrados_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<%end%>
+
 <%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
 <p><%= submit_tag "Eliminar", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p>
 
@@ -110,7 +193,7 @@
           <%end%>
           <th style = "width:5%" class="text-center">Días</th>
           <th style = "width:10%" class="text-left">Fuente</th>
-         <th style = "width:10%" class="text-left">Tipo de Hallazgo</th>
+         <th style = "width:10%" class="text-left">Tipo de Reporte</th>
          <th style = "width:10%" class="text-left">Responsable</th>
          <th style = "width:10%" class="text-left">Proceso</th>
          
@@ -229,14 +312,25 @@
    
       
       
-      
+      /*
    
       $('.shs').chosen(
           {
       
             allow_single_deselect: true,
             no_results_text: 'No hay resultados',
-            width: '150px',
+            width: '100%',
+            placeholder_text_single: "Tipo de Hallazgo",
+            placeholder_text_multiple: "Seleccione una varias opciones"
+      
+          });
+
+      $('.sh7').chosen(
+          {
+      
+            allow_single_deselect: true,
+            no_results_text: 'No hay resultados',
+            width: '100%',
             placeholder_text_single: "Fuente",
             placeholder_text_multiple: "Seleccione una varias opciones"
       
@@ -247,7 +341,7 @@
       
             allow_single_deselect: true,
             no_results_text: 'No hay resultados',
-            width: '150px',
+            width: '100%',
             placeholder_text_single: "Parte Interesada",
             placeholder_text_multiple: "Seleccione una varias opciones"
       
@@ -261,7 +355,7 @@
       
             allow_single_deselect: true,
             no_results_text: 'No hay resultados',
-            width: '150px',
+            width: '100%',
             placeholder_text_single: "Responsable",
             placeholder_text_multiple: "Seleccione una varias opciones"
       
@@ -274,18 +368,19 @@
       
             allow_single_deselect: true,
             no_results_text: 'No hay resultados',
-            width: '150px',
+            width: '100%',
             placeholder_text_single: "Proceso",
             placeholder_text_multiple: "Seleccione una varias opciones"
       
           });
     
-
+*/
     $('.chosen-container span').addClass("shi") ;
      }); 
    $('.shs').val("<%=params[:search2]%>") ;
    $('.shs2').val("<%=params[:search4]%>") ;
    $('.sh3').val("<%=params[:search5]%>") ;
+   $('.sh7').val("<%=params[:search7]%>") ;
    $('.sh1').val("<%=params[:search3]%>") ;
    $('.sh4').val("<%=params[:search6]%>") ;
    $('.sh0').val("<%=params[:search0]%>") ;
@@ -415,6 +510,10 @@
   {
   
     box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+  }
+  .input_big
+  {
+    width: 100% !important;
   }
 </style>
 

@@ -1,12 +1,30 @@
 
 
 <div class = "row title-table">
-   <div class = "col-md-12">
+   <div class = "col-md-10">
       <p><%=@resp%> <span class="label label-primary"><%=@acciones.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @acciones, :entry_name => 'Reporte' %></span> </p>
 
 
      
    </div>
+    <div class = "col-md-2">
+               <div class="col-md-12 text-right">
+      <%if !params[:commit]%> 
+  <%= link_to @route + "?filtros=true", class: "linka canf1" do %>
+  <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+  <%end%>
+  <%end%>
+
+  <%if ( params[:commit] || params[:filtros] ) %>
+        <%= link_to  @route , class: "linka canf" do%> 
+        <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+    <%end%>
+<%end%>
+
+
+     <%= link_to image_tag("https://image.flaticon.com/icons/svg/29/29102.svg"), @route_csv, class: "icon-export"%>
+     </div>
+    </div>
    <div class = "col-md-5 paginate text-left title-table1">
      
 <%= will_paginate @acciones%>
@@ -37,8 +55,8 @@
 
 
 
-<div class="row busqueda" >
-   <div class="col-md-10">
+        <div class="row busqueda" style = "display:none;">
+   <div class="col-md-12">
    <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
 <%= text_field_tag :search0, params[:search0], placeholder: "Fecha Desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "Fecha Hasta",class: "form-control datepicker1 shi1 sh00" %>
 <script>
@@ -93,14 +111,16 @@
 <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
 <% end %>
    </div>
-   <div class="col-md-2 text-right">
-     <%= link_to image_tag("https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_csv-128.png"), @route_csv, class: "icon-export"%></div>
+  
 </div>
+
+
+
+
 
 <div class = "row">
 
-<%= (link_to "Cancelar filtros", @route , class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<br>
+
 
 
 
@@ -205,7 +225,24 @@
 
 
 <script>
- 
+    $(document).on('turbolinks:load',function() {
+   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+   {
+ $('.busqueda').show();
+ $('.canf').show();
+ $('.canf1').hide();
+
+   }
+   else
+   {
+    $('.busqueda').hide();
+     $('.canf1').show();
+
+   }
+
+     
+
+ });
 
       
    
@@ -317,7 +354,7 @@
    }
    .busqueda
    {
-        display: block !important;
+       
     padding: 10px;
     background: #e8e8e8;
    }
@@ -348,6 +385,6 @@
   }
   .icon-export img
   {
-    width: 40px;
+    width: 30px;
   }
 </style>

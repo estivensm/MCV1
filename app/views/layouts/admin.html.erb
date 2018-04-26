@@ -160,7 +160,7 @@
                      </li>-->
                   <li class="dropdown <%=@menum[1]%> <%=@menum[7]%> <%=@menum[8]%>" >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumb-tack ic" aria-hidden="true"></i>
-                     Toda la Actividad<span class="caret"></span></a>
+                     Gestion de la Empresa<span class="caret"></span></a>
                      <ul class="dropdown-menu">
                         <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                            <%= link_to reports_abiertos_path,:class => "" do %>
@@ -188,7 +188,7 @@
                   </li>
                   <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[5]%>" >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-thumb-tack ic" aria-hidden="true"></i>
-                     Mi Actividad<span class="caret"></span></a>
+                     Mi Gestion<span class="caret"></span></a>
                      <ul class="dropdown-menu">
                         <li style = "margin-bottom:5px"><%= link_to misreports_path,:class => "" do %>
                            <i class="fa fa-file-text-o color-gray" aria-hidden="true"></i>

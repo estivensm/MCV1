@@ -5,7 +5,7 @@ before_action :authenticate_user!
     @report_search1 = Report.where(employed_id: @employed).abiertos
     if params[:search]
 
-    	@reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6]).order(created_at: :desc)
+    	@reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6], params[:search7]).order(created_at: :desc)
 
     else 
     	@reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
@@ -22,7 +22,7 @@ before_action :authenticate_user!
     @report_search1 = Report.where(employed_id: @employed).cerrados
     if params[:search]
 
-      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6]).order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6], params[:search7]).order(created_at: :desc)
 
     else 
       @reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
@@ -52,7 +52,7 @@ before_action :authenticate_user!
     @report_search1 = Report.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertos
     if params[:search]
       
-      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6]).order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6], params[:search7]).order(created_at: :desc)
 
     else 
       @reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
@@ -72,7 +72,7 @@ def asignados_cerrados
 @report_search1 = Report.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertos
     if params[:search]
       
-      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6], params[:search7]).order(created_at: :desc)
 
     else 
       @reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
@@ -108,7 +108,7 @@ def invitado
     @report_search1 = @employed.reports.abiertos
     if params[:search]
       
-      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5]).order(created_at: :desc)
+      @reports = @report_search1.paginate(page: params[:page],:per_page => 30).search(params[:search],params[:search0],params[:search2],params[:search3],params[:search4] ,params[:search5],params[:search6], params[:search7]).order(created_at: :desc)
 
     else 
       @reports = @report_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)

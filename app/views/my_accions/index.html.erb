@@ -1,136 +1,144 @@
 <%if action_name == "index" || action_name == "myaccions_cerradas"%>
-
 <p><%=link_to   misacciones_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> Abiertas<%end%> / 
-  <%=link_to  myaccions_cerradas_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerradas<%end%>
+   <%=link_to  myaccions_cerradas_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerradas<%end%>
 </p>
-
 <%elsif action_name == "myaccions_asignadas_cerradas" || action_name == "asignado_por_mi"%>
 <p><%=link_to   accions_asignados_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> Abiertas<%end%> / 
-  <%=link_to  myaccions_asignadas_cerradas_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerradas<%end%>
+   <%=link_to  myaccions_asignadas_cerradas_path , class: "linka" do %><i style = "font-size:20px"  class="fa fa-lock" aria-hidden="true"></i> Cerradas<%end%>
 </p>
-
-
 <%end%>
-
-
 <div class = "row title-table">
-   <div class = "col-md-12">
+   <div class = "col-md-10">
       <p><%=@resp%> <span class="label label-primary"><%=@acciones.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @acciones, :entry_name => 'Acciones' %></span> </p>
-
-
-     
+   </div>
+   <div class = "col-md-2">
+      <div class="col-md-12 text-right">
+         <% if action_name == "index"%>
+              <%if !params[:commit]%> 
+              <%= link_to misacciones_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "asignado_por_mi"%>
+              <%if !params[:commit]%> 
+              <%= link_to accions_asignados_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "invitado"%>
+              <%if !params[:commit]%> 
+              <%= link_to accions_invitado_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "myaccions_cerradas"%>
+              <%if !params[:commit]%> 
+              <%= link_to myaccions_cerradas_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "myaccions_asignadas_cerradas"%>
+              <%if !params[:commit]%> 
+              <%= link_to myaccions_asignadas_cerradas_path + "?filtros=true", class: "linka canf1" do %>
+              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%end%>
+         <% if action_name == "index"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to  misacciones_path , class: "linka canf" do%> 
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "asignado_por_mi"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to  accions_asignados_path , class: "linka canf" do%> 
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "invitado"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to  accions_invitado_path , class: "linka canf" do%> 
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "myaccions_cerradas"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to  myaccions_cerradas_path , class: "linka canf" do%> 
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%elsif action_name == "myaccions_asignadas_cerradas"%>
+              <%if ( params[:commit] || params[:filtros] ) %>
+              <%= link_to  myaccions_asignadas_cerradas_path , class: "linka canf" do%> 
+              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+              <%end%>
+              <%end%>
+         <%end%>
+         <%= link_to image_tag("https://image.flaticon.com/icons/svg/29/29102.svg"), @route_csv, class: "icon-export", style: "display:none"%>
+      </div>
    </div>
    <div class = "col-md-10 paginate text-left title-table1">
-     
-<%= will_paginate @acciones%>
+      <%= will_paginate @acciones%>
    </div>
-
- 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<% if action_name == "index"%>
-<%= (link_to "filtros", misacciones_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-
-<%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "filtros", accions_asignados_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "filtros", accions_invitado_path + "?filtros=true", class: "linka canf1") if !params[:commit]  %>
-
-
-
-
-<%end%>
 <div class="row busqueda" style = "display:none;">
    <div class="col-md-12">
-   <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
-<%= text_field_tag :search0, params[:search0], placeholder: "Fecha Desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "Fecha Hasta",class: "form-control datepicker1 shi1 sh00" %>
-<script>
-   $(function() {
-   $.datepicker.regional['es'] = {
-   closeText: 'Cerrar',
-   prevText: '< Ant',
-   nextText: 'Sig >',
-   currentText: 'Hoy',
-   monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-   monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-   dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-   dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-   dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-   weekHeader: 'Sm',
-   dateFormat: 'dd/mm/yy',
-   firstDay: 1,
-   isRTL: false,
-   showMonthAfterYear: false,
-   yearSuffix: ''
-   };
-   $.datepicker.setDefaults($.datepicker.regional['es']);
-   $('.datepicker').datepicker({
-     altField: "#actualDate",
-     changeMonth: true,
-     changeYear: true,
-     dateFormat: 'mm-dd-yy'
-   });
-   $.datepicker.setDefaults($.datepicker.regional['es']);
-   $('.datepicker1').datepicker({
-     altField: "#actualDate",
-     changeMonth: true,
-     changeYear: true,
-      dateFormat: 'mm-dd-yy'
-   });
-   
-   });
-   
-   
-</script>
-<%= select_tag "search2", options_for_select(["","Acciones", "Correcciones","Actividades" ] ), {class: "form-control shi sh ", include_blank: true } %>
-
-
-<%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
-<%= select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true } %>
-<%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
-<% end %>
+      <%= form_tag(@route, :method => "get", id: "search-form", class: "form-inline form1") do %>
+      <%= text_field_tag :search0, params[:search0], placeholder: "Fecha Desde",class: "form-control datepicker shi1 sh0" %><%= text_field_tag :search, params[:search], placeholder: "Fecha Hasta",class: "form-control datepicker1 shi1 sh00" %>
+      <script>
+         $(function() {
+         $.datepicker.regional['es'] = {
+         closeText: 'Cerrar',
+         prevText: '< Ant',
+         nextText: 'Sig >',
+         currentText: 'Hoy',
+         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+         monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+         dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+         dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+         dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+         weekHeader: 'Sm',
+         dateFormat: 'dd/mm/yy',
+         firstDay: 1,
+         isRTL: false,
+         showMonthAfterYear: false,
+         yearSuffix: ''
+         };
+         $.datepicker.setDefaults($.datepicker.regional['es']);
+         $('.datepicker').datepicker({
+           altField: "#actualDate",
+           changeMonth: true,
+           changeYear: true,
+           dateFormat: 'mm-dd-yy'
+         });
+         $.datepicker.setDefaults($.datepicker.regional['es']);
+         $('.datepicker1').datepicker({
+           altField: "#actualDate",
+           changeMonth: true,
+           changeYear: true,
+            dateFormat: 'mm-dd-yy'
+         });
+         
+         });
+         
+         
+      </script>
+      <%= select_tag "search2", options_for_select(["","Acciones", "Correcciones","Actividades" ] ), {class: "form-control shi sh ", include_blank: true } %>
+      <%= text_field_tag :search5, params[:search5], placeholder: " Descripcion", class: "form-control shi sh3" %>
+      <%= select_tag "search6", options_for_select(["","Abiertas", "Cerradas" ] ), {class: "form-control shi sh4 ", include_blank: true } %>
+      <%= submit_tag "Buscar", :class => "btn btn-primary submit-btn", style: "margin-left:10px;padding:3px 20px;" %>
+      <% end %>
    </div>
 </div>
-
 <div class = "row">
-<% if action_name == "index"%>
-<%= (link_to "Cancelar filtros", misacciones_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
-<%elsif action_name == "asignado_por_mi"%>
-<%= (link_to "Cancelar filtros", accions_asignados_path , class: "linka canf") if (params[:commit] || params[:filtros]) %>
-  <%elsif action_name == "invitado"%>
-<%= (link_to "Cancelar filtros", accions_invitado_path , class: "linka canf") if (params[:commit] || params[:filtros] ) %>
-
-<%end%>
-
-<hr>
-
-
-
-
-  
-
 <table class="table table">
    <thead>
       <tr class = "tr-table">
- 
-          
-         
-           <th style = "width:2%"  ></th>
+         <th style = "width:2%"  ></th>
          <th style = "width:10%" class="text-left">F Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
-          <th style = "width:10%" class="text-left">Tipo</th>
+         <th style = "width:10%" class="text-left">Tipo</th>
          <th style = "width:10%" class="text-left">Me Asigno</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
@@ -140,91 +148,63 @@
          <th style = "width:5%" class="text-center">Días</th>
          <th  class="text-left" style = "width:40%">Accion</th>
          <th  class="text-left">Seguimientos</th>
-
-         
-         
-        
       </tr>
    </thead>
    <tbody>
-     <% @acciones.each do |accion1| 
-      accion = Accion.find(accion1.id)
-      report = Report.find(accion.report_id)%>
+      <% @acciones.each do |accion1| 
+         accion = Accion.find(accion1.id)
+         report = Report.find(accion.report_id)%>
       <tr>
-       
-
-
-<td><%if accion.estado == "Abierta"  %>
-         <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
-         <%else%>
-         <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
-         <%end%></td>
+         <td><%if accion.estado == "Abierta"  %>
+            <i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i>
+            <%else%>
+            <i  style = "font-size:20px" class="fa fa-lock" aria-hidden="true"></i>
+            <%end%>
+         </td>
          <td><%= get_date(accion.created_at) %></td>
-          <td><%= link_to  "#{accion.codigo}", report_accion_path(report,accion), :class => "linka"  %></td>
-       <td><%= accion.tipo %></td>
-        
-       
+         <td><%= link_to  "#{accion.codigo}", report_accion_path(report,accion), :class => "linka"  %></td>
+         <td><%= accion.tipo %></td>
          <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
-     
-           <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
-           <td  ><%= get_date(accion.f_compromiso)%></td>
-           <%else%>
- <td  style = "background:<%=estado_contador(accion.contador_seg)%>;color:white" ><%= get_date(accion.f_compromiso)%></td>
-          <%end%>
-
-
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
-          <td><%= get_date(accion.f_real)%><%if accion.change_cumplio%>
-           <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=accion.justificacion_cumplio%></p>">?</button><%end%> </td>
-           <td class="text-center"><%= cumplio(accion.cumplio).html_safe if accion.estado == "Cerrada"%></td>
-          <%end%>
-          <td class="text-center"> <%= accion.contador_seg%> </td>
+         <td  ><%= get_date(accion.f_compromiso)%></td>
+         <%else%>
+         <td  style = "background:<%=estado_contador(accion.contador_seg)%>;color:white" ><%= get_date(accion.f_compromiso)%></td>
+         <%end%>
+         <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
+         <td><%= get_date(accion.f_real)%><%if accion.change_cumplio%>
+            <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=accion.justificacion_cumplio%></p>">?</button><%end%> 
+         </td>
+         <td class="text-center"><%= cumplio(accion.cumplio).html_safe if accion.estado == "Cerrada"%></td>
+         <%end%>
+         <td class="text-center"> <%= accion.contador_seg%> </td>
          <td>
-           
-               <%= accion.name %>
+            <%= accion.name %>
          </td>
          <td> <%=accion.aseguimientos.count %></td>
-        <% end %>
+         <% end %>
    </tbody>
-
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
-    $(document).on('turbolinks:load',function() {
+   $(document).on('turbolinks:load',function() {
    if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
    {
- $('.busqueda').show();
- $('.canf').show();
- $('.canf1').hide();
-
+   $('.busqueda').show();
+   $('.canf').show();
+   $('.canf1').hide();
+   
    }
    else
    {
-    $('.busqueda').hide();
-     $('.canf1').show();
-
+   $('.busqueda').hide();
+    $('.canf1').show();
+   
    }
-
+   
+    
+   
+   });
+   
      
-
- });
-
-      
    
 </script>
 <script>
@@ -334,33 +314,27 @@
    }
    .busqueda
    {
-        display: block;
-    padding: 10px;
-    background: #e8e8e8;
+   display: block;
+   padding: 10px;
+   background: #e8e8e8;
    }
    .ball img
    {
-    width: 30px;
+   width: 30px;
    }
 </style>
-
-
-
 <style>
-  .seg
-  {
-   
-    padding: 10px;
-    color: gray;
-    
-    border: 1px solid #cecece;
-  font-size: 13px !important;
-     -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
-    transition: box-shadow 0.3s;    border-bottom: 3px solid #ababab
-  }
-  .seg:hover
-  {
-  
-    box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
-  }
+   .seg
+   {
+   padding: 10px;
+   color: gray;
+   border: 1px solid #cecece;
+   font-size: 13px !important;
+   -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+   transition: box-shadow 0.3s;    border-bottom: 3px solid #ababab
+   }
+   .seg:hover
+   {
+   box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+   }
 </style>

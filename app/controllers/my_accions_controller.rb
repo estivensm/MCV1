@@ -116,7 +116,7 @@ def invitado
 
     if params[:search]
       
-      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5],params[:search6]).order(created_at: :desc)
+      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
 
     else 
       @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)

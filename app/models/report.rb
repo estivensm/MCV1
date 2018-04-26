@@ -99,7 +99,7 @@ scope :abiertos, -> { where(state: "Abierto") }
 
 
   
- def self.search(search,search0, search2, search3, search4, search5, search6)
+ def self.search(search,search0, search2, search3, search4, search5, search6,search7)
 
    #search6 = search6.chomp("s") if search6 != ""
 
@@ -112,9 +112,10 @@ scope :abiertos, -> { where(state: "Abierto") }
     search4 != "" ? (scope :procesop, -> { where(proceso_id: search4) }) : (scope :procesop, -> { where.not(id: nil) }) 
     search5 != "" ? (scope :descop, -> { where("name like '%#{search5.downcase}%' or name like '%#{search5.upcase}%'  or name like '%#{search5.capitalize}%'  ") }) : (scope :descop, -> { where.not(id: nil) }) 
     search6 != "" ? (scope :clientep, -> { where(clinte_proveedor_id: search6) }) : (scope :clientep, -> { where.not(id: nil) }) 
+    search7 != "" && search7 != nil ? (scope :fuente_p, -> { where(source_parent_id: search7) }) : (scope :fuente_p, -> { where.not(id: nil) }) 
 
   
-        employedop.sourceop.procesop.descop.fdesdep.fhastap.clientep
+        employedop.sourceop.procesop.descop.fdesdep.fhastap.clientep.fuente_p
 
      #begin if search2 != ""
        #   where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ").where(source_id: search2).employedp

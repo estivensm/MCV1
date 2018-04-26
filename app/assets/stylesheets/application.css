@@ -155,6 +155,10 @@ border-right: none;
 {
   color:#0db497 !important;
 }
+.linka:hover
+{
+  text-decoration: none !important;
+}
 
 
 
@@ -295,3 +299,8 @@ font-size: 13px !important;
     background: url("https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/143/chosen-sprite.png") -42px 1px no-repeat !important;
 
 }
+
+  .icon-export img
+  {
+    width: 30px;
+  }
