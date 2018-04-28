@@ -34,9 +34,9 @@
 #
 
 class Accion < ApplicationRecord
-	belongs_to :report
+  belongs_to :report
   has_many :tasks
-	has_and_belongs_to_many :employeds, dependent: :destroy
+  has_and_belongs_to_many :employeds, dependent: :destroy
   has_and_belongs_to_many :causa_efectos, dependent: :destroy
     has_many :aseguimientos, dependent: :destroy
     has_many :riesgos, dependent: :destroy
@@ -114,7 +114,7 @@ puts search2
 
 
  def self.to_csv()
-          attributes = %w{Fecha_de_Creacion Nombre Codigo Tipo Asignada_Por}
+          attributes = %w{Fecha_de_Creacion Codigo Tipo Responsable Nombre Descripcion Compromiso Dias_para_Cierre Analisis_de_Causa Reporte}
             CSV.generate(headers: true) do |csv|
               csv <<  attributes
               all.each do |accion|
@@ -129,14 +129,29 @@ puts search2
         def Codigo
           "#{codigo}"
         end
+        def Responsable
+          "#{employed.first_name} #{employed.first_last_name}"
+        end
         def Tipo
           "#{tipo}"
         end
-        def Asignada_Por
-          "#{Employed.find(employed.id).first_name} #{Employed.find(employed.id).first_last_name}"
-        end
         def Nombre
           "#{name}"
+        end
+        def Descripcion
+          "#{name}"
+        end
+        def Compromiso
+          "#{f_compromiso}}"
+        end
+        def Dias_para_Cierre
+          "#{contador_seg} #{}"
+        end
+        def Analisis_de_Causa
+          "#{Causa.where(report_id: report_id).first.tipo if Causa.where(report_id: report_id).first != nil }"
+        end
+        def Reporte
+          "#{report.name}"
         end
 
 
@@ -146,7 +161,7 @@ puts search2
 
     def start_must_be_before_end_time
       if self.tag
-    	  self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
+        self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i
         self.contador_seg = (@time / 60 / 60/ 24) + 1

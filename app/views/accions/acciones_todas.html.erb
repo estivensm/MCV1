@@ -136,7 +136,7 @@
          <th style = "width:10%" class="text-left">F Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
           <th style = "width:10%" class="text-left">Tipo</th>
-         <th style = "width:10%" class="text-left">Me Asigno</th>
+         <th style = "width:10%" class="text-left">Responsable</th>
          <th style = "width:10%" class="text-left">Compromiso</th>
           <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
          <th  class="text-left" style = "width:10%">Entrega</th>
@@ -169,7 +169,7 @@
       <td><%= accion.tipo %></td>
         
        
-         <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
+         <td><%= accion.employed.first_name %> <%= accion.employed.first_last_name %></td>
      
 
  <%if action_name == "acciones_cerradas" || action_name == "acciones_todas" %>
