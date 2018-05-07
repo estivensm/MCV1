@@ -43,6 +43,7 @@ es:
       signed_out: "Cerraste Sesión Gracias por usar MejoraApp"
     registrations:
       signed_up: "Bienvenido, has iniciado Sesión correctamente"
+      updated: "Tu password a sido cambiado correctamente"
     passwords:
       send_instructions: "Un email ha sido enviado a tu correo con las instrucciones para restablecer tu contraseña"    
 
