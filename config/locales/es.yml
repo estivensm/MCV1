@@ -7,7 +7,7 @@ es:
         one: "Ha ocurrido 1 error:"
         other: "Han ocurrido %{count} errores:"
       confirmation: "y contraseña deberian ser iguales."  
-    
+      
   activerecord:
     attributes:
       user:
@@ -43,5 +43,7 @@ es:
       signed_out: "Cerraste Sesión Gracias por usar MejoraApp"
     registrations:
       signed_up: "Bienvenido, has iniciado Sesión correctamente"
+    passwords:
+      send_instructions: "Un email ha sido enviado a tu correo con las instrucciones para restablecer tu contraseña"    
 
 

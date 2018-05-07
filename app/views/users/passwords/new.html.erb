@@ -1,16 +1,39 @@
-<h2>Forgot your password?</h2>
+
+
+
+
+<div class="row sign_form">
+<div class="col-lg-4 col-lg-offset-4 login1">
+<p class = "logop" style = "color:#9a9a9a;    font-size: 30px"><img style= "width:50px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
+<br>
+
+<h3 class="text-center linka" style="color:gray;font-weight: bold">¿Olvidaste tu contraseña?</h3><br>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
+  
+  <p class="text-center linka" style="color:gray">Ingresa tu email para enviarte las instrucciones</p>
+  <div class="form-group">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, :class => 'form-control', style:"height:45px;font-size: 16px;border: 1px solid gainsboro !important;", placeholder:"Email" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+
+
+
+ <div class="form-group">
+<%= f.submit "Enviar" , class: "btn btn-primary btn-block is", id: "register-button" , style:"font-size:18px"  do %>
+       <i class="fa fa-sign-in" aria-hidden="true"> </i> Iniciar Sesión
+
+
+    <% end %>
+    
+    
+  <div class="col-md-10 col-md-offset-1 text-center color-gray" style="margin-top:10px;">
+Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name), class:"linka" %><br />
+</div>
   </div>
 <% end %>
+</div>
 
-<%= render "users/shared/links" %>
+</div>

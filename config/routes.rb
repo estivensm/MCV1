@@ -192,7 +192,7 @@ end
             get "user/:id", to: "users/views#show_user", as: "show_user"
             get "user/:row/:tipo", to: "users/views#order_user", as: "order_user"
             post "create_user", to: "users/views#create_user", as: "create_user"
-            get '/users/:id/edit', to: 'users/views#edit_user', as: "edit_user"
+            get 'edit_user:id', to: 'users/views#edit_user', as: "edit_user"
             get '/users/new', to: 'users/views#new_user', as: "new_user"
             post "/users/update_user/edit", to: "users/views#update_user", as: "update_user"
             delete "delete_user/:id", to: "users/views#delete_user", as: "delete_user"
@@ -206,7 +206,7 @@ end
             delete "delete_source_parent", to: "source_parents#delete_source_parent", as: "delete_source_parent"
             
           end
-        devise_for :users, controllers: { registrations: "registrations" }
+        devise_for :users, controllers: { registrations: "registrations", passwords: 'users/passwords'   }
           
   #authenticated :user do
     root to: 'dashboard#index'#, as: :authenticated_root
