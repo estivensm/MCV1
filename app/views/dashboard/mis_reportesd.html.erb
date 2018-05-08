@@ -6,15 +6,15 @@
  <%employed = Employed.find(report.employed_reporta)%>
  <%clase = ""
                   report.contador_seg < 0 ?  clase = "vencido" : clase = "proximo"
-                  clase = "vencido" if report.contador_seg > 5 %>
+                  clase = "vigente" if report.contador_seg > 5 %>
 
 <div class="row report-ds <%=clase%>" >
   <div class="row" > 
-        <div class="col-md-11">
+        <div class="col-md-10">
             <strong><%=report.source.name%>: </strong>
             <span><%=report.name%></span>  
         </div>
-         <div class="col-md-1">
+         <div class="col-md-2">
              <%= link_to report_path(report), class: "btn btn-primary" do%>
                  <i class="fa fa-eye" style="font-size:20px;"></i>
              <%end%>
