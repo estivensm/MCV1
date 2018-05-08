@@ -7,7 +7,8 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="res active"><%= link_to "Responsable", root_path %></li>
+    <li role="presentation" class="rep active"><%= link_to "Mis Reportes", root_path %></li>
+    <li role="presentation" class="res active"><%= link_to "Responsable", dashboard_index_path %></li>
     
     <li role="presentation" class="inv active"><%= link_to "Invitado", invitado_d_path %></li>
     <li role="presentation" class="asi active"><%= link_to "Asignados", asignados_d_path %></li>
@@ -110,26 +111,41 @@ if ("<%=action_name%>" == "index")
 $('.asi').removeClass('active');
 $('.inv').removeClass('active');
 $('.indi').removeClass('active');
+ $('.rep').removeClass('active');
 }
 else if ("<%=action_name%>" == "asignados_d")
 {$('.res').removeClass('active');
 $('.asi').addClass('active');
 $('.inv').removeClass('active');
  $('.indi').removeClass('active');
+  $('.rep').removeClass('active');
  }
  else if ("<%=action_name%>" == "employed_indicators")
-{$('.res').removeClass('active');
+{
+  $('.res').removeClass('active');
 $('.asi').removeClass('active');
 $('.inv').removeClass('active');
  $('.indi').addClass('active');
+  $('.rep').removeClass('active');
+ }
+ else if ("<%=action_name%>" == "mis_reportesd")
+{
+
+  $('.res').removeClass('active');
+$('.asi').removeClass('active');
+$('.inv').removeClass('active');
+ $('.indi').removeClass('active');
+ $('.rep').addClass('active');
+
  }
 else
 
 	{
 $('.indi').removeClass('active');
-		$('.res').removeClass('active');
+$('.res').removeClass('active');
 $('.asi').removeClass('active');
 $('.inv').addClass('active');
+ $('.rep').removeClass('active');
 	}
 
 </script>

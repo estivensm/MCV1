@@ -46,5 +46,6 @@ es:
       updated: "Tu password a sido cambiado correctamente"
     passwords:
       send_instructions: "Un email ha sido enviado a tu correo con las instrucciones para restablecer tu contraseña"    
+      updated: "Tu Conraseña se actualizo correctamente"
 
 

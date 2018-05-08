@@ -1,0 +1,170 @@
+<%= render 'encabezado'%>
+<br>
+
+
+ <% @reports.each do |report|%>
+ <%employed = Employed.find(report.employed_reporta)%>
+ <%clase = ""
+                  report.contador_seg < 0 ?  clase = "vencido" : clase = "proximo"
+                  clase = "vencido" if report.contador_seg > 5 %>
+
+<div class="row report-ds <%=clase%>" >
+  <div class="row" > 
+        <div class="col-md-11">
+            <strong><%=report.source.name%>: </strong>
+            <span><%=report.name%></span>  
+        </div>
+         <div class="col-md-1">
+             <%= link_to report_path(report), class: "btn btn-primary" do%>
+                 <i class="fa fa-eye" style="font-size:20px;"></i>
+             <%end%>
+        </div>
+        <div class="col-md-3">
+            <strong>Asignado por</strong>
+            <span><%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></span>
+
+        </div>
+        <div class="col-md-3">
+            <strong>Fecha de Entrega</strong>
+            <span><%=report.f_compromiso%></span>
+        </div>
+        <div class="col-md-3">
+            <strong>Dias para el cierre</strong>
+            <span><%=report.contador_seg%></span>
+        </div>
+      
+  </div>
+<hr style="    border-top: 1px solid #c3c3c3;">
+  <div class="row">
+        <div class="col-md-3">
+            <span style="font-size: 20px">Gestion del Reporte </span>   <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+<i class="fa fa-list-ol" aria-hidden="true"></i> Ver 
+
+</a><br>
+            
+        </div>
+        <div class="col-md-3">
+            <span>Vigente</span> <span class="label label-success br"> <%=report.accions.abiertas.vigentes.count%></span><br>
+            
+
+        </div>
+        <div class="col-md-3">
+            <span>Proximo a Vencer</span> <span class="label label-warning br"> <%=report.accions.abiertas.proximas.count%></span><br>
+            
+        </div>
+        <div class="col-md-3">
+            <span>Vencido</span> <span class="label label-danger br"><%=report.accions.vencidas.count%></span><br>
+            
+
+        </div>
+        
+  </div>
+
+<div class="collapse" id="collapseExample<%=report.id%>">
+  <div class="well">
+         <table class="table">
+          <thead>
+             <tr>
+               <th>Tipo</th>
+               <th>Nombre</th>
+               <th>Responsable</th>
+               <th>Fecha de Compromiso</th>
+               <th>Días para cierre</th>
+             </tr>
+           </thead>
+           <tbody>
+           <% report.accions.abiertas.each do |accion|%>
+            <%clase = ""
+                  accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                  clase = "vencidob" if accion.contador_seg > 5 %>
+             <tr>
+               <td><%=accion.tipo%></td>
+               <td><%=accion.name%></td>
+               <td><%=accion.employed.first_name%> <%=accion.employed.first_last_name%></td>
+               <td class="<%=clase%>"><%=accion.f_compromiso%></td>
+               <td><%=accion.contador_seg%></td>
+             </tr>
+           <%end%>
+           </tbody>
+         </table>
+      
+  </div>
+      
+       
+      
+  </div>
+
+  </div>  
+
+<%end%> 
+
+<hr>
+
+
+<style>
+.nh
+{
+      text-align: center;
+    margin-top: 70px;
+    font-size: 14px;
+}
+  
+</style>
+
+
+<style>
+.report-ds
+{
+  background: #f2f2f2;
+  color: gray;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+.vencido
+{
+
+  border-right: 10px solid #d82c2c;
+  border-left: 10px solid #d82c2c;
+}
+.proximo
+{
+
+  border-right: 10px solid orange;
+  border-left: 10px solid orange;
+}
+.vigente
+{
+
+  border-right: 10px solid #22c488;
+  border-left: 10px solid #22c488;
+}
+.vencidob
+{
+
+  background:  #d82c2c;
+  color: white;
+
+}
+.proximob
+{
+
+  background:  orange;
+  color: white;
+ 
+}
+.vigenteb
+{
+
+  background: #22c488;
+  color: white;
+
+}
+.table td
+{
+  text-align: center;
+}
+.label
+{
+      font-size: 20px !important;
+}
+</style>

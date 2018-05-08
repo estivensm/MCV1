@@ -1,5 +1,14 @@
 class DashboardController < ApplicationController
  before_action :authenticate_user!
+ 
+  
+  def mis_reportesd
+      @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
+      @reports_all = Report.abiertos.where(employed_id:@employed.id)
+      @reports = @reports_all.order(f_compromiso: :asc)
+  end  
+
+
   def index
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
 

@@ -50,11 +50,12 @@ class Accion < ApplicationRecord
     before_update :causas
     validates :employed_id, :cierra_id, :name ,presence: true
 
- scope :cerrados, -> { where(state: "Cerrado") }
-
-
-  scope :cerradas, -> { where(estado: "Cerrada") }
+scope :cerrados, -> { where(state: "Cerrado") }
+scope :cerradas, -> { where(estado: "Cerrada") }
 scope :abiertas, -> { where(estado: "Abierta") }
+scope :vigentes, -> { where('contador_seg > ?', 5) }
+scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
+scope :vencidas, -> { where('contador_seg < ?', 0) }
 
 
 def self.search(search0,search, search2, search3, search5, search6)
