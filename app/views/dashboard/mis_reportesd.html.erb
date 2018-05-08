@@ -76,7 +76,7 @@
            <% report.accions.abiertas.each do |accion|%>
             <%clase = ""
                   accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
-                  clase = "vencidob" if accion.contador_seg > 5 %>
+                  clase = "vigenteb" if accion.contador_seg > 5 %>
              <tr>
                <td><%=accion.tipo%></td>
                <td><%=accion.name%></td>
