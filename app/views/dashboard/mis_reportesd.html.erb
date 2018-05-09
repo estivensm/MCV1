@@ -8,29 +8,36 @@
                   report.contador_seg < 0 ?  clase = "vencido" : clase = "proximo"
                   clase = "vigente" if report.contador_seg > 5 %>
 
-<div class="row report-ds <%=clase%>" >
+<div class="row report-ds <%=clase%>" sty >
   <div class="row" > 
-        <div class="col-md-10">
+        <div class="col-md-9">
             <strong><%=report.source.name%>: </strong>
             <span><%=report.name%></span>  
         </div>
          <div class="col-md-2">
+             <p class="<%=clase%>b" style="font-weight:bold;padding: 8px;margin: 0px;"><%=clase.capitalize%> <%=report.contador_seg%> Días</p>
+         
+        </div>
+        <div class="col-md-1">
+
              <%= link_to report_path(report), class: "btn btn-primary" do%>
                  <i class="fa fa-eye" style="font-size:20px;"></i>
              <%end%>
         </div>
         <div class="col-md-3">
-            <strong>Asignado por</strong>
+            <strong>Asignado por:</strong>
             <span><%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></span>
 
         </div>
         <div class="col-md-3">
-            <strong>Fecha de Entrega</strong>
+            <strong>Fecha de compromiso:</strong>
             <span><%=report.f_compromiso%></span>
         </div>
-        <div class="col-md-3">
-            <strong>Dias para el cierre</strong>
-            <span><%=report.contador_seg%></span>
+        <div class="col-md-6">
+        <% time = "" 
+        report.fp_seguimiento > Time.now ? time = "" : time = "Pendiente de Seguimiento"%>
+            <strong>Fecha de seguimiento: </strong>
+            <span><%=report.fp_seguimiento%> <br><%=time%></span>
         </div>
       
   </div>
@@ -53,7 +60,7 @@
             
         </div>
         <div class="col-md-3">
-            <span>Vencido</span> <span class="label label-danger br"><%=report.accions.vencidas.count%></span><br>
+            <span>Vencido</span> <span class="label label-danger br"><%=report.accions.abiertas.vencidas.count%></span><br>
             
 
         </div>
