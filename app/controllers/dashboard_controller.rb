@@ -4,7 +4,8 @@ class DashboardController < ApplicationController
   
   def mis_reportesd
       @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
-      @reports_all = Report.abiertos.where(employed_id:@employed.id)
+      @reports_all = Report.alerta1
+      
       @reports = @reports_all.order(f_compromiso: :asc)
   end  
 

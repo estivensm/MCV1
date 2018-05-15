@@ -66,8 +66,13 @@ class Report < ApplicationRecord
   validate :start_must_be_before_end_time, on: [:create, :update]
   validates :employed_id, :proceso_id, :source_id,:source_parent_id ,:name,:employed_reporta,:cierra_id ,:f_compromiso,presence: true
 
- scope :cerrados, -> { where(state: "Cerrado") }
-scope :abiertos, -> { where(state: "Abierto") }
+  scope :cerrados, -> { where(state: "Cerrado") }
+  scope :abiertos, -> { where(state: "Abierto") }
+  scope :alerta, -> { where('contador_seg <= ?', 5) }
+  scope :alerta1, ->   { joins(:accions).merge(Accion.alerta) }
+
+ 
+  
 
 
   def archivo_size_validation
@@ -85,6 +90,30 @@ scope :abiertos, -> { where(state: "Abierto") }
 
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
+        if self.contador_seg <= 5 && self.contador_seg >= 0
+          
+                            self.estado_vencida = false
+                            self.estado_proxima = true
+                            self.estado_vigente = false
+                           
+                            #AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
+                            
+                        elsif self.contador_seg < 0 
+                            self.estado_vencida = true
+                            self.estado_proxima = false
+                            self.estado_vigente = false
+                            
+                            #AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
+
+                        #elsif accion.contador_seg == 0
+                        else
+                            self.estado_vencida = false
+                            self.estado_proxima = false
+                            self.estado_vigente = true
+                            #accion_alarma_hoy  << accion
+                            #AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
+                            
+        end
         puts "contadorrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
         puts self.contador_seg
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless

@@ -56,6 +56,7 @@ scope :abiertas, -> { where(estado: "Abierta") }
 scope :vigentes, -> { where('contador_seg > ?', 5) }
 scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
 scope :vencidas, -> { where('contador_seg < ?', 0) }
+scope :alerta, ->   { where(estado_vencida: true) }
 
 
 def self.search(search0,search, search2, search3, search5, search6)
@@ -166,6 +167,30 @@ puts search2
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i
         self.contador_seg = (@time / 60 / 60/ 24) + 1
+        if self.contador_seg <= 5 && self.contador_seg >= 0
+          
+                            self.estado_vencida = false
+                            self.estado_proxima = true
+                            self.estado_vigente = false
+                           
+                            #AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
+                            
+                        elsif self.contador_seg < 0 
+                            self.estado_vencida = true
+                            self.estado_proxima = false
+                            self.estado_vigente = false
+                            
+                            #AlertaMailer.vencimiento_accion(employed,accion, "vencida").deliver
+
+                        #elsif accion.contador_seg == 0
+                        else
+                            self.estado_vencida = false
+                            self.estado_proxima = false
+                            self.estado_vigente = true
+                            #accion_alarma_hoy  << accion
+                            #AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
+                            
+        end
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         (self.contador_seg > self.f_seguimiento || self.f_seguimiento == 0)
       end
@@ -185,7 +210,7 @@ puts search2
   end
 
   def sumar_costo
-
+    
     report = Report.find(report_id)
     report.costo_presupuestado = 0 if report.costo_presupuestado == nil 
     report.costo_presupuestado = report.costo_presupuestado + self.costo_presupuestado

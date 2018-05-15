@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414185911) do
+ActiveRecord::Schema.define(version: 20180515171538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20180414185911) do
     t.text "justificacion_cumplio"
     t.boolean "send_mail"
     t.integer "costo_presupuestado"
+    t.boolean "estado_vencida"
+    t.boolean "estado_proxima"
+    t.boolean "estado_vigente"
   end
 
   create_table "accions_causa_efectos", id: false, force: :cascade do |t|
@@ -353,6 +356,9 @@ ActiveRecord::Schema.define(version: 20180414185911) do
     t.boolean "send_mail"
     t.integer "source_parent_id"
     t.integer "costo_presupuestado"
+    t.boolean "estado_vencida"
+    t.boolean "estado_proxima"
+    t.boolean "estado_vigente"
   end
 
   create_table "riesgos", id: :serial, force: :cascade do |t|
@@ -461,6 +467,9 @@ ActiveRecord::Schema.define(version: 20180414185911) do
     t.text "justificacion_cumplio"
     t.boolean "send_mail"
     t.integer "accion_id"
+    t.boolean "estado_vencida"
+    t.boolean "estado_proxima"
+    t.boolean "estado_vigente"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
