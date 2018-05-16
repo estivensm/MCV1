@@ -49,6 +49,7 @@
         <tr style="background:#565656;color:white">
                 <th style="padding:5px">Tipo</th>
                 <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Reporte</th>
                 <th style="padding:5px">Fecha de Vencimiento</th>
                 <th style="padding:5px">Dias Vencidos</th>        
         </tr>
@@ -57,6 +58,7 @@
         <tr>
                 <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
                 <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
+                <td style="color:gray;padding:5px;width: 40%"><%= a.report.source.name%><%= a.report.name%> </td>
                 <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
                 <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
         </tr>
