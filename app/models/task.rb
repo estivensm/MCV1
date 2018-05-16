@@ -37,6 +37,9 @@ class Task < ApplicationRecord
   before_update :cerrar_task
 	scope :cerradas, -> { where(estado: true) }
   scope :abiertas, -> { where(estado: false) }
+  scope :vigentes, -> { where('contador_seg > ?', 5) }
+  scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
+  scope :vencidas, -> { where('contador_seg < ?', 0) }
 
 
 
