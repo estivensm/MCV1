@@ -59,7 +59,7 @@
         <tr>
                 <td style="color:gray;padding:5px;width: 10%"><%= a.tipo%></td>
                 <td style="color:gray;padding:5px;width: 20%"><%= a.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.report.source.name%> <%= a.report.name%> </td>
+                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.report.source.name%></strong>: <%= a.report.name%> </td>
                 <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
                 <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
         </tr>
@@ -86,8 +86,8 @@
         <tr>
       
                 <td style="color:gray;padding:5px;width: 20%"><%= a.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.accion.tipo%> <%= a.accion.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.accion.report.source.name%> <%= a.accion.report.name%> </td>
+                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.tipo%>:</strong> <%= a.accion.name%> </td>
+                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.report.source.name%>:</strong> <%= a.accion.report.name%> </td>
                 <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
 
                 <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
@@ -154,7 +154,7 @@
         <tr>
                 <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
                 <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
-                     <td style="color:gray;padding:5px;width: 20%"><%= a.report.source.name%> <%= a.report.name%> </td>
+                     <td style="color:gray;padding:5px;width: 20%"><strong><%= a.report.source.name%>: </strong> <%= a.report.name%> </td>
                 <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
                 <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%> </td>
         </tr>
@@ -181,8 +181,8 @@
         <tr>
           
                 <td style="color:gray;padding:5px;width: 20%"><%= a.name%> </td>
-                 <td style="color:gray;padding:5px;width: 20%"><%= a.accion.tipo%> <%= a.accion.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.accion.report.source.name%> <%= a.accion.report.name%> </td>
+                            <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.tipo%>:</strong> <%= a.accion.name%> </td>
+                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.report.source.name%></strong> <%= a.accion.report.name%> </td>
                 <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
                 <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg %> </td>
         </tr>
