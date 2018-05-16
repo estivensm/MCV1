@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   
   def mis_reportesd
       @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
-      @reports_all = Report.where(admin_user: current_user.admin_user)
+      @reports_all = Report.where(admin_user: current_user.admin_user).abiertos
       @reportspv = @reports_all.proximos.count
       @reportsv = @reports_all.vencidos.count
       @reportsvi = @reports_all.vigentes.count
