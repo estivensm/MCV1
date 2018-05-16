@@ -69,6 +69,9 @@ class Report < ApplicationRecord
   scope :cerrados, -> { where(state: "Cerrado") }
   scope :abiertos, -> { where(state: "Abierto") }
   scope :alerta, -> { where('contador_seg <= ?', 5) }
+  scope :vigentes, -> { where('contador_seg > ?', 5) }
+scope :proximos, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
+scope :vencidos, -> { where('contador_seg < ?', 0) }
   scope :alerta1, ->   { joins(:accions).merge(Accion.alerta) }
 
  

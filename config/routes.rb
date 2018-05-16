@@ -209,9 +209,9 @@ end
         devise_for :users, controllers: { registrations: "registrations", passwords: 'users/passwords'   }
           
   #authenticated :user do
-    root to: 'dashboard#mis_reportesd'#, as: :authenticated_root
-    
-    get 'dashboard/index', to: 'dashboard#index', as: 'dashboard_index'
+    root to: 'dashboard#index'#, as: :authenticated_root
+    get 'dashboard/mis_reportesd', to: 'dashboard#mis_reportesd', as: 'mis_reportesd'
+   
   #end
  
   get 'editar_usuario/:id', to: 'employeds#edit_myself', as: 'edit_myself'
