@@ -56,6 +56,7 @@ scope :abiertas, -> { where(estado: "Abierta") }
 scope :vigentes, -> { where('contador_seg > ?', 5) }
 scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
 scope :vencidas, -> { where('contador_seg < ?', 0) }
+scope :alerta1, -> { where('contador_seg <= ?', 5) }
 scope :alerta, ->   { where(estado_vencida: true) }
 
 

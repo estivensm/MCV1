@@ -22,13 +22,13 @@ class DashboardController < ApplicationController
     @reportsvi = @reports_all.where("contador_seg > ? ", 5).count
 
 
-    @accions_all = Accion.abiertas.where(employed_id:@employed.id)
+    @accions_all = Accion.abiertas.where(employed_id:@employed.id).alerta1
   	@accions = @accions_all.order(f_compromiso: :asc)
   	@accionspv = @accions_all.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
   	@accionsv = @accions_all.where("contador_seg < ?", 0).count
     @accionsvi = @accions_all.where("contador_seg > ?", 5).count
 
-    @tasks_all = Task.abiertas.where(employed_id:@employed.id)
+    @tasks_all = Task.abiertas.where(employed_id:@employed.id).alerta
     @tasks = @tasks_all.order(f_compromiso: :asc)
     @taskspv = @tasks_all.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @tasksv = @tasks_all.where("contador_seg < ?", 0).count
