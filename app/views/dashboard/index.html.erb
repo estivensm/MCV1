@@ -8,7 +8,7 @@
    <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px;">Reportes</strong><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></span> Vigentes <span class="label label-success br"><%=@reportsvi%></span></p>
+            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:12px;">(En los cuales eres responsable y estan vencidos o proximos a vencer)</span></strong><br><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></span> Vigentes <span class="label label-success br"><%=@reportsvi%></span></p>
             <hr class="hr">
          </div>
          
@@ -41,7 +41,7 @@
 
                <div class="col-md-1 rtd">
 <a class="" href="/reports/<%=report.id%>">
-<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i>  
+<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte 
 
 </a>
                </div>
@@ -49,7 +49,7 @@
                <div class="col-md-3 rtd">
                   <div class="row text-center">
                 <div class="col-md-12" style="" >
-                      <strong>Gestion</strong>
+                      <strong>Gestion del Reporte</strong>
                 </div>
                 <div class="col-md-4" style="background:#0db4a4; color:white">
                       <strong><%=report.accions.abiertas.vigentes.count%></strong>
@@ -70,20 +70,21 @@
 </a>
 
                </div>
-               <div class="col-md-7 rtd"> <strong><%=report.source.name%>: </strong><%=report.name%></div>
+               <div class="col-md-7 rtd"> <strong><%=report.source.name.upcase%>: </strong><%=report.name%></div>
                 
              
                <div class="collapse col-md-12" id="collapseExample<%=report.id%>">
   <div class="well">
-  <h3>Gestion</h3>
+  <h4>Gestion del Reporte</h4>
          <table class="table tl">
           <thead>
              <tr>
                <th>Tipo</th>
-               <th>Nombre</th>
+               <th>Descripción</th>
                <th>Responsable</th>
                <th>Fecha de Compromiso</th>
                <th>Días para cierre</th>
+               <th>Link</th>
              </tr>
            </thead>
            <tbody>
@@ -97,6 +98,7 @@
                <td><%=accion.employed.first_name%> <%=accion.employed.first_last_name%></td>
                <td class="<%=clase%>"><%=accion.f_compromiso%></td>
                <td><%=accion.contador_seg%></td>
+               <td><a href="/reports/<%=report.id%>/accions/<%accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
              </tr>
            <%end%>
            </tbody>
@@ -122,7 +124,7 @@
    <div class="col-md-12" style= "    border-right: 1px solid gainsboro;    padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones</strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
+            <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones  <span style = "font-size:12px;">(En las cuales eres responsable y estan vencidas o proximas a vencer)</span></strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
                <span class="label label-warning br"><%=@accionspv%></span>Vigentes
                <span class="label label-success br"><%=@accionsvi%></span>
             </p>
@@ -138,11 +140,12 @@
                      accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
                       color = "#22c488" if accion.contador_seg > 5 %>
                  <div class="row">
+                 <div class="col-md-12 rtd" style="margin-bottom:10px;"><strong>LA <%=accion.tipo.upcase%> PERTENECE AL REPORTE <i class="fa fa-arrow-right"></i></strong> <strong>Tipo: </strong> <%=accion.report.source.name.upcase%> <strong>Descripción: </strong><%=accion.report.name%> <a href="/reports/<%=accion.report_id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte</a></div>
                   <div class="col-md-4 rtd"> <%if accion.s_cierre %>
                   <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
 
               <%end%>
-               <strong>Asignado por:</strong>
+               <strong>Asignada por:</strong>
               <%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
                   <%color = ""
                   accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
@@ -158,7 +161,7 @@
                </div>
                    <div class="col-md-1 rtd">
 <a class="" href="/reports/<%=accion.report_id%>/accions/<%=accion.id%>">
-<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i>  
+<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> ir a la <%=accion.tipo%>
 
 </a>
                </div>
@@ -186,7 +189,7 @@
 <i class="fa fa-caret-down" aria-hidden="true" style="font-size:20px;"></i>  
 
 </a></div>
-                  <div class="col-md-8 rtd"><%= accion.tipo.upcase %>: <%= accion.name %></div>
+                  <div class="col-md-8 rtd"><strong><%= accion.tipo.upcase %>:</strong> <%= accion.name %></div>
                  
                   
 
@@ -204,6 +207,7 @@
                <th>Responsable</th>
                <th>Fecha de Compromiso</th>
                <th>Días para cierre</th>
+               <th>Link</th>
              </tr>
            </thead>
            <tbody>
@@ -217,6 +221,7 @@
                <td><%=tasks.employed.first_name%> <%=accion.employed.first_last_name%></td>
                <td class="<%=clase%>"><%=tasks.f_compromiso%></td>
                <td><%=tasks.contador_seg%></td>
+               <td><a href="/reports/<%=accion.report_id%>/accions/<%accion.id%>/tareas/<%=tasks.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la Tarea</td>
              </tr>
            <%end%>
            </tbody>
@@ -227,13 +232,8 @@
       </div>
        
       </div>
- <div class="row">
-   
+ 
 
-  <div class="col-md-4 rtd"></div>
-            
-   <div class="col-md-8 rtd">PERTENECE A <%=accion.report.source.name.upcase%>: <%=accion.report.name%></div>
- </div>               
  </div>
                  
                
@@ -254,7 +254,7 @@
     <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr" >
-            <p class = "prox"><strong style="font-size:25px;">Tareas</strong><br> Vencidas <span class="label label-danger br"><%=@tasksv%></span> Proximas a Vencer 
+            <p class = "prox"><strong style="font-size:25px;">Tareas <span style = "font-size:12px;">(En las cuales eres responsable y estan vencidas o proximas a vencer)</span></strong><br> Vencidas <span class="label label-danger br"><%=@tasksv%></span> Proximas a Vencer 
                <span class="label label-warning br"><%=@taskspv%></span>Vigentes 
                <span class="label label-success br"><%=@tasksvi%></span>
             </p>
@@ -268,6 +268,10 @@
                <div class="row rtr rtr1" style="  background: #fffee1;border-bottom: 1px solid gainsboro;padding: 10px;border: 1px solid #cbcbcb;
     margin-bottom: 10px;">
     <div class="row">
+
+     <div class="col-md-6 rtd" style="margin-bottom:10px;"><strong>LA TAREA PERTENECE A LA <%=task.accion.tipo.upcase%> <i class="fa fa-arrow-right"></i></strong> <strong>Descripción: </strong><%=task.accion.name%> <a href="/reports/<%=task.accion.report_id%>/accions/<%=task.accion.id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=task.accion.tipo%></a></div>
+
+      <div class="col-md-6 rtd" style="margin-bottom:10px;"><strong>LA <%=task.accion.tipo.upcase%> PERTENECE AL REPORTE <i class="fa fa-arrow-right"></i></strong> <strong>Tipo: </strong> <%=task.accion.report.source.name.upcase%> <strong>Descripción: </strong><%=task.accion.report.name%> <a href="/reports/<%=task.accion.report_id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte</a></div>
       
    
                    <div class="col-md-4 rtd"> 
@@ -284,15 +288,14 @@
 
                 <div class="col-md-1 rtd">
 <a class="" href="/reports/<%=task.accion.report_id%>/accions/<%=task.accion.id%>/tasks/<%task.id%>">
-<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i>  
+<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> ir a la tarea 
 
 </a>
                </div>
                 </div>
                 <div class="row">
-                   <div class="col-md-4 rtd">TAREA: <%=task.name%></div>
-                  <div class="col-md-4 rtd"><%=task.accion.tipo.upcase%>: <%=task.accion.name%></div>
-                  <div class="col-md-4 rtd"><%=task.accion.report.source.name.upcase%>: <%=task.accion.report.name%></div>
+                   <div class="col-md-4 rtd"><strong>TAREA: </strong><%=task.name%></div>
+             
                 </div>
                  
                </div>

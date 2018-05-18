@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
   def index
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
 
-    @reports_all = Report.abiertos.where(employed_id:@employed.id)
+    @reports_all = Report.abiertos.where(employed_id:@employed.id).abiertos.alerta
     @reports = @reports_all.order(f_compromiso: :asc)
     @reportspv = @reports_all.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @reportsv = @reports_all.where("contador_seg < ?", 0).count
