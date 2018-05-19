@@ -8,7 +8,7 @@
    <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:12px;">(Que creaste y estan vencidos o proximos a vencer)</span></strong><br><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></span> Vigentes <span class="label label-success br"><%=@reportsvi%></span></p>
+            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:12px;">(Que creaste y estan vencidos o proximos a vencer)</span></strong><br><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></p>
             <hr class="hr">
          </div>
          
@@ -124,9 +124,8 @@
    <div class="col-md-12" style= "    border-right: 1px solid gainsboro;    padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones  <span style = "font-size:12px;">(Las cuales creaste y estan vencidas o proximas a vencer)</span></strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
-               <span class="label label-warning br"><%=@accionspv%></span>Vigentes
-               <span class="label label-success br"><%=@accionsvi%></span>
+            <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones  <span style = "font-size:12px;">(Las cuales creaste y estan vencidas o proximas a vencer)</span></strong><br> <br>Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
+               <span class="label label-warning br"><%=@accionspv%></span>
             </p>
             <hr class="hr">
            
@@ -240,7 +239,7 @@
                <%end%>
           
             <%else%>
-               <p class="nh">No hay Acciones </p>
+               <p class="nh">No hay Acciones, Correccion ni Actividades </p>
                <%end%>
             </div>
             
@@ -254,9 +253,8 @@
     <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
          <div class="row rtr" >
-            <p class = "prox"><strong style="font-size:25px;">Tareas <span style = "font-size:12px;">(Las cuales creaste y estan vencidas o proximas a vencer)</span></strong><br> Vencidas <span class="label label-danger br"><%=@tasksv%></span> Proximas a Vencer 
-               <span class="label label-warning br"><%=@taskspv%></span>Vigentes 
-               <span class="label label-success br"><%=@tasksvi%></span>
+            <p class = "prox"><strong style="font-size:25px;">Tareas <span style = "font-size:12px;">(Las cuales creaste y estan vencidas o proximas a vencer)</span></strong><br><br> Vencidas <span class="label label-danger br"><%=@tasksv%></span> Proximas a Vencer 
+               <span class="label label-warning br"><%=@taskspv%></span>
             </p>
             <hr class="hr">
    
