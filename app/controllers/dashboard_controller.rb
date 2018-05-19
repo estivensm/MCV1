@@ -43,19 +43,19 @@ class DashboardController < ApplicationController
 
 
     @reports_all = Report.abiertos.where(employed_reporta:@employed.id)
-    @reports =   @reports_all.order(f_compromiso: :asc)
+    @reports =   @reports_all.order(f_compromiso: :asc).alerta
     @reportspv = @reports_all.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @reportsv =  @reports_all.where("contador_seg < ?", 0).count
     @reportsvi = @reports_all.where("contador_seg > ? ", 5).count
 
     @accions_all = Accion.abiertas.where(user_id: current_user.id)
-    @accions = @accions_all.order(f_compromiso: :asc)
+    @accions = @accions_all.order(f_compromiso: :asc).alerta1
     @accionspv = @accions_all.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @accionsv = @accions_all.where("contador_seg < ?", 0).count
     @accionsvi = @accions_all.where("contador_seg > ?", 5).count
 
     @tasks_all = Task.abiertas.where(user_id: current_user.id)
-    @tasks = Task.abiertas.where(user_id: current_user.id).order(f_compromiso: :asc)
+    @tasks = Task.abiertas.where(user_id: current_user.id).order(f_compromiso: :asc).alerta
      @taskspv = @tasks_all.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @tasksv = @tasks_all.where("contador_seg < ?", 0).count
     @tasksvi = @tasks_all.where("contador_seg > ?", 5).count
@@ -65,12 +65,12 @@ class DashboardController < ApplicationController
   def invitado_d
 
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
-    @reports = @employed.reports.abiertos.order(f_compromiso: :asc)
+    @reports = @employed.reports.abiertos.order(f_compromiso: :asc).alerta
     @reportspv = @employed.reports.abiertos.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @reportsv = @employed.reports.abiertos.where("contador_seg < ?", 0).count
     @reportsvi = @employed.reports.abiertos.where("contador_seg > ?", 5).count
 
-    @accions = @employed.accions.abiertas.order(f_compromiso: :asc)
+    @accions = @employed.accions.abiertas.order(f_compromiso: :asc).alerta1
     @accionspv = @employed.accions.abiertas.where("contador_seg <= ? AND contador_seg >= ? ", 5,0).count
     @accionsv = @employed.accions.abiertas.where("contador_seg < ?", 0).count
     @accionsvi = @employed.accions.abiertas.where("contador_seg > ?", 5).count

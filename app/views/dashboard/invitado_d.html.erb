@@ -1,103 +1,325 @@
 <%= render 'encabezado'%>
 <br>
-<div class="row">
-   <div class="col-md-6">
-      <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
-         <div class="conteinter reporte">
-            <div class="row rtr">
-               <p class = "prox"><strong style="font-size:25px;"> Reportes</strong> <br>Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></span> Vigentes <span class="label label-success br"><%=@reportsvi%></span></p>
-               <hr class="hr">
-            </div>
-            <div class="row rtr">
-               <div class="col-md-3 rtd"><strong>Asigno</strong> </div>
-               <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
-               
-               <div class="col-md-6 rtd"><strong>Descripcion</strong></div>
-            </div>
-            <div class="descnum1">
-               <%if @reports.count > 0 %>
-               <% @reports.each do |report|%>
-               <%= link_to report_path(report) do %>
-               <div class="row rtr rtr1">
 
-                  <%employed = Employed.find(report.employed_reporta)%>
-                  <%color = ""
-                     report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                     color = "#22c488" if report.contador_seg > 5 %>
-                  
-                  <div class="col-md-3 rtd">
-                  <%if report.s_cierre %>
-                  <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
-              <%end%><%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></div>
-              <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(report.f_compromiso)%></div>
-                  <div class="col-md-6 rtd"><%=report.name%></div>
-               </div>
-               <%end%>
-               <%end%>
-               <%else%>
-               <p class="nh">No hay Reportes</p>
-               <%end%>
-            </div>
+
+
+
+<div class="row">
+   <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
+      <div class="conteinter reporte">
+         <div class="row rtr">
+            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:12px;">(En los cuales fuiste invitado y estan vencidos o proximos a vencer)</span></strong><br><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></span> Vigentes <span class="label label-success br"><%=@reportsvi%></span></p>
+            <hr class="hr">
          </div>
-      </div>
-      <div class="col-md-12" style= "    border-right: 1px solid gainsboro;    padding: 0px;">
-         <div class="conteinter reporte">
-            <div class="row rtr">
-               <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones</strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
-                  <span class="label label-warning br"><%=@accionspv%></span>Vigentes
-                  <span class="label label-success br"><%=@accionsvi%></span>
-               </p>
-               <hr class="hr">
-               <div class="row rtr">
-                  <div class="col-md-3 rtd"><strong>Asigno</strong> </div>
-                  <div class="col-md-3 rtd"><strong><i class="fa fa-calendar" aria-hidden="true"></i> Entrega</strong></div>
-               
-                   <div class="col-md-4 rtd"><strong>Descripcion</strong></div>
-               <div class="col-md-2 rtd"><strong>Tipo</strong></div>
-               </div>
-               <div class="descnum1">
-                  <%if @accions.count > 0 %>
-                  <% @accions.each do |accion|%>
-                  <%= link_to report_accion_path(accion.report_id,accion) do %>
-                  <div class="row rtr rtr1">
-                     <%color = ""
-                        accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                         color = "#22c488" if accion.contador_seg > 5 %>
-                  
-                     <div class="col-md-3 rtd">
-                      <%if accion.s_cierre %>
+         
+         <div class="">
+             <%if @reports.count > 0 %>
+            <% @reports.each do |report|%>
+          
+            <div class="row rtr rtr1" style= "    background: #fffee1;border-bottom: 1px solid gainsboro;padding: 10px;border: 1px solid #cbcbcb;
+    margin-bottom: 10px;">
+               <%employed = Employed.find(report.employed_id)%>
+              <div class="col-md-4 rtd"> 
+              <%if report.s_cierre %>
                   <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
               <%end%>
-                     <%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
-                        <div class="col-md-3 rtd fc1" style= "background:<%=color%>;color:white"><%=get_date(accion.f_compromiso)%></div>
-                     <div class="col-md-4 rtd"><%= accion.name %></div>
-                  <div class="col-md-2 rtd"><%= accion.tipo %></div>
-                  </div>
-                  <%end%>
-                  <%end%>
-                  <%else%>
-                  <p class="nh">No hay Acciones </p>
-                  <%end%>
+              <strong>Invitado por:</strong>
+              <%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%></div>
+               <%color = ""
+                  report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
+                  color = "#22c488" if report.contador_seg > 5 %>
+               <div class="col-md-3 rtd fc1 text-center" style= "background:<%=color%>;color:white">
+               <strong>Fecha de compromiso: <br></strong> 
+               <%=get_date(report.f_compromiso)%>&nbsp;&nbsp;&nbsp; <%= report.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=report.contador_seg.abs%> días</div>
+               
+               
+                <div class="col-md-4 rtd text-center"><strong>Seguimiento: <br></strong> <% time = "" 
+        report.fp_seguimiento > Time.now ? time = "" : time = " Pendiente de Seguimiento "%>
+                <span><%=get_date(report.fp_seguimiento)%><%=time%></span>
+                  
                </div>
+
+               <div class="col-md-1 rtd">
+<a class="" href="/reports/<%=report.id%>">
+<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte 
+
+</a>
+               </div>
+               
+               <div class="col-md-3 rtd">
+                  <div class="row text-center">
+                <div class="col-md-12" style="" >
+                      <strong>Gestion del Reporte</strong>
+                </div>
+                <div class="col-md-4" style="background:#0db4a4; color:white">
+                      <strong><%=report.accions.abiertas.vigentes.count%></strong>
+                </div>
+                <div class="col-md-4" style="background:orange; color:white">
+                      <strong><%=report.accions.abiertas.proximas.count%></strong>
+                </div>
+                <div class="col-md-4" style="background:#d82c2c; color:white">
+                      <strong><%=report.accions.abiertas.vencidas.count%></strong>
+                </div>
+                
+              </div>
+              
+               </div>
+                  <div class="col-md-1 rtd"><a class="" style="margin-right:10px;" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+<i class="fa fa-caret-down" aria-hidden="true" style="font-size:20px;"></i>  
+
+</a>
+
+               </div>
+               <div class="col-md-7 rtd" style="font-size:16px;"> <strong><%=report.source.name.upcase%>: </strong><%=report.name%></div>
+                
+             
+               <div class="collapse col-md-12" id="collapseExample<%=report.id%>">
+  <div class="well">
+  <h4>Gestion del Reporte</h4>
+         <table class="table tl">
+          <thead>
+             <tr>
+               <th>Tipo</th>
+               <th>Descripción</th>
+               <th>Responsable</th>
+               <th>Fecha de Compromiso</th>
+               <th>Días para cierre</th>
+               <th>Link</th>
+             </tr>
+           </thead>
+           <tbody>
+           <% report.accions.abiertas.each do |accion|%>
+            <%clase = ""
+                  accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                  clase = "vigenteb" if accion.contador_seg > 5 %>
+             <tr>
+               <td><%=accion.tipo%></td>
+               <td><%=accion.name%></td>
+               <td><%=accion.employed.first_name%> <%=accion.employed.first_last_name%></td>
+               <td class="<%=clase%>"><%=accion.f_compromiso%></td>
+               <td><%=accion.contador_seg%></td>
+               <td><a href="/reports/<%=report.id%>/accions/<%accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
+             </tr>
+           <%end%>
+           </tbody>
+         </table>
+      
+  </div>
+      
+       
+      
+  </div>
             </div>
+            
+            <%end%>
+            <%else%>
+               <p class="nh">No hay Reportes</p>
+               <%end%>
          </div>
       </div>
    </div>
-   <div class="col-md-6">
-      <div class="col-md-12">
-         <div id="calendari"></div>
+   </div>
+   <hr>
+   <div class="row">
+   <div class="col-md-12" style= "    border-right: 1px solid gainsboro;    padding: 0px;">
+      <div class="conteinter reporte">
+         <div class="row rtr">
+            <p class = "prox"><strong style="font-size:25px";>Actividades, Acciones y Correcciones  <span style = "font-size:12px;">(En las cuales fuiste invitado y estan vencidas o proximas a vencer)</span></strong><br> Vencidas <span class="label label-danger br"><%=@accionsv%></span>  Proximas a Vencer 
+               <span class="label label-warning br"><%=@accionspv%></span>Vigentes
+               <span class="label label-success br"><%=@accionsvi%></span>
+            </p>
+            <hr class="hr">
+           
+            <div class="">
+             <%if @accions.count > 0 %>
+               <% @accions.each do |accion|%>
+              
+               <div class="row rtr rtr1" style= "    background: #fffee1;border-bottom: 1px solid gainsboro;padding: 10px;border: 1px solid #cbcbcb;
+    margin-bottom: 10px;">
+                  <%color = ""
+                     accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
+                      color = "#22c488" if accion.contador_seg > 5 %>
+                 <div class="row">
+                 <div class="col-md-12 rtd" style="margin-bottom:10px;"><strong>LA <%=accion.tipo.upcase%> PERTENECE AL REPORTE <i class="fa fa-arrow-right"></i></strong> <strong>Tipo: </strong> <%=accion.report.source.name.upcase%> <strong>Descripción: </strong><%=accion.report.name%> <a href="/reports/<%=accion.report_id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte</a></div>
+                  <div class="col-md-4 rtd"> <%if accion.s_cierre %>
+                  <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
+
+              <%end%>
+               <strong>Invitado por:</strong>
+              <%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
+                  <%color = ""
+                  accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
+                  color = "#22c488" if accion.contador_seg > 5 %>
+               <div class="col-md-3 rtd fc1 text-center" style= "background:<%=color%>;color:white">
+               <strong>Fecha de compromiso: <br></strong> 
+               <%=get_date(accion.f_compromiso)%>&nbsp;&nbsp;&nbsp; <%= accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=accion.contador_seg.abs%> días</div>
+               
+                <div class="col-md-4 rtd text-center"><strong>Seguimiento: <br></strong> <% time = "" 
+        accion.fp_seguimiento > Time.now ? time = "" : time = " Pendiente de Seguimiento "%>
+                <span><%=get_date(accion.fp_seguimiento)%><%=time%></span>
+                  
+               </div>
+                   <div class="col-md-1 rtd">
+<a class="" href="/reports/<%=accion.report_id%>/accions/<%=accion.id%>">
+<i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> ir a la <%=accion.tipo%>
+
+</a>
+               </div>
+
+
+                 <div class="col-md-3 rtd">
+                  <div class="row text-center">
+                <div class="col-md-12" style="" >
+                      <strong>Tareas</strong>
+                </div>
+                <div class="col-md-4" style="background:#0db4a4; color:white">
+                      <strong><%=accion.tasks.abiertas.vigentes.count%></strong>
+                </div>
+                <div class="col-md-4" style="background:orange; color:white">
+                      <strong><%=accion.tasks.abiertas.proximas.count%></strong>
+                </div>
+                <div class="col-md-4" style="background:#d82c2c; color:white">
+                      <strong><%=accion.tasks.abiertas.vencidas.count%></strong>
+                </div>
+                
+              </div>
+              
+               </div>
+                  <div class="col-md-1 rtd"><a class="" style="margin-right:10px;" role="button" data-toggle="collapse" href="#collapseExample<%=accion.id%>" aria-expanded="false" aria-controls="collapseExample">
+<i class="fa fa-caret-down" aria-hidden="true" style="font-size:20px;"></i>  
+
+</a></div>
+                  <div class="col-md-8 rtd" style="font-size:16px;"><strong><%= accion.tipo.upcase %>:</strong> <%= accion.name %></div>
+                 
+                  
+
+
+                   <div class="collapse col-md-12" id="collapseExample<%=accion.id%>">
+  <div class="well">
+
+
+  <h3>Tareas</h3>
+         <table class="table tl">
+          <thead>
+             <tr>
+       
+               <th>Nombre</th>
+               <th>Responsable</th>
+               <th>Fecha de Compromiso</th>
+               <th>Días para cierre</th>
+               <th>Link</th>
+             </tr>
+           </thead>
+           <tbody>
+           <% accion.tasks.abiertas.each do |tasks|%>
+            <%clase = ""
+                  tasks.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                  clase = "vigenteb" if tasks.contador_seg > 5 %>
+             <tr>
+             
+               <td><%=tasks.name%></td>
+               <td><%=tasks.employed.first_name%> <%=accion.employed.first_last_name%></td>
+               <td class="<%=clase%>"><%=tasks.f_compromiso%></td>
+               <td><%=tasks.contador_seg%></td>
+               <td><a href="/reports/<%=accion.report_id%>/accions/<%accion.id%>/tareas/<%=tasks.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la Tarea</td>
+             </tr>
+           <%end%>
+           </tbody>
+         </table>
+      
+  </div>
+        
+      </div>
+       
+      </div>
+ 
+
+ </div>
+                 
+               
+               <%end%>
+          
+            <%else%>
+               <p class="nh">No hay Acciones </p>
+               <%end%>
+            </div>
+            
+         </div>
       </div>
    </div>
-</div>
-<hr>
-<div class="row">
-</div>
-<hr>
+ 
+ </div>   
+
+
 <style>
-   .nh
-   {
-   text-align: center;
-   margin-top: 70px;
-   font-size: 14px;
-   }
+.nh
+{
+      text-align: center;
+    margin-top: 70px;
+    font-size: 14px;
+}
+  
+</style>
+
+
+<style>
+.report-ds
+{
+  background: #f2f2f2;
+  color: gray;
+  margin-bottom: 50px;
+  padding: 10px;
+}
+.vencido
+{
+
+  border-right: 10px solid #d82c2c;
+  border-left: 10px solid #d82c2c;
+}
+.proximo
+{
+
+  border-right: 10px solid orange;
+  border-left: 10px solid orange;
+}
+.vigente
+{
+
+  border-right: 10px solid #22c488;
+  border-left: 10px solid #22c488;
+}
+.vencidob
+{
+
+  background:  #d82c2c;
+  color: white;
+
+}
+.proximob
+{
+
+  background:  orange;
+  color: white;
+ 
+}
+.vigenteb
+{
+
+  background: #22c488;
+  color: white;
+
+}
+.table td
+{
+  text-align: center;
+}
+
+.tl th
+{
+  border-top: 1px solid #cecece !important;
+}
+.well
+{
+  background: white !important;
+}
 </style>
