@@ -269,10 +269,6 @@
     margin-bottom: 10px;">
     <div class="row">
 
-     <div class="col-md-6 rtd" style="margin-bottom:10px;"><strong>LA TAREA PERTENECE A LA <%=task.accion.tipo.upcase%> <i class="fa fa-arrow-right"></i></strong> <strong>Descripción: </strong><%=task.accion.name%> <a href="/reports/<%=task.accion.report_id%>/accions/<%=task.accion.id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=task.accion.tipo%></a></div>
-
-      <div class="col-md-6 rtd" style="margin-bottom:10px;"><strong>LA <%=task.accion.tipo.upcase%> PERTENECE AL REPORTE <i class="fa fa-arrow-right"></i></strong> <strong>Tipo: </strong> <%=task.accion.report.source.name.upcase%> <strong>Descripción: </strong><%=task.accion.report.name%> <a href="/reports/<%=task.accion.report_id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte</a></div>
-      
    
                    <div class="col-md-4 rtd"> 
                <strong>Asignado por:</strong>
@@ -291,6 +287,12 @@
 <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> ir a la tarea 
 
 </a>
+
+
+     <div class="col-md-6 rtd" style="margin-bottom:10px;"><strong>LA TAREA PERTENECE A LA <%=task.accion.tipo.upcase%> <i class="fa fa-arrow-right"></i></strong> <strong>Descripción: </strong><%=task.accion.name%> <a href="/reports/<%=task.accion.report_id%>/accions/<%=task.accion.id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=task.accion.tipo%></a></div>
+
+      <div class="col-md-6 rtd" style="margin-bottom:10px;"><strong>LA <%=task.accion.tipo.upcase%> PERTENECE AL REPORTE <i class="fa fa-arrow-right"></i></strong> <strong>Tipo: </strong> <%=task.accion.report.source.name.upcase%> <strong>Descripción: </strong><%=task.accion.report.name%> <a href="/reports/<%=task.accion.report_id%>">&nbsp;&nbsp; <i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir al Reporte</a></div>
+      
                </div>
                 </div>
                 <div class="row">
