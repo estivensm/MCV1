@@ -28,12 +28,14 @@ namespace :resumen do
                                 times = report.f_compromiso.to_time
                                 time =  times.to_i - Time.now.to_i
                                 report.contador_seg = (time / 60 / 60/ 24) + 1
+                                puts report.contador_seg
 
                                 if report.contador_seg <= 5 && report.contador_seg >= 0
                                     
                                     report.estado_vencida = false
                                     report.estado_proxima = true
                                     report.estado_vigente = false
+                                    puts "entreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
                                     @reports_alarma_proximo << report             
                                     #AlertaMailer.vencimiento_report(employed,report, "proximo").deliver
                                     
@@ -87,13 +89,15 @@ namespace :resumen do
                         times = accion.f_compromiso.to_time
                         time =  times.to_i - Time.now.to_i
                         accion.contador_seg = (time / 60 / 60/ 24) + 1
-                       
+                        puts "accionnnn"
+                        puts accion.contador_seg
                         
 
                         if accion.contador_seg <= 5 && accion.contador_seg >= 0
                             accion.estado_vencida = false
                             accion.estado_proxima = true
                             accion.estado_vigente = false
+                            puts "holiassssssssssssssssssssssss"
                             @accion_alarma_proximo << accion
                             #AlertaMailer.vencimiento_accion(employed,accion,"proxima").deliver
                             
@@ -174,7 +178,8 @@ namespace :resumen do
 
               AlertaMailer.resumen(empleado, @reports_alarma_vencido,@reports_alarma_proximo,@reports_seguimiento, @accion_alarma_vencido,@accion_alarma_proximo,@accion_seguimiento, @task_alarma_vencido,@task_alarma_proximo).deliver
               puts "holaaaaaaaaaaa"
-              puts @reports_alarma_proximo
+              puts @reports_alarma_proximo.count
+            
             end    
          end   
     end

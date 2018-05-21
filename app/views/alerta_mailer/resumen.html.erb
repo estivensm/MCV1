@@ -12,186 +12,146 @@
 <%else%>
 
 
-<%if  !(@report_v.count == 0 && @accion_v.count == 0 && @task_v.count == 0)%>
+<%if  !(@report_v.count == 0 && @report_p.count == 0  && @accion_v.count == 0 && @task_v.count == 0)%>
 
- <h1 style="color:gray;text-align:center">GESTION VENCIDA</h1>
+ <h1 style="color:gray;text-align:center">GESTION VENCIDA O PROXIMA A VENCER</h1>
 
-<%if @report_v.count != 0%>
-        <h3 style="color:gray">REPORTES</h3>
+<%if @report_v.count != 0 ||  @report_p.count != 0%>
+        <h3 style="color:gray">REPORTES (En los cuales eres responsable y estan vencidos o proximos a vencer)</h3>
         <table style="width: 100%;">
         
         <tr style="background:#565656;color:white">
                  <th style="padding:5px">Tipo</th>
-                <th style="padding:5px">Nombre</th>
-                <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias Vencidos</th>  
+                <th style="padding:5px">Descripcion</th>
+                <th style="padding:5px">Compromiso</th>
+                 <th style="padding:5px">Días</th>
+                  
 
         </tr>
         <%@report_v.each do |a|%>
         <tr>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.source.name%> </td>
-                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
+                <td style="color:gray;padding:5px;width: 20%"><%= a.source.name%></td>
+                <td style="color:gray;padding:5px;width: 40%"> <a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.id%>" 
+                ><%= a.name%></a> </td>
                 <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%>Vencido</td>
+
+        </tr>
+
+          
+         <%end%> 
+                    <%@report_p.each do |a|%>
+        <tr>
+                <td style="color:gray;padding:5px;width: 20%"><%= a.source.name%></td>
+                <td style="color:gray;padding:5px;width: 40%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.id%>" 
+                ><%= a.name%> </a></td>
+
+                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%> para Vencer</td>
+           
         </tr>
         
         <%end%> 
-
         </table>
 
-<%end%> 
+<%end%>
+
+ <hr> 
 
 
-<%if @accion_v.count != 0%>
+<%if @accion_v.count != 0 || @accion_p.count != 0%>
 <br><br>
-        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES</h3>
+        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES (En las cuales eres responsable y estan vencidas o proximas a vencer)</h3>
         <table style="width: 100%;">
         
         <tr style="background:#565656;color:white">
                 <th style="padding:5px">Tipo</th>
-                <th style="padding:5px">Nombre</th>
+                <th style="padding:5px">Descripcion</th>
                 <th style="padding:5px">Pertenece al Reporte</th>
-                <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias Vencidos</th>        
+                <th style="padding:5px">Compromiso</th>
+                <th style="padding:5px">Dias</th>  
+
         </tr>
         
         <%@accion_v.each do |a|%>
         <tr>
                 <td style="color:gray;padding:5px;width: 10%"><%= a.tipo%></td>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.report.source.name%></strong>: <%= a.report.name%> </td>
-                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
+                <td style="color:gray;padding:5px;width: 20%"> <a style = "text-decoration:none:" href="https://mejoracontinua.herokuapp.com/reports/<%=a.report_id%>/acciones/<%=a.id%>" 
+                ><%= a.name%></a></td>
+                <td style="color:gray;padding:5px;width: 20%"> <a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.report_id%>" 
+                ><strong><%= a.report.source.name%></strong>: <%= a.report.name%> </a></td>
+                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 20%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> <br>Vencida </td>
+        </tr>
+        
+        <%end%> 
+
+        <%@accion_p.each do |a|%>
+        <tr>
+                <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
+                <td style="color:gray;padding:5px;width: 40%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.report_id%>/acciones/<%=a.id%>" 
+                ><%= a.name%></a> </td>
+                     <td style="color:gray;padding:5px;width: 20%"> <a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.report_id%>" 
+                ><strong><%= a.report.source.name%></strong>: <%= a.report.name%> </a></td>
+                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 20%;font-weight: bold"><%= a.f_compromiso%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%><br> para Vencer </td>
         </tr>
         
         <%end%> 
         </table>
 <%end%> 
 
-<%if @task_v.count != 0%>
+<hr>
+
+<%if @task_v.count != 0 || @task_p.count != 0%>
 <br><br>
-        <h3 style="color:gray">TAREAS</h3>
+        <h3 style="color:gray">TAREAS (En las cuales eres responsable y estan vencidas o proximas a vencer)</h3>
         <table style="width: 100%;">
         
         <tr style="background:#565656;color:white">
                
-                <th style="padding:5px">Nombre</th>
-                <th style="padding:5px">Accion</th>
-                <th style="padding:5px">Reporte</th>
-                <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias Vencidos</th>        
+                <th style="padding:5px">Descripcion</th>
+                <th style="padding:5px">Pertenece a </th>
+                <th style="padding:5px">Pertenece al Reporte</th>
+                <th style="padding:5px">Compromiso</th>
+                <th style="padding:5px">Dias</th>        
         </tr>
         
         <%@task_v.each do |a|%>
         <tr>
       
-                <td style="color:gray;padding:5px;width: 20%"><%= a.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.tipo%>:</strong> <%= a.accion.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.report.source.name%>:</strong> <%= a.accion.report.name%> </td>
+                <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.accion.report_id%>/acciones/<%=a.accion_id%>/tasks/<%=a.id%>" 
+                ><%= a.name%></a> </td>
+                <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.accion.report_id%>/acciones/<%=a.accion_id%>" 
+                ><strong><%= a.accion.tipo%>: </strong> <%= a.accion.name%></a></td>
+                <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.accion.report_id%>" 
+                ><strong><%= a.accion.report.source.name%></strong>: <%= a.accion.report.name%> </a></td>
                 <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
 
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg * -1%> Vencida</td>
+
         </tr>
         
-        <%end%> 
-        </table>
-<%end%>
-
-<%end%>
-
-
-
-<br>
-<%if   !(@report_p.count == 0 && @accion_p.count == 0 && @task_p.count == 0) %>
-
-<hr style="    border: 1px solid lightgrey;">
-<br><br> <br>
-<h1 style="color:gray;text-align:center">GESTION PROXIMA A VENCER</h1>
-
-
-<%if @report_p.count != 0%>
-        <h3 style="color:gray">REPORTES </h3>
-        <table style="width: 100%;">
-        
-        <tr style="background:#565656;color:white">
-                
-                <th style="padding:5px">Tipo</th>
-                <th style="padding:5px">Nombre</th>
-
-                <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias para Vencer</th>        
-        </tr>
-        <%@report_p.each do |a|%>
-        <tr>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.source.name%> </td>
-                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
-
-                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%> </td>
-        </tr>
-        
-        <%end%> 
-
-        </table>
-
-<%end%> 
-
-
-<%if @accion_p.count != 0%>
-<br>
-        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES</h3>
-        <table style="width: 100%;">
-        
-        <tr style="background:#565656;color:white">
-                <th style="padding:5px">Tipo</th>
-                <th style="padding:5px">Nombre</th>
-                <th style="padding:5px">Pertenece al Reporte</th>
-                <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias para Vencer</th>        
-        </tr>
-        
-        <%@accion_p.each do |a|%>
-        <tr>
-                <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
-                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
-                     <td style="color:gray;padding:5px;width: 20%"><strong><%= a.report.source.name%>: </strong> <%= a.report.name%> </td>
-                <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg%> </td>
-        </tr>
-        
-        <%end%> 
-        </table>
-<%end%> 
-
-<%if @task_p.count != 0%>
-<br>
-        <h3 style="color:gray">TAREAS</h3>
-        <table style="width: 100%;">
-        
-        <tr style="background:#565656;color:white">
-       
-                <th style="padding:5px">Nombre</th>
-                <th style="padding:5px">Pertenece a la Accion</th>
-                <th style="padding:5px">Pertenece al Reporte</th>
-                <th style="padding:5px">Fecha de Vencimiento</th>
-                <th style="padding:5px">Dias para Vencer</th>        
-        </tr>
-        
+        <%end%>
         <%@task_p.each do |a|%>
         <tr>
           
-                <td style="color:gray;padding:5px;width: 20%"><%= a.name%> </td>
-                            <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.tipo%>:</strong> <%= a.accion.name%> </td>
-                <td style="color:gray;padding:5px;width: 20%"><strong><%= a.accion.report.source.name%></strong> <%= a.accion.report.name%> </td>
+              <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.accion.report_id%>/acciones/<%=a.accion_id%>/tasks/<%=a.id%>" 
+                ><%= a.name%></a> </td>
+                <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.accion.report_id%>/acciones/<%=a.accion_id%>" 
+                ><%= a.accion.name%></a></td>
+                <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.accion.report_id%>" 
+                ><strong><%= a.accion.report.source.name%></strong>: <%= a.accion.report.name%> </a></td>
                 <td style="background:#d1bf3a;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.f_compromiso%> </td>
                 <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= a.contador_seg %> </td>
         </tr>
         
-        <%end%> 
+        <%end%>  
         </table>
 <%end%>
 
 <%end%>
+
 
 
 
@@ -208,13 +168,13 @@
  <br>
 
 <%if @report_s.count != 0%>
-        <h3 style="color:gray">REPORTES </h3>
+        <h3 style="color:gray">REPORTES (En los cuales eres responsable y esta pendiente tu seguimiento)</h3>
         <table style="width: 100%;">
         
         <tr style="background:#565656;color:white">
                  <th style="padding:5px">Tipo</th>
                 <th style="padding:5px">Nombre</th>
-                <th style="padding:5px">Fecha de Vencimiento</th>
+                <th style="padding:5px">Fecha de Seguimiento</th>
                 <th style="padding:5px">Dias Vencidos</th>        
         </tr>
         <%@report_s.each do |a|%>
@@ -223,9 +183,10 @@
            time1 =  times1.to_i - Time.now.to_i
            m = (time1 / 60 / 60/ 24) + 1 %>      
                 <td style="color:gray;padding:5px;width: 20%"><%= a.source.name%> </td>
-                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
+                <td style="color:gray;padding:5px;width: 40%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.id%>" 
+                ><%= a.name%></a> </td>
                 <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.fp_seguimiento%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> Seguimiento <br>Vencido</td>
         </tr>
         
         <%end%> 
@@ -236,15 +197,15 @@
 
 
 <%if @accion_s.count != 0%>
-        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES</h3>
+        <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES (En las cuales eres responsable y esta pendiente tu seguimiento)</h3>
         <table style="width: 100%;">
         
         <tr style="background:#565656;color:white">
                 <th style="padding:5px">Tipo</th>
                 <th style="padding:5px">Nombre</th>
                 <th style="padding:5px">Pertenece al Reporte</th>
-                <th style="padding:5px">Fecha de compromiso</th>
-                <th style="padding:5px">Dias Vencidos</th>        
+                <th style="padding:5px">Fecha de Seguimiento</th>
+                <th style="padding:5px">Dias</th>        
         </tr>
         
         <%@accion_s.each do |a|%>
@@ -253,10 +214,11 @@
            time1 =  times1.to_i - Time.now.to_i
            m = (time1 / 60 / 60/ 24) + 1 %>      
                 <td style="color:gray;padding:5px;width: 20%"><%= a.tipo%></td>
-                <td style="color:gray;padding:5px;width: 40%"><%= a.name%> </td>
-                   <td style="color:gray;padding:5px;width: 20%"><%= a.report.source.name%><%= a.report.name%> </td>
-                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.fp_seguimiento%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> </td>
+                <td style="color:gray;padding:5px;width: 40%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.report_id%>/acciones/<%=a.id%>" 
+                ><%= a.name%></a> </td>
+                   <td style="color:gray;padding:5px;width: 20%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.report_id%>" 
+                ><strong><%= a.report.source.name%></strong>: <%= a.report.name%></a> </td>
+                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> Seguimiento <br> Vencido</td>
         </tr>
         
         <%end%> 
