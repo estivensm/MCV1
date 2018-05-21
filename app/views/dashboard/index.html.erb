@@ -153,10 +153,14 @@
                <strong>Fecha de compromiso: <br></strong> 
                <%=get_date(accion.f_compromiso)%>&nbsp;&nbsp;&nbsp; <%= accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=accion.contador_seg.abs%> días</div>
                
-                <div class="col-md-4 rtd text-center"><strong>Seguimiento: <br></strong> <% time = "" 
+                <div class="col-md-4 rtd text-center"><strong>Seguimiento: <br></strong>
+                <%if accion.f_seguimiento != 0%>
+                 <% time = "" 
         accion.fp_seguimiento > Time.now ? time = "" : time = " Pendiente de Seguimiento "%>
                 <span><%=get_date(accion.fp_seguimiento)%><%=time%></span>
-                  
+                  <%else%>
+                  Sin frecuencia de Seguimiento
+                  <%end%>
                </div>
                    <div class="col-md-1 rtd">
 <a class="" href="/reports/<%=accion.report_id%>/accions/<%=accion.id%>">
