@@ -5,6 +5,7 @@
 <p style="color:gray"><strong style="color:#0db497">Codigo: </strong><%=@task.codigo%></p>
 <p style="color:gray"><strong style="color:#0db497">Fecha de Entrega: </strong> <%= @task.f_compromiso%></p>
 <p style="color:gray"><strong style="color:#0db497">Tarea: </strong> <strong style="color:gray"><%=@task.name%></strong></p>
+<p style="color:gray"><strong style="color:#0db497"><%=@task.accion.tipo%> a la que pertence: </strong> <strong style="color:gray"><%=@task.accion.name%></strong></p>
+<p style="color:gray"><strong style="color:#0db497">Reporte al que pertence: </strong> <strong style="color:gray"><%=@task.accion.report.source.name%></strong><%=@task.accion.report.name%></p>
 
-
-<a href="https://mejoracontinua.herokuapp.com/reports/<%=@task.report_id%>/tasks" style="color:#0db497">Ir tareas</a>
+<a href="https://mejoracontinua.herokuapp.com/reports/<%=@task.report_id%>/tasks/<%@task.id%>" style="color:#0db497">Ir tarea</a>

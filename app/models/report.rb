@@ -88,8 +88,8 @@ scope :vencidos, -> { where('contador_seg < ?', 0) }
       
       if self.tag 
 
-        self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
-        @times = self.f_compromiso.to_time
+         self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
+         @times = self.f_compromiso.to_time
 
         @time =  @times.to_i - Time.now.to_i  
         self.contador_seg = (@time / 60 / 60/ 24) + 1
@@ -117,10 +117,12 @@ scope :vencidos, -> { where('contador_seg < ?', 0) }
                             #AlertaMailer.vencimiento_accion(employed,accion, "hoy").deliver
                             
         end
-        puts "contadorrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
-        puts self.contador_seg
-        errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
-        self.contador_seg > self.f_seguimiento
+        
+        if f_seguimiento != 0
+             errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
+             self.contador_seg > self.f_seguimiento
+        end  
+
         self.tag = false
 
      

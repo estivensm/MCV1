@@ -39,7 +39,7 @@
 <% end %>
               
              
-               <% if @accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin"%>
+               <% if @accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin" || current_user.email == @accion.report.employed.email%>
                <div class="form-group">
                   <%= f.label :cierra %>
                   <%= f.check_box :cierra ,  class: "cierra1"  %>

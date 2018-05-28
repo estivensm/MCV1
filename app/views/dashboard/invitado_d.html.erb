@@ -33,9 +33,7 @@
                <%=get_date(report.f_compromiso)%>&nbsp;&nbsp;&nbsp; <%= report.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=report.contador_seg.abs%> días</div>
                
                
-                <div class="col-md-4 rtd text-center"><strong>Seguimiento: <br></strong> <% time = "" 
-        report.fp_seguimiento > Time.now ? time = "" : time = " Pendiente de Seguimiento "%>
-                <span><%=get_date(report.fp_seguimiento)%><%=time%></span>
+                <div class="col-md-4 rtd text-center">
                   
                </div>
 

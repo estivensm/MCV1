@@ -167,35 +167,6 @@
 <h1 style="color:gray;text-align:center">GESTION PENDIENTE DE SEGUIMIENTO</h1>
  <br>
 
-<%if @report_s.count != 0%>
-        <h3 style="color:gray">REPORTES (En los cuales eres responsable y esta pendiente tu seguimiento)</h3>
-        <table style="width: 100%;">
-        
-        <tr style="background:#565656;color:white">
-                 <th style="padding:5px">Tipo</th>
-                <th style="padding:5px">Nombre</th>
-                <th style="padding:5px">Fecha de Seguimiento</th>
-                <th style="padding:5px">Dias Vencidos</th>        
-        </tr>
-        <%@report_s.each do |a|%>
-        <tr>
-        <% times1 = a.fp_seguimiento.to_time
-           time1 =  times1.to_i - Time.now.to_i
-           m = (time1 / 60 / 60/ 24) + 1 %>      
-                <td style="color:gray;padding:5px;width: 20%"><%= a.source.name%> </td>
-                <td style="color:gray;padding:5px;width: 40%"><a style = "text-decoration:none" href="https://mejoracontinua.herokuapp.com/reports/<%=a.id%>" 
-                ><%= a.name%></a> </td>
-                <td style="background:#e26363;text-align: center;color:gray;padding:5px;color:white;width: 25%;font-weight: bold"><%= a.fp_seguimiento%> </td>
-                <td style="text-align: center;color:gray;padding:5px;width:15%;font-size: 15px"><%= m * -1%> Seguimiento <br>Vencido</td>
-        </tr>
-        
-        <%end%> 
-
-        </table>
-
-<%end%> 
-
-
 <%if @accion_s.count != 0%>
         <h3 style="color:gray">CORRECCIONES ACCIONES Y ACTIVIDADES (En las cuales eres responsable y esta pendiente tu seguimiento)</h3>
         <table style="width: 100%;">

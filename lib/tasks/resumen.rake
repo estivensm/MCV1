@@ -61,7 +61,7 @@ namespace :resumen do
 
 
 
-                                
+                              if report.f_seguimiento != 0  
                                 times1 = report.fp_seguimiento.to_time
                                 time1 =  times1.to_i - Time.now.to_i
                                 m = (time1 / 60 / 60/ 24) + 1
@@ -78,6 +78,7 @@ namespace :resumen do
 
 
                                 end
+                              end  
                             #end
 
                 end 

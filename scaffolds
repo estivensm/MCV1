@@ -974,3 +974,12 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
                              { include_blank: true },
                              { class: 'chosen-select1 form-control ch pri1'  }
                   %>
+
+
+
+
+//frecuencia de seguimiento dash
+
+<strong>Seguimiento: <br></strong> <% time = "" 
+        report.fp_seguimiento > Time.now ? time = "" : time = " Pendiente de Seguimiento "%>
+                <span><%=get_date(report.fp_seguimiento)%><%=time%></span>

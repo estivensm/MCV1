@@ -208,10 +208,10 @@ $('.pri1').addClass("chosen-select1");
                   %>
             </div>
     </div>
- <div class="col-md-3">
+ <div class="col-md-3" style="display: none">
               <div class="form-group">
     <%= f.label "Frecuencia de Seguimiento" %>
-    <%= f.select :f_seguimiento, [['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
+    <%= f.select :f_seguimiento, [['Sin Seguimiento', 0],['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
         <%if action_name != "new" %>
     <%= f.label "Actualizar Fecha y/o Frecuencia", class: "lb2" %>
     <%= f.check_box :tag, class:"check" %>
