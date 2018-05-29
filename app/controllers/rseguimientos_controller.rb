@@ -20,6 +20,7 @@ class RseguimientosController < ApplicationController
   def new
     @rseguimiento = Rseguimiento.new
     @report = Report.find(params[:report_id]) 
+    @gestion_c = @report.accions.cerradas.count
   end
 
   # GET /rseguimientos/1/edit

@@ -18,6 +18,7 @@ class AseguimientosController < ApplicationController
     @aseguimiento = Aseguimiento.new
     @accion = Accion.find(params[:accion_id])
     @report = Report.find(params[:report_id])
+    @gestion_c = @accion.tasks.cerradas.count
   end
 
   # GET /aseguimientos/1/edit

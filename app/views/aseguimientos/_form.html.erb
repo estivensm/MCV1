@@ -30,7 +30,7 @@
    <%end%>
                </div>
             
-            <% if  get_employed1.id == @accion.employed_id || current_user.role == "SuperAdmin" %>
+            <% if  (get_employed1.id == @accion.employed_id || current_user.role == "SuperAdmin") && @gestion_c != 0%>
                <div class="form-group">
                   <%= f.label "Solicitar Cierre" %>
                   <%= f.check_box :s_cierre ,  class: ""  %>
@@ -39,7 +39,7 @@
 <% end %>
               
              
-               <% if @accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin" || current_user.email == @accion.report.employed.email%>
+               <% if (@accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin" || current_user.email == @accion.report.employed.email) && @gestion_c != 0%>
                <div class="form-group">
                   <%= f.label :cierra %>
                   <%= f.check_box :cierra ,  class: "cierra1"  %>

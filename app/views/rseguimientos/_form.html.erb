@@ -38,17 +38,17 @@
   </div>
 
 <br>
-         <% if @report.state != "Cerrado" && get_employed1.id == @report.employed_id %>
+         <% if @report.state != "Cerrado" && get_employed1.id == @report.employed_id && @gestion_c != 0  %>
                  <div class="form-group">
                   <%= f.label "Solicitar Cierre" %>
-                  <%= f.check_box :s_cierre ,  class: ""  %>
+                  <%= f.check_box :s_cierre ,  class: "form form-control" , style: "width: 100px;" %>
                </div>
                <%end%> 
-         <% if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id %>
+         <% if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id && @gestion_c != 0%>
       
                <div class="form-group">
                   <%= f.label "Cerrar" %>
-                  <%= f.check_box :cerrar ,  class: "cierra1"  %>
+                  <%= f.check_box :cerrar ,  class: "cierra1 form form-control" , style: "width: 100px;" %>
                </div>
          <%end%>      
                <div class="form-group cierra">
