@@ -32,6 +32,7 @@ respond_to :json
   def index
     @tipo = "Accion"
     @report = Report.find(params[:report_id])
+    @accions_t = @report.accions
     @accions = @report.accions.where(tipo: "Accion").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -41,7 +42,7 @@ respond_to :json
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
-    @accions.each do |accion|
+    @accions_t.each do |accion|
        accion.aseguimientos.each do |seg| 
         
         @seguimientosa << seg
@@ -60,6 +61,7 @@ respond_to :json
   def correcciones
     @tipo = "Correccion"
     @report = Report.find(params[:report_id])
+    @accions_t = @report.accions
     @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -70,7 +72,7 @@ respond_to :json
 
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
-    @accions.each do |accion|
+    @accions_t.each do |accion|
        accion.aseguimientos.each do |seg| 
         
         @seguimientosa << seg
@@ -90,6 +92,7 @@ respond_to :json
 def actividades
     @tipo = "Actividad"
      @report = Report.find(params[:report_id])
+     @accions_t = @report.accions
     @accions = @report.accions.where(tipo: "Actividad").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -99,7 +102,7 @@ def actividades
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
-    @accions.each do |accion|
+    @accions_t.each do |accion|
        accion.aseguimientos.each do |seg| 
         
         @seguimientosa << seg
