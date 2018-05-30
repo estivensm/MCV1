@@ -2,8 +2,7 @@
 <% if @task.errors.blank? %>
   $('#contact-modal').modal('hide');
   $('.task_abiertasa').html("<%= j render :partial => 'accions/task_abiertas', tasks: @tasks %>");
-  $('.tasks_abierta').html("(<%= @tasks.count %>)");
-console.log("<%= @tasks.count %>")
+console.log("<%= j render :partial => 'accions/task_abiertas', tasks: @tasks %>")
 <% else %>
 $(".alert").css("display", "block");
   // TODO: show the errors in the UI

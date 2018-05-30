@@ -365,6 +365,17 @@ end
     @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
 
     @seguimientos = @report.rseguimientos.order(created_at: :desc)
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+    @seguimientos_t = @seguimientos + @seguimientosa
+
     @accion_eficaz = @report.accions.where(eficaz: true).count
     @accion_noeficaz = @report.accions.where(eficaz: false).count
     respond_to do |format|
@@ -392,6 +403,8 @@ end
         :show_as_html => params[:debug].present?
       end
     end
+
+    render :layout => "admin_report"
   end
 
 

@@ -6,9 +6,32 @@ class RseguimientosController < ApplicationController
   # GET /rseguimientos
   # GET /rseguimientos.json
   def index
-    @rseguimientos = Rseguimiento.all
-     @report = Report.find(params[:report_id]) 
+    
+    @report = Report.find(params[:report_id]) 
+    @seguimientos = @report.rseguimientos
+    @responsables = @report.employeds
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @accions = Accion.where(report_id: @report.id)
+    
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
 
+       end 
+
+    end
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+
+    @tasks = Task.where(report_id: @report.id)
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    render :layout => "admin_report"
   end
 
   # GET /rseguimientos/1
@@ -35,7 +58,7 @@ class RseguimientosController < ApplicationController
     @rseguimiento = Rseguimiento.new(rseguimiento_params)
 
     if @rseguimiento.save
-      redirect_to report_path(@report)
+      redirect_to report_rseguimientos_path(@report)
     end
  
     
@@ -50,7 +73,7 @@ class RseguimientosController < ApplicationController
         @rseguimiento.remove_evidencia!
         @rseguimiento.save
       end
-       redirect_to report_path(@report)
+       redirect_to report_rseguimientos_path(@report)
       end
     
  
@@ -63,7 +86,7 @@ class RseguimientosController < ApplicationController
   
       @rseguimiento.destroy
     respond_to do |format|
-      format.html {  redirect_to report_path(@report), notice: 'El seguimiento se elimino correctamente.' }
+      format.html {  redirect_to report_rseguimientos_path(@report), notice: 'El seguimiento se elimino correctamente.' }
       format.json { head :no_content }
     end
   end

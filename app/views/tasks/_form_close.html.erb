@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Cumplio</h4>
       </div>
-<%= form_tag task_change_state_path do %>
+<%= form_tag task_change_state_path , remote:true do %>
   <div class="alert alert-danger" style="display:none;padding: 10px;">
     <ul>
     

@@ -39,14 +39,27 @@ respond_to :json
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
+    @seguimientos = @report.rseguimientos
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
 
+       end 
+
+    end
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+    
+    render  :layout => 'admin_report'
   end
 
 
 
   def correcciones
     @tipo = "Correccion"
-     @report = Report.find(params[:report_id])
+    @report = Report.find(params[:report_id])
     @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
@@ -55,7 +68,21 @@ respond_to :json
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
 
-    render 'index'
+    @seguimientos = @report.rseguimientos
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+    
+    render 'index', :layout => 'admin_report'
+   
 
   end
 
@@ -70,8 +97,20 @@ def actividades
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
      @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
+    @seguimientos = @report.rseguimientos
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
 
-    render 'index'
+       end 
+
+    end
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+
+    render 'index', :layout => 'admin_report'
 
 end
 
@@ -90,8 +129,20 @@ end
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
-    
+    @accions = Accion.where(report_id: @report.id)
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
 
+       end 
+
+    end
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+    
+    render  :layout => 'admin_report'
 
   end
 

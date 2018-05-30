@@ -279,6 +279,38 @@ elsif controller.controller_name == "clinte_proveedors"
 
 end
 
+
+def menu_report
+  @menu_report = ["","","","",""]
+  corre =  action_name == "correcciones"
+  accion =  controller_name == "accions" && action_name == "index"
+  actividad =  controller_name == "accions" && action_name == "actividades"
+  
+  if controller_name == "reports" && action_name = "show" 
+        
+        @menu_report = ["active_report","","","",""]
+        
+    elsif controller.controller_name == "rseguimientos"
+
+      @menu_report = ["","active_report","","",""]
+
+    elsif corre
+     
+      @menu_report = ["","","active_report","",""]
+
+      elsif accion
+     
+    @menu_report = ["","","","active_report",""]
+
+    elsif actividad
+     
+    @menu_report = ["","","","","active_report"]
+  
+
+  end
+
+end
+
 def cargos
   u = User.find(current_user.id)
 @cargoss = u.cargos
