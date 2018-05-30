@@ -58,8 +58,13 @@ end
    
     @task= Task.find(params[:task])
      @report = Report.find(@task.report_id)
+     @accion = Accion.find(params[:accion_id])
     if @task.update(justificacion_cumplio: params[:justificacion_cumplio], cumplio: params[:cumplio] , change_cumplio: params[:cumplio])
-    redirect_to report_tasks_path(@report)
+      
+              
+         @tasks =  @accion.tasks.abiertas
+         @tasksc =  @accion.tasks.cerradas
+    
   end
 
 end
@@ -141,8 +146,14 @@ end
     @task.costo = 0
     @employed = Employed.find(@task.employed_id)
     if @task.save
-      
-      redirect_to report_accion_path(@report,@accion)
+      respond_to do |format|
+        format.js
+         puts "11111111111111111111111111111111111111111"
+          @tasks =  @accion.tasks.abiertas
+         @tasksc =  @accion.tasks.cerradas
+         #render partial: "accions/task_abiertas", params: @tasks, status:200
+        
+        end
     end
   end
 
@@ -152,11 +163,14 @@ end
   @report = Report.find(params[:report_id])
   @accion = Accion.find(params[:accion_id])
       if @task.update(task_params)
+        @tasks =  @accion.tasks.abiertas
+        @tasksc =  @accion.tasks.cerradas
         if params[:remove_anexo]
         @task.remove_evidencia!
         @task.save
+
       end
-     redirect_to report_accion_path(@report,@accion)
+     
       end
   end
 
@@ -165,11 +179,12 @@ end
   def destroy
     @report = Report.find(params[:report_id]) 
     @accion = Accion.find(params[:accion_id])
-    @task.destroy
-    respond_to do |format|
-      format.html { redirect_to report_accion_path(@report,@accion), notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+    if @task.destroy
+         
+         @tasks =  @accion.tasks.abiertas
+         @tasksc =  @accion.tasks.cerradas
     end
+         
   end
 
   private

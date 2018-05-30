@@ -1,33 +1,30 @@
-<div class="row">
+<!--<div class="row">
    <div class="col-md-12 ">
       <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
    </div>
-</div>
-<%= render 'tabs'%>
-<div class = "row">
+</div>-->
 
-   <div class="col-md-12 wihtout-padding">
-      <h4 class = "linka htitle text-center">REPORTE</h4>
-      <div class="conteinter reporte cnt">
-         <div class="row rtr name">
-            <div class="col-md-12 rtd"><%=@report.name%></div>
-         </div>
-         <hr class="hr">
-         <div class="row rtr">
-            <div class="col-md-2 rtd text-left"><strong>Codigo:</strong> <%= @report.codigo %></div>
-            <div class="col-md-2 rtd text-left"><strong>Fuente:</strong> <%= @report.source.name %></div>
-            <% employed = Employed.find(@report.employed_id)%>
-            <div class="col-md-3 rtd text-left"><strong>Responsable: </strong><button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></div>
-            <div class="col-md-2 rtd text-left"><strong>Estado: </strong><%= @report.state %></div>
-            <div class="col-md-3 rtd text-left"><strong>Entrega:</strong> <%= get_date(@report.f_compromiso) %></div>
-         </div>
-         <hr style = "margin:0px">
-         <div class="row">
-            <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-         </div>
-      </div>
+<div class = "row">
+   
+   <div class="col-md-12">
+      <h4 style="margin: 0px 0px 20px 0px;
+    font-weight: bold;
+    color: #8b8b8b;"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</h4>
+      
    </div>
-   <div class="col-md-6 wihtout-padding">
+   <div class="col-md-12">
+          <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">ABIERTAS (<%=@accions.abiertas.count %>)</a></li>
+    <li><a data-toggle="tab" href="#menu1">CERRADAS (<%=@accions.cerradas.count %>)</a></li>
+  
+  </ul>
+<br>
+  <div class="tab-content">
+      
+
+    <div id="home" class="tab-pane fade in active">
+     
+                  <div class="col-md-12 wihtout-padding">
       <div class="conteinter htitle" style = "padding:0px">
          <div class="row rtr">
             <div class="col-md-2 rtd"></div>
@@ -71,20 +68,26 @@
                         </div>
                </div>
          </div>
-      </div>
-      <% end %>
-      <% end %>
-      <%else%>
-      <div class="jumbotron jumbacc">
-      <br>
-      <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
-      <hr class="my-4">
-      <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") || (current_user.rol ? current_user.rol.configuracion : false)%>
-      </div>
-      <%end%>
-   </div>
+         </div>
+         <% end %>
+         <% end %>
+         <%else%>
+         <div class="jumbotron jumbacc">
+         <br>
+         <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
+         <hr class="my-4">
+         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") || (current_user.rol ? current_user.rol.configuracion : false)%>
+         </div>
+         <%end%>
+         </div>
+    </div>
+    <!--fin-->
 
-<div class="col-md-6 wihtout-padding">
+
+
+    <div id="menu1" class="tab-pane fade">
+      
+<div class="col-md-12 wihtout-padding">
             <div class="conteinter htitle" style = "padding:0px">
                   <div class="row rtr">
                         <div class="col-md-2 rtd"></div>
@@ -140,6 +143,20 @@
             </div>
       <%end%>
 </div>
+    </div>
+
+
+   <!--fin-->
+  </div>
+   </div>
+
+
+
+
+   
+
+
+
 </div>
 <style>
 .imaacc img

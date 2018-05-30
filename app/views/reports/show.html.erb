@@ -1,24 +1,6 @@
-<div class="row">
-   <div class="col-md-6 ">
-      <p><%=  link_to "Inicio /",  root_path, :class => "linka" %>  <%= show_reports ? (link_to "Reportes",  reports_path, :class => "linka"):(link_to "Reportes",  misreports_path, :class => "linka")  %></p>
-   </div>
-   <div class="col-md-6 text-right">
-      <p>
-         <%= link_to  edit_report_path(@report), :class => "opciones2" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-          <%= link_to show_info_path(@report),:class => 'opciones2' do %>
-         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'opciones2' do %>
-         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-         <% end %>
-      </p>
-   </div>
-</div>
 
           
-          <%= render "tabs" %><br>
+         
 
 <% #|| (current_user.role == "SuperAdmin" && @report.state != "Cerrado")
    if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
@@ -42,38 +24,36 @@
 
 <div class="row">
   
-<div class="col-md-6 wihtout-padding " style="border-right: 1px solid #e0e0e0;">
-<h3 class = "linka htitle text-center">Reporte (<%= @report.codigo %>)</h3>
+<div class="col-md-12 wihtout-padding " style="border-right: 1px solid #e0e0e0;">
+
 
 <div class="conteinter reporte ">
- <div class="row rtr name">
-      <div class="col-md-12 rtd"><%=@report.name%></div>
-    
-   </div>
-   <hr>
-   <div class="row rtr">
-      <div class="col-md-4 rtd"><strong>Creacion:</strong> <%= get_date(@report.created_at) %></div>
-      <div class="col-md-4 rtd"><strong>Fuente:</strong> <%= @report.source_parent.name %></div>
-      <div class="col-md-4 rtd"><strong>Hallazgo:</strong> <%= @report.source.name %></div>
 
-      <div class="col-md-4 rtd"><strong>Estado: </strong><%= @report.state %></div>
-      <div class="col-md-4 rtd"><strong>Proceso:</strong> <%= @report.proceso.name %></div>
+ 
+   <div class="row rtr">
+      <div class="col-md-4 rtd"><strong>Fecha de Creacion</strong> <%= get_date(@report.created_at) %></div>
+      
+
+    
+   
       <% employed1 = Employed.find(@report.employed_reporta)%>
       <div class="col-md-4 rtd"><strong>Reporta: </strong>
          <%= render "employed" , employed: employed1 %>
       </div>
-   </div>   
-   <div class="row rtr">
-      <div class="col-md-6 rtd"><strong>Costo Presupuestado: </strong><%= number_to_currency(@report.costo_presupuestado) %></div>
-      <div class="col-md-6 rtd"><strong>Costo Real: </strong><%= number_to_currency(@report.costo) %></div>
-   </div>
-   <hr>
-   <div class="row rtr">
-      <div class="col-md-6 rtd"><strong>Responsable de Ejecución:</strong> <% employed = Employed.find(@report.employed_id)
+
+        <div class="col-md-4 rtd"><strong> <% employed = Employed.find(@report.employed_id)
          cierra_r = Employed.find(@report.cierra_id)%>
-         <%= render "employed" , employed: employed %>
-        <br> <strong> Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
-         <br><strong>Otros Interesados: </strong><% 
+          <strong> Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
+       
+      </div>
+
+   </div>   
+  
+
+   <div class="row rtr">
+ 
+       <div class="col-md-12 rtd">
+       <strong>Otros Interesados: </strong><% 
             cm = 0 
             @report.employeds.each do |resp|
               %><%= "," if cm != 0 %> 
@@ -81,12 +61,14 @@
          <%  cm = cm + 1 %> 
          <%end%>
       </div>
-      <div class="col-md-6 rtd"><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %><!--<strong style = "margin-left:10px;"><br>Fecha de seguimiento: </strong> <%= get_date(@report.fp_seguimiento) if @report.fp_seguimiento %>--><br><strong>Dias para el cierre: </strong><%=@report.contador_seg %></div>
+      <div class="col-md-6 rtd "><span class="s"><strong>    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.costo_presupuestado) %></span></div>
+      <div class="col-md-6 rtd "><span class=""><strong> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.costo) %></span></div>
+    
    </div>
+   <hr>
+     <% if @report.clinte_proveedor%> 
 
   
-   <% if @report.clinte_proveedor%>
-    <hr>
    <div class="row rtr">
       <div class="col-md-4 rtd"><strong>Parte Interesada: </strong> <%= @report.clinte_proveedor.name%></div>
       <div class="col-md-8 rtd"><strong>Contacto: </strong><%if @report.contact%>
@@ -94,6 +76,13 @@
         <%end%></div>
    </div>
    <%end%>
+     <hr>
+    <div class="row rtr">
+      
+   </div>
+
+  
+ 
   
    <hr>
    <div class="row rtr">
@@ -172,177 +161,8 @@
 
 </div>
 
-<div class="col-md-6 wihtout-padding">
-
-<!--<%if @report.source.correccion || @report.source.causa || @report.source.accion  %>
-<div class="row flujo">
-  <ul class="nav nav-tabs" role="tablist">
-   <%if @report.source.correccion %>
-    <li role="presentation" class="active"><a href="#home" class="linka" aria-controls="home" role="tab" data-toggle="tab">Correciones (<%=@correa + @correc%>)</a></li><% end %>
-     <%if @report.source.causa %>
-    <li role="presentation"><a href="#profile" aria-controls="profile" class="linka" role="tab" data-toggle="tab">Analisis de Causas</a></li><% end %>
-     <%if @report.source.accion %>
-      <li role="presentation"><a href="#messages" aria-controls="messages" class="linka" role="tab" data-toggle="tab">Acciones (<%=@accionsca + @accionscc%>)</a></li><% end %>
-  </ul>
-
-
-<div class="tab-content" >
-
-  
-    <div role="tabpanel" class="tab-pane active" id="home"  style = "margin-bottom:5px;">
-
-
-   <div class="col-md-12">
-      <div class="panel panel-default" style="margin-bottom:5px">
-        
-         <div class="panel-body pbody">
-           <div class="col-md-9">
-              
-           
-            <p class="color-gray"><%=@correa%> <%=@correa == 1 ? "Abierta" : "Abiertas"%> <i class="fa fa-unlock" aria-hidden="true"></i>
-             <span style = "margin: 0 10px">|</span> <%=@correc%> <%=@correc == 1 ? "Cerrada" : "Cerradas"%> <i class="fa fa-lock" aria-hidden="true"></i>
-            </p>
-            <p class="color-gray"></p>
-          
-           
-           </div>
-           <div class="col-md-3">
-             <p class="text-right  margin-cero"> <%= link_to  "Ver",report_correcciones_path(@report) , class: 'btn btn-primary'%></p>   
-           </div>
-            
-         </div>
-      </div>
-   </div>
-   </div>
-
-
-   <div role="tabpanel" class="tab-pane" id="profile" style = "margin-bottom:5px;">
-   <div class="col-md-12">
-      <div class="panel panel-default" style = "margin-bottom:5px;">
-        
-         <div class="panel-body">
-           
-            <% if @report.causas.count == 0 %>
-            <div class="col-md-9">
-            <p class="color-gray">No se ha creado el Analisis de Causa</p>
-            </div>
-            <div class="col-md-3">
-            <%= (link_to  "Crear",  new_report_causa_path(@report), remote: true , class: 'btn btn-primary') if view_report(@report) %>
-             </div>
-            <%else%>
-            <div class="col-md-9">
-             <p class="margin-cero"><%=@report.causas.last.tipo%></p>
-             </div>
-             <div class="col-md-3">
-            <p class="text-right  margin-cero"> <%= link_to  "Ver",report_causa_path(@report,@report.causas.last.id) , class: 'btn btn-primary'%></p>
-            </div>
-            <%end%>
-           
-         </div>
-      </div>
-   </div>
-
- </div>
-
- <div role="tabpanel" class="tab-pane" id="messages" style = "margin-bottom:5px;">
-
-   <div class="col-md-12">
-      <div class="panel panel-default" style = "margin-bottom:5px;">
-         
-         <div class="panel-body">
-
-          <div class="col-md-9">
-              
-           
-            <p class="color-gray"><%=@accionsca%> <%=@accionsca== 1 ? "Abierta" : "Abiertas"%> <i class="fa fa-unlock" aria-hidden="true"></i>
-             <span style = "margin: 0 10px">|</span><%=@accionscc%> <%=@accionscc == 1 ? "Cerrada" : "Cerradas"%> <i class="fa fa-lock" aria-hidden="true"></i>
-            </p>
-            <p class="color-gray"></p>
-          
-           
-           </div>
-           <div class="col-md-3">
-             <p class="text-right margin-cero"><%= link_to  "Ver", report_accions_path(@report) , class: 'btn btn-primary '%></p>   
-           </div>
-      
-         </div>
-      </div>
-   </div>
-   </div>
 
 </div>
-</div>
-<% end %>-->
-
-
-<div class="conteinter htitle" style = "padding:0px">
-   <div class="row rtr">
-      
-      <div class="col-md-8">
-         <h3 class="htitle linka">Seguimientos (<%=@seguimientos.count %>)</h3>
-      </div>
-      <div class="col-md-4 rtd"><% if @seguimientos.count > 0 %><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'linka')  %><%end%></div>
-   </div>
-</div>
-<% if @seguimientos.count > 0 %>
-
-
-<div class="height-rep"> 
-<% @seguimientos.each do |seg| %>
-<div class="conteinter reporte cnt " style = "    margin-top: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #e2e2e2;
-    border: 1px solid #d8d8d8;
-    border-radius: 3px;">
-   <div class="row rtr">
-   <div class="col-md-1">
-   <%  idemp = User.find(seg.user_id).email
-         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
-         %>
-<img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
-   </div>
-      <div class="col-md-11">
-      
-     
-<div class="col-md-12 text-left"><%== seg.descripcion %></div>
-   
-  <div class="col-md-10 rtd wihtout-padding-bot">
-         
-      <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"> <%= employed1.first_name %> <%= employed1.first_last_name %></button>
-       <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
-     <span style="margin-left:15px;"> <strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></span>
-    </div>
-     <div class="col-md-2 rtd wihtout-padding-bot">
-      <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-     </div>
-
-  
-  </div>
-  </div>
-  
-
-   
-</div> <hr>
-<% end %>
-<%else%>
-<div class="jumbotron jumbacc">
-   <h3 class="display-3 color-gray">No se ha creado ningun seguimiento</h3>
-   <hr>
-   <br>
-   <%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
-   </p>
-</div>
-<%end%>
-</div>
-</div>
-</div>
-    </div>
-  
 
 
 <style>

@@ -57,6 +57,7 @@ class Report < ApplicationRecord
   has_many :tasks , dependent: :destroy
   belongs_to :user
   has_many :accions, dependent: :destroy
+  has_many :aseguimientos, through: :accions
   has_many :rseguimientos, dependent: :destroy
   has_many :causas, dependent: :destroy
   has_many :causa_efectos, dependent: :destroy
