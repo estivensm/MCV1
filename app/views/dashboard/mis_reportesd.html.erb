@@ -101,7 +101,7 @@
                               <td><%=accion.contador_seg%></td>
                               <td><%if accion.f_seguimiento != 0%>
                  <% time = "" 
-        accion.fp_seguimiento > Time.now ? time = "Ok" : time = " Pendiente"%>
+        accion.fp_seguimiento > Time.now ? time = "" : time = " Pendiente"%>
                 <span><%=get_date(accion.fp_seguimiento)%><%=time%></span>
                   <%else%>
                   Sin frecuencia de Seguimiento
