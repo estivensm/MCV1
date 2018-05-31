@@ -478,6 +478,7 @@ end
         @report.codigo = code
         @report.contador = num
         @report.costo = 0
+         @report.costo_presupuestado = 0
         @report.balon = "responsable"
         @report.save
         employed = Employed.find(@report.employed_id)
