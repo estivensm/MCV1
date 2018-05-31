@@ -61,8 +61,8 @@
          <%  cm = cm + 1 %> 
          <%end%>
       </div>
-      <div class="col-md-6 rtd "><span class="s"><strong>    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.costo_presupuestado) %></span></div>
-      <div class="col-md-6 rtd "><span class=""><strong> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.costo) %></span></div>
+      <div class="col-md-6 rtd "><span class="s"><strong>    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.costo_presupuestado).chomp('.00') %></span></div>
+      <div class="col-md-6 rtd "><span class=""><strong> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.costo).chomp('.00') %></span></div>
     
    </div>
    <hr>
