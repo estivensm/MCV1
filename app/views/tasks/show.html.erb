@@ -1,34 +1,35 @@
 <%task = @task%>
-<div style="padding:20px" class="row">
- 
-   <div class="col-md-4 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
-      padding-bottom: 0px !important;   padding-right: 40px !important;"> 
-     
-      <% if current_user.id == task.user_id%>
-      <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-      <% end %>
-      <%= link_to  report_accion_task_path(@report,@accion,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-      <i class="fa fa-trash" aria-hidden="true"></i>
-      <% end %>
-      <% end %>
-   </div>
-</div>
+
  <div class="conteinter reporte cnt">
 <div style="padding:20px" class="row">
-
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
+       <%= link_to "Volver a Accion", report_accion_path(task.report.id,task.accion.id), class:"linka" %>
+    </div>
+    <div class="col-md-8 col-md-offset-2" style="border: 1px solid #e2e2e2;
+    padding: 20px;background: #f8f8f8;">
         <div class="col-md-7 rtd" >
-               <h3 class = "linka "><%=  task.report.codigo  %>-<%=  task.codigo  %></h3>
+               <h3 class = "linka "> <strong >Tarea <span style="font-size:16px;">(<%=  task.report.codigo  %>-<%=  task.codigo  %>)</span></strong> <br><br><%= task.name %></h3>
                <hr>
         </div>
         <div class="col-md-5 rtd text-right" >
-              <h3 class = "linka ">  <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>Ejecutar Tarea
+              <h3 class = "linka "> 
+               <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>
       <i class="fa fa-thumb-tack" style = "font-size:30px;" aria-hidden="true"></i>
-      <% end %></h3>
+      <% end %>
+           <% if current_user.id == task.user_id%>
+      <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
+      <i class="fa fa-pencil" style = "font-size:30px;" aria-hidden="true"></i>
+      <% end %>
+      <%= link_to  report_accion_task_path(@report,@accion,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+      <i class="fa fa-trash" style = "font-size:30px;" aria-hidden="true"></i>
+      <% end %>
+      <% end %>
+              
+          
+      </h3>
             
         </div>
-        <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong >Tarea:</strong> <%= task.name %></div>
+        <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ></div>
             <%= render 'form_close', task: task %>
            <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong >Comentarios: </strong><%= task.observacion %></div>
            <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong><i class="fa fa-paperclip" aria-hidden="true"></i> Anexo: <%= (link_to "#{task.anexo.file.filename }  (Descargar)",task.anexo_url, class:"linka") if task.anexo_url %>

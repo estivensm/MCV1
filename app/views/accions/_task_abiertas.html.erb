@@ -27,7 +27,9 @@
                             <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                             
                               <% end %>
-                              
+                               <%= link_to  report_accion_task_path(@report,@accion,task), :class => "opciones" do %>
+                              <i class="fa fa-eye" aria-hidden="true"></i>
+                              <% end %>
                               <% if current_user.id == task.user_id%>
                               <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
                               <i class="fa fa-pencil" aria-hidden="true"></i>

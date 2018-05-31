@@ -9,7 +9,7 @@
 
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">SEGUIMIENTOS AL REPORTE (<%=@seguimientos.count %>)</a></li>
-  <li><a data-toggle="tab" href="#menu1">SEGUIMIETNOS A LA GESTION (<%=@seguimientosa.count %>)</a></li>
+  <li><a data-toggle="tab" href="#menu1">SEGUIMIENTOS A LA GESTION (<%=@seguimientosa.count %>)</a></li>
 
 </ul>
 <br>
@@ -62,7 +62,7 @@
     </div>
      <div class="col-md-2 rtd wihtout-padding-bot">
       <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <i class="fas fa-edit" aria-hidden="true"></i>
          <% end %>
          <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
          <i class="fa fa-trash" aria-hidden="true"></i>
