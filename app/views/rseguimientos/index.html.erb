@@ -28,143 +28,143 @@
       <div class="col-md-4 rtd"><% if @seguimientos.count > 0 %><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %><%end%></div>
    </div>
 </div>
-<% if @seguimientos.count > 0 %>
-
-
 <div class=""> 
-<% @seguimientos.each do |seg| %>
-<div class="conteinter reporte cnt " style = "    margin-top: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #e2e2e2;
-    border: 1px solid #d8d8d8;
-    border-radius: 3px;">
-   <div class="row rtr">
-   <div class="col-md-1">
-   <%  idemp = User.find(seg.user_id).email
-         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
-         %>
-<%if employed1.avatare_url%>
-<img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
-   <%else%>
-<img style="width:60px;" class ="seg-img" src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe'>
-   <%end%>
-   </div>
-      <div class="col-md-11">
-      
-     
-<div class="col-md-12 text-left"><%== seg.descripcion %></div>
-   
-  <div class="col-md-10 rtd wihtout-padding-bot">
-         
- <%= employed1.first_name %> <%= employed1.first_last_name %>
-       <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
-     <span style="margin-left:15px;"> <strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></span>
-    </div>
-     <div class="col-md-2 rtd wihtout-padding-bot">
-      <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
-         <i class="fas fa-edit" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-     </div>
+        <% if @seguimientos.count > 0 %>
 
-  
-  </div>
-  </div>
-  
 
-   
-</div> 
-<% end %>
-<%else%>
-<div class="jumbotron jumbacc">
-   <h3 class="display-3 color-gray">No se ha creado ningun seguimiento</h3>
-   <hr>
-   <br>
-   <%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
-   </p>
+
+        <% @seguimientos.each do |seg| %>
+        <div class="conteinter reporte cnt " style = "    margin-top: 10px;
+            background-color: #fff;
+            border-bottom: 1px solid #e2e2e2;
+            border: 1px solid #d8d8d8;
+            border-radius: 3px;">
+          <div class="row rtr">
+          <div class="col-md-1">
+          <%  idemp = User.find(seg.user_id).email
+                employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
+                %>
+        <%if employed1.avatare_url%>
+        <img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
+          <%else%>
+        <img style="width:60px;" class ="seg-img" src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe'>
+          <%end%>
+          </div>
+              <div class="col-md-11">
+              
+            
+        <div class="col-md-12 text-left"><%== seg.descripcion %></div>
+          
+          <div class="col-md-10 rtd wihtout-padding-bot">
+                
+        <%= employed1.first_name %> <%= employed1.first_last_name %>
+              <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
+            <span style="margin-left:15px;"> <strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></span>
+            </div>
+            <div class="col-md-2 rtd wihtout-padding-bot">
+              <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+                <i class="fas fa-edit" aria-hidden="true"></i>
+                <% end %>
+                <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+            </div>
+
+          
+          </div>
+          </div>
+          
+
+          
+        </div> 
+        <% end %>
+      <%else%>
+        <div class="jumbotron jumbacc">
+          <h3 class="display-3 color-gray">No se ha creado ningun seguimiento</h3>
+          <hr>
+          <br>
+          <%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg')  %>
+          </p>
+        </div>
+        <%end%>
 </div>
-<%end%>
 </div>
-  </div>
+  
   <!--FIN-->
   <div id="menu1" class="tab-pane fade">
 
-            <div class="conteinter htitle" style = "padding:0px">
-            <div class="row rtr" style="padding: 10px;">
+                    <div class="conteinter htitle" style = "padding:0px">
+                    <div class="row rtr" style="padding: 10px;">
 
-  
-      
-      <div class="col-md-12">
-         <h4 class="htitle linka" style="font-weight: bold">SEGUIMIENTOS A LA GESTION (<%=@seguimientosa.count %>) <span style="font-size: 12px">(Seguimientos hechos a Correcciones, Acciones, o Actividades del reporte)</h4></span>
-      </div>
+          
+              
+              <div class="col-md-12">
+                <h4 class="htitle linka" style="font-weight: bold">SEGUIMIENTOS A LA GESTION (<%=@seguimientosa.count %>) <span style="font-size: 12px">(Seguimientos hechos a Correcciones, Acciones, o Actividades del reporte)</h4></span>
+              </div>
 
-   </div>
-</div>
+          </div>
+        </div>
 <% if @seguimientosa.count > 0 %>
 
 
-<div class=""> 
-<% @seguimientosa.each do |seg| %>
-<div class="conteinter reporte cnt " style = "    margin-top: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #e2e2e2;
-    border: 1px solid #d8d8d8;
-    border-radius: 3px;">
-   <div class="row rtr">
-   <div class="col-md-1">
-   <%  idemp = User.find(seg.user_id).email
-         employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
-         %>
-<%if employed1.avatare_url%>
-<img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
-   <%else%>
-<img style="width:60px" class ="seg-img" src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe'>
-   <%end%>
-   </div>
-      <div class="col-md-11">
-      
-     
-<div class="col-md-12 text-left"><%== seg.descripcion %></div>
-<div class="col-md-12 text-left"><strong>Pertenece a la <%=seg.accion.tipo%></strong> <%= seg.accion.name %></div>
-   
-  <div class="col-md-10 rtd wihtout-padding-bot">
-         
- <%= employed1.first_name %> <%= employed1.first_last_name %>
-       <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
-     <span style="margin-left:15px;"> <strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></span>
-    </div>
-     <div class="col-md-2 rtd wihtout-padding-bot">
-      <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-     </div>
+          <div class=""> 
+          <% @seguimientosa.each do |seg| %>
+          <div class="conteinter reporte cnt " style = "    margin-top: 10px;
+              background-color: #fff;
+              border-bottom: 1px solid #e2e2e2;
+              border: 1px solid #d8d8d8;
+              border-radius: 3px;">
+            <div class="row rtr">
+            <div class="col-md-1">
+            <%  idemp = User.find(seg.user_id).email
+                  employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
+                  %>
+          <%if employed1.avatare_url%>
+          <img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
+            <%else%>
+          <img style="width:60px" class ="seg-img" src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe'>
+            <%end%>
+            </div>
+                <div class="col-md-11">
+                
+              
+          <div class="col-md-12 text-left"><%== seg.descripcion %></div>
+          <div class="col-md-12 text-left"><strong>Pertenece a la <%=seg.accion.tipo%></strong> <%= seg.accion.name %></div>
+            
+            <div class="col-md-10 rtd wihtout-padding-bot">
+                  
+          <%= employed1.first_name %> <%= employed1.first_last_name %>
+                <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
+              <span style="margin-left:15px;"> <strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></span>
+              </div>
+              <div class="col-md-2 rtd wihtout-padding-bot">
+                <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  <% end %>
+                  <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
+              </div>
 
-  
-  </div>
-  </div>
-  
+            
+            </div>
+            </div>
+            
 
-   
-</div> 
-<% end %>
+            
+          </div> 
+          <% end %>
+          </div> 
 <%else%>
-<div class="jumbotron jumbacc">
-   <h3 class="display-3 color-gray">No se ha creado ningun seguimiento a la Gestion</h3>
-   <hr>
-   <br>
-   
-   </p>
-</div>
+          <div class="jumbotron jumbacc">
+            <h3 class="display-3 color-gray">No se ha creado ningun seguimiento a la Gestion</h3>
+            <hr>
+            <br>
+            
+            </p>
+          </div>
 <%end%>
 </div>
-  </div>
-  </div>
-
 </div>
 
 
