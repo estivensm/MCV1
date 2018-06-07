@@ -85,7 +85,7 @@ end
 
 def cumplio(state)
 
-  state ? a = "<i class='fa fa-thumbs-o-up' aria-hidden='true' style = 'color:green;font-size:20px;margin-left:5px'></i>" : a = "<i class='fa fa-thumbs-o-down' aria-hidden='true' style = 'color:red;font-size:20px;margin-left:5px'></i>"
+  state ? a = "<i class='far fa-thumbs-up' aria-hidden='true' style = 'color:green;font-size:20px;margin-left:5px'></i>" : a = "<i class='far fa-thumbs-down' aria-hidden='true' style = 'color:red;font-size:20px;margin-left:5px'></i>"
   
 end
 
