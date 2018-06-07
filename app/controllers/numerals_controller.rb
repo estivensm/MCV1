@@ -104,6 +104,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def numeral_params
-      params.require(:numeral).permit(:name, :user_id, :admin_user, :norma_id, :description, :numeral, :norma_name)
+      params.require(:numeral).permit(:name, :user_id, :admin_user, :norma_id, :description, :numeral, :norma_name, :clausula,:subclausula,:subtitulo)
     end
 end

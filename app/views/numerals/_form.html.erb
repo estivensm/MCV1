@@ -18,9 +18,25 @@
     <%= f.text_field :numeral,  class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label "Nombre" %>
+    <%= f.label "Titulo" %>
     <%= f.text_field :name,  class: "form-control" %>
   </div>
+
+   <div class="form-group">
+    <%= f.label "Clausula" %>
+    <%= f.text_field :clausula,  class: "form-control" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label "Subtitulo" %>
+    <%= f.text_field :subtitulo,  class: "form-control" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label "Subclausula" %>
+    <%= f.text_field :subclausula,  class: "form-control" %>
+  </div>
+
 
  <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>

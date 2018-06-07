@@ -165,14 +165,14 @@
                      <ul class="dropdown-menu">
                         <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                            <%= link_to reports_abiertos_path,:class => "" do %>
-                           <i class="fa fa-search color-gray" aria-hidden="true"></i>
+                           <i class="far fa-file-alt color-gray" aria-hidden="true"></i>
                            <span class = "color-gray">Reportes</span>
                            <% end %>
                            <% end %>
                         </li>
                         <li  style = "margin-bottom:5px"><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                            <%= link_to acciones_abiertas_path,:class => "" do %>
-                           <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
+                           <i class="fas fa-thumbtack color-gray" aria-hidden="true"></i>
                            <span class = "color-gray">Actividades Acciones y Correcciones </span>
                            <% end %>
                            <% end %>
@@ -193,12 +193,12 @@
                      Mi Gestion<span class="caret"></span></a>
                      <ul class="dropdown-menu">
                         <li style = "margin-bottom:5px"><%= link_to misreports_path,:class => "" do %>
-                           <i class="fa fa-file-text-o color-gray" aria-hidden="true"></i>
+                           <i class="far fa-file-alt color-gray" aria-hidden="true"></i>
                            <span class = "color-gray">Mis Reportes</span>
                            <% end %>
                         </li>
                         <li style = "margin-bottom:5px"><%= link_to misacciones_path,:class => "" do %>
-                           <i class="fa fa-thumbs-o-up color-gray" aria-hidden="true"></i>
+                           <i class="fas fa-thumbtack color-gray" aria-hidden="true"></i>
                            <span class = "color-gray">Mis Acciones, Correcciones y Actividades</span>
                            <% end %>
                         </li>
