@@ -42,6 +42,7 @@ respond_to :json
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
+    @menu_accion = ["","",""]
     @accions_t.each do |accion|
        accion.aseguimientos.each do |seg| 
         
@@ -69,7 +70,7 @@ respond_to :json
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
-
+    @menu_accion = ["","",""]
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
     @accions_t.each do |accion|
@@ -102,6 +103,7 @@ def actividades
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
+    @menu_accion = ["","",""]
     @accions_t.each do |accion|
        accion.aseguimientos.each do |seg| 
         
@@ -133,6 +135,24 @@ end
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
+    
+    @menu_accion = ["","",""]
+    if @accion.tipo == "Correccion" 
+        
+        @menu_accion = ["active_report","",""]
+        
+    elsif @accion.tipo == "Accion"
+
+      @menu_accion = ["","active_report",""]
+
+    else
+
+      @menu_accion = ["","","active_report"]
+    end  
+
+  
+
+
     @seguimientosa = []
     @accions.each do |accion|
        accion.aseguimientos.each do |seg| 

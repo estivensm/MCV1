@@ -533,7 +533,7 @@
           <i class="fas fa-comments" style="font-size: 20px"></i> Seguimientos <span class="<%= @seguimientos_t.count < 10 ? 'redonda_p' : 'redonda'%>"><%= @seguimientos_t.count%></span>
          <%end%>
          <%if @report.source.correccion%>
-         <%= link_to  report_correcciones_path(@report), class: "#{@menu_report[2]}"  do %>
+         <%= link_to  report_correcciones_path(@report), class: "#{@menu_report[2]} #{@menu_accion[0]}"  do %>
                <i class="fas fa-edit" style="font-size: 20px"></i></i> Correcciones <span class="<%= @correc < 10 ? 'redonda_p' : 'redonda'%>"><%=  @correc%></span>
          <%end%>
          <%end%>
@@ -555,12 +555,17 @@
          
          <%end%>
           <%if @report.source.accion%>
-         <%= link_to  report_accions_path(@report) , class: "#{@menu_report[3]}"  do %>
-               <i class="fa fa-thumbtack" style="font-size: 20px"></i> Acciones <span class="<%= @accionscc < 10 ? 'redonda_p' : 'redonda'%>"><%= @accionscc%></span>
+            
+            
+
+
+
+         <%= link_to  report_accions_path(@report) , class: "#{@menu_report[3]} #{@menu_accion[1]}"  do %>
+               <i class="fa fa-thumbtack" style="font-size: 20px"></i> Acciones <span class="<%= @accionscc < 10 ? 'redonda_p' : 'redonda'%>"><%= @accionscc%> </span>
          <%end%>
          <%end%>
           <%if @report.source.actividad%>
-         <%= link_to  report_actividades_path(@report) , class: "#{@menu_report[4]}"   do %>
+         <%= link_to  report_actividades_path(@report) , class: "#{@menu_report[4]} #{@menu_accion[2]}"   do %>
                <i class="fa fa-calendar-check" style="font-size: 20px"></i> Actividades <span class="<%= @actividad < 10 ? 'redonda_p' : 'redonda'%>"><%= @actividad%></span>
          <%end%>
          <%end%>

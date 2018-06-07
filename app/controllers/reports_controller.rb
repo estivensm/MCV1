@@ -363,7 +363,7 @@ end
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
     @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
-
+    @menu_accion = ["","",""]
     @seguimientos = @report.rseguimientos.order(created_at: :desc)
     @seguimientosa = []
     @accions.each do |accion|

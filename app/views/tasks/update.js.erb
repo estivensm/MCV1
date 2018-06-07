@@ -1,6 +1,7 @@
 <% if @task.errors.blank? %>
   $('#contact-modal').modal('hide');
   $('.task_abiertasa').html("<%= j render :partial => 'accions/task_abiertas', tasks: @tasks %>");
+  $('.task_cerradasa').html("<%= j render :partial => 'accions/task_cerradas', tasks: @tasksc %>");
   $('.tasks_abierta').html("(<%= @tasks.count %>)");
   $('.tasks_cerrada').html("(<%= @tasksc.count %>)");
 <% else %>

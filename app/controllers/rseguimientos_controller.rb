@@ -16,7 +16,7 @@ class RseguimientosController < ApplicationController
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
-    
+    @menu_accion = ["","",""]
     @seguimientosa = []
     @accions.each do |accion|
        accion.aseguimientos.each do |seg| 

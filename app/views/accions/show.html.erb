@@ -65,7 +65,8 @@
    </div>
 </div>
 <!--Muestra Informacion y seguimiento-->
-<div class = "row">
+
+<div class = "row" style="margin-top:20px">
 <!--Informacion-->
    <div class="col-md-12 wihtout-padding" >
       <h4 class = "linka htitle"><%=@accion.tipo %> (<%=@accion.codigo %>): <span style="color:gray"><%=@accion.name%></span> <span style="float: right"><%if @accion.estado == "Abierta" %>
@@ -254,65 +255,9 @@
   </div>
   <div id="menu2" class="tab-pane fade">
     <div class="col-md-12 wihtout-padding">
-         <div class="conteinter htitle" style = "padding:0px">
-                     <div class="row rtr">
-                       <div class="col-md-12 rtd">
-                          <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> TAREAS CERRADAS (<%= @tasksc.count %>)</h4>
-
-                        </div>
-                    
-                     </div>
-         </div>
-<% @tasksc.order(f_real: :desc).each do |task| %>
-<%=link_to report_accion_task_path(@report,@accion,task) do %>
-<div class="conteinter reporte cnt">
-               <div class="row rtr">
-                     <div class="col-md-12 rtd text-left" style = "    padding: 5px !important;
-                        padding-left: 17px !important;font-size:13px; font-weight: 100;"><strong >Tarea:</strong> <%= task.name %></div>
-                              <!-- <div class="col-md-3 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
-                                 padding-bottom: 0px !important;   padding-right: 40px !important;"> 
-                                 <!--   <%= link_to  report_accion_task_path(@report,@accion,task), :class => "opciones" do %>
-                                 <i class="fa fa-eye" aria-hidden="true"></i>
-                                 <% if current_user.id == task.user_id%>
-                                 <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
-                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                 <% end %>
-                                 
-                                 <%= link_to  report_accion_task_path(@report,@accion,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                                 <i class="fa fa-trash" aria-hidden="true"></i>
-                                 <% end %>
-                                    <% end %>
-                                 
-                                 <% end %>
-                                 </div>-->
-                        <div class="col-md-12 rtd text-left" style = "    padding: 5px !important;
-                           padding-left: 17px !important;font-size:13px;font-weight: 100;"><strong >Comentarios: </strong><%= task.observacion %></div>
-               <!--<div class="col-md-3 rtd text-left" style = "    padding: 5px !important;
-                  padding-left: 17px !important;font-size:13px;"><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",task.anexo_url, class:"linka") if task.anexo_url %></div>-->
-               </div>
-      <hr class="hr">
-             <div class="row rtr">
-                     <div class="col-md-4 rtd">
-                     <strong><i class="fa fa-user" aria-hidden="true"></i>
-                     </strong> <%  
-                        employed = Employed.find(task.employed_id)
-                        %>
-                     
-                           <%= employed.first_name %> <%= employed.first_last_name %>
-                     </div>
-                     <%color = ""
-                        task.contador_seg < 0 ?  color = "#d82c2c" : color = "#0db4a0"%>
-                     <div class="col-md-3 rtd" ><strong><i class="fa fa-calendar" aria-hidden="true"></i>
-                     </strong> <%=  get_date(task.f_compromiso)  %></div>
-                     <div class="col-md-3 rtd" ><strong>
-                     </strong><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-                     <%=  get_date(task.f_real)  %> <%= cumplio(task.cumplio).html_safe%></div>
-                     <div class="col-md-2 rtd" style = "    font-size: 12px;
-                        color: gray;"><%=  task.codigo  %></div>
-               </div>
-</div>
-<% end %>
-<% end %>
+          <div class="task_cerradasa">
+                     <%= render :partial => "task_cerradas"%> 
+                 </div>
 </div>
   </div>
 </div>

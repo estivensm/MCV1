@@ -149,7 +149,7 @@ end
       respond_to do |format|
         format.js
          puts "11111111111111111111111111111111111111111"
-          @tasks =  @accion.tasks.abiertas
+         @tasks =  @accion.tasks.abiertas
          @tasksc =  @accion.tasks.cerradas
          #render partial: "accions/task_abiertas", params: @tasks, status:200
         
