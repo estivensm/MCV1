@@ -1,11 +1,11 @@
       <div class="row rtr rtr1">
-               <%employed = Employed.find(report.employed_id)%>
+               <%employed = Employed.find(employed_p)%>
                <div class="row">
                   <div class="col-md-3 rtd"> 
                      <%if report.s_cierre %>
                      <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
                      <%end%>
-                     <strong>Responsable:<br></strong>
+                     <strong><%= desc %><br></strong>
                      <%=get_employed(employed.email).first_name%> <%=get_employed(employed.email).first_last_name%>
                   </div>
 
@@ -14,11 +14,11 @@
                      color = "#22c488" if report.contador_seg > 5 %>
                    
                   <div class="col-md-2 rtd ">
-                         <strong>Tipo:<br></strong>
+                         <strong>Tipo<br></strong>
                          <%=report.source.name%>
                   </div>
                   <div class="col-md-2 rtd ">
-                         <strong>Proceso:<br></strong>
+                         <strong>Proceso<br></strong>
                          <%=report.proceso.name%>
                   </div>     
                   
@@ -121,7 +121,7 @@
    border-bottom: 1px solid gainsboro;
    padding: 0px  10px;
    border: 1px solid #cbcbcb;
-   margin-bottom: 10px;"               
+   margin-bottom: 30px;"               
  }
 
 </style>            

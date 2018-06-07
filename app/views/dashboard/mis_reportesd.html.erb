@@ -10,7 +10,7 @@
          <div class="">
             <%if @reports.count > 0 %>
             <% @reports.each do |report|%>
-                     <%= render "reporte", report: report%>
+                     <%= render "reporte", report: report, employed_p: report.employed_id, desc: "Responsable"%>
             <%end%>
             <%else%>
             <p class="nh">No hay Reportes</p>
