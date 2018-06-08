@@ -9,8 +9,8 @@
                   <i class="fa fa-thumbs-o-up" style = "font-size:15px;margin-right: 2px;" aria-hidden="true"></i>
 
               <%end%>
-               <strong>Asignada por:<br></strong>
-              <%=get_employed(accion.user.email).first_name%> <%=get_employed(accion.user.email).first_last_name%></div>
+               <strong><%=desc%><br></strong>
+              <%=get_employed(employed_p).first_name%> <%=get_employed(employed_p).first_last_name%></div>
                   <%color = ""
                   accion.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
                   color = "#22c488" if accion.contador_seg > 5 %>
@@ -18,7 +18,7 @@
                <div class="col-md-2 rtd fc1 text-center">
                <strong>Pertenece al Reporte: <br></strong> 
                       
-                      <%=accion.report.codigo%> <button type="button" class="ver" data-toggle="modal" data-target="#myModal<%=accion.id%>">(Ver)</button>
+                      <%=accion.report.codigo%> <button type="button" class="ver" data-toggle="modal" data-target="#myModal<%=accion.id%>">(Ver)</button><a href="/reports/<%=accion.report_id%>">(Ir)</a>
 
               </div>
 
@@ -127,7 +127,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Reporte <%=accion.report.id%></h4>
+          <h4 class="modal-title">Reporte <%=accion.report.codigo%></h4>
         </div>
         <div class="modal-body">
           <p><strong>Reporte:</strong> <%=accion.report.name%></p>
@@ -135,7 +135,7 @@
           <p><strong>Descripcion Detallada:</strong> <%=accion.report.description%></p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
       
