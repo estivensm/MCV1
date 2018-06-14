@@ -50,6 +50,7 @@ class Report < ApplicationRecord
   belongs_to :employed, :class_name => 'Employed'
   belongs_to :source_parent
   has_and_belongs_to_many :numerals, dependent: :destroy
+  has_many :riesgos, dependent: :destroy
   belongs_to :source
   belongs_to :clinte_proveedor , optional: true
   belongs_to :proceso

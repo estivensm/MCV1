@@ -281,30 +281,35 @@ end
 
 
 def menu_report
-  @menu_report = ["","","","",""]
+  @menu_report = ["","","","","",""]
   corre =  action_name == "correcciones"
+  riesgo =  controller_name == "riesgos"
   accion =  controller_name == "accions" && action_name == "index"
   actividad =  controller_name == "accions" && action_name == "actividades"
   
-  if controller_name == "reports" && action_name = "show" 
+  if controller_name == "reports" && action_name == "show" 
         
-        @menu_report = ["active_report","","","",""]
+        @menu_report = ["active_report","","","","",""]
         
     elsif controller.controller_name == "rseguimientos"
 
-      @menu_report = ["","active_report","","",""]
+      @menu_report = ["","active_report","","","",""]
 
     elsif corre
      
-      @menu_report = ["","","active_report","",""]
+      @menu_report = ["","","active_report","","",""]
 
       elsif accion
      
-    @menu_report = ["","","","active_report",""]
+    @menu_report = ["","","","active_report","",""]
 
     elsif actividad
      
-    @menu_report = ["","","","","active_report"]
+    @menu_report = ["","","","","active_report",""]
+
+  elsif riesgo
+     
+    @menu_report = ["","","","","","active_report"]
   
 
   end
@@ -378,6 +383,8 @@ end
  return @menu_tar
 
  end 
+
+
 
 
 
@@ -634,7 +641,18 @@ return (report_size.to_f/1000000000).round(3)
 end
 
 
+def tiene_riesgo(riesgo)
+    
 
+    if riesgo.downcase.include? "riesgo"
+        
+        true
+    else
+
+       false
+    end  
+
+end
 
 
 end

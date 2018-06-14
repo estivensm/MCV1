@@ -11,12 +11,39 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   # GET /riesgos/1
   # GET /riesgos/1.json
   def show
+    
+    @report = Report.find(params[:report_id])
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @accions = Accion.where(report_id: @report.id)
+    @tasks = Task.where(report_id: @report.id)
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @menu_accion = ["","",""]
+    @seguimientos = @report.rseguimientos.order(created_at: :desc)
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+    @seguimientos_t = @seguimientos + @seguimientosa
+
+    @accion_eficaz = @report.accions.where(eficaz: true).count
+    @accion_noeficaz = @report.accions.where(eficaz: false).count
+
+
+    render :layout => "admin_report"
   end
 
   # GET /riesgos/new
   def new
     @riesgo = Riesgo.new
-    @accion = Accion.find(params[:accion_id])
     @report = Report.find(params[:report_id])
   end
 
@@ -31,9 +58,9 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   def create
     @riesgo = Riesgo.new(riesgo_params)
      @report = Report.find(params[:report_id])
-    @accion = Accion.find(params[:accion_id])
+   
    if @riesgo.save
-        redirect_to report_accion_path(@report,@accion)
+        redirect_to report_riesgo_path(@report,@riesgo)
     end
   end
 

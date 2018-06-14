@@ -12,12 +12,13 @@ resources :reports do
     get :get_asignadosc, on: :collection
     get :get_misreportsc, on: :collection
     get :get_reportodos, on: :collection
-        get :get_acciontodosi, on: :collection 
-         get :get_tasktodos, on: :collection 
+    get :get_acciontodosi, on: :collection 
+    get :get_tasktodos, on: :collection 
+    resources :riesgos
 
     resources :accions do 
         resources :aseguimientos
-        resources :riesgos
+        
         get :get_misaccionsc, on: :collection
         get :get_acciontodos, on: :collection
         resources :tasks do 

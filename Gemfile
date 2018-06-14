@@ -48,6 +48,7 @@ gem 'annotate'
 gem 'chosen-rails'
 
 gem 'jquery-ui-rails'
+gem 'jquery-validation-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 #Guardar en amazon

@@ -8,20 +8,21 @@
    <%= devise_error_messages!  %></div>
 <% end %>
 
+
 <div class="form-group">
     <%= f.label "Usuario" %>
-    <%= f.text_field :name, :class => 'form-control' %>
+    <%= f.text_field :name, :class => "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
    <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true , :class => 'form-control'%>
+    <%= f.email_field :email, autofocus: true , :class => "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 
 
 <div class="form-group">
     <%= f.label "Empresa" %><br />
-    <%= f.text_field :company , :class => 'form-control'%>
+    <%= f.text_field :company , :class => "form-control required", :title => "Es un Campo Obligatorio"%>
   </div>
 
 
@@ -37,7 +38,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control'%>
+    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control minlength'%>
   </div>
 
    <div class="form-group">
@@ -71,5 +72,49 @@ Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name
 
  }
 
+.alert {
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 12px;
+}
 
-  </style>  }
+.alert-devise h2 {
+    font-size: 16px !important;
+    text-align: left !important;
+    margin-top:5px;
+}
+
+.form-control {
+
+    height: 30px;
+} 
+
+.sign_form {
+    margin-top: 5px;
+}
+ .error
+   {
+   color: red !important;
+   }
+ </style> 
+
+
+<script>
+  $(document).ready(function(){
+     $('#new_user').validate();
+
+
+
+      $( "#new_user" ).rules( "add", {
+    required: true,
+    minlength: 2,
+    messages: {
+      required: "Campo Requerido",
+      minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
+    }
+});
+
+   });
+</script>
