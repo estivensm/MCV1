@@ -1,19 +1,22 @@
 
-          
-         
-<%=@report.state != "Cerrado"%> <%=@report.accions.count != 0%> <%=@report.accions.abiertas.count == 0%>
+<!--MENSAJES DE CABECERA-->
 <% #|| (current_user.role == "SuperAdmin" && @report.state != "Cerrado")
    if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id  && @report.s_cierre%>
 <div class="alert alert-success text-center" > 
    <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL RESPONSABLE DE LA EJECUCION SOLICITO EL CIERRE DEL REPORTE!
 </div>
 <%elsif @report.state != "Cerrado" && @report.accions.count != 0 && @report.accions.abiertas.count == 0%>
-
 <div class="alert alert-success text-center" > 
-   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL REPORTE NO TIENE GESTION PENDIENTE, AHORA PUEDES CERRARLO  !
-   <br><span>(Recuerda que para cerrarlo debes hacer un seguimiento al reporte)</span> 
-   <br><%= (link_to "Hacer Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg', style: "padding: 5px 13px;
-    font-size: 14px;margin-top:5px")  %>
+   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL REPORTE NO TIENE GESTION PENDIENTE, YA SE PUEDE CERRAR  !
+   <br><span>(Recuerda que para cerrarlo debes hacer un seguimiento al reporte )</span> 
+   <br>
+<%if view_report(@report)%>
+   <%= (link_to "Hacer Seguimiento", new_report_rseguimiento_path(@report) , remote:true,:class => 'btn btn-primary btn-lg', style: "padding: 5px 13px;
+      font-size: 14px;margin-top:5px")  %>
+<%else%>
+   El reporte solo lo puede cerrar el Responsable (<%= @report.employed.first_name %> <%= @report.employed.first_last_name%>) o el Super Administrador
+<%end%>
+
 </div>
 <%elsif @report.state == "Cerrado" %>
 <% if @report.cumplio %>
@@ -26,153 +29,165 @@
 </div>
 <%end%>
 <%end%> 
-<br>
-<%= render 'form_close', report: @report %>
+<!--FIN MENSAJES DE CABECERA-->
 
-
-<div class="row">
-  
-<div class="col-md-12 wihtout-padding " style="border-right: 1px solid #e0e0e0;">
-
-
-<div class="conteinter reporte ">
-
- 
-   <div class="row rtr">
-      <div class="col-md-4 rtd"><strong>Fecha de Creacion</strong> <%= get_date(@report.created_at) %></div>
-      
-
+<%if @report.state != "Cerrado" && @report.accions.count != 0 && @report.accions.abiertas.count != 0%>
     
-   
-      <% employed1 = Employed.find(@report.employed_reporta)%>
-      <div class="col-md-4 rtd"><strong>Reporta: </strong>
-         <%= render "employed" , employed: employed1 %>
-      </div>
+    <div class="alert alert-success">
+         <strong>Gestion pendiente para el cerrar del Reporte :</strong> 
+         <% correcciones = @report.accions.abiertas.where(tipo: "Correccion").count%>
+        <%if correcciones != 0  %>
+            Correcciones Abiertas
+            <span class="<%= correcciones < 10 ? 'redonda_p1' : 'redonda1'%>"><%=correcciones.to_s %></span>
+        <%end%>
 
-        <div class="col-md-4 rtd"><strong> <% employed = Employed.find(@report.employed_id)
-         cierra_r = Employed.find(@report.cierra_id)%>
-          <strong> Responsable de Cierre:  <%= render "employed" , employed: cierra_r %></strong>
+        <% actividades = @report.accions.abiertas.where(tipo: "Actividad").count%>
+        <%if actividades != 0  %>
+            Activades Abiertas
+            <span class="<%= actividades < 10 ? 'redonda_p1' : 'redonda1'%>"><%=actividades.to_s %></span>
+        <%end%>
+
+        <% acciones = @report.accions.abiertas.where(tipo: "Accion").count%>
+        <%if acciones != 0  %>
+            Acciones Abiertas
+            <span class="<%= acciones < 10 ? 'redonda_p1' : 'redonda1'%>"><%=acciones.to_s %></span>
+        <%end%>
+
        
-      </div>
 
-   </div>   
-  
 
-   <div class="row rtr">
- 
-       <div class="col-md-12 rtd">
-       <strong>Otros Interesados: </strong><% 
-            cm = 0 
-            @report.employeds.each do |resp|
-              %><%= "," if cm != 0 %> 
-         <%= render "employed" , employed: resp %>
-         <%  cm = cm + 1 %> 
-         <%end%>
-      </div>
-      <div class="col-md-6 rtd "><span class="s"><strong>    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.costo_presupuestado) %></span></div>
-      <div class="col-md-6 rtd "><span class=""><strong> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.costo) %></span></div>
-    
-   </div>
-   <hr>
-     <% if @report.clinte_proveedor%> 
 
-  
-   <div class="row rtr">
-      <div class="col-md-4 rtd"><strong>Parte Interesada: </strong> <%= @report.clinte_proveedor.name%></div>
-      <div class="col-md-8 rtd"><strong>Contacto: </strong><%if @report.contact%>
-        <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%>
-        <%end%></div>
-   </div>
-   <%end%>
-     <hr>
-    <div class="row rtr">
-      
-   </div>
 
-  
- 
-  
-   <hr>
-   <div class="row rtr">
-      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-      <div class="col-md-12 rtd text-left">
-        
-         <div class="descnum"><strong>Descripción detallada:</strong> <%= @report.description%></div>
-      </div>
+    </div>
 
-   </div>
-   <hr>
-      <div class="row rtr">
-      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-     
-      <div class="col-md-12 rtd text-left">
-     <strong>Adjunto:</strong>  <% if @report.archivo_url%>
-         <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
-         <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
-         <%else%>
-         No hay archivo
-         <%end%><br>
-         <%if @report.source.evidencia%>
-         <div class="descnum"> <strong>Evidencia:</strong> <%= @report.evidencia%> </div>
-         <%end%> 
-      </div>
-   </div>
-   <hr>
+<%end%>
 
-   <div class="row rtr">
-      <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-       <%if @report.source.requisito%>
-      <div class="col-md-12 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
- <%end%>
- <%if @report.source.numerales%>
-      <div class="col-md-12 rtd text-left">
-         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
-         <!-- Large modal -->
-         <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
-         <!-- Modal -->
-         <br>
-         <%end%></strong> 
-         <script>
-            $('.numerb').click(function(){
-            a = $(this).prop('value');
-            b = $(this).text();
-            
-            $('.modalp').html(a);
-            $('.modalp1').text(b);
-            
-            });
-            
+
+
+
+<%= render 'form_close', report: @report %>
+<div class="row">
+   <div class="col-md-12 wihtout-padding " style="border-right: 1px solid #e0e0e0;">
+      <div class="conteinter reporte ">
+         <!--RESPONSABILIDAD-->
+         <div class="row rtr">
+
+            <% employed1 = Employed.find(@report.employed_reporta)%>
+            <% employed_r = Employed.find(@report.employed_id)%>
+             <div class="col-md-12 rtd" style="padding-bottom: 0px">
+                <strong style="color: #0db49a;">RESPONSABILIDAD</strong>
+            </div>
+            <div class="col-md-3 rtd"><strong>Reporta <br></strong>
+               <%= render "employed" , employed: employed1 %>
+            </div>
+             <div class="col-md-3 rtd"><strong>Responsable de Ejecucion <br></strong>
+               <%= render "employed" , employed: employed_r%>
+            </div>
+            <div class="col-md-3 rtd">
               
-         </script>
-         <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-               <!-- Modal content-->
-               <div class="modal-content">
-                  <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4 class="modal-title modalp1">Modal Header</h4>
-                  </div>
-                  <div class="modal-body">
-                     <p class = "modalp"></p>
-                  </div>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <% employed = Employed.find(@report.employed_id)
+                     cierra_r = Employed.find(@report.cierra_id)%>
+                  <strong> Responsable de Cierre <br> <%= render "employed" , employed: cierra_r %></strong>
+            </div>
+             <div class="col-md-3 rtd">
+                <strong>Otros Interesados <br> </strong><% 
+                    cm = 0 
+                    @report.employeds.each do |resp|
+                      %><%= "," if cm != 0 %> 
+                <%= render "employed" , employed: resp %>
+                <%  cm = cm + 1 %> 
+                <%end%>
+            </div>
+         </div>
+         <!-- FIN RESPONSABILIDAD-->
+         <div class="row rtr">
+        
+         <div class="col-md-6 rtd "><span class="s"><strong class="color_primary">    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.costo_presupuestado) %></span></div>
+         <div class="col-md-6 rtd "><span class=""><strong class="color_primary"> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.costo) %></span></div>
+         </div>
+
+         <% if @report.clinte_proveedor%> 
+          <hr>
+         <div class="row rtr">
+         <div class="col-md-4 rtd"><strong class="color_primary">Parte Interesada: </strong> <%= @report.clinte_proveedor.name%></div>
+         <div class="col-md-8 rtd"><strong class="color_primary">Contacto: </strong><%if @report.contact%>
+         <%= @report.contact.name%> <strong class="color_primary">Email: </strong>  <%= @report.contact.email%>
+         <%end%></div>
+         </div>
+         <%end%>
+         <hr>
+
+         <div class="row rtr">
+            <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+            <div class="col-md-12 rtd text-left">
+               <div class=""><strong class="color_primary">Descripción detallada:</strong> <%= @report.description%></div>
+            </div>
+         </div>
+         <hr>
+         <div class="row rtr">
+            <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+            <div class="col-md-12 rtd text-left">
+               <strong class="color_primary">Adjunto:</strong>  <% if @report.archivo_url%>
+               <%= link_to "Descargar Archivo", @report.archivo_url , :class => "linka" %>
+               <!--<%= image_tag get_extension(@report.archivo.file.extension), class: "extension"%>-->
+               <%else%>
+               No hay archivo
+               <%end%><br>
+               <%if @report.source.evidencia%>
+               <br>
+               <div class=""> <strong class="color_primary">Evidencia:</strong> <%= @report.evidencia%> </div>
+               <%end%> 
+            </div>
+         </div>
+         <hr>
+         <div class="row rtr">
+            <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
+            <%if @report.source.requisito%>
+            <div class="col-md-12 rtd text-left"> <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%></div>
+            <%end%>
+            <%if @report.source.numerales%>
+            <div class="col-md-12 rtd text-left">
+               <strong class="color_primary">Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
+               <!-- Large modal -->
+               <button class="btn numerb" id = "<%=numr.id%>" data-toggle="modal" data-target="#myModal" value="<%=numr.description%>"><%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%></button>
+               <!-- Modal -->
+               <br>
+               <%end%></strong> 
+               <script>
+                  $('.numerb').click(function(){
+                  a = $(this).prop('value');
+                  b = $(this).text();
+                  
+                  $('.modalp').html(a);
+                  $('.modalp1').text(b);
+                  
+                  });
+                  
+                    
+               </script>
+               <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+                     <!-- Modal content-->
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h4 class="modal-title modalp1">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                           <p class = "modalp"></p>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
+            <%end%>
          </div>
       </div>
-       <%end%>
    </div>
 </div>
-
-
-</div>
-
-
-</div>
-
-
 <style>
    .imaacc img
    {
@@ -180,7 +195,6 @@
    }
    .cnt
    {
- 
    margin-bottom: 10px;
    }
    .rtr
@@ -199,6 +213,33 @@
    margin-top: 0px;
    margin-bottom: 0px;
    }
+   .color_primary
+   {
+      
+    color: #0db49a; 
+
+   }
+
+   .redonda1
+
+   {
+     
+      background: #3c763d;
+      color: white;
+      padding: 3px 6px;
+      border-radius: 50%;
+      margin-right: 10px
+   }
+    .redonda_p1
+
+   {
+       
+      background: #3c763d;
+      color: white;
+      padding: 3px 9px;
+      border-radius: 50%;
+      margin-right: 10px
+   }
 
 </style>
 <script>
@@ -212,14 +253,3 @@
    })
    
 </script>
-
-
-
-
-
-
-
-
-
-
-

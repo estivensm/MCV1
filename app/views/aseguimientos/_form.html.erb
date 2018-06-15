@@ -6,64 +6,95 @@
          <h4 class="modal-title"><%= action_type %> Seguiemiento</h4>
       </div>
       <%= form_for([@report,@accion,@aseguimiento], remote: true) do |f| %>
-      <div class="alert alert-danger" style="display:none">
-         <ul>
-         </ul>
-      </div>
+          <div class="alert alert-danger" style="display:none">
+            <ul>
+            </ul>
+          </div>
       <div class="modal-body">
-       
-              <p><strong>Accion: </strong><%=@accion.name%></p>
-               <div class="form-group">
-                  <%= f.label "Seguimiento" %>
-                  <%= f.text_area :descripcion,  class: "form-control area" %>
-               </div>
-                <div class="form-group">
-                  <%= f.label :evidencia %><br>
+            <p><strong><%=@accion.tipo%>: </strong><%=@accion.name%></p>
+            <div class="form-group">
+                <%= f.label "Seguimiento" %>
+                <%= f.text_area :descripcion,  class: "form-control area" %>
+            </div>
+         <div class="form-group">
+            <%= f.label :evidencia %><br>
+            <%= f.file_field :evidencia,  class: "form-control inputfile" , id: 'file'%>
+            <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
+            <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @aseguimiento.evidencia.blank?   != true %><br>
+            <%= f.check_box :remove_evidencia %> 
+            <%= f.label "Eliminar", style: "color:red!important" %></label>
+            <%end%>
+         </div>
+
+         <% if  (get_employed1.id == @accion.employed_id ) && @gestion_c == 0%>
+         
+          <div class="row check">
             
-                     <%= f.file_field :evidencia,  class: "form-control inputfile" , id: 'file'%>
-   <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
+            <div class="col-md-8">
+                <span>¿Solicitar Cierre de la ? <%=@accion.tipo%></span>
+            </div>
+            <div class="col-md-4">
+              <%= f.check_box :s_cierre, class: "", id: "toggle-four"  %>
+            </div>
+          
+        </div>
+         <% end %>
 
- <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @aseguimiento.evidencia.blank?   != true %><br>
-<%= f.check_box :remove_evidencia %> 
-   <%= f.label "Eliminar", style: "color:red!important" %></label>
 
-   <%end%>
-               </div>
+        <div class="row check">
             
-            <% if  (get_employed1.id == @accion.employed_id || current_user.role == "SuperAdmin") && @gestion_c == 0%>
-               <div class="form-group">
-                  <%= f.label "Solicitar Cierre" %>
-                  <%= f.check_box :s_cierre ,  class: ""  %>
-               </div>
+            <div class="col-md-8">
+                <span>¿Enviar email del seguimiento a los Interesados?</span>
+            </div>
+            <div class="col-md-4">
+              <%= f.check_box :send_mail, class: "send_mail", id: "toggle-two"  %>
+            </div>
+          
+        </div>
 
-<% end %>
-              
-       
-               <% if (@accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin" || current_user.email == @accion.report.employed.email) && @gestion_c == 0%>
-               <div class="form-group">
-                  <%= f.label :cierra %>
-                  <%= f.check_box :cierra ,  class: "cierra1"  %>
-               </div>
-               <% end %>
-               <div class="form-group cierra">
-                  <%= f.label :eficaz %>
-                  <%= f.check_box :eficaz  %>
-               </div>
-               <div class="form-group cierra">
-                  <%= f.label "Conclusión" %>
-                  <%= f.text_area :conclucion ,  class: "form-control area"%>
-               </div>
-               <div class="form-group cierra ">
-                  <%= f.label :costo %>
-                  <div class="input-group">
-                     <span class="input-group-addon" id="basic-addon1">$</span>
-                     <%= f.number_field :costo , :value => 0,  class: "form-control"%>
-                  </div>
-               </div>
-          <div class="form-group">
-                  <%= f.label "Enviar Email" %>
-                  <%= f.check_box :send_mail, class: "send_mail"  %>
-               </div>
+
+ 
+         <% if (@accion.cierra_id == get_employed1.id || current_user.role == "SuperAdmin" || current_user.email == @accion.report.employed.email) && @gestion_c == 0%>
+
+        
+         <div class="row check">
+
+              <div class="col-md-8">
+                  <span><%= "¿El seguimiento cierra la " + @accion.tipo + " ?" %></span>
+              </div>
+              <div class="col-md-4">
+                <%= f.check_box :cierra ,  class: "cierra1", id: "toggle-one"  %>
+              </div>
+          
+             </div>
+
+          <% end %>
+
+        
+         
+         <div class="row check cierra">
+            
+            <div class="col-md-8">
+                <span><%= "¿La " + @accion.tipo + " fue Eficaz ?" %></span>
+            </div>
+            <div class="col-md-4">
+              <%= f.check_box :eficaz, class: "", id: "toggle-three"  %>
+            </div>
+          
+        </div>
+
+  
+         <div class="form-group cierra">
+            <%= f.label "Conclusión" %>
+            <%= f.text_area :conclucion ,  class: "form-control area"%>
+         </div>
+         <div class="form-group cierra ">
+            <%= f.label :costo %>
+            <div class="input-group">
+               <span class="input-group-addon" id="basic-addon1">$</span>
+               <%= f.number_field :costo , :value => 0,  class: "form-control"%>
+            </div>
+         </div>
          <%= f.hidden_field :accion_id , :value => @accion.id %>
          <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
          <%= f.hidden_field :user_id ,:value =>  current_user.id %>
@@ -74,105 +105,106 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
          </div>
          <% end %>
-
- <script>
-
-if ("<%=action_name%>" == "edit" && <%= @aseguimiento.evidencia.blank?  %> != true)
-{
-$('.levidencia').html(" <%= @aseguimiento.evidencia.file.filename if @aseguimiento.evidencia.file %> ")
-
-}
-
-
-
-'use strict';
-
-;( function ( document, window, index )
-{
-  var inputs = document.querySelectorAll( '.inputfile' );
-  Array.prototype.forEach.call( inputs, function( input )
-  {
-    var label  = input.nextElementSibling,
-      labelVal = label.innerHTML;
-
-    input.addEventListener( 'change', function( e )
-    {
-      var fileName = '';
-      if( this.files && this.files.length > 1 )
-        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-      else
-        fileName = e.target.value.split( '\\' ).pop();
-
-      if( fileName )
-        label.querySelector( 'span' ).innerHTML = fileName;
-      else
-        label.innerHTML = labelVal;
-    });
-
-    // Firefox bug fix
-    input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-    input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
-  });
-}( document, window, 0 ));
-
-   
-</script>
-
-
-
-<style>
-.inputfile {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.inputfile + label {
-       font-size: 1em;
-    border: 1px solid #d0d0d0;
-    border-radius: 5px;
-    font-weight: 100!important;
-    color: white;
-    background-color: #f9f9f9;
-    padding: 4px 20px;
-    display: inline-block;
-    border-bottom: 2px solid gray;
-    margin-left: 10px;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-    
-}
-
-.inputfile + label {
-  cursor: pointer; /* "hand" cursor */
-}
-
-.inputfile:focus + label {
-  outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
-}
-.shi1
-   {
-   width: 150px !important;
-   display: inline-block;
-   height:  30px !important;
-   color:gray !important;
-   font-size: 10px !important;
-   padding: 6px 2px;
-      }
-         .busqueda
-   {
-        display: block;
-    padding: 10px;
-    background: #e8e8e8;
-   }
-  
-</style>
+         <script>
+            if ("<%=action_name%>" == "edit" && <%= @aseguimiento.evidencia.blank?  %> != true)
+            {
+            $('.levidencia').html(" <%= @aseguimiento.evidencia.file.filename if @aseguimiento.evidencia.file %> ")
+            
+            }
+            
+            
+            
+            'use strict';
+            
+            ;( function ( document, window, index )
+            {
+              var inputs = document.querySelectorAll( '.inputfile' );
+              Array.prototype.forEach.call( inputs, function( input )
+              {
+                var label  = input.nextElementSibling,
+                  labelVal = label.innerHTML;
+            
+                input.addEventListener( 'change', function( e )
+                {
+                  var fileName = '';
+                  if( this.files && this.files.length > 1 )
+                    fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+                  else
+                    fileName = e.target.value.split( '\\' ).pop();
+            
+                  if( fileName )
+                    label.querySelector( 'span' ).innerHTML = fileName;
+                  else
+                    label.innerHTML = labelVal;
+                });
+            
+                // Firefox bug fix
+                input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+                input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+              });
+            }( document, window, 0 ));
+            
+               
+         </script>
+         <style>
+            .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+            }
+            .inputfile + label {
+            font-size: 1em;
+            border: 1px solid #d0d0d0;
+            border-radius: 5px;
+            font-weight: 100!important;
+            color: white;
+            background-color: #f9f9f9;
+            padding: 4px 20px;
+            display: inline-block;
+            border-bottom: 2px solid gray;
+            margin-left: 10px;
+            }
+            .inputfile:focus + label,
+            .inputfile + label:hover {
+            }
+            .inputfile + label {
+            cursor: pointer; /* "hand" cursor */
+            }
+            .inputfile:focus + label {
+            outline: 1px dotted #000;
+            outline: -webkit-focus-ring-color auto 5px;
+            }
+            .shi1
+            {
+            width: 150px !important;
+            display: inline-block;
+            height:  30px !important;
+            color:gray !important;
+            font-size: 10px !important;
+            padding: 6px 2px;
+            }
+            .busqueda
+            {
+            display: block;
+            padding: 10px;
+            background: #e8e8e8;
+            }
+            .toggle-on.btn {
+            padding-right: 24px;
+            color: white !important;
+            }
+            .check
+            {
+              background: whitesmoke;
+              padding: 10px;
+              font-size: 14px;
+              color: gray;
+              margin-bottom: 10px;
+            }
+         </style>
       </div>
    </div>
 </div>
@@ -194,4 +226,39 @@ $('.levidencia').html(" <%= @aseguimiento.evidencia.file.filename if @aseguimien
      });
    
    $(".send_mail").prop('checked', true);
+</script>
+<script>
+   $(document).ready(function(){
+     $(function() {
+       $('#toggle-one').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+   
+     $(function() {
+       $('#toggle-two').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+
+         $(function() {
+       $('#toggle-three').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     });
+
+   $(function() {
+       $('#toggle-four').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+   
+     });
+   
+   
+   
 </script>

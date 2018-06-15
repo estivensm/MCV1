@@ -497,39 +497,54 @@ if fecha != nil
 end 
 end
 
-
-def get_reports_source
-
-  Report.where(admin_user: current_user.admin_user).group(:source_id).count
   
-end
+  def get_reports_source
 
-  def get_employed(email)
-            Employed.where(email: email).where(admin_user: current_user.admin_user).first
-            
-      end
-
-      def get_admin
-
-            current_user.admin_user
-
-      end
-
-      def get_employed1
-            Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first # Devuelve el empleado relacionado con el Usuario
-            
-      end
- 
-  def view_report(report)
-      a = get_employed(current_user.email )
-    if report.employed_id == a.id || current_user.role == "SuperAdmin"
-        return true
-       
-    else
-        return false
-             
+     Report.where(admin_user: current_user.admin_user).group(:source_id).count
+  
   end
-end
+
+  
+  #DEVULEVE EL EMPLEADO DADO EL EMAIL DEL USUARIO
+  def get_employed(email)
+  
+     Employed.where(email: email).where(admin_user: current_user.admin_user).first
+            
+  end
+
+  #DEVUELVE EL ID DEL USUARIO CUENTA
+  def get_admin
+
+     current_user.admin_user
+
+  end
+  
+  #DEVUELVE EL USUARIO RELACIONADO CON EL USUARIO
+  def get_employed1
+  
+    Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first 
+            
+  end
+ 
+    #METODO PARA SABER SI PUEDE CREEAR GESTION
+  def view_report(report)
+
+    a = get_employed(current_user.email )
+    if report.employed_id == a.id || current_user.role == "SuperAdmin"
+        
+      return true
+          
+    else
+        
+      return false
+                
+    end
+
+  end
+
+
+
+
 
   def myproces_report(report)
       a = get_employed(current_user.email)

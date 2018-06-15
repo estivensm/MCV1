@@ -38,18 +38,32 @@
   </div>
 
 <br>
-         <% if @report.state != "Cerrado" && get_employed1.id == @report.employed_id && @gestion_c == 0  %>
-                 <div class="form-group">
-                  <%= f.label "Solicitar Cierre" %>
-                  <%= f.check_box :s_cierre ,  class: "form form-control" , style: "width: 100px;" %>
-               </div>
+         <% if @report.state != "Cerrado" && get_employed1.id == @report.employed_id && get_employed1.id == @report.employed_reporta && @gestion_c == 0  %>
+                <div class="row check">
+            
+            <div class="col-md-8">
+                <span>¿Solicitar Cierre del Reporte ?</span>
+            </div>
+            <div class="col-md-4">
+              <%= f.check_box :s_cierre, class: "", id: "toggle-four"  %>
+            </div>
+          
+        </div>
+
+
                <%end%> 
          <% if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id && @gestion_c == 0%>
       
-               <div class="form-group">
-                  <%= f.label "Cerrar" %>
-                  <%= f.check_box :cerrar ,  class: "cierra1 form form-control" , style: "width: 100px;" %>
-               </div>
+                <div class="row check">
+
+              <div class="col-md-8">
+                  <span> ¿El seguimiento cierra el Reporte?</span>
+              </div>
+              <div class="col-md-4">
+                <%= f.check_box :cerrar ,  class: "cierra1", id: "toggle-one"  %>
+              </div>
+          
+             </div>
          <%end%>      
                <div class="form-group cierra">
                   <%= f.label "Eficacia" %>
@@ -193,5 +207,56 @@ $('.levidencia').html(" <%=@rseguimiento.evidencia.file.filename if @rseguimient
     padding: 10px;
     background: #e8e8e8;
    }
+
+        .check
+            {
+              background: whitesmoke;
+              padding: 10px;
+              font-size: 14px;
+              color: gray;
+              margin-bottom: 10px;
+            }
+
+              .toggle-on.btn {
+            padding-right: 24px;
+            color: white !important;
+            }
   
 </style>
+
+
+<script>
+   $(document).ready(function(){
+     $(function() {
+       $('#toggle-one').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+   
+     $(function() {
+       $('#toggle-two').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+
+         $(function() {
+       $('#toggle-three').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     });
+
+   $(function() {
+       $('#toggle-four').bootstrapToggle({
+            on: 'Si',
+            off: 'No'
+          });
+     }); 
+   
+     });
+   
+   
+   
+</script>

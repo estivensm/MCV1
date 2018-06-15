@@ -55,6 +55,14 @@ def create_seguimiento_accion(employed , seg)
 end
 
 
+#Envia el correo cuando se cierra ultima accion
+def create_ultima_accion(employed , seg)
+  @employed = employed
+  @seg = seg
+  mail(to: @employed.email, subject: "Ya puedes cerrar el Reporte #{@seg.accion.codigo}")
+end
+
+
 
 
 

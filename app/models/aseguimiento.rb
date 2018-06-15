@@ -43,11 +43,16 @@ class Aseguimiento < ApplicationRecord
             
             accion.update(estado: "Cerrada", costo: self.costo, eficaz: self.eficaz)
 
-             accion.save
+            accion.save
             report.costo = self.costo + report.costo
             report.save 
+            
+            employed = Employed.find(report.employed_id)
+            if report.accions.abiertas.count == 0
 
-       
+               CreateMailer.create_ultima_accion(employed, self).deliver
+
+            end   
             
                        
             

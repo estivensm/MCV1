@@ -38,7 +38,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control minlength'%>
+    <%= f.password_field :password, autocomplete: "off" , :class => 'form-control', id: "field"%>
   </div>
 
    <div class="form-group">
@@ -103,7 +103,14 @@ Ya estas Registrado <%= link_to "Inicia Sesión", new_session_path(resource_name
 
 <script>
   $(document).ready(function(){
-     $('#new_user').validate();
+     $('#new_user').validate({
+      rules: {
+    field: {
+      required: true,
+      minlength: 3
+    }
+  }
+     });
 
 
 

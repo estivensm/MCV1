@@ -15,7 +15,7 @@
       <script type="text/javascript" src="/assets/canvasjs.min.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
- 
+         
 
 
       <title><%= content_for?(:title) ? yield(:title) : "Mejorapp" %></title>
@@ -42,6 +42,8 @@
       <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+            <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
    </head>
    <body class="admin">
       <div class ="container-fluid menusp">
@@ -485,15 +487,16 @@
               REPORTE (<%=@report.codigo%>)
             </div>
             <div class="col-md-2 text-center">
+
+               <strong>Fecha de Creacion</strong><br><%= get_date(@report.created_at) %>
+            </div>
+            <div class="col-md-2 text-center">
                 <strong>Fuente</strong> <br><%=@report.source_parent.name%> 
             </div>
               <div class="col-md-2 text-center">
                 <strong>Proceso</strong> <br> <%=@report.proceso.name%>
             </div>
-             <div class="col-md-2 text-center">
 
-               <strong>Responsable</strong><br><%= @report.employed.first_name%> <%= @report.employed.first_last_name%>
-            </div>
            <%color = ""
                   @report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
                   color = "#22c488" if @report.contador_seg > 5 %>
@@ -507,7 +510,7 @@
         <div class="row">
             <div class="col-md-11">
 
-            <strong><%=@report.source.name.upcase%></strong> : <%=@report.name%>
+            <strong><%=@report.source.name%></strong> : <%=@report.name%>
             </div>
              <div class="col-md-1 text-right">
              <%if @report.state == "Abierto" %>

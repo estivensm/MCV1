@@ -27,16 +27,18 @@
                   <div class="col-md-12 wihtout-padding">
       <div class="conteinter htitle" style = "padding:0px">
          <div class="row rtr">
-            <div class="col-md-2 rtd"></div>
-            <div class="col-md-7 rtd">
+           <div class="col-md- rtd">
                <h4 class="linka margin-cero"><%=@tipo.upcase + "ES ABIERTAS"%> (<%=@accions.abiertas.count %>)</h4>
             </div>
-            <% if @accions.count > 0 %>
-            <div class="col-md-3 rtd"><strong><%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) || current_user.role == "SuperAdmin" || (current_user.rol ? current_user.rol.configuracion : false) %></strong></div>
-            <%end%>
+            <% if @accions.abiertas.count > 0 %>
+                 
+                      <strong style="float: right;">
+                          <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
+                  </div>
+              <%end%>
          </div>
          </div>
-         <% if @accions.count > 0 %>
+         <% if @accions.abiertas.count > 0 %>
       
       <% @accions.abiertas.each do |accion| %>
       <!--<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
@@ -76,7 +78,7 @@
          <br>
          <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
          <hr class="my-4">
-         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") || (current_user.rol ? current_user.rol.configuracion : false)%>
+         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
          </div>
          <%end%>
          </div>
