@@ -69,7 +69,7 @@
 <div class="form-group">
     <%= f.label "Frecuencia de Seguimiento" %>
     <%= f.select :f_seguimiento, [['Sin Alertas de Seguimiento', 0],['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
-        <%if action_name != "new" && current_user.admin%>
+        <%if action_name != "new" && current_user.role == "SuperAdmin"%>
     <%= f.label "Actualizar Fecha y/o Frecuencia", class: "lb2" %>
     <%= f.check_box :tag, class:"check" %>
     <%end%>
