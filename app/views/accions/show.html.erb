@@ -69,17 +69,32 @@
 <div class = "row" style="margin-top:20px">
 <!--Informacion-->
    <div class="col-md-12 wihtout-padding" >
-      <h5 class = "linka htitle"><span style="font-size: 16px;font-weight:bold" "><%=@accion.tipo %> (<%=@accion.codigo %>): </span><span style="color:gray"><%=@accion.name%></span> <span style="float: right"><%if @accion.estado == "Abierta" %>
+      <h5 class = "linka htitle">
+         <span ><%if @accion.estado == "Abierta" %>
+          
+
              <i class="fa fa-unlock" style="font-size: 30px"></i>
              <%else%>
                <i class="fa fa-lock" style="font-size: 30px"></i>
              <%end%>  
-            </div></span>
-       
+           </span>
+ 
+      <span style="font-size: 16px;font-weight:bold" "><%=@accion.tipo %> (<%=@accion.codigo %>): </span><span style="color:gray"><%=@accion.name%></span>   
+         <span style="float:right"> 
+          <%= link_to  edit_report_accion_path(@report,@accion), :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i>
+         <% end %>
+         <%= link_to  report_accion_path(@report,@accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i>
+         <% end %>
+         </span> 
+      
+        </div>
       </h5>
       <div class="conteinter reporte cnt">
          
          <div class="row rtr">
+
             <%if @accion.causa_efectos.exists?%>
             <div class="col-md-12 rtd"><strong>Causas: </strong><%= @accion.causa_efectos.pluck(:name).join(", ") %></div>
             <%end%></div>

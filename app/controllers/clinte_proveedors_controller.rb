@@ -15,7 +15,7 @@ before_action :configuracion
   end
 
 
-   def import
+def import
   ClinteProveedor.import(params[:file], current_user.admin_user, current_user.id )
   redirect_to clinte_proveedors_path, notice: "Los Registros fueron importados Exitosamente"
 end
