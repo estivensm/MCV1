@@ -1,5 +1,13 @@
 <%= render 'encabezado'%>
 <br>
+
+<div class="row">
+   <div class="col-md-3 col-xs-12 col-sm-12" style="padding-left: 0px;">
+         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Busqueda por descripcion" title="Type in a name">
+
+   </div>
+</div>
+
 <div class="row">
    <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
@@ -9,9 +17,14 @@
          </div>
          <div class="">
             <%if @reports.count > 0 %>
+            <div id = "filter">
+               
+            
             <% @reports.each do |report|%>
                      <%= render "reporte", report: report, employed_p: report.employed_id, desc: "Responsable"%>
+            
             <%end%>
+            </div>
             <%else%>
             <p class="nh">No hay Reportes</p>
             <%end%>
@@ -77,4 +90,34 @@
    {
    background: white !important;
    }
+   #myInput {
+  background-image: url('https://www.w3schools.com/css/searchicon.png') !important;
+  background-position: 10px 12px !important;
+  background-repeat: no-repeat !important;
+  width: 100% !important;
+  font-size: 16px !important;
+  padding: 9px 20px 9px 40px !important;
+  border: 1px solid #ddd !important;
+  margin-bottom: 12px!important;
+}
 </style>
+
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("filter3")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+</script>
