@@ -56,8 +56,8 @@
                <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong>Accion: </strong><%= accion.name %></div>
                <div class="col-md-6 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
                </div>
-                           <div class="col-md-6 rtd text-left"><strong>Causas: </strong><%= accion.causa_efectos.pluck(:name).join(", ") %></div>
-            <%end%>
+                           <div class="col-md-6 rtd text-left"><%if @accion.causa_efectos.exists?%><strong>Causas: </strong><%= accion.causa_efectos.pluck(:name).join(", ") %>  <%end%></div>
+          
                   <div class="row rtr">
                      <div class="col-md-3 rtd"><%=  accion.codigo  %></div>
                      <div class="col-md-3 rtd">
