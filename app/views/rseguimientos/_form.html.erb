@@ -52,7 +52,7 @@
 
 
                <%end%> 
-         <% if @report.state != "Cerrado" && get_employed1.id == @report.cierra_id && @gestion_c == 0%>
+         <% if @report.state != "Cerrado" && (get_employed1.id == @report.employed_id || get_employed1.id == @report.employed_reporta || get_employed1.id == @report.cierra_id) && @gestion_c == 0%>
       
                 <div class="row check">
 
