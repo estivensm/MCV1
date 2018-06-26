@@ -42,6 +42,9 @@
 #  send_mail             :boolean
 #  source_parent_id      :integer
 #  costo_presupuestado   :integer
+#  estado_vencida        :boolean
+#  estado_proxima        :boolean
+#  estado_vigente        :boolean
 #
 
 class Report < ApplicationRecord

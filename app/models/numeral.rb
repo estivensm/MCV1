@@ -13,6 +13,9 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  admin       :boolean
+#  clausula    :string
+#  subtitulo   :string
+#  subclausula :string
 #
 
 class Numeral < ApplicationRecord

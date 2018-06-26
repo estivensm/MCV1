@@ -24,6 +24,9 @@
 #  justificacion_cumplio :text
 #  send_mail             :boolean
 #  accion_id             :integer
+#  estado_vencida        :boolean
+#  estado_proxima        :boolean
+#  estado_vigente        :boolean
 #
 
 require 'test_helper'
