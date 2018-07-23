@@ -24,7 +24,7 @@
 
     <div id="home" class="tab-pane fade in active">
      
-                  <div class="col-md-12 wihtout-padding">
+    <div class="col-md-12 wihtout-padding">
       <div class="conteinter htitle" style = "padding:0px">
          <div class="row rtr">
            <div class="col-md- rtd">
@@ -34,8 +34,9 @@
                  
                       <strong style="float: right;">
                           <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
-                  </div>
+                
               <%end%>
+            </div>
          </div>
        
          <% if @accions.abiertas.count > 0 %>
@@ -77,10 +78,10 @@
          <% end %>
          <%else%>
          <div class="jumbotron jumbacc">
-         <br>
-         <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
-         <hr class="my-4">
-         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
+            <br>
+            <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
+            <hr class="my-4">
+            <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
          </div>
          <%end%>
          </div>

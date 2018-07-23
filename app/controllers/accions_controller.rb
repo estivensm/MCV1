@@ -135,7 +135,8 @@ end
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
-    
+    @accions_t = @report.accions
+    @seguimientos_report = @report.rseguimientos
     @menu_accion = ["","",""]
     if @accion.tipo == "Correccion" 
         
@@ -154,7 +155,7 @@ end
 
 
     @seguimientosa = []
-    @accions.each do |accion|
+    @accions_t.each do |accion|
        accion.aseguimientos.each do |seg| 
         
         @seguimientosa << seg
@@ -163,7 +164,7 @@ end
 
     end
 
-   @seguimientos_t = @seguimientos + @seguimientosa
+   @seguimientos_t = @seguimientos_report + @seguimientosa
     
     render  :layout => 'admin_report'
 
