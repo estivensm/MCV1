@@ -7,19 +7,19 @@ namespace :resumen do
 
                 Employed.all.each do |empleado|
                     if empleado.admin_user != 1
-                	@reports_alarma_vencido = []
-                	@reports_alarma_proximo = []
-                	#@reports_alarma_hoy = []
-                    @reports_seguimiento = []
-                    @accion_alarma_vencido = []
-                	@accion_alarma_proximo = []
-                	#@accion_alarma_hoy = []
-                    @accion_seguimiento = []
-                    @task_alarma_vencido = []
-                    @task_alarma_proximo = []
+                	    @reports_alarma_vencido = []
+                	    @reports_alarma_proximo = []
+                	    #@reports_alarma_hoy = []
+                        @reports_seguimiento = []
+                        @accion_alarma_vencido = []
+                	    @accion_alarma_proximo = []
+                	    #@accion_alarma_hoy = []
+                        @accion_seguimiento = []
+                        @task_alarma_vencido = []
+                        @task_alarma_proximo = []
                     #@task_alarma_hoy = []
                  
-                Report.where(state: "Abierto").where(employed_id: empleado.id).order(f_compromiso: :asc).each do |report|
+                          Report.where(state: "Abierto").where(employed_id: empleado.id).order(f_compromiso: :asc).each do |report|
                     
                               
                                 #if empleado.admin_user != 1
@@ -66,7 +66,7 @@ namespace :resumen do
                                 time1 =  times1.to_i - Time.now.to_i
                                 m = (time1 / 60 / 60/ 24) + 1
                                 report.tag = false
-                                report.save
+                                
                                 
                                 if m <= 0
                                     @reports_seguimiento << report
@@ -79,6 +79,8 @@ namespace :resumen do
 
                                 end
                               end  
+                                
+                              report.save
                             #end
 
                 end 
