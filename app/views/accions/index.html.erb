@@ -54,13 +54,13 @@
       <%= link_to  report_accion_path(@report,accion) do %>
       <div class="conteinter reporte cnt">
             <div class="row rtr">
-               <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong>Accion: </strong><%= accion.name %></div>
+               <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong>Accion (<%=  accion.codigo  %>): </strong><%= accion.name %> </div>
                <div class="col-md-6 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
                </div>
                            <div class="col-md-6 rtd text-left"><%if accion.causa_efectos.exists?%><strong>Causas: </strong><%= accion.causa_efectos.pluck(:name).join(", ") %>  <%end%></div>
           
                   <div class="row rtr">
-                     <div class="col-md-3 rtd"><%=  accion.codigo  %></div>
+                     <div class="col-md-3 rtd"></div>
                      <div class="col-md-3 rtd">
                         <strong><i class="fa fa-user" aria-hidden="true"></i> </strong> <%  
                            employed = Employed.find(accion.employed_id)

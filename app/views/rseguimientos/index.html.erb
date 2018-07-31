@@ -108,7 +108,7 @@
 
 
           <div class=""> 
-          <% @seguimientosa.each do |seg| %>
+          <% @seguimientosa.sort_by { |h| h[:created_at] }.reverse.each do |seg| %>
           <div class="conteinter reporte cnt " style = "    margin-top: 10px;
               background-color: #fff;
               border-bottom: 1px solid #e2e2e2;
