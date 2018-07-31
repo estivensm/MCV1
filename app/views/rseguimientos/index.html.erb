@@ -33,7 +33,7 @@
 
 
 
-        <% @seguimientos.each do |seg| %>
+        <% @seguimientos.order(created_at: :desc).each do |seg| %>
         <div class="conteinter reporte cnt " style = "    margin-top: 10px;
             background-color: #fff;
             border-bottom: 1px solid #e2e2e2;
@@ -108,7 +108,7 @@
 
 
           <div class=""> 
-          <% @seguimientosa.each do |seg| %>
+          <% @seguimientosa.order(created_at: :desc).each do |seg| %>
           <div class="conteinter reporte cnt " style = "    margin-top: 10px;
               background-color: #fff;
               border-bottom: 1px solid #e2e2e2;
