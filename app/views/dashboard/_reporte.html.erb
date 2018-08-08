@@ -59,10 +59,10 @@
 
                      <div class="col-md-12" style="margin-top:10px;">
                          <% num_segs = 0 %>
+                      <!-- Recorre las acciones y mira si alguna tiene seguimiento pendiente y revisa si la accion tiene fp seguiemiento-->
                          <% report.accions.abiertas.each do |accion|%>
-                         
-                              <% 
-                            if accion.f_seguimiento != 0 && accion.fp_seguimiento != nil
+                              
+                              <% if accion.f_seguimiento != 0 && accion.fp_seguimiento != nil
                             accion.fp_seguimiento > Time.now  ? num_segs = num_segs : num_segs = num_segs + 1%>
                               <%end%>
                             
@@ -106,7 +106,19 @@
                               <td><%=accion.contador_seg%></td>
                               <td><%if accion.f_seguimiento != 0%>
                  <% time = "" 
-        accion.fp_seguimiento > Time.now ? time = "" : time = " Pendiente"%>
+                if accion.f_seguimiento != 0 && accion.fp_seguimiento != nil
+                 if accion.fp_seguimiento > Time.now 
+                       
+                           time = "" 
+                    
+                    else 
+
+                      time = " Pendiente"
+                 end
+                  else
+                    time = ""   
+                end  
+         %>
                 <span><%=get_date(accion.fp_seguimiento)%><%=time%></span>
                   <%else%>
                   Sin frecuencia de Seguimiento
