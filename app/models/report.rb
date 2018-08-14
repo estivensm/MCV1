@@ -75,8 +75,8 @@ class Report < ApplicationRecord
   scope :abiertos, -> { where(state: "Abierto") }
   scope :alerta, -> { where('contador_seg <= ?', 5) }
   scope :vigentes, -> { where('contador_seg > ?', 5) }
-scope :proximos, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
-scope :vencidos, -> { where('contador_seg < ?', 0) }
+  scope :proximos, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
+  scope :vencidos, -> { where('contador_seg < ?', 0) }
   scope :alerta1, ->   { joins(:accions).merge(Accion.alerta) }
 
  
@@ -124,8 +124,8 @@ scope :vencidos, -> { where('contador_seg < ?', 0) }
         end
         
         if f_seguimiento != 0
-             errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
-             self.contador_seg > self.f_seguimiento
+             #errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
+             #self.contador_seg > self.f_seguimiento
         end  
 
         self.tag = false

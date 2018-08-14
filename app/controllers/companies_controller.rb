@@ -81,7 +81,7 @@ class CompaniesController < ApplicationController
 
   def company_indicators
     @company = Company.where(user_id: current_user.admin_user).take
-      @reports = Report.where(admin_user:current_user.admin_user)
+    @reports = Report.where(admin_user:current_user.admin_user)
     @accions = Accion.where(admin_user:current_user.admin_user)
     @tasksd = Task.where(admin_user:current_user.admin_user)
     @reports.cerrados.count != 0 ? @divr = @reports.cerrados.count : @divr = 1  
