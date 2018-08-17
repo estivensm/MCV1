@@ -1,0 +1,70 @@
+
+
+      <div class="conteinter reporte cnt filter2" id="accion-cont-<%=accion.id%>" style="background:#eaeaea">
+         <div class="row rtr">
+            <div class="col-md-11 rtd text-left" style="padding-bottom:0px !important;font-size: 15px;color: #0db497"><strong id="title-accion-<%=accion.id%>" class="filter3"><%= accion.tipo %> (<%=  accion.codigo  %>): <span ><%= accion.descripcion %></span></strong> </div>
+            <div class="col-md-1 rtd" style = ""><i class="fas fa-lock" style="font-size:20px" aria-hidden="true"></i>
+            </div>
+            <div class="col-md-12">
+              <hr style="margin-top: 5px;">
+            </div>
+            </div>       
+            <div class="row rtr"> 
+            <div class="col-md-6 rtd text-left"><%if accion.causa_efectos.exists?%><strong>Causas: </strong><%= accion.causa_efectos.pluck(:name).join(", ") %><%else%> <strong>Causas: No Tiene</strong>  <%end%></div>
+             <div class="col-md-3 rtd">
+                  <strong>Responsable: </strong> <%  
+                     employed = Employed.find(accion.employed_id)
+                     %>
+                  <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+               </div>
+               
+
+          
+               
+              
+               <div class="col-md-3 rtd">
+                 <span style="float:right"> 
+               <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+               </span> 
+              
+               </div>
+               </div>
+              <hr>
+              <div class="row"> 
+               <div class="col-md-2 rtd  text-left" style="padding-left: 10px !important;">
+                  <button type="button" style="    border: 0px;font-size: 14px;" class="ver_accion btn-primary" id="accion<%=accion.id%>"><i class="fas fa-search-plus"></i>Ver Accion</button>
+               </div> 
+
+                <div class="col-md-2 rtd  text-left">
+                
+                   
+                  <strong >Tareas:   </strong><span class="redonda1 task-cont-p" style="background:<%=estado_contador_tasks(accion)%>;color:white"><%=accion.tasks.count%> </span>
+                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=accion.tasks.abiertas.count%></span>
+                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=accion.tasks.cerradas.count%></span>
+
+               </div>
+               <div class="col-md-2 rtd  text-left">
+                  <strong >Seguimimientos:   </strong><span class="redonda1 seg-cont-p"><%=accion.aseguimientos.count%></span> 
+                  
+                
+               </div>
+
+                 <div class="col-md-2 rtd" ><strong><i class="fa fa-calendar" aria-hidden="true"></i>
+                     Fecha de compromiso </strong> <br><%=  get_date(accion.f_compromiso)  %></div>
+                     <div class="col-md-2 rtd" ><strong>
+                     <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                    Fecha de cierre</strong> <br><%=  get_date(accion.f_real)  %> </div>
+                     <div class="col-md-2 rtd" style = "    font-size: 12px;
+                        color: gray;">¿Cumplio? <br><%= cumplio(accion.cumplio).html_safe%></div>
+
+              
+               
+               
+            </div>
