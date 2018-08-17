@@ -1,6 +1,6 @@
 <% if @rseguimiento.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody .<%= @rseguimiento.id %>').html('<%= j render "rseg_edit_row", seg: @rseguimiento %>');
+  $('#rseg<%=@rseguimiento.id%>').html("<%= j render 'rseguimientos/rseguimiento', seg: @rseguimiento%>");
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");

@@ -1,0 +1,42 @@
+      <div class="row rtr">
+         <div class="col-md-1">
+            <%  idemp = User.find(seg.user_id).email
+               employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
+               %>
+            <%if employed1.avatare_url%>
+            <img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
+            <%else%>
+            <img style="width:60px" class ="seg-img" src='https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe'>
+            <%end%>
+         </div>
+         <div class="col-md-11">
+            <div class="col-md-12 text-left"><%== seg.descripcion %></div>
+            <%if seg.type_tracing == "Accion"%>
+            <div class="col-md-12 text-left"><strong>Pertenece a la <%=seg.accion.tipo%></strong> <%= seg.accion.name %>
+            </div>
+            <%end%>  
+            <div class="col-md-10 rtd wihtout-padding-bot">
+               <%= employed1.first_name %> <%= employed1.first_last_name %>
+               <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
+               <span style="margin-left:15px;"> <strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></span>
+            </div>
+             <%if seg.type_tracing == "Reporte"%>
+              <div class="col-md-2 rtd wihtout-padding-bot">
+                  <%= link_to  edit_report_rseguimiento_path(@report,seg),remote: true, :class => "opciones" do %>
+                     <i class="fa fa-pencil" aria-hidden="true"></i>
+                     <% end %>
+                     <%= link_to  report_rseguimiento_path(@report,seg),  method: :delete,remote:true ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                     <i class="fa fa-trash" aria-hidden="true"></i>
+                     <% end %>
+               </div>
+              <%end%>   
+
+            <%if seg.type_tracing == "Accion"%>
+            <div class="col-md-2 rtd wihtout-padding-bot">
+               <%= link_to report_accion_path(seg.accion.report_id,seg.accion.id), :class => "opciones" do %>
+               <i class="fas fa-eye" aria-hidden="true"></i>
+               <% end %>
+            </div>
+            <%end%>
+         </div>
+      </div>

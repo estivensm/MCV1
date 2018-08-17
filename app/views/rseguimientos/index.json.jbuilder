@@ -1,1 +1,0 @@
-json.array! @rseguimientos, partial: 'rseguimientos/rseguimiento', as: :rseguimiento

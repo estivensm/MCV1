@@ -1,6 +1,7 @@
 <% if @rseguimiento.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table .hh').prepend('<%= j render "rseg_row", seg: @rseguimiento %>');
+  $('.rseguimientos_partial').html('<%= j render "rseguimientos/rseguimientos", seguimientos: @seguimientosa %>');
+  $('.rsegcount').html("(<%= @seguimientosa.count %>)"); 
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");

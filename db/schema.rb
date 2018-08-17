@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180607204033) do
+ActiveRecord::Schema.define(version: 20180817183607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20180607204033) do
     t.integer "accion_id"
     t.boolean "s_cierre"
     t.boolean "send_mail"
+    t.string "type_tracing"
   end
 
   create_table "cargos", id: :serial, force: :cascade do |t|
@@ -405,6 +406,7 @@ ActiveRecord::Schema.define(version: 20180607204033) do
     t.boolean "eficaz"
     t.text "conclucion"
     t.boolean "send_mail"
+    t.string "type_tracing"
   end
 
   create_table "source_parents", id: :serial, force: :cascade do |t|

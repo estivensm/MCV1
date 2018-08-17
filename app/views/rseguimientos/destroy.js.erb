@@ -1,6 +1,7 @@
 <% if @rseguimiento.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody .<%=@rseguimiento.id%>').remove();
+ $('#rseg<%=@rseguimiento.id%>').remove();
+  $('.rsegcount').html("(<%= @seguimientosa.count %>)"); 
  $('.alert').remove();
 <% else %>
 $(".alert").css("display", "block");

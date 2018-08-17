@@ -30,6 +30,8 @@ class Aseguimiento < ApplicationRecord
 
 	def cerrar_accion
     accion = Accion.find(self.accion_id)
+    self.type_tracing = "Accion"
+    save
     accion.s_cierre = self.s_cierre
     puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     puts accion.s_cierre

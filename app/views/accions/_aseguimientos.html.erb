@@ -1,0 +1,41 @@
+ <div class="conteinter htitle" style = "padding:0px">
+         <div class="row rtr">
+           
+            <div class="col-md-8 rtd">
+               <h4 class="htitle linka text-center" style="padding: 3px;">SEGUIMIENTOS <span class="aseguimientos_count">(<%=accion.aseguimientos.count %>)</span></h4>
+            </div>
+            <div class="col-md-4 rtd">
+               <% if @seguimientos.count > 0 %>
+               <%= link_to 'Nuevo Seguimiento', new_report_accion_aseguimiento_path(@report,accion), remote: true,:class => 'btn btn-primary pull-right' %><%end%>
+            </div>
+         </div>
+      </div>
+
+        
+      
+ <% if @seguimientos.count > 0 %>
+      <div class="segcont">
+          <% @seguimientos.each do |seg| %>
+               <% if seg.cierra %>
+                  <div class="conteinter reporte cnt srow<%=seg.id%>">
+                     <%= render "accions/rows_aseguimiento/aseguimiento_row_cierre", seg: seg, accion: accion%>
+                  </div>
+                  <%else%>
+                   <div class="conteinter reporte cnt srow<%=seg.id%>">
+                     <%= render "accions/rows_aseguimiento/aseguimiento_row", seg: seg, accion: accion%>
+                     </div>
+                  <% end %>
+                   
+                <%end%>
+                </div>
+      <% else %>
+            <div class="jumbotron jumbacc">
+            <h4 class="display-3 text-gray">No se ha creado ningun seguimiento</h4>
+            <hr class="my-4">
+          
+            <br>
+            <%= link_to 'Nuevo Seguimiento', new_report_accion_aseguimiento_path(@report,accion), remote:true,:class => 'btn btn-primary'  %>
+            </p>
+            </div>
+      <% end %>
+

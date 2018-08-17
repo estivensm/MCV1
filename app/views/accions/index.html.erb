@@ -1,173 +1,125 @@
-<!--<div class="row">
-   <div class="col-md-12 ">
-      <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
-   </div>
-</div>-->
 
 <div class = "row">
-   
-   <div class="col-md-12">
-      <h4 style="margin: 0px 0px 20px 0px;
-    font-weight: bold;
-    color: #8b8b8b;"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</h4>
-      
+   <div class="col-md-12 text-center" style="background: #e8e7e7;">
+      <div class="col-md-3">
+         <input type="text" style="margin-top:2px;" id="myInput" class="form form-control" onkeyup="myFunction()" placeholder="Busqueda por descripcion o codigo" title="Type in a name">
+      </div>
+       <div class="col-md-6">
+      <h4 class="titulo-acciones"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</h4>
+       </div>
+        <div class="col-md-3">
+         <% if @accions.count > 0 %>
+      <strong style="float: right;">
+      <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
+      <%end%>
+        </div>
+       
    </div>
-   <div class="col-md-12">
-          <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">ABIERTAS (<%=@accions.abiertas.count %>)</a></li>
-    <li><a data-toggle="tab" href="#menu1">CERRADAS (<%=@accions.cerradas.count %>)</a></li>
-  
-  </ul>
-<br>
-  <div class="tab-content">
-      
+<div class="col-md-12">
+ <br>
+</div>
+   <div class="col-md-12 wihtout-padding" id="filter">
+      <% if @accions.count > 0 %>
+      <% @accions.each do |accion| %>
 
-    <div id="home" class="tab-pane fade in active">
-     
-    <div class="col-md-12 wihtout-padding">
-      <div class="conteinter htitle" style = "padding:0px">
+      <div class="conteinter reporte cnt filter2" id="accion-cont-<%=accion.id%>">
          <div class="row rtr">
-           <div class="col-md- rtd">
-               <h4 class="linka margin-cero"><%=@tipo.upcase + "ES ABIERTAS"%> (<%=@accions.abiertas.count %>)</h4>
+            <div class="col-md-9 rtd text-left" style="padding-bottom:0px !important;font-size: 15px;color: #0db497"><strong id="title-accion-<%=accion.id%>" class="filter3"><%= accion.tipo %> (<%=  accion.codigo  %>): <span ><%= accion.descripcion %></span></strong> </div>
+            <div class="col-md-3 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %> 
+             <%= accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=accion.contador_seg.abs%> días
             </div>
-            <% if @accions.abiertas.count > 0 %>
-                 
-                      <strong style="float: right;">
-                          <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
+            <div class="col-md-12">
+              <hr style="margin-top: 5px;">
+            </div>
+            </div>       
+            <div class="row rtr"> 
+            <div class="col-md-6 rtd text-left"><%if accion.causa_efectos.exists?%><strong>Causas: </strong><%= accion.causa_efectos.pluck(:name).join(", ") %><%else%> <strong>Causas: No Tiene</strong>  <%end%></div>
+             <div class="col-md-3 rtd">
+                  <strong>Responsable: </strong> <%  
+                     employed = Employed.find(accion.employed_id)
+                     %>
+                  <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
+               </div>
+               
+
+          
+               
+              
+               <div class="col-md-3 rtd">
+                 <span style="float:right"> 
+               <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
+               <i class="fa fa-pencil" aria-hidden="true"></i>
+               <% end %>
+               <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <i class="fa fa-trash" aria-hidden="true"></i>
+               <% end %>
+               </span> 
+              
+               </div>
+               </div>
+              <hr>
+              <div class="row"> 
+               <div class="col-md-3 rtd  text-left">
+                  <button type="button" style="    border: 0px;font-size: 14px;" class="ver_accion btn-primary" id="accion<%=accion.id%>"><i class="fas fa-search-plus"></i> Informacion</button>
+               </div> 
+
+                <div class="col-md-4 rtd  text-left">
                 
-              <%end%>
+                   
+                  <strong >Tareas:   </strong><span class="redonda1 task-cont-p" style="background:<%=estado_contador_tasks(accion)%>;color:white"><%=accion.tasks.count%> </span>
+                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=accion.tasks.abiertas.count%></span>
+                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=accion.tasks.cerradas.count%></span>
+
+               </div>
+               <div class="col-md-5 rtd  text-left">
+                  <strong >Seguimimientos:   </strong><span class="redonda1 seg-cont-p"><%=accion.aseguimientos.count%></span> 
+                  
+                
+               </div>
+
+              
+               
+               
             </div>
+              <div id="show_accion<%=accion.id%>" class="show_accion" style="display: none;padding:0px 10px;">
+            <%=render "show_accion", accion: accion %>
+              </div>
          </div>
        
-         <% if @accions.abiertas.count > 0 %>
-      
-      <% @accions.abiertas.each do |accion| %>
-      <!--<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
-         padding-bottom: 0px !important;   padding-right: 40px !important;">
-         <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-         </div>-->
-      <%= link_to  report_accion_path(@report,accion) do %>
-      <div class="conteinter reporte cnt">
-            <div class="row rtr">
-               <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong>Accion (<%=  accion.codigo  %>): </strong><%= accion.name %> </div>
-               <div class="col-md-6 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
-               </div>
-                           <div class="col-md-6 rtd text-left"><%if accion.causa_efectos.exists?%><strong>Causas: </strong><%= accion.causa_efectos.pluck(:name).join(", ") %>  <%end%></div>
-          
-                  <div class="row rtr">
-                     <div class="col-md-3 rtd"></div>
-                     <div class="col-md-3 rtd">
-                        <strong><i class="fa fa-user" aria-hidden="true"></i> </strong> <%  
-                           employed = Employed.find(accion.employed_id)
-                           %>
-                                                   <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
-                     </div>
-                     <div class="col-md-3 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %></div>
-                        <div class="col-md-3 rtd text-right">
-                      
-                        </div>
-               </div>
-         </div>
-         </div>
-         <% end %>
-         <% end %>
-         <%else%>
-         <div class="jumbotron jumbacc">
-            <br>
-            <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
-            <hr class="my-4">
-            <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
-         </div>
-         <%end%>
-         </div>
-    </div>
-    <!--fin-->
-
-
-
-    <div id="menu1" class="tab-pane fade">
-      
-<div class="col-md-12 wihtout-padding">
-            <div class="conteinter htitle" style = "padding:0px">
-                  <div class="row rtr">
-                        <div class="col-md-2 rtd"></div>
-                        <div class="col-md-8 rtd">
-                        <h4 class="linka margin-cero"><%=@tipo.upcase + "ES CERRADAS"%> (<%=@accions.cerradas.count %>)</h4>
-                        </div>
-               
-                  </div>
-                  </div>
-      <% if @accions.cerradas.count > 0 %>
-     
-<% @accions.cerradas.each do |accion| %>
-<!--<div class="col-md-12 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
-   padding-bottom: 0px !important;   padding-right: 40px !important;">
-   <%= link_to  edit_report_accion_path(@report,accion), :class => "opciones" do %>
-   <i class="fa fa-pencil" aria-hidden="true"></i>
-   <% end %>
-   <%= link_to  report_accion_path(@report,accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-   <i class="fa fa-trash" aria-hidden="true"></i>
-   <% end %>
-   </div>-->
-   <%= link_to  report_accion_path(@report,accion) do %>
-      <div class="conteinter reporte cnt">
-      <div class="row rtr">
-           <div class="col-md-12 rtd text-left" style="padding-bottom:0px !important"><strong><%=@tipo%> </strong><%= accion.name %></div>
-            <div class="col-md-12 rtd text-left"><strong>Posible Evidencia: </strong> <%= accion.evidencia %>
-            </div>
-            <div class="row rtr">
-            <div class="col-md-3 rtd"><%=  accion.codigo  %></div>
-            <div class="col-md-3 rtd">
-                     <strong><i class="fa fa-user" aria-hidden="true"></i> </strong> <%  
-                  employed = Employed.find(accion.employed_id)
-                  %>
-               <td  class = "imaacc">
-               <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button>
-            </div>
-                     <div class="col-md-3 rtd" %><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %></div>
-                  <div class="col-md-3 rtd text-center">
-                  <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-     <%=  get_date(accion.f_real)  %> <%= cumplio(accion.cumplio).html_safe%>
-                  </div>
-         </div>
+    
+      <% end %>
       </div>
-         </div>
-         <% end %>
-         <% end %>
-         <%else%>
-            <div class="jumbotron jumbacc">
-            <br>
-            <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Cerradas" %></h4>
-            <hr class="my-4">
-          
-            </div>
+      
+      <%else%>
+      <div class="jumbotron jumbacc">
+         <br>
+         <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
+         <hr class="my-4">
+         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
+      </div>
       <%end%>
-</div>
-    </div>
-
-
-   <!--fin-->
-  </div>
    </div>
-
-
-
-
-   
-
-
-
+   <!--fin-->
+   <!--fin-->
+</div>
+</div>
 </div>
 <style>
-.imaacc img
-{
-border-radius: 40px;
-}
+   .imaacc img
+   {
+   border-radius: 40px;
+   }
+   .border-select
+   {
+    border: 3px solid #1f8143 !important;
+    border-radius: 6px;
+   }
+    .title-accion-select
+   {
+    font-size:20px;
+   }
 </style>
 <script>
    $(function () {
@@ -179,34 +131,82 @@ border-radius: 40px;
    })
    })
    
+   
+   $('.ver_accion').click(function(){
+      
+      var a = $(this).attr('id').match(/\d+/)[0]
+      console.log(a);
+      var b = '#show_accion' + a;
+      var x = '#accion-cont-' + a;
+       var y = '#title-accion-' + a;
+      //$('.show_accion').hide();
+      $(b).toggle( "slow", "linear" );
+      $(x).toggleClass("border-select");
+      $(y).toggleClass("title-accion-select");
+   })
+   
+   
 </script>
 <style>
-.imaacc img
+.redonda1
 {
-border-radius: 40px;
+   padding: 5px 8px;
+    background: #a4a4a4;
+    color: white;
+    border-radius: 10px;
 }
-.cnt
-{
-border: 1px solid #c3c3c3;
-margin-bottom: 10px;
--webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
-transition: box-shadow 0.3s;
-}
-.rtr
-{
-text-align:center;
-}
-.rtd
-{
-padding: 5px;
-text-align:center;
-}
-.titulo
-{
-background:#f2f2f2;
-}
-.cnt:hover
-{
-box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
-}
+   .imaacc img
+   {
+   border-radius: 40px;
+   }
+   .cnt
+   {
+   border: 1px solid #c3c3c3;
+   margin-bottom: 10px;
+   -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+   transition: box-shadow 0.3s;
+   }
+   .rtr
+   {
+   text-align:center;
+   }
+   .rtd
+   {
+   padding: 5px;
+   text-align:center;
+   }
+   .titulo
+   {
+   background:#f2f2f2;
+   }
+   .cnt:hover
+   {
+   box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+   }
+   .titulo-acciones
+   {
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+    font-weight: bold;
+    color: #8b8b8b;
+   }
 </style>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("filter3")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+</script>

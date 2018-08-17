@@ -23,7 +23,7 @@ class Rseguimiento < ApplicationRecord
 	belongs_to :user
 	mount_uploader :evidencia, ArchivoRepUploader
 	before_create :seguimiento
-    after_create :email
+    #after_create :email
     after_create :cerrar_report
     validate :archivo_size_validation, :if => "evidencia?"
     validates :descripcion, presence: true
@@ -37,8 +37,10 @@ def archivo_size_validation
 
 
     def cerrar_report
-report = Report.find(self.report_id)
-report.s_cierre = self.s_cierre
+      report = Report.find(self.report_id)
+      self.type_tracing = "Reporte"
+      save
+      report.s_cierre = self.s_cierre
         if self.cerrar
 
           

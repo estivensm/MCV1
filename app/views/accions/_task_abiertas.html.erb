@@ -1,81 +1,29 @@
-         <div class="conteinter htitle" style = "padding:0px">
-                  <div class="row rtr">
-                        
-                        <div class="col-md-12 rtd">
-                        <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> TAREAS ABIERTAS (<%= @tasks.count %>)</h4>
-
-                         <% if @tasks.count > 0 %>
-                        <strong style="float:right"><%= (link_to "+ Nueva Tarea", new_report_accion_task_path(@report,@accion),remote:true, :class => 'linka pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" %></strong>
-                        <% end %>
-                        </div>
-                       
-                  </div>
-          </div>
-
-
-
+<div class="conteinter htitle" style = "padding:0px">
+   <div class="row rtr">
+      <div class="col-md-2 rtd"></div>
+      <div class="col-md-8 rtd">
+         <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> TAREAS (<%= @tasks.count %>)</h4>
+      </div>
+      <div class="col-md-2 rtd">       
+         <% if @tasks.count > 0 %>
+         <%= (link_to 'Nueva Tarea', new_report_accion_task_path(@report,accion), remote: true,:class => 'btn btn-primary pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" %><%end%>
+      </div>
+   </div>
+</div>
 <% if @tasks.count > 0 %>
-  <% @tasks.each do |task| %>
-                     
-                      <div class="conteinter reporte cnt">
-                          <div class="row rtr">
-                          <div class="col-md-8 rtd text-left" style = "    padding: 5px !important;
-                            padding-left: 17px !important;font-size:13px;"><strong >Tarea: </strong><span style = "font-weight:100"><%= task.name %></span></div>
-                          <div class="col-md-4 text-right" style = "padding-left: 40px !importan;padding-top: 0px !important;
-                            padding-bottom: 0px !important;   padding-right: 40px !important;">
-                          <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>
-                            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                            
-                              <% end %>
-                               <%= link_to  report_accion_task_path(@report,@accion,task), :class => "opciones" do %>
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-                              <% end %>
-                              <% if current_user.id == task.user_id%>
-                              <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
-                              <i class="fa fa-pencil" aria-hidden="true"></i>
-                              <% end %>
-                              
-                              <%= link_to  report_accion_task_path(@report,@accion,task),  method: :delete,remote:true, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                              <i class="fa fa-trash" aria-hidden="true"></i>
-                            
-                              <% end %> <% end %>
-                          </div>
-                          </div>
-                          <hr class="hr">
-                          <div class="row rtr">
-                                  <div class="col-md-4 rtd">
-                                        <strong><i class="fa fa-user" aria-hidden="true"></i>
-                                        </strong> <%  
-                                          employed = Employed.find(task.employed_id)
-                                          %>
-                                      
-                                    <%= employed.first_name %> <%= employed.first_last_name %>
-                                  </div>
-                                    <%color = ""
-                                      task.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
-                                      color = "#0db4a0" if task.contador_seg > 5%>
-                                    <div class="col-md-4 rtd" style = "color:white;background:<%=color%>"><strong><i class="fa fa-calendar" aria-hidden="true"></i>
-                                    </strong> <%=  get_date(task.f_compromiso)  %></div>
-                                  <div class="col-md-4 rtd" style = "    font-size: 12px;
-                                    color: gray;"><%=  task.codigo  %></div>
-                          </div>
-                        </div>
-                        
-                  <%end%>
-
- <%else%>
-                        <div class="jumbotron jumbacc">
-                        <h3 class="display-3 text-gray">No se ha creado ninguna Tarea</h3>
-                        <hr class="my-4"><br>
-                        <%= (link_to "Nueva Tarea", new_report_accion_task_path(@report,@accion) ,remote: true, :class => 'btn btn-primary btn-lg') if (current_user.rol ? current_user.rol.configuracion : false) || (current_user.role == "SuperAdmin") %>
-                        </p></div>
-          <%end%>
-
-
-
-
-                
-                
-
-
-                 
+<div class="taskcont">
+<% @tasks.each do |task| %>
+<div class="conteinter reporte cnt trow<%=task.id%>">
+    <%= render "accions/rows_task/task_row" , task: task, accion: accion %>
+</div>
+<%end%>
+</div>
+<%else%>
+<div class="jumbotron jumbacc">
+   <h4 class="display-3 text-gray">No se ha creado ninguna Tarea</h4>
+   <hr class="my-4">
+   <br>
+   <%= (link_to "Nueva Tarea", new_report_accion_task_path(@report,accion.id) ,remote: true, :class => 'btn btn-primary') if (current_user.rol ? current_user.rol.configuracion : false) || (current_user.role == "SuperAdmin") %>
+   </p>
+</div>
+<%end%>

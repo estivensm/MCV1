@@ -1,0 +1,27 @@
+
+                        <div class="row rtr">
+                         <div class="col-md-12 wihtout-padding-top text-left" style="background: #e5f2ff;"><%= seg.descripcion %></div>
+                           </div> <hr>
+                           
+                            <%  idemp = User.find(seg.user_id).email
+                              employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
+                              %>
+                          
+                            <div class="row rtr">
+                            
+                            <div class="col-md-4 rtd wihtout-padding-bot text-left">
+                            <%= employed1.first_name %> <%= employed1.first_last_name %>
+                            </div>
+                            <div class="col-md-3 rtd wihtout-padding-bot"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
+                            <div class="col-md-3 rtd "><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
+                            <div class="col-md-2 rtd text-right wihtout-padding-bot text-left"><%= link_to  edit_report_accion_aseguimiento_path(@report,accion,seg),remote: true, :class => "opciones" do %>
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <% end %>
+                            <%= link_to  report_accion_aseguimiento_path(@report,accion,seg),  method: :delete, remote:true ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            <% end %>
+                            </div>
+                           
+                            
+                        </div>
+                     

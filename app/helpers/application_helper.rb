@@ -81,6 +81,12 @@ def get_state(state)
   
 end
 
+def get_state_candado(state)
+
+  state == true ? a = "<i class='fas fa-lock' aria-hidden='true'></i>" : a = "<i class='fas fa-lock-open' style='color:#bdb628' aria-hidden='true'></i>"
+  
+end
+
 
 
 def cumplio(state)
@@ -289,27 +295,27 @@ def menu_report
   
   if controller_name == "reports" && action_name == "show" 
         
-        @menu_report = ["active_report","","","","",""]
+        @menu_report = ["active","","","","",""]
         
     elsif controller.controller_name == "rseguimientos"
 
-      @menu_report = ["","active_report","","","",""]
+      @menu_report = ["","active","","","",""]
 
     elsif corre
      
-      @menu_report = ["","","active_report","","",""]
+      @menu_report = ["","","active","","",""]
 
       elsif accion
      
-    @menu_report = ["","","","active_report","",""]
+    @menu_report = ["","","","active","",""]
 
     elsif actividad
      
-    @menu_report = ["","","","","active_report",""]
+    @menu_report = ["","","","","active",""]
 
   elsif riesgo
      
-    @menu_report = ["","","","","","active_report"]
+    @menu_report = ["","","","","","active"]
   
 
   end
@@ -575,6 +581,32 @@ def estado_contador(cont)
         "#e23434 !important"
 
     end
+      
+end
+
+def estado_contador_tasks(accion)
+
+    if accion.tasks.abiertas.any?
+    if accion.tasks.where('contador_seg < ?', 0).any?  
+       "#e23434 !important"
+      
+    elsif accion.tasks.where('contador_seg >= ?', 0).where('contador_seg <= ?', 5).any?
+      
+
+      "orange !important"
+    
+      else
+        
+        "#22c488 !important"
+        
+
+    end
+
+  else
+      
+      "gray !important"
+
+  end
       
 end
 

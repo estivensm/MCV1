@@ -1,7 +1,13 @@
+
 <% if @aseguimiento.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('table tbody').append('<%= j render "user_row", aseguimiento: @aseguimiento %>');
- $('.alert').remove();
+   <% if @aseguimiento.cierra %> 
+  $('.srow<%=@aseguimiento.id%>').html("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_cierre', seg: @aseguimiento , accion: @accion %>");
+   <%else%>
+  $('.srow<%=@aseguimiento.id%>').html("<%= j render 'accions/rows_aseguimiento/aseguimiento_row', seg: @aseguimiento , accion: @accion %>");
+
+  <%end%>
+  
 <% else %>
 $(".alert").css("display", "block");
   // TODO: show the errors in the UI
@@ -9,5 +15,6 @@ $(".alert").css("display", "block");
   <% @aseguimiento.errors.full_messages.each do |msg| %>
           $('.alert').append('<p><%=msg%></p>');
         <% end %>
- 
+
 <% end %>
+

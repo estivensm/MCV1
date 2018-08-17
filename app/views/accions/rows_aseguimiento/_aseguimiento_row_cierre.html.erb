@@ -1,0 +1,36 @@
+  <div class="row rtr">
+                          <div class="col-md-12 rtd linka cierra">Seguimiento que cierra la Accion</div>    <div class="col-md-12 rtd text-left"> <%= seg.descripcion %></div>
+                          </div><hr>
+  <div class="row rtr">
+                                  
+                               
+                                  <div class="col-md-3 rtd"><strong>Fecha:</strong> <br><%= get_date(seg.created_at) %></div>
+                                  <div class="col-md-4 rtd">
+                                    <strong>Responsable:</strong><br> <%  idemp = User.find(seg.user_id).email
+                                        employed = Employed.where(email: idemp).take
+                                        %>
+                                    <td  class = "imaacc">
+                                        <%= employed.first_name %> <%= employed.first_last_name %>
+                                  </div>
+                                  <div class="col-md-3 rtd"><strong>Evidencia: </strong><br><%= link_to "Ver Evidencia", seg.evidencia_url if seg.evidencia_url %><%=image_tag get_extension(seg.evidencia.file.extension) if seg.evidencia_url%></div>
+                                  <div class="col-md-2 rtd text-right"><%= link_to  edit_report_accion_aseguimiento_path(@report,accion,seg),remote: true, :class => "opciones" do %>
+                                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                                  <% end %>
+                                  <%= link_to  report_accion_aseguimiento_path(@report,accion,seg),  method: :delete, remote: true ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+                                  <i class="fa fa-trash" aria-hidden="true"></i>
+                                  <% end %>
+                                  </div>
+                          </div>
+                      
+                       
+                          <hr>
+                          <div class="row rtr">
+                                <div class="col-md-3 rtd text-left"><strong>¿Eficaz?: </strong><% if  seg.eficaz%>
+                                <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>
+                                <%else %>
+                                <i class="fa fa-thumbs-o-down" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>
+                                <%end %></div>
+                                  <div class="col-md-6 rtd text-left" style = "margin-top: 13px;"><strong>Conclusión: </strong> <%= seg.conclucion %></div>
+                                  <div class="col-md-3 rtd text-left" style = "margin-top: 13px;"><strong>Costo: </strong> <%= number_to_currency(seg.costo)%>
+                                  </div>
+                          </div>

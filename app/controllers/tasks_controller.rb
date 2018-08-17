@@ -149,8 +149,8 @@ end
       respond_to do |format|
         format.js
          puts "11111111111111111111111111111111111111111"
-         @tasks =  @accion.tasks.abiertas
-         @tasksc =  @accion.tasks.cerradas
+         @tasks =  @accion.tasks.order(f_compromiso: :asc)
+      
          #render partial: "accions/task_abiertas", params: @tasks, status:200
         
         end
@@ -168,7 +168,7 @@ end
         if params[:remove_anexo]
         @task.remove_evidencia!
         @task.save
-
+      
       end
      
       end
@@ -179,6 +179,7 @@ end
   def destroy
     @report = Report.find(params[:report_id]) 
     @accion = Accion.find(params[:accion_id])
+    @taskd = @task.id
     if @task.destroy
          
          @tasks =  @accion.tasks.abiertas

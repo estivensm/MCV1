@@ -31,11 +31,14 @@ class AseguimientosController < ApplicationController
   # POST /aseguimientos.json
   def create
     @aseguimiento = Aseguimiento.new(aseguimiento_params)
- @report = Report.find(params[:report_id])
-  @accion = Accion.find(params[:accion_id])
+    @report = Report.find(params[:report_id])
+    @accion = Accion.find(params[:accion_id])
  
     if @aseguimiento.save
-        redirect_to report_accion_path(@report,@accion)
+      respond_to do |format|
+        format.js
+         @seguimientos = @accion.aseguimientos     
+         end
     end
   end
 
@@ -44,14 +47,16 @@ class AseguimientosController < ApplicationController
   def update
      @accion = Accion.find(params[:accion_id])
      @report = Report.find(params[:report_id])
-    @aseguimiento.update(aseguimiento_params)
+    if @aseguimiento.update(aseguimiento_params)
      if params[:remove_evidencia]
         @aseguimiento.remove_evidencia!
         @aseguimiento.save
       end
-    respond_to do |format|
-      format.html { redirect_to report_accion_path(@report,@accion), notice: 'Seguimiento fue creado.' }
-      format.json { head :no_content }
+
+
+       @seguimientos = @accion.aseguimientos
+
+      
     end
   end
 
@@ -60,10 +65,10 @@ class AseguimientosController < ApplicationController
   def destroy
     @accion = Accion.find(params[:accion_id])
      @report = Report.find(params[:report_id])
-    @aseguimiento.destroy
-    respond_to do |format|
-      format.html { redirect_to report_accion_path(@report,@accion), notice: 'Aseguimiento was successfully destroyed.' }
-      format.json { head :no_content }
+     @aseguimientod = @aseguimiento.id
+    if @aseguimiento.destroy
+         
+         @seguimientos = @accion.aseguimientos     
     end
   end
 

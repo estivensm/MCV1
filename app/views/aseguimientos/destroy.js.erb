@@ -1,0 +1,22 @@
+
+<% if @aseguimiento.errors.blank? %>
+  $('#contact-modal').modal('hide');
+  $('.srow<%=@aseguimientod%>').remove();
+   $('.aseguimientos_count').html("(<%= @seguimientos.count %>)"); 
+
+  $('.seg-cont-p').html("<%= @seguimientos.count %>");   
+
+  
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @aseguimiento.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+
+<% end %>
+
+
+
+

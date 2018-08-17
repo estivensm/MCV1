@@ -983,3 +983,26 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
 <strong>Seguimiento: <br></strong> <% time = "" 
         report.fp_seguimiento > Time.now ? time = "" : time = " Pendiente de Seguimiento "%>
                 <span><%=get_date(report.fp_seguimiento)%><%=time%></span>
+
+
+
+
+
+ ///////////////////// RIESGO 
+  <%if tiene_riesgo(@report.source.name)%>
+
+
+                        <% if @report.riesgos.count == 0 %>
+                                 <%= link_to new_report_riesgo_path(@report), remote: true, class: "#{@menu_report[5]}"  do %>
+                                       <i class="fas fa-exclamation-triangle" style="font-size: 20px"></i> Valorar Riesgo
+                                 <%end%>
+                           <%else%>
+                           
+                                 <%= link_to report_riesgo_path(@report,@report.riesgos.last.id), class: "#{@menu_report[5]}" do %>
+                                       <i class="fa fa-search" style="font-size: 20px"></i> Valoracion del Riesgo 
+                                 <%end%>
+                           <%end%>
+
+
+                     
+                     <%end%>

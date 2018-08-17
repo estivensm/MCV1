@@ -27,6 +27,15 @@ class RseguimientosController < ApplicationController
 
     end
 
+   
+       @seguimientos.each do |seg| 
+        
+         @seguimientosa << seg
+
+       end 
+
+    
+
    @seguimientos_t = @seguimientos + @seguimientosa
 
     @tasks = Task.where(report_id: @report.id)
@@ -55,10 +64,29 @@ class RseguimientosController < ApplicationController
   # POST /rseguimientos.json
   def create
     @report = Report.find(params[:report_id])
+    @seguimientos = @report.rseguimientos
     @rseguimiento = Rseguimiento.new(rseguimiento_params)
+    @accions = Accion.where(report_id: @report.id)
+    @seguimientosa = []
+    
 
     if @rseguimiento.save
-      redirect_to report_rseguimientos_path(@report)
+         @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+
+   
+       @seguimientos.each do |seg| 
+        
+         @seguimientosa << seg
+
+       end 
+      
     end
  
     
@@ -73,7 +101,10 @@ class RseguimientosController < ApplicationController
         @rseguimiento.remove_evidencia!
         @rseguimiento.save
       end
-       redirect_to report_rseguimientos_path(@report)
+       
+        
+
+
       end
     
  
@@ -82,14 +113,32 @@ class RseguimientosController < ApplicationController
   # DELETE /rseguimientos/1
   # DELETE /rseguimientos/1.json
   def destroy
+     @report = Report.find(params[:report_id])
+     @seguimientos = @report.rseguimientos
+     @accions = Accion.where(report_id: @report.id)
      @report = Report.find(params[:report_id]) 
-  
-      @rseguimiento.destroy
-    respond_to do |format|
-      format.html {  redirect_to report_rseguimientos_path(@report), notice: 'El seguimiento se elimino correctamente.' }
-      format.json { head :no_content }
+     @seguimientosa = []
+      if @rseguimiento.destroy
+          
+         @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
     end
-  end
+
+   
+       @seguimientos.each do |seg| 
+        
+         @seguimientosa << seg
+
+       end 
+
+
+      end
+     end
     
 
 

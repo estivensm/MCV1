@@ -1,8 +1,19 @@
 
 <% if @task.errors.blank? %>
   $('#contact-modal').modal('hide');
-  $('.task_abiertasa').html("<%= j render :partial => 'accions/task_abiertas', tasks: @tasks %>");
+ 
+<%if @tasks.count != 1%>
+    
+          $('.taskcont').prepend("<%= j render 'accions/rows_task/task_row_create', task: @task, accion: @accion %>");
+
+  <%else%>
+
+    $('.task_abiertasa').html("<%= j render 'accions/task_abiertas', tasks: @tasks , accion: @accion %>");
+
+
+  <%end%>
   $('.tasks_abierta').html("(<%= @tasks.count %>)");
+   $('.task-cont-p').html("<%= @tasks.count %>");
 console.log("<%= @tasks.count %>")
 <% else %>
 $(".alert").css("display", "block");
@@ -13,3 +24,4 @@ $(".alert").css("display", "block");
         <% end %>
 
 <% end %>
+
