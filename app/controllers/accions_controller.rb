@@ -63,7 +63,7 @@ respond_to :json
     @tipo = "Correccion"
     @report = Report.find(params[:report_id])
     @accions_t = @report.accions
-    @accions = @report.accions.where(tipo: "Correccion").order(created_at: :desc)
+    @accions = @report.accions.where(tipo: "Correccion").order(estado: :asc).order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
@@ -94,7 +94,7 @@ def actividades
     @tipo = "Actividad"
      @report = Report.find(params[:report_id])
      @accions_t = @report.accions
-    @accions = @report.accions.where(tipo: "Actividad").order(created_at: :desc)
+    @accions = @report.accions.where(tipo: "Actividad").order(estado: :asc).order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
