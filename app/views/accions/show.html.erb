@@ -1,309 +1,85 @@
-<!--Menu-->
 
-<!--/Menu-->
-<!--Formulario para cambiar estado de accion-->
-<%= render 'form_change', accion: @accion %>
-<!--/Formulario para cambiar estado de accion-->
-<!--Menu Tabs-->
-
-<!--/Menu Tabs-->
-<!--Alerta de cierre o solicitud de cierre-->
-
-<%if @accion.tipo == "Accion"%>
- <%= link_to "Volver a Acciones" ,report_accions_path(@report), class: "linka" %>
-<%elsif @accion.tipo == "Correccion"%>
- <%= link_to "Volver a Correcciones" ,report_correcciones_path(@report), class: "linka" %>
-<%else%>
-
- <%= link_to "Volver a Actividades" ,report_actividades_path(@report), class: "linka" %>
-
- <%end%>
-
-<%if @accion.estado != "Cerrada"   &&  @accion.s_cierre%>
-<div class="alert alert-success text-center" > 
-   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL RESPONSABLE DE LA EJECUCION SOLICITO EL CIERRE DE LA ACCION!
-</div>
-<%end%>
-<% if @accion.estado == "Cerrada"  %>
-<% if @accion.cumplio %>
-<div class="alert alert-success text-center" style="display:none"> 
-   <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡LA <%=@accion.tipo.upcase%> SE CERRO Y SE CUMPLIO CON LA FECHA ! 
-</div>
-<%else%>
-<div class="alert alert-danger text-center" > 
-   <i class="fa fa-thumbs-o-down" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡LA <%=@accion.tipo.upcase%> SE CERRO CON EXITO PERO NO SE CUMPLIO CON LA FECHA! <button style = "margin-left:50px" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#accion_change_state">¿Cumplio?</button>
-</div>
-<%end%>
-<%end%>
-<!--/Alerta de cierre o solicitud de cierre-->
-<div class="modal fade" id="myModal" role="dialog">
-   <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title modalp1">Informacion del Reporte</h4>
-         </div>
-         <div class="modal-body">
-            <table class = "reporte">
-               <tr>
-                  <th>Codigo</th>
-                  <td><%= @report.codigo %></td>
-                  <th>Fuente</th>
-                  <td><%= @report.source.name %></td>
-               </tr>
-               <tr>
-                  <th>Descripcion</th>
-                  <td colspan="3"><%= @report.description%></td>
-               </tr>
-            </table>
-         </div>
-         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-         </div>
+<div class = "row">
+   <div class="col-md-12 text-center" style="background: #e8e7e7;">
+      <div class="col-md-3">
+         <input type="text" style="margin-top:2px;" id="myInput" class="form form-control" onkeyup="myFunction()" placeholder="Busqueda por descripcion o codigo" title="Type in a name">
       </div>
-   </div>
-</div>
-<!--Muestra Informacion y seguimiento-->
-
-<div class = "row" style="margin-top:20px">
-<!--Informacion-->
-   <div class="col-md-12 wihtout-padding" >
-      <h5 class = "linka htitle">
-         <span ><%if @accion.estado == "Abierta" %>
-          
-
-             <i class="fa fa-unlock" style="font-size: 30px"></i>
-             <%else%>
-               <i class="fa fa-lock" style="font-size: 30px"></i>
-             <%end%>  
-           </span>
- 
-      <span style="font-size: 16px;font-weight:bold" "><%=@accion.tipo %> (<%=@accion.codigo %>): </span><span style="color:gray"><%=@accion.name%></span>   
-         <span style="float:right"> 
-          <%= link_to  edit_report_accion_path(@report,@accion), :class => "opciones" do %>
-         <i class="fa fa-pencil" aria-hidden="true"></i>
-         <% end %>
-         <%= link_to  report_accion_path(@report,@accion),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-         <i class="fa fa-trash" aria-hidden="true"></i>
-         <% end %>
-         </span> 
-      
-        </div>
-      </h5>
-      <div class="conteinter reporte cnt">
-         
-         <div class="row rtr">
-
-            <%if @accion.causa_efectos.exists?%>
-            <div class="col-md-12 rtd"><strong>Causas: </strong><%= @accion.causa_efectos.pluck(:name).join(", ") %></div>
-            <%end%></div>
-            <div class="row rtr">
-            <div class="col-md-3 rtd"><strong>Fecha de Creacion:<br></strong> <%= get_date(@accion.created_at) %></div>
-   
-            <% employed1 = Employed.find(@accion.employed_id)%>
-            <div class="col-md-3 rtd"><strong>Reporta: <br></strong><%= employed1.first_name %> <%= employed1.first_last_name %></div>
-            
-    
-            <div class="col-md-3 rtd"><strong>Costo Presupuestado:<br> </strong><%= number_to_currency(@accion.costo_presupuestado) %></div>
-            <div class="col-md-3 rtd"><strong>Costo Real: </strong><br><%= number_to_currency(@accion.costo) %></div>
-         </div>
-         <hr>
-         <div class="row rtr">
-            <div class="col-md-5 rtd"><strong>Responsable:</strong> <% employed = Employed.find(@accion.employed_id)%>
-               <%= employed.first_name %> <%= employed.first_last_name %><br>
-               <strong>Responsable de Cierre:</strong> <% employed = Employed.find(@accion.cierra_id)%>
-               <%= employed.first_name %> <%= employed.first_last_name %>
-               <br>
-               <strong>Otros Interesados: </strong><% 
-                  cm = 0 
-                  @accion.employeds.each do |resp|
-                    %><%= "," if cm != 0 %> 
-               <button type="button" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= resp.avatare_url(:thumb) %>'></p><br><strong>Cargo: </strong><%=resp.cargo.name %><br> <strong>Email:</strong> <%= resp.email%><br><strong>Cedula:</strong> <%= resp.document %>"><%= resp.first_name %> <%= resp.first_last_name %></button>
-               <%  cm = cm + 1 %> 
-               <%end%>
-            </div>
-
-            <div class="col-md-4">
-                <strong  style = "">Frecuencia de Seguimiento: </strong><%=f_seguimiento(@accion.f_seguimiento) %><br>
-                <%= "Fecha de seguimiento:" if @accion.f_seguimiento != 0%> </strong> <%= get_date(@accion.fp_seguimiento) if @accion.fp_seguimiento && @accion.f_seguimiento != 0 %>
-            </div>
-            <div class="col-md-3 rtd" style="color:white;background:<%=get_color(@accion.contador_seg)%>"><strong>Fecha de Entrega <%= get_date(@accion.f_compromiso)%> <br>  <%= @accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=@accion.contador_seg.abs%> días<strong style = "margin-left:10px;"></strong>
-            </div>
-              <div class="col-md-12">
-              <a class="" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-+ Mas Informacion
-</a>
+       <div class="col-md-6">
+      <h4 class="titulo-acciones"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>) <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=@accions.abiertas.count%></span>
+                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=@accions.cerradas.count%></span></h4>
        </div>
-         </div>
-     
-         
-
-    <div class="row rtr">
-
-<div class="collapse" id="collapseExample">
-  <div class="well">
-  <div class="row">
-    
-
-           <div class="col-md-12 rtd text-left">
-               <div class="descnum"><strong>Descripcion:</strong> <%= @accion.descripcion%></div>
-            </div>
-            <div class="col-md-12 rtd text-left">
-               <strong>Posible Evidencia:</strong> <%= @accion.evidencia%>
-            </div>
-            <!--<div class="col-md-12 rtd"><strong>Descripcion</strong></div>-->
-          
-         </div>  </div>
-  </div>
-</div>
-         
-      </div>
-   </div>
-   <!--/Informacion-->
-   <!--Seguimiento-->
-   <br>
-   <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">SEGUIMIENTOS (<%= @seguimientos.count %>)</a></li>
-  <li><a data-toggle="tab" href="#menu1">TAREAS ABIERTAS <span class="tasks_abierta">(<%= @tasks.count %>)</span></a></li>
-  <li><a data-toggle="tab" href="#menu2">TAREAS CERRADAS <span class="tasks_cerrada"> (<%= @tasksc.count %>)</span></a></li>
-</ul>
-<br>
-<div class="tab-content">
-  <div id="home" class="tab-pane fade in active">
-   <div class="col-md-12 wihtout-padding" style="max-height: 350px;height: 350px;overflow: auto">
-      <div class="conteinter htitle" style = "padding:0px">
-         <div class="row rtr">
-            <div class="col-md-2 rtd"></div>
-            <div class="col-md-8 rtd">
-               <h3 class="htitle linka text-center">Seguimientos (<%=@accion.aseguimientos.count %>)</h3>
-            </div>
-            <div class="col-md-2 rtd">
-               <% if @seguimientos.count > 0 %>
-               <%= link_to 'Nuevo Seguimiento', new_report_accion_aseguimiento_path(@report,@accion), remote: true,:class => 'btn btn-primary pull-right' %><%end%>
-            </div>
-         </div>
-      </div>
-      <% if @seguimientos.count > 0 %>
-            <% @seguimientos.each do |seg| %>
-               <% if seg.cierra %>
-                  <div class="conteinter reporte cnt">
-                          <div class="row rtr">
-                                  <div class="col-md-4 rtd linka cierra">Seguimiento que cierra la Accion</div>
-                                  <div class="col-md-2 rtd"><strong>Creacion:</strong> <%= get_date(seg.created_at) %></div>
-                                  <div class="col-md-2 rtd">
-                                    <strong>Responsable:</strong> <%  idemp = User.find(seg.user_id).email
-                                        employed = Employed.where(email: idemp).take
-                                        %>
-                                    <td  class = "imaacc">
-                                        <%= employed.first_name %> <%= employed.first_last_name %>
-                                  </div>
-                                  <div class="col-md-2 rtd"><strong>Evidencia: </strong><%= link_to "Ver Evidencia", seg.evidencia_url if seg.evidencia_url %><%=image_tag get_extension(seg.evidencia.file.extension) if seg.evidencia_url%></div>
-                                  <div class="col-md-2 rtd text-right"><%= link_to  edit_report_accion_aseguimiento_path(@report,@accion,seg),remote: true, :class => "opciones" do %>
-                                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                                  <% end %>
-                                  <%= link_to  report_accion_aseguimiento_path(@report,@accion,seg),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                                  <i class="fa fa-trash" aria-hidden="true"></i>
-                                  <% end %>
-                                  </div>
-                          </div>
-                          <hr>
-                          <div class="row rtr">
-                              <div class="col-md-12 rtd text-left"><strong>Descripcion: </strong> <%= seg.descripcion %></div>
-                          </div>
-                          <hr>
-                          <div class="row rtr">
-                                <div class="col-md-3 rtd text-left"><strong>¿Eficaz?: </strong><% if  seg.eficaz%>
-                                <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>
-                                <%else %>
-                                <i class="fa fa-thumbs-o-down" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>
-                                <%end %></div>
-                                  <div class="col-md-6 rtd text-left" style = "margin-top: 13px;"><strong>Conclusión: </strong> <%= seg.conclucion %></div>
-                                  <div class="col-md-3 rtd text-left" style = "margin-top: 13px;"><strong>Costo: </strong> <%= number_to_currency(seg.costo)%>
-                                  </div>
-                          </div>
-                  </div>
-                  <%else%>
-                      <div class="conteinter reporte cnt ">
-                        <div class="row rtr">
-                            <div class="col-md-1">
-                            <%  idemp = User.find(seg.user_id).email
-                              employed1 = Employed.where(admin_user: current_user.admin_user, email: idemp).first
-                              %>
-                            <img class ="seg-img" src='<%= employed1.avatare_url(:thumb) %>'>
-                            </div>
-                            <div class="col-md-11">
-                            <div class="col-md-4 rtd wihtout-padding-bot">
-                            <%= employed1.first_name %> <%= employed1.first_last_name %>
-                            </div>
-                            <div class="col-md-3 rtd wihtout-padding-bot"><strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></div>
-                            <div class="col-md-3 rtd "><strong><i class="fa fa-paperclip" aria-hidden="true"></i> </strong><%= (link_to "Evidencia",seg.evidencia_url, class:"linka") if seg.evidencia_url %></div>
-                           < <div class="col-md-2 rtd text-right wihtout-padding-bot"><%= link_to  edit_report_accion_aseguimiento_path(@report,@accion,seg),remote: true, :class => "opciones" do %>
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <% end %>
-                            <%= link_to  report_accion_aseguimiento_path(@report,@accion,seg),  method: :delete ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                            <% end %>
-                            </div>
-                            <div class="col-md-12 wihtout-padding-top text-left"><%= seg.descripcion %></div>
-                            </div>
-                        </div>
-                      </div>
-                  <% end %>
-          <% end %>
-      <% else %>
-            <div class="jumbotron jumbacc">
-            <h3 class="display-3 text-gray">No se ha creado ningun seguimiento</h3>
-            <hr class="my-4">
-            <br>
-            <br>
-            <%= link_to 'Nuevo Seguimiento', new_report_accion_aseguimiento_path(@report,@accion), remote:true,:class => 'btn btn-primary btn-lg'  %>
-            </p>
-            </div>
-      <% end %>
-   </div>
-  </div>
-  <div id="menu1" class="tab-pane fade">
-    <div class="col-md-12 wihtout-padding">
-  
-             
-              <div class="task_abiertasa">
-                     <%= render "task_abiertas" , accion: @accion%> 
-                 </div>
-
-
+        <div class="col-md-3">
+         <% if @accions.count > 0 %>
+      <strong style="float: right;">
+      <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
+      <%end%>
         </div>
-  </div>
-  <div id="menu2" class="tab-pane fade">
-    <div class="col-md-12 wihtout-padding">
-          <div class="task_cerradasa">
-                     <%= render  "task_cerradas", accion: @accion%> 
-                 </div>
-</div>
-  </div>
-</div>
-
-
-  
-   <!--Seguimiento-->
-</div>
-
-<!--/Muestra Informacion y seguimiento-->
-<br>
-<hr class="hr">
-<br>
-<!--Tareas-->
-<div class="row">
-<!--Tareas Abiertas-->
-   
-        <!--/Tareas Abiertas-->
-        <!--Tareas Cerradas-->
        
+   </div>
 
-<!--/Tareas Cerradas-->
-
+     
+   
+<div class="col-md-12">
+ <br>
 </div>
-<!--/Tareas-->
+</div>
+<div class = "row">
+
+   <div class="col-md-12 wihtout-padding" id="filter">
+      <% if @accions.count > 0 %>
+      <% @accions.each do |accion| %>
+         <div class = "row" id="row-cont-<%=accion.id%>">
+
+            <%if accion.estado == "Abierta"%>
+              <%= render "accions/row_encabezado/abierta", accion: accion %>
+             <%else%>
+                <%= render "accions/row_encabezado/cerrada", accion: accion %>
+             <%end%> 
+              <div id="show_accion<%=accion.id%>" class="show_accion reporte" style="display: none;padding:0px 10px;">
+            <%=render "show_accion", accion: accion %>
+              </div>
+            
+        </div>
+    
+      <% end %>
+  </div>
+      
+      </div>     
+      <%else%>
+      <div class="jumbotron jumbacc">
+         <br>
+         <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
+         <hr class="my-4">
+         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
+      </div>
+      <%end%>
+
+   <!--fin-->
+   <!--fin-->
+
+
+<style>
+   .imaacc img
+   {
+   border-radius: 40px;
+   }
+   .border-select
+   {
+    border: 3px solid #1f8143 !important;
+    border-radius: 6px;
+   }
+    .title-accion-select
+   {
+    font-size:20px;
+   }
+      .button_ver_accion
+   {
+    background: red !important;
+    content: " New!" !important; 
+   }
+</style>
 <script>
    $(function () {
    $('[data-toggle="popover"]').popover({
@@ -314,44 +90,102 @@
    })
    })
    
+   
+    $('#filter').on('click', '.ver_accion', function() {
+      
+      var a = $(this).attr('id').match(/\d+/)[0]
+      console.log(a);
+      var b = '#show_accion' + a;
+      var x = '#row-cont-' + a;
+       var y = '#title-accion-' + a;
+       var z = '#accion' + a;
+      //$('.show_accion').hide();
+      $(b).toggle( "slow", "linear" );
+      $(x).toggleClass("border-select");
+      $(y).toggleClass("title-accion-select");
+      console.log($(y).attr('class'))
+      if ($(y).attr('class') == 'filter3 title-accion-select')
+      {
+        console.log('hola')
+        $(z).text("VER MENOS");
+      }
+      else
+      {
+        console.log('hola1')
+       $(z).text("VER MAS"); 
+      }
+      console.log($(y).attr('class') == "filter3 title-accion-select")
+      
+      console.log("filter3 title-accion-select")
+   })
+   
+
+
+   
 </script>
 <style>
-.cierra
+.redonda1
 {
-font-size: 16px;
-
+   padding: 5px 8px;
+    background: #a4a4a4;
+    color: white;
+    border-radius: 10px;
 }
-.imaacc img
-{
-border-radius: 40px;
-}
-.cnt
-{
-border: 1px solid #c3c3c3;
-margin-bottom: 10px;
-}
-.rtr
-{
-}
-.rtd
-{
-padding: 10px;
-}
-.titulo
-{
-background:#f2f2f2;
-}
-hr
-{
-margin-top: 0px;
-margin-bottom: 0px;
-}
-.well
-{
-    padding-bottom: 5px !important;
-    background-color: white !important;
-     border: none !important;
-     border-radius: 0px !important; 
- 
-}
+   .imaacc img
+   {
+   border-radius: 40px;
+   }
+   .cnt
+   {
+   border: 1px solid #c3c3c3;
+   margin-bottom: 10px;
+   -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+   transition: box-shadow 0.3s;
+   }
+   .rtr
+   {
+   text-align:center;
+   }
+   .rtd
+   {
+   padding: 5px;
+   text-align:center;
+   }
+   .titulo
+   {
+   background:#f2f2f2;
+   }
+   .cnt:hover
+   {
+   box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+   }
+   .titulo-acciones
+   {
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+    font-weight: bold;
+    color: #8b8b8b;
+   }
 </style>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("filter3")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+</script>
+
+
+

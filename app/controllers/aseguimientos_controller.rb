@@ -32,13 +32,14 @@ class AseguimientosController < ApplicationController
   def create
     @aseguimiento = Aseguimiento.new(aseguimiento_params)
     @report = Report.find(params[:report_id])
-    @accion = Accion.find(params[:accion_id])
+    #@accion = Accion.find(params[:accion_id])
  
     if @aseguimiento.save
       respond_to do |format|
         format.js
+         @accion = Accion.find(params[:accion_id])   
          @seguimientos = @accion.aseguimientos
-         @accion = Accion.find(params[:accion_id])     
+           
          end
     end
   end

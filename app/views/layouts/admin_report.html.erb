@@ -475,7 +475,7 @@
                         <hr style="margin-top: 5px;margin-bottom: 10px;border-top: 1px solid #d5d5d5;">
                         <div class="row">
                            <div class="col-md-3 rtd  text-left">
-                              <button type="button" style="    border: 0px;font-size: 14px;" class="ver_report btn-primary" ><i class="fas fa-search-plus"></i> Informacion</button>
+                              <button type="button" style="border: 0px;font-size: 14px;" class="ver_report btn-primary" >VER MAS</button>
                            </div>
                            <div class="col-md-2 text-center">
                               <strong>Fecha de Creacion</strong><br><%= get_date(@report.created_at) %>
@@ -501,6 +501,7 @@
                </div>
                <br>
                <% menu_report%>
+               <% menu_acciones%>
                <div class="row gestion" >
                   <div class="col-md-12 text-center" style="font-weight: bold;font-size:16px;color: #0db497;padding: 10px;">
                      GESTION DEL REPORTE
@@ -533,13 +534,13 @@
                         </li>
                         <%end%>
                         <%if @report.source.accion%>
-                        <li class='<%=@menu_report[3]%> <%=@menu_accion[1]%>'><%= link_to  report_accions_path(@report) , class: ""  do %>
+                        <li class='<%=@menu_report[3]%> <%=@menu_acc[1]%>'><%= link_to  report_accions_path(@report) , class: ""  do %>
                            <i class="fa fa-thumbtack" style="font-size: 20px"></i> Acciones <span style="margin-left:10px" class="<%= @accionscc < 10 ? 'redonda_p' : 'redonda'%>"><%= @accionscc%> </span>
                            <%end%>
                         </li>
                         <%end%>
                         <%if @report.source.actividad%>
-                        <li class='<%=@menu_report[4]%> <%=@menu_accion[2]%>'><%= link_to  report_actividades_path(@report) , class: ""   do %>
+                        <li class='<%=@menu_report[4]%> <%=@menu_acc[2]%>'><%= link_to  report_actividades_path(@report) , class: ""   do %>
                            <i class="fa fa-calendar-check" style="font-size: 20px"></i> Actividades <span style="margin-left:10px" class="<%= @actividad < 10 ? 'redonda_p' : 'redonda'%>"><%= @actividad%></span>
                            <%end%>
                         </li>
@@ -692,11 +693,32 @@
    #cssmenu > ul > li > a:hover:after {
    background: #47c9af;
    }
+   .show_report_c
+   {
+
+   }
 </style>
 <script>
    $('.ver_report').click(function(){
        
              //$('.show_accion').hide();
-       $("#show_report").fadeToggle( "slow", "linear" );
-    })
+      $("#show_report").toggle( "slow", "linear" );
+      $(".ver_report").toggleClass("show_report_c");
+      console.log($(".ver_report").attr('class'))
+      if ( $(".ver_report").attr('class') == 'ver_report btn-primary show_report_c')
+      {
+        console.log('hola')
+        $('.ver_report').text("VER MENOS");
+      }
+      else
+      {
+        console.log('hola1')
+       $('.ver_report').text("VER MAS"); 
+      }
+
+
+   })
+
+
+      
 </script>
