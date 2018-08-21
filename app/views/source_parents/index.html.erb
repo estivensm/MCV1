@@ -1,13 +1,14 @@
-<div class="row" >
-   <div class="col-md-12 ">
-      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
-   </div>
-
-
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><a href='#'>Fuentes</a></li>
+  </ul>
+</div>
+<br><br>
 
 
 <div class = "row title-table">
-   <div class = "col-md-6">
+   <div class = "col-md-6"  style="padding-left: 0px;">
       <p>Fuentes <span class="label label-primary"><%=@source_parents.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @source_parents, :entry_name => 'Fuentes' %></span> </p>
 
 
