@@ -2,9 +2,9 @@
 <% if @aseguimiento.errors.blank? %>
   $('#contact-modal').modal('hide');
   $('.srow<%=@aseguimientod%>').remove();
-   $('.aseguimientos_count').html("(<%= @seguimientos.count %>)"); 
+   $('.aseguimientos_count<%=@accion.id%>').html("(<%= @seguimientos.count %>)"); 
 
-  $('.seg-cont-p').html("<%= @seguimientos.count %>");   
+   $('.seg-cont-p<%=@accion.id%>').html("<%= @seguimientos.count %>");   
 
   
 <% else %>
@@ -16,7 +16,6 @@ $(".alert").css("display", "block");
         <% end %>
 
 <% end %>
-
 
 
 

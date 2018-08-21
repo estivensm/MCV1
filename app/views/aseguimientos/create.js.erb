@@ -57,9 +57,9 @@
     <%end%>
 
 
-    $('.aseguimientos_count').html("(<%= @seguimientos.count %>)"); 
-    $('.seg-cont-p').html("<%= @seguimientos.count %>");
-    $('.costo-real').html("<%= number_to_currency(@aseguimiento.costo) %>");
+    $('.aseguimientos_count<%=@accion.id%>').html("(<%= @seguimientos.count %>)"); 
+    $('.seg-cont-p<%=@accion.id%>').html("<%= @seguimientos.count %>");
+    $('.costo-real<%=@accion.id%>').html("<%= number_to_currency(@aseguimiento.costo) %>");
 
 
 
@@ -76,12 +76,12 @@
 
 <% end %>
 
-
+/*
 alert('success!');
 <% if remotipart_submitted? %>
   alert('submitted via remotipart')
 <% else %>
   alert('submitted via native jquery-ujs')
 <% end %>
-
+*/
 

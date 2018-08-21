@@ -36,7 +36,7 @@ class RseguimientosController < ApplicationController
 
     
 
-   @seguimientos_t = @seguimientos + @seguimientosa
+   @seguimientos_t =  @seguimientosa
 
     @tasks = Task.where(report_id: @report.id)
     @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)

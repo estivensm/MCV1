@@ -92,14 +92,14 @@ respond_to :json
 
 def actividades
     @tipo = "Actividad"
-     @report = Report.find(params[:report_id])
-     @accions_t = @report.accions
+    @report = Report.find(params[:report_id])
+    @accions_t = @report.accions
     @accions = @report.accions.where(tipo: "Actividad").order(estado: :asc).order(created_at: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
     @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
-     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @tasks = Task.where(report_id: @report.id)
     @seguimientos = @report.rseguimientos
     @seguimientosa = []
@@ -126,7 +126,13 @@ end
     @tipo = @accion.tipo
     @report = Report.find(params[:report_id])
     @accions_t = @report.accions
-    @accions = @report.accions.where(tipo: "Accion").order(estado: :asc).order(created_at: :desc)
+    if @tipo == "Accion"
+        @accions = @report.accions.where(tipo: "Accion").order(estado: :asc).order(created_at: :desc)
+    elsif @tipo == "Actividad"
+         @accions = @report.accions.where(tipo: "Actividad").order(estado: :asc).order(created_at: :desc)
+    else
+         @accions = @report.accions.where(tipo: "Correccion").order(estado: :asc).order(created_at: :desc)
+    end  
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
@@ -161,7 +167,9 @@ end
 
    @seguimientos_t = @seguimientos + @seguimientosa
     
-    render  :layout => 'admin_report'
+     render 'index', :layout => 'admin_report'
+     
+
   end
 
 

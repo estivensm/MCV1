@@ -1,6 +1,7 @@
 <div class="conteinter reporte cnt filter2" id="accion-cont-<%=accion.id%>">
    <div class="row rtr">
-      <div class="col-md-9 rtd text-left" style="padding-bottom:0px !important;font-size: 15px;"><strong id="title-accion-<%=accion.id%>" class="filter3" style="color: #0db497"><%= accion.tipo %> (<%=  accion.codigo  %>): <span style="color: gray"><%= accion.descripcion %></span></strong> </div>
+     <% clases_select1 = @accion != nil && @accion.id == accion.id ? "title-accion-select" : "none" %>
+      <div class="col-md-9 rtd text-left" style="padding-bottom:0px !important;font-size: 15px;"><strong id="title-accion-<%=accion.id%>" class="filter3 <%=clases_select1%>" style="color: #0db497"><%= accion.tipo %> (<%=  accion.codigo  %>): <span style="color: gray"><%= accion.descripcion %></span></strong> </div>
       <div class="col-md-3 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %> 
          <%= accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=accion.contador_seg.abs%> días
       </div>
@@ -33,7 +34,7 @@
          <button type="button" style="    border: 0px;font-size: 14px;" class="ver_accion btn-primary" id="accion<%=accion.id%>">VER MAS</button>
       </div>
       <div class="col-md-4 rtd  text-left">
-         <strong >Tareas:   </strong><span class="redonda1 task-cont-p" style="background:<%=estado_contador_tasks(accion)%>;color:white"><%=accion.tasks.count%> </span>
+         <strong >Tareas:   </strong><span class="redonda1 task-cont-p<%=accion.id%>" style="background:<%=estado_contador_tasks(accion)%>;color:white"><%=accion.tasks.count%> </span>
          <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
          <span style="font-size: 16px"><%=accion.tasks.abiertas.count%></span>
          <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock' aria-hidden='true'></i></span>
