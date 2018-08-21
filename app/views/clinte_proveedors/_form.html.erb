@@ -16,29 +16,39 @@
 <div class="row">
 <div class="col-md-6">
   <div class="field">
-    <%= f.label "Tipo" %><br>
-   <%= f.select :cliente_proveedor_type_id,    get_tipo_parte.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
-
-  
-    
+    <%= f.label "Nombre" %>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <%= f.text_field :name, class: "form-control", :title => "Es un Campo Obligatorio", :required => true   %>
+      </div>
   </div>
+
+  <br>
 
   <div class="field">
-    <%= f.label "Nombre" %>
-    <%= f.text_field :name,  class: "form-control" %>
+    <%= f.label "Tipo" %>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <%= f.select :cliente_proveedor_type_id,    get_tipo_parte.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
+    </div>
   </div>
-
-
-
-
+  
+  <br>
   <div class="field">
     <%= f.label "PBX" %>
-    <%= f.text_field :pbx,  class: "form-control" %>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-phone"></i></span>
+          <%= f.text_field :pbx,  class: "form-control" %>
+      </div>
   </div>
-
+  
+  <br>
   <div class="field">
     <%= f.label "Dirección" %>
-    <%= f.text_field :address,  class: "form-control" %>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-directions"></i></span>
+          <%= f.text_field :address,  class: "form-control" %>
+    </div>
   </div>
  
  
@@ -48,50 +58,51 @@
 
 <div class="field">
     <%= f.label "Nit/Cedula" %>
-    <%= f.text_field :nit,  class: "form-control" %>
-  </div>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-address-card"></i></span>
+           <%= f.text_field :nit,  class: "form-control" %>
+    </div>
+</div>
+
+  <br>
   <div class="field">
     <%= f.label "Correo de la empresa" %>
-    <%= f.text_field :correo_empresa,  class: "form-control" %>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-at"></i></span>
+          <%= f.text_field :correo_empresa,  class: "form-control" %>
+      </div>
   </div>
-    <div class="field">
+
+  <br>
+
+<div class="field">
     <%= f.label "Web" %>
-    <%= f.text_field :web,  class: "form-control" %>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-clone"></i></span>
+          <%= f.text_field :web,  class: "form-control" %>
+    </div>
   </div>
 </div>
   
 </div>
-
-
-
-
-
-
-
-
-
-
-
   <hr>
 <div class="col-lg-12">
    
     <h3 class = "" style = "margin :0px 0px 5px 0;color:gray">Contactos</h3>
-
+    <br>
     <%= f.fields_for :contacts do |contact|  %>
   <div class="clearfix">
- <div class="col-md-12" >
-
-  
-    <div class="col-md-3 pdd" >
-     <%= contact.link_to_remove do %>
-<i style = "    color: #e74b09;
-    font-size: 18px;
-    margin-left: 0px;
-    position: relative;
-    left: -18px;" class="fa fa-trash" aria-hidden="true"></i>
-  <% end %>
-    <%= contact.label "Nombre" %>
-   <%= contact.text_field :name, :class => 'form-control' %>
+ <div class="col-md-12" style="padding: 0px;" >
+    <div class="col-md-3" style="padding: 0px; margin-top: 2px; padding-right: 4px;" >
+      <%= contact.label "Nombre" %>
+        <div class="input-group">
+          <span class="input-group-btn">
+              <%= contact.link_to_remove class: "btn btn-danger" do %>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+          </span>
+        <%= contact.text_field :name, :class => 'form-control' %>
+      </div>
     </div>
       <div class="col-md-3 pdd" >
     <%= contact.label "Celular" %>
@@ -153,5 +164,8 @@ padding: 2px;
 {margin-top: 10px;
 }
   
+.input-group-addon{
+  background-color:  #00BE99;
+  color: #f1f1f1;
+}
 </style>
-

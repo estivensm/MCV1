@@ -2,11 +2,13 @@
 
 
 
-<div class="row" >
-   <div class="col-md-12 ">
-      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
-   </div>
-
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><a href='#'>Tipos de partes interesadas</a></li>
+  </ul>
+</div>
+<br><br>
 
 
 
@@ -22,7 +24,7 @@
   </ul>
 </div>
 <br><div class = "row title-table">
-   <div class = "col-md-8">
+   <div class = "col-md-8"  style="padding-left: 0px;">
       <p>Tipos de partes interesadas <span class="label label-primary"><%=@cliente_proveedor_types.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @cliente_proveedor_types, :entry_name => 'Procesos' %></span> </p>
 
 
