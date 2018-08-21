@@ -326,7 +326,15 @@ end
     respond_to do |format|
       if @accion.save
 
-        format.html { redirect_to report_accions_path(@report), notice: 'La Accion fue creada correctamente.' }
+        format.html { 
+        if @accion.tipo == "Accion"
+          redirect_to report_accions_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+        elsif @accion.tipo == "Actividad"
+          redirect_to report_actividades_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+        else
+          redirect_to report_correcciones_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+        end 
+        }
         format.json { render :show, status: :created, location: @accion }
       else
         format.html { render :new }
@@ -341,7 +349,17 @@ end
      @report = Report.find(params[:report_id])
     respond_to do |format|
       if @accion.update(accion_params)
-        format.html { redirect_to report_accions_path(@report), notice: 'La Accion fue editada correctamente' }
+        format.html { 
+        
+        if @accion.tipo == "Accion"
+          redirect_to report_accions_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+        elsif @accion.tipo == "Actividad"
+          redirect_to report_actividades_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+        else
+          redirect_to report_correcciones_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+        end  
+
+        }
         format.json { render :show, status: :ok, location: @accion }
       else
         format.html { render :edit }
@@ -354,9 +372,20 @@ end
   # DELETE /accions/1.json
   def destroy
     @report = Report.find(params[:report_id])
+    @acciond = @accion
     @accion.destroy
     respond_to do |format|
-      format.html { redirect_to report_accions_url(@report), notice: 'La Accion fue borrada correctamente' }
+      format.html { 
+        
+        if @acciond.tipo == "Accion"
+          redirect_to report_accions_path(@report), notice: 'La #{@acciond.tipo} fue editada correctamente' 
+        elsif @acciond.tipo == "Actividad"
+          redirect_to report_actividades_path(@report), notice: 'La #{@acciond.tipo} fue editada correctamente' 
+        else
+          redirect_to report_correcciones_path(@report), notice: 'La #{@acciond.tipo} fue editada correctamente' 
+        end 
+
+         }
       format.json { head :no_content }
     end
   end
