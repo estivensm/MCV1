@@ -9,6 +9,7 @@
       <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Days+One" rel="stylesheet">
 
+      <script type="text/javascript" src="/assets/canvasjs.min.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
       <title><%= content_for?(:title) ? yield(:title) : "Mejorapp" %></title>
       <%= csrf_meta_tags %>
@@ -25,8 +26,6 @@
       <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-
    </head>
    <body class="admin">
       <div class ="container-fluid menusp">
