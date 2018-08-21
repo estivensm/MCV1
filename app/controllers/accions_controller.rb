@@ -123,7 +123,7 @@ end
   # GET /accions/1
   # GET /accions/1.json
   def show
-    @tipo = "Accion"
+    @tipo = @accion.tipo
     @report = Report.find(params[:report_id])
     @accions_t = @report.accions
     @accions = @report.accions.where(tipo: "Accion").order(estado: :asc).order(created_at: :desc)
@@ -144,6 +144,20 @@ end
        end 
 
     end
+
+    @menu_accion = ["","",""]
+     if @accion.tipo == "Correccion" 
+         
+         @menu_accion = ["active","",""]
+         
+     elsif @accion.tipo == "Accion"
+
+       @menu_accion = ["","active",""]
+
+     else
+
+       @menu_accion = ["","","active"]
+     end  
 
    @seguimientos_t = @seguimientos + @seguimientosa
     
@@ -308,11 +322,11 @@ end
 
         format.html { 
         if @accion.tipo == "Accion"
-          redirect_to report_accions_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+          redirect_to report_accions_path(@report), notice: 'La ' + @accion.tipo +  ' fue creada correctamente' 
         elsif @accion.tipo == "Actividad"
-          redirect_to report_actividades_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+          redirect_to report_actividades_path(@report), notice: 'La ' + @accion.tipo +  ' fue creada correctamente' 
         else
-          redirect_to report_correcciones_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+          redirect_to report_correcciones_path(@report), notice: 'La ' + @accion.tipo +  ' fue creada correctamente' 
         end 
         }
         format.json { render :show, status: :created, location: @accion }
@@ -332,11 +346,11 @@ end
         format.html { 
         
         if @accion.tipo == "Accion"
-          redirect_to report_accions_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+          redirect_to report_accions_path(@report), notice: 'La ' + @accion.tipo +  ' fue editada correctamente' 
         elsif @accion.tipo == "Actividad"
-          redirect_to report_actividades_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+          redirect_to report_actividades_path(@report), notice: 'La ' + @accion.tipo +  ' fue editada correctamente' 
         else
-          redirect_to report_correcciones_path(@report), notice: 'La #{@accion.tipo} fue editada correctamente' 
+          redirect_to report_correcciones_path(@report), notice: 'La ' + @accion.tipo +  ' fue editada correctamente' 
         end  
 
         }
@@ -358,11 +372,11 @@ end
       format.html { 
         
         if @acciond.tipo == "Accion"
-          redirect_to report_accions_path(@report), notice: 'La #{@acciond.tipo} fue editada correctamente' 
+          redirect_to report_accions_path(@report), notice: 'La ' + @accion.tipo +  ' fue editada correctamente' 
         elsif @acciond.tipo == "Actividad"
-          redirect_to report_actividades_path(@report), notice: 'La #{@acciond.tipo} fue editada correctamente' 
+          redirect_to report_actividades_path(@report), notice: 'La ' + @accion.tipo +  ' fue editada correctamente' 
         else
-          redirect_to report_correcciones_path(@report), notice: 'La #{@acciond.tipo} fue editada correctamente' 
+          redirect_to report_correcciones_path(@report), notice: 'La ' + @accion.tipo +  ' fue editada correctamente' 
         end 
 
          }
