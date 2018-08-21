@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/mshibuya/remotipart.git
-  revision: 88d9a7d55bde66acb6cf3a3c6036a5a1fc991d5e
-  ref: 88d9a7
-  specs:
-    remotipart (1.2.1)
-
-GIT
   remote: https://github.com/ryanb/nested_form.git
   revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
   specs:
@@ -380,6 +373,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
+    remotipart (1.4.2)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -484,7 +478,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails_12factor
   ransack
-  remotipart!
+  remotipart (~> 1.4, >= 1.4.2)
   roo
   sass-rails (~> 5.0)
   spring

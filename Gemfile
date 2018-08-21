@@ -71,7 +71,7 @@ gem 'wicked_pdf'
 gem 'roo'
 gem 'wkhtmltopdf-binary'
 
-gem 'remotipart', github: 'mshibuya/remotipart', ref: '88d9a7'
+gem 'remotipart', '~> 1.4', '>= 1.4.2'
 
 
 
