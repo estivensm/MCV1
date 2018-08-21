@@ -74,6 +74,11 @@
    {
     font-size:20px;
    }
+      .button_ver_accion
+   {
+    background: red !important;
+    content: " New!" !important; 
+   }
 </style>
 <script>
    $(function () {
@@ -93,10 +98,25 @@
       var b = '#show_accion' + a;
       var x = '#row-cont-' + a;
        var y = '#title-accion-' + a;
+       var z = '#accion' + a;
       //$('.show_accion').hide();
       $(b).toggle( "slow", "linear" );
       $(x).toggleClass("border-select");
       $(y).toggleClass("title-accion-select");
+      console.log($(y).attr('class'))
+      if ($(y).attr('class') == 'filter3 title-accion-select')
+      {
+        console.log('hola')
+        $(z).text("VER MENOS");
+      }
+      else
+      {
+        console.log('hola1')
+       $(z).text("VER MAS"); 
+      }
+      console.log($(y).attr('class') == "filter3 title-accion-select")
+      
+      console.log("filter3 title-accion-select")
    })
    
 
