@@ -1,18 +1,20 @@
 
-<div class="row" >
-   <div class="col-md-12 ">
-      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> | <%= link_to "Normas",  normas_path, :class => "linka" %> </p>
-   </div>
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><%= link_to "Normas",  normas_path %></li>
+  </ul>
 </div>
+<br><br>
 <div class = "row title-table">
-   <div class = "col-md-12">
+   <div class = "col-md-12" style="padding-left: 0px; ">
       <p>  Numerales de la  Norma  <%=@norma.name%> <span class="label label-primary"><%=@numerals.count%></span></p>
 
 
      
    </div>
-     <div class = "col-md-4">
-      <p>  <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
+     <div class = "col-md-4" style="padding-left: 0px;" >
+      <p>  <span style = "font-size:12px;margin-left:0px;"> <%= page_entries_info @numerals, :entry_name => 'Numerales' %></span> </p>
 
 
      

@@ -1,15 +1,15 @@
 
-<div class="row" >
-   <div class="col-md-12 ">
-      <p><%= link_to "Inicio ",  root_path, :class => "linka" %> </p>
-   </div>
-
-
-
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><a href='#'>Partes Interesadas</a></li>
+  </ul>
+</div>
+<br><br>
 <%= render "encabezado"%>
 
 <br><div class = "row title-table">
-   <div class = "col-md-6">
+   <div class = "col-md-6"  style="padding-left: 0px;">
 
       <p>Partes Interesadas<span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
 
