@@ -37,7 +37,8 @@ class AseguimientosController < ApplicationController
     if @aseguimiento.save
       respond_to do |format|
         format.js
-         @seguimientos = @accion.aseguimientos     
+         @seguimientos = @accion.aseguimientos
+         @accion = Accion.find(params[:accion_id])     
          end
     end
   end

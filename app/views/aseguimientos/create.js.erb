@@ -2,19 +2,67 @@
 <% if @aseguimiento.errors.blank? %>
   $('#contact-modal').modal('hide');
  <%if @seguimientos.count != 1%>
- <% if @aseguimiento.cierra %> 
-  $('.segcont').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create_cierre', seg: @aseguimiento , accion: @accion %>");
+    console.log("segundo no cierra");
+      <% if @aseguimiento.cierra %> 
+              console.log("cierra no cierra");
+
+                            $('#accion-cont-<%=@accion.id%>').html("<%= j render 'accions/row_encabezado/cerrada_contenido' , accion: @accion %>");
+                            $('#accion-cont-<%=@accion.id%>').css({"background" : "#eaeaea"});
+                            
+                            $('.segcont').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create_cierre', seg: @aseguimiento , accion: @accion %>");
+        
+                            <%if !@accion.cumplio %>
+                                  
+                                  $('.msg-cumplimiento').html("<%= j render 'accions/alertas/no_cumplio' , accion: @accion %>");
+
+                            <%else%>
+
+                                  $('.msg-cumplimiento').html("<%= j render 'accions/alertas/cumplio' , accion: @accion %>");
+
+                            <%end%>
+
+
+
+        <%else%>
+            $('.segcont').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create', seg: @aseguimiento , accion: @accion %>");
+            
+        <%end%>
   <%else%>
-      $('.segcont').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create', seg: @aseguimiento , accion: @accion %>");
+
+         <% if @aseguimiento.cierra %>
+         console.log("segundooooooooooo");
+           $('#accion-cont-<%=@accion.id%>').html("<%= j render 'accions/row_encabezado/cerrada_contenido' , accion: @accion %>");
+          $('#accion-cont-<%=@accion.id%>').css({"background" : "#eaeaea"});
+          $('.aseguimientos').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
+
+           <%if !@accion.cumplio %>
+        
+                  $('.msg-cumplimiento').html("<%= j render 'accions/alertas/no_cumplio' , accion: @accion %>");
+            <%else%>
+
+                  $('.msg-cumplimiento').html("<%= j render 'accions/alertas/cumplio' , accion: @accion %>");
+                  
+            <%end%>
+          <%else%>
+             
+          $('.aseguimientos').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
+                       
+         <%end%>
+
+
+         
+          
+      
+
 
   <%end%>
-  <%else%>
-          $('.aseguimientos').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");
 
-  <%end%>
+
   $('.aseguimientos_count').html("(<%= @seguimientos.count %>)"); 
   $('.seg-cont-p').html("<%= @seguimientos.count %>");
   $('.costo-real').html("<%= number_to_currency(@aseguimiento.costo) %>");
+
+
 
 
    

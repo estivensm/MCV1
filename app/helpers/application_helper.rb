@@ -604,7 +604,7 @@ def estado_contador_tasks(accion)
 
   else
       
-      "gray !important"
+      "#a4a4a4 !important"
 
   end
       

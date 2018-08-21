@@ -5,7 +5,10 @@
          <input type="text" style="margin-top:2px;" id="myInput" class="form form-control" onkeyup="myFunction()" placeholder="Busqueda por descripcion o codigo" title="Type in a name">
       </div>
        <div class="col-md-6">
-      <h4 class="titulo-acciones"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</h4>
+      <h4 class="titulo-acciones"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>) <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=@accions.abiertas.count%></span>
+                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px"><%=@accions.cerradas.count%></span></h4>
        </div>
         <div class="col-md-3">
          <% if @accions.count > 0 %>
@@ -15,26 +18,35 @@
         </div>
        
    </div>
+
+     
+   
 <div class="col-md-12">
  <br>
 </div>
+</div>
+<div class = "row">
+
    <div class="col-md-12 wihtout-padding" id="filter">
       <% if @accions.count > 0 %>
       <% @accions.each do |accion| %>
+         <div class = "row" id="row-cont-<%=accion.id%>">
+
             <%if accion.estado == "Abierta"%>
               <%= render "accions/row_encabezado/abierta", accion: accion %>
              <%else%>
                 <%= render "accions/row_encabezado/cerrada", accion: accion %>
              <%end%> 
-              <div id="show_accion<%=accion.id%>" class="show_accion" style="display: none;padding:0px 10px;">
+              <div id="show_accion<%=accion.id%>" class="show_accion reporte" style="display: none;padding:0px 10px;">
             <%=render "show_accion", accion: accion %>
               </div>
-         </div>
-       
+            
+        </div>
     
       <% end %>
-      </div>
+  </div>
       
+      </div>     
       <%else%>
       <div class="jumbotron jumbacc">
          <br>
@@ -43,12 +55,11 @@
          <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
       </div>
       <%end%>
-   </div>
+
    <!--fin-->
    <!--fin-->
-</div>
-</div>
-</div>
+
+
 <style>
    .imaacc img
    {
@@ -75,12 +86,12 @@
    })
    
    
-   $('.ver_accion').click(function(){
+    $('#filter').on('click', '.ver_accion', function() {
       
       var a = $(this).attr('id').match(/\d+/)[0]
       console.log(a);
       var b = '#show_accion' + a;
-      var x = '#accion-cont-' + a;
+      var x = '#row-cont-' + a;
        var y = '#title-accion-' + a;
       //$('.show_accion').hide();
       $(b).toggle( "slow", "linear" );
@@ -88,6 +99,8 @@
       $(y).toggleClass("title-accion-select");
    })
    
+
+
    
 </script>
 <style>

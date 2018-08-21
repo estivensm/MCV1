@@ -62,8 +62,57 @@
     </div>
   <% end %>
 
+
+
 <div class="row">
- <p class="form-tit">Informacion Basica</p>
+  <p class="form-tit">Informacion Basica</p>
+
+<div class="col-md-6">
+
+ <div class="form-group">
+    <%= f.label "Descripción de la #{@tipo}" %>
+    <%= f.text_area :descripcion,  class: "form-control area"  %>
+  </div>
+
+</div>
+  <div class="col-md-6">
+
+  <%if @tipo == "Accion"%> 
+   <div class="form-group">
+               <%= f.label "Causa(s) Raiz" %><br>
+               <%= f.select :causa_efecto_ids, CausaEfecto.where(report_id:@report.id).where(estado:"vital").collect {|ca| ["#{ca.name}-#{ca.accions.count}", ca.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+            </div>
+
+            <%end%>
+ 
+  
+
+
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-md-6">
+<div class="form-group">
+    <%= f.label "Posible Evidencia" %>
+    <%= f.text_field :evidencia,  class: "form-control"  %>
+  </div>
+   </div>
+     <div class="col-md-6">
+ <div class="form-group">
+    <%= f.label "Costo presupuestado" %>
+    <%= f.number_field :costo_presupuestado, :value => (action_name == "edit" ? @accion.costo_presupuestado : 0 ) ,class: "form-control"  %>
+  </div>
+  </div>
+</div>
+
+
+<hr class="hr">
+
+
+
+<div class="row">
+ 
          <div class="col-md-3">
 
 <div class="form-group">
@@ -130,17 +179,14 @@
 
 </div>
 
-<div class="row">
-<div class="col-md-6">
-
-<div class="form-group">
-    <%= f.label "Descripción corta de la #{@tipo}" %>
-    <%= f.text_field :name,  class: "form-control"  %>
-  </div>
-</div>
 
 
-</div>
+
+
+
+
+
+
 <hr class="hr">
 <div class="row">
     <p class="form-tit"">Responsabilidad</p>
@@ -185,44 +231,14 @@
 
 </div>
 
+
+
+
+
+
+
+
 <hr class="hr">
-<div class="row">
-    <p class="form-tit"">Informacion Complementaria</p>
-
-
-           <div class="col-md-6">
-
-
-  <div class="form-group">
-    <%= f.label "Descripcion Detallada" %>
-    <%= f.text_area :descripcion,  class: "form-control area"  %>
-  </div>
-
- 
-
-
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
-    <%= f.label "Posible Evidencia" %>
-    <%= f.text_area :evidencia,  class: "form-control area"  %>
-  </div>
-
-   </div>
- <div class="col-md-3">
-   <div class="form-group">
-    <%= f.label "Costo presupuestado" %>
-    <%= f.number_field :costo_presupuestado, :value => (action_name == "edit" ? @accion.costo_presupuestado : 0 ) ,class: "form-control"  %>
-  </div>
-  </div>
-</div>
-
-
-
-
-
-
-
  
 
 

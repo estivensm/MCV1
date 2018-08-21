@@ -1,0 +1,4 @@
+  $('#accion_change_state').modal('hide');
+ $('#accion-cont-<%=@accion.id%>').html("<%= j render 'accions/row_encabezado/cerrada_contenido' , accion: @accion %>");
+ $('#accion-cont-<%=@accion.id%>').css({"background" : "#eaeaea"});
+ $('.msg-cumplimiento').html("<%= j render 'accions/alertas/cumplio' , accion: @accion %>");

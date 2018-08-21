@@ -367,7 +367,6 @@ end
 
     @accion = Accion.find(params[:accion])
     if @accion.update(justificacion_cumplio: params[:justificacion_cumplio], cumplio: true ,change_cumplio: true, tag: false)
-      redirect_to report_accion_path(@accion.report_id,@accion)
 
     end
 
