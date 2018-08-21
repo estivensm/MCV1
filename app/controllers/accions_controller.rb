@@ -326,7 +326,7 @@ end
     respond_to do |format|
       if @accion.save
 
-        format.html { redirect_to report_accion_path(@report,@accion), notice: 'La Accion fue creada correctamente.' }
+        format.html { redirect_to report_accions_path(@report), notice: 'La Accion fue creada correctamente.' }
         format.json { render :show, status: :created, location: @accion }
       else
         format.html { render :new }
@@ -341,7 +341,7 @@ end
      @report = Report.find(params[:report_id])
     respond_to do |format|
       if @accion.update(accion_params)
-        format.html { redirect_to report_accion_path(@report,@accion), notice: 'La Accion fue editada correctamente' }
+        format.html { redirect_to report_accions_path(@report), notice: 'La Accion fue editada correctamente' }
         format.json { render :show, status: :ok, location: @accion }
       else
         format.html { render :edit }
