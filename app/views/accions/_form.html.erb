@@ -167,15 +167,7 @@
 
    
 
-<div class="col-md-6">
-  <%if @tipo == "Accion"%> 
-   <div class="form-group">
-               <%= f.label "Causa(s) Raiz" %><br>
-               <%= f.select :causa_efecto_ids, CausaEfecto.where(report_id:@report.id).where(estado:"vital").collect {|ca| ["#{ca.name}-#{ca.accions.count}", ca.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
-            </div>
 
-            <%end%>
-</div>
 
 </div>
 
