@@ -10,9 +10,9 @@
             <%end%>
          </div>
          <div class="col-md-11">
-            <div class="col-md-12 text-left"><%== seg.descripcion %></div>
+            <div class="col-md-12 text-left" style="background: #ececec;"><%= seg.descripcion %></div>
             <%if seg.type_tracing == "Accion"%>
-            <div class="col-md-12 text-left"><strong>Pertenece a la <%=seg.accion.tipo%></strong> <%= seg.accion.name %>
+            <div class="col-md-12 text-left"><strong>Pertenece a la <%=seg.accion.tipo%>: </strong> <%= seg.accion.descripcion %>
             </div>
             <%end%>  
             <div class="col-md-10 rtd wihtout-padding-bot">
