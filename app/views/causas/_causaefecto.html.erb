@@ -31,6 +31,7 @@
             <%= link_to "+", new_caef_path(@causa,"2","0"), remote: true, class:"linkg vertical-bottom"%>
             <%end%>
 
+
             </th>
             <th style = "width:240px">
             
@@ -38,6 +39,7 @@
             <%if @causa.causa_efectos.where(nivel: "3").where(subnivel: "0").count < 6%>
             
             <%= link_to "+", new_caef_path(@causa,"3","0"), remote: true, class:"linkg vertical-bottom"%>
+            
             <%end%>
 
                 </th>
@@ -69,7 +71,9 @@
 
 
                        <%=link_to "+", new_caef_path(@causa.id, (ca.nivel) , (ca.id) ), remote: true, class:"linkg vertical-bottom"%>
-                 
+                 <!--<%= link_to  edit_caef_path(ca.id), remote:true, :class => "opciones" do %>
+               <i class="fa fa-pencil" style = "margin-left:20px " aria-hidden="true"></i>
+               <% end %>-->
                     
 
                     </p>

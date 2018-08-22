@@ -10,13 +10,12 @@
             <%end%>
          </div>
          <div class="col-md-11">
-            <div class="col-md-12 text-left" style="background: #ececec;"><%= seg.descripcion %></div>
+            <div class="col-md-12 text-left" style="background: #ececec;"><strong>Seguimiento: </strong><%= seg.descripcion %></div>
             <%if seg.type_tracing == "Accion"%>
-            <div class="col-md-12 text-left"><strong>El seguimietno pertenece a la <%=seg.accion.tipo%>: </strong> <%= seg.accion.descripcion %>
+            <div class="col-md-12 text-left"><strong>El seguimiento pertenece a la <%=seg.accion.tipo%>: </strong> <%= seg.accion.descripcion %>
             </div>
             <%else%>
-            <div class="col-md-12 text-left"><strong>Seguimiento al Reporte </strong>%>
-            </div>
+            <div class="col-md-12 text-left"><strong>Seguimiento al Reporte </strong>            </div>
             <%end%>  
 
             <div class="col-md-10 rtd wihtout-padding-bot">

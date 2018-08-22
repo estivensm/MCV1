@@ -14,6 +14,7 @@ class CausasController < ApplicationController
   # GET /causas/1.json
   def show
     @report = Report.find(params[:report_id])
+    @accions_t = @report.accions
     @causa_pareto = CausaEfecto.where(causa_id: @causa.id).where(tipo: "Pareto").where("porcentaje <= ?", 80)
     @causa_paretot = CausaEfecto.where(causa_id: @causa.id).where(tipo: "Pareto").where("porcentaje > ?" , 80)
     @causa_paret = CausaEfecto.where(causa_id: @causa.id).order(porcentaje: :desc)
@@ -24,6 +25,20 @@ class CausasController < ApplicationController
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
+    @seguimientos = @report.rseguimientos
+    @seguimientosa = []
+    @menu_accion = ["","","","active"]
+    @accions_t.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+    render  :layout => 'admin_report'
 
   end
 
@@ -90,22 +105,24 @@ class CausasController < ApplicationController
 
   def update_caef
       
-      @causa = CausaEfecto.find(params[:id])
-       @causa_v = Causa.find(@causa.causa_id)   
-       @report = Report.find(@causa.report_id)
-          if @causa.update(descripcion:params[:descripcion],name:params[:name])
-             redirect_to  report_causa_path(@report.id,@causa_v.id)
+       @causa_efecto = CausaEfecto.find(params[:id])
+       @causa_v = Causa.find(@causa_efecto.causa_id)   
+       @report = Report.find(@causa_efecto.report_id)
+       @causa = Causa.find(@causa_efecto.causa_id)
+          if @causa_efecto.update(descripcion:params[:descripcion],name:params[:name])
+             
           end
       
   end
 
   def create_caef
-    @causa = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
-      @causa_v = Causa.find(@causa.causa_id)    
-      @report = Report.find(@causa.report_id)
-       if @causa.save
+      @causa_efecto = CausaEfecto.create(estado: "vital" , subnivel:params[:subnivel], user_id:params[:user_id],admin_user:params[:admin_user],descripcion:params[:descripcion],nivel:params[:nivel],tipo:params[:tipo],causa_id:params[:causa_id],report_id:params[:report_id],name:params[:name])
+      @causa_v = Causa.find(@causa_efecto.causa_id)    
+      @report = Report.find(@causa_efecto.report_id)
+      @causa = Causa.find(@causa_efecto.causa_id)
+       if @causa_efecto.save
     
-          redirect_to  report_causa_path(@report.id,@causa_v.id)
+          
       end
   end
 

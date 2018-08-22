@@ -1,0 +1,16 @@
+
+ 
+<% if @causa_efecto.errors.blank? %>
+  $('#contact-modal').modal('hide');
+ $('.causaefecto_class').html("<%= j render 'causas/causaefecto', causa: @causa , causa_v: @causa_v, report: @report %>");
+
+ $('.alert').remove();
+<% else %>
+$(".alert").css("display", "block");
+  // TODO: show the errors in the UI
+  $('.alert').empty('<p></p>');
+  <% @causa_efecto.errors.full_messages.each do |msg| %>
+          $('.alert').append('<p><%=msg%></p>');
+        <% end %>
+
+<% end %>
