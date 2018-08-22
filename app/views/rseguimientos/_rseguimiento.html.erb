@@ -12,9 +12,13 @@
          <div class="col-md-11">
             <div class="col-md-12 text-left" style="background: #ececec;"><%= seg.descripcion %></div>
             <%if seg.type_tracing == "Accion"%>
-            <div class="col-md-12 text-left"><strong>Pertenece a la <%=seg.accion.tipo%>: </strong> <%= seg.accion.descripcion %>
+            <div class="col-md-12 text-left"><strong>El seguimietno pertenece a la <%=seg.accion.tipo%>: </strong> <%= seg.accion.descripcion %>
+            </div>
+            <%else%>
+            <div class="col-md-12 text-left"><strong>Seguimiento al Reporte </strong>%>
             </div>
             <%end%>  
+
             <div class="col-md-10 rtd wihtout-padding-bot">
                <%= employed1.first_name %> <%= employed1.first_last_name %>
                <span style="margin-left:15px;"> <strong><i class="fa fa-calendar" aria-hidden="true"></i></strong> <%=  get_date(seg.created_at)  %></span>
