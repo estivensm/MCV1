@@ -7,7 +7,12 @@
                 
             $('#accion-cont-<%=@accion.id%>').html("<%= j render 'accions/row_encabezado/cerrada_contenido' , accion: @accion %>");
             $('#accion-cont-<%=@accion.id%>').css({"background" : "#eaeaea"});
-            $('.segcont').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create_cierre', seg: @aseguimiento , accion: @accion %>");
+            $('.segcont<%=@accion.id%>').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create_cierre', seg: @aseguimiento , accion: @accion %>");
+            
+            $('#abiertas_c').html("<%= @accions_ab%>");
+            $('#cerradas_c').html("<%= @accions_ce%>");
+
+
             <%if !@accion.cumplio %>
                 $('.msg-cumplimiento').html("<%= j render 'accions/alertas/no_cumplio' , accion: @accion %>");
 
@@ -21,11 +26,14 @@
 
         <%else%>
         
-            $('.segcont').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create', seg: @aseguimiento , accion: @accion %>");
+            $('.segcont<%=@accion.id%>').prepend("<%= j render 'accions/rows_aseguimiento/aseguimiento_row_create', seg: @aseguimiento , accion: @accion %>");
               
         <%end%>
 
     <%else%>
+          
+            $('#abiertas_c').html("<%= @accions_ab%>");
+            $('#cerradas_c').html("<%= @accions_ce%>");
 
           <% if @aseguimiento.cierra %>
           
@@ -43,7 +51,7 @@
               <%end%>
           
           <%else%>
-              
+               
                $('.aseguimientos').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
                         
           <%end%>

@@ -10,8 +10,9 @@
 
 <%if  @causa_paret.count != 0%>
           <%= link_to  "Editar #{@causa.tipo}" ,edit_report_causa_path(@report,@causa), remote: true, :class => " btn btn-primary"  %>
-            <%= link_to  "Eliminar #{@causa.tipo}", report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "btn btn-danger", style:"display:inline-block !important" %>
+           
    <%end%>
+    <%= link_to  "Eliminar #{@causa.tipo}", report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "btn btn-danger", style:"display:inline-block !important" %>
     </div>
 </div>
 

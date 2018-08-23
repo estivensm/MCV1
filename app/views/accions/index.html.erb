@@ -4,11 +4,12 @@
       <div class="col-md-3">
          <input type="text" style="margin-top:2px;" id="myInput" class="form form-control" onkeyup="myFunction()" placeholder="Busqueda por descripcion o codigo" title="Type in a name">
       </div>
+
        <div class="col-md-6">
-      <h4 class="titulo-acciones"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>) <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
-                  <span style="font-size: 16px"><%=@accions.abiertas.count%></span>
-                  <span style="margin-left: 10px;font-size: 16px"><i class='fas fa-lock' aria-hidden='true'></i></span>
-                  <span style="font-size: 16px"><%=@accions.cerradas.count%></span></h4>
+      <h4 class="titulo-acciones" ><span id="todas"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</span> <span style="margin-left: 10px;font-size: 16px" id="abiertas"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px" id="abiertas_c"><%=@accions.abiertas.count%></span>
+                  <span style="margin-left: 10px;font-size: 16px" id="cerradas"><i class='fas fa-lock' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px" id="cerradas_c"><%=@accions.cerradas.count%></span></h4>
        </div>
         <div class="col-md-3">
          <% if @accions.count > 0 %>
@@ -28,10 +29,30 @@
 <div class = "row">
 
    <div class="col-md-12 wihtout-padding" id="filter">
+      <%if @accion != nil%>
+                   <% clases_select = @accion != nil ? "border-select" : "none" %>
+         <div class = "row <%=clases_select%> filter2" id="row-cont-<%=@accion.id%>">
+
+            <%if @accion.estado == "Abierta"%>
+              <%= render "accions/row_encabezado/abierta", accion: @accion %>
+             <%else%>
+                <%= render "accions/row_encabezado/cerrada", accion: @accion %>
+             <%end%> 
+
+
+             
+              <div id="show_accion<%=@accion.id%>" class="show_accion reporte" style="padding:0px 10px;margin">
+            <%=render "show_accion", accion: @accion %>
+
+              </div>
+            
+        </div>
+
+      <%end%>
       <% if @accions.count > 0 %>
       <% @accions.each do |accion| %>
          <% clases_select = @accion != nil && @accion.id == accion.id ? "border-select" : "none" %>
-         <div class = "row <%=clases_select%>" id="row-cont-<%=accion.id%>">
+         <div class = "row <%=clases_select%> filter2" id="row-cont-<%=accion.id%>">
 
             <%if accion.estado == "Abierta"%>
               <%= render "accions/row_encabezado/abierta", accion: accion %>
@@ -74,6 +95,7 @@
    {
     border: 3px solid #1f8143 !important;
     border-radius: 6px;
+    margin-bottom: 15px;
    }
     .title-accion-select
    {
@@ -109,7 +131,7 @@
       $(x).toggleClass("border-select");
       $(y).toggleClass("title-accion-select");
       console.log($(y).attr('class'))
-      if ($(y).attr('class') == 'filter3 title-accion-select')
+      if ($(y).attr('class') == 'filter3 none title-accion-select')
       {
         console.log('hola')
         $(z).text("VER MENOS");
@@ -171,9 +193,75 @@
     font-weight: bold;
     color: #8b8b8b;
    }
+   #cerradas:hover , #todas:hover, #abiertas:hover{
+    cursor: pointer;
+   } 
 </style>
 
 <script>
+
+$('#abiertas').click(function(){
+  
+  var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("fecha_cierre");
+        console.log(a.length);
+        if (a.length == 0) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+  
+
+})
+
+$('#cerradas').click(function(){
+  
+  var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("fecha_cierre");
+        console.log(a.length);
+        if (a.length > 0) {
+            li[i].style.display = "";
+             console.log("hola");
+        } else {
+            li[i].style.display = "none";
+            console.log("hola1");
+        }
+    }
+  
+
+})
+
+$('#todas').click(function(){
+  
+  var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+       
+            li[i].style.display = "";
+     
+    }
+  
+
+})
+
+
+
+
 function myFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
@@ -182,7 +270,9 @@ function myFunction() {
     li = ul.getElementsByClassName("filter2");
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByClassName("filter3")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
+            console.log(a.innerHTML.toUpperCase().indexOf(filter)
+)
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";

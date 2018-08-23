@@ -21,6 +21,16 @@
 
     <div class="row">
     <p class="form-tit">Informacion Basica</p>
+
+     <div class="col-md-12">
+            <div class="form-group">
+                <label>Descripción del reporte<span style="text-transform: capitalize;">Detallada</span></label>  
+               <%= f.text_area :description,  class: "form-control area" %>
+            </div></div>
+<div class="col-md-12">
+  <hr>
+</div>
+
   <div class="col-md-3">
             <div class="form-group cli1">
                <%= f.label "Fuente" %><br>
@@ -208,6 +218,16 @@ $('.pri1').addClass("chosen-select1");
                   %>
             </div>
     </div>
+
+       <div class="col-md-3">
+           <div class="form-group">
+               <%= f.label "Reporta" %><br>
+               <%= f.select :employed_reporta,
+                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                             { include_blank: true },
+                             { class: 'chosen-select1 form-control ch reporta'  }
+                  %>
+            </div> </div>
  <div class="col-md-3" style="display: none">
               <div class="form-group">
     <%= f.label "Frecuencia de Seguimiento" %>
@@ -264,22 +284,9 @@ $('.pri1').addClass("chosen-select1");
     
       
     
-   <div class="col-md-3">
-           <div class="form-group">
-               <%= f.label "Reporta" %><br>
-               <%= f.select :employed_reporta,
-                  get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select1 form-control ch reporta'  }
-                  %>
-            </div> </div>
 
-    <div class="col-md-6">
-         <div class="form-group">
-               <label>Descripcion corta del <span style="text-transform: capitalize;">Reporte</span></label> 
-               <%= f.text_field :name,  class: "form-control" %>
-            </div>
-    </div>
+
+   
 
 
 
@@ -459,7 +466,23 @@ $('.pri').addClass("chosen-select1");
 
 
 
+<div class="col-md-3">
+         
+                      <div class="form-group">
+            <label>Adjuntar <span style="text-transform: capitalize;">Evidencia</span></label> <br> 
+            <%= f.file_field :archivo, class: "form-control inputfile" , id: 'file'%>
+          <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
 
+        <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @report.archivo.blank?   != true %>
+        <br><%= f.check_box :remove_archivo %> 
+          <%= f.label "Eliminar", style: "color:red!important" %></label>
+
+          <%end%>
+
+
+
+</div>
+</div>
 
 
 
@@ -517,29 +540,10 @@ $('.pri').addClass("chosen-select1");
       
 
 
-      <hr class="hr">
-<br>
-       <div class="row">
+       <div class="row evi req num">
        <p class="form-tit"">Informacion Complementaria</p>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Descripción <span style="text-transform: capitalize;">Detallada</span></label>  
-               <%= f.text_area :description,  class: "form-control area" %>
-            </div></div>
-        <div class="col-md-6">
-         
-              <div class="form-group">
-    <label>Adjuntar <span style="text-transform: capitalize;">Evidencia</span></label> <br> 
-    <%= f.file_field :archivo, class: "form-control inputfile" , id: 'file'%>
-   <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
-
- <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @report.archivo.blank?   != true %>
-<br><%= f.check_box :remove_archivo %> 
-   <%= f.label "Eliminar", style: "color:red!important" %></label>
-
-   <%end%>
-  </div>
-         </div>
+   
+       
          
          </div>
     
@@ -559,8 +563,7 @@ $('.pri').addClass("chosen-select1");
       </div>
       
     
-      <br>
-      <hr>
+      
       <div class="row">
          <div class="col-lg-6">
 

@@ -14,7 +14,7 @@
         
       
  <% if @seguimientos.count > 0 %>
-      <div class="segcont">
+      <div class="segcont<%=accion.id%>">
           <% @seguimientos.each do |seg| %>
                <% if seg.cierra %>
                   <div class="conteinter reporte cnt srow<%=seg.id%>">

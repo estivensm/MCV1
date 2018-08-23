@@ -1,5 +1,7 @@
 <%@report = accion.report%>
 <div class="row rtr">
+      <% ver = @accion != nil && @accion.id == accion.id ? "VER MENOS" : "VER MAS" %>
+
    <% clases_select1 = @accion != nil && @accion.id == accion.id ? "title-accion-select" : "none" %>
    <div class="col-md-11 rtd text-left" style="padding-bottom:0px !important;font-size: 15px;"><strong id="title-accion-<%=accion.id%>" class="filter3 <%=clases_select1%>" style="color: #0db497"><%= accion.tipo %> (<%=  accion.codigo  %>): <span style="color:gray"><%= accion.descripcion %></span></strong> </div>
    <div class="col-md-1 rtd" style = ""><i class="fas fa-lock" style="font-size:20px" aria-hidden="true"></i>
@@ -30,7 +32,7 @@
 <hr>
 <div class="row">
    <div class="col-md-2 rtd  text-left" style="padding-left: 10px !important;">
-      <button type="button" style="    border: 0px;font-size: 14px;" class="ver_accion btn-primary" id="accion<%=accion.id%>">VER MAS</button>
+      <button type="button" style="    border: 0px;font-size: 14px;" class="ver_accion btn-primary" id="accion<%=accion.id%>"><%= ver %></button>
    </div>
    <div class="col-md-2 rtd  text-left">
       <strong >Tareas:   </strong><span class="redonda1 task-cont-p" style="background:<%=estado_contador_tasks(accion)%>;color:white"><%=accion.tasks.count%> </span>
@@ -45,7 +47,7 @@
    <div class="col-md-2 rtd" ><strong><i class="fa fa-calendar" aria-hidden="true"></i>
       Fecha de compromiso </strong> <br><%=  get_date(accion.f_compromiso)  %>
    </div>
-   <div class="col-md-2 rtd" ><strong>
+   <div class="col-md-2 rtd fecha_cierre" ><strong>
       <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
       Fecha de cierre</strong> <br><%=  get_date(accion.f_real)  %> 
    </div>

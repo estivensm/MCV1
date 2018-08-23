@@ -127,11 +127,11 @@ end
     @report = Report.find(params[:report_id])
     @accions_t = @report.accions
     if @tipo == "Accion"
-        @accions = @report.accions.where(tipo: "Accion").order(estado: :asc).order(created_at: :desc)
+        @accions = @report.accions.where(tipo: "Accion").where.not(id: @accion.id).order(estado: :asc).order(created_at: :desc)
     elsif @tipo == "Actividad"
-         @accions = @report.accions.where(tipo: "Actividad").order(estado: :asc).order(created_at: :desc)
+         @accions = @report.accions.where(tipo: "Actividad").where.not(id: @accion.id).order(estado: :asc).order(created_at: :desc)
     else
-         @accions = @report.accions.where(tipo: "Correccion").order(estado: :asc).order(created_at: :desc)
+         @accions = @report.accions.where(tipo: "Correccion").where.not(id: @accion.id).order(estado: :asc).order(created_at: :desc)
     end  
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count

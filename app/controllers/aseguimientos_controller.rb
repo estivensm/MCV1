@@ -39,6 +39,9 @@ class AseguimientosController < ApplicationController
         format.js
          @accion = Accion.find(params[:accion_id])   
          @seguimientos = @accion.aseguimientos
+         @accions_ce = @report.accions.where(tipo: @aseguimiento.accion.tipo).cerradas.count    
+         @accions_ab = @report.accions.where(tipo: @aseguimiento.accion.tipo).abiertas.count  
+
            
          end
     end
@@ -70,7 +73,8 @@ class AseguimientosController < ApplicationController
      @aseguimientod = @aseguimiento.id
     if @aseguimiento.destroy
          
-         @seguimientos = @accion.aseguimientos     
+         @seguimientos = @accion.aseguimientos 
+  
     end
   end
 
