@@ -18,7 +18,7 @@ respond_to :json
       else
           @color = "#d82c2c"
       end
-      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task.report_id}/accions/#{task.id}"}
+      events << {:id => task.id, :title => "#{task.descripcion} ", :start => "#{task.f_compromiso}" , :color => "#{@color2}", :url =>"reports/#{task.report_id}/accions/#{task.id}"}
     end
         render :plain => events.to_json
   end

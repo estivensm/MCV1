@@ -18,7 +18,7 @@ respond_to :json
       else
           @color = "#d82c2c"
     end
-      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+      events << {:id => task.id, :title => "#{task.description} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
     puts events.to_json
 render :plain => events.to_json
@@ -37,7 +37,7 @@ respond_to :json
       else
           @color4 = "#d82c2c"
     end
-      events << {:id => task4.id, :title => "#{task4.name} ", :start => "#{task4.f_compromiso}" , :color => "#{@color4}", :url =>"reports/#{task4.report_id}/accions/#{task4.id}"}
+      events << {:id => task4.id, :title => "#{task4.descripcion} ", :start => "#{task4.f_compromiso}" , :color => "#{@color4}", :url =>"reports/#{task4.report_id}/accions/#{task4.id}"}
     end
 
         
@@ -80,7 +80,7 @@ respond_to :json
       else
           @color = "#d82c2c"
     end
-      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+      events << {:id => task.id, :title => "#{task.description} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
 
   end  
@@ -101,7 +101,7 @@ respond_to :json
       else
           @color = "#d82c2c"
     end
-      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+      events << {:id => task.id, :title => "#{task.description} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
 
     @task1.each do |task1|
@@ -112,7 +112,7 @@ respond_to :json
       else
           @color1 = "#d82c2c"
     end
-      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
+      events << {:id => task1.id, :title => "#{task1.descripcion} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
     end
 
     @task2.each do |task2|
@@ -144,7 +144,7 @@ respond_to :json
       else
           @color = "#d82c2c"
     end
-      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+      events << {:id => task.id, :title => "#{task.description} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
 
     @task1.each do |task1|
@@ -155,7 +155,7 @@ respond_to :json
       else
           @color1 = "#d82c2c"
     end
-      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
+      events << {:id => task1.id, :title => "#{task1.descripcion} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
     end
 
     render :plain => events.to_json
@@ -177,7 +177,7 @@ respond_to :json
       else
           @color = "#d82c2c"
     end
-      events << {:id => task.id, :title => "#{task.name} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
+      events << {:id => task.id, :title => "#{task.description} ", :start => "#{task.f_compromiso}" , :color => "#{@color}", :url =>"reports/#{task.id}"}
     end
 
     @task1.each do |task1|
@@ -188,7 +188,7 @@ respond_to :json
       else
           @color1 = "#d82c2c"
     end
-      events << {:id => task1.id, :title => "#{task1.name} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
+      events << {:id => task1.id, :title => "#{task1.descripcion} ", :start => "#{task1.f_compromiso}" , :color => "#{@color1}", :url =>"reports/#{task1.report_id}/accions/#{task1.id}"}
     end
 
     @task2.each do |task2|
