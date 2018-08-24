@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
  before_action :authenticate_user!
- 
+ include ApplicationHelper
   
   def mis_reportesd
       @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
@@ -34,7 +34,36 @@ class DashboardController < ApplicationController
     @tasksv = @tasks_all.where("contador_seg < ?", 0).count
     @tasksvi = @tasks_all.where("contador_seg > ? ", 5).count
 
+     
+    report_array = [{"reporte_id" => 0, "estado_report" => "" , "acciones" => 0, "reporte" => [] }]
+    report_array_r = []
+    @reports = Report.abiertos.where(admin_user: current_user.admin_user).each do |report|
+        
+      if estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo"
 
+        report_array_r << report 
+
+      end  
+
+      if report.accions.alerta1.count > 0 
+
+        report_array_r << report 
+      
+      end  
+
+      report.accions.each do |accion|
+        
+        if accion.tasks.alerta.count > 0 
+            
+         report_array_r << report
+
+        end
+
+      end
+
+    @reports_array = report_array_r
+
+   end
 
   end
 

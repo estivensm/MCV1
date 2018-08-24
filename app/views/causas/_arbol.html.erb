@@ -21,7 +21,7 @@
     </style>
 <p><a href="#" data-remote="true"  class="actualizar1 btn btn-primary">Actualizar</a><p>
  <div class="alert alert-success info" style = "display:none">
-  <strong>Success!</strong> Indicates a successful or positive action.
+  <strong>El Arbol se actualizo correctamente!</strong> Indicates a successful or positive action.
 </div>
 <!--<%=link_to "Actualizar1", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar1"%>
 <%=link_to "Actualizar", delete_arbol_path(@report.id,@causa.id),remote:true, class:"actualizar"%>-->
@@ -39,7 +39,7 @@
 
 
     var testData = [
-        {id: 1, name: "<%=@report.name%>", parent: 0, idi: 3},
+        {id: 1, name: "<%=@report.description%>", parent: 0, idi: 3},
         <%@causa.causa_efectos.each do |causa| %>
         {id: <%=causa.nivel.to_i%>, name: '<%=causa.name%>', parent: <%=causa.subnivel.to_i%>, idi: <%=causa.id.to_i%>, estado: "<%=causa.estado%>"},
         

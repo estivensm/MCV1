@@ -131,7 +131,7 @@
 
    <%cp.accions.each do |accion| %>
    
-   <p style= "margin-left: 30px">- <%=accion.name%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
+   <p style= "margin-left: 30px">- <%=accion.descripcion%> (<%= link_to "ver" , report_accion_path(accion.report_id,accion.id)%>)</p>
    <%end%>
   </div>
 </div>

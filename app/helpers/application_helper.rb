@@ -701,5 +701,24 @@ def tiene_riesgo(riesgo)
 
 end
 
+def estado_alerta(contador)
+  
+   if contador > 5
+          
+        "vigente"
+
+   elsif contador >= 0 && contador <= 5
+        
+        "proxima"
+   elsif contador < 5
+    
+        "vencida"
+
+   end 
+
+
+end
+  
+
 
 end
