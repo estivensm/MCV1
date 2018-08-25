@@ -1,36 +1,175 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><strong><%=report.description%></strong><br>
+<span><strong>Proceso: </strong><%=report.proceso.name%></span>
+<span><strong>Fuente: </strong><%=report.source_parent.name%></span>
+<span><strong>Tipo: </strong><%=report.source.name%></span>
+<br></div>
+  <div class="panel-body">
+    
+    <%if @report_array[i]["cierre"]%>
+        <div class="alert alert-<%=estado_contador_alert(@report.contador_seg)%>">
+           Reporte pendiente de cierre
+        </div>
+    <%end%>
+
+         
+    <%if @accion_array[i]["cierre"]%>
+      
+      <%
+      correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).alerta1.count
+      acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).alerta1.count
+      actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1.count
+
+      %>
+
+      <div class="alert alert-info" style="display: <%= correciones > 0 ? "inline-block" : "none"%>">  
+      Tienes  <%= correciones  %> Correciones  pendientes de cierre
+  </div>
+   <div class="alert alert-info" style="display: <%= acciones > 0 ? "inline-block" : "none"%>">  
+      Tienes  <%= acciones  %> Acciones  pendientes de cierre
+  </div>
+   <div class="alert alert-info" style="display: <%= actividades > 0 ? "inline-block" : "none"%>">  
+      Tienes  <%= actividades  %> Actividades  pendientes de cierre
+  </div>
+
+    <%end%>
 
 
-<%if @report_array[i]["cierre"]%>
-<div class="alert alert-warning">
-    Cerrar Reporte
+    <%if @task_array[i]["cierre"]%>
+      
+      <div class="alert alert-info" style="display: inline-block">  
+      Tienes  <%=  report.tasks.abiertas.where(employed: @employed.id).alerta.count %> Tareas  pendientes de cierre
 </div>
-<%end%>
+    <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="alert alert-warning" style="display:none">
+
+
+
 
 
 
 
 <%if @accion_array[i]["cierre"]%>
-<div class="alert alert-warning">
-    Acciones <%=report.accions.abiertas.where(employed: @employed.id).alerta1.count%><br>
+
+   
 
 
 
-    <% report.accions.abiertas.where(employed: @employed.id).alerta1.each do |accion| %>
-         Gestion Pendiente de Cierre <br>
-       <span style="padding:0px 5px;border:3px solid <%=estado_contador(accion.contador_seg)%>"><strong><%= accion.tipo%>: </strong><%= accion.descripcion%></span>
+    
+      
+
+
+        
+      
+       <div class="row">
+           <div class="col-md-12">
+                <table class="table tl">
+                        <thead>
+                           <tr>
+                              <th>Tipo</th>
+                              <th>Descripción</th>
+                              <th>Responsable</th>
+                              <th>Fecha de Compromiso</th>
+                              <th>Días para cierre</th>
+                              <th>Seguimiento</th>
+                              <th>Link</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <% report.accions.abiertas.where(employed: @employed.id).alerta1.each do |accion| %>
+                           <%clase = ""
+                              accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                              clase = "vigenteb" if accion.contador_seg > 5 %>
+                           <tr>
+                              <td><%=accion.tipo%></td>
+                              <td><%=accion.name%></td>
+                              <td><%=accion.employed.first_name%> <%=accion.employed.first_last_name%></td>
+                              <td class="<%=clase%>"><%=accion.f_compromiso%></td>
+                              <td><%=accion.contador_seg%></td>
+                              <td><%if accion.f_seguimiento != 0%>
+                 <% time = "" 
+                if accion.f_seguimiento != 0 && accion.fp_seguimiento != nil
+                 if accion.fp_seguimiento > Time.now 
+                       
+                           time = "" 
+                    
+                    else 
+
+                      time = " Pendiente"
+                 end
+                  else
+                    time = ""   
+                end  
+         %>
+                <span><%=get_date(accion.fp_seguimiento)%><%=time%></span>
+                  <%else%>
+                  Sin frecuencia de Seguimiento
+                  <%end%></td>
+                              <td><a href="/reports/<%=report.id%>/accions/<%accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
+                           </tr>
+                           <%end%>
+                        </tbody>
+                     </table>
+           </div>
+       </div>
+
+       
  
           
-     <%end%>      
+        
 
      <% report.accions.abiertas.each do |accion| %>
         
         <%if accion.tasks.abiertas.alerta.where(employed: @employed.id).count > 0%>
           
-            <% accion.tasks.abiertas.alerta.where(employed: @employed.id).each do |task| %>
+           
                 
-               <span style=" padding:0px 5px;border:3px solid <%=estado_contador(task.contador_seg)%>"><strong>Tarea: </strong><%= task.name%></span>
+               <div class="row">
+           <div class="col-md-12">
+                <table class="table tl">
+                        <thead>
+                           <tr>
+                             
+                              <th>Descripción</th>
+                              
+                              <th>Fecha de Compromiso</th>
+                              <th>Días para cierre</th>
+                              
+                              <th>Link</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                            <% accion.tasks.abiertas.alerta.where(employed: @employed.id).each do |task| %>
+                           <%clase = ""
+                              task.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                              clase = "vigenteb" if task.contador_seg > 5 %>
+                           <tr>
+                           
+                              <td><%=task.name%></td>
+                              <td><%=task.employed.first_name%> <%=task.employed.first_last_name%></td>
+                              <td class="<%=clase%>"><%=task.f_compromiso%></td>
+                              <td><%=task.contador_seg%></td>
+                         
+                              <td><a href="/reports/<%=report.id%>/accions/<%accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
+                           </tr>
+                           <%end%>
+                        </tbody>
+                     </table>
+           </div>
+       </div>
 
-            <%end%>
         <%end%>
   
        

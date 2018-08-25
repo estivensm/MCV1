@@ -584,6 +584,23 @@ def estado_contador(cont)
       
 end
 
+def estado_contador_alert(cont)
+
+    if cont >5 
+
+      "success"
+    elsif cont <=5 && cont >= 0
+        
+        "warning"
+     
+      else
+
+        "danger"
+
+    end
+      
+end
+
 def estado_contador_tasks(accion)
 
     if accion.tasks.abiertas.any?
