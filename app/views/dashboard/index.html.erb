@@ -107,9 +107,10 @@
             @reportss.each do |report|%>
 
           <%if @report_array[i]["cierre"] || @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
-          <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i %>
+          <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i%>
           <%end%>
-            <%end%>
+            <% i++ 
+            end%>
        
            
 
