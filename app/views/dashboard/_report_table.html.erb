@@ -1,0 +1,42 @@
+
+
+
+
+  <tr>
+       
+
+
+
+
+          <td><%= link_to "#{report.codigo}", report, :class => "linka" %>
+        </td>
+
+       <td>
+            
+               <%= report.description %> <hr><span><strong>Proceso:</strong> <%=report.proceso.name%></span> <span><strong>Fuente: </strong><%=report.source_parent.name%></span> <span><strong>Tipo: </strong><%=report.source.name%></span>
+         </td>
+         
+        
+
+       
+
+
+
+
+
+
+<td  style = "background:<%=estado_contador(report.contador_seg)%>;color:white" ><%= get_date(report.f_compromiso)%><br>Faltan <%= report.contador_seg%> </td>
+
+ 
+           
+        
+  
+      </tr>
+ 
+<style>
+hr{
+  margin-top: 5px;
+    margin-bottom: 6px;
+}
+  
+</style>

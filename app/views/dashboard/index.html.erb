@@ -15,9 +15,51 @@
          <div class="">
              <%if @reports.count > 0 %>
             <% @reports.each do |report|%>
+         
+
+<table class="table">
+   <thead>
+      <tr class = "tr-table">
+       
+      
+
+         <th style = "width:5%" class="text-left">Codigo</th>
+        
+         <th  class="text-left" style = "width:30%">Reporte</th>
+         <th style = "width:10%" class="text-left">Compromiso</th>
+       
+
+         
+         
+       
+         
+        
+      </tr>
+   </thead>
+   <tbody>
+      <% @reports.each do |report| %>
           
-          <%= render "reporte", report: report, employed_p: report.employed_reporta, desc: "Asignado por" %>
-            
+       <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por" %>
+
+      
+      <%end%>
+       </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <%end%>
             <%else%>
                <p class="nh">No hay Reportes</p>

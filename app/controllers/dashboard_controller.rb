@@ -13,6 +13,7 @@ class DashboardController < ApplicationController
 
 
   def index
+
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
 
     @reports_all = Report.abiertos.where(employed_id:@employed.id).abiertos.alerta
@@ -47,19 +48,10 @@ class DashboardController < ApplicationController
 
     @reports = Report.abiertos.where(admin_user: current_user.admin_user).each do |report|
         
+       
+      if report.employed.email == current_user.email
 
-    
-
-
-
-
-
-
-
-
-
-
-
+      end 
 
 
       if estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo"
@@ -76,11 +68,13 @@ class DashboardController < ApplicationController
 
       end  
 
+
       if report.accions.alerta1.count > 0 #&& !report_state["report"]
         
         #report_array_r << report 
         #report_state["accion"] = true
       end  
+
 
       report.accions.each do |accion|
         
