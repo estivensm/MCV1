@@ -61,7 +61,7 @@ class DashboardController < ApplicationController
       end 
 
       
-      if report.accions.where(employed: @employed.id).alerta1.count > 0 #&& !report_state["report"]
+      if report.accions.abiertas.where(employed: @employed.id).alerta1.count > 0 #&& !report_state["report"]
         puts "3"
         @accion_array << {"cierre"=>true}
         #report_array_r << report 
@@ -73,10 +73,10 @@ class DashboardController < ApplicationController
       end 
       
       task_t = false
-      report.accions.each do |accion|
+      report.accions.abiertas.each do |accion|
           
 
-          if accion.tasks.alerta.count > 0 #&& !report_state["accion"]
+          if accion.tasks.abiertas.alerta.count > 0 #&& !report_state["accion"]
             
              task_t = true
              puts "taskkkkkkkkkkkkkkkkk"
