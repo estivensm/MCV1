@@ -35,29 +35,62 @@ class DashboardController < ApplicationController
     @tasksvi = @tasks_all.where("contador_seg > ? ", 5).count
 
      
-    report_array = [{"reporte_id" => 0, "estado_report" => "" , "acciones" => 0, "reporte" => [] }]
+    report_array = []
+    report_accions_seguimiento = []
+    report_accions_tareas = []
     report_array_r = []
+    report_array_e = []
+    accion_array_e = []
+    task_array_e = []
+    report_state = {"report" => false, "accion" => false, "task" => false }
+    
+
     @reports = Report.abiertos.where(admin_user: current_user.admin_user).each do |report|
         
-      if estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo"
 
-        report_array_r << report 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+      if estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo"
+        
+        
+        #report_array << {"reporte_id" => report.id , "estado_report" =>  , "acciones" => 0, "reporte" => [] }
+        #report_array_r << report 
+        #report_state["report"] = true
+        #report_array_e << estado_alerta(report.contador_seg)
+        report_array <<  {"report_id" => report.id, "alerta_report" => true ,"estado" => estado_alerta(report.contador_seg)}
+      else
+        
+        report_array <<  {"report_id" => report.id, "alerta_report" => false ,"estado" => estado_alerta(report.contador_seg)}
 
       end  
 
-      if report.accions.alerta1.count > 0 
-
-        report_array_r << report 
-      
+      if report.accions.alerta1.count > 0 #&& !report_state["report"]
+        
+        #report_array_r << report 
+        #report_state["accion"] = true
       end  
 
       report.accions.each do |accion|
         
-        if accion.tasks.alerta.count > 0 
+          if accion.tasks.alerta.count > 0 #&& !report_state["accion"]
             
-         report_array_r << report
+            report_array <<  {"report_id" => report.id, "alerta" => false ,"estado" => estado_alerta(report.contador_seg)}
+            
+            #report_array_r << report
 
-        end
+          end
 
       end
 

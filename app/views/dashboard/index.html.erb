@@ -93,6 +93,27 @@
 
 
 
+<div class="row">
+   <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
+      <div class="conteinter reporte">
+
+         <div class="">
+            <%if @reports.count > 0 %>
+            <div id = "filter">
+               
+            
+            <% @reports_array.each do |report|%>
+                     <%= render "reporte", report: report, employed_p: report.employed_id, desc: "Responsable"%>
+            
+            <%end%>
+            </div>
+            <%else%>
+            <p class="nh">No hay Reportes</p>
+            <%end%>
+         </div>
+      </div>
+   </div>
+</div>
 
 
 
