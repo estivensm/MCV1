@@ -1,0 +1,42 @@
+
+
+<%if @report_array[i]["cierre"]%>
+<div class="alert alert-warning">
+    Cerrar Reporte
+</div>
+<%end%>
+
+
+
+
+<%if @accion_array[i]["cierre"]%>
+<div class="alert alert-warning">
+    Acciones <%=report.accions.where(employed: @employed.id).alerta1.count%><br>
+
+
+
+    <% report.accions.where(employed: @employed.id).alerta1.each do |accion| %>
+         Gestion Pendiente de Cierre <br>
+       <strong><%= accion.tipo%>: </strong><%= accion.descripcion%>
+        
+          
+     <%end%>      
+
+     <% report.accions.each do |accion| %>
+        
+        <%if accion.tasks.alerta.where(employed: @employed.id).count > 0%>
+           <br>
+            <% accion.tasks.alerta.where(employed: @employed.id).each do |task| %>
+                
+               <strong>Tarea: </strong><%= task.name%>
+
+            <%end%>
+        <%end%>
+  
+       
+
+    <%end%>
+    
+
+</div>
+<%end%>

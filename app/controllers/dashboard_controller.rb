@@ -36,7 +36,9 @@ class DashboardController < ApplicationController
     @tasksvi = @tasks_all.where("contador_seg > ? ", 5).count
 
      
-    report_array = []
+    @report_array = []
+    @accion_array = []
+    @task_array = []
     report_accions_seguimiento = []
     report_accions_tareas = []
     report_array_r = []
@@ -46,51 +48,54 @@ class DashboardController < ApplicationController
     report_state = {"report" => false, "accion" => false, "task" => false }
     
 
-    @reports = Report.abiertos.where(admin_user: current_user.admin_user).each do |report|
-        
+    @reportss = Report.abiertos.where(admin_user: current_user.admin_user)
+    Report.abiertos.where(admin_user: current_user.admin_user).each do |report|
+      puts report.id
        
-      if report.employed.email == current_user.email
-
+      if report.employed.email == current_user.email && estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo"
+            puts "1"
+            @report_array << {"cierre"=>true}
+      else
+            puts "2"
+            @report_array << {"cierre"=>false}
       end 
 
-
-      if estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo"
-        
-        
-        #report_array << {"reporte_id" => report.id , "estado_report" =>  , "acciones" => 0, "reporte" => [] }
-        #report_array_r << report 
-        #report_state["report"] = true
-        #report_array_e << estado_alerta(report.contador_seg)
-        report_array <<  {"report_id" => report.id, "alerta_report" => true ,"estado" => estado_alerta(report.contador_seg)}
-      else
-        
-        report_array <<  {"report_id" => report.id, "alerta_report" => false ,"estado" => estado_alerta(report.contador_seg)}
-
-      end  
-
-
-      if report.accions.alerta1.count > 0 #&& !report_state["report"]
-        
+      
+      if report.accions.where(employed: @employed.id).alerta1.count > 0 #&& !report_state["report"]
+        puts "3"
+        @accion_array << {"cierre"=>true}
         #report_array_r << report 
         #report_state["accion"] = true
-      end  
+      else
+        puts "4"
+        @accion_array << {"cierre"=>false}
 
-
+      end 
+      
+      task_t = false
       report.accions.each do |accion|
-        
+          
+
           if accion.tasks.alerta.count > 0 #&& !report_state["accion"]
             
-            report_array <<  {"report_id" => report.id, "alerta" => false ,"estado" => estado_alerta(report.contador_seg)}
-            
-            #report_array_r << report
+             task_t = true
+             puts "taskkkkkkkkkkkkkkkkk"
+          else
+        
 
           end
 
       end
+       
+       @task_array << {"cierre" => task_t}
+       
 
-    @reports_array = report_array_r
 
-   end
+      end
+
+    
+
+   
 
   end
 

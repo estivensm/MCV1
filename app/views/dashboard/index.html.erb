@@ -13,8 +13,8 @@
          </div>
          
          <div class="">
-             <%if @reports.count > 0 %>
-            <% @reports.each do |report|%>
+             <%if @reports_all.count > 0 %>
+            <% @reports_all.each do |report|%>
           
           <%= render "reporte", report: report, employed_p: report.employed_reporta, desc: "Asignado por" %>
             
@@ -92,28 +92,33 @@
 
 
 
-
 <div class="row">
    <div class="col-md-12" style= "    border-right: 1px solid gainsboro;     padding: 0px;">
       <div class="conteinter reporte">
-
+         <div class="row rtr">
+            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:12px;">(Que creaste y estan vencidos o proximos a vencer)</span></strong><br><br> Vencidos <span class="label label-danger br"><%=@reportsv%></span>  Proximos a Vencer <span class="label label-warning br"><%=@reportspv%></p>
+            <hr class="hr">
+         </div>
+         
          <div class="">
-            <%if @reports.count > 0 %>
-            <div id = "filter">
-               
+             <%if @reportss.count > 0 %>
             
-            <% @reports_array.each do |report|%>
-                     <%= render "reporte", report: report, employed_p: report.employed_id, desc: "Responsable"%>
-            
+            <% i = 0  
+            @reportss.each do |report|%>
+
+          <%if @report_array[i]["cierre"] || @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
+          <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i %>
+          <%end%>
             <%end%>
-            </div>
-            <%else%>
-            <p class="nh">No hay Reportes</p>
-            <%end%>
+       
+           
+
+               <%end%>
          </div>
       </div>
    </div>
-</div>
+   </div>
+
 
 
 
