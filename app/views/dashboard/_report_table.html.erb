@@ -9,29 +9,71 @@
    <div class="panel-body">
       <%if @report_array[i]["cierre"]%>
       <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
-         El Reporte esta pendiente de cierre
+        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> El Reporte esta pendiente de cierre
       </div>
       <%end%>
       <%if @accion_array[i]["cierre"]%>
       <%
-         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).alerta1.count
-         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).alerta1.count
-         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1.count
+         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).alerta1
+         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).alerta1
+         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1
          
          %>
-      <div class="alert alert-info" style="display: <%= correciones > 0 ? "inline-block" : "none"%>">  
-          Correciones  pendientes de cierre <span class="br-info"> <%= correciones  %></span>
+    <div class="alert alert-info" style="display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Correciones pendientes de cierre
+          <%if correciones.proximas.count > 0 %>
+           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
+           <%end%> 
+             <%if correciones.vencidas.count > 0 %>
+            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= correciones.vencidas.count  %></span>
+            <%end%>
       </div>
-      <div class="alert alert-info" style="display: <%= acciones > 0 ? "inline-block" : "none"%>">  
-          Acciones  pendientes de cierre <span class="br-info"> <%= acciones  %></span>
+         
+  
+
+  <div class="alert alert-info" style="display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Acciones  pendientes de cierre
+          <%if acciones.proximas.count > 0 %>
+           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
+           <%end%> 
+             <%if acciones.vencidas.count > 0 %>
+            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= acciones.vencidas.count  %></span>
+            <%end%>
       </div>
-      <div class="alert alert-info" style="display: <%= actividades > 0 ? "inline-block" : "none"%>">  
-           Actividades  pendientes de cierre <span class="br-info"> <%= actividades  %></span>
+
+
+       <div class="alert alert-info" style="display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Actividades  pendientes de cierre
+          <%if actividades.proximas.count > 0 %>
+           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
+           <%end%> 
+             <%if actividades.vencidas.count > 0 %>
+            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= actividades.vencidas.count  %></span>
+            <%end%>
       </div>
+      
+
+
+
+
+
+
       <%end%>
       <%if @task_array[i]["cierre"]%>
-      <div class="alert alert-info" style="display: inline-block">  
-         Tareas  pendientes de cierre <span class="br-info"><%=  report.tasks.abiertas.where(employed: @employed.id).alerta.count %></span>
+      <div class="alert alert-info" style="display: inline-block"> 
+         <% t_vencidas = report.tasks.abiertas.proximas.where(employed: @employed.id).count
+            t_proximas = report.tasks.abiertas.vencidas.where(employed: @employed.id).count    
+         %>
+         Tareas  pendientes de cierre 
+
+         <%if t_proximas > 0 %>
+         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> 
+         <span class="badge-orange"><%=  t_proximas %></span>
+         <%end%>
+         <%if t_vencidas > 0 %>
+         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i> 
+          <span class="badge-red"><%=  t_vencidas %></span>
+         <%end%>
       </div>
       <%end%>
 
@@ -41,6 +83,29 @@
 </div>
 </div>
 
+<style>
+
+.badge-red
+{
+    
+    color: #c32626 !important;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+}
+
+.badge-orange
+{
+ margin: 0px 5px 0px 0px;
+    color: orange !important;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+}
+    
+</style>
 
 
 
