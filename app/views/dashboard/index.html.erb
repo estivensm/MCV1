@@ -23,7 +23,12 @@
             @reportss.each do |report|%>
                <%= i%>
   
-               
+                <%if @report_array[i]["cierre"] %>
+
+                    <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i%>
+       
+                 <%end%>
+                 
             <% i = i + 1 
             end%>
        
