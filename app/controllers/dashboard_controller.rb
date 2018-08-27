@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
     report_state = {"report" => false, "accion" => false, "task" => false }
     
 
-    @reportss = Report.abiertos.where(admin_user: current_user.admin_user)
+    @reportss = Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc)
 
     Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc).each do |report|
       puts report.id
