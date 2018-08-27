@@ -172,7 +172,13 @@
 </div>
 <div class = "row">
 
-<%= form_tag delete_reports_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Reportes' } do %>
+<%= form_tag delete_reports_path, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", name: 'eliminar', class: "btn btn-danger submit-btn1" %></p>
 
 <div class="descnum3">
@@ -225,7 +231,13 @@
      <li><%= link_to  edit_report_path(report), :class => "opciones" do %>
          <i class="fa fa-pencil" aria-hidden="true"> </i> Editar
          <% end %></li>
-           <li> <%= link_to  report,  method: :delete, class: "",data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+           <li> <%= link_to  report,  method: :delete, class: "",data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, :class => "opciones" do %>
          <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
          <% end %></li>
   </ul>

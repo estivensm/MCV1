@@ -33,6 +33,8 @@
 //= require jquery.validate.additional-methods
 //= require turbolinks
 //= require_tree .
+//= require sweetalert2
+//= require sweet-alert2-rails
 
 
 $(document).on('turbolinks:load',function() {
