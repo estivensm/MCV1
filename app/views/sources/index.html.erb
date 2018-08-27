@@ -50,7 +50,13 @@
 
 
 <div class = "row">
- <%= form_tag delete_sources_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estas Fuentes' } do %>
+ <%= form_tag delete_sources_path, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">
       <thead>

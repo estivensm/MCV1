@@ -69,7 +69,13 @@
 
 
 <div class = "row">
-<%= form_tag delete_employeds_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Procesos' } do %>
+<%= form_tag delete_employeds_path, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">
       <thead>
@@ -105,7 +111,13 @@
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
               <%if employed.id != @admin_employed %> 
-               <%= link_to employed,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <%= link_to employed,  method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
                <% end %>
