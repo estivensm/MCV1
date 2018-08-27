@@ -726,10 +726,10 @@ def estado_alerta(contador)
 
    elsif contador >= 0 && contador <= 5
         
-        "proxima"
+        "proximo"
    elsif contador < 5
     
-        "vencida"
+        "vencido"
 
    end 
 
