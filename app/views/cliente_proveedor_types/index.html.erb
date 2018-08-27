@@ -68,7 +68,13 @@
                <%= link_to  edit_cliente_proveedor_type_path(cliente_proveedor_type), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
-               <%= link_to  cliente_proveedor_type,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <%= link_to  cliente_proveedor_type,  method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
             </td>

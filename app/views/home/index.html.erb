@@ -34,7 +34,13 @@
                <li class="dropdown">
                      <a href="#" class="dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span style = "color:gray"><%=current_user.name  %> </span><span style = "color:gray" class="caret"></span></a>
                      <ul class="dropdown-menu">
-                        <li> <%= link_to  destroy_user_session_path, :method => :delete,:class => "indicadores" do %>
+                        <li> <%= link_to  destroy_user_session_path, :method => :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''},:class => "indicadores" do %>
                            <span class="fa fa-sign-out" style = "color:gray"></span>
                            <span style = "color:gray!important">Cerrar Sesión</span>
                            <% end %>

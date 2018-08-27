@@ -64,7 +64,13 @@
 
 <div class = "row">
 
-<%= form_tag delete_clientes_path, method: :delete, data: { confirm: 'Esta seguro de eliminar estos Procesos' } do %>
+<%= form_tag delete_clientes_path, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
 
    <table class="table">
@@ -103,7 +109,13 @@
                <%= link_to  edit_clinte_proveedor_path(clinte_proveedor), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
-               <%= link_to  clinte_proveedor,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <%= link_to  clinte_proveedor,  method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda quel registro se borrara permanentemente',
+              'image-url': ''}, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %></td>
       </tr>
