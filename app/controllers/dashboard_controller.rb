@@ -56,10 +56,10 @@ class DashboardController < ApplicationController
       if report.employed.email == current_user.email && (estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo" )
             
             puts "1"
-            @report_array << {"cierre"=>true}
+            @report_array << {"cierre"=>true, "id"=>report.id}
       else
             puts "2"
-            @report_array << {"cierre"=>false}
+            @report_array << {"cierre"=>false, "id"=>report.id}
       end 
 
       
