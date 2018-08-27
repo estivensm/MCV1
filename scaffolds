@@ -1101,3 +1101,103 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
 </div>
 <hr>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="alert alert-warning" style="display:none">
+   <%if @accion_array[i]["cierre"]%>
+   <div class="row">
+      <div class="col-md-12">
+         <table class="table tl">
+            <thead>
+               <tr>
+                  <th>Tipo</th>
+                  <th>Descripción</th>
+                  <th>Responsable</th>
+                  <th>Fecha de Compromiso</th>
+                  <th>Días para cierre</th>
+                  <th>Seguimiento</th>
+                  <th>Link</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% report.accions.abiertas.where(employed: @employed.id).alerta1.each do |accion| %>
+               <%clase = ""
+                  accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                  clase = "vigenteb" if accion.contador_seg > 5 %>
+               <tr>
+                  <td><%=accion.tipo%></td>
+                  <td><%=accion.name%></td>
+                  <td><%=accion.employed.first_name%> <%=accion.employed.first_last_name%></td>
+                  <td class="<%=clase%>"><%=accion.f_compromiso%></td>
+                  <td><%=accion.contador_seg%></td>
+                  <td><%if accion.f_seguimiento != 0%>
+                     <% time = "" 
+                        if accion.f_seguimiento != 0 && accion.fp_seguimiento != nil
+                         if accion.fp_seguimiento > Time.now 
+                               
+                                   time = "" 
+                            
+                            else 
+                        
+                              time = " Pendiente"
+                         end
+                          else
+                            time = ""   
+                        end  
+                        %>
+                     <span><%=get_date(accion.fp_seguimiento)%><%=time%></span>
+                     <%else%>
+                     Sin frecuencia de Seguimiento 
+                     <%end%>
+                  </td>
+                  <td><a href="/reports/<%=report.id%>/accions/<%accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <%end%>
+   <% report.accions.abiertas.each do |accion| %>
+   <%if accion.tasks.abiertas.alerta.where(employed: @employed.id).count > 0%>
+   <div class="row">
+      <div class="col-md-12">
+         <table class="table tl">
+            <thead>
+               <tr>
+                  <th>Descripción</th>
+                  <th>Fecha de Compromiso</th>
+                  <th>Días para cierre</th>
+                  <th>Link</th>
+               </tr>
+            </thead>
+            <tbody>
+               <% accion.tasks.abiertas.alerta.where(employed: @employed.id).each do |task| %>
+               <%clase = ""
+                  task.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
+                  clase = "vigenteb" if task.contador_seg > 5 %>
+               <tr>
+                  <td><%=task.name%></td>
+                  <td><%=task.employed.first_name%> <%=task.employed.first_last_name%></td>
+                  <td class="<%=clase%>"><%=task.f_compromiso%></td>
+                  <td><%=task.contador_seg%></td>
+                  <td><a href="/reports/<%=report.id%>/accions/<%accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
+               </tr>
+               <%end%>
+            </tbody>
+         </table>
+      </div>
+   </div>
+    <%end%>
+   <%end%>
+</div>
