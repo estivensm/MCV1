@@ -49,7 +49,8 @@ class DashboardController < ApplicationController
     
 
     @reportss = Report.abiertos.where(admin_user: current_user.admin_user)
-    Report.abiertos.where(admin_user: current_user.admin_user).each do |report|
+
+    Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc).each do |report|
       puts report.id
       puts estado_alerta(report.contador_seg)
       if report.employed.email == current_user.email && (estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo" )
