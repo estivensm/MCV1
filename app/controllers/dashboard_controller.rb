@@ -95,7 +95,8 @@ class DashboardController < ApplicationController
 
       end
 
-    
+    puts "arraaaaaaaaayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+    puts @report_array
 
    
 
