@@ -20,16 +20,12 @@
    </div>
 
    <div class="panel-body">
-      <%if @report_array[i]["cierre"]%>
-      <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
-        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Tienes pendiente cerrar el Reporte
-      </div>
-      <%end%>
-      <%if @accion_array[i]["cierre"]%>
+     
+      
       <%
-         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).alerta1
-         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).alerta1
-         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1
+         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).where(" fp_seguimient > ? ", Time.now)
+         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).where(" fp_seguimient > ? ", Time.now)
+         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).where(" fp_seguimient > ? ", Time.now)
          
          %>
     <div class="alert alert-info" style="display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
@@ -71,24 +67,8 @@
 
 
 
-      <%end%>
-      <%if @task_array[i]["cierre"]%>
-      <div class="alert alert-info" style="display: inline-block"> 
-         <% t_vencidas = report.tasks.abiertas.vencidas.where(employed: @employed.id).count
-            t_proximas = report.tasks.abiertas.proximas.where(employed: @employed.id).count    
-         %>
-         Tareas  pendientes de cierre 
+      
 
-         <%if t_proximas > 0 %>
-         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> 
-         <span class="badge-orange"><%=  t_proximas %></span>
-         <%end%>
-         <%if t_vencidas > 0 %>
-         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i> 
-          <span class="badge-red"><%=  t_vencidas %></span>
-         <%end%>
-      </div>
-      <%end%>
 
 <a class="btn btn-primary" style="float:right" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
@@ -152,41 +132,7 @@
       </div>
    </div>
    <%end%>
-   <% report.accions.abiertas.each do |accion| %>
-   <%if accion.tasks.abiertas.alerta.where(employed: @employed.id).count > 0%>
-  <h3 style="color:gray;margin:0px;">Tareas</h3>
-   <div class="row">
-      <div class="col-md-12">
-         <table class="table tl">
-            <thead>
-               <tr>
-                   <th style="width: 150px">Fecha de Compromiso</th>
-                  <th style="width: 250px">Descripción</th>
-                  <th>Responsable</th>
-                  <th>Días para cierre</th>
-                  <th>Link</th>
-               </tr>
-            </thead>
-            <tbody>
-               <% accion.tasks.abiertas.alerta.where(employed: @employed.id).each do |task| %>
-               <%clase = ""
-                  task.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
-                  clase = "vigenteb" if task.contador_seg > 5 %>
-               <tr>
-                  <td class="<%=clase%>"><%=task.f_compromiso%></td>
-                  <td class="text-left"><%=task.name%></td>
-                  <td><%=task.employed.first_name%> <%=task.employed.first_last_name%></td>
-                  
-                  <td><%=task.contador_seg%></td>
-                  <td><a href="/reports/<%=report.id%>/accions/<%=accion.id%>"><i class="fa fa-eye" aria-hidden="true" style="font-size:20px;"></i> Ir a la <%=accion.tipo%></a></td>
-               </tr>
-               <%end%>
-            </tbody>
-         </table>
-      </div>
-   </div>
-    <%end%>
-   <%end%>
+  
 </div>
   </div>
 </div>

@@ -49,7 +49,7 @@
         </div>
 
       <%end%>
-      <% if @accions.count > 0 %>
+      <% if @accions.count > 0  || @accion != nil%>
       <% @accions.each do |accion| %>
          <% clases_select = @accion != nil && @accion.id == accion.id ? "border-select" : "none" %>
          <div class = "row <%=clases_select%> filter2" id="row-cont-<%=accion.id%>">

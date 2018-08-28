@@ -124,6 +124,24 @@ class DashboardController < ApplicationController
     @tasksv = @tasks_all.where("contador_seg < ?", 0).count
     @tasksvi = @tasks_all.where("contador_seg > ?", 5).count
 
+
+
+
+
+   
+    @accion_array = []
+    @report_array = []
+    
+
+    @reportss = Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc)
+
+
+       
+      
+       
+
+
+
   end
 
   def invitado_d
