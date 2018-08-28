@@ -86,7 +86,8 @@
                </tr>
             </thead>
             <tbody>
-               <% report.accions.abiertas.where(employed: @employed.id).where("fp_seguimiento < ? ", Time.now).where.not(f_seguimiento: 0).each do |accion| %>
+            
+               <% report.accions.abiertas.where(employed: @employed.id).where("fp_seguimiento < ? ", Time.now).each do |accion| %>
                <%clase = ""
                   accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
                   clase = "vigenteb" if accion.contador_seg > 5 %>
