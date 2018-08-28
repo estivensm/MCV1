@@ -23,13 +23,13 @@
      
       
       <%
-         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).where(" fp_seguimient > ? ", Time.now)
-         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).where(" fp_seguimient > ? ", Time.now)
-         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).where(" fp_seguimient > ? ", Time.now)
+         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).where(" fp_seguimiento > ? ", Time.now)
+         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).where(" fp_seguimiento > ? ", Time.now)
+         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).where(" fp_seguimiento > ? ", Time.now)
          
          %>
     <div class="alert alert-info" style="display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Correciones pendientes de cierre
+          Correciones pendientes de tu seguimiento
           <%if correciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
            <%end%> 
@@ -41,7 +41,7 @@
   
 
   <div class="alert alert-info" style="display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Acciones  pendientes de cierre
+          Acciones  pendientes de tu seguimiento
           <%if acciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
            <%end%> 
@@ -52,7 +52,7 @@
 
 
        <div class="alert alert-info" style="display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Actividades  pendientes de cierre
+          Actividades  pendientes de tu seguimiento
           <%if actividades.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
            <%end%> 
@@ -77,7 +77,7 @@
 <div class="collapse" id="collapseExample<%=report.id%>">
   <div class="well">
    <div class="alert" >
-   <%if @accion_array[i]["cierre"]%>
+  
   <h3 style="color:gray;margin:0px;">Gestion</h3>
   <div class="row">
       <div class="col-md-12">
@@ -94,7 +94,7 @@
                </tr>
             </thead>
             <tbody>
-               <% report.accions.abiertas.where(employed: @employed.id).alerta1.each do |accion| %>
+               <% report.accions.abiertas.where(employed: @employed.id).where("fp_seguimiento > ? ", Time.now).where.not(f_seguimiento: 0).each do |accion| %>
                <%clase = ""
                   accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
                   clase = "vigenteb" if accion.contador_seg > 5 %>
@@ -131,7 +131,7 @@
          </table>
       </div>
    </div>
-   <%end%>
+  
   
 </div>
   </div>

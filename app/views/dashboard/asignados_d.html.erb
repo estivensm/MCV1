@@ -23,7 +23,7 @@
             <% @reportss.each do |report|%>
              
   
-                <%if report.accions.abiertas.where(" fp_seguimiento > ? ", Time.now).where.not(f_seguimiento: 0).where(employed: @employed.id).count > 0%>
+                <%if report.accions.abiertas.where("fp_seguimiento > ? ", Time.now).where.not(f_seguimiento: 0).where(employed: @employed.id).count > 0%>
 
                     <%= render "report_table_seguimiento", report: report, employed_p: report.employed_reporta, desc: "Asignado por"%>
        
