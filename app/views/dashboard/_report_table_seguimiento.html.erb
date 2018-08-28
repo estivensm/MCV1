@@ -23,9 +23,9 @@
      
       
       <%
-         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).where(" fp_seguimiento < ? ", Time.now)
-         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).where(" fp_seguimiento < ? ", Time.now)
-         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).where(" fp_seguimiento < ? ", Time.now)
+         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).where.not(f_seguimiento: 0).where(" fp_seguimiento < ? ", Time.now)
+         acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).where.not(f_seguimiento: 0).where(" fp_seguimiento < ? ", Time.now)
+         actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).where.not(f_seguimiento: 0).where(" fp_seguimiento < ? ", Time.now)
          
          %>
     <div class="alert alert-info" style="display: <%= correciones.count > 0 ? "inline-block" : "none"%>">  
@@ -86,8 +86,8 @@
                </tr>
             </thead>
             <tbody>
-            
-               <% report.accions.abiertas.where(employed: @employed.id).where("fp_seguimiento < ? ", Time.now).each do |accion| %>
+
+               <% report.accions.abiertas.where(employed: @employed.id).where("fp_seguimiento < ? ", Time.now).where.not(f_seguimiento: 0).each do |accion| %>
                <%clase = ""
                   accion.contador_seg < 0 ?  clase = "vencidob" : clase = "proximob"
                   clase = "vigenteb" if accion.contador_seg > 5 %>
