@@ -19,14 +19,14 @@
             <%= select_tag :employed, options_for_select(get_employeds.order(first_name: :asc).collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id] },{:selected=>@employed.id}), {:multiple => false,class: 'form-control employed_s'}%>
          </div>
            
-            
+              <span class="spiner" style="display: none">hola estoy cargando</span>
          </div>
          
          </div>
 
           
   
-
+      
 
          <div class="gestion_cierre">
              <%= render "dashboard/gestion/gestion_cierre", reportss: @reportss, report_array: @report_array, accion_array: @accion_array, task_array: @task_array%>
@@ -130,8 +130,12 @@
         
         b = $(this).val(); 
         $.get("/index_person/" + b, function(data) {
-
-    });
+          $('.spiner').show();
+          console.log("cargando");
+    }).done(function() {
+        $('.spiner').hide();
+        console.log("cargue");
+  });
 
 
     })
