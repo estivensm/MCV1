@@ -9,31 +9,23 @@
    <div class="col-md-12">
       <div class="conteinter reporte" >
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:16px;">(En los culaes tienes Gestión pendiente de seguimieto)</span></strong></p>
-            <hr class="hr">
+
+                 <div class="col-md-8">
+          <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:16px;">(En los culaes tienes Gestión pendiente de seguimieto)</span></strong></p>
+         </div>
+         <div class="col-md-4">
+            <%= select_tag :employed, options_for_select(get_employeds.order(first_name: :asc).collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id] },{:selected=>@employed.id}), {:multiple => false,class: 'form-control employed_s'}%>
+         </div>
          </div>
          
          </div>
 
 
          <div class="">
-             <%if @reportss.count > 0 %>
-            
-          
-            <% @reportss.each do |report|%>
-             
-  
-                <%if report.accions.abiertas.where("fp_seguimiento < ? ", Time.now).where.not(f_seguimiento: 0).where(employed: @employed.id).count > 0%>
+             <div class="gestion_seguimiento">
+             <%= render "dashboard/gestion/gestion_seguimiento", reportss: @reportss, employed: @employed%>
+         </div>
 
-                    <%= render "report_table_seguimiento", report: report, employed_p: report.employed_reporta, desc: "Asignado por"%>
-       
-                 <%end%>
-
-            <%end%>
-       
-           
-
-               <%end%>
          </div>
       </div>
    </div>

@@ -12,33 +12,31 @@
    <div class="col-md-12">
       <div class="conteinter reporte" >
          <div class="row rtr">
-            <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:16px;">(En los culaes tienes Gestión pendiente)</span></strong></p>
-            <hr class="hr">
+         <div class="col-md-8">
+              <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:16px;">(En los culaes tienes Gestión pendiente de Cierre)</span></strong></p>
+         </div>
+         <div class="col-md-4">
+            <%= select_tag :employed, options_for_select(get_employeds.order(first_name: :asc).collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id] },{:selected=>@employed.id}), {:multiple => false,class: 'form-control employed_s'}%>
+         </div>
+           
+            
          </div>
          
          </div>
 
-
-         <div class="">
-             <%if @reportss.count > 0 %>
-            
-            <% i = 0  
-            @reportss.each do |report|%>
-             
+          
   
-                <%if @report_array[i]["cierre"] || @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 
-                    <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i%>
-       
-                 <%end%>
 
-            <% i = i + 1 
-            end%>
-       
-           
-
-               <%end%>
+         <div class="gestion_cierre">
+             <%= render "dashboard/gestion/gestion_cierre", reportss: @reportss, report_array: @report_array, accion_array: @accion_array, task_array: @task_array%>
          </div>
+
+
+
+
+
+
       </div>
    </div>
    </div>
@@ -124,3 +122,19 @@
     color: white;
 }
 </style>
+
+
+<script>
+    
+    $('.employed_s').click(function(){
+        
+        b = $(this).val(); 
+        $.get("/index_person/" + b, function(data) {
+
+    });
+
+
+    })
+    
+
+</script>

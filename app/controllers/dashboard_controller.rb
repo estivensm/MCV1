@@ -102,6 +102,77 @@ class DashboardController < ApplicationController
 
   end
 
+
+
+
+  def index_person
+  
+      
+    @report_array = []
+    @accion_array = []
+    @task_array = []
+    report_accions_seguimiento = []
+    report_accions_tareas = []
+    report_array_r = []
+    report_array_e = []
+    accion_array_e = []
+    task_array_e = []
+     
+
+    @employed = Employed.find(params[:id])
+
+    @reportss = Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc)
+
+    Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc).each do |report|
+      puts report.id
+      puts estado_alerta(report.contador_seg)
+      if report.employed.email == @employed.email && (estado_alerta(report.contador_seg) == "vencido" || estado_alerta(report.contador_seg) == "proximo" )
+            
+            puts "1"
+            @report_array << {"cierre"=>true, "id"=>report.id}
+      else
+            puts "2"
+            @report_array << {"cierre"=>false, "id"=>report.id}
+      end 
+
+      
+      if report.accions.abiertas.where(employed: @employed.id).alerta1.count > 0 #&& !report_state["report"]
+        puts "3"
+        @accion_array << {"cierre"=>true}
+        #report_array_r << report 
+        #report_state["accion"] = true
+      else
+        puts "4"
+        @accion_array << {"cierre"=>false}
+
+      end 
+      
+      task_t = false
+      report.accions.abiertas.each do |accion|
+          
+
+          if accion.tasks.abiertas.where(employed: @employed.id).alerta.count > 0 #&& !report_state["accion"]
+            
+             task_t = true
+            
+          else
+        
+
+          end
+
+      end
+       
+       @task_array << {"cierre" => task_t}
+       
+
+
+      end
+
+
+   
+
+  end
+
   def asignados_d
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
 
@@ -132,6 +203,23 @@ class DashboardController < ApplicationController
     @accion_array = []
     @report_array = []
     
+
+    @reportss = Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc)
+
+
+       
+      
+       
+
+
+
+  end
+
+
+  def index_seguimiento_person
+
+
+    @employed = Employed.find(params[:id]) 
 
     @reportss = Report.abiertos.where(admin_user: current_user.admin_user).order(id: :asc)
 

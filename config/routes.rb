@@ -69,7 +69,8 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
 
 
 
-
+ get 'index_person/:id', to: 'dashboard#index_person', as: 'index_person'
+ get 'index_seguimiento_person/:id', to: 'dashboard#index_seguimiento_person', as: 'index_seguimiento_person'
 
 
 
@@ -218,7 +219,7 @@ end
   get 'editar_usuario/:id', to: 'employeds#edit_myself', as: 'edit_myself'
 
   #root to: 'home#index'
-
+   
 
           match "*path" => redirect("/"), via: :get 
           # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

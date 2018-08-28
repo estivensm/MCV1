@@ -89,10 +89,12 @@
          <%end%>
       </div>
       <%end%>
-
+ <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 <a class="btn btn-primary" style="float:right" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
 </a>
+
+<%end%>
 
 <div class="collapse" id="collapseExample<%=report.id%>">
   <div class="well">
