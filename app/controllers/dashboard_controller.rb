@@ -78,10 +78,10 @@ class DashboardController < ApplicationController
       report.accions.abiertas.each do |accion|
           
 
-          if accion.tasks.abiertas.alerta.count > 0 #&& !report_state["accion"]
+          if accion.tasks.abiertas.where(employed: @employed.id).alerta.count > 0 #&& !report_state["accion"]
             
              task_t = true
-             puts "taskkkkkkkkkkkkkkkkk"
+            
           else
         
 
