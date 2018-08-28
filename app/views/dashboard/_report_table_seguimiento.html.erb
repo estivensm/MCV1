@@ -30,35 +30,27 @@
          %>
     <div class="alert alert-info" style="display: <%= correciones.count > 0 ? "inline-block" : "none"%>">  
           Correciones pendientes de tu seguimiento
-          <%if correciones.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
-           <%end%> 
-             <%if correciones.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= correciones.vencidas.count  %></span>
-            <%end%>
+       
+            <span class="badge"> <%= correciones.count  %></span>
+    
       </div>
          
   
 
   <div class="alert alert-info" style="display: <%= acciones.count > 0 ? "inline-block" : "none"%>">  
           Acciones  pendientes de tu seguimiento
-          <%if acciones.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
-           <%end%> 
-             <%if acciones.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= acciones.vencidas.count  %></span>
-            <%end%>
+        
+           <span class="badge"> <%= acciones.count  %></span>
+
       </div>
 
 
        <div class="alert alert-info" style="display: <%= actividades.count > 0 ? "inline-block" : "none"%>">  
           Actividades  pendientes de tu seguimiento
-          <%if actividades.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
-           <%end%> 
-             <%if actividades.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= actividades.vencidas.count  %></span>
-            <%end%>
+         
+            <span class="badge"> <%= actividades.count  %></span>
+         
+         
       </div>
       
 
