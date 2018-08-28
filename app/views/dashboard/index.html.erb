@@ -46,7 +46,10 @@
       
 
          <div class="gestion_cierre">
+              
              <%= render "dashboard/gestion/gestion_cierre", reportss: @reportss, report_array: @report_array, accion_array: @accion_array, task_array: @task_array%>
+              
+
          </div>
 
 
@@ -274,15 +277,20 @@
 <script>
     
     $('.employed_s').click(function(){
+          $('.spiner_cierre').hide();
           $('.sk-circle').show();
           console.log("cargando");
         b = $(this).val(); 
+      setTimeout(function(){
+
         $.get("/index_person/" + b, function(data) {
         
     }).done(function() {
         $('.sk-circle').hide();
         console.log("cargue");
-  });
+  })
+
+  },1000)
 
 
     })

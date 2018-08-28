@@ -1,18 +1,21 @@
-             <%if reportss.count > 0 %>
-            
-            <% i = 0  
-            reportss.each do |report|%>
-             
-  
-                <%if report_array[i]["cierre"] || accion_array[i]["cierre"] ||  task_array[i]["cierre"]%>
-
-                    <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i%>
-       
-                 <%end%>
-
-            <% i = i + 1 
-            end%>
-       
-           
-
-               <%end%>
+<%if reportss.count > 0 %>
+<% i = 0
+   show = false  
+   reportss.each do |report|%>
+<%if report_array[i]["cierre"] || accion_array[i]["cierre"] ||  task_array[i]["cierre"]%>
+<%show = true%>
+<div class="spiner_cierre">
+   <%= render "report_table", report: report, employed_p: report.employed_reporta, desc: "Asignado por", i: i%>
+</div>
+<%end%>
+<% i = i + 1 
+   end%>
+<% if show == false%>
+<div class="jumbotron jumbacc spiner_cierre" style="background: #ececec !important;
+   padding-bottom: 20px !important;">
+   <br>
+   <h4 class="display-3 text-gray" style="color: #0db493;
+      font-weight: bold;">¡ NO HAY GESTION PENDIENTE DE CIERRE !</h4>
+</div>
+<%end%>
+<%end%>

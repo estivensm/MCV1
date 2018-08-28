@@ -1,17 +1,27 @@
  <%if reportss.count > 0 %>
             
-          
+          <%show = false %>
             <% reportss.each do |report|%>
              
-  
+               
                 <%if report.accions.abiertas.where("fp_seguimiento < ? ", Time.now).where.not(f_seguimiento: 0).where(employed: employed.id).count > 0%>
-
-                    <%= render "report_table_seguimiento", report: report, employed_p: report.employed_reporta, desc: "Asignado por"%>
+                <%show = true%>
+                 <div class="spiner_cierre">
+                 	         <%= render "report_table_seguimiento", report: report, employed_p: report.employed_reporta, desc: "Asignado por"%>
        
+                 </div>
+                   
                  <%end%>
 
             <%end%>
-       
+       <% if show == false%>
+<div class="jumbotron jumbacc spiner_cierre" style="background: #ececec !important;
+   padding-bottom: 20px !important;">
+   <br>
+   <h4 class="display-3 text-gray" style="color: #0db493;
+      font-weight: bold;">¡ NO HAY GESTION PENDIENTE DE SEGUIMIENTO !</h4>
+</div>
+<%end%>
            
 
                <%end%>
