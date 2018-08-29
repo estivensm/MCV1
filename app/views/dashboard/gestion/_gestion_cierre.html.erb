@@ -15,7 +15,12 @@
    padding-bottom: 20px !important;">
    <br>
    <h4 class="display-3 text-gray" style="color: #0db493;
-      font-weight: bold;">¡ NO HAY GESTION PENDIENTE DE CIERRE !</h4>
+      font-weight: bold;">¡  <%= employed.first_name.upcase%> <%= employed.first_last_name.upcase%> NO GESTION PENDIENTE DE CIERRE !</h4>
 </div>
 <%end%>
 <%end%>
+
+<script>
+	
+	 $('.contador_reportes').html("<%= i %>");
+</script>

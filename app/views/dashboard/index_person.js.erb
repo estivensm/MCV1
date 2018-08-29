@@ -1,9 +1,9 @@
 
 
 
-$('.gestion_cierre').html("<%= j render 'dashboard/gestion/gestion_cierre', reportss: @reportss, report_array: @report_array, accion_array: @accion_array, task_array: @task_array%>");
+$('.gestion_cierre').html("<%= j render 'dashboard/gestion/gestion_cierre', reportss: @reportss, report_array: @report_array, accion_array: @accion_array, task_array: @task_array, employed: @employed%>");
 
-
+ $('.tienes').html("<%=@employed.first_name%> <%=@employed.first_last_name%> tiene" );
 
 
 

@@ -11,7 +11,7 @@
          <div class="row rtr">
 
                  <div class="col-md-8">
-          <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:16px;">(En los culaes tienes Gestión pendiente de seguimieto)</span></strong></p>
+          <p class = "prox"><strong style="font-size:25px;">Reportes <span style = "font-size:16px;">(En los cuales <span class="tienes">tienes</span> Gestión pendiente de seguimieto)</span></strong></p>
          </div>
          <div class="col-md-4">
             <%= select_tag :employed, options_for_select(get_employeds.order(first_name: :asc).collect{ |u| ["#{u.first_name} #{u.first_last_name}", u.id] },{:selected=>@employed.id}), {:multiple => false,class: 'form-control employed_s'}%>
@@ -265,6 +265,7 @@
 
     
     $('.employed_s').click(function(){
+      
           $('.spiner_cierre').hide();
           $('.sk-circle').show();
           console.log("cargando");

@@ -10,8 +10,8 @@
         
     </div>
 
-    <div class="col-md-2">
-      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "btn btn-primary", style: "float:right;"%>
+    <div class="col-md-2 text-right">
+      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "btn btn-primary", style: ""%>
     </div>
 
    </div>
@@ -90,13 +90,14 @@
       </div>
       <%end%>
  <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
-<a class="btn btn-primary" style="float:right" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+
+<a class="btn btn-primary ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
 </a>
 
 <%end%>
 
-<div class="collapse" id="collapseExample<%=report.id%>">
+<div class="collapse" id="collapseExample<%=report.id%>" style="margin-top:30px;">
   <div class="well">
    <div class="alert" >
    <%if @accion_array[i]["cierre"]%>
@@ -201,7 +202,15 @@
 </div>
 
 <style>
+.ver-pendientes
+{
+    float: right;
+    position: relative;
+    top: 38px;
+    left: 15px;
+    border-radius: 7px 0px;
 
+}
 .badge-red
 {
     
