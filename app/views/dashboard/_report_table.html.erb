@@ -22,7 +22,7 @@
    <div class="panel-body">
       <%if @report_array[i]["cierre"]%>
       <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
-        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Tienes pendiente cerrar el Reporte
+        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente cerrar el Reporte
       </div>
       <%end%>
       <%if @accion_array[i]["cierre"]%>
