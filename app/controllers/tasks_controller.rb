@@ -108,9 +108,56 @@ end
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @report = Report.find(params[:report_id]) 
-    @accion = Accion.find(params[:accion_id])
+    @accion = @task.accion
+    @tipo = @accion.tipo
+    @report = Report.find(params[:report_id])
+    @accions_t = @report.accions
+    if @tipo == "Accion"
+        @accions = @report.accions.where(tipo: "Accion").where.not(id: @accion.id).order(estado: :asc).order(created_at: :desc)
+    elsif @tipo == "Actividad"
+         @accions = @report.accions.where(tipo: "Actividad").where.not(id: @accion.id).order(estado: :asc).order(created_at: :desc)
+    else
+         @accions = @report.accions.where(tipo: "Correccion").where.not(id: @accion.id).order(estado: :asc).order(created_at: :desc)
+    end  
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @tasks = Task.where(report_id: @report.id)
+    @seguimientos = @report.rseguimientos
+    @seguimientosa = []
+    @menu_accion = ["","",""]
+    @accions_t.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+
+    @menu_accion = ["","",""]
+     if @accion.tipo == "Correccion" 
+         
+         @menu_accion = ["active","",""]
+         
+     elsif @accion.tipo == "Accion"
+
+       @menu_accion = ["","active",""]
+
+     else
+
+       @menu_accion = ["","","active"]
+     end  
+
+   @seguimientos_t = @seguimientos + @seguimientosa
+    
+     render 'accions/index', :layout => 'admin_report'
+     
+
   end
+
 
   # GET /tasks/new
   def new

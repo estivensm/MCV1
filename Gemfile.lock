@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/Springest/jquery-fileupload-rails.git
+  revision: 2ebfdf1cc9a768f36420aaad9668ba68f2a5943b
+  specs:
+    jquery-fileupload-rails (0.4.2)
+      actionpack (>= 4)
+      railties (>= 4)
+
+GIT
   remote: https://github.com/ryanb/nested_form.git
   revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
   specs:
@@ -470,6 +478,7 @@ DEPENDENCIES
   googledocviewer
   image-picker-rails
   jbuilder (~> 2.5)
+  jquery-fileupload-rails!
   jquery-rails
   jquery-turbolinks (~> 0.2.1)
   jquery-ui-rails

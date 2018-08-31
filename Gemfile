@@ -50,6 +50,8 @@ gem 'annotate'
 #Buscador con autocompletado
 gem 'chosen-rails'
 
+gem 'jquery-fileupload-rails', github: 'Springest/jquery-fileupload-rails'
+
 gem 'jquery-ui-rails'
 gem 'jquery-validation-rails'
 gem 'fullcalendar-rails'

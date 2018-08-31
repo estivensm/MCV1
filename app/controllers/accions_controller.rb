@@ -149,7 +149,7 @@ end
 
        end 
 
-    end
+   end
 
     @menu_accion = ["","",""]
      if @accion.tipo == "Correccion" 

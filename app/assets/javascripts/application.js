@@ -29,6 +29,7 @@
 //= require fullcalendar
 //= require googledocviewer
 //= require config
+//= require jquery-fileupload/basic
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require turbolinks

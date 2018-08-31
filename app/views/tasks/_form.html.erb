@@ -70,13 +70,12 @@
 
   </div>
   <br>
-  <div class="form-group">
-                  <%= f.label "Cerrar" %>
-                  <%= f.check_box :estado ,  class: "cierra1"  %>
-               </div>
+   <%= f.hidden_field :estado , :value => true%>
 
 
 <%end%>
+
+
 
 <br>
       
