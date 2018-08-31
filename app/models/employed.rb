@@ -104,10 +104,11 @@ end
 def create_user
       emp = Employed.where(admin_user: self.admin_user).count
     	if (emp > 1)
+       password = self.first_name + Time.now.year
     	 rol = Rol.where(name: "Basico").where(admin_user: self.admin_user).where(default: true).first.id
        #ps = self.document + self.birth_date.to_s
        usr = self.first_name + "." + self.first_last_name
-       User.create(email:self.email,password:self.document,password_confirmation:self.document,rol_id: rol,admin_user:self.admin_user,role:"Basico",name: usr)
+       User.create(email:self.email,password:password,password_confirmation:password,rol_id: rol,admin_user:self.admin_user,role:"Basico",name: usr)
        save
       # WelcomeMailer.welcome(self).deliver
       # end
