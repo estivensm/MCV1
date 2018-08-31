@@ -104,7 +104,7 @@ end
 def create_user
       emp = Employed.where(admin_user: self.admin_user).count
     	if (emp > 1)
-       password = self.first_name + Time.now.year
+       password = self.first_name + Time.now.year.to_s
     	 rol = Rol.where(name: "Basico").where(admin_user: self.admin_user).where(default: true).first.id
        #ps = self.document + self.birth_date.to_s
        usr = self.first_name + "." + self.first_last_name
