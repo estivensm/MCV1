@@ -153,7 +153,7 @@ end
 
    @seguimientos_t = @seguimientos + @seguimientosa
     
-     render 'accions/index', :layout => 'admin_report'
+     render  :layout => 'admin_report'
      
 
   end

@@ -1,70 +1,305 @@
-<%task = @task%>
 
- <div class="conteinter reporte cnt">
-<div style="padding:20px" class="row">
-    <div class="col-md-8 col-md-offset-2">
-       <%= link_to "Volver a Accion", report_accion_path(task.report.id,task.accion.id), class:"linka" %>
-    </div>
-    <div class="col-md-8 col-md-offset-2" style="border: 1px solid #e2e2e2;
-    padding: 20px;background: #f8f8f8;">
-        <div class="col-md-7 rtd" >
-               <h3 class = "linka "> <strong >Tarea <span style="font-size:16px;">(<%=  task.report.codigo  %>-<%=  task.codigo  %>)</span></strong> <br><br><%= task.name %></h3>
-               <hr>
+<div class = "row">
+   <div class="col-md-12 text-center" style="background: #e8e7e7;">
+      <div class="col-md-3">
+         <input type="text" style="margin-top:2px;" id="myInput" class="form form-control" onkeyup="myFunction()" placeholder="Busqueda por descripcion o codigo" title="Type in a name">
+      </div>
+
+       <div class="col-md-6">
+      <h4 class="titulo-acciones" ><span id="todas"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</span> <span style="margin-left: 10px;font-size: 16px" id="abiertas"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px" id="abiertas_c"><%=@accions.abiertas.count%></span>
+                  <span style="margin-left: 10px;font-size: 16px" id="cerradas"><i class='fas fa-lock' aria-hidden='true'></i></span>
+                  <span style="font-size: 16px" id="cerradas_c"><%=@accions.cerradas.count%></span></h4>
+       </div>
+        <div class="col-md-3">
+         <% if @accions.count > 0 %>
+      <strong style="float: right;">
+      <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
+      <%end%>
         </div>
-        <div class="col-md-5 rtd text-right" >
-              <h3 class = "linka "> 
-               <%= link_to  edit_report_accion_task_path(@report,@accion,task) + "?tipo=do",remote:true, :class => "opciones" do %>
-      <i class="fa fa-thumb-tack" style = "font-size:30px;" aria-hidden="true"></i>
-      <% end %>
-           <% if current_user.id == task.user_id%>
-      <%= link_to  edit_report_accion_task_path(@report,@accion,task),remote:true, :class => "opciones" do %>
-      <i class="fa fa-pencil" style = "font-size:30px;" aria-hidden="true"></i>
-      <% end %>
-      <%= link_to  report_accion_task_path(@report,@accion,task),  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-      <i class="fa fa-trash" style = "font-size:30px;" aria-hidden="true"></i>
-      <% end %>
-      <% end %>
-              
-          
-      </h3>
-            
-        </div>
-        <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ></div>
-            <%= render 'form_close', task: task %>
-           <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong >Comentarios: </strong><%= task.observacion %></div>
-           <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong><i class="fa fa-paperclip" aria-hidden="true"></i> Anexo: <%= (link_to "#{task.anexo.file.filename }  (Descargar)",task.anexo_url, class:"linka") if task.anexo_url %>
-            
-            <!--<a class="linka" href="https://docs.google.com/viewerng/viewer?url=<%=task.anexo_url%>" >(Ver)</a>-->
-            </div>
+       
+   </div>
 
-            <div class="col-md-12 " style="margin-bottom: 10px;font-size: 13px">
-               <strong><i class="fa fa-user" aria-hidden="true"> </i> Responsable :
-                <%  
-                  employed = Employed.find(task.employed_id)
-                  %>
-               <td  class = "imaacc">
-                  <button type="button" style = "font-size:14px;" class="btn numerb" data-container="body" data-toggle="popover" data-placement="top" data-content="<p style='text-align:center;margin:0px;padding:0px;'><img src='<%= employed.avatare_url(:thumb) %>'></p><br><strong>Cargo:</strong> <%= employed.cargo.name %><br> <strong>Email:</strong> <%= employed.email%><br><strong>Cedula:</strong> <%= employed.document %>"><%= employed.first_name %> <%= employed.first_last_name %></button></strong>
-            </div>
-            <%color = ""
-               task.contador_seg < 0 ?  color = "#d82c2c" : color = "#0db4a0"%>
-            <div class="col-md-12" style="margin-bottom: 10px;font-size: 13px" ><strong><i class="fa fa-calendar" aria-hidden="true"></i>  Fecha de Compromiso:
-            </strong> <%=  get_date(task.f_compromiso)  %></div><br>
-            <div class="col-md-12 " style="margin-bottom: 10px;font-size: 13px" ><strong><strong>
-            </strong><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Fecha de Entrega: 
-            <%=  get_date(task.f_real)  %> <%= (cumplio(task.cumplio).html_safe) if task.estado%></div>
-            <div class="col-md-12 " style = "    font-size: 13px;
-               color: gray;"></div>
-    </div>
-    <div class="col-md-6">
-    <a href="<%=task.anexo_url%>" class="embed"></a>
-    </div>
-
-
-
+     
+   
+<div class="col-md-12">
+ <br>
 </div>
-         </div>
-    
+</div>
+<div class = "row">
 
+   <div class="col-md-12 wihtout-padding" id="filter">
+      <%if @accion != nil%>
+                   <% clases_select = @accion != nil ? "border-select" : "none" %>
+         <div class = "row <%=clases_select%> filter2" id="row-cont-<%=@accion.id%>">
+
+            <%if @accion.estado == "Abierta"%>
+              <%= render "accions/row_encabezado/abierta", accion: @accion %>
+             <%else%>
+                <%= render "accions/row_encabezado/cerrada", accion: @accion %>
+             <%end%> 
+
+
+             
+              <div id="show_accion<%=@accion.id%>" class="show_accion reporte" style="padding:0px 10px;margin">
+            <%=render "accions/show_accion", accion: @accion %>
+
+              </div>
+            
+        </div>
+
+      <%end%>
+      <% if @accions.count > 0  || @accion != nil%>
+      <% @accions.each do |accion| %>
+         <% clases_select = @accion != nil && @accion.id == accion.id ? "border-select" : "none" %>
+         <div class = "row <%=clases_select%> filter2" id="row-cont-<%=accion.id%>">
+
+            <%if accion.estado == "Abierta"%>
+              <%= render "accions/row_encabezado/abierta", accion: accion %>
+             <%else%>
+                <%= render "accions/row_encabezado/cerrada", accion: accion %>
+             <%end%> 
+
+
+             <% estado = @accion != nil && @accion.id == accion.id ? "block" : "none" %>
+             
+              <div id="show_accion<%=accion.id%>" class="show_accion reporte" style="display: <%=estado%>;padding:0px 10px;">
+            <%=render "show_accion", accion: accion %>
+              </div>
+            
+        </div>
+    
+      <% end %>
+  </div>
+      
+      </div>     
+      <%else%>
+      <div class="jumbotron jumbacc">
+         <br>
+         <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
+         <hr class="my-4">
+         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
+      </div>
+      <%end%>
+
+   <!--fin-->
+   <!--fin-->
+
+
+<style>
+   .imaacc img
+   {
+   border-radius: 40px;
+   }
+   .border-select
+   {
+    border: 3px solid #1f8143 !important;
+    border-radius: 6px;
+    margin-bottom: 15px;
+   }
+    .title-accion-select
+   {
+    font-size:20px;
+   }
+      .button_ver_accion
+   {
+    background: red !important;
+    content: " New!" !important; 
+   }
+   .task_select{
+
+      border: 4px solid #6c6c6c !important;
+   }
+</style>
+<script>
+   $(function () {
+   $('[data-toggle="popover"]').popover({
+     trigger: 'hover',
+     html: true
+     
+   
+   })
+   })
+   
+   
+    $('#filter').on('click', '.ver_accion', function() {
+      
+      var a = $(this).attr('id').match(/\d+/)[0]
+      console.log(a);
+      var b = '#show_accion' + a;
+      var x = '#row-cont-' + a;
+       var y = '#title-accion-' + a;
+       var z = '#accion' + a;
+      //$('.show_accion').hide();
+      $(b).toggle( "slow", "linear" );
+      $(x).toggleClass("border-select");
+      $(y).toggleClass("title-accion-select");
+      console.log($(y).attr('class'))
+      if ($(y).attr('class') == 'filter3 none title-accion-select')
+      {
+        console.log('hola')
+        $(z).text("VER MENOS");
+      }
+      else
+      {
+        console.log('hola1')
+       $(z).text("VER MAS"); 
+      }
+      console.log($(y).attr('class') == "filter3 title-accion-select")
+      
+      console.log("filter3 title-accion-select")
+   })
+   
+
+$(document).ready(function () {
+    // Handler for .ready() called.
+
+
+ 
+    $('html, body').animate({
+        scrollTop: $('.trow<%=@task.id%>').offset().top
+    }, 'slow');
+
+    $('.trow<%=@task.id%>').addClass("task_select");
+});
+ 
+
+
+
+
+   
+</script>
+<style>
+.redonda1
+{
+   padding: 5px 8px;
+    background: #a4a4a4;
+    color: white;
+    border-radius: 10px;
+}
+   .imaacc img
+   {
+   border-radius: 40px;
+   }
+   .cnt
+   {
+   border: 1px solid #c3c3c3;
+   margin-bottom: 10px;
+   -webkit-transition: box-shadow 0.3s; /* For Safari 3.1 to 6.0 */
+   transition: box-shadow 0.3s;
+   }
+   .rtr
+   {
+   text-align:center;
+   }
+   .rtd
+   {
+   padding: 5px;
+   text-align:center;
+   }
+   .titulo
+   {
+   background:#f2f2f2;
+   }
+   .cnt:hover
+   {
+   box-shadow: rgb(136, 136, 136) 0px 0px 8px 0px;
+   }
+   .titulo-acciones
+   {
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+    font-weight: bold;
+    color: #8b8b8b;
+   }
+   #cerradas:hover , #todas:hover, #abiertas:hover{
+    cursor: pointer;
+   } 
+</style>
+
+<script>
+
+$('#abiertas').click(function(){
+  
+  var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("fecha_cierre");
+        console.log(a.length);
+        if (a.length == 0) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+  
+
+})
+
+$('#cerradas').click(function(){
+  
+  var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("fecha_cierre");
+        console.log(a.length);
+        if (a.length > 0) {
+            li[i].style.display = "";
+             console.log("hola");
+        } else {
+            li[i].style.display = "none";
+            console.log("hola1");
+        }
+    }
+  
+
+})
+
+$('#todas').click(function(){
+  
+  var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+       
+            li[i].style.display = "";
+     
+    }
+  
+
+})
+
+
+
+
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("filter");
+    li = ul.getElementsByClassName("filter2");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByClassName("filter3")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
+            console.log(a.innerHTML.toUpperCase().indexOf(filter)
+)
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+</script>
 
 
 
