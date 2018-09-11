@@ -171,6 +171,9 @@ puts search2
         @times = self.f_compromiso.to_time
         @time =  @times.to_i - Time.now.to_i
         self.contador_seg = (@time / 60 / 60/ 24) + 1
+        if self.contador_seg == nil
+            self.contador = 0
+        end
         if self.contador_seg <= 5 && self.contador_seg >= 0
           
                             self.estado_vencida = false
