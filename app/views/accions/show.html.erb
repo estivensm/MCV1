@@ -13,7 +13,7 @@
         <div class="col-md-3">
          <% if @accions.count > 0 %>
       <strong style="float: right;">
-      <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) %> </strong>
+      <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'linka pull-right') if view_report(@report) || current_user.rol.create_all %> </strong>
       <%end%>
         </div>
        
@@ -52,7 +52,7 @@
          <br>
          <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
          <hr class="my-4">
-         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin")%>
+         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin") || current_user.rol.create_all%>
       </div>
       <%end%>
 

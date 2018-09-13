@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817183607) do
+ActiveRecord::Schema.define(version: 20180913151620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -390,6 +390,7 @@ ActiveRecord::Schema.define(version: 20180817183607) do
     t.boolean "report_delete"
     t.boolean "report_procesos"
     t.boolean "default"
+    t.boolean "create_all"
   end
 
   create_table "rseguimientos", id: :serial, force: :cascade do |t|

@@ -30,7 +30,7 @@
             <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> TAREAS ABIERTAS (<%= @tasks.count %>)</h4>
          </div>
          <% if @tasks_all.count > 0 %>
-         <div class="col-md-3 rtd"><strong><%= (link_to "+ Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'linka pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" %></strong></div>
+         <div class="col-md-3 rtd"><strong><%= (link_to "+ Nueva Tarea", new_report_task_path(@report),remote:true, :class => 'linka pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" || current_user.rol.create_all%></strong></div>
          <% end %>
       </div>
    </div>

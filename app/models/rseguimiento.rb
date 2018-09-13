@@ -16,6 +16,7 @@
 #  eficaz        :boolean
 #  conclucion    :text
 #  send_mail     :boolean
+#  type_tracing  :string
 #
 
 class Rseguimiento < ApplicationRecord

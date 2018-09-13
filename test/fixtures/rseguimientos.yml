@@ -16,6 +16,7 @@
 #  eficaz        :boolean
 #  conclucion    :text
 #  send_mail     :boolean
+#  type_tracing  :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

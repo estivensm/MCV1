@@ -66,6 +66,7 @@
       <th>Crear Reportes</th>
       <th>Editar Reportes</th>
       <th>Borrar Reportes</th>
+      <th>Borrar Crear Todo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -81,6 +82,7 @@
         <td><%= get_state(rol.report_crear).html_safe  %></td>
         <td><%= get_state(rol.report_edit).html_safe  %></td>
         <td><%= get_state(rol.report_delete).html_safe  %></td>
+        <td><%= get_state(rol.create_all).html_safe  %></td>
         <td>
         <%if !rol.default%>
         <%= link_to  rol, :class => "opciones" do %>

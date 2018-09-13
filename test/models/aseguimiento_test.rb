@@ -17,6 +17,7 @@
 #  accion_id     :integer
 #  s_cierre      :boolean
 #  send_mail     :boolean
+#  type_tracing  :string
 #
 
 require 'test_helper'
