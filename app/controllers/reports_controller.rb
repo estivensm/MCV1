@@ -459,6 +459,7 @@ end
     @report = Report.new(report_params)
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @report.state = "Abierto"
+    @report.tag = true
     num = Report.where(admin_user: current_user.admin_user).where(source_id: @report.source_id).where(source_parent_id:@report.source_parent_id).maximum(:contador)
     if num != nil
         num = num + 1

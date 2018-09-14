@@ -307,6 +307,7 @@ end
     @accion = Accion.new(accion_params)
     @report = Report.find(params[:report_id])
     @accion.estado = "Abierta"
+
     @num = Accion.where(admin_user: current_user.admin_user).where(report_id: @report.id).where(tipo: @accion.tipo).maximum(:contador)
     if @num != nil
         @num = @num + 1
@@ -324,7 +325,7 @@ end
     @accion.codigo = @code
     @accion.contador = @num
     @accion.costo = 0
-
+    @accion.tag = true
     respond_to do |format|
       if @accion.save
 
