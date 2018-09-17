@@ -1,26 +1,25 @@
 <div class="row" style="background: #e3e3e3;padding:2px;margin-bottom:10px;">
     <table class="table">
 <tr style="background: #595757;color: white;">
-    <th width="5%">Codigo</td>
-    <th width="30%">Reporte</td>
+    <th  class="text-left" width="5%" colspan="6" style="font-size:14px !important;"><%=report.source.name%>: <%=report.description%></strong></td>
+   <!-- <th width="30%">Reporte</td>
 
     <th width="10%">Estado Reporte</td>
     <th width="15%">Gestion por vencer</td>
-    <th width="10%">Tareas por vencer</td>
+    <th width="10%">Tareas por vencer</td>-->
  </tr>
     <tr>
       <td width="5%"><%=report.codigo%></td>
-      <td width="30%" class="text-left"><strong><span style="font-size:16px;color:#0db497"></span> <%=report.description%></strong><hr>
-      <span><strong>Proceso: </strong><%=report.proceso.name%></span>
+      <td width="20%" class="text-left"><strong><span style="font-size:16px;color:#0db497"></span> 
       <span><strong>Fuente: </strong><%=report.source_parent.name%></span>
       <span><strong>Tipo: </strong><%=report.source.name%></span></td>
 
       <td width="10%"> <%if @report_array[i]["cierre"]%>
-      <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
+      <div class="alert1 alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente de Cierre
       </div>
       <%end%></td>
-      <td width="15%">
+      <td width="30%">
                 <%if @accion_array[i]["cierre"]%>
       <%
          correciones = report.accions.where(tipo: "Correccion").abiertas.where(employed: @employed.id).alerta1
@@ -28,7 +27,7 @@
          actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1
          
          %>
-    <div class="alert alert-info" style="margin-bottom:5px !important;display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+    <div class="alert2 alert alert-info alert" style="margin-bottom:5px !important;display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
           Correciones 
                  <%if correciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
@@ -40,7 +39,7 @@
          
   
 
-  <div class="alert alert-info" style="margin-bottom:5px !important;display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+  <div class="alert2 alert alert-info" style="margin-bottom:5px !important;display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
           Acciones  
           <%if acciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
@@ -51,7 +50,7 @@
       </div>
 
 
-       <div class="alert alert-info" style="margin-bottom:5px !important;display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
+       <div class="alert2 alert alert-info" style="margin-bottom:5px !important;display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
           Actividades 
           <%if actividades.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
@@ -72,7 +71,7 @@
 
       </td>
       <td width="10%">    <%if @task_array[i]["cierre"]%>
-      <div class="alert alert-info" style="display: inline-block"> 
+      <div class="alert1 alert alert-info" style="display: inline-block"> 
          <% t_vencidas = report.tasks.abiertas.vencidas.where(employed: @employed.id).count
             t_proximas = report.tasks.abiertas.proximas.where(employed: @employed.id).count    
          %>
@@ -241,9 +240,13 @@
     top: 2px;
 }
 
-.alert {
+.alert1 {
     padding: 4px;
     width: 100%;
+}
+.alert2 {
+    padding: 4px;
+    width: 30%;
 }
 hr {
     margin-top: 0px;
