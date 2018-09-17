@@ -2,7 +2,7 @@
    border-radius: 0 0 10px 10px;">
    <div class="panel-heading">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
            <strong><span style="font-size:16px;color:#0db497"><%=report.codigo%>:</span> <%=report.description%></strong><br>
       <span><strong>Proceso: </strong><%=report.proceso.name%></span>
       <span><strong>Fuente: </strong><%=report.source_parent.name%></span>
@@ -10,8 +10,11 @@
         
     </div>
 
-    <div class="col-md-2">
-      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "btn btn-primary", style: "float:right;"%>
+    <div class="col-md-3 text-right">
+    <a class="linka" style="" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+  Ver Pendientes
+</a>
+     | <%= link_to "Ir al Reporte" ,report_path(report.id), class: "linka"%>
     </div>
 
    </div>
@@ -62,9 +65,7 @@
       
 
 
-<a class="btn btn-primary" style="float:right" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
-  Ver Pendientes
-</a>
+
 
 <div class="collapse" id="collapseExample<%=report.id%>">
   <div class="well">
