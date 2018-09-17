@@ -1,63 +1,67 @@
-<div class="row" style="background: #e3e3e3;padding:5px;">
-    <table class="table">
-<tr>
-    <th width="5%">Codigo</td>
-    <th width="30%">Reporte</td>
-    <th width="10%">Responsable</td>
-    <th width="10%">Estado Reporte</td>
-    <th width="15%">Gestion por vencer</td>
-    <th width="10%">Tareas por vencer</td>
- </tr>
-    <tr>
-      <td width="5%"><%=report.codigo%></td>
-      <td width="30%" class="text-left"><strong><span style="font-size:16px;color:#0db497"></span> <%=report.description%></strong><hr>
+<div class="panel panel-default" style="    border-bottom: 3px solid #aeaeae;
+   border-radius: 0 0 10px 10px;">
+   <div class="panel-heading">
+  <div class="row">
+    <div class="col-md-10">
+           <strong><span style="font-size:16px;color:#0db497"><%=report.codigo%>:</span> <%=report.description%></strong><br>
       <span><strong>Proceso: </strong><%=report.proceso.name%></span>
       <span><strong>Fuente: </strong><%=report.source_parent.name%></span>
-      <span><strong>Tipo: </strong><%=report.source.name%></span></td>
-      <td width="10%"><%=report.proceso.name%><br><%=report.source_parent.name%><br><%=report.source.name%></td>
-      <td width="10%"> <%if @report_array[i]["cierre"]%>
+      <span><strong>Tipo: </strong><%=report.source.name%></span>
+        
+    </div>
+
+    <div class="col-md-2 text-right">
+      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "btn btn-primary", style: ""%>
+    </div>
+
+   </div>
+
+    
+   </div>
+
+   <div class="panel-body">
+      <%if @report_array[i]["cierre"]%>
       <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
-        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente de Cierre
+        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente cerrar el Reporte
       </div>
-      <%end%></td>
-      <td width="15%">
-                <%if @accion_array[i]["cierre"]%>
+      <%end%>
+      <%if @accion_array[i]["cierre"]%>
       <%
-         correciones = report.accions.where(tipo: "Correccion").abiertas.where(employed: @employed.id).alerta1
+         correciones = report.accions.where(tipo: "Correcion").abiertas.where(employed: @employed.id).alerta1
          acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).alerta1
          actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1
          
          %>
-    <div class="alert alert-info" style="margin-bottom:5px !important;display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Correciones 
-                 <%if correciones.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
+    <div class="alert alert-info" style="display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Correciones pendientes de cierre
+          <%if correciones.proximas.count > 0 %>
+           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
            <%end%> 
              <%if correciones.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:#c32626;" ></i><span class="badge-red">  <%= correciones.vencidas.count  %></span>
+            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= correciones.vencidas.count  %></span>
             <%end%>
       </div>
          
   
 
-  <div class="alert alert-info" style="margin-bottom:5px !important;display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Acciones  
+  <div class="alert alert-info" style="display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Acciones  pendientes de cierre
           <%if acciones.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
+           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
            <%end%> 
              <%if acciones.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:#c32626;" ></i><span class="badge-red">  <%= acciones.vencidas.count  %></span>
+            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= acciones.vencidas.count  %></span>
             <%end%>
       </div>
 
 
-       <div class="alert alert-info" style="margin-bottom:5px !important;display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Actividades 
+       <div class="alert alert-info" style="display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Actividades  pendientes de cierre
           <%if actividades.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
+           <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
            <%end%> 
              <%if actividades.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:#c32626;" ></i><span class="badge-red">  <%= actividades.vencidas.count  %></span>
+            <i class="fas fa-exclamation-triangle" style="font-size:16px;color:#c32626;" ></i><span class="badge-red">  <%= actividades.vencidas.count  %></span>
             <%end%>
       </div>
       
@@ -68,15 +72,12 @@
 
 
       <%end%>
-
-
-      </td>
-      <td width="10%">    <%if @task_array[i]["cierre"]%>
+      <%if @task_array[i]["cierre"]%>
       <div class="alert alert-info" style="display: inline-block"> 
          <% t_vencidas = report.tasks.abiertas.vencidas.where(employed: @employed.id).count
             t_proximas = report.tasks.abiertas.proximas.where(employed: @employed.id).count    
          %>
-         Tareas 
+         Tareas  pendientes de cierre 
 
          <%if t_proximas > 0 %>
          <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> 
@@ -87,17 +88,10 @@
           <span class="badge-red"><%=  t_vencidas %></span>
          <%end%>
       </div>
-      <%end%></td>
+      <%end%>
+ <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 
-
-    </tr>
-
-    <tr>
-      
-  <td colspan="6" rowspan="" headers="">
-    <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
-
-<a class="linka ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+<a class="btn btn-primary ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
 </a>
 
@@ -197,36 +191,32 @@
     <%end%>
    <%end%>
 </div>
-  </td>
-    </tr>
-</table>
-
+  </div>
 </div>
 
 
 
 
 
-
-
-
-
-
+</div>
+</div>
 
 <style>
 .ver-pendientes
 {
-    float: left;
-    font-size: 14px
-  
-  
+    float: right;
+    position: relative;
+    top: 38px;
+    left: 15px;
+    border-radius: 7px 0px;
+
 }
 .badge-red
 {
     
     color: #c32626 !important;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     position: relative;
     top: 2px;
 }
@@ -236,24 +226,11 @@
  margin: 0px 5px 0px 0px;
     color: orange !important;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     position: relative;
     top: 2px;
 }
-
-.alert {
-    padding: 4px;
-    width: 100%;
-}
-hr {
-    margin-top: 0px;
-    margin-bottom: 5px;
-    }    
-.table
-{
-  background: white;
-  margin-bottom: 0px !important;
-}
+    
 </style>
 
 

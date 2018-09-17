@@ -1,10 +1,9 @@
-
 <hr>
 <div class="row" style="padding: 10px 30px;">
    <div class="col-md-12">
       <%= nested_form_for @report do |f| %>
       <% if report.errors.any? %>
-     <div class="alert alert-danger alert-devise">
+      <div class="alert alert-danger alert-devise">
          <h2><%= pluralize(report.errors.count, "error") %> No permite que guardes el Reporte:</h2>
          <ul>
             <% report.errors.full_messages.each do |message| %>
@@ -13,203 +12,179 @@
          </ul>
       </div>
       <% end %>
-      
-
-
-
-
-
-    <div class="row">
-    <p class="form-tit">Informacion Basica</p>
-
-     <div class="col-md-12">
+      <div class="row">
+         <p class="form-tit">Informacion Basica</p>
+          <div class="col-md-6" style="display:none">
             <div class="form-group">
-                <label>Descripción del reporte<span style="text-transform: capitalize;">Detallada</span></label>  
+               <label>Nombre del <span style="text-transform: capitalize;">Reporte</span></label>  
+               <%= f.text_field :name,  class: "form-control" %>
+            </div>
+         </div>
+         <div class="col-md-12">
+            <div class="form-group">
+               <label>Descripción detallada del <span style="text-transform: capitalize;">reporte</span></label>  
                <%= f.text_area :description,  class: "form-control area" %>
-            </div></div>
-<div class="col-md-12">
-  <hr>
-</div>
-
-  <div class="col-md-3">
+            </div>
+         </div>
+         <div class="col-md-12">
+            <hr>
+         </div>
+         <div class="col-md-3">
             <div class="form-group cli1">
                <%= f.label "Fuente" %><br>
                <%= f.select :source_parent_id,
-                 get_source_parents.map { |u| [u.name, u.id] },
-                             { include_blank: true },
-                             { class: 'chosen-select1 form-control ch source pr1'  }
-                  %>
+                  get_source_parents.map { |u| [u.name, u.id] },
+                              { include_blank: true },
+                              { class: 'chosen-select1 form-control ch source pr1'  }
+                   %>
             </div>
- </div> 
- 
-
-
- <!--source parentes-->
-
-
-<div class="col-md-3">
+         </div>
+         <!--source parentes-->
+         <div class="col-md-3">
             <div class="form-group pru1">
-            <% if (action_name == "edit")
-
-@sourcess= @report.source_parent.sources
-
-
-else 
-
-  @sourcess = Source.where(admin_user: current_user.admin_user)
-end %>
-            <%=render "sources", f: f%>
-           
-            </div>
-             <!--<button type="button" class="bt" data-toggle="modal" data-target="#myModal_hallazgo"><i class="fa fa-plus" aria-hidden="true"></i>
-</button>-->
-             </div>
-
-<script>
-   
-   $(document).on('turbolinks:load',function() {
-         
-
-
-
-    $('.pr1').change(function(){
-        
-        cambiar1(false);
-
-    });
-
-
-
-
-
-function cambiar1(make1){
-
-
-      
-      cl1 = $('.pr1').val(); 
-         
-
-    if (cl1 != "")
-    {  
-       $.get("/set_source_parents/" + cl1 , function(data1) 
-                        {
-          
-
-
-              $('.pri1').remove();
-              $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
-                        for (var i=0; i<data1.length; i++) { 
-                
-                      $('.pri1 option').remove();
-                        
-                        
-                $('.pri1').removeClass("chosen-select1")
-                      
-                        }
-                        if (data1 != undefined)
-                        {
-              for (var i=0; i<data1.length; i++) { 
-
-                      
-              $('.pri1').append('<option value=' + data1[i].id +'>' + data1[i].name  + '</option>');
-
-                        $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data1[i].id +'>' +data1[i].name +'</li>');
-                        
-                      }
-
-                      $('.pri1').addClass("chosen-select1")
-                      $('.chosen-select1').chosen(
-                      {
-
-                        allow_single_deselect: true,
-                        no_results_text: 'No hay resultados',
-                        
-                      });
-              console.log("datfffa");
-                        }
-                      if (data1.length == 0)
-                      {
-                        {$('.pri1 option').remove();
-                    $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
-                    $('.pri1').addClass("chosen-select1");
-                  $('.chosen-select1').chosen(
-                      {
-
-                        allow_single_deselect: true,
-                        no_results_text: 'No hay resultados',
-                        placeholder_text_single: "Seleccione una opción",
-                      
-                      });}
-              }
-
+               <% if (action_name == "edit")
+                  @sourcess= @report.source_parent.sources
                   
-
-              console.log("ajax");
-              if (make1)
-              {
-              $('.pri1').val("<%=@report.source_id%>")
-              console.log("<%=@report.source_id%>" + "sdfd")
-              }
-         
-       
-
-                        });
- }
- else
- {
-
-$('.pri1').remove();
-$('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
-
-$('.pri1').addClass("chosen-select1");
-    $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No results matched',
-          placeholder_text_single: "Seleccione una opción",
-         
-        });
-
-
-   
-}
-  
-
-
-
-
-}
-
-
-
-
-
-
- });
-
-    
-
-
-   
-  </script>
-
-
-
-
-
-
-
-
-
-    
-
-
-
- <!--/soucer parents-->
-
-     <div class="col-md-3">
-        <div class="form-group">
+                  
+                  else 
+                  
+                    @sourcess = Source.where(admin_user: current_user.admin_user)
+                  end %>
+               <%=render "sources", f: f%>
+            </div>
+            <!--<button type="button" class="bt" data-toggle="modal" data-target="#myModal_hallazgo"><i class="fa fa-plus" aria-hidden="true"></i>
+               </button>-->
+         </div>
+         <script>
+            $(document).on('turbolinks:load',function() {
+                  
+            
+            
+            
+             $('.pr1').change(function(){
+                 
+                 cambiar1(false);
+            
+             });
+            
+            
+            
+            
+            
+            function cambiar1(make1){
+            
+            
+               
+               cl1 = $('.pr1').val(); 
+                  
+            
+             if (cl1 != "")
+             {  
+                $.get("/set_source_parents/" + cl1 , function(data1) 
+                                 {
+                   
+            
+            
+                       $('.pri1').remove();
+                       $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
+                                 for (var i=0; i<data1.length; i++) { 
+                         
+                               $('.pri1 option').remove();
+                                 
+                                 
+                         $('.pri1').removeClass("chosen-select1")
+                               
+                                 }
+                                 if (data1 != undefined)
+                                 {
+                       for (var i=0; i<data1.length; i++) { 
+            
+                               
+                       $('.pri1').append('<option value=' + data1[i].id +'>' + data1[i].name  + '</option>');
+            
+                                 $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data1[i].id +'>' +data1[i].name +'</li>');
+                                 
+                               }
+            
+                               $('.pri1').addClass("chosen-select1")
+                               $('.chosen-select1').chosen(
+                               {
+            
+                                 allow_single_deselect: true,
+                                 no_results_text: 'No hay resultados',
+                                 
+                               });
+                       console.log("datfffa");
+                                 }
+                               if (data1.length == 0)
+                               {
+                                 {$('.pri1 option').remove();
+                             $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
+                             $('.pri1').addClass("chosen-select1");
+                           $('.chosen-select1').chosen(
+                               {
+            
+                                 allow_single_deselect: true,
+                                 no_results_text: 'No hay resultados',
+                                 placeholder_text_single: "Seleccione una opción",
+                               
+                               });}
+                       }
+            
+                           
+            
+                       console.log("ajax");
+                       if (make1)
+                       {
+                       $('.pri1').val("<%=@report.source_id%>")
+                       console.log("<%=@report.source_id%>" + "sdfd")
+                       }
+                  
+                
+            
+                                 });
+            }
+            else
+            {
+            
+            $('.pri1').remove();
+            $('.pru1').html('<label for="report_Source">Hallazgo</label><br><select  class=" form-control pri1" name="report[source_id]" id="report_source_id" style=""></select>');
+            
+            $('.pri1').addClass("chosen-select1");
+             $('.chosen-select1').chosen(
+                 {
+            
+                   allow_single_deselect: true,
+                   no_results_text: 'No results matched',
+                   placeholder_text_single: "Seleccione una opción",
+                  
+                 });
+            
+            
+            
+            }
+            
+            
+            
+            
+            
+            }
+            
+            
+            
+            
+            
+            
+            });
+            
+             
+            
+            
+            
+         </script>
+         <!--/soucer parents-->
+         <div class="col-md-3">
+            <div class="form-group">
                <%= f.label "Proceso" %><br>
                <%= f.select :proceso_id,
                   get_procesos.map { |u| ["#{u.name}", u.id] },
@@ -217,283 +192,244 @@ $('.pri1').addClass("chosen-select1");
                              { class: 'chosen-select1 form-control ch'  }
                   %>
             </div>
-    </div>
-
-       <div class="col-md-3">
-           <div class="form-group">
+         </div>
+         <div class="col-md-3">
+            <div class="form-group">
                <%= f.label "Reporta" %><br>
                <%= f.select :employed_reporta,
                   get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
                              { include_blank: true },
                              { class: 'chosen-select1 form-control ch reporta'  }
                   %>
-            </div> </div>
- <div class="col-md-3" style="display: none">
-              <div class="form-group">
-    <%= f.label "Frecuencia de Seguimiento" %>
-    <%= f.select :f_seguimiento, [['Sin Seguimiento', 0],['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
-        <%if action_name != "new" %>
-    <%= f.label "Actualizar Fecha y/o Frecuencia", class: "lb2" %>
-    <%= f.check_box :tag, class:"check" %>
-    <%end%>
-  </div>
-
-    </div>
-   
-    </div>
-    <div class="row">
- <div class="col-md-3">
-             <% disabled =  current_user.role == "SuperAdmin" || action_name == "new" ? false : true%>
-  <div class="form-group">
-    <%= f.label "Fecha de Compromiso" %>
-    <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker fecha", disabled: disabled %>
-  </div>
-
-
-  <script>
-  $(function() {
-    $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '< Ant',
- nextText: 'Sig >',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
- dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
- weekHeader: 'Sm',
- dateFormat: 'dd/mm/yy',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-  $('.datepicker').datepicker({
-    altField: "#actualDate",
-    changeMonth: true,
-    changeYear: true,
-    
-  });
- 
-});
-
-</script>
-    </div>
-    
-      
-    
-
-
-   
-
-
-
-
-
- <div class="col-md-3" >
-           
-         
-
-
-          <div class="form-group cli" >
-              <%=render "partes", f: f, cliente_proveedors1: @cliente_proveedors1%>
-                 
             </div>
-        
-             </div>
-
-            
-<div class="col-md-3">
+         </div>
+         <div class="col-md-3" style="display: none">
+            <div class="form-group">
+               <%= f.label "Frecuencia de Seguimiento" %>
+               <%= f.select :f_seguimiento, [['Sin Seguimiento', 0],['Diario', 1],  ['Semanal',7], ['Quincenal',15],['Mensual',30], ['Trimestral',90], ['Semestral',182], ['Anual',365]], {} ,{:class => "form-control fsg"} %>
+               <%if action_name != "new" %>
+               <%= f.label "Actualizar Fecha y/o Frecuencia", class: "lb2" %>
+               <%= f.check_box :tag, class:"check" %>
+               <%end%>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-3">
+            <% disabled =  current_user.role == "SuperAdmin" || action_name == "new" ? false : true%>
+            <div class="form-group">
+               <%= f.label "Fecha de Compromiso" %>
+               <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @report.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker fecha", disabled: disabled %>
+            </div>
+            <script>
+               $(function() {
+                 $.datepicker.regional['es'] = {
+               closeText: 'Cerrar',
+               prevText: '< Ant',
+               nextText: 'Sig >',
+               currentText: 'Hoy',
+               monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+               monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+               dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+               dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+               dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+               weekHeader: 'Sm',
+               dateFormat: 'dd/mm/yy',
+               firstDay: 1,
+               isRTL: false,
+               showMonthAfterYear: false,
+               yearSuffix: ''
+               };
+               $.datepicker.setDefaults($.datepicker.regional['es']);
+               $('.datepicker').datepicker({
+                 altField: "#actualDate",
+                 changeMonth: true,
+                 changeYear: true,
+                 
+               });
+               
+               });
+               
+            </script>
+         </div>
+         <div class="col-md-3" >
+            <div class="form-group cli" >
+               <%=render "partes", f: f, cliente_proveedors1: @cliente_proveedors1%>
+            </div>
+         </div>
+         <div class="col-md-3">
             <div class="form-group pru">
-            <% if (action_name == "edit")
-
-@contactss = Contact.where(clinte_proveedor_id: @report.clinte_proveedor_id)
-
-
-else 
-
-  @contactss = Contact.where(id: 0)
-end %>
-            <%=render "contacts", f: f%>
-            </div> </div>
-
-<script>
- 
-   $(document).on('turbolinks:load',function() {
-         
-    $('.pr').change(function(){
-
-            cl = $('.pr').val(); 
-            if (cl != "")
+               <% if (action_name == "edit")
+                  @contactss = Contact.where(clinte_proveedor_id: @report.clinte_proveedor_id)
+                  
+                  
+                  else 
+                  
+                    @contactss = Contact.where(id: 0)
+                  end %>
+               <%=render "contacts", f: f%>
+            </div>
+         </div>
+         <script>
+            $(document).on('turbolinks:load',function() {
+                  
+             $('.pr').change(function(){
+            
+                     cl = $('.pr').val(); 
+                     if (cl != "")
+                     {
+                 $.get("/set_contacts/" + cl , function(data) 
+                                 {
+                                   console.log(data);
+                                   $('.pri').remove();
+            $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+                    for (var i=0; i<data.length; i++) { 
+                           $('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>');
+                    }
+            
+            
+                                 });
+               }
+               else
+               {
+                  $('.pru select').remove();
+                $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+               }
+            
+             });
+            
+            });
+            
+            /*
+            
+            
+            function cambiar(make){
+            
+            
+               
+               cl = $('.pr').val(); 
+                  
+            
+             if (cl != "")
+             {  
+                $.get("/set_contacts/" + cl , function(data) 
+                                 {
+                   
+            
+            
+            $('.pri').remove();
+            $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+                    for (var i=0; i<data.length; i++) { 
+            
+                  $('.pri option').remove();
+                   
+                   
+            $('.pri').removeClass("chosen-select1")
+                  
+                   }
+                   if (data != undefined)
+                   {
+            for (var i=0; i<data.length; i++) { 
+            
+                  
+            $('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>');
+            
+                   $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data[i].id +'>' +data[i].name +'</li>');
+                   
+                 }
+            
+                  $('.pri').addClass("chosen-select1")
+                  $('.chosen-select1').chosen(
+                 {
+            
+                   allow_single_deselect: true,
+                   no_results_text: 'No results matched',
+                   placeholder_text_single: "Seleccione una opción",
+                
+                 });
+            console.log("datfffa");
+                   }
+                  if (data.length == 0)
+                  {
+                   {$('.pri option').remove();
+                $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+               $('.pri').addClass("chosen-select1");
+             $('.chosen-select1').chosen(
+                 {
+            
+                   allow_single_deselect: true,
+                   no_results_text: 'No results matched',
+                   placeholder_text_single: "Seleccione una opción",
+                  
+                 });}
+            }
+            
+              
+            
+            console.log("ajax");
+            if (make)
             {
-        $.get("/set_contacts/" + cl , function(data) 
-                        {
-                          console.log(data);
-                          $('.pri').remove();
-$('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
-           for (var i=0; i<data.length; i++) { 
-                  $('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>');
-           }
-
-
-                        });
-      }
-      else
-      {
-         $('.pru select').remove();
-       $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
-      }
-
-    });
-
-  });
-
- /*
-
-
-function cambiar(make){
-
-
-      
-      cl = $('.pr').val(); 
-         
-
-    if (cl != "")
-    {  
-       $.get("/set_contacts/" + cl , function(data) 
-                        {
-          
-
-
-$('.pri').remove();
-$('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
-           for (var i=0; i<data.length; i++) { 
-  
-         $('.pri option').remove();
-          
-          
-  $('.pri').removeClass("chosen-select1")
-         
-          }
-          if (data != undefined)
-          {
-for (var i=0; i<data.length; i++) { 
-
-         
-$('.pri').append('<option value=' + data[i].id +'>' + data[i].name  + '</option>');
-
-          $('ul').append('<li class="active-result result-selected" data-option-array-index="'+ data[i].id +'>' +data[i].name +'</li>');
-          
-        }
-
-         $('.pri').addClass("chosen-select1")
-         $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No results matched',
-          placeholder_text_single: "Seleccione una opción",
-       
-        });
-console.log("datfffa");
-          }
-         if (data.length == 0)
-         {
-          {$('.pri option').remove();
-       $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
-      $('.pri').addClass("chosen-select1");
-    $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No results matched',
-          placeholder_text_single: "Seleccione una opción",
-         
-        });}
-}
-
-     
-
-console.log("ajax");
-if (make)
-{
- $('.pri').val("<%=@report.contact_id%>")
- console.log("<%=@report.contact_id%>" + "sdfd")
-}
-         
-       
-
-                        });
- }
- else
- {
-
-$('.pri').remove();
-$('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
-
-$('.pri').addClass("chosen-select1");
-    $('.chosen-select1').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No results matched',
-          placeholder_text_single: "Seleccione una opción",
-     
-        });
-
-
-   
-}
-  
-
-
-
-
-}
-
-
-
-
- });
-
-    
-*/
-
-   
-  </script>
-
-
-
-<div class="col-md-3">
-         
-                      <div class="form-group">
-            <label>Adjuntar <span style="text-transform: capitalize;">Evidencia</span></label> <br> 
-            <%= f.file_field :archivo, class: "form-control inputfile" , id: 'file'%>
-          <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
-
-        <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @report.archivo.blank?   != true %>
-        <br><%= f.check_box :remove_archivo %> 
-          <%= f.label "Eliminar", style: "color:red!important" %></label>
-
-          <%end%>
-
-
-
-</div>
-</div>
-
-
-
-
-
-    </div><hr class="hr">
-<br>
-<div class="row">
-    <p class="form-tit"">Responsabilidad</p>
-
-     <div class="col-md-3">
+            $('.pri').val("<%=@report.contact_id%>")
+            console.log("<%=@report.contact_id%>" + "sdfd")
+            }
+                  
+                
+            
+                                 });
+            }
+            else
+            {
+            
+            $('.pri').remove();
+            $('.pru').html('<label for="report_Contacto">Contacto</label><br><select  class=" form-control pri" name="report[contact_id]" id="report_contact_id" style=""></select>');
+            
+            $('.pri').addClass("chosen-select1");
+             $('.chosen-select1').chosen(
+                 {
+            
+                   allow_single_deselect: true,
+                   no_results_text: 'No results matched',
+                   placeholder_text_single: "Seleccione una opción",
+              
+                 });
+            
+            
+            
+            }
+            
+            
+            
+            
+            
+            }
+            
+            
+            
+            
+            });
+            
+             
+            */
+            
+            
+         </script>
+         <div class="col-md-3">
+            <div class="form-group">
+               <label>Adjuntar <span style="text-transform: capitalize;">Evidencia</span></label> <br> 
+               <%= f.file_field :archivo, class: "form-control inputfile" , id: 'file'%>
+               <label for="file" ><i class="fa fa-upload" aria-hidden="true"></i>
+               <span class="levidencia" style = "margin-right:10px;">Adjuntar </span> <%if @report.archivo.blank?   != true %>
+               <br><%= f.check_box :remove_archivo %> 
+               <%= f.label "Eliminar", style: "color:red!important" %></label>
+               <%end%>
+            </div>
+         </div>
+      </div>
+      <hr class="hr">
+      <br>
+      <div class="row">
+         <p class="form-tit"">Responsabilidad</p>
+         <div class="col-md-3">
             <div class="form-group">
                <%= f.label "Asignada a" %><br>
                <%= f.select :employed_id,
@@ -502,9 +438,9 @@ $('.pri').addClass("chosen-select1");
                              { class: 'chosen-select1 form-control ch'  }
                   %>
             </div>
-    </div>
- <div class="col-md-3">
-              <div class="form-group">
+         </div>
+         <div class="col-md-3">
+            <div class="form-group">
                <label>Responsable de <span style="text-transform: capitalize;">Cierre</span></label> 
                <%= f.select :cierra_id,
                   get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
@@ -512,42 +448,19 @@ $('.pri').addClass("chosen-select1");
                              { class: 'chosen-select1 form-control ch reporta'  }
                   %>
             </div>
-            </div>
-            <div class="col-md-6">
-               <div class="form-group">
+         </div>
+         <div class="col-md-6">
+            <div class="form-group">
                <%= f.label "Otros interesados" %><br>
                <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
             </div>
-             </div>
-
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--CCCC-->
-
-      
-
-
-       <div class="row evi req num">
-       <p class="form-tit"">Informacion Complementaria</p>
-   
-       
-         
          </div>
-    
-         <div class="row">
+      </div>
+      <!--CCCC-->
+      <div class="row evi req num">
+         <p class="form-tit"">Informacion Complementaria</p>
+      </div>
+      <div class="row">
          <div class="col-md-6">
             <div class="form-group evi">
                <label>Evidencia que soporta el <span style="text-transform: capitalize;">Reporte</span></label>  
@@ -561,139 +474,116 @@ $('.pri').addClass("chosen-select1");
             </div>
          </div>
       </div>
-      
-    
-      
       <div class="row">
          <div class="col-lg-6">
-
             <div class="form-group num">
-                           <label>Numerales de <span style="text-transform: capitalize;">Normas</span></label> 
-                          <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control  mn'} %>
-                        </div>
-                              </div>
-
-            <!--<div class="col-md-6">
-                    
-                        <div class="form-group acc1">
-                          <label for="">¿Acciones?</label><br>
-                          <label class="radio-inline">
-                          <%= f.radio_button :accion, 'Si', class: 'rb cksi' %>Si
-                          </label>
-                          <label class="radio-inline">
-                          <%= f.radio_button :accion, 'No', class: 'rb ckno' %>No
-                        </div>
-                        <div class="form-group just">
-                          <div class="alert alert-warning" role="alert">
-                              Justifica por que este hallazgo no necesito Acciones
-                          </div>
-                          <%= f.label "Justificacion" %>
-                          <%= f.text_area :justificacion ,  class: "form-control area" %>
-                        </div>
-                    </div>-->
-                    
-
-         
+               <label>Numerales de <span style="text-transform: capitalize;">Normas</span></label> 
+               <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control  mn'} %>
+            </div>
+         </div>
+         <!--<div class="col-md-6">
+            <div class="form-group acc1">
+              <label for="">¿Acciones?</label><br>
+              <label class="radio-inline">
+              <%= f.radio_button :accion, 'Si', class: 'rb cksi' %>Si
+              </label>
+              <label class="radio-inline">
+              <%= f.radio_button :accion, 'No', class: 'rb ckno' %>No
+            </div>
+            <div class="form-group just">
+              <div class="alert alert-warning" role="alert">
+                  Justifica por que este hallazgo no necesito Acciones
+              </div>
+              <%= f.label "Justificacion" %>
+              <%= f.text_area :justificacion ,  class: "form-control area" %>
+            </div>
+            </div>-->
       </div>
-     
-    
       <hr>
-      
-     
       <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>
-
       <div class="actions text-center " style="    padding: 10px 29px;">
          <%= f.submit "Guardar" , class: 'btn btn-primary btn-lg btnpad', style: "padding: 10px 29px;" %>
       </div>
       <br>
-     </div>     </div></div></div></div>
-      <% end %>
-
+   </div>
+</div>
+</div></div></div>
+<% end %>
 <%= render 'form_hallazgo', report: @report%>
-
-      <script>
-
-if ("<%=action_name%>" == "edit" && <%= @report.archivo.blank?  %> != true)
-{
-$('.levidencia').html(" <%=@report.archivo.file.filename if @report.archivo.file %> ")
-
-}
-
-
-
-'use strict';
-
-;( function ( document, window, index )
-{
-  var inputs = document.querySelectorAll( '.inputfile' );
-  Array.prototype.forEach.call( inputs, function( input )
-  {
-    var label  = input.nextElementSibling,
-      labelVal = label.innerHTML;
-
-    input.addEventListener( 'change', function( e )
-    {
-      var fileName = '';
-      if( this.files && this.files.length > 1 )
-        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-      else
-        fileName = e.target.value.split( '\\' ).pop();
-
-      if( fileName )
-        label.querySelector( 'span' ).innerHTML = fileName;
-      else
-        label.innerHTML = labelVal;
-    });
-
-    // Firefox bug fix
-    input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-    input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
-  });
-}( document, window, 0 ));
-
+<script>
+   if ("<%=action_name%>" == "edit" && <%= @report.archivo.blank?  %> != true)
+   {
+   $('.levidencia').html(" <%=@report.archivo.file.filename if @report.archivo.file %> ")
    
+   }
+   
+   
+   
+   'use strict';
+   
+   ;( function ( document, window, index )
+   {
+     var inputs = document.querySelectorAll( '.inputfile' );
+     Array.prototype.forEach.call( inputs, function( input )
+     {
+       var label  = input.nextElementSibling,
+         labelVal = label.innerHTML;
+   
+       input.addEventListener( 'change', function( e )
+       {
+         var fileName = '';
+         if( this.files && this.files.length > 1 )
+           fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+         else
+           fileName = e.target.value.split( '\\' ).pop();
+   
+         if( fileName )
+           label.querySelector( 'span' ).innerHTML = fileName;
+         else
+           label.innerHTML = labelVal;
+       });
+   
+       // Firefox bug fix
+       input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
+       input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+     });
+   }( document, window, 0 ));
+   
+      
 </script>
-
-
-
 <style>
-.inputfile {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.inputfile + label {
-       font-size: 1em;
-    border: 1px solid #d0d0d0;
-    border-radius: 5px;
-    font-weight: 100!important;
-    color: white;
-    background-color: #f9f9f9;
-    padding: 4px 20px;
-    display: inline-block;
-    border-bottom: 2px solid gray;
-    margin-left: 10px;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-    
-}
-
-.inputfile + label {
-  cursor: pointer; /* "hand" cursor */
-}
-
-.inputfile:focus + label {
-  outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
-}
-.shi1
+   .inputfile {
+   width: 0.1px;
+   height: 0.1px;
+   opacity: 0;
+   overflow: hidden;
+   position: absolute;
+   z-index: -1;
+   }
+   .inputfile + label {
+   font-size: 1em;
+   border: 1px solid #d0d0d0;
+   border-radius: 5px;
+   font-weight: 100!important;
+   color: white;
+   background-color: #f9f9f9;
+   padding: 4px 20px;
+   display: inline-block;
+   border-bottom: 2px solid gray;
+   margin-left: 10px;
+   }
+   .inputfile:focus + label,
+   .inputfile + label:hover {
+   }
+   .inputfile + label {
+   cursor: pointer; /* "hand" cursor */
+   }
+   .inputfile:focus + label {
+   outline: 1px dotted #000;
+   outline: -webkit-focus-ring-color auto 5px;
+   }
+   .shi1
    {
    width: 150px !important;
    display: inline-block;
@@ -701,294 +591,282 @@ $('.levidencia').html(" <%=@report.archivo.file.filename if @report.archivo.file
    color:gray !important;
    font-size: 10px !important;
    padding: 6px 2px;
-      }
-         .busqueda
-   {
-        display: block;
-    padding: 10px;
-    background: #e8e8e8;
    }
-  
+   .busqueda
+   {
+   display: block;
+   padding: 10px;
+   background: #e8e8e8;
+   }
 </style>
-      
-   </div>
-
-
-
+</div>
 <script>
-$( document ).ready(function() {
-  if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
-{
-
-$('.pri1').attr('disabled', 'disabled'); 
-
-
-$('.reporta').val("<%=@user.id%>");
-console.log("<%=@user.id%>");
-console.log($('.reporta').val());
-var b = $('.source').val();
-
-
-}
-else if ("<%=action_name%>" == "edit")
-{
-  $('.pri1').attr('disabled', 'disabled'); 
-$('.source').attr('disabled', 'disabled'); 
-  $('.mn').addClass("chosen-select5");
-        $('.chosen-select5').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
-         
-          placeholder_text_single: "Seleccione una opción",
-          placeholder_text_multiple: "Seleccione una varias opciones"
-
-        });
-}
-else
-{
-
- var c = "<%=@report.source_id%>";
- get_source(c);
-}
-});
-
-
-
-
-        if ("<%=action_name%>" != "edit")
-{
-
- 
- $('.evi').hide();
-  $('.num').hide();
-  $('.req').hide();
-$('.reporta').val("<%=get_employed1.id%>");
-
-
-}
-else
-{
-  /*$('.fecha').attr('disabled','disabled');
-  $('.fecha').attr('style','background: #dadada !important');*/
-   $('.fsg').attr('disabled','disabled');
-  $('.fsg').attr('style','background: #dadada !important');
+   $( document ).ready(function() {
+     if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
+   {
    
-}
-
-
-$('.check').change(function(){
-
-             if ( $(this).is(':checked') )
-    {
-            $('.fecha').removeAttr('disabled');
-  $('.fecha').attr('style','background: #f9f9f9 !important');
-  $('.fsg').removeAttr('disabled');
-  $('.fsg').attr('style','background: #f9f9f9 !important');
-     
-            
-       }
-       else
-{
-  $('.fecha').attr('disabled','disabled');
-  $('.fecha').attr('style','background: #dadada !important');
-  $('.fsg').attr('disabled','disabled');
-  $('.fsg').attr('style','background: #dadada !important');
+   $('.pri1').attr('disabled', 'disabled'); 
    
-}
-
-
-
-
-});
-
-
-
-
-
-
-
-
- 
-
-function get_source(b)
-{
-  
-
-  $.get("/sourcee/" + b, function(data) {
-        
-         
+   
+   $('.reporta').val("<%=@user.id%>");
+   console.log("<%=@user.id%>");
+   console.log($('.reporta').val());
+   var b = $('.source').val();
+   
+   
+   }
+   else if ("<%=action_name%>" == "edit")
+   {
+     $('.pri1').attr('disabled', 'disabled'); 
+   $('.source').attr('disabled', 'disabled'); 
+     $('.mn').addClass("chosen-select5");
+           $('.chosen-select5').chosen(
+           {
+   
+             allow_single_deselect: true,
+             no_results_text: 'No hay resultados',
             
-
-            if (data.evidencia)
-            {
-              $('.evi').fadeIn();
-              
-            }
-            else
-            {
-              $('.evi').fadeOut();
-              
-            }
-            if (data.requisito)
-            {
-              $('.req').fadeIn();
-              
-            }
-            else
-            {
-              $('.req').fadeOut();
-              
-            }
-            if (data.evidencia)
-            {
-              $('.num').fadeIn();
-              
-            }
-            else
-            {
-              $('.num').fadeOut();
-              
-            }
-
-    });
-}
-
-
-
-
-$(document).on('change', '.source', function() {
-
-  console.log($('.source').val() + "hol");;
-  console.log("dddddddddddd");  
-
-    $('.pri1').attr('disabled', 'enabled'); 
-    $.get("/sourcee/" + $('.source').val(), function(data) {
-
+             placeholder_text_single: "Seleccione una opción",
+             placeholder_text_multiple: "Seleccione una varias opciones"
+   
+           });
+   }
+   else
+   {
+   
+    var c = "<%=@report.source_id%>";
+    get_source(c);
+   }
+   });
+   
+   
+   
+   
+           if ("<%=action_name%>" != "edit")
+   {
+   
+    
+    $('.evi').hide();
+     $('.num').hide();
+     $('.req').hide();
+   $('.reporta').val("<%=get_employed1.id%>");
+   
+   
+   }
+   else
+   {
+     /*$('.fecha').attr('disabled','disabled');
+     $('.fecha').attr('style','background: #dadada !important');*/
+      $('.fsg').attr('disabled','disabled');
+     $('.fsg').attr('style','background: #dadada !important');
       
-
-            if (data.source.evidencia)
-            {
-              $('.evi').fadeIn();
-              
-            }
-            else
-            {
-              $('.evi').fadeOut();
-              
-            }
-            if (data.source.requisito)
-            {
-              $('.req').fadeIn();
-              
-            }
-            else
-            {
-              $('.req').fadeOut();
-              
-            }
-            if (data.source.numerales)
-            {
-              $('.num').fadeIn();
-          
-
-              $('.mn').addClass("chosen-select5");
-        $('.chosen-select5').chosen(
-        {
-
-          allow_single_deselect: true,
-          no_results_text: 'No hay resultados',
+   }
+   
+   
+   $('.check').change(function(){
+   
+                if ( $(this).is(':checked') )
+       {
+               $('.fecha').removeAttr('disabled');
+     $('.fecha').attr('style','background: #f9f9f9 !important');
+     $('.fsg').removeAttr('disabled');
+     $('.fsg').attr('style','background: #f9f9f9 !important');
+        
+               
+          }
+          else
+   {
+     $('.fecha').attr('disabled','disabled');
+     $('.fecha').attr('style','background: #dadada !important');
+     $('.fsg').attr('disabled','disabled');
+     $('.fsg').attr('style','background: #dadada !important');
+      
+   }
+   
+   
+   
+   
+   });
+   
+   
+   
+   
+   
+   
+   
+   
+    
+   
+   function get_source(b)
+   {
+     
+   
+     $.get("/sourcee/" + b, function(data) {
+           
+            
+               
+   
+               if (data.evidencia)
+               {
+                 $('.evi').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.evi').fadeOut();
+                 
+               }
+               if (data.requisito)
+               {
+                 $('.req').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.req').fadeOut();
+                 
+               }
+               if (data.evidencia)
+               {
+                 $('.num').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.num').fadeOut();
+                 
+               }
+   
+       });
+   }
+   
+   
+   
+   
+   $(document).on('change', '.source', function() {
+   
+     console.log($('.source').val() + "hol");;
+     console.log("dddddddddddd");  
+   
+       $('.pri1').attr('disabled', 'enabled'); 
+       $.get("/sourcee/" + $('.source').val(), function(data) {
+   
          
-          placeholder_text_single: "Seleccione una opción",
-          placeholder_text_multiple: "Seleccione una varias opciones"
-
-        });
-              
-            }
-            else
-            {
-              $('.num').fadeOut();
-              
-            }
-        
-
-    });
-
-    
-
-
-
-
-});
-    
-$(document).on('change', '.pri1', function() {
-
-
    
-    $.get("/sourceep/" + $('.pri1').val(), function(data) {
-
-            console.log(data)
-          
-             if (data.evidencia)
-            {
-              $('.evi').fadeIn();
-              
-            }
-            else
-            {
-              $('.evi').fadeOut();
-              
-            }
-            if (data.requisito)
-            {
-              $('.req').fadeIn();
-              
-            }
-            else
-            {
-              $('.req').fadeOut();
-              
-            }
-            if (data.numerales)
-            {
-              $('.num').fadeIn();
-              
-            }
-            else
-            {
-              $('.num').fadeOut();
-              
-            }
-        
-
-    });
-});
- 
-$('.bt').click(function(){
-
-
-$('#id_source').val($('.source').val());
-
-
-})
-
+               if (data.source.evidencia)
+               {
+                 $('.evi').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.evi').fadeOut();
+                 
+               }
+               if (data.source.requisito)
+               {
+                 $('.req').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.req').fadeOut();
+                 
+               }
+               if (data.source.numerales)
+               {
+                 $('.num').fadeIn();
+             
+   
+                 $('.mn').addClass("chosen-select5");
+           $('.chosen-select5').chosen(
+           {
+   
+             allow_single_deselect: true,
+             no_results_text: 'No hay resultados',
+            
+             placeholder_text_single: "Seleccione una opción",
+             placeholder_text_multiple: "Seleccione una varias opciones"
+   
+           });
+                 
+               }
+               else
+               {
+                 $('.num').fadeOut();
+                 
+               }
+           
+   
+       });
+   
+       
+   
+   
+   
+   
+   });
+       
+   $(document).on('change', '.pri1', function() {
+   
+   
+      
+       $.get("/sourceep/" + $('.pri1').val(), function(data) {
+   
+               console.log(data)
+             
+                if (data.evidencia)
+               {
+                 $('.evi').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.evi').fadeOut();
+                 
+               }
+               if (data.requisito)
+               {
+                 $('.req').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.req').fadeOut();
+                 
+               }
+               if (data.numerales)
+               {
+                 $('.num').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.num').fadeOut();
+                 
+               }
+           
+   
+       });
+   });
+    
+   $('.bt').click(function(){
+   
+   
+   $('#id_source').val($('.source').val());
+   
+   
+   })
+   
 </script>
-
-
-  <style>
+<style>
    .alert-devise h2
- {
-     font-size: 25px !important;
-     text-align: left !important;
-
- }
+   {
+   font-size: 25px !important;
+   text-align: left !important;
+   }
    .alert-devise li
- {
-
-     text-align: left !important;
-
- }
-   
-    
-  </style>  
+   {
+   text-align: left !important;
+   }
+</style>

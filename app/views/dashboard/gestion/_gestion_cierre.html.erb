@@ -1,4 +1,9 @@
 <%if reportss.count > 0 %>
+
+ <table class="table">
+ 
+ </table>
+
 <% i = 0
    show = false  
    reportss.each do |report|%>
@@ -9,6 +14,7 @@
 </div>
 <%end%>
 <% i = i + 1 
+
    end%>
 <% if show == false%>
 <div class="jumbotron jumbacc spiner_cierre" style="background: #ececec !important;
