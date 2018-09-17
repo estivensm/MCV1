@@ -1,62 +1,72 @@
-<div class="row" style="background: #e3e3e3;padding:2px;margin-bottom:10px;">
-    <table class="table">
-<tr style="background: #595757;color: white;">
-    <th  class="text-left" width="5%" colspan="6" style="font-size:14px !important;"><%=report.source.name%>: <%=report.description%></strong></td>
-   <!-- <th width="30%">Reporte</td>
-
-    <th width="10%">Estado Reporte</td>
-    <th width="15%">Gestion por vencer</td>
-    <th width="10%">Tareas por vencer</td>-->
- </tr>
-    <tr>
-      <td width="5%"><%=report.codigo%></td>
-      <td width="20%" class="text-left"><strong><span style="font-size:16px;color:#0db497"></span> 
+<div class="panel panel-default" style="    border-bottom: 3px solid #aeaeae;
+   border-radius: 0 0 10px 10px;">
+   <div class="panel-heading">
+     <span><strong>Proceso: </strong><%=report.proceso.name%></span>
       <span><strong>Fuente: </strong><%=report.source_parent.name%></span>
-      <span><strong>Tipo: </strong><%=report.source.name%></span></td>
+      <span><strong>Tipo: </strong><%=report.source.name%></span>
+<span style="float: right">
+  
+        <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 
-      <td width="10%"> <%if @report_array[i]["cierre"]%>
-      <div class="alert1 alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
-        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente de Cierre
+<a class="linka ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+  Ver Pendientes
+</a>
+
+<%end%>  |  <%= link_to "Ir al Reporte" ,report_path(report.id), class: "linka", style: ""%></span></div>
+
+   <div class="panel-body">
+        
+<div class="row">
+    <div class="col-md-6">
+           <strong><span style="font-size:16px;color:#0db497"><%=report.codigo%>:</span> <%=report.description%></strong>
+   
+     
+    </div>
+
+    <div class="col-md-6 ">
+      
+       <%if @report_array[i]["cierre"]%>
+      <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
+        <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente cerrar el Reporte
       </div>
-      <%end%></td>
-      <td width="30%">
-                <%if @accion_array[i]["cierre"]%>
+      <%end%>
+      <%if @accion_array[i]["cierre"]%>
       <%
          correciones = report.accions.where(tipo: "Correccion").abiertas.where(employed: @employed.id).alerta1
          acciones = report.accions.where(tipo: "Accion").abiertas.where(employed: @employed.id).alerta1
          actividades = report.accions.where(tipo: "Actividad").abiertas.where(employed: @employed.id).alerta1
          
          %>
-    <div class="alert2 alert alert-info alert" style="margin-bottom:5px !important;display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+    <div class="alert alert-info" style="display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
           Correciones 
-                 <%if correciones.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
+          <%if correciones.proximas.count > 0 %>
+           <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
            <%end%> 
              <%if correciones.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:#c32626;" ></i><span class="badge-red">  <%= correciones.vencidas.count  %></span>
+            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:#c32626;" ></i><span class="badge-red">  <%= correciones.vencidas.count  %></span>
             <%end%>
       </div>
          
   
 
-  <div class="alert2 alert alert-info" style="margin-bottom:5px !important;display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
+  <div class="alert alert-info" style="display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
           Acciones  
           <%if acciones.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
+           <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
            <%end%> 
              <%if acciones.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:#c32626;" ></i><span class="badge-red">  <%= acciones.vencidas.count  %></span>
+            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:#c32626;" ></i><span class="badge-red">  <%= acciones.vencidas.count  %></span>
             <%end%>
       </div>
 
 
-       <div class="alert2 alert alert-info" style="margin-bottom:5px !important;display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Actividades 
+       <div class="alert alert-info" style="display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
+          Actividades  
           <%if actividades.proximas.count > 0 %>
-           <i class="fas fa-exclamation-triangle" style="font-size:13px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
+           <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
            <%end%> 
              <%if actividades.vencidas.count > 0 %>
-            <i class="fas fa-exclamation-triangle" style="font-size:13px;color:#c32626;" ></i><span class="badge-red">  <%= actividades.vencidas.count  %></span>
+            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:#c32626;" ></i><span class="badge-red">  <%= actividades.vencidas.count  %></span>
             <%end%>
       </div>
       
@@ -67,15 +77,12 @@
 
 
       <%end%>
-
-
-      </td>
-      <td width="10%">    <%if @task_array[i]["cierre"]%>
-      <div class="alert1 alert alert-info" style="display: inline-block"> 
+      <%if @task_array[i]["cierre"]%>
+      <div class="alert alert-info" style="display: inline-block"> 
          <% t_vencidas = report.tasks.abiertas.vencidas.where(employed: @employed.id).count
             t_proximas = report.tasks.abiertas.proximas.where(employed: @employed.id).count    
          %>
-         Tareas 
+         Tareas  
 
          <%if t_proximas > 0 %>
          <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> 
@@ -86,21 +93,18 @@
           <span class="badge-red"><%=  t_vencidas %></span>
          <%end%>
       </div>
-      <%end%></td>
+      <%end%>
+    </div>
+
+   </div>
+
+    
 
 
-    </tr>
 
-    <tr>
-      
-  <td colspan="6" rowspan="" headers="" style="padding: 5px;">
-    <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 
-<a class="linka ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
-  Ver Pendientes
-</a>
-
-<%end%>
+    
+ 
 
 <div class="collapse" id="collapseExample<%=report.id%>" style="margin-top:30px;">
   <div class="well">
@@ -196,36 +200,29 @@
     <%end%>
    <%end%>
 </div>
-  </td>
-    </tr>
-</table>
-
+  </div>
 </div>
 
 
 
 
 
-
-
-
-
-
+</div>
+</div>
 
 <style>
 .ver-pendientes
 {
-    float: left;
-    font-size: 14px
-  
-  
+
+    border-radius: 7px 0px;
+
 }
 .badge-red
 {
     
     color: #c32626 !important;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     position: relative;
     top: 2px;
 }
@@ -235,27 +232,24 @@
  margin: 0px 5px 0px 0px;
     color: orange !important;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     position: relative;
     top: 2px;
 }
+   .alert {
+    padding: 5px;
+    
+} 
+.alert-warning {
+    background-color: #ffffff;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
 
-.alert1 {
-    padding: 4px;
-    width: 100%;
-}
-.alert2 {
-    padding: 4px;
-    width: 30%;
-}
-hr {
-    margin-top: 0px;
-    margin-bottom: 5px;
-    }    
-.table
-{
-  background: white;
-  margin-bottom: 0px !important;
+.alert-info {
+    background-color: #ffffff;
+    border-color: #bce8f1;
+    color: #31708f;
 }
 </style>
 
