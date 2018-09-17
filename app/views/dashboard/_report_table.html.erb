@@ -3,7 +3,7 @@
 <tr>
     <th width="5%">Codigo</td>
     <th width="30%">Reporte</td>
-    <th width="10%">Responsable</td>
+
     <th width="10%">Estado Reporte</td>
     <th width="15%">Gestion por vencer</td>
     <th width="10%">Tareas por vencer</td>
@@ -14,7 +14,7 @@
       <span><strong>Proceso: </strong><%=report.proceso.name%></span>
       <span><strong>Fuente: </strong><%=report.source_parent.name%></span>
       <span><strong>Tipo: </strong><%=report.source.name%></span></td>
-      <td width="10%"><%=report.proceso.name%><br><%=report.source_parent.name%><br><%=report.source.name%></td>
+
       <td width="10%"> <%if @report_array[i]["cierre"]%>
       <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente de Cierre
