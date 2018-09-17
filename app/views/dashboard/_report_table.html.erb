@@ -41,7 +41,7 @@
          
          %>
     <div class="alert alert-info" style="display: <%= correciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Correciones 
+          Correciones pendientes de cierre
           <%if correciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= correciones.proximas.count  %></span>
            <%end%> 
@@ -53,7 +53,7 @@
   
 
   <div class="alert alert-info" style="display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Acciones 
+          Acciones pendientes de cierre
           <%if acciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
            <%end%> 
@@ -64,7 +64,7 @@
 
 
        <div class="alert alert-info" style="display: <%= actividades.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Actividades  
+          Actividades pendientes de cierre
           <%if actividades.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= actividades.proximas.count  %></span>
            <%end%> 
