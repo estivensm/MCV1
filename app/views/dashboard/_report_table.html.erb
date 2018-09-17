@@ -1,31 +1,34 @@
 <div class="panel panel-default" style="    border-bottom: 3px solid #aeaeae;
    border-radius: 0 0 10px 10px;">
    <div class="panel-heading">
-     <span><strong>Proceso: </strong><%=report.proceso.name%></span>
+  <div class="row">
+    <div class="col-md-9">
+           <strong><span style="font-size:16px;color:#0db497"><%=report.codigo%>:</span> <%=report.description%></strong><br>
+      <span><strong>Proceso: </strong><%=report.proceso.name%></span>
       <span><strong>Fuente: </strong><%=report.source_parent.name%></span>
       <span><strong>Tipo: </strong><%=report.source.name%></span>
-<span style="float: right">
-  
-        <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
+        
+    </div>
+
+    <div class="col-md-3 text-right">
+     <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 
 <a class="linka ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
 </a>
 
-<%end%>  |  <%= link_to "Ir al Reporte" ,report_path(report.id), class: "linka", style: ""%></span></div>
+<%end%> | 
+      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "linka", style: ""%>
 
-   <div class="panel-body">
-        
-<div class="row">
-    <div class="col-md-6">
-           <strong><span style="font-size:16px;color:#0db497"><%=report.codigo%>:</span> <%=report.description%></strong>
-   
-     
     </div>
 
-    <div class="col-md-6 ">
-      
-       <%if @report_array[i]["cierre"]%>
+   </div>
+
+    
+   </div>
+
+   <div class="panel-body">
+      <%if @report_array[i]["cierre"]%>
       <div class="alert alert-<%=estado_contador_alert(report.contador_seg)%>" style="display:inline-block">
         <i class="fas fa-exclamation-triangle" style="font-size:16px;color:<%=estado_contador(report.contador_seg)%>" ></i> Pendiente cerrar el Reporte
       </div>
@@ -50,7 +53,7 @@
   
 
   <div class="alert alert-info" style="display: <%= acciones.alerta1.count > 0 ? "inline-block" : "none"%>">  
-          Acciones  
+          Acciones 
           <%if acciones.proximas.count > 0 %>
            <i class="fas fa-exclamation-triangle" style="font-size:14px;color:orange;" ></i> <span class="badge-orange"> <%= acciones.proximas.count  %></span>
            <%end%> 
@@ -82,7 +85,7 @@
          <% t_vencidas = report.tasks.abiertas.vencidas.where(employed: @employed.id).count
             t_proximas = report.tasks.abiertas.proximas.where(employed: @employed.id).count    
          %>
-         Tareas  
+         Tareas  pendientes de cierre 
 
          <%if t_proximas > 0 %>
          <i class="fas fa-exclamation-triangle" style="font-size:16px;color:orange;" ></i> 
@@ -94,17 +97,7 @@
          <%end%>
       </div>
       <%end%>
-    </div>
 
-   </div>
-
-    
-
-
-
-
-    
- 
 
 <div class="collapse" id="collapseExample<%=report.id%>" style="margin-top:30px;">
   <div class="well">
@@ -240,17 +233,6 @@
     padding: 5px;
     
 } 
-.alert-warning {
-    background-color: #ffffff;
-    border-color: #faebcc;
-    color: #8a6d3b;
-}
-
-.alert-info {
-    background-color: #ffffff;
-    border-color: #bce8f1;
-    color: #31708f;
-}
 </style>
 
 
