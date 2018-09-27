@@ -3,6 +3,14 @@
     EL RIESGO NO TIENE PLAN DE ACCION ¿ QUIERES CREARLO?<br><br> <%= link_to "Genera Reporte", new_report_path + "?idr=#{@riesgo.id}", class: "btn btn-primary" %> 
 </div>
 <%end%>
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><%= link_to "Riesgos", riesgos_path %></li>
+  </ul>
+</div>
+<br><br>
+
 <div class="row encabezado"">
    <div class="row">
       <div class="col-md-12" style="background: white;    border: 10px solid #e8e8e8;">

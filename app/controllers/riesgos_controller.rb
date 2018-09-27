@@ -6,6 +6,7 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   # GET /riesgos.json
   def index
     @riesgos = Riesgo.all
+    @riesgos1 = @riesgos.paginate(page: params[:page],:per_page => 20)
   end
 
   # GET /riesgos/1
