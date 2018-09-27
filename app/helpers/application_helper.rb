@@ -494,6 +494,26 @@ def page_entries_info(collection, options = {})
   end
 end
 
+def page_riesgo_info(collection, options = {})
+  entry_name = options[:entry_name] || (collection.empty?? 'Riesgo' :
+      collection.first.class.name.split('::').last.titleize)
+  if collection.total_pages < 2
+    case collection.size
+    when 0; "No hay #{entry_name.pluralize} registrados"
+    else; %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+    end
+  else
+    %{Mostrando %d de %d #{entry_name.pluralize}} % [
+      collection.length ,
+      collection.total_entries
+    ]
+  end
+end
+
+
 
 def get_date(fecha)
    

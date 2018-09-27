@@ -4,44 +4,176 @@
     <li class="active"><a href='#'>Empresa</a></li>
   </ul>
 </div>
-<br><br>
-<div class = "row title-table">
-   <div class = "col-md-10" style="padding-left: 0px;">
-      <p >Empresa</p>
-   </div>
-   
+<br>
+
+<!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+
+<body class="w3-light-grey">
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-row-padding">
+      <div class="w3-third" style="width: 320px;">
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container" style="text-align:center; padding-top: 17px;" >
+            <% if @company.logo? %>
+          
+              <%= image_tag(@company.logo_url(:medium))%>
+
+            <%else%>
+
+              <%= image_tag "https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/247/no-imagen.jpg", style: "width:200px"  %>
+            <% end -%>
+        </div>
+        <br><br>
+        <div class="w3-container">
+          <p><i class="fa fa-user fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i><%= @company.name %></p>
+
+          <p><i class="fas fa-directions fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i><%= @company.address %></p>
+
+          <p><i class="fa fa-address-card fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i> <%= @company.nit %></p>
+
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i> <%= @company.phone %></p>
+          
+          <hr>
+
+            <div class="row" style="text-align: center;">
+
+              <%= link_to 'Editar', edit_company_path(@company), remote: true, class: "btn btn-primary" %>
+
+              <%= link_to "Volver", root_path, class: "btn btn-default" %>
+            </div>
+
+          <br>
+
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal" style="color: #0cb497 !important; margin-right: 0px!important; margin-left: 25px;"></i> <%= @company.name %></h2>
+        <div class="w3-container">
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                 <div class="panel-heading">
+                     <i class="fa fa-user" aria-hidden="true" style=""></i> Usuarios Activos <%=get_users.count%>/10
+                 </div>
+                 <div class="panel-body">
+
+                      <div class="progress">
+                          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100"
+                                  aria-valuemin="0" aria-valuemax="<%=get_users.count%>" style="width:100%">
+                                  100% Usado
+                          </div>
+                      </div>
+                 </div>
+              </div>
+                
+              </div>
+              <div class="col-md-6">
+              <div class="panel panel-default">
+                 <div class="panel-heading">
+                     <i class="fa fa-database" aria-hidden="true" style=""></i> Almacenamiento <%=get_size%> de 10 GB
+                 </div>
+                 <div class="panel-body">
+                      <div class="progress">
+                          <div class="progress-bar progress-bar-info " role="progressbar" aria-valuenow="40"
+                                  aria-valuemin="0" aria-valuemax="100" style="width:10%">
+                                  1% Usado
+                          </div>
+                      </div>
+                 </div>
+              </div>
+                
+              </div>
+
+            
+          </div>
+          
+
+          <hr>
+        </div>
+ 
+      </div>
+
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
 </div>
-<hr class = "hr">
-<div class="row show-user company" >
-   <div class="col-md-4">
-      <%= @company.logo? ? image_tag(@company.logo_url(:medium)) : ""  %>
-      <div class="col-md-10 col-md-offset-1">
-         <h2><%= @company.name %></h2>
-         <p><strong>Telefono:</strong> <%= @company.phone %></p>
-         <p><strong>Direccion:</strong> <%= @company.address %></p>
-         <p><strong>Nit:</strong> <%= @company.nit %></p>
-         <p><%= link_to 'Editar', edit_company_path(@company), remote: true, class: "btn btn-primary btn-lg" %></p>
-      </div>
-   </div>
-   <div class="col-md-8">
-   
-      
-      
-      <div class="col-md-10 cuadro1">
-        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6OlxPUgBPAUgtf9szCHOhaN_A2moHDszXs1ChXxTaoxPGqGK6jg" alt=""> Almacenamiento <span><%=get_size%> de 20 GB</span></p>
 
-      </div>
-      <div class="col-md-10 cuadro1">
-        <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeZ0XmsB1Quoj6F9llD0yjOrPQPl_SdlGOuk6gusx6FmWs27X1Xg" alt=""> Usuarios Activos <span><%=get_users.count%> de 10 </span></p>
 
-      </div>
-     
+<!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 
-      
-     
-   </div>
-</div>
 <style>
+.w3-display-container{
+    border-top: 3px solid #dbdbdb;
+}
+.w3-margin-bottom {
+  border-top: 3px solid #dbdbdb;
+}
+
+.progress-bar-info{
+  background: #0cb497 !important;
+}
+.text-muted
+{
+  font-weight: bold;
+  color: #5bc0de !important;
+}
+.btn
+{
+  margin-right: 10px;
+}
+.info
+{
+  color: #5bc0de !important;
+
+}
+.activity-mini
+{
+  font-size: 30px;
+}
+.activity-mini span
+{
+  font-size: 50px;
+}
+.badge {
+
+    padding: 7px 11px;
+   
+    background-color: #46b8da;
+
+}
+
+@media only screen and (max-width: 600px) {
+  
+    .w3-third{
+      width: 378px !important;
+    }
+
+    .w3-twothird{
+      width: 378px !important;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+} 
+
+
+@media only screen and (max-width: 1000px) {
+
+}
    .cuadro
    {
    color: white;
@@ -75,9 +207,7 @@
    }
     .fas
    {
-   color:white;
-   font-size: 30px;
-   padding: 15px 0px 0px 0px;
+
    }
    .pc
    {
