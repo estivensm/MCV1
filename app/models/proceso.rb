@@ -16,6 +16,7 @@ class Proceso < ApplicationRecord
 	belongs_to :user
 	has_many :cargos
 	has_many :reports
+	has_many :riesgos
 
 	def self.search(search, search1)
            search!= "" ? (scope :namesc, -> { where("name like '%#{search.downcase}%' or name like '%#{search.upcase}%'  or name like '%#{search.capitalize}%' ") }) : (scope :namesc, -> { where.not(id: nil) }) 

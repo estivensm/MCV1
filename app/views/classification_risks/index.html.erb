@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Classification Risks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Context</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @classification_risks.each do |classification_risk| %>
+      <tr>
+        <td><%= classification_risk.user_id %></td>
+        <td><%= classification_risk.admin_user %></td>
+        <td><%= classification_risk.name %></td>
+        <td><%= classification_risk.description %></td>
+        <td><%= classification_risk.context %></td>
+        <td><%= link_to 'Show', classification_risk %></td>
+        <td><%= link_to 'Edit', edit_classification_risk_path(classification_risk) %></td>
+        <td><%= link_to 'Destroy', classification_risk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Classification Risk', new_classification_risk_path %>

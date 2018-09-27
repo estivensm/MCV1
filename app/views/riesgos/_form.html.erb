@@ -1,55 +1,246 @@
 
-
-
-<div id="contact-modal" class="modal fade">
-<div class="modal-dialog">
-   <div class="modal-content modal-graph col-lg-12 col-xs-8 col-md-12">
-      <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-         <h4 class="modal-title"><%= action_type %> Riesgo</h4>
-      </div>
-      <%= form_for([@report,@riesgo], remote: true) do |f| %>
+<hr>
+ <%= form_for(@riesgo ) do |f| %>
       <div class="alert alert-danger" style="display:none">
          <ul>
          </ul>
       </div>
-      <div class="modal-body">
-       
-             
-               
-               <div class="form-group">
-<%val1 = "" 
- action_name == "edit" ? val1 = @riesgo.clasificacion : val1 = "" %>
-    <%= f.label "Clasificacion" %>
-     <%= f.select 'clasificacion', options_for_select(["Ambiental", "Cliente", "Cumpliminto","Desastre","Estrategico", "Financiero","Humano", "Legal","Operacional", "Tecnologico"], val1), {},{:class => 'form-control'}%>
-  </div> 
+         
+         <div class="row">
+                  <div class="col-md-6">
+                       <div class="form-group">
+                           <%= f.label "Proceso" %>
+                           <%= f.select :proceso_id,    get_procesos.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
+                        </div>
+                  </div>
+                   <div class="col-md-6 funkyradio">
+                     
+                       <div class="col-md-12">
+                           <p><strong>Tratamiento</strong></p>
+                       </div>
+                       <div class="col-md-6 funkyradio-success">
+                       <%= f.radio_button :context, "Interno", class:"scorrecion check" , id:"radio-interno", checked: "checked" %>
+                          <%= f.label "Interno" ,for: "radio-interno" %>
+                          
+                       </div>
+                      <div class="col-md-6 funkyradio-success">
+                              <%= f.radio_button :context, "Externo" ,class: "scausa check" ,id: "radio-externo"%>
+                              <%= f.label "Externo", class: "lb1" ,for: "radio-externo"%>
 
-         <div class="form-group">
-<%val2 = "" 
- action_name == "edit" ? val2 = @riesgo.nivel : val2 = "" %>
-    <%= f.label "Nivel" %>
-     <%= f.select 'nivel', options_for_select(["Alto", "Medio", "Bajo"], val2), {},{:class => 'form-control'}%>
-  </div> 
-
-
-               <div class="form-group">
-                  <%= f.label "Descripcion" %>
-                  <%= f.text_area :descripcion,  class: "form-control area" %>
+                      </div>
+   
+                        
+                    </div>     
+         </div>  
+         <hr>   
+            <div class="row">
+               <div class="col-md-6">
+                       <div class="form-group">
+                           <%= f.label "Descripcion" %>
+                           <%= f.text_area :descripcion,  class: "form-control area" %>
+                       </div>
                </div>
-                
+               <div class="col-md-6">
+                     
+                     
+                         <div class="form-group">
+                          
+                           <%= f.label "Clasificacion" %>
+                           <%= f.select :classification_risk_id,    get_classification_risk.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
+                        </div>
+               </div>
             
-          
+         </div>
+
+          <div class="row funkyradio">
+
+               <div class="col-md-12 ">
+                       <p><strong>Tratamiento</strong></p>
+                  
+                       <div class="row tratamiento">
+                           <div class="col-md-6">
+                                  <div class="funkyradio-success">
+                                     <%= f.radio_button :treatment, "Eludir" , id: "radio1", class: "radio-nd" , checked: "checked" %>
+                                     <%= f.label "Eludir", class: "lb1" , for: "radio1" %> 
+                                  </div> 
+                                <span>No proseguir con la actividad riesgosa (!No siempre es posible !)</span>
+                           </div>
+                            <div class="col-md-6">
+                             <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "Transferir" ,class: "scausa check" , id: "radio2"%>
+                              <%= f.label "Transferir", class: "lb1" , for: "radio2"%>
+                              </div> <span>( Tomar medidas tendientes a reducir la probabilidad de ocurrencia y/o impacto, (No siempre implica costos financieros adicionales, incluso puede ahorrar dinero)</span>
+                           </div>
+                     </div>
+                     <div class="row tratamiento">
+                            <div class="col-md-6">
+                             <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "Reducir", class:"scorrecion check", id: "radio3" %>
+                               <%= f.label "Reducir" ,for: "radio3"%>
+                              </div>
+                               <span>(Que otra parte soporte parte del riesgo (Pensar en que nuevos riesgos ocasiona este cambio)</span>
+                           </div>
+                            <div class="col-md-6">
+                               <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "Asumir" ,class: "scausa check" , id: "radio4"%>
+                               <%= f.label "Asumir", class: "lb1", for: "radio4" %>
+                               </div><span>(Aceptar el riesgo inherente (!Pero conociéndolo!)</span>
+                           </div>
+                          
+                       </div>
+                             
+                              
+                               
+                             
+                             
+   
+                </div>
+
+
+          </div>
         
-          <%= f.hidden_field :report_id , :value => @report.id %>
-          <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
-         <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+
+
+       
+        
+        
          <br>
          <hr>
          <div class="form-group text-center">
             <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
          </div>
-         <% end %>
-      </div>
-   </div>
-</div>
+ <% end %>
+
+
+
+ <style>
+
+ .tratamiento
+ {
+    
+    margin-bottom: 10px;
+ }
+ .tratamiento label
+ {
+  color: #0db497 !important;
+ }
+ </style>
+
+
+
+
+ <style type="text/css" media="screen">
+
+
+
+.funkyradio div {
+
+  overflow: hidden;
+}
+
+.funkyradio label {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  margin-top: 5px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  color: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio-primary input[type="radio"]:checked ~ label:before,
+.funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #337ab7;
+}
+
+.funkyradio-success input[type="radio"]:checked ~ label:before,
+.funkyradio-success input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5cb85c;
+}
+
+.funkyradio-danger input[type="radio"]:checked ~ label:before,
+.funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #d9534f;
+}
+
+.funkyradio-warning input[type="radio"]:checked ~ label:before,
+.funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #f0ad4e;
+}
+
+.funkyradio-info input[type="radio"]:checked ~ label:before,
+.funkyradio-info input[type="checkbox"]:checked ~ label:before {
+  color: #fff;
+  background-color: #5bc0de;
+}
+
+</style>

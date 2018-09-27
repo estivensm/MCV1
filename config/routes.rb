@@ -3,9 +3,18 @@ Rails.application.routes.draw do
 
   
 
+
+  resources :classification_risks
   resources :cliente_proveedor_types
   resources :page_documents
   resources :source_parents
+  
+  resources :riesgos  do
+
+        resources :valoration_risks    
+  
+  end
+
 resources :reports do 
     get :get_reportsc, on: :collection
     get :get_invitadoc, on: :collection
@@ -14,7 +23,7 @@ resources :reports do
     get :get_reportodos, on: :collection
     get :get_acciontodosi, on: :collection 
     get :get_tasktodos, on: :collection 
-    resources :riesgos
+  
 
     resources :accions do 
         resources :aseguimientos

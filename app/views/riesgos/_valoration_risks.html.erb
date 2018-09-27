@@ -1,0 +1,319 @@
+<br>
+
+<div class="row">
+   <div class="col-md-9">
+      <div class="col-md-12 indicador">
+         <p style="margin-left:0px;">Controles</p>
+      </div>
+      <div class="col-md-12">
+          <p style="margin-left:10px;"><%= valoration_risk.controls != true ? " El riesgo no tiene controles" : valoration_risk.controls_description%>  </p>
+         <hr>
+      </div>
+      <div class="col-md-12 indicador">
+         <p>Indicador de Probabilidad: Probabilidad de <%=riesgo.descripcion%></p>
+         <hr>
+      </div>
+      <div class="col-md-4  text-center">
+         <div class="panel panel-default">
+            <div class="panel panel-heading">
+               Nivel de Deficiencia <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal">?</button>
+            </div>
+            <div class="panel-body">
+               <span class="badge" id="np" style="font-size: 35px">
+               <%=valoration_risk.nd_value%>
+               </span>
+               <hr>
+               <%=get_deficiencia(valoration_risk.nd_value)[1]%><br>
+               <span style="font-size:11px"><%=get_deficiencia(valoration_risk.nd_value)[0]%></span>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4  text-center">
+         <div class="panel panel-default">
+            <div class="panel panel-heading">
+               Nivel de Exposición <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal1">?</button>
+            </div>
+            <div class="panel-body">
+               <span class="badge" id="np" style="font-size: 35px">
+               <%=valoration_risk.ne_value%>
+               </span>
+               <hr>
+               <%=get_exposicion(valoration_risk.ne_value)[1]%><br>
+               <span style="font-size:11px"><%=get_exposicion(valoration_risk.ne_value)[0]%></span>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4 text-center">
+         <div class="panel panel-default">
+            <div class="panel panel-heading">
+               Nivel de Probabilidad <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal3">?</button>
+            </div>
+            <div class="panel-body">
+               <span class="badge" id="np" style="font-size: 35px">
+               <%=valoration_risk.np_value%>
+               </span>
+               <hr>
+               <%=get_probabilidad(valoration_risk.np_value)[1]%><br>
+               <span style="font-size:11px"><%=get_probabilidad(valoration_risk.np_value)[0]%></span>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-12 indicador">
+         <p>Indicador de Consecuencia: Consecuencia de  <%=riesgo.descripcion%></p>
+         <hr>
+      </div>
+      <div class="col-md-4  text-center">
+      </div>
+      <div class="col-md-4  text-center">
+         <div class="panel panel-default">
+            <div class="panel panel-heading">
+               Nivel de Consecuencia <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal2">?</button>
+            </div>
+            <div class="panel-body">
+               <span class="badge" id="np" style="font-size: 35px">
+               <%=valoration_risk.nc_value%>
+               </span>
+               <hr>
+               <%=get_concecuencia(valoration_risk.nc_value)[1]%><br>
+               <span style="font-size:11px"><%=get_concecuencia(valoration_risk.nc_value)[0]%></span>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4 text-center">  
+
+      </div>
+   </div>
+   <div class="col-md-3" >
+    <div class="col-md-12">
+          <%=link_to  edit_riesgo_valoration_risk_path(riesgo.id, valoration_risk.id) , data: { turbolinks: false } , class: "btn btn-primary" do %>
+                  <i class="fas fa-edit" aria-hidden="true"></i>
+          <%end%>
+       <%=link_to riesgo_valoration_risk_path(riesgo.id, valoration_risk.id) ,method: :delete, data: { confirm: false }, class: "btn btn-primary" do%>
+               <i class="fas fa-trash" aria-hidden="true"></i>
+       <%end%>
+    </div>
+      <div class="col-md-12  text-center" style="margin-top: 143%;">
+         <div class="panel panel-default">
+            <div class="panel panel-heading" style="font-size: 22px;font-weight: bold;">
+               Nivel de Riesgo <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal4">?</button>
+            </div>
+            <div class="panel-body">
+               <span class="badge" id="np" style="font-size: 40px">
+               <%=valoration_risk.nr_value%>
+               </span>
+               <hr>
+               <span class="badge" style="font-size:28px;background:<%=get_riesgo(valoration_risk.nr_value)[2]%>"> <%=get_riesgo(valoration_risk.nr_value)[1]%></span><br>
+               <span style="font-size:11px"><%=get_riesgo(valoration_risk.nr_value)[0]%></span>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-12">
+         <hr>
+      </div>
+      </div>
+
+      <div class="col-md-8 indicador">
+      <p>Mapa de Riesgo</p>
+      <hr>
+     
+      <table class="mapa">
+         <tr>
+            <th rowspan="2" colspan="2" style="text-align: center">Nivel de riesgo <br>
+               NR = NP x NC
+            </th>
+            <th colspan="4">Nivel de probabilidad (NP)</th>
+         </tr>
+         <tr>
+            <td style="text-align: center">40-24</td>
+            <td style="text-align: center">20-10</td>
+            <td style="text-align: center">8-6</td>
+            <td style="text-align: center">4-2</td>
+         </tr>
+         <tr>
+            <th rowspan="4" style="text-align: center" >Nivel de <br>
+               consecuencias <br>
+               (NC)
+            </th>
+            <th style="text-align: center">100</th>
+            <th id="c1" style="background:#ff4b4b;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 100 && (valoration_risk.np_value <= 40 && valoration_risk.np_value >= 24)   %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I </span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">4000 - 2400</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c2" style="background:#ff4b4b;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 100 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I </span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">2000 - 1200</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c3" style="background:#ff4b4b;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 100 && (valoration_risk.np_value <= 8 && valoration_risk.np_value >= 6)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I </span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">800 - 600</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c4" style="background:yellow;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 100 && (valoration_risk.np_value <= 4 && valoration_risk.np_value >= 1)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">II </span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">400 - 200</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+         </tr>
+         <tr>
+            <th style="text-align: center">60</th>
+            <th id="c5" style="background:#ff4b4b;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 60 && (valoration_risk.np_value <= 40 && valoration_risk.np_value >= 24)   %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">2400 - 1440</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c6" style="background:#ff4b4b;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 60 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)   %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">1200 - 600</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c7" style="background:yellow">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 60 && (valoration_risk.np_value <= 8 && valoration_risk.np_value >= 6)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">II</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">480 - 360</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c8" style="background:yellow">
+              <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 60 && (valoration_risk.np_value <= 4 && valoration_risk.np_value >= 1)  %></span>
+               <span style="position: absolute;margin-left:5px">II 200</span>
+               <span style="position: absolute;margin-top: 25px;margin-left: 76px;">III 120</span>
+               <canvas id="canvas8<%=valoration_risk.id%>" width="120" height="45"></canvas>
+            </th>
+         </tr>
+         <tr>
+            <th style="text-align: center">25</th>
+            <th id="c9" style="background:#ff4b4b;">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 25 && (valoration_risk.np_value <= 40 && valoration_risk.np_value >= 24) %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">1000 - 600</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c10" style="background:yellow">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 25 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)   %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">II</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">500 - 250</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c11" style="background:yellow">
+              <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 25 && (valoration_risk.np_value <= 8 && valoration_risk.np_value >= 6)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">II</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">200 - 150</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c12" style="background:rgb(92, 184, 92)">
+              <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 25 && (valoration_risk.np_value <= 4 && valoration_risk.np_value >= 1)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">III</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">100 - 50</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+         </tr>
+         <tr>
+            <th style="text-align: center">10
+            </th>
+            <th id=c13 style="background:yellow">
+              <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 10 && (valoration_risk.np_value <= 40 && valoration_risk.np_value >= 24) %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">II</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">400 - 240</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c14" style="background:yellow">
+               <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 10 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)   %></span>
+               <span style="position: absolute;margin-left:5px">II 200</span>
+               <span style="position: absolute;margin-top: 25px;margin-left: 76px;">III 100</span>
+               <canvas id="canvas14<%=valoration_risk.id%>" width="120" height="45"></canvas>
+            </th>
+            <th id="c15" style="background:rgb(92, 184, 92)">
+                <span style="position:absolute;width: 30px;margin-left: 45px;">
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 10 && (valoration_risk.np_value <= 8 && valoration_risk.np_value >= 6)  %>
+               </span>
+               <span style="position:absolute;margin-top: 10px;margin-left: 5px;">III</span>
+               <span style="position:absolute;margin-top: 25px; margin-left: 3px;">80 - 60</span>
+               <canvas  width="120" height="45"></canvas>
+            </th>
+            <th id="c16" style="background:rgb(92, 184, 92)">
+            <span style="position:absolute;width: 30px;margin-left: 45px;">
+              <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 10 && (valoration_risk.np_value <= 4 && valoration_risk.np_value >= 1)  %></span>
+               <span style="position: absolute;margin-left:5px">III 40</span>
+               <span style="position: absolute;margin-top: 25px;margin-left: 76px;">IV 20</span>
+               <canvas id="canvas16<%=valoration_risk.id%>" width="120" height="45"></canvas>
+            </th>
+            </th>
+         </tr>
+      </table>
+   </div>
+   <div class="col-md-4 indicador">
+      <p>Analisis</p>
+      <hr>
+      <span><%=valoration_risk.analysis%></span>
+   </div>
+</div>
+<script>
+   var canvas14<%=valoration_risk.id%> = document.getElementById('canvas14<%=valoration_risk.id%>');
+   var ctx14<%=valoration_risk.id%> = canvas14<%=valoration_risk.id%>.getContext('2d');
+   ctx14<%=valoration_risk.id%>.beginPath();
+   ctx14<%=valoration_risk.id%>.moveTo(120,45);
+
+   ctx14<%=valoration_risk.id%>.lineTo(0,45);
+   ctx14<%=valoration_risk.id%>.lineTo(120,0);
+        
+   
+   ctx14<%=valoration_risk.id%>.fillStyle = "rgb(92, 184, 92)";
+   ctx14<%=valoration_risk.id%>.fill();
+   
+   
+   var canvas8<%=valoration_risk.id%>= document.getElementById('canvas8<%=valoration_risk.id%>');
+   var ctx8<%=valoration_risk.id%> = canvas8<%=valoration_risk.id%>.getContext('2d');
+   ctx8<%=valoration_risk.id%>.beginPath();
+   ctx8<%=valoration_risk.id%>.moveTo(120,45);
+   ctx8<%=valoration_risk.id%>.lineTo(120,45);
+   ctx8<%=valoration_risk.id%>.lineTo(0,45);
+   ctx8<%=valoration_risk.id%>.lineTo(120,0);
+        
+   
+   ctx8<%=valoration_risk.id%>.fillStyle = "rgb(92, 184, 92)";
+   ctx8<%=valoration_risk.id%>.fill();
+   
+   
+   var canvas16<%=valoration_risk.id%> = document.getElementById('canvas16<%=valoration_risk.id%>');
+   var ctx16<%=valoration_risk.id%> = canvas16<%=valoration_risk.id%>.getContext('2d');
+   ctx16<%=valoration_risk.id%>.beginPath();
+   ctx16<%=valoration_risk.id%>.moveTo(120,0);
+   ctx16<%=valoration_risk.id%>.lineTo(0,45);
+   ctx16<%=valoration_risk.id%>.stroke();
+   
+   
+   
+</script>

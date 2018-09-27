@@ -1,0 +1,656 @@
+<div class="row encabezado"">
+   <div class="row">
+      <div class="col-md-12" style="background: white;    border: 10px solid #e8e8e8;">
+         <div class="row">
+            <div class="col-md-12 text-center" style="padding:5px;font-weight: bold;font-size:16px;color: #0db497;">
+               RIESGO
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-12 text-center" style="font-size:15px;">
+               <%= @riesgo.descripcion %>
+            </div>
+         </div>
+         <hr style="margin-top: 5px;border-top: 1px solid #d5d5d5;">
+         <div class="row">
+            <div class="col-md-3 text-center">
+               <strong>Fecha de Creacion</strong><br><%= get_date(@riesgo.created_at) %>
+            </div>
+            <div class="col-md-3 text-center">
+               <strong>Proceso</strong> <br> <%=@riesgo.proceso.name%>
+            </div>
+            <div class="col-md-3 text-center">
+               <strong>Contexto</strong> <br><%=@riesgo.context%> 
+            </div>
+            <div class="col-md-3 text-center">
+               <strong>Clasificacion</strong> <br><%=@riesgo.classification_risk.name%> 
+            </div>
+            <div class="col-md-3 text-center">
+            </div>
+         </div>
+         <hr>
+         <div class="row" style="margin-bottom:20px;">
+            <div class="col-md-12 text-center" style="font-size:15px;">
+               <strong>Tratamiento</strong> <br><strong><%=@riesgo.treatment.upcase%></strong> <%=get_tratamiento(@riesgo.treatment)%>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<h3 style="text-align: center" class="linka">Nueva Valoracion del Riesgo</h3>
+<!--<%= render 'form', valoration_risk: @valoration_risk %>-->
+<br>
+<%= form_for([@riesgo, @valoration_risk], local: true) do |form| %>
+<% if @valoration_risk.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(valoration_risk.errors.count, "error") %> prohibited this valoration_risk from being saved:</h2>
+   <ul>
+      <% @valoration_risk.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+   </ul>
+</div>
+<% end %>
+<div class="row">
+   <div class="col-md-4">
+      <div class="field">
+        <span><strong style="color:gray"> ¿El Riesgo Tiene controles actuales?</strong></span><br><br>
+         <%= form.check_box :controls, class: "", id: "toggle-one"  %>
+      </div>
+   </div>
+   <div class="col-md-8">
+      <div class="field">
+         <%= form.label "Determinar controles" %>
+         <%= form.text_area :controls_description, class: "area form form-control" %>
+      </div>
+   </div>
+   </div>
+<hr>
+<div class="row">
+   <div class="col-md-9">
+      <div class="row">
+         <div class="col-md-12 indicador">
+            <p>Indicador de probabilidad: Probabilidad de <%=@riesgo.descripcion%></p>
+         </div>
+         <div class="col-md-4">
+            <h4>Nivel de Deficiencia <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal">?</button></h4>
+            <div class="funkyradio">
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nd_value, 10 , id: "radio1", class: "radio-nd" ,  checked: "checked" %>
+                  <label for="radio1" >10 - Muy Alto</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nd_value, 6, id: "radio2", class: "radio-nd"%>
+                  <label for="radio2">6 - Alto</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nd_value,2 , id: "radio3" , class: "radio-nd"%>
+                  <label for="radio3">2 - Medio</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nd_value, 1, id: "radio4", class: "radio-nd" %>
+                  <label for="radio4">1 - Bajo</label>
+               </div>
+               <input type="hidden" name="nd_value_h" id="nd" value=10">
+            </div>
+         </div>
+         <div class="col-md-4">
+            <h4>Nivel de Exposicion <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal1">?</button></h4>
+            <div class="funkyradio">
+               <div class="funkyradio-success">
+                  <%= form.radio_button :ne_value, 4 , id: "radio5" , class: "radio-ne"  ,  checked: "checked" %>
+                  <label for="radio5">4 - Continua (EC)</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :ne_value, 3, id: "radio6" , class: "radio-ne" %>
+                  <label for="radio6">3 - Frecuente (EF)</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :ne_value,2 , id: "radio7" , class: "radio-ne" %>
+                  <label for="radio7">2 - Ocacional (EO)</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :ne_value, 1, id: "radio8" , class: "radio-ne"%>
+                  <label for="radio8">1 - Exporádica (EE)</label>
+               </div>
+               <input type="hidden" name="ne_value_h" id = "ne"  value="4">
+            </div>
+         </div>
+         <div class="col-md-4 text-center" >
+            <h4>Nivel de Probabilidad <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal3">?</button></h4>
+             <span class="" id="npn" style="font-size: 14px;margin-top: 10%;">Muy Alto (MA) </span><br>
+            <span class="badge" id="np" style="font-size: 45px;margin-top: 10%;">40</span>
+            <p id ="np_text" style="padding-top: 20px;">Situación deficiente con exposición continua, o muy deficiente con exposición frecuente. Normalmente la materialización del riesgo ocurre con frecuencia. 0</p>
+            <input type="hidden" name="np_value_h" id = "npv"  value="40">
+         </div>
+      </div>
+      <hr>
+      <div class="row">
+         <div class="col-md-12 indicador" >
+            <p >Indicador de Consecuencia: Consecuencia de <%=@riesgo.descripcion%>  </p>
+         </div>
+         <div class="col-md-4">
+            <h4>Nivel de Consecuencia <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal2">?</button></h4>
+            <div class="funkyradio">
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nc_value, 100 , id: "radio9" , class: "radio-nc"%>
+                  <label for="radio9">100 - Mortal o Catastrófico (M)</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nc_value, 60, id: "radio10", class: "radio-nc" %>
+                  <label for="radio10">60 - Muy Grave (MG)</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nc_value, 25 , id: "radio11" , class: "radio-nc"%>
+                  <label for="radio11">25 - Grave (G)</label>
+               </div>
+               <div class="funkyradio-success">
+                  <%= form.radio_button :nc_value, 10, id: "radio12" , class: "radio-nc" ,  checked: "checked" %>
+                  <label for="radio12">10 - Leve (L)</label>
+               </div>
+               <input type="hidden" name="nc_value_h" id = "ncv"  value="10">
+            </div>
+         </div>
+         <div class="col-md-4 text-center" >
+         </div>
+         <div class="col-md-4 text-center" >
+            <h4>Nivel de Consecuencia</h4>
+            <span class="" id="ncn" style="font-size: 14px;margin-top: 10%;">Leve (L)</span><br>
+            <span class="badge" id="nc" style="font-size: 45px;margin-top: 10%;">10</span>
+            <p id ="nc_text" style="padding-top: 20px;">Lesiones o enfermedades que no requieren incapacidad. </p>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-3 text-center" style="margin-top: 15%;">
+      <h4>Nivel del Riesgo <button type="button" class="btn btn-primary btn-min" data-toggle="modal" data-target="#myModal4">?</button></h4>
+      <span class="badge" id="nr" style="font-size: 45px;margin-top: 0%;">400</span>
+      <h4>Estado del Riesgo</h4>
+      <span class="badge" id="nre" style="font-size: 25px;margin-top: 0%; background:#5cb85c">Moderado</span>
+      <p id ="nr_text" style="padding-top: 20px;">Corregir y adoptar medidas de control de inmediato. Sin embargo, suspenda actividades si el nivel de riesgo está por encima o igual de 360. </p>
+   </div>
+</div>
+<hr>
+<div class="row">
+   <div class="col-md-6">
+      <div class="field">
+         <%= form.label "Interpretacion del Nivel de Riesgo" %>
+         <%= form.text_area :analysis, id: :valoration_risk_analysis, class: "form form-control area" %>
+      </div>
+   </div>
+</div>
+<hr>
+<div class="row">
+   <div class="col-md-12 text-center">
+      <div class="actions">
+         <%= form.submit "Guardar" , class: "btn btn-primary btn-lg"%>
+      </div>
+   </div>
+</div>
+<% end %>
+<script>
+   $(document).ready(function(){
+    $(function() {
+      $('#toggle-one').bootstrapToggle({
+           on: 'Si',
+           off: 'No'
+         });
+    });
+   });   
+</script>
+<style>
+   .toggle-on.btn {
+   color: white !important;
+   }
+   .indicador p
+   {
+   font-size: 16px;
+   }
+   .indicador 
+   {
+   /*height: 230px;*/
+   }
+   .ck_disabled
+   {
+    background: #ededed;
+    text-decoration: line-through;
+
+   }
+   .btn-min
+   {
+    font-weight: bold;
+    font-size: 22px;
+    padding: 0px 2px;
+
+   }
+</style>
+<style type="text/css" media="screen">
+   .funkyradio div {
+   clear: both;
+   overflow: hidden;
+   }
+   .funkyradio label {
+   width: 100%;
+   border-radius: 3px;
+   border: 1px solid #D1D3D4;
+   font-weight: normal;
+   }
+   .funkyradio input[type="radio"]:empty,
+   .funkyradio input[type="checkbox"]:empty {
+   display: none;
+   }
+   .funkyradio input[type="radio"]:empty ~ label,
+   .funkyradio input[type="checkbox"]:empty ~ label {
+   position: relative;
+   line-height: 2.5em;
+   text-indent: 3.25em;
+   margin-top: 5px;
+   cursor: pointer;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+   }
+   .funkyradio input[type="radio"]:empty ~ label:before,
+   .funkyradio input[type="checkbox"]:empty ~ label:before {
+   position: absolute;
+   display: block;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   content: '';
+   width: 2.5em;
+   background: #D1D3D4;
+   border-radius: 3px 0 0 3px;
+   }
+   .funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+   .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+   color: #888;
+   }
+   .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+   .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+   content: '\2714';
+   text-indent: .9em;
+   color: #C2C2C2;
+   }
+   .funkyradio input[type="radio"]:checked ~ label,
+   .funkyradio input[type="checkbox"]:checked ~ label {
+   color: #777;
+   }
+   .funkyradio input[type="radio"]:checked ~ label:before,
+   .funkyradio input[type="checkbox"]:checked ~ label:before {
+   content: '\2714';
+   text-indent: .9em;
+   color: #333;
+   background-color: #ccc;
+   }
+   .funkyradio input[type="radio"]:focus ~ label:before,
+   .funkyradio input[type="checkbox"]:focus ~ label:before {
+   box-shadow: 0 0 0 3px #999;
+   }
+   .funkyradio-default input[type="radio"]:checked ~ label:before,
+   .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+   color: #333;
+   background-color: #ccc;
+   }
+   .funkyradio-primary input[type="radio"]:checked ~ label:before,
+   .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #337ab7;
+   }
+   .funkyradio-success input[type="radio"]:checked ~ label:before,
+   .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #5cb85c;
+   }
+   .funkyradio-danger input[type="radio"]:checked ~ label:before,
+   .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #d9534f;
+   }
+   .funkyradio-warning input[type="radio"]:checked ~ label:before,
+   .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #f0ad4e;
+   }
+   .funkyradio-info input[type="radio"]:checked ~ label:before,
+   .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+   color: #fff;
+   background-color: #5bc0de;
+   }
+
+
+</style>
+<script>
+
+//Radio nivel de deficiencia
+   $('.radio-nd').click(function(){
+       
+       var nd =  $(this).val();
+       var ne =  $('#ne').val();
+       $("#nd").val(nd);
+   
+       $("#npv").val(parseInt(nd) * parseInt(ne));
+       $("#np").text(parseInt(nd) * parseInt(ne));
+       var np = parseInt(nd) * parseInt(ne);
+       var nc =  $("#ncv").val();    
+       $("#nr").text(parseInt(np) * parseInt(nc));    
+       var nr = parseInt(np) * parseInt(nc)
+          
+          npText(np);
+          nrText(nr);
+   
+   
+   
+   })
+///////////////
+
+//Radio nivel de exposicion   
+     $('.radio-ne').click(function(){
+       var ne =  $(this).val();
+       var nd =  $('#nd').val();
+   
+       $("#ne").val(ne);
+       $("#np").text(parseInt(nd) * parseInt(ne));
+       $("#npv").val(parseInt(nd) * parseInt(ne));
+       var nc =  $("#ncv").val();
+       var np = parseInt(nd) * parseInt(ne)
+       $("#nr").text(parseInt(np) * parseInt(nc)); 
+       var nr = parseInt(np) * parseInt(nc)
+          
+          npText(np);
+          nrText(nr)
+            
+   
+         })
+/////////////
+
+//Radio nivel de concecuentia
+       $('.radio-nc').click(function(){
+       var nc =  $(this).val();
+       $("#ncv").val(parseInt(nc));
+       $("#nc").text(parseInt(nc));
+       var np =  $("#npv").val();    
+       $("#nr").text(parseInt(np) * parseInt(nc));  
+       var nr = parseInt(np) * parseInt(nc)
+       console.log(nc)
+         
+          nrText(nr);  
+       
+     
+            if  (nc == 100)
+            {
+                 $("#nc_text").text("Muerte (s) ")
+                 $("#ncn").text("Mortal o Catastrófico (M) ");
+             }
+             else if (nc == 60)
+             {
+                 $("#nc_text").text("Lesiones o enfermedades graves irreparables (Incapacidad permanente parcial o invalidez). ")
+                 $("#ncn").text("Muy grave (MG) ");
+              }
+             else if (nc == 25)
+             {
+                 $("#nc_text").text("Lesiones o enfermedades con incapacidad laboral temporal (ILT). ")
+                 $("#ncn").text("Grave (G) ");
+              }
+             else if (nc == 10)
+             {
+                 $("#nc_text").text("Lesiones o enfermedades que no requieren incapacidad. ")
+                 $("#ncn").text("Leve (L)");
+                
+             }
+   })
+/////////
+
+
+
+
+//Seleccion de controles
+$(document).on('turbolinks:load',function() {
+            
+             if ( $('#toggle-one').prop('checked') == false )
+         { 
+           $('#radio2').next().toggleClass('ck_disabled');
+           $('#radio3').next().toggleClass('ck_disabled'); 
+           $('#radio4').next().toggleClass('ck_disabled'); 
+
+           $('#radio2').prop('disabled', true);
+           $('#radio3').prop('disabled', true);
+           $('#radio4').prop('disabled', true);
+           
+                    }
+         else
+         {   
+           $('#radio1').next().toggleClass('ck_disabled');          
+           $('#radio1').prop('disabled', true);
+ 
+  
+         }
+      
+
+
+    }); 
+
+////////////
+$(document).on('turbolinks:load',function() {
+//Seleccion de control cambio
+       $('#toggle-one').change(function(){
+          
+            if ( $(this).prop('checked') == true )
+         { 
+
+
+           $("#nd").val(6);
+           var nd =  6;
+           var ne =  $('#ne').val();
+           $("#np").text(parseInt(nd) * parseInt(ne));
+           var np = parseInt(nd) * parseInt(ne)
+           var nc =  $("#ncv").val();
+           $("#nr").text(parseInt(np) * parseInt(nc));  
+           var nr = parseInt(np) * parseInt(nc)
+           npText(np);
+           nrText(nr); 
+
+
+           $("#npv").val(parseInt(nd) * parseInt(ne));
+           $("#np").text(parseInt(nd) * parseInt(ne));
+
+           
+
+
+           $('#radio1').next().toggleClass('ck_disabled');
+           $('#radio2').next().toggleClass('ck_disabled');
+           $('#radio3').next().toggleClass('ck_disabled'); 
+           $('#radio4').next().toggleClass('ck_disabled');
+           
+
+           $('#radio1').prop('disabled', true);
+           $('#radio2').prop('disabled', false);
+           $('#radio3').prop('disabled', false);
+           $('#radio4').prop('disabled', false);
+           
+           $('#radio2').prop('checked', 'checked');
+         
+
+
+         }
+         else
+         {  
+
+           $("#nd").val(10);
+           var nd =  10;
+           var ne =  $('#ne').val();
+           $("#np").text(parseInt(nd) * parseInt(ne));
+           var np = parseInt(nd) * parseInt(ne)
+           var nc =  $("#ncv").val();
+           $("#nr").text(parseInt(np) * parseInt(nc));  
+           var nr = parseInt(np) * parseInt(nc)
+           npText(np);
+           nrText(nr);  
+
+
+           $('#radio1').prop('checked', 'checked');
+
+
+           $('#radio1').next().toggleClass('ck_disabled');
+           $('#radio2').next().toggleClass('ck_disabled');
+           $('#radio3').next().toggleClass('ck_disabled'); 
+           $('#radio4').next().toggleClass('ck_disabled');
+           
+           $('#radio1').prop('disabled', false);
+           $('#radio2').prop('disabled', true);
+           $('#radio3').prop('disabled', true);
+           $('#radio4').prop('disabled', true);
+         }
+
+   });
+
+   });
+///////////////
+
+// funcion para mostrar el nivel de probabilidad
+
+ function npText(np){
+    
+    if  (np <= 40 && np >= 20)
+            {
+                 $("#np_text").text("Situación deficiente con exposición continua, o muy deficiente con exposición frecuente. Normalmente la materialización del riesgo ocurre con frecuencia. 0")
+                 console.log(1)
+                 $("#npn").text("Muy Alto (MA)");
+             }
+             else if (np <= 20 && np >= 10)
+             {
+                 $("#np_text").text("Situación deficiente con exposición frecuente u ocasional, o bien situación muy deficiente con exposición ocasional o esporádica. La materialización del riesgo es posible que suceda varias veces en la vida laboral")
+                 $("#npn").text("Alto (A) ");
+              }
+             else if ( np <= 8 && np >= 6)
+             {
+                 $("#np_text").text("Situación deficiente con exposición esporádica, o bien situación mejorable con exposición continuada o frecuente. Es posible que suceda el daño alguna vez. ")
+                 $("#npn").text("Medio (M)");
+              }
+             else if (np <= 4 && np >= 2)
+             {
+                 $("#np_text").text("Situación mejorable con exposición ocasional o esporádica, o situación sin anomalía destacable con cualquier nivel de exposición. No es esperable que se materialice el riesgo, aunque puede ser concebible. ")
+                 $("#npn").text("Bajo (B) ");
+                
+             }
+    
+ }
+
+ function nrText(nr){
+    
+    if  (nr <= 4000 && nr >= 600)
+            {
+                 $("#nr_text").text("Situación crítica. Suspender actividades hasta que el riesgo esté bajo control.  Intervención urgente. ")
+                 $("#nre").css({'background' : "red"})
+                 $("#nre").text("Inaceptable")
+             }
+             else if (nr <= 500  && nr >= 150)
+             {
+                 $("#nr_text").text("Corregir y adoptar medidas de control de inmediato. Sin embargo, suspenda actividades si el nivel de riesgo está por encima o igual de 360. ")
+                $("#nre").css({'background' : "#ccc70e"})
+                $("#nre").text("Moderado");
+              }
+             else if ( nr <= 120 && nr >= 40)
+             {
+                $("#nr_text").text("Mejorar si es posible. Sería conveniente justificar la intervención y su rentabilidad.")
+                $("#nre").css({'background' : "#5cb85c"})
+                $("#nre").text("Tolerable");
+              }
+             else if (nr <= 20)
+             {
+                 $("#nr_text").text("Mantener las medidas de control existentes, pero se deberían considerar soluciones o mejoras y se deben hacer comprobaciones periódicas para asegurar que el riesgo aún es aceptable.")
+                 $("#nre").css({'background' : "#5cb85c"})
+                $("#nre").text("Aceptable");
+             }
+    
+ }
+
+</script>
+<div id="myModal" class="modal fade" role="dialog">
+   <div class="modal-dialog  modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"> Determinación del nivel de deficiencia </h4>
+         </div>
+         <div class="modal-body">
+           <p class="text-center"><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/249/Screenshot_from_2018-09-25_10-27-21.png" alt=""></p>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div id="myModal1" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Determinación del nivel de exposición </h4>
+         </div>
+         <div class="modal-body"> <p class="text-center"><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/250/Screenshot_from_2018-09-25_10-32-48.png" alt=""></p> 
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div id="myModal2" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Determinación del nivel de consecuencias </h4>
+         </div>
+         <div class="modal-body">
+           <p class="text-center"><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/251/Screenshot_from_2018-09-25_10-34-53.png" alt=""></p> 
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="myModal3" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Significado de los diferentes niveles de probabilidad </h4>
+         </div>
+         <div class="modal-body">
+           <p class="text-center"><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/252/Screenshot_from_2018-09-25_10-33-58.png" alt=""></p> 
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="myModal4" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Significado del nivel de riesgo</h4>
+         </div>
+         <div class="modal-body">
+           <p class="text-center"><img src="https://mybc1.s3.amazonaws.com/uploads/rseguimiento/evidencia/253/Screenshot_from_2018-09-25_10-42-25.png" alt=""></p> 
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+

@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Riesgos</h1>
 
-<table>
+<table class="table">
   <thead>
-    <tr>
+    <tr class = "tr-table">
       <th>User</th>
       <th>Admin user</th>
-      <th>Report</th>
-      <th>Accion</th>
+
       <th>Descripcion</th>
       <th>Clasificacion</th>
       <th>Nivel</th>
@@ -21,8 +20,7 @@
       <tr>
         <td><%= riesgo.user_id %></td>
         <td><%= riesgo.admin_user %></td>
-        <td><%= riesgo.report_id %></td>
-        <td><%= riesgo.accion_id %></td>
+
         <td><%= riesgo.descripcion %></td>
         <td><%= riesgo.clasificacion %></td>
         <td><%= riesgo.nivel %></td>

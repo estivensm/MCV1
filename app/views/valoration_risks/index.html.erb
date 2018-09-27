@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Valoration Risks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Controls</th>
+      <th>Np value</th>
+      <th>Ne value</th>
+      <th>Nd value</th>
+      <th>Np text</th>
+      <th>Ne text</th>
+      <th>Nd text</th>
+      <th>Nc value</th>
+      <th>Nc text</th>
+      <th>Probability indicator</th>
+      <th>Impact indicator</th>
+      <th>Nr value</th>
+      <th>Risk level</th>
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Riesgo</th>
+      <th>Next valoration</th>
+      <th>Valoration date</th>
+      <th>Analysis</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @valoration_risks.each do |valoration_risk| %>
+      <tr>
+        <td><%= valoration_risk.controls %></td>
+        <td><%= valoration_risk.np_value %></td>
+        <td><%= valoration_risk.ne_value %></td>
+        <td><%= valoration_risk.nd_value %></td>
+        <td><%= valoration_risk.np_text %></td>
+        <td><%= valoration_risk.ne_text %></td>
+        <td><%= valoration_risk.nd_text %></td>
+        <td><%= valoration_risk.nc_value %></td>
+        <td><%= valoration_risk.nc_text %></td>
+        <td><%= valoration_risk.probability_indicator %></td>
+        <td><%= valoration_risk.impact_indicator %></td>
+        <td><%= valoration_risk.nr_value %></td>
+        <td><%= valoration_risk.risk_level %></td>
+        <td><%= valoration_risk.user_id %></td>
+        <td><%= valoration_risk.admin_user %></td>
+        <td><%= valoration_risk.riesgo_id %></td>
+        <td><%= valoration_risk.next_valoration %></td>
+        <td><%= valoration_risk.valoration_date %></td>
+        <td><%= valoration_risk.analysis %></td>
+        <td><%= link_to 'Show', riesgo_valoration_risk_path(@riesgo.id,valoration_risk.id) %></td>
+        <td><%= link_to 'Edit', edit_riesgo_valoration_risk_path(@riesgo.id,valoration_risk.id) %></td>
+        <td><%= link_to 'Destroy', riesgo_valoration_risk_path(@riesgo.id,valoration_risk.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Valoration Risk', new_riesgo_valoration_risk_path(@riesgo.id) %>

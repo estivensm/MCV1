@@ -1,0 +1,71 @@
+# == Schema Information
+#
+# Table name: valoration_risks
+#
+#  id                    :integer          not null, primary key
+#  controls              :boolean
+#  np_value              :integer
+#  ne_value              :integer
+#  nd_value              :integer
+#  np_text               :string
+#  ne_text               :string
+#  nd_text               :string
+#  nc_value              :integer
+#  nc_text               :string
+#  probability_indicator :text
+#  impact_indicator      :text
+#  nr_value              :integer
+#  risk_level            :string
+#  user_id               :integer
+#  admin_user            :integer
+#  riesgo_id             :integer
+#  next_valoration       :date
+#  valoration_date       :date
+#  analysis              :text
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  controls: false
+  np_value: 1
+  ne_value: 1
+  nd_value: 1
+  np_text: MyString
+  ne_text: MyString
+  nd_text: MyString
+  nc_value: 1
+  nc_text: MyString
+  probability_indicator: MyText
+  impact_indicator: MyText
+  nr_value: 1
+  risk_level: MyString
+  user_id: 1
+  admin_user: 1
+  riesgo_id: 1
+  next_valoration: 2018-09-21
+  valoration_date: 2018-09-21
+  analysis: MyText
+
+two:
+  controls: false
+  np_value: 1
+  ne_value: 1
+  nd_value: 1
+  np_text: MyString
+  ne_text: MyString
+  nd_text: MyString
+  nc_value: 1
+  nc_text: MyString
+  probability_indicator: MyText
+  impact_indicator: MyText
+  nr_value: 1
+  risk_level: MyString
+  user_id: 1
+  admin_user: 1
+  riesgo_id: 1
+  next_valoration: 2018-09-21
+  valoration_date: 2018-09-21
+  analysis: MyText

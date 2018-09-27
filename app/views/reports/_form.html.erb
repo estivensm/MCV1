@@ -1,3 +1,4 @@
+
 <hr>
 <div class="row" style="padding: 10px 30px;">
    <div class="col-md-12">
@@ -23,7 +24,7 @@
          <div class="col-md-12">
             <div class="form-group">
                <label>Descripción detallada del <span style="text-transform: capitalize;">reporte</span></label>  
-               <%= f.text_area :description,  class: "form-control area" %>
+               <%= f.text_area :description,  class: "form-control area", id: "description" %>
             </div>
          </div>
          <div class="col-md-12">
@@ -35,7 +36,7 @@
                <%= f.select :source_parent_id,
                   get_source_parents.map { |u| [u.name, u.id] },
                               { include_blank: true },
-                              { class: 'chosen-select1 form-control ch source pr1'  }
+                              { class: 'chosen-select1 form-control ch source pr1', id: "fuente"  }
                    %>
             </div>
          </div>
@@ -189,7 +190,7 @@
                <%= f.select :proceso_id,
                   get_procesos.map { |u| ["#{u.name}", u.id] },
                              { include_blank: true },
-                             { class: 'chosen-select1 form-control ch'  }
+                             { class: 'chosen-select1 form-control ch', id: "proceso"  }
                   %>
             </div>
          </div>
@@ -502,6 +503,11 @@
       <hr>
       <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+
+
+      <%if action_name = "new" &&   @riesgo_e == "si"%>
+             <%= f.hidden_field :riesgo_id , :value =>  @riesgo_id %>
+      <%end%>
       <div class="actions text-center " style="    padding: 10px 29px;">
          <%= f.submit "Guardar" , class: 'btn btn-primary btn-lg btnpad', style: "padding: 10px 29px;" %>
       </div>
@@ -599,15 +605,22 @@
    background: #e8e8e8;
    }
 </style>
+
 </div>
+<%=@riesgo_e%>
 <script>
    $( document ).ready(function() {
      if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
    {
    
+   if("<%=@riesgo_e%>" != "si")
+
+  {
    $('.pri1').attr('disabled', 'disabled'); 
+   }
    
-   
+
+
    $('.reporta').val("<%=@user.id%>");
    console.log("<%=@user.id%>");
    console.log($('.reporta').val());
@@ -870,3 +883,17 @@
    text-align: left !important;
    }
 </style>
+
+<script>
+  
+  if ("<%=action_name%>" == "new" && "<%=@riesgo_e%>" == "si")
+
+  {
+    $('#description').val("<%=@descripcion%>");
+    $('#proceso').val("<%=@proceso%>");
+    $('#fuente').val("<%=@fuente%>");
+    $('#tipo_riesgo').val("<%=@tipo%>");
+   
+  }
+
+</script>

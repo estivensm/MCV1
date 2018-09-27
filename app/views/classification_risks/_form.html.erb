@@ -1,0 +1,42 @@
+<%= form_with(model: classification_risk, local: true) do |form| %>
+  <% if classification_risk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(classification_risk.errors.count, "error") %> prohibited this classification_risk from being saved:</h2>
+
+      <ul>
+      <% classification_risk.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :classification_risk_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :admin_user %>
+    <%= form.number_field :admin_user, id: :classification_risk_admin_user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :classification_risk_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :classification_risk_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :context %>
+    <%= form.text_field :context, id: :classification_risk_context %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

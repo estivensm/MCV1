@@ -15,6 +15,7 @@
 #  report_delete   :boolean
 #  report_procesos :boolean
 #  default         :boolean
+#  create_all      :boolean
 #
 
 require 'test_helper'

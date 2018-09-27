@@ -29,6 +29,8 @@
       <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+       <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
    </head>
    <body class="admin">
       <div class ="container-fluid menusp">
@@ -207,6 +209,13 @@
                      <% end %>
                      <%end%>
                   </li>
+                  <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                     <%= link_to riesgos_path,:class => "configuracion #{@menum[7]}"  do %>
+                    <i class="fas fa-exclamation-triangle"></i>
+                     <span>Riesgos</span>
+                     <% end %>
+                     <%end%>
+                  </li>
                   
                </ul>
                </li>
@@ -272,7 +281,7 @@
                </li>
                <li role="presentation" class="<%=@menu[6]%>"><%= link_to sources_path,:class => "#{@menu[6]}" do %>
                   <i class="fa fa-share" aria-hidden="true"></i>
-                  <span class="hidden-xs">Tipo de Hallazgo</span>
+                  <span class="hidden-xs">Tipo de Reporte</span>
                   <% end %>
                </li>
                <li role="presentation" class="<%=@menu[7]%>"> <%= link_to rols_path,:class => "#{@menu[7]}" do %>

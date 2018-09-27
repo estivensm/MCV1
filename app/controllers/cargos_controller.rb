@@ -70,6 +70,7 @@ class CargosController < ApplicationController
   # PATCH/PUT /cargos/1
   # PATCH/PUT /cargos/1.json
   def update
+    
      @procesos = Proceso.all
       if @cargo.update(cargo_params)
         redirect_to cargos_path, notice: 'Cargo was successfully updated.'

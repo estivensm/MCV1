@@ -198,6 +198,12 @@ ClinteProveedor.where.not(tipo: "Cliente").where.not(tipo: "Proveedor").where(ad
 
 end
 
+def get_classification_risk
+
+  ClassificationRisk.where(admin_user: current_user.admin_user)
+  
+end
+
 
 
 
@@ -736,6 +742,200 @@ def estado_alerta(contador)
 
 end
   
+
+def  get_tratamiento(tratamiento)
+
+
+  case tratamiento
+
+  when "Eludir"
+      
+      "No proseguir con la actividad riesgosa (!No siempre es posible !)"      
+
+  when "Transferir"
+      
+      "Que otra parte soporte parte del riesgo (Pensar en que nuevos riesgos ocasiona este cambio) "
+    
+  when "Reducir"
+
+     "Tomar medidas tendientes a reducir la probabilidad de ocurrencia y/o impacto, (No siempre implica costos financieros adicionales, incluso puede ahorrar dinero)"
+
+  when "Asumir"
+     
+     "Aceptar el riesgo inherente (!Pero conociéndolo!)"
+  
+  end        
+  
+end
+
+
+
+def  get_deficiencia(nd)
+
+
+  
+
+  if nd = 10
+      
+      ["Se ha(n) detectado peligro(s) que determina(n) como posible la generación de
+incidentes o consecuencias muy significativas, o la eficacia del conjunto de medidas
+preventivas existentes respecto al riesgo es nula o no existe, o ambos. ", "Muy Alto (MA) " ]    
+
+  elsif nd = 6
+      
+      ["Se ha(n) detectado algún(os) peligro(s) que pueden dar lugar a consecuencias
+significativa(s), o la eficacia del conjunto de medidas preventivas existentes es baja, o
+ambos", "Alto (A) " ]  
+    
+  elsif nd = 2
+
+     ["Se han detectado peligros que pueden dar lugar a consecuencias poco significativas
+o de menor importancia, o la eficacia del conjunto de medidas preventivas
+existentes es moderada, o ambos. s", "Medio (M)" ]  
+
+  elsif nd = 1
+     
+     ["No se ha detectado consecuencia alguna, o la eficacia del conjunto de medidas
+preventivas existentes es alta, o ambos. El riesgo está controlado. ", "Bajo (B) " ]  
+  
+  end        
+  
+
+end
+
+def  get_exposicion(ne)
+
+
+  
+
+  if ne = 4
+      
+      ["La situación de exposición se presenta sin interrupción o varias veces con
+tiempo prolongado durante la jornada laboral.", "Continua (EC) " ]    
+
+  elsif ne = 3
+      
+      ["Se ha(n) detectado algún(os) peligro(s) que pueden dar lugar a consecuencias
+significativa(s), o la eficacia del conjunto de medidas preventivas existentes es baja, o
+ambos", "Frecuente (EF) " ]  
+    
+  elsif ne = 2
+
+     ["La situación de exposición se presenta alguna vez durante la jornada laboral
+y por un periodo de tiempo corto.", "Ocasional (EO) " ]  
+
+  elsif ne = 1
+     
+     ["La situación de exposición se presenta de manera eventual. ", "Esporádica (EE) " ]  
+  
+  end        
+  
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def  get_probabilidad(np)
+
+
+  
+
+  if (np <= 40 && np >= 20) 
+      
+      ["Situación deficiente con exposición continua, o muy deficiente con exposición frecuente. Normalmente la materialización del riesgo ocurre con frecuencia. ", "Muy Alto (MA) " ]    
+
+  elsif (np <= 20 && np >= 10)
+      
+      ["Situación deficiente con exposición frecuente u ocasional, o bien situación
+muy deficiente con exposición ocasional o esporádica.
+La materialización del riesgo es posible que suceda varias veces en la vida laboral", "Alto (A) " ]  
+    
+  elsif (np <= 8 && np >= 6)
+
+     ["Situación deficiente con exposición esporádica, o bien situación mejorable
+con exposición continuada o frecuente.
+Es posible que suceda el daño alguna vez. ", "Medio (M)" ]  
+
+  elsif (np <= 4 && np >= 2)
+     
+     ["Situación mejorable con exposición ocasional o esporádica, o situación sin
+anomalía destacable con cualquier nivel de exposición.
+No es esperable que se materialice el riesgo, aunque puede ser concebible. ", "Bajo (B) " ]  
+  
+  end        
+  
+end
+
+def  get_concecuencia(nc)
+
+
+  
+
+  if (nc == 100) 
+      
+      ["Muerte (s) ", "Mortal o Catastrófico (M) "]      
+
+  elsif (nc == 60)
+      
+      ["Lesiones o enfermedades graves irreparables (Incapacidad permanente parcial o invalidez).  ", "Muy grave (MG) "] 
+    
+  elsif (nc == 25)
+
+     ["Lesiones o enfermedades con incapacidad laboral temporal (ILT). ", "Grave (G) "] 
+
+  elsif (nc == 10)
+     
+    [ "Lesiones o enfermedades que no requieren incapacidad. ", "Leve (L) "] 
+  
+  end        
+  
+end
+
+def  get_riesgo(nr)
+
+
+  
+
+  if (nr <= 4000 && nr >= 600)
+         
+   ["Situación crítica. Suspender actividades hasta que el riesgo esté bajo control.  Intervención urgente. ", "I - Inaceptable", "red"]
+
+         
+
+  elsif nr <= 500  && nr >= 150
+         
+   ["Corregir y adoptar medidas de control de inmediato. Sin embargo, suspenda actividades si el nivel de riesgo está por encima o igual de 360. ", "II - Moderado", "#ccc70e"]
+    
+  elsif  nr <= 120 && nr >= 40
+         
+   ["Mejorar si es posible. Sería conveniente justificar la intervención y su rentabilidad." ,"III - Tolerable","#5cb85c"]
+
+  elsif (nr < 20 )
+         
+   ["Mantener las medidas de control existentes, pero se deberían considerar soluciones o mejoras y se deben hacer comprobaciones periódicas para asegurar que el riesgo aún es aceptable." ,"IV - Aceptable","#5cb85c"]
+  
+  end        
+  
+end
+
+
+
+
+                           
+
 
 
 end

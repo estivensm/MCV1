@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @classification_risk.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @classification_risk.admin_user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @classification_risk.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @classification_risk.description %>
+</p>
+
+<p>
+  <strong>Context:</strong>
+  <%= @classification_risk.context %>
+</p>
+
+<%= link_to 'Edit', edit_classification_risk_path(@classification_risk) %> |
+<%= link_to 'Back', classification_risks_path %>
