@@ -4,8 +4,8 @@ class RiskSourcesController < ApplicationController
   # GET /risk_sources
   # GET /risk_sources.json
   def index
-    @risk_sources = RiskSource.all
-    @risk_sources1 = @risk_sources.paginate(page: params[:page],:per_page => 20)
+    @risk_sources = RiskSource.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
+   
   end
 
   # GET /risk_sources/1
