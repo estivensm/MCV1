@@ -15,20 +15,19 @@
      
    </div>
    <div class = "col-md-4 paginate text-left title-table1">
-     
-<%= will_paginate @employeds%>
+    
    </div>
 
-   <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px;">
+       <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary", style: "float: right "  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
    </div>
 </div>
 
 
 
 <hr class="hr">
-<%= (link_to "Opciones", employeds_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar" %>
-<%= (link_to "Cancelar Opciones", employeds_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
+<%= (link_to "Filtros", employeds_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar" %>
+<%= (link_to "Cancelar Filtros", employeds_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 
 <div class = "row busqueda" style="display:none">
    <div class = "col-md-9">
@@ -116,7 +115,7 @@
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
+               text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''}, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %>
@@ -127,8 +126,13 @@
          <% end %>
       </tbody>
    </table>
-          <% end %>
+  <% end %>
 </div>
+
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+    <%= will_paginate @employeds%>
+   </div>
 
 
    
