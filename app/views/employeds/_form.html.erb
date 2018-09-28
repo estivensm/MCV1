@@ -11,7 +11,7 @@
 
   
 
-<%= form_for(employed,multipart: true, remote: true, id: "form") do |f| %>
+<%= form_for(employed,multipart: true, remote: true) do |f| %>
   <div class="alert alert-danger" style="display:none">
     <ul>
     
@@ -22,46 +22,46 @@
 <div class="col-md-6">
 <div class="form-group">
     <%= f.label "Primer Nombre" %>
-    <%= f.text_field :first_name, class: "form-control required", :required => true%>
+    <%= f.text_field :first_name, class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
 <div class="form-group">
     <%= f.label "Segundo Nombre" %>
-    <%= f.text_field :second_name , class: "form-control", :required => true%>
+    <%= f.text_field :second_name , class: "form-control"%>
   </div>
 
 <div class="form-group">
     <%= f.label "Primer Apellido" %>
-    <%= f.text_field :first_last_name, class: "form-control", :required => true %>
+    <%= f.text_field :first_last_name, class: "form-control" %>
   </div>
 
 <div class="form-group">
     <%= f.label "Segundo Apellido" %>
-    <%= f.text_field :second_last_name, class: "form-control", :required => true%>
+    <%= f.text_field :second_last_name, class: "form-control"%>
   </div>
 <div class="form-group">
     <%= f.label "Email" %>
    <div class="input-group">
   <span class="input-group-addon" id="basic-addon1">@</span>
-  <%= f.email_field :email, class: "form-control", :required => true %>
+  <%= f.email_field :email, class: "form-control"%>
 </div>
   </div>
 <div class="form-group">
 <%val1 = "" 
  action_name == "edit" ? val1 = @employed.document_type : val1 = "" %>
     <%= f.label "Tipo de Documento" %>
-     <%= f.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control', :required => true}%>
+     <%= f.select 'document_type', options_for_select(["C.C", "Pasaporte", "I.d"], val1), {},{:class => 'form-control'}%>
   </div>
   </div>
   <div class="col-md-6">
 <div class="form-group">
     <%= f.label "Documento" %>
-    <%= f.text_field :document , class: "form-control", :required => true%>
+    <%= f.text_field :document , class: "form-control"%>
   </div>
 
 <div class="form-group">
     <%= f.label "Fecha de Nacimiento" %>
-    <%= f.text_field :birth_date, :value => ( @employed.birth_date == nil ? Time.now.strftime("%d/%m/%Y"): @employed.birth_date.strftime("%d/%m/%Y")) ,class: "form-control datepicker", :required => true %>
+    <%= f.text_field :birth_date, :value => ( @employed.birth_date == nil ? Time.now.strftime("%d/%m/%Y"): @employed.birth_date.strftime("%d/%m/%Y")) ,class: "form-control datepicker" %>
   </div>
 
 <script>
@@ -99,7 +99,7 @@
     <%= f.label "Genero" %><br />
  <%val = "" 
  action_name == "edit" ? val = @employed.genero : val = "" %>
-    <%= f.select 'genero', options_for_select(["Masculino", "Femenino", "Indeterminado"], val),{}, {:class => 'form-control', :required => true}%>
+    <%= f.select 'genero', options_for_select(["Masculino", "Femenino", "Indeterminado"], val),{}, {:class => 'form-control'}%>
   </div>
 
  <div class="form-group">
@@ -182,14 +182,19 @@ $('.levidencia').html(" <%=@employed.avatare.file.filename if @employed.avatare.
 }( document, window, 0 ));
 
 
-
-  $('#form').validate();
+ $(document).ready(function(){
+     $('#new_employed').validate();
+    });
    
 </script>
 
 
 
 <style>
+ .error
+   {
+   color: red !important;
+   }
 .inputfile {
   width: 0.1px;
   height: 0.1px;
