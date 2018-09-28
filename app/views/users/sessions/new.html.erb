@@ -1,58 +1,115 @@
-<div class="row sign_form">
-<div class="col-lg-4 col-lg-offset-4 login1">
-<p class = "logop" style = "color:#9a9a9a;    font-size: 30px"><img style= "width:50px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
-<br>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-  <div class="form-group">
-    <%= f.label "Usuario" %>
-    <%= f.text_field :name, :class => 'form-control', style:"height:40px;font-size: 16px;" %>
-  </div>
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="thumbnail">
+        <br>
+         <br><br>
+          <p class = "logop" style = "color:#9a9a9a;    font-size: 30px"><img style= "width:50px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
+          <br><br>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="form-group">
-    <%= f.label "Contraseña" %>
-    <%= f.password_field :password, :class => 'form-control', style:"height:40px;font-size: 16px;" %>
-  </div>
-  
-   
+        <div class="col-md-12" style="padding: 0px;">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user" style="color: #fff;"></i></span>
+               <%= f.text_field :name, :class => 'form-control required', :title => "Es un Campo Obligatorio", id: "cambio2", placeholder: "Usuario" %>
+            </div>
+            <br>
+         </div>
 
-  <% if devise_mapping.rememberable? -%>
-   <div class="form-group display-none">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <div class="col-md-12" style="padding: 0px;">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key" style="color: #fff;"></i></span>
+               <%= f.password_field :password, class: "form-control  required", :title => "Es un Campo Obligatorio", id: "cambio2", placeholder: "Contraseña" %>
+            </div>
+            <br><br>
+         </div>
+
+
+            <div class="actions" >
+          
+            <%= button_tag type: 'submit', class: "btn btn-primary btn-block", id: "register-button" , style:"font-size:18px"  do %>
+                <i class="fas fa-sign-in-alt"> </i> Iniciar Sesión
+            <% end %>
+          </div>
+
+
+
+          <div class="row">
+
+            <br>
+
+        <div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 10px;margin-left: 0px;">
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "¿Olvidaste la contraseña?", new_password_path(resource_name), class: "iniciar"  %><br />
+          <% end -%>
+        </div>
+
+              <div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 5px; margin-left: 0px;display:none">
+                ¿Aún no tienes una cuenta? <%= link_to "Crear Cuenta", new_registration_path(resource_name), class:"linka"%><br />
+              </div>
+
+              <div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 30px;margin-left: 0px">
+              No tienes una cuenta <%= link_to "Registrarse Aqui", new_registration_path(resource_name), class:"iniciar" %><br /><br>
+              </div>
+
+          </div>
+        <% end %>
+      </div>   
     </div>
-  <% end %>
-<br>
- <div class="form-group">
-<%= button_tag type: 'submit', class: "btn btn-primary btn-block is", id: "register-button" do %>
-       <i class="fa fa-sign-in" aria-hidden="true"> </i> Iniciar Sesión
-
-
-    <% end %>
-<!--    
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end -%>-->
-
-
   </div>
-<% end %>
-<div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 10px;margin-left: 0px">
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "¿Olvidaste la contraseña?", new_password_path(resource_name),class: "linka"  %><br />
-<% end -%>
-</div>
-<div class="col-md-12 col-md-offset-1 text-center color-gray" style="margin-top: 30px;margin-left: 0px">
-No tienes una cuenta <%= link_to "Registrarse Aqui", new_registration_path(resource_name), class:"linka" %><br />
 </div>
 
-</div>
 
-</div>
 
-<style>
+<style type="text/css">
 
-  
+
+  .input-group-addon{
+    background: #37b597 !important;
+    border: 1px solid #37b597 !important;
+  }
+
+  .form-control{
+    border-color: #c5c5c5 !important;
+  }
+
+  .thumbnail{
+
+    margin-left: 2px;
+    padding-right: 20px; 
+    padding-left: 20px;
+    border-color:#37b597;
+    border-right: 5px solid #37b597;
+    border-left: 5px solid #37b597;
+
+  }
+   .iniciar{
+    color: #37b597;
+    text-decoration: underline;
+  }
+
+  .iniciar:hover{
+    color: #37b597;
+  }
+
+
+
+  @media only screen and (max-width: 600px) { 
+
+    .enter{
+      padding-left: 0px;
+      padding-right: 37px;
+
+    }
+
+    .application{
+      width: 100%;
+      height: auto !important;
+    }
+
+  } 
+
+
 </style>
-

@@ -1,0 +1,71 @@
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <% if action_name == "edit"%>
+            <h4 class="modal-title">Editar</h4>
+          <%else%>
+            <h4 class="modal-title">Crear Nuevo</h4>
+          <% end -%>
+
+        </div>
+
+<%= form_with(model: risk_source, local: true) do |form| %>
+<div class="modal-body">
+  <% if risk_source.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(risk_source.errors.count, "error") %> prohibited this risk_source from being saved:</h2>
+
+      <ul>
+      <% risk_source.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :risk_source_name, class: "form form-control" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= form.label :Descripcion %>
+    <%= form.text_area :description, id: :risk_source_description, class: "form form-control" %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= form.label :Codigo %>
+    <%= form.text_field :code, id: :risk_source_code, class: "form form-control" %>
+  </div>
+  <br>
+
+    <%= form.hidden_field :user_id, id: :risk_source_user_id %>
+    <%= form.hidden_field :admin_user, id: :risk_source_admin_user %>
+  </div>
+
+    <div class="modal-footer">
+      <%= form.submit "Guardar", class: "btn btn-info botom" %>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+    </div> 
+         <% end -%>
+    </div>
+  </div>
+
+
+<style>
+
+  .botom{
+    color: #fff !important; 
+    border-color: #00BE99!important;
+    background-color: #00BE99!important;
+  }
+
+</style>

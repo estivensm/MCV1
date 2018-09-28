@@ -1,33 +1,85 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+<div class="container" style="margin-top: 70px;">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="thumbnail"><br>
+       <p class = "logop" style = "color:#9a9a9a;"><img style= "width:40px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
 
-<div class="row sign_form">
-<div class="col-lg-4 col-lg-offset-4 login1">
-<p class = "logop" style = "color:#9a9a9a;    font-size: 30px"><img style= "width:50px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= devise_error_messages! %><br>
 
-<h3 class="text-center linka" style="color:gray;font-weight: bold">Restablecer contraseña</h3>
+    <h4 class="text-center linka" style="color:gray;font-weight: bold">Restablecer contraseña</h4><br>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+        <div class="col-md-12" style="padding: 0px;">
+          <%= f.label :password, "Nueva contraseña" %><br />
 
-  <div class="field">
-    <%= f.label :password, "Nueva contraseña" %><br />
-    
-      <em>(Debe tener minimo 6 caracteres)</em><br />
+          <em>(Debe tener minimo 6 caracteres)</em><br />
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key" style="color: #fff;"></i></span>
+               <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form form-control" %>
+            </div>
+            <br>
+         </div>
 
-    <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "form form-control" %>
+        <div class="col-md-12" style="padding: 0px;">
+          <%= f.label :password_confirmation, "Confirmar nueva contraseña" %><br />
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-key" style="color: #fff;"></i></span>
+               <%= f.password_field :password_confirmation, autocomplete: "off", class: "form form-control"  %>
+            </div>
+            <br>
+         </div>
+
+         <%= f.hidden_field :reset_password_token %>
+
+      <br>
+
+        <div class="form-group">
+          <%= f.submit "Cambiar mi contraseña" , class: "btn btn-primary btn-block"%>
+        </div>
+
+          </div>
+      <% end %>
+        </div>
+      </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmar nueva contraseña" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form form-control"  %>
-  </div>
-<br>
-  <div class="actions">
-    <%= f.submit "Cambiar mi contraseña" , class: "btn btn-primary btn-block"%>
-  </div>
-<% end %>
-
 </div>
 
-</div>
+
+<style type="text/css">
+
+
+  .thumbnail{
+
+
+    margin-left: 2px;
+    padding-right: 20px; 
+    padding-left: 20px;
+    border-color:#37b597;
+    border-right: 5px solid #37b597;
+    border-left: 5px solid #37b597;
+
+  }
+
+  .input-group-addon{
+    background: #37b597 !important;
+    border: 1px solid #37b597 !important;
+  }
+
+  .form-control{
+    border-color: #c5c5c5 !important;
+  }
+
+   .iniciar{
+    color: #37b597;
+    text-decoration: underline;
+  }
+
+  .iniciar:hover{
+    color: #37b597;
+  }
+
+</style>

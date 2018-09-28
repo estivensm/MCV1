@@ -5,6 +5,7 @@ class ClassificationRisksController < ApplicationController
   # GET /classification_risks.json
   def index
     @classification_risks = ClassificationRisk.all
+    @classification1 = @classification_risks.paginate(page: params[:page],:per_page => 20)
   end
 
   # GET /classification_risks/1
@@ -28,7 +29,7 @@ class ClassificationRisksController < ApplicationController
 
     respond_to do |format|
       if @classification_risk.save
-        format.html { redirect_to @classification_risk, notice: 'Classification risk was successfully created.' }
+        format.html { redirect_to classification_risks_path, notice: 'Classification risk was successfully created.' }
         format.json { render :show, status: :created, location: @classification_risk }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ClassificationRisksController < ApplicationController
   def update
     respond_to do |format|
       if @classification_risk.update(classification_risk_params)
-        format.html { redirect_to @classification_risk, notice: 'Classification risk was successfully updated.' }
+        format.html { redirect_to classification_risks_path, notice: 'Classification risk was successfully updated.' }
         format.json { render :show, status: :ok, location: @classification_risk }
       else
         format.html { render :edit }
