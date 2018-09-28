@@ -35,6 +35,7 @@
 
       <th>Descripcion</th>
       <th>Clasificacion</th>
+      <th>Fuente de Riesgo</th>
       <th>Nivel</th>
       <th colspan="3"></th>
     </tr>
@@ -47,7 +48,8 @@
         <td><%= riesgo.admin_user %></td>
 
         <td><%= riesgo.descripcion %></td>
-        <td><%= riesgo.clasificacion %></td>
+        <td><%= riesgo.classification_risk.name %></td>
+         <td><%=riesgo.risk_source.name if riesgo.risk_source  %></td>
         <td><%= riesgo.nivel %></td>
         <td><%= link_to 'Mostrar', riesgo %></td>
         <td><%= link_to 'Editar', edit_riesgo_path(riesgo) %></td>
