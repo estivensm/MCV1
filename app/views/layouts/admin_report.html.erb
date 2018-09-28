@@ -452,10 +452,10 @@
                         <%= link_to  edit_report_path(@report), :class => "opciones2" do %>
                         <i class="fas fa-edit" aria-hidden="true"></i>
                         <% end %>
-                        <%= link_to show_info_path(@report),:class => 'opciones2' do %>
+                        <%= link_to show_info_path(@report.id),:class => 'opciones2' do %>
                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                         <% end %>
-                        <%= link_to report_path(@report, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'opciones2' do %>
+                        <%= link_to report_pdf_path(@report.id, :format => "pdf"), target: '_blank',  :rel => "tooltip", :title => "Pdf", :class => 'opciones2' do %>
                         <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                         <% end %>
                      </p>

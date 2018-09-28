@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   
   end
 
+get "report_pdf/:id", to: 'reports#report_pdf' , as: 'report_pdf'
+
+
 resources :reports do 
     get :get_reportsc, on: :collection
     get :get_invitadoc, on: :collection

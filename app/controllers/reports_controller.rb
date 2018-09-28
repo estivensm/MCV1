@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
  before_action :authenticate_user!
-  before_action :set_report, only: [:show, :edit, :update, :destroy, :show_info]
+  before_action :set_report, only: [:show, :edit, :update, :destroy, :show_info, :report_pdf]
 
   # GET /reports
   # GET /reports.json
@@ -406,6 +406,75 @@ end
 
     render :layout => "admin_report"
   end
+
+
+def  report_pdf
+
+    @responsables = @report.employeds
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @accions = Accion.where(report_id: @report.id)
+    @tasks = Task.where(report_id: @report.id)
+    @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
+    @menu_accion = ["","",""]
+    @seguimientos = @report.rseguimientos.order(created_at: :desc)
+    @seguimientosa = []
+    @accions.each do |accion|
+       accion.aseguimientos.each do |seg| 
+        
+        @seguimientosa << seg
+
+       end 
+
+    end
+    @seguimientos_t = @seguimientos + @seguimientosa
+
+    @accion_eficaz = @report.accions.where(eficaz: true).count
+    @accion_noeficaz = @report.accions.where(eficaz: false).count
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => 'file_name',
+        :template => 'reports/pdfs/report_pdf.pdf.erb',
+        :layout => 'pdf.html.erb',
+        margin: {
+                    top: 30
+                     },
+        :header => {
+                  :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_header.html'
+                  },
+
+                  },
+                  :footer => {
+                    :spacing => 5,
+                  :html => {
+                     :template => 'layouts/pdf_footer.html.erb'
+                  }
+               },
+        :show_as_html => params[:debug].present?
+      end
+    end
+  
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   def show_info

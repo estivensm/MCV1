@@ -17,7 +17,7 @@
           <div class="w3-display-container" style="text-align:center; padding-top: 17px;" >
             <% if @company.logo? %>
           
-              <%= image_tag(@company.logo_url(:medium))%>
+              <%= image_tag @company.logo_url,  style: "width:200px;" %>
 
             <%else%>
 
