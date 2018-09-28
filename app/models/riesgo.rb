@@ -26,6 +26,7 @@
 class Riesgo < ApplicationRecord
 	belongs_to :proceso
     belongs_to :classification_risk
+    belongs_to :risk_source
 	has_many :valoration_risks , dependent: :destroy
     has_one :report
 end

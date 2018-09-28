@@ -47,7 +47,10 @@
                          <div class="form-group">
                           
                            <%= f.label "Clasificacion" %>
-                           <%= f.select :classification_risk_id,    get_classification_risk.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%>
+                           <%= f.select :classification_risk_id,    get_classification_risk.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%><br>
+
+                          <%= f.label "Fuente de Riesgo" %>
+                            <%= f.select :risk_source_id, get_RiskSource.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'form form-control', class: "form form-control"   }%>
                         </div>
                </div>
             
