@@ -47,8 +47,8 @@
   </div>
   <br>
 
-    <%= form.hidden_field :user_id, id: :risk_source_user_id %>
-    <%= form.hidden_field :admin_user, id: :risk_source_admin_user %>
+    <%= form.hidden_field :user_id, id: :risk_source_user_id ,:value =>  current_user.id %>
+    <%= form.hidden_field :admin_user, id: :risk_source_admin_user , :value => current_user.admin_user %>
   </div>
 
     <div class="modal-footer">
