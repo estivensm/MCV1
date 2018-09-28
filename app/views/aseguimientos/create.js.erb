@@ -39,7 +39,7 @@
           
                 $('#accion-cont-<%=@accion.id%>').html("<%= j render 'accions/row_encabezado/cerrada_contenido' , accion: @accion %>");
                 $('#accion-cont-<%=@accion.id%>').css({"background" : "#eaeaea"});
-                $('.aseguimientos').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
+                $('.aseguimientos<%=@accion.id%>').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
 
                <%if !@accion.cumplio %>
           
@@ -52,7 +52,7 @@
           
           <%else%>
                
-               $('.aseguimientos').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
+               $('.aseguimientos<%=@accion.id%>').html("<%= j render 'accions/aseguimientos', seguimientos: @aseguimiento , accion: @accion %>");  
                         
           <%end%>
 

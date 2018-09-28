@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180926182449) do
+ActiveRecord::Schema.define(version: 20180927194251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -395,6 +395,17 @@ ActiveRecord::Schema.define(version: 20180926182449) do
     t.integer "risk_value"
     t.integer "proceso_id"
     t.string "risk_level"
+    t.integer "risk_source_id"
+  end
+
+  create_table "risk_sources", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "admin_user"
+    t.string "name"
+    t.text "description"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "rols", id: :serial, force: :cascade do |t|
