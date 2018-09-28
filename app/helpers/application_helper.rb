@@ -125,6 +125,12 @@ def get_contacts
 
 end
 
+def get_RiskSource
+
+  RiskSource.where(admin_user: current_user.admin_user)
+
+end
+
 def get_users
 
   User.where(admin_user: current_user.admin_user)
