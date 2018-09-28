@@ -7,7 +7,7 @@
 <br><br>
 <div class = "row title-table" style="padding-left: 0px;">
    <div class = "col-md-6"  style="padding-left: 0px;">
-      <p>Fuentes de Riesgos <span class="label label-primary"><%=@risk_sources.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_risk_info @risk_sources1, :entry_name => 'Riesgos' %></span> </p>
+      <p>Fuentes de Riesgos <span class="label label-primary"><%=@risk_sources.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_risk_info @risk_sources, :entry_name => 'Riesgos' %></span> </p>
    </div>
 
 
@@ -55,7 +55,7 @@
 
     <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
-            <%= will_paginate  @risk_sources1%>
+            <%= will_paginate  @risk_sources%>
         </div>
    </div>
 

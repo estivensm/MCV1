@@ -4,8 +4,7 @@ class ClassificationRisksController < ApplicationController
   # GET /classification_risks
   # GET /classification_risks.json
   def index
-    @classification_risks = ClassificationRisk.all
-    @classification1 = @classification_risks.paginate(page: params[:page],:per_page => 20)
+    @classification_risks = ClassificationRisk.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
   end
 
   # GET /classification_risks/1

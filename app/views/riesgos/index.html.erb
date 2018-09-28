@@ -8,7 +8,7 @@
 
 <div class = "row title-table">
    <div class = "col-md-6"  style="padding-left: 0px;">
-      <p>Riesgos <span class="label label-primary"><%=@riesgos.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_riesgo_info @riesgos1, :entry_name => 'Riesgos' %></span> </p>
+      <p>Riesgos <span class="label label-primary"><%=@riesgos.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_riesgo_info  @riesgos, :entry_name => 'Riesgos' %></span> </p>
 
 
      
@@ -66,7 +66,7 @@
 
     <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">
-            <%= will_paginate @riesgos1%>
+            <%= will_paginate  @riesgos%>
         </div>
    </div>
 
