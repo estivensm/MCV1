@@ -15,10 +15,10 @@
                   </div>
                    <div class="col-md-6 funkyradio">
                      
-                       <div class="col-md-12">
+                       <div class="col-md-12" style="padding-left: 0px;">
                            <p><strong>Tratamiento</strong></p>
                        </div>
-                       <div class="col-md-6 funkyradio-success">
+                       <div class="col-md-6 funkyradio-success" style="padding-left: 0px;">
                        <%= f.radio_button :context, "Interno", class:"scorrecion check" , id:"radio-interno", checked: "checked" %>
                           <%= f.label "Interno" ,for: "radio-interno" %>
                           
@@ -58,14 +58,14 @@
                        <p><strong>Tratamiento</strong></p>
                   
                        <div class="row tratamiento">
-                           <div class="col-md-6">
+                           <div class="col-md-6" style="padding-left: 0px; ">
                                   <div class="funkyradio-success">
                                      <%= f.radio_button :treatment, "Eludir" , id: "radio1", class: "radio-nd" , checked: "checked" %>
                                      <%= f.label "Eludir", class: "lb1" , for: "radio1" %> 
                                   </div> 
                                 <span>No proseguir con la actividad riesgosa (!No siempre es posible !)</span>
                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="padding-left:  ">
                              <div class="funkyradio-success">
                               <%= f.radio_button :treatment, "Transferir" ,class: "scausa check" , id: "radio2"%>
                               <%= f.label "Transferir", class: "lb1" , for: "radio2"%>
@@ -73,7 +73,7 @@
                            </div>
                      </div>
                      <div class="row tratamiento">
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="padding-left: 0px;">
                              <div class="funkyradio-success">
                               <%= f.radio_button :treatment, "Reducir", class:"scorrecion check", id: "radio3" %>
                                <%= f.label "Reducir" ,for: "radio3"%>
@@ -108,7 +108,7 @@
          <hr>
          <div class="form-group text-center">
             <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <%= link_to "Cancelar", riesgos_path, class: "btn btn-default" %>
          </div>
  <% end %>
 

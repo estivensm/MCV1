@@ -246,6 +246,9 @@
             </div>
          </div>
          <%end%>
+      <% if controller_name == "riesgos" || controller_name == "risk_sources" || controller_name == "classification_risks"%>
+           <%= render "menu"%>
+      <% end -%>
          <!--/sidebar-->
          <div class="row submenu-main" >
             <% sub_menu %>
@@ -461,6 +464,7 @@
             </div>
          </div>
       </div>
+
       <!--/row-->
       <!-- /container -->
    </body>

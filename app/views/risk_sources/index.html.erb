@@ -1,0 +1,57 @@
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><%= link_to "Fuentes de Riesgos", risk_sources_path %></li>
+  </ul>
+</div>
+<br><br>
+<div class = "row title-table" style="padding-left: 0px;">
+   <div class = "col-md-6"  style="padding-left: 0px;">
+      <p>Fuentes de Riesgos <span class="label label-primary"><%=@risk_sources.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_risk_info @risk_sources1, :entry_name => 'Riesgos' %></span> </p>
+   </div>
+
+
+     <div class = "col-md-4 paginate text-left title-table1">
+       
+      <%= will_paginate @risk_sources1%>
+     </div>
+
+
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_risk_source_path, class: "btn btn-primary",remote: true, style: "float: right;" if current_user.role == "SuperAdmin"  || current_user.rol.configuracion %>
+   </div>
+</div>
+<br>
+<table class="table">
+  <thead>
+    <tr class="tr-table">
+      <th>User</th>
+      <th>Admin user</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Codigo</th>
+      <th colspan="2">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @risk_sources.each do |risk_source| %>
+      <tr>
+        <td><%= risk_source.user_id %></td>
+        <td><%= risk_source.admin_user %></td>
+        <td><%= risk_source.name %></td>
+        <td><%= risk_source.description %></td>
+        <td><%= risk_source.code %></td>
+        <td><%= link_to 'Editar', edit_risk_source_path(risk_source),remote: true %></td>
+        <td><%= link_to 'Eliminar', risk_source, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

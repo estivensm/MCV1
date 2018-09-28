@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @risk_source.user_id %>
+</p>
+
+<p>
+  <strong>Admin user:</strong>
+  <%= @risk_source.admin_user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @risk_source.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @risk_source.description %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @risk_source.code %>
+</p>
+
+<%= link_to 'Edit', edit_risk_source_path(@risk_source) %> |
+<%= link_to 'Back', risk_sources_path %>
