@@ -1,0 +1,5 @@
+$('<%= j render "form", risk_source: @risk_source %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+

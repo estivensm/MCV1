@@ -1,4 +1,19 @@
+<div id="product-modal" class="modal fade">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <% if action_name == "edit"%>
+            <h4 class="modal-title">Editar</h4>
+          <%else%>
+            <h4 class="modal-title">Crear Nuevo</h4>
+          <% end -%>
+
+        </div>
+
 <%= form_with(model: classification_risk, local: true) do |form| %>
+<div class="modal-body">
   <% if classification_risk.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(classification_risk.errors.count, "error") %> prohibited this classification_risk from being saved:</h2>
@@ -12,31 +27,43 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :classification_risk_user_id %>
+    <%= form.label "Nombre" %>
+    <%= form.text_field :name, id: :classification_risk_name, :required => true, class: "form form-control" %>
   </div>
+  <br>
 
   <div class="field">
-    <%= form.label :admin_user %>
-    <%= form.number_field :admin_user, id: :classification_risk_admin_user %>
+    <%= form.label "Contexto" %>
+    <%= form.text_field :context, id: :classification_risk_context, class: "form form-control" %>
   </div>
+  <br>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :classification_risk_name %>
+    <%= form.label "Descripcion" %>
+    <%= form.text_area :description, id: :classification_risk_description, class: "form form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :classification_risk_description %>
+  <%= form.hidden_field :user_id, id: :classification_risk_user_id %>
+  <%= form.hidden_field :admin_user, id: :classification_risk_admin_user %>
+  <br>
+  
+  </div>
+  <div class="modal-footer">
+    <%= form.submit "Guardar", class: "btn btn-info botom" %>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> 
+  </div> 
+         <% end -%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :context %>
-    <%= form.text_field :context, id: :classification_risk_context %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+
+<style>
+
+  .botom{
+    color: #fff !important; 
+    border-color: #00BE99!important;
+    background-color: #00BE99!important;
+  }
+
+</style>

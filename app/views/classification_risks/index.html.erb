@@ -1,16 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class="active"><%= link_to "Clasificacion de Riesgos", risk_sources_path %></li>
+  </ul>
+</div>
+<br><br>
+<div class = "row title-table" style="padding-left: 0px;">
+   <div class = "col-md-6"  style="padding-left: 0px;">
+      <p>Clasificacion de Riesgos <span class="label label-primary"><%=@classification_risks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_clasification_info  @classification1, :entry_name => 'Riesgos' %></span> </p>
+   </div>
 
-<h1>Classification Risks</h1>
 
-<table>
+     <div class = "col-md-4 paginate text-left title-table1">
+       
+      <%= will_paginate  @classification1%>
+     </div>
+
+
+   <div class = "col-md-2">
+      <%= link_to 'Nuevo', new_classification_risk_path, remote: true, class: "btn btn-primary", style: "float: right;" if current_user.role == "SuperAdmin"  || current_user.rol.configuracion %>
+   </div>
+</div>
+<br>
+<table class="table">
   <thead>
-    <tr>
+    <tr class="tr-table">
       <th>User</th>
       <th>Admin user</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Context</th>
-      <th colspan="3"></th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Contexto</th>
+      <th colspan="3">Acciones</th>
     </tr>
   </thead>
 
@@ -22,14 +42,16 @@
         <td><%= classification_risk.name %></td>
         <td><%= classification_risk.description %></td>
         <td><%= classification_risk.context %></td>
-        <td><%= link_to 'Show', classification_risk %></td>
-        <td><%= link_to 'Edit', edit_classification_risk_path(classification_risk) %></td>
-        <td><%= link_to 'Destroy', classification_risk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_classification_risk_path(classification_risk), remote: true %></td>
+        <td><%= link_to 'Eliminar', classification_risk, method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''} %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Classification Risk', new_classification_risk_path %>
