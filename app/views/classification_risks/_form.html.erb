@@ -43,8 +43,8 @@
     <%= form.text_area :description, id: :classification_risk_description, class: "form form-control" %>
   </div>
 
-  <%= form.hidden_field :user_id, id: :classification_risk_user_id %>
-  <%= form.hidden_field :admin_user, id: :classification_risk_admin_user %>
+  <%= form.hidden_field :user_id, id: :classification_risk_user_id, :value =>  current_user.id %>
+  <%= form.hidden_field :admin_user, id: :classification_risk_admin_user, :value => current_user.admin_user %>
   <br>
   
   </div>
