@@ -6,7 +6,7 @@
 </div>
 <br><br>
 
-<div class = "row title-table">
+<div class = "row title-table" style="padding-left: 0px !important;">
    <div class = "col-md-6" style="padding-left: 0px;">
       <p>Roles <span class="label label-primary"><%=@rols.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @rols, :entry_name => 'Procesos' %></span> </p>
 
@@ -15,11 +15,10 @@
    </div>
    <div class = "col-md-4 paginate text-left title-table1">
      
-<%= will_paginate @rols%>
    </div>
 
-   <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_rol_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px;">
+       <%= link_to 'Nuevo', new_rol_path, remote: true, style: "  float: right;", class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
    </div>
 </div>
 
@@ -52,7 +51,7 @@
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
+               text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">
@@ -91,7 +90,13 @@
                <%= link_to  edit_rol_path(rol), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
-               <%= link_to  rol,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <%= link_to  rol,  method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''}, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %><%end%></td>
       </tr>
@@ -100,6 +105,11 @@
 </table>
  <% end %>
 </div>
+
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @rols%>
+   </div>
 
 
 <style>

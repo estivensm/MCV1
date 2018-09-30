@@ -29,7 +29,7 @@
       <th>Nombre</th>
       <th>Descripcion</th>
       <th>Contexto</th>
-      <th colspan="3">Acciones</th>
+      <th style="width: 99px;">Acciones</th>
     </tr>
   </thead>
 
@@ -41,14 +41,21 @@
         <td><%= classification_risk.name %></td>
         <td><%= classification_risk.description %></td>
         <td><%= classification_risk.context %></td>
-        <td><%= link_to 'Editar', edit_classification_risk_path(classification_risk), remote: true %></td>
-        <td><%= link_to 'Eliminar', classification_risk, method: :delete, data: {
+
+        <td>
+          <%= link_to  edit_classification_risk_path(classification_risk),class: "btn btn-warning", remote: true do %>
+          <i class="fas fa-pencil-alt" style="color: #fff"></i>
+          <% end -%>
+        <%= link_to  classification_risk, class: "btn btn-danger", method: :delete, data: {
               confirm: '¿Estas Seguro?',
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
                text: 'Recuerda que el registro se borrara permanentemente',
-              'image-url': ''} %></td>
+              'image-url': '' } do %>
+                <i class="fas fa-trash-alt" style="color: #fff"></i>
+              <% end -%>
+            </td>
       </tr>
     <% end %>
   </tbody>
@@ -59,3 +66,17 @@
             <%= will_paginate @classification_risks%>
         </div>
    </div>
+
+<style>
+
+  .btn-warning{
+    background: #37b597;
+    border-color: #37b597;
+  }
+
+  .btn-warning:hover{
+    background: #37b597;
+    border-color: #37b597;
+  }
+
+</style>

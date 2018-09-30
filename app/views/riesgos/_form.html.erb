@@ -38,7 +38,7 @@
                <div class="col-md-6">
                        <div class="form-group">
                            <%= f.label "Descripcion" %>
-                           <%= f.text_area :descripcion,  class: "form-control area" %>
+                           <%= f.text_area :descripcion,  class: "form-control area required", :title => "Es un Campo Obligatorio" %>
                        </div>
                </div>
                <div class="col-md-6">
@@ -223,6 +223,10 @@
   background-color: #337ab7;
 }
 
+.error{
+  color: red !important;
+}
+
 .funkyradio-success input[type="radio"]:checked ~ label:before,
 .funkyradio-success input[type="checkbox"]:checked ~ label:before {
   color: #fff;
@@ -248,3 +252,9 @@
 }
 
 </style>
+
+<script>
+   $(document).ready(function(){
+     $('#new_riesgo').validate();
+    });
+</script>

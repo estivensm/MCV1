@@ -7,7 +7,7 @@
 </div>
 <br><br>
 
-<div class = "row title-table">
+<div class = "row title-table" style="padding-left: 0px !important">
    <div class = "col-md-6"  style="padding-left: 0px;">
       <p>Empleados <span class="label label-primary"><%=@employeds.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @employeds, :entry_name => 'Procesos' %></span> </p>
 
@@ -22,9 +22,6 @@
        <%= link_to 'Nuevo', new_employed_path, remote: true, class: "btn btn-primary", style: "float: right "  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
    </div>
 </div>
-
-
-
 <hr class="hr">
 <%= (link_to "Filtros", employeds_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar" %>
 <%= (link_to "Cancelar Filtros", employeds_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
@@ -73,7 +70,7 @@
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
+               text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">

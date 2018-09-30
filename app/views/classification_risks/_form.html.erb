@@ -12,7 +12,7 @@
 
         </div>
 
-<%= form_with(model: classification_risk, local: true) do |form| %>
+<%= form_with(model: classification_risk, local: true, id: "form-classification") do |form| %>
 <div class="modal-body">
   <% if classification_risk.errors.any? %>
     <div id="error_explanation">
@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label "Nombre" %>
-    <%= form.text_field :name, id: :classification_risk_name, :required => true, class: "form form-control" %>
+    <%= form.text_field :name, id: :classification_risk_name, class: "form form-control required", :title => "Es un Campo Obligatorio"  %>
   </div>
   <br>
 
@@ -66,4 +66,14 @@
     background-color: #00BE99!important;
   }
 
+  .error{
+    color: red !important;
+  }
+
 </style>
+
+<script>
+   $(document).ready(function(){
+     $('#form-classification').validate();
+    });
+</script>

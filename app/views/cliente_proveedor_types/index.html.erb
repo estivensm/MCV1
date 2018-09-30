@@ -23,7 +23,7 @@
 
   </ul>
 </div>
-<br><div class = "row title-table">
+<br><div class = "row title-table" style="padding-left: 0px !important;">
    <div class = "col-md-8"  style="padding-left: 0px;">
       <p>Tipos de partes interesadas <span class="label label-primary"><%=@cliente_proveedor_types.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @cliente_proveedor_types, :entry_name => 'Procesos' %></span> </p>
 
@@ -31,12 +31,11 @@
      
    </div>
    <div class = "col-md-2 paginate text-left title-table1">
-     
-<%= will_paginate @cliente_proveedor_types%>
+
    </div>
 
-   <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_cliente_proveedor_type_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px;">
+       <%= link_to 'Nuevo', new_cliente_proveedor_type_path, remote: true, style: "float: right;", class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
    </div>
 </div>
 
@@ -82,11 +81,13 @@
          <% end %>
       </tbody>
    </table>
-   
-     
-
-   
 </div>
+
+   <div class = "col-md-2 paginate text-left title-table1">
+     
+<%= will_paginate @cliente_proveedor_types%>
+   </div>
+
 
 <style>
 .btn-danger{background-color: #d9534f
