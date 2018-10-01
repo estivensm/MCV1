@@ -18,7 +18,7 @@
 
   <div class="form-group">
  <%= f.label "Nombre" %>
-    <%= f.text_field :name,  class: "form-control" %>
+    <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
 
 
    
@@ -43,6 +43,15 @@
   </div>
     </div>
       </div>
-
+<script>
+   $(document).ready(function(){
+     $('#new_cliente_proveedor_type').validate();
+    });
+</script>
       
 
+<style>
+  .error{
+    color: red !important;
+  }
+</style>

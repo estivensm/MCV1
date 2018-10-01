@@ -14,7 +14,7 @@
 
         </div>
 
-<%= form_with(model: risk_source, local: true) do |form| %>
+<%= form_with(model: risk_source, local: true, id: "form") do |form| %>
 <div class="modal-body">
   <% if risk_source.errors.any? %>
     <div id="error_explanation">
@@ -31,7 +31,7 @@
 
   <div class="field">
     <%= form.label "Nombre" %>
-    <%= form.text_field :name, id: :risk_source_name, class: "form form-control" %>
+    <%= form.text_field :name, id: :risk_source_name, class: "form form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
   <br>
 
@@ -43,7 +43,7 @@
 
   <div class="field">
     <%= form.label :Codigo %>
-    <%= form.text_field :code, id: :risk_source_code, class: "form form-control" %>
+    <%= form.text_field :code, id: :risk_source_code, class: "form form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
   <br>
 
@@ -68,4 +68,14 @@
     background-color: #00BE99!important;
   }
 
+  .error{
+    color: red !important;
+  }
+
 </style>
+
+<script>
+   $(document).ready(function(){
+     $('#form').validate();
+    });
+</script>

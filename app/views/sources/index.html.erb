@@ -5,26 +5,22 @@
   </ul>
 </div>
 <br><br>
-<div class = "row title-table">
+<div class = "row title-table" style="padding-left: 0px !important;">
    <div class = "col-md-6"  style="padding-left: 0px;">
       <p>Fuentes <span class="label label-primary"><%=@sources.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @sources, :entry_name => 'Fuentes' %></span> </p>
 
 
      
    </div>
+
    <div class = "col-md-4 paginate text-left title-table1">
-     
-<%= will_paginate @sources%>
+    
    </div>
 
-   <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_source_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px;">
+       <%= link_to 'Nuevo', new_source_path, remote: true, class: "btn btn-primary", style: "float: right"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
    </div>
 </div>
-
-
-
-
 <hr class="hr">
 <%= (link_to "Filtros", sources_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
 <%= (link_to "Cancelar Filtros", sources_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
@@ -84,6 +80,10 @@
 </table>
 <%end%>
 </div>
+
+   <div class = "col-md-4 paginate text-left title-table1">
+      <%= will_paginate @sources%>
+   </div>
 
 
 

@@ -12,11 +12,11 @@
     
     </ul>
   </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-bottom: 0px !important;">
 
   <div class="form-group">
  <%= f.label "Nombre" %>
-    <%= f.text_field :name,  class: "form-control" %>
+    <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
 
 
    
@@ -31,7 +31,7 @@
 
   <div class="form-group">
  <%= f.label "Codigo" %>
-    <%= f.text_field :codigo,  class: "form-control" %>
+    <%= f.text_field :codigo,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
 
 
    
@@ -49,7 +49,8 @@
 
   <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
-<br>
+  <br>
+</div>
 <hr>
   <div class="form-group text-center">
    <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
@@ -58,7 +59,7 @@
 <% end %>
   </div>
     </div>
-      </div>
+
 
       <style>
 .check
@@ -75,5 +76,16 @@
   height: 25px !important;
  
 }
+
+.error{
+  color: red !important;
+}
   
 </style>
+
+
+<script>
+   $(document).ready(function(){
+     $('#new_source_parent').validate();
+    });
+</script>

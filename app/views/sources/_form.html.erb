@@ -11,13 +11,13 @@
     
     </ul>
   </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding-bottom: 0px! important;">
 
       <div class = "row">
       <div class="col-md-6">
            <div class="form-group">
     <%= f.label "Nombre" %>
-    <%= f.text_field :name,  class: "form-control" %>
+    <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
    <div class="form-group">
@@ -26,7 +26,7 @@
   </div>
     <div class="form-group">
     <%= f.label "Codigo" %>
-    <%= f.text_field :codigo,  class: "form-control" %>
+    <%= f.text_field :codigo,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
 
@@ -93,8 +93,7 @@
 }
 
    </script>
-
-  <br>
+</div>
 <hr>
   <div class="form-group text-center">
    <%= f.submit "Guardar", class: 'btn btn-primary btnpad' %>
@@ -103,13 +102,15 @@
 <% end %>
   </div>
     </div>
-      </div>
 <script>
   
  
 </script>
   
   <style >
+   .error{
+   color: red !important;
+  }
     .btn-group a
     {
       padding: 0px 5px !important;
@@ -131,6 +132,11 @@
 }
 
 <script>
+
+   $(document).ready(function(){
+     $('#new_source').validate();
+    });
+
 $(document).ready(function(){
     $('.chosen-select2').chosen(
         {

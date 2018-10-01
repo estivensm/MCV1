@@ -19,7 +19,7 @@
 
     <div class="form-group">
     <%= f.label "Nombre" %>
-    <%= f.text_field :name,  class: "form-control" %>
+    <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
     <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
@@ -89,7 +89,10 @@ $('.levidencia').html(" <%=@norma.archivo.file.filename if @norma.archivo.file %
     input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
   });
 }( document, window, 0 ));
-
+ $(document).ready(function(){
+     $('#new_norma').validate();
+    });
+   
    
 </script>
 
@@ -104,7 +107,9 @@ $('.levidencia').html(" <%=@norma.archivo.file.filename if @norma.archivo.file %
   position: absolute;
   z-index: -1;
 }
-
+.error{
+  color: red !important;
+}
 .inputfile + label {
        font-size: 1em;
     border: 1px solid #d0d0d0;

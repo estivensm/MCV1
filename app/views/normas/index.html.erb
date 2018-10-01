@@ -6,7 +6,7 @@
   </ul>
 </div>
 <br><br>
-<div class = "row title-table">
+<div class = "row title-table" style="padding-left: 0px !important;">
    <div class = "col-md-6" style="padding-left: 0px;">
       <p>Normas <span class="label label-primary"><%=@normas.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @normas, :entry_name => 'Normas' %></span> </p>
 
@@ -14,12 +14,11 @@
      
    </div>
    <div class = "col-md-4 paginate text-left title-table1">
-     
-<%= will_paginate @normas%>
+    
    </div>
 
-   <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_norma_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px!important;">
+       <%= link_to 'Nuevo', new_norma_path, remote: true, style: "float: right;", class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
    </div>
 </div>
 
@@ -101,7 +100,7 @@
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
+               text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''}, :class => "opciones" do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
             <% end %>
@@ -114,6 +113,11 @@
 </table>
 <%end%>
 </div>
+
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @normas%>
+   </div>
 
 
 <style>

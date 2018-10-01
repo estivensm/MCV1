@@ -19,7 +19,7 @@
     <%= f.label "Nombre" %>
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-        <%= f.text_field :name, class: "form-control", :title => "Es un Campo Obligatorio", :required => true   %>
+        <%= f.text_field :name, class: "form-control required", :title => "Es un Campo Obligatorio"  %>
       </div>
   </div>
 
@@ -168,4 +168,14 @@ padding: 2px;
   background-color:  #00BE99;
   color: #f1f1f1;
 }
+
+.error{
+  color: red !important;
+}
 </style>
+
+<script>
+   $(document).ready(function(){
+     $('#new_clinte_proveedor').validate();
+    });
+</script>

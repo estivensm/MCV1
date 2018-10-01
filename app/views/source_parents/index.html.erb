@@ -7,7 +7,7 @@
 <br><br>
 
 
-<div class = "row title-table">
+<div class = "row title-table" style="padding-left: 0px !important">
    <div class = "col-md-6"  style="padding-left: 0px;">
       <p>Fuentes <span class="label label-primary"><%=@source_parents.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @source_parents, :entry_name => 'Fuentes' %></span> </p>
 
@@ -15,16 +15,13 @@
      
    </div>
    <div class = "col-md-4 paginate text-left title-table1">
-     
-<%= will_paginate @source_parents%>
+    
    </div>
 
-   <div class = "col-md-2">
-       <%= link_to 'Nuevo', new_source_parent_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px;">
+       <%= link_to 'Nuevo', new_source_parent_path, remote: true, class: "btn btn-primary", style: "float: right;"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
    </div>
 </div>
-
-
 <hr class="hr">
 <%= (link_to "Filtros",source_parents_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
 <%= (link_to "Cancelar Filtros", source_parents_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
@@ -54,7 +51,7 @@
               'confirm-button-text': 'Borrar',
               'cancel-button-text': 'Cancelar',
               'confirm-button-color': '#CC0000',
-               text: 'Recuerda quel registro se borrara permanentemente',
+               text: 'Recuerda que el registro se borrara permanentemente',
               'image-url': ''} do %>
 <p><%= submit_tag "Eliminar", class: "btn btn-danger" %></p>
    <table class="table">
@@ -87,7 +84,13 @@
                <%= link_to  edit_source_parent_path(source_parent), remote:true, :class => "opciones" do %>
                <i class="fa fa-pencil" aria-hidden="true"></i>
                <% end %>
-               <%= link_to  source_parent,  method: :delete, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+               <%= link_to  source_parent,  method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''}, :class => "opciones" do %>
                <i class="fa fa-trash" aria-hidden="true"></i>
                <% end %></td>
       </tr>
@@ -96,7 +99,10 @@
 </table>
 <% end %>
 </div>
-<br>
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+      <%= will_paginate @source_parents%>
+   </div>
 
 
 <style>

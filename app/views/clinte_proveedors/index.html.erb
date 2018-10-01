@@ -8,7 +8,7 @@
 <br><br>
 <%= render "encabezado"%>
 
-<br><div class = "row title-table">
+<br><div class = "row title-table" style="padding-left: 0px !important;">
    <div class = "col-md-6"  style="padding-left: 0px;">
 
       <p>Partes Interesadas<span class="label label-primary"><%=@clinte_proveedors.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @clinte_proveedors, :entry_name => 'Cliente' %></span> </p>
@@ -18,11 +18,10 @@
    </div>
    <div class = "col-md-4 paginate text-left title-table1">
      
-<%= will_paginate @clinte_proveedors%>
    </div>
 
-   <div class = "col-md-2">
-      <%= link_to 'Nuevo', new_clinte_proveedor_path, remote: true, class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
+   <div class = "col-md-2" style="padding: 0px;">
+      <%= link_to 'Nuevo', new_clinte_proveedor_path, remote: true, style: "float: right;", class: "btn btn-primary"  if current_user.role == "SuperAdmin" || current_user.rol.configuracion %>
    </div>
 </div>
 
@@ -125,7 +124,10 @@
   <% end %>
 </div>
 <br>
-
+   <div class = "col-md-4 paginate text-left title-table1">
+     
+<%= will_paginate @clinte_proveedors%>
+   </div>
 
 <style>
 .inputfile {
