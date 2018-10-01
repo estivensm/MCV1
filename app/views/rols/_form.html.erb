@@ -20,45 +20,53 @@
   </div>
 
 <div class="row funkyradio">
+
+  <div class="col-sm-4" style="padding-left: 0px;">
+    <div class="funkyradio-success">
+      <%= f.check_box :configuracion  %>
+      <%= f.label "Configuracion" , for: "rol_configuracion" %>
+    </div>
+
+    <div class="form-group funkyradio-success">
+      <%= f.check_box :report_ver, class: "rv"%>
+      <%= f.label "Ver todos los reportes", for: "rol_report_ver" %>
+    </div>
+
+    <div class="form-group funkyradio-success">
+      <%= f.check_box :report_procesos, class: "rp" %>
+      <%= f.label "Ver todos los de mi Proceso", for: "rol_report_procesos", style: "margin-top: 10px;" %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="padding: 0px;">
+
+    <div class="form-group funkyradio-success">
+      <%= f.check_box :report_crear %>
+       <%= f.label "Crear Reporte", for: "rol_report_crear" %>
+    </div>
+
+    <div class="form-group funkyradio-success">
+      <%= f.check_box :report_edit %>
+      <%= f.label "Editar Reportes", for: "rol_report_edit", style: "margin-top: 14px;" %>
+    </div>
+
+    <div class="form-group funkyradio-success">
+      <%= f.check_box :report_delete %>
+      <%= f.label "Borrar Reportes", for: "rol_report_delete", style: "margin-top: 9px;" %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="padding-left: 10px; padding-right: 0px;">
+    <div class="form-group funkyradio-success">
+      <%= f.check_box :create_all %>
+      <%= f.label "Crear Todo", for: "rol_create_all" %>
+    </div>
+  </div>
+
   
-
-  <div class="funkyradio-success">
-    <%= f.check_box :configuracion  %>
-    <%= f.label "Configuracion" , for: "rol_configuracion" %>
-  </div>
-
- <div class="form-group funkyradio-success">
-    <%= f.check_box :report_ver, class: "rv"%>
-    <%= f.label "Ver todos los reportes", for: "rol_report_ver" %>
-  </div>
-
-   <div class="form-group funkyradio-success">
-    <%= f.check_box :report_procesos, class: "rp" %>
-    <%= f.label "Ver todos los de mi Proceso", for: "rol_report_procesos" %>
-  </div>
-
-  <div class="form-group funkyradio-success">
-    <%= f.check_box :report_crear %>
-     <%= f.label "Crear Reporte", for: "rol_report_crear" %>
-  </div>
-
-  <div class="form-group funkyradio-success">
-    <%= f.check_box :report_edit %>
-    <%= f.label "Editar Reportes", for: "rol_report_edit" %>
-  </div>
-
- <div class="form-group funkyradio-success">
-    <%= f.check_box :report_delete %>
-    <%= f.label "Borrar Reportes", for: "rol_report_delete" %>
-  </div>
-
-
- <div class="form-group funkyradio-success">
-    <%= f.check_box :create_all %>
-    <%= f.label "Crear Todo", for: "rol_create_all" %>
-  </div>
-
 </div>  
+
+
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 
@@ -214,5 +222,10 @@
 .funkyradio-info input[type="checkbox"]:checked ~ label:before {
   color: #fff;
   background-color: #5bc0de;
+}
+
+.funkyradio div {
+    clear: none;
+
 }
 </style>
