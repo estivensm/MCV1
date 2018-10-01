@@ -14,9 +14,8 @@
       <div class="modal-body">
 
  <div class="form-group ">
-   
-    <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
     <%= f.label "Nombre" %>
+    <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
    
   </div>
 
@@ -26,39 +25,39 @@
   <div class="form-group funkyradio-success">
     <%= f.check_box :configuracion  %>
     <%= f.label "Configuracion" , for: "rol_configuracion" %>
-  
   </div>
 
-
- <div class="form-group">
-    <%= f.label "Ver todos los reportes" %>
+ <div class="form-group funkyradio-success">
     <%= f.check_box :report_ver, class: "rv"%>
+    <%= f.label "Ver todos los reportes", for: "rol_report_ver" %>
   </div>
-   <div class="form-group">
-    <%= f.label "Ver todos los de mi Proceso" %>
+
+   <div class="form-group funkyradio-success">
     <%= f.check_box :report_procesos, class: "rp" %>
+    <%= f.label "Ver todos los de mi Proceso", for: "rol_report_procesos" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label "Crear Reporte" %>
+  <div class="form-group funkyradio-success">
     <%= f.check_box :report_crear %>
+     <%= f.label "Crear Reporte", for: "rol_report_crear" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label "Editar Reportes" %>
+  <div class="form-group funkyradio-success">
     <%= f.check_box :report_edit %>
+    <%= f.label "Editar Reportes", for: "rol_report_edit" %>
   </div>
 
- <div class="form-group">
-    <%= f.label "Borrar Reportes" %>
+ <div class="form-group funkyradio-success">
     <%= f.check_box :report_delete %>
+    <%= f.label "Borrar Reportes", for: "rol_report_delete" %>
   </div>
 
 
- <div class="form-group">
-    <%= f.label "Crear Todo" %>
+ <div class="form-group funkyradio-success">
     <%= f.check_box :create_all %>
+    <%= f.label "Crear Todo", for: "rol_create_all" %>
   </div>
+
 </div>  
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
