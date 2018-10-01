@@ -8,7 +8,7 @@
 
   <%else%>
 
-    $('.task_abiertasa<%=@acccion.id%>').html("<%= j render 'accions/task_abiertas', tasks: @tasks , accion: @accion %>");
+    $('.task_abiertasa<%=@accion.id%>').html("<%= j render 'accions/task_abiertas', tasks: @tasks , accion: @accion %>");
 
 
   <%end%>
