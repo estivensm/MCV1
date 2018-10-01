@@ -110,7 +110,7 @@ def create_user
        usr = self.first_name + "." + self.first_last_name
        User.create(email:self.email,password:password,password_confirmation:password,rol_id: rol,admin_user:self.admin_user,role:"Basico",name: usr)
        save
-      # WelcomeMailer.welcome(self).deliver
+       WelcomeMailer.welcome(self).deliver
       # end
 end
 

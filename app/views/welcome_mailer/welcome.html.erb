@@ -9,8 +9,8 @@
     border-radius: 15px;">
 	<h2 style = "text-align:center;color: #0db497">Bienvenido a MejoraApp</h2>
 	<hr style = "border: 0.5px solid #e4e4e4;">
-	<p style = "color:gray" ><strong>Usuario:</strong><%=@user.email%></p>
-	<p style = "color:gray"><strong>Contraseña:</strong> </p>
+	<p style = "color:gray" ><strong>Usuario:</strong><%=@user.first_name%>.<%=@user.first_last_name%></p>
+	<p style = "color:gray"><strong>Contraseña:</strong><%=@user.first_name + Time.now.year.to_s%> </p>
 		<hr style = "border: 0.5px solid #e4e4e4;">
 		<a style = "text-align:center;color: #0db497" href="mejoracontinua.herokuapp.com" >www.mejoraapp.com</a>
 	</div>
