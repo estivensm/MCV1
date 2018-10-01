@@ -13,14 +13,20 @@
   </div>
       <div class="modal-body">
 
- <div class="form-group">
-    <%= f.label "Nombre" %>
+ <div class="form-group ">
+   
     <%= f.text_field :name,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
+    <%= f.label "Nombre" %>
+   
   </div>
 
-  <div class="form-group">
-    <%= f.label "Configuracion" %>
-    <%= f.check_box :configuracion %>
+<div class="funkyradio">
+  
+
+  <div class="form-group funkyradio-success">
+    <%= f.check_box :configuracion  %>
+    <%= f.label "Configuracion" , for: "rol_configuracion" %>
+  
   </div>
 
 
@@ -53,6 +59,7 @@
     <%= f.label "Crear Todo" %>
     <%= f.check_box :create_all %>
   </div>
+</div>  
 <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 
