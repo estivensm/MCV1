@@ -46,7 +46,7 @@
         <td><%= riesgo.admin_user %></td>
 
         <td><%= riesgo.descripcion %></td>
-        <td><%= riesgo.classification_risk.name %></td>
+        <td><%= riesgo.classification_risk.name if riesgo.classification_risk %></td>
          <td><%=riesgo.risk_source.name if riesgo.risk_source  %></td>
         <td><%= riesgo.nivel %></td>
         <td>
