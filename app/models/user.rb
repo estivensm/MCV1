@@ -118,7 +118,20 @@ def self.search(search, search1)
                Employed.create(email: self.email, admin_user: self.id, user_id: self.id, password: nil ,password_c: nil, user_name:self.name)
                self.employed_id =  Employed.where(admin_user: self.id).last.id
                self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
+              
                save
+
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "De Cumplimiento")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Operacional")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Estratégico")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Tecnológico")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Legal")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Cliente")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Financiero")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Desastres")
+               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Humano")
+               ClassificationRisk.create(user_id:self.id, admin_user: self.id, name: "Ambiental")
+
                puts "holaaaaaaaa"
                puts  Employed.where(admin_user: self.id).last.id
 
