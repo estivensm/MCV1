@@ -1,10 +1,45 @@
-<div id='cssmenu1'>
+
+
+
+
+<div id='cssmenu1' style="margin-bottom: 20px;">
   <ul>
     <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
     <li class="active"><a href='#'>Reportes</a></li>
   </ul>
 </div>
-<br><br>
+
+ <ul class="nav nav-tabs" role="tablist">
+               <% menu_hallazgo 
+                  if show_reports %>
+               <li role="presentation" class="<%=@menu_a[0]%>">  <%= link_to reports_abiertos_path,:action => :abiertos,:class => "#{@menu_a[0]}" do %>
+                  <i class="fa fa-building-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">Reportes Abiertos</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class="<%=@menu_a[1]%>">  <%= link_to reports_cerrados_path,:action => :cerrados,:class => "#{@menu_a[1]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Reportes Cerrados</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_a[2]%>">     
+                  <%= link_to reports_path, :class => "#{@menu_a[2]}" do %>
+                  <span class="fa fa-users"></span>
+                  <span class="hidden-xs">Todos</span>
+                  <% end %>
+               </li>
+               <li role="presentation" class ="<%=@menu_a[3]%>">     
+                  <%= link_to reportst_calendar_path, :class => "#{@menu_a[3]}" do %>
+                  <i class="fa fa-calendar" aria-hidden="true" style = "display:block !important;font-size:16px"></i>
+                  <% end %>
+               </li>
+               <% else%>
+               <% end %>
+            </ul>
+
+
+<br>
+
 <div class = "row title-table">
    <div class = "col-md-10" style="padding-left: 0px;">
       <p>Reportes <span class="label label-primary"><%=@reports.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_entries_info @reports, :entry_name => 'Reporte' %></span> </p>
@@ -56,10 +91,7 @@
             <%end%>
          </div>
          </div>     
-   <div class = "col-md-7 paginate text-left title-table1">
-     
-<%= will_paginate @reports%>
-   </div>
+ 
 
    
 </div>
@@ -194,12 +226,12 @@
          <th style = "width:8%" class="text-left">Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
          <th  class="text-left" style = "width:30%">Reporte</th>
-         <th style = "width:10%" class="text-left">Compromiso</th>
+         <th style = "width:15%" class="text-left">Compromiso</th>
          <%if action_name == "cerrados" || action_name == "index" %>
           <th style = "width:10%" class="text-left">Entrega</th>
           <th style = "width:5%" class="text-left">¿Cumplio?</th>
           <%end%>
-          <th style = "width:5%" class="text-center">Días</th>
+
           <th style = "width:10%" class="text-left">Fuente</th>
          <th style = "width:10%" class="text-left">Tipo de Reporte</th>
          <th style = "width:10%" class="text-left">Responsable</th>
@@ -258,9 +290,12 @@
         
 
         <%if action_name == "cerrados" || action_name == "index"%>
-           <td  ><%= get_date(report.f_compromiso)%></td>
+           <td  ><%= get_date(report.f_compromiso)%>
+             
+           </td>
            <%else%>
- <td  style = "background:<%=estado_contador(report.contador_seg)%>;color:white" ><%= get_date(report.f_compromiso)%></td>
+ <td  style = "background:<%=estado_contador(report.contador_seg)%>;color:white;text-align:center" >   
+                   <strong>  <%=get_date(report.f_compromiso)%><br> <%= report.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=report.contador_seg.abs%> días</strong></td>
           <%end%>
 
 
@@ -273,7 +308,7 @@
            <button class = "tip" type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="<p><%=report.justificacion_cumplio%></p>">?</button><%end%> </td>
            <td class="text-center"><%= cumplio(report.cumplio).html_safe if report.state == "Cerrado"%></td>
           <%end%>
-<td class="text-center"> <%= report.contador_seg%> </td>
+
         <td><%= report.source_parent.name %></td>
          <td><%= report.source.name %></td>
          <td><%= Employed.find(report.employed_id).first_name %> <%= Employed.find(report.employed_id).first_last_name %></td>
@@ -306,8 +341,10 @@
 
 
 
-
-
+  <div class = "col-md-12 paginate text-center title-table1">
+     
+<%= will_paginate @reports%>
+   </div>
 
 
 
