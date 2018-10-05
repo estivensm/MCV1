@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-
+  get "indicadores", to: "riesgos#indicadores", as: "indicadores"
   
 
 
@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :source_parents
   
   resources :riesgos  do
-
         resources :valoration_risks    
   
   end

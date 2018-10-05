@@ -266,6 +266,7 @@ class DashboardController < ApplicationController
     @rabiertos = @reports.abiertos.count
     @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,1).count
     @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,1).count
+    
     @rcerrados =    @reports.cerrados.count
     @rcumplio =    @reports.cerrados.where(cumplio: true).count
     @rnocumplio =    @reports.cerrados.where(cumplio: false).count

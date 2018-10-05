@@ -1,23 +1,28 @@
-<div class="row submenu-main" >
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="">  <%= link_to riesgos_path, :class => "" do %>
+       <i class="fa fa-building-o" aria-hidden="true"></i>
+       <span class="hidden-xs">Riesgos</span>
+       <% end %>
+    </li>
 
-  <ul class="nav nav-tabs" role="tablist">
-     <li role="presentation" class=""> <%= link_to riesgos_path do %>
-        <i class="fa fa-building-o" aria-hidden="true"></i>
-        <span class="hidden-xs">Riesgos</span>
-        <% end %>
-     </li>
+    <li role="presentation" class="active">  <%= link_to risk_sources_path, :class => "" do %>
+       <span class="fa fa-users"></span>
+       <span class="hidden-xs">Fuentes de Riesgos</span>
+       <% end %>
+    </li>
 
-     <li role="presentation" class="active"> <%= link_to risk_sources_path do %>
-        <i class="fa fa-building-o" aria-hidden="true"></i>
-        <span class="hidden-xs">Fuentes de Riesgos</span>
-        <% end %>
-     </li>
+    <li role="presentation" class ="">     
+       <%= link_to classification_risks_path, :class => "" do %>
+       <span class="fa fa-users"></span>
+       <span class="hidden-xs">Clasificacion de Riesgos</span>
+       <% end %>
+    </li>
 
-    <li role="presentation" class=""> <%= link_to classification_risks_path do %>
-        <i class="fa fa-building-o" aria-hidden="true"></i>
-        <span class="hidden-xs">Clasificación de Riesgos</span>
-        <% end %>
-     </li>
-
-  </ul>
-</div>
+    <li role="presentation" class ="">     
+       <%= link_to indicadores_path, :class => "" do %>
+       <span class="fa fa-users"></span>
+       <span class="hidden-xs">Indicadores</span>
+       <% end %>
+    </li>
+</ul>
+<br>
