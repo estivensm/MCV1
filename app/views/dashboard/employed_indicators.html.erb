@@ -1,17 +1,57 @@
 <%= render 'encabezado'%>
-<br>
-<div class="row">
-  <div class="col-md-4">
-    
-    <div id="container" style="min-width: 250px; max-width: 350px; height: 250px; margin: 0 auto"></div>
-   </div>
-   <div class = "col-md-8">
+<!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+<body class="w3-light-grey">
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-row-padding">
+      <div class="w3-third" style="width: 320px;">
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container" style="text-align:center; padding-top: 17px;" >
+            <%= @employed.avatare? ? image_tag(@employed.avatare_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe", style: "height: 104px;")%>
+        </div>
+        <br><br>
+        <div class="w3-container">
+          <strong><h4 style="color: black;"><%= @employed.first_name %> <%= @employed.second_name %> <%= @employed.first_last_name %> <%= @employed.second_last_name %></h4></strong>
 
+          <p style="font-size: 13px;"><i class="far fa-envelope fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i><%= @employed.email %></p>
+
+          <p><i class="fa fa-address-card  fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i> <%= @employed.document_type%> - <%= @employed.document%></p>
+
+          <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i><%= @employed.birth_date %></p>
+
+          <p><i class="fa fa-venus-mars fa-fw w3-margin-right w3-large w3-text-teal" style="color: #0cb497 !important;"></i><%= @employed.genero %></p>
+
+          <div id="container" style="height: 250px;"></div>
+          
+          <hr>
+
+            <div class="row" style="text-align: center;">
+
+            <%= link_to 'Editar', edit_employed_path(@employed), remote: true, class: "btn btn-primary btn-block" %>
+            </div>
+
+          <br>
+
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom" style="width: 110%;">
+        <h2 class="w3-text-grey w3-padding-16"></h2>
+        <div class="w3-container">
+
+          <div class="row">
+            
+            
    <p style = "font-size: 12px;
 "><i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Vigentes</span>
    <i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">Vencidos</span>
-   <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#279afd" aria-hidden="true"></i> <span style = "margin-right:25px">Cumplio Fecha de Entrega</span>
-   <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: #d27f37;"></i> <span style = "margin-right:25px">No Cumplio Fecha de Entrega</span>
+   <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Cumplio Fecha de Entrega</span>
+   <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">No Cumplio Fecha de Entrega</span>
 
    </p>
        <table class="table indicadores">
@@ -36,9 +76,9 @@
             <th><i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i>
 </th><th style = "border-right:1px solid gray">Total</th>
             
-            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#279afd" aria-hidden="true"></i>
+            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i>
 </th>
-            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: #d27f37;"></i>
+            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: red;"></i>
 </th><th >Total</th>
 <th>% Cumplimiento</th>
          </tr>
@@ -115,26 +155,37 @@
         <%end%>
         </tr>
       </tbody>
+
    </table>
-
-   </div>
-</div>
-<hr>
-<div class="row">
-<div class="col-md-6">
-
-
- <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
-  <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>-->
-</div>
-
-<div class="col-md-6">
+  <br><br>
+   <div class="col-md-6" style="margin-bottom: 37px !important;">
     <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
    <div id="container2" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 </div>
-  
+
+<div class="col-md-4" style="margin-bottom: 37px !important;">
+    <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
+   <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 </div>
+
+            
+          </div>
+        </div>
+ 
+      </div>
+
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid  height 104px-->
+  </div>
+  <!-- End Page Container -->
+</div>
+
+<!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
+
+
 <style>
    .img img
    {
@@ -149,17 +200,20 @@
    {
     font-weight: bold;
     font-size-adjust: 16px;
-
+    font-size: 12px !important;
    }
-.myd
-{
-
-    font-size: 26px;
-    background: #e8e8e8;
-    color: #0db493;
-    font-family: 'Days One', sans-serif;
-    padding-left: 32px;
+.w3-display-container{
+    border-top: 3px solid #dbdbdb;
 }
+.w3-margin-bottom {
+  border-top: 3px solid #dbdbdb;
+}
+
+.w3-container h4{
+    margin-bottom: 18px;
+    text-align: center;
+}
+
 </style>
 
 
@@ -179,7 +233,7 @@ Highcharts.chart('container', {
     },
 
     title: {
-        text: '% Rendimiento'
+        text: '%Rendimiento'
     },
 
     pane: {
@@ -285,9 +339,6 @@ function (chart) {
 
 
 
-
-
-
 <script>
     Highcharts.chart('container1', {
     chart: {
@@ -334,6 +385,10 @@ function (chart) {
         color: '#d82c2c',
         data: [<%=@ranocumplio%>, <%=@aanocumplio%>, <%=@tanocumplio%>]
 
+     },  {
+        name: 'Total',
+        color: '#d82c2c',
+        data: [<%= @aabiertas%>, <%= @tabiertas%>, <%= @rabiertos%>]
     }]
 });
 </script>
@@ -388,3 +443,5 @@ function (chart) {
     }]
 });
 </script>
+
+

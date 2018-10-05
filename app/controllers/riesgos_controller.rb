@@ -41,6 +41,11 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
     end
   end
 
+  def indicadores
+    
+  end
+
+
   # PATCH/PUT /riesgos/1
   # PATCH/PUT /riesgos/1.json
   def update
