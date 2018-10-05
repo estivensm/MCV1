@@ -326,6 +326,12 @@ function (chart) {
         }
     },
     series: [{
+        name: 'Total',
+        color: '#817575',
+        data: [<%= @rabiertos%> , <%= @aabiertas%> ,<%= @tabiertas%>]
+    },
+
+    {
         name: 'Vigentes',
         color: '#0db493',
         data: [<%=@racumplio%>, <%=@aacumplio%>,<%=@tacumplio%>]
@@ -335,10 +341,11 @@ function (chart) {
         color: '#d82c2c',
         data: [<%=@ranocumplio%>, <%=@aanocumplio%>, <%=@tanocumplio%>]
 
-    }]
+    }, 
+
+    ]
 });
 </script>
-
 
 <script>
     Highcharts.chart('container2', {
@@ -377,6 +384,13 @@ function (chart) {
         }
     },
     series: [{ 
+        name: 'Total',
+        color: '#E78533',
+        data: [ <%=@rnocumplio%>, <%=@acumplio%>, <%=@tcumplio%>]
+
+    },
+
+    { 
         name: 'Cumplidos',
         color: '#279afd',
         data: [ <%=@rcumplio%>, <%=@acumplio%>, <%=@tcumplio%>]
@@ -386,6 +400,8 @@ function (chart) {
         color: '#b9661e',
         data: [ <%=@rnocumplio%>, <%=@anocumplio%>,<%=@tnocumplio%>]
 
-    }]
+    }
+
+    ]
 });
 </script>
