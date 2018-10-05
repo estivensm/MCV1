@@ -213,7 +213,7 @@
                      <%end%>
                   </li>
                   <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                     <%= link_to riesgos_path,:class => "configuracion #{@menum[7]}"  do %>
+               <%= link_to riesgos_path, style: "margin-top: 1px;", :class => "configuracion #{@menum[7]}"  do %>
                     <i class="fas fa-exclamation-triangle"></i>
                      <span>Riesgos</span>
                      <% end %>
@@ -246,9 +246,11 @@
             </div>
          </div>
          <%end%>
+
       <% if controller_name == "riesgos" || controller_name == "risk_sources" || controller_name == "classification_risks"%>
            <%= render "menu"%>
       <% end -%>
+
          <!--/sidebar-->
          <div class="row submenu-main" >
             <% sub_menu %>

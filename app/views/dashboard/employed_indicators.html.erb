@@ -158,15 +158,18 @@
 
    </table>
   <br><br>
+
+  <div class="col-md-6" style="margin-bottom: 37px !important;">
+    <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
+   <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+</div>
+
    <div class="col-md-6" style="margin-bottom: 37px !important;">
     <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
    <div id="container2" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 </div>
 
-<div class="col-md-4" style="margin-bottom: 37px !important;">
-    <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
-   <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
-</div>
+
 
             
           </div>
@@ -376,6 +379,12 @@ function (chart) {
         }
     },
     series: [{
+        name: 'Total',
+        color: '#817575',
+        data: [<%= @rabiertos%> , <%= @aabiertas%> ,<%= @tabiertas%>]
+    },
+
+    {
         name: 'Vigentes',
         color: '#0db493',
         data: [<%=@racumplio%>, <%=@aacumplio%>,<%=@tacumplio%>]
@@ -385,11 +394,9 @@ function (chart) {
         color: '#d82c2c',
         data: [<%=@ranocumplio%>, <%=@aanocumplio%>, <%=@tanocumplio%>]
 
-     },  {
-        name: 'Total',
-        color: '#d82c2c',
-        data: [<%= @aabiertas%>, <%= @tabiertas%>, <%= @rabiertos%>]
-    }]
+    }, 
+
+    ]
 });
 </script>
 
@@ -431,6 +438,13 @@ function (chart) {
         }
     },
     series: [{ 
+        name: 'Total',
+        color: '#E78533',
+        data: [ <%=@rnocumplio%>, <%=@acumplio%>, <%=@tcumplio%>]
+
+    },
+
+    { 
         name: 'Cumplidos',
         color: '#279afd',
         data: [ <%=@rcumplio%>, <%=@acumplio%>, <%=@tcumplio%>]
@@ -440,7 +454,9 @@ function (chart) {
         color: '#b9661e',
         data: [ <%=@rnocumplio%>, <%=@anocumplio%>,<%=@tnocumplio%>]
 
-    }]
+    }
+
+    ]
 });
 </script>
 
