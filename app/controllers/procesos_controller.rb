@@ -37,6 +37,69 @@ class ProcesosController < ApplicationController
   # GET /procesos/1
   # GET /procesos/1.json
   def show
+
+    
+    @reports = Report.where(proceso_id: @proceso.id)
+    @accions = Accion.joins(:report).where(:reports => {:proceso_id  => @proceso.id} )
+    @tasksd = Task.joins(:report).where(:reports => {:proceso_id  => @proceso.id} )
+    @reports.cerrados.count != 0 ? @divr = @reports.cerrados.count : @divr = 1  
+    @accions.cerradas.count != 0 ? @diva = @accions.cerradas.count : @diva = 1   
+    #@accions.cerradas.where(tipo: "Correcion").count != 0 ? @divc = @accions.cerradas.where(tipo: "Accion").count : @divc = 1 
+    @tasksd.cerradas.count != 0 ? @divt = @tasksd.cerradas.count : @divt = 1  
+    
+      
+    
+    @rabiertos = @reports.abiertos.count 
+    @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,1).count 
+    @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,1).count 
+    @rcerrados =    @reports.cerrados.count 
+    @rcumplio =    @reports.cerrados.where(cumplio: true).count 
+    @rnocumplio =    @reports.cerrados.where(cumplio: false).count 
+    @rporcentaje=    ((@reports.cerrados.where(cumplio: true).count.to_f/@divr)*100).to_i 
+      
+    #@correcciones =      @accions.where(tipo: "Correcion").count 
+    #@canocumplio =     @accions.abiertas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
+    #@cacumplio =    @accions.abiertas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count 
+    #@cabiertas =      @accions.abiertas.where(tipo: "Correcion").count 
+    #@ccerradas =     @accions.cerradas.where(tipo: "Correcion").count 
+    #@cnocumplio =     @accions.cerradas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
+    #@ccumplio =    @accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count 
+     #@cporcentaje =  ((@accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count.to_f/ @divc)*100).to_i 
+
+      @acciones =   @accions.count 
+      @aabiertas=   @accions.abiertas.count 
+      @aanocumplio =   @accions.abiertas.where("accions.contador_seg < ?" ,1).count 
+      @aacumplio =   @accions.abiertas.where("accions.contador_seg >= ?" ,1).count 
+      @acerradas=  @accions.cerradas.count 
+      @anocumplio =   @accions.cerradas.where(cumplio: false).count 
+      @acumplio =   @accions.cerradas.where(cumplio: true).count 
+      @aporcentaje = ((@accions.cerradas.where(cumplio: true).count.to_f/ @diva)*100).to_i 
+     
+      @tasks =  @tasksd .count 
+      @tabiertas =  @tasksd .abiertas.count 
+      @tanocumplio =  @tasksd.abiertas.where("tasks.contador_seg < ?" ,1).count 
+      @tacumplio =  @tasksd.abiertas.where("tasks.contador_seg >= ?" ,1).count 
+      @tcerradas =   @tasksd.cerradas.count 
+      @tnocumplio =  @tasksd.cerradas.where(cumplio: false).count 
+      @tcumplio =  @tasksd.cerradas.where(cumplio: true).count 
+      @tporcentaje = ((@tasksd.cerradas.where(cumplio: true).count.to_f/@divt)*100).to_i
+      
+
+     
+      
+
+      @total1 = @reports.count + @acciones + @tasks
+      @total2 = @racumplio  + @aacumplio + @tacumplio
+      @total3 = @ranocumplio  + @aanocumplio + @tanocumplio
+      @total4 = @rabiertos + @aabiertas + @tabiertas
+      @total5 = @rcumplio  + @acumplio + @tcumplio
+      @total6 = @rnocumplio  + @anocumplio + @tnocumplio
+      @total7 = @rcerrados + @acerradas + @tcerradas
+
+      @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i 
+
+        
+
   end
 
   # GET /procesos/new
