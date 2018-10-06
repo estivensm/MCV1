@@ -1,20 +1,26 @@
 <div class="container-fluid" id="filtros">
 
-  <h4 style="float: left;">buscador de registros</h4>
+  
 
         <%= form_tag company_indicators_path, :method => 'get' do%>
 
-        
+               <%= button_tag class: "btn btn-primary sh3", :title => "Buscar Registros", id: "btn3" do %>
+        <i class="fas fa-search" style=""></i>
+        <% end -%>
         <%= link_to company_indicators_path, :title => "Cancelar Filtros", class: "btn btn-danger", id: "btn3" do%>
           <i class="fas fa-ban"></i>
         <% end -%> 
 
-        <%= button_tag class: "btn btn-primary sh3", :title => "Buscar Registros", id: "btn3" do %>
-        <i class="fas fa-search" style=""></i>
-        <% end -%>
+ 
 
-        <div class="col-md-3" style="float: right; padding: 0px;">
-          <%= select_tag 'search1', options_for_select(Proceso.all.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh4", include_blank: true }%>
+        <div class="col-md-3" style="padding: 0px;">
+          <%= select_tag 'search1', options_for_select(get_procesos.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh1", include_blank: "Proceso" }%>
+        </div>
+         <div class="col-md-3" style=" padding: 0px;">
+          <%= select_tag 'search7', options_for_select(get_source_parents.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh7", include_blank: "Fuente" }%>
+        </div>
+         <div class="col-md-3" style=" padding: 0px;">
+          <%= select_tag 'search2', options_for_select(get_sources.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh2", include_blank: "Tipo de Reporte" }%>
         </div>
 
       <% end -%>
@@ -22,14 +28,17 @@
 
 
 <style>
-
+  .form-control
+  {
+    margin-top:5px;
+  }
   #filtros{
     width: 100%;
     background: #e8e8e8;
   }
 
   #btn3{
-    float: right;
+
     margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -45,3 +54,9 @@
   }
 
 </style>
+
+<script>
+   $('.sh1').val("<%=params[:search1]%>") ;
+   $('.sh7').val("<%=params[:search7]%>") ;
+   $('.sh2').val("<%=params[:search2]%>") ;
+</script>
