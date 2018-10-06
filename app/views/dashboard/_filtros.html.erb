@@ -1,0 +1,40 @@
+<div class="container-fluid" id="filtros">
+
+  <h4 style="float: left;">buscador de registros</h4>
+
+        <%= form_tag employed_indicators_path, :method => 'get' do%>
+
+        
+        <%= link_to employed_indicators_path, :title => "Cancelar Filtros", class: "btn btn-danger", id: "btn3" do%>
+          <i class="fas fa-ban"></i>
+        <% end -%> 
+
+        <%= button_tag class: "btn btn-primary sh3", :title => "Buscar Registros", id: "btn3" do %>
+        <i class="fas fa-search" style=""></i>
+        <% end -%>
+
+        <div class="col-md-3" style="float: right; padding: 0px;">
+          <%= select_tag 'search2', options_for_select(User.all.collect{ |u| ["#{u.email}", u.id, ] }),{:class => "form-control sh4", include_blank: true }%>
+        </div>
+
+      <% end -%>
+</div>
+
+
+<style>
+
+  #filtros{
+    width: 99%;
+  }
+
+  #btn3{
+    float: right;
+    margin-left: 10px;
+  }
+
+  h4{
+    color: #0db493;
+    text-transform: capitalize;
+  }
+
+</style>
