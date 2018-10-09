@@ -257,10 +257,10 @@ class DashboardController < ApplicationController
     @accions = Accion.where(employed_id: @employed.id)
     @tasksd = @employed.tasks
 
-    @reports.abiertos.count != 0 ? @divra = @reports.abiertos.count : @divr = 1
-    @accions.abiertas.count != 0 ? @divaa = @accions.abiertas.count : @diva = 1
+    @reports.abiertos.count != 0 ? @divra = @reports.abiertos.count : @divra = 1
+    @accions.abiertas.count != 0 ? @divaa = @accions.abiertas.count : @divaa = 1
     #@accions.cerradas.where(tipo: "Correcion").count != 0 ? @divc = @accions.cerradas.where(tipo: "Accion").count : @divc = 1
-    @tasksd.abiertas.count != 0 ? @divta = @tasksd.abiertas.count : @divt = 1
+    @tasksd.abiertas.count != 0 ? @divta = @tasksd.abiertas.count : @divta = 1
 
 
     @reports.cerrados.count != 0 ? @divr = @reports.cerrados.count : @divr = 1
