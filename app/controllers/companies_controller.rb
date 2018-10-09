@@ -138,8 +138,11 @@ class CompaniesController < ApplicationController
 
 
 
-
-
+   
+    @reports.abiertos.count != 0 ? @divra = @reports.abiertos.count : @divra = 1
+    @accions.abiertas.count != 0 ? @divaa = @accions.abiertas.count : @divaa = 1
+    #@accions.cerradas.where(tipo: "Correcion").count != 0 ? @divc = @accions.cerradas.where(tipo: "Accion").count : @divc = 1
+    @tasksd.abiertas.count != 0 ? @divta = @tasksd.abiertas.count : @divta = 1
 
 
 
@@ -154,10 +157,16 @@ class CompaniesController < ApplicationController
     @rabiertos = @reports.abiertos.count 
     @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,1).count 
     @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,1).count 
+    @rporcentaje_abi_cump =    ((@reports.abiertos.where("contador_seg >= ?" ,1).count.to_f/@divra)*100).to_i
+    @rporcentaje_abi_no =    ((@reports.abiertos.where("contador_seg < ?" ,1).count.to_f/@divra)*100).to_i
+
+
+
     @rcerrados =    @reports.cerrados.count 
     @rcumplio =    @reports.cerrados.where(cumplio: true).count 
     @rnocumplio =    @reports.cerrados.where(cumplio: false).count 
-    @rporcentaje=    ((@reports.cerrados.where(cumplio: true).count.to_f/@divr)*100).to_i 
+    @rporcentaje=    ((@reports.cerrados.where(cumplio: true).count.to_f/@divr)*100).to_i
+    @rporcentaje_no=    ((@reports.cerrados.where(cumplio: false).count.to_f/@divr)*100).to_i 
       
     #@correcciones =      @accions.where(tipo: "Correcion").count 
     #@canocumplio =     @accions.abiertas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
@@ -172,20 +181,32 @@ class CompaniesController < ApplicationController
       @aabiertas=   @accions.abiertas.count 
       @aanocumplio =   @accions.abiertas.where("accions.contador_seg < ?" ,1).count 
       @aacumplio =   @accions.abiertas.where("accions.contador_seg >= ?" ,1).count 
+      @aporcentaje_abi_cump = ((@accions.abiertas.where("accions.contador_seg < ?" ,1).count.to_f/ @divaa)*100).to_i
+      @aporcentaje_abi_no = (( @accions.abiertas.where("accions.contador_seg >= ?" ,1).count.to_f/ @divaa)*100).to_i
+
+
+
       @acerradas=  @accions.cerradas.count 
       @anocumplio =   @accions.cerradas.where(cumplio: false).count 
       @acumplio =   @accions.cerradas.where(cumplio: true).count 
       @aporcentaje = ((@accions.cerradas.where(cumplio: true).count.to_f/ @diva)*100).to_i 
+      @aporcentaje_no = ((@accions.cerradas.where(cumplio: false).count.to_f/ @diva)*100).to_i
      
+
+
       @tasks =  @tasksd.count 
       @tabiertas =  @tasksd.abiertas.count 
       @tanocumplio =  @tasksd.abiertas.where("tasks.contador_seg < ?" ,1).count 
       @tacumplio =  @tasksd.abiertas.where("tasks.contador_seg >= ?" ,1).count 
+      @tporcentaje_abi_cump = ((@tasksd.abiertas.where(cumplio: true).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_no = ((@tasksd.abiertas.where(cumplio: false).count.to_f/@divta)*100).to_i
+
+
       @tcerradas =   @tasksd.cerradas.count 
       @tnocumplio =  @tasksd.cerradas.where(cumplio: false).count 
       @tcumplio =  @tasksd.cerradas.where(cumplio: true).count 
       @tporcentaje = ((@tasksd.cerradas.where(cumplio: true).count.to_f/@divt)*100).to_i
-      
+      @tporcentaje_no = ((@tasksd.cerradas.where(cumplio: false).count.to_f/@divt)*100).to_i
 
      
       
@@ -210,6 +231,14 @@ class CompaniesController < ApplicationController
     @reports = Report.where(admin_user:current_user.admin_user)
     @accions = Accion.where(admin_user:current_user.admin_user)
     @tasksd = Task.where(admin_user:current_user.admin_user)
+       @reports.abiertos.count != 0 ? @divra = @reports.abiertos.count : @divra = 1
+    @accions.abiertas.count != 0 ? @divaa = @accions.abiertas.count : @divaa = 1
+    #@accions.cerradas.where(tipo: "Correcion").count != 0 ? @divc = @accions.cerradas.where(tipo: "Accion").count : @divc = 1
+    @tasksd.abiertas.count != 0 ? @divta = @tasksd.abiertas.count : @divta = 1
+
+
+
+
     @reports.cerrados.count != 0 ? @divr = @reports.cerrados.count : @divr = 1  
     @accions.cerradas.count != 0 ? @diva = @accions.cerradas.count : @diva = 1   
     #@accions.cerradas.where(tipo: "Correcion").count != 0 ? @divc = @accions.cerradas.where(tipo: "Accion").count : @divc = 1 
@@ -220,10 +249,16 @@ class CompaniesController < ApplicationController
     @rabiertos = @reports.abiertos.count 
     @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,1).count 
     @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,1).count 
+    @rporcentaje_abi_cump =    ((@reports.abiertos.where("contador_seg >= ?" ,1).count.to_f/@divra)*100).to_i
+    @rporcentaje_abi_no =    ((@reports.abiertos.where("contador_seg < ?" ,1).count.to_f/@divra)*100).to_i
+
+
+
     @rcerrados =    @reports.cerrados.count 
     @rcumplio =    @reports.cerrados.where(cumplio: true).count 
     @rnocumplio =    @reports.cerrados.where(cumplio: false).count 
-    @rporcentaje=    ((@reports.cerrados.where(cumplio: true).count.to_f/@divr)*100).to_i 
+    @rporcentaje=    ((@reports.cerrados.where(cumplio: true).count.to_f/@divr)*100).to_i
+    @rporcentaje_no=    ((@reports.cerrados.where(cumplio: false).count.to_f/@divr)*100).to_i 
       
     #@correcciones =      @accions.where(tipo: "Correcion").count 
     #@canocumplio =     @accions.abiertas.where(tipo: "Correcion").where("contador_seg < ?" ,1).count 
@@ -236,22 +271,34 @@ class CompaniesController < ApplicationController
 
       @acciones =   @accions.count 
       @aabiertas=   @accions.abiertas.count 
-      @aanocumplio =   @accions.abiertas.where("contador_seg < ?" ,1).count 
-      @aacumplio =   @accions.abiertas.where("contador_seg >= ?" ,1).count 
+      @aanocumplio =   @accions.abiertas.where("accions.contador_seg < ?" ,1).count 
+      @aacumplio =   @accions.abiertas.where("accions.contador_seg >= ?" ,1).count 
+      @aporcentaje_abi_cump = ((@accions.abiertas.where("contador_seg < ?" ,1).count.to_f/ @divaa)*100).to_i
+      @aporcentaje_abi_no = (( @accions.abiertas.where("contador_seg >= ?" ,1).count.to_f/ @divaa)*100).to_i
+
+
+
       @acerradas=  @accions.cerradas.count 
       @anocumplio =   @accions.cerradas.where(cumplio: false).count 
       @acumplio =   @accions.cerradas.where(cumplio: true).count 
       @aporcentaje = ((@accions.cerradas.where(cumplio: true).count.to_f/ @diva)*100).to_i 
+      @aporcentaje_no = ((@accions.cerradas.where(cumplio: false).count.to_f/ @diva)*100).to_i
      
+
+
       @tasks =  @tasksd.count 
       @tabiertas =  @tasksd.abiertas.count 
-      @tanocumplio =  @tasksd.abiertas.where("contador_seg < ?" ,1).count 
-      @tacumplio =  @tasksd.abiertas.where("contador_seg >= ?" ,1).count 
+      @tanocumplio =  @tasksd.abiertas.where("tasks.contador_seg < ?" ,1).count 
+      @tacumplio =  @tasksd.abiertas.where("tasks.contador_seg >= ?" ,1).count 
+      @tporcentaje_abi_cump = ((@tasksd.abiertas.where(cumplio: true).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_no = ((@tasksd.abiertas.where(cumplio: false).count.to_f/@divta)*100).to_i
+
+      
       @tcerradas =   @tasksd.cerradas.count 
       @tnocumplio =  @tasksd.cerradas.where(cumplio: false).count 
       @tcumplio =  @tasksd.cerradas.where(cumplio: true).count 
       @tporcentaje = ((@tasksd.cerradas.where(cumplio: true).count.to_f/@divt)*100).to_i
-      
+      @tporcentaje_no = ((@tasksd.cerradas.where(cumplio: false).count.to_f/@divt)*100).to_i
 
      
       
@@ -264,7 +311,10 @@ class CompaniesController < ApplicationController
       @total6 = @rnocumplio  + @anocumplio + @tnocumplio
       @total7 = @rcerrados + @acerradas + @tcerradas
 
-      @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i 
+      @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i
+    
+
+
 
     end
 

@@ -167,6 +167,8 @@
       </tbody>
    </table>
   <br><br>
+<div class="row tortas">
+  
 
 <div class="col-md-4">
   <div id="container10" style="height: 200px"></div>
@@ -229,8 +231,10 @@
   </table>
 </div>
 
-
-<div class="col-md-4">
+<div class="col-md-12">
+  <hr>
+</div>
+<div class="col-md-4" >
   <div id="container13" style="height: 200px"></div>
    <table class="table">
    
@@ -287,7 +291,7 @@
       </tr>
   </table>
 </div>
-
+</div>
   <div class="col-md-6" style="margin-bottom: 37px !important; display:none">
     <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
    <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
@@ -319,6 +323,10 @@
 
 
 <style>
+  .tortas table
+  {
+    display: none
+  }
    .img img
    {
    width: 100px;
@@ -778,11 +786,11 @@ Highcharts.chart('container13', {
     data: [{
       name: 'Cumplio',
       color: "#279afd",
-      y: <%=@rporcentaje_abi_cump%>,
+      y: <%=@rporcentaje%>,
     }, {
       name: 'No cumplio',
       color: "#e17a22",
-      y: <%=@rporcentaje_abi_no%>
+      y: <%=@rporcentaje_no%>
     }]
   }]
 });
@@ -797,7 +805,7 @@ Highcharts.chart('container14', {
     type: 'pie'
   },
   title: {
-    text: 'Acciones Cerraas'
+    text: 'Acciones Cerradas'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -821,11 +829,11 @@ Highcharts.chart('container14', {
     data: [{
       name: 'Cumplio',
       color: "#279afd",
-      y: <%=@rporcentaje_abi_cump%>,
+      y: <%=@aporcentaje%>,
     }, {
       name: 'No cumplio',
       color: "#e17a22",
-      y: <%=@rporcentaje_abi_no%>
+      y: <%=@rporcentaje_no%>
     }]
   }]
 });
@@ -840,7 +848,7 @@ Highcharts.chart('container15', {
     type: 'pie'
   },
   title: {
-    text: 'Tareas Cerraas'
+    text: 'Tareas Cerradas'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -864,11 +872,11 @@ Highcharts.chart('container15', {
     data: [{
       name: 'Cumplio',
       color: "#279afd",
-      y: <%=@rporcentaje_abi_cump%>,
+      y: <%=@tporcentaje%>,
     }, {
       name: 'No cumplio',
       color: "#e17a22",
-      y: <%=@rporcentaje_abi_no%>
+      y: <%=@tporcentaje_no%>
     }]
   }]
 });
