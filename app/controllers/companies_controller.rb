@@ -273,8 +273,8 @@ class CompaniesController < ApplicationController
       @aabiertas=   @accions.abiertas.count 
       @aanocumplio =   @accions.abiertas.where("accions.contador_seg < ?" ,1).count 
       @aacumplio =   @accions.abiertas.where("accions.contador_seg >= ?" ,1).count 
-      @aporcentaje_abi_cump = ((@accions.abiertas.where("contador_seg < ?" ,1).count.to_f/ @divaa)*100).to_i
-      @aporcentaje_abi_no = (( @accions.abiertas.where("contador_seg >= ?" ,1).count.to_f/ @divaa)*100).to_i
+      @aporcentaje_abi_cump = ((@accions.abiertas.where("contador_seg >= ?" ,1).count.to_f/ @divaa)*100).to_i
+      @aporcentaje_abi_no = (( @accions.abiertas.where("contador_seg  < ?" ,1).count.to_f/ @divaa)*100).to_i
 
 
 
