@@ -85,6 +85,7 @@ class CompaniesController < ApplicationController
 
   if params[:search1] 
 
+
     @company = Company.where(user_id: current_user.admin_user).take
     @reports = Report.where(admin_user:current_user.admin_user).search("","", params[:search2], "", params[:search1], "", "",params[:search7])
     
@@ -95,9 +96,10 @@ class CompaniesController < ApplicationController
     @accions = Accion.joins(:report).where(:reports => {:proceso_id  => params[:search1]} ).where(:reports => {:source_parent_id  => params[:search7]} ).where(:reports => {:source_id  => params[:search2]} )
     @tasksd = Task.joins(:report).where(:reports => {:proceso_id  => params[:search1]} ).where(:reports => {:source_parent_id  => params[:search7]} ).where(:reports => {:source_id  => params[:search2]} )
    
+   
     elsif params[:search1]  != "" && params[:search2]  != ""  &&  params[:search7]  == ""  
      
-     @accions = Accion.joins(:report).where(:reports => {:proceso_id  => params[:search1]} ).where(:reports => {:source_id  => params[:search2]} )
+    @accions = Accion.joins(:report).where(:reports => {:proceso_id  => params[:search1]} ).where(:reports => {:source_id  => params[:search2]} )
     @tasksd = Task.joins(:report).where(:reports => {:proceso_id  => params[:search1]} ).where(:reports => {:source_id  => params[:search2]} )
   
     elsif params[:search1]  != "" && params[:search2]  == ""  &&  params[:search7]  != ""   
@@ -197,6 +199,11 @@ class CompaniesController < ApplicationController
       @total7 = @rcerrados + @acerradas + @tcerradas
 
       @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i
+    
+
+
+
+
       else 
 
       @company = Company.where(user_id: current_user.admin_user).take

@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" type="text/javascript" charset="utf-8" async defer></script>
+
 <%= render 'encabezado'%>
 <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 <body class="w3-light-grey">
@@ -62,7 +64,7 @@
    </p>
 </div>
 <br><br>
-      <table class="table indicadores">
+      <table class="table indicadores" >
       <thead>
       <tr class = "tr-table">
           
@@ -166,12 +168,132 @@
    </table>
   <br><br>
 
-  <div class="col-md-6" style="margin-bottom: 37px !important;">
+<div class="col-md-4">
+  <div id="container10" style="height: 200px"></div>
+
+  <table class="table">
+   
+      <tr>
+        <th>Vigentes</th>
+        <th>10</th>
+      </tr>
+      <tr>
+        <th>Vencidos</th>
+        <th>20</th>
+      </tr>
+
+      <tr style="background: gray;    color: white;">
+        <th>Total</th>
+        <th>20</th>
+      </tr>
+  </table>
+
+
+</div>
+<div class="col-md-4">
+  <div id="container11" style="height: 200px"></div>
+    <table class="table">
+   
+      <tr>
+        <th>Vigentes</th>
+        <th>10</th>
+      </tr>
+      <tr>
+        <th>Vencidos</th>
+        <th>20</th>
+      </tr>
+
+      <tr style="background: gray;    color: white;">
+        <th>Total</th>
+        <th>20</th>
+      </tr>
+  </table>
+</div>
+<div class="col-md-4">
+  <div id="container12" style="height: 200px"></div>
+    <table class="table">
+   
+      <tr>
+        <th>Vigentes</th>
+        <th>10</th>
+      </tr>
+      <tr>
+        <th>Vencidos</th>
+        <th>20</th>
+      </tr>
+
+      <tr style="background: gray;    color: white;">
+        <th>Total</th>
+        <th>20</th>
+      </tr>
+  </table>
+</div>
+
+
+<div class="col-md-4">
+  <div id="container13" style="height: 200px"></div>
+   <table class="table">
+   
+      <tr>
+        <th>Vigentes</th>
+        <th>10</th>
+      </tr>
+      <tr>
+        <th>Vencidos</th>
+        <th>20</th>
+      </tr>
+
+      <tr style="background: gray;    color: white;">
+        <th>Total</th>
+        <th>20</th>
+      </tr>
+  </table>
+</div>
+<div class="col-md-4">
+  <div id="container14" style="height: 200px"></div>
+   <table class="table">
+   
+      <tr>
+        <th>Vigentes</th>
+        <th>10</th>
+      </tr>
+      <tr>
+        <th>Vencidos</th>
+        <th>20</th>
+      </tr>
+
+      <tr style="background: gray;    color: white;">
+        <th>Total</th>
+        <th>20</th>
+      </tr>
+  </table>
+</div>
+<div class="col-md-4">
+  <div id="container15" style="height: 200px"></div>
+   <table class="table">
+   
+      <tr>
+        <th>Vigentes</th>
+        <th>10</th>
+      </tr>
+      <tr>
+        <th>Vencidos</th>
+        <th>20</th>
+      </tr>
+
+      <tr style="background: gray;    color: white;">
+        <th>Total</th>
+        <th>20</th>
+      </tr>
+  </table>
+</div>
+
+  <div class="col-md-6" style="margin-bottom: 37px !important; display:none">
     <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
    <div id="container1" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 </div>
 
-   <div class="col-md-6" style="margin-bottom: 37px !important;">
+   <div class="col-md-6" style="margin-bottom: 37px !important;display:none">
     <!--<div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>-->
    <div id="container2" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 </div>
@@ -239,7 +361,10 @@
 .color4{
     color: #d27f37;
 }
-
+.table th {
+    font-size: 15px !important;
+    text-align: left;
+}
 </style>
 
 
@@ -390,7 +515,7 @@ function (chart) {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -404,18 +529,18 @@ function (chart) {
     series: [{
         name: 'Total',
         color: '#817575',
-        data: [<%= @rabiertos%> , <%= @aabiertas%> ,<%= @tabiertas%>]
+        data: [ 100 , 100 ,100]
     },
 
     {
         name: 'Vigentes',
         color: '#0db493',
-        data: [<%=@racumplio%>, <%=@aacumplio%>,<%=@tacumplio%>]
+        data: [<%=@rporcentaje_abi_cump%>, <%=@aporcentaje_abi_cump%>,<%=@tporcentaje_abi_cump%>]
 
     },  {
         name: 'Vencidos',
         color: '#d82c2c',
-        data: [<%=@ranocumplio%>, <%=@aanocumplio%>, <%=@tanocumplio%>]
+        data: [<%=@rporcentaje_abi_no%>, <%=@aporcentaje_abi_no%>, <%=@tporcentaje_abi_no%>]
 
     }, 
 
@@ -463,19 +588,19 @@ function (chart) {
     series: [{ 
         name: 'Total',
         color: '#E78533',
-        data: [ <%=@rnocumplio%>, <%=@acumplio%>, <%=@tcumplio%>]
+        data: [ 100, 100, 100]
 
     },
 
     { 
         name: 'Cumplidos',
         color: '#279afd',
-        data: [ <%=@rcumplio%>, <%=@acumplio%>, <%=@tcumplio%>]
+        data: [ <%=@rporcentaje%>, <%=@aporcentaje%>, <%=@tporcentaje%>]
 
     }, {
         name: 'No Cumplidos',
         color: '#b9661e',
-        data: [ <%=@rnocumplio%>, <%=@anocumplio%>,<%=@tnocumplio%>]
+        data: [ <%=@rporcentaje_no%>, <%=@aporcentaje_no%>,<%=@tporcentaje_no%>]
 
     }
 
@@ -484,3 +609,267 @@ function (chart) {
 </script>
 
 
+<script>
+  
+
+Highcharts.chart('container10', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Reportes Abiertos'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Vigentes',
+      color: "#0db45a",
+      y: <%=@rporcentaje_abi_cump%>,
+    }, {
+      name: 'Vencidos',
+      color: "#c41818",
+      y: <%=@rporcentaje_abi_no%>
+    }]
+  }]
+});
+
+
+
+Highcharts.chart('container11', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Acciones Abiertas'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Vigentes',
+      color: "#0db45a",
+      y: <%=@rporcentaje_abi_cump%>,
+    }, {
+      name: 'Vencidos',
+      color: "#c41818",
+      y: <%=@rporcentaje_abi_no%>
+    }]
+  }]
+});
+
+
+
+Highcharts.chart('container12', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Tareas Abiertas'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Vigentes',
+      color: "#0db45a",
+      y: <%=@rporcentaje_abi_cump%>,
+    }, {
+      name: 'Vencidas',
+      color: "#c41818",
+      y: <%=@rporcentaje_abi_no%>
+    }]
+  }]
+});
+</script>
+
+
+
+
+<script>
+  
+
+Highcharts.chart('container13', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Reportes Cerrados'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Cumplio',
+      color: "#279afd",
+      y: <%=@rporcentaje_abi_cump%>,
+    }, {
+      name: 'No cumplio',
+      color: "#e17a22",
+      y: <%=@rporcentaje_abi_no%>
+    }]
+  }]
+});
+
+
+
+Highcharts.chart('container14', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Acciones Cerraas'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Cumplio',
+      color: "#279afd",
+      y: <%=@rporcentaje_abi_cump%>,
+    }, {
+      name: 'No cumplio',
+      color: "#e17a22",
+      y: <%=@rporcentaje_abi_no%>
+    }]
+  }]
+});
+
+
+
+Highcharts.chart('container15', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Tareas Cerraas'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: 'Brands',
+    colorByPoint: true,
+    data: [{
+      name: 'Cumplio',
+      color: "#279afd",
+      y: <%=@rporcentaje_abi_cump%>,
+    }, {
+      name: 'No cumplio',
+      color: "#e17a22",
+      y: <%=@rporcentaje_abi_no%>
+    }]
+  }]
+});
+</script>

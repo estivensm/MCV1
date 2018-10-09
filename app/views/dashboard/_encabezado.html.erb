@@ -7,16 +7,16 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
+     <li role="presentation" class="indi active"><%= link_to "indicadores", root_path %></li>
     
-    <li role="presentation" class="res active"><%= link_to "Gestion pendiente de Cierre", root_path %></li>
 
      <li role="presentation" class="asi active"><%= link_to "Gestion pendiente de Seguimiento", asignados_d_path %></li>
     
 
    
-    <li role="presentation" class="indi active"><%= link_to "indicadores", employed_indicators_path %></li>
     <li role="presentation" class="rep active"><%= link_to "Todos los reportes", mis_reportesd_path %></li>
 
+   <li role="presentation" class="res active"><%= link_to "Gestion pendiente de Cierre", dashboard_index_path %></li>
   </ul>
 
 <style>
