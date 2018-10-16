@@ -6,7 +6,7 @@
       <div class="thumbnail"><br>
        <p class = "logop" style = "color:#9a9a9a;"><img style= "width:40px;" id="slack" src="https://c1.staticflickr.com/5/4184/34455208672_b8f967e15e_o.png"> Mejora<span>App</span></p>
 
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= devise_error_messages! %><br>
 
     <h4 class="text-center linka" style="color:gray;font-weight: bold">Restablecer contraseña</h4><br>
