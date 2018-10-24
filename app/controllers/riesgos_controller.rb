@@ -11,8 +11,8 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   # GET /riesgos/1
   # GET /riesgos/1.json
   def show
-   @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"RS").first
-   @tipo = Source.where(admin_user: current_user.admin_user).where(codigo:"GR").first
+   @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"PR").first
+   @tipo = Source.where(admin_user: current_user.admin_user).where(codigo:"RG").first
    @fuente_existe = !@fuente.nil? && !@tipo.nil? ? true : false
 
   end

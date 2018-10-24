@@ -507,8 +507,8 @@ end
         @riesgo_id = @riesgo.id
         @descripcion = @riesgo.descripcion
         @proceso = @riesgo.proceso_id
-        @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"RS").first.id
-        @tipo = Source.where(admin_user: current_user.admin_user).where(codigo:"GR").first.id
+        @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"PR").first.id
+        @tipo = Source.where(admin_user: current_user.admin_user).where(codigo:"RG").first.id
     else
         puts "222222222222222222222222222222222222222222"
         @riesgo_e = "no"
