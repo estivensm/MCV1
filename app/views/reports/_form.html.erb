@@ -2,6 +2,7 @@
 <%= @descripcion%>
 <%= @proceso%>
 <%= @fuente%>
+<%=action_name%> <%=@riesgo_e%> 
 <hr>
 <div class="row" style="padding: 10px 30px;">
    <div class="col-md-12">
@@ -896,7 +897,7 @@
     $('#proceso').val("<%=@proceso%>");
     $('#fuente').val("<%=@fuente%>");
     $('#tipo_riesgo').val("<%=@tipo%>");
-   
+    console.log("holaaaaaaaaaaaa")
   }
 
 </script>
