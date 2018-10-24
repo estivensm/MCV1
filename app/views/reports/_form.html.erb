@@ -1,4 +1,4 @@
-<%= @riesgo.id%>
+
 <%= @descripcion%>
 <%= @proceso%>
 <%= @fuente%>
@@ -27,8 +27,11 @@
          </div>
          <div class="col-md-12">
             <div class="form-group">
-               <label>Descripción detallada del <span style="text-transform: capitalize;">reporte</span></label>  
-               <%= f.text_area :description,  class: "form-control area", id: "description" %>
+               <label>Descripción detallada del <span style="text-transform: capitalize;">reporte</span></label> <% if action_name  == "new" &&  @riesgo_e == "si" %>
+               <%= f.text_area :description, :value => @descripcion  ,class: "form-control area", id: "description" %>
+               <%else%>
+               <%= f.text_area :description  ,class: "form-control area", id: "description" %>
+               <%end%>
             </div>
          </div>
          <div class="col-md-12">
