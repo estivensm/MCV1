@@ -19,7 +19,7 @@
   
 
 
-<%= f.label "Hallazgos" %><br>
+<%= f.label "Tipo de Reporte" %><br>
                <%= f.select :source_id,
                  @sourcess.map { |u| [u.name, u.id] },
                              { include_blank: true },

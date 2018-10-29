@@ -190,7 +190,7 @@
           </td>
           <td >
             <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each do |accion| %>
-                 <%= link_to  "- " + accion.name , report_accion_path(accion.report_id,accion.id)%><br>
+                 <%= link_to  "- " + accion.descripcion , report_accion_path(accion.report_id,accion.id)%><br>
             <% end %>
 
 
