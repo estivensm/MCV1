@@ -98,7 +98,8 @@
     <div class="row">
 
     <div class="col-md-12 ">
-<p style="font-size:12px;"><strong>Efecto del Fallo:</strong> <%=  @amefp.causa.report.name %></p>
+<p style="font-size:12px;margin-bottom: 25px;"><strong>Efecto del Fallo:</strong> <%=  @amefp.causa.report.name %>
+<%= (link_to "+ Accion", new_report_accion_path(@amefp.causa.report) + "?tipo=Accion", :class => 'pull-right btn btn-primary') if view_report(@amefp.causa.report)%></p>
   </div>
       
     </div>
@@ -121,8 +122,8 @@
            
             <th style = "width:3%">D</th>
             <th style = "width:3%">NPR</th>
-            <th style = "width:20%">Acciones a tomar</th>
-            <th style = "width:5%">Ok</th>
+            <!--<th style = "width:20%">Acciones a tomar</th>-->
+           <!-- <th style = "width:5%">Ok</th>-->
             <th style = "width:10%">Responsable</th>
             <th style = "width:20%">Acciones tomadas</th>
              <% if @amefp.s_valoracion %>
@@ -180,8 +181,8 @@
             <%= hidden_field_tag "ids[]", causa.id %>
             
 
-          <td class="input"><span><%= causa.a_tomar %></span><%= text_area_tag "a_tomar[]", causa.a_tomar  %></td>
-          <td class="input text-center"><span><%= get_state(causa.accion_ok).html_safe %></span>  <%= check_box_tag "accion_ok[]", causa.id ,causa.accion_ok,class:""%></td>
+          <!--<td class="input"><span><%= causa.a_tomar %></span><%= text_area_tag "a_tomar[]", causa.a_tomar  %></td>-->
+          <!--<td class="input text-center"><span><%= get_state(causa.accion_ok).html_safe %></span>  <%= check_box_tag "accion_ok[]", causa.id ,causa.accion_ok,class:""%></td>-->
        
           <td >           
 
@@ -189,6 +190,7 @@
 
           </td>
           <td >
+            
             <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each do |accion| %>
                  <%= link_to  "- " + accion.descripcion , report_accion_path(accion.report_id,accion.id)%><br>
             <% end %>

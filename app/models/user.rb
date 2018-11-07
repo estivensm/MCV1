@@ -51,120 +51,111 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  after_create :add_adminid2
-  before_save :add_adminid1
-  before_create :add_adminid
+    # Include default devise modules. Others available are:
+    # :confirmable, :lockable, :timeoutable and :omniauthable
+    after_create :add_adminid2
+    before_save :add_adminid1
+    before_create :add_adminid
 
-  has_many :tasks
-  #before_destroy :validar_detele
+    has_many :tasks
+    #before_destroy :validar_detele
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable ,:authentication_keys => [:name]
+    devise :database_authenticatable, :registerable,
+           :recoverable, :rememberable, :trackable, :validatable ,:authentication_keys => [:name]
 
-  mount_uploader :avatar, AvatarUploader
-  has_many :procesos
-  has_many :causa_efectos
-  has_many :cargos
-  has_many :companies
-  #has_many :employeds
-  has_many :reports
-  has_many :accions
-  has_many :rseguimientos
-  has_many :aseguimientos
-  belongs_to :rol, optional: true
-   #before_destroy :saveable?
+    mount_uploader :avatar, AvatarUploader
+    has_many :procesos
+    has_many :causa_efectos
+    has_many :cargos
+    has_many :companies
+    #has_many :employeds
+    has_many :reports
+    has_many :accions
+    has_many :rseguimientos
+    has_many :aseguimientos
+    belongs_to :rol, optional: true
+     #before_destroy :saveable?
 
-  #def saveable?
-   # if true
-    #  raise "Destroy aborted; you can't do that!"
+    #def saveable?
+     # if true
+      #  raise "Destroy aborted; you can't do that!"
+      #end
     #end
-  #end
-validates :name,
-  :presence => true,
-  :uniqueness => {
-    :case_sensitive => false
-  }
-  validates :email,
-  :presence => false,
-  :uniqueness => false
+    validates :name,
+    :presence => true,
+    :uniqueness => {
+      :case_sensitive => false
+    }
+    validates :email,
+    :presence => false,
+    :uniqueness => false
 
 
 
-def email_required?
-  false
-end
-def email_changed?
-  false
-end
+  def email_required?
+    false
+  end
+  def email_changed?
+    false
+  end
 
-def self.search(search, search1)
+  def self.search(search, search1)
 
-
-           search != "" ? (scope :emailsc, -> { where(email: search) }) : (scope :emailsc, -> { where.not(id: nil) })
-           search1 != "" ? (scope :rolsc, -> { where(rol_id: search1) }) : (scope :rolsc, -> { where.not(id: nil) })
-
-            emailsc.rolsc
-
-        end
-
-         def add_adminid2
-
-            if self.role == "SuperAdmin"
-         	     Company.create(name: self.company, user_id: self.id, admin_user: self.id)
-               Rol.create(admin_user: self.id, user_id: self.id, configuracion: true, report_ver: true, report_crear: true, report_edit: true, report_delete: true, name: "Administrador", report_procesos: false, default: true)
-               Rol.create(admin_user: self.id, user_id: self.id, configuracion: false, report_ver: false, report_crear: false, report_edit: false, report_delete: false, name: "Basico", report_procesos: false, default: true)
-               Employed.create(email: self.email, admin_user: self.id, user_id: self.id, password: nil ,password_c: nil, user_name:self.name)
-               self.employed_id =  Employed.where(admin_user: self.id).last.id
-               self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
-              
-               save
-
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "De Cumplimiento")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Operacional")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Estratégico")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Tecnológico")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Legal")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Cliente")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Financiero")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Desastres")
-               ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Humano")
-               ClassificationRisk.create(user_id:self.id, admin_user: self.id, name: "Ambiental")
-
-               puts "holaaaaaaaa"
-               puts  Employed.where(admin_user: self.id).last.id
+      search != "" ? (scope :emailsc, -> { where(email: search) }) : (scope :emailsc, -> { where.not(id: nil) })
+      search1 != "" ? (scope :rolsc, -> { where(rol_id: search1) }) : (scope :rolsc, -> { where.not(id: nil) })
+      emailsc.rolsc
+  end
 
 
+  def add_adminid2
+
+      if self.role == "SuperAdmin"
+        Company.create(name: self.company, user_id: self.id, admin_user: self.id)
+        Rol.create(admin_user: self.id, user_id: self.id, configuracion: true, report_ver: true, report_crear: true, report_edit: true, report_delete: true, name: "Administrador", report_procesos: false, default: true)
+        Rol.create(admin_user: self.id, user_id: self.id, configuracion: false, report_ver: false, report_crear: false, report_edit: false, report_delete: false, name: "Basico", report_procesos: false, default: true)
+        Employed.create(email: self.email, admin_user: self.id, user_id: self.id, password: nil ,password_c: nil, user_name:self.name)
+        self.employed_id =  Employed.where(admin_user: self.id).last.id
+        self.rol_id =  Rol.where(admin_user: self.id).where(name: "Administrador").last.id
+        save
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "De Cumplimiento")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Operacional")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Estratégico")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Tecnológico")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Legal")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Cliente")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Financiero")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Desastres")
+        ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Humano")
+        ClassificationRisk.create(user_id:self.id, admin_user: self.id, name: "Ambiental")
+        WelcomeMailer.welcome(self).deliver  
+
+      end
+
+       
+
+  end
 
 
+  def add_adminid1
+
+      if self.role == "SuperAdmin"
+
+        self.admin_user = self.id
+
+      else
 
 
-         	end
-         	puts self.id
-
-         end
-         def add_adminid1
-
-            if self.role == "SuperAdmin"
-              self.admin_user = self.id
+      end
 
 
-          else
+  end
 
 
-          end
-
-
-         end
-
-
-          def add_adminid
-           if self.role != "SuperAdmin"
-           self.employed_id = Employed.where(email: self.email).first.id
-
-          end
-         end
+  def add_adminid
+      if self.role != "SuperAdmin"
+        self.employed_id = Employed.where(email: self.email).first.id
+      end
+  end
 
 
 

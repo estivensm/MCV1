@@ -79,6 +79,12 @@ gem 'wkhtmltopdf-binary'
 gem 'remotipart', '~> 1.4', '>= 1.4.2'
 
 
+gem 'ajax-datatables-rails', '~> 0.4.0'
+gem 'jquery-datatables-rails'
+gem 'rails_script', '~> 0.6.1'
+gem "js-routes"
+gem 'responders', '~> 2.4.0'
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

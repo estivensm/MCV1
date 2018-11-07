@@ -17,7 +17,7 @@
    </div>
 </div>
 <br>
-<table class="table">
+<!--<table class="table">
   <thead>
     <tr class = "tr-table">
       <th>User</th>
@@ -85,4 +85,117 @@
     border-color: #37b597;
   }
   
+</style>-->
+
+
+<table id="dataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr class="filters">
+                <th><input/></th>
+                <th><input/></th>
+                 <th>
+                  <%= collection_select(:proceso, :proceso_id, Proceso.all, :id, :name, include_blank: true) %>
+                </th>
+                 <th>
+                  <%= collection_select(:riesgo, :risk_source_id, RiskSource.all, :id, :name, include_blank: true) %>
+                </th>
+                
+               
+              </tr>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Proceso</th>
+                <th>risk source</th>
+   
+   
+                
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+
+<script >
+   $('#dataTable').dataTable({
+    searching: true,
+    ordering: true,
+    deferRender: true,
+    lengthMenu: [10, 25, 50, 100],
+    serverSide: true,
+   
+    "language": {
+            "lengthMenu": "Display _MENU_ records per page",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_  registros",
+            "infoEmpty": "No hay Registros",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "lengthMenu": "Mostrando _MENU_ registros ",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Ultimo",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+               },
+        },
+    initComplete: function() {
+      return $('.filters input, .filters select', this).on('change', (function(_this) {
+        return function(e) {
+          var th;
+          th = $(e.target).closest("th");
+          return _this.api().column(th.index()).search($(e.target).val()).draw();
+        };
+      })(this));
+    },
+        ajax: "http://localhost:3000/riesgos/?format=json",
+        columns: [
+          {
+            data: "id"
+          }, {
+            data: "descripcion"
+          }, {
+            data: "risk_proceso_name"
+          },
+          {
+            data: "risk_source_name"
+          }
+        ]
+      });
+</script>
+
+
+<style>
+  
+   */
+.dataTables_filter {
+  width: 50%;
+  float: right;
+  padding-left: 5px;
+  padding: 0px 0px 5px;
+  border-bottom: 1px solid #E5E5E5;
+  font-size: 12px;
+  display: none !important;
+}
+.dataTables_filter label {
+  padding: 0px;
+  line-height: 26px;
+  height: auto;
+  margin: 0px;
+  font-weight: normal;
+}
+.dataTables_filter label input {
+  width: 150px;
+  display: inline;
+  margin-left: 5px;
+}
+.dataTables_length {
+  width: 50%;
+  float: left;
+  padding: 0px 0px 5px;
+  border-bottom: 1px solid #E5E5E5;
+  font-size: 12px;
+}
+#dataTable_filter {
+
+  display: none !important;
+}
 </style>

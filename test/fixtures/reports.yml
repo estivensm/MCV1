@@ -45,6 +45,7 @@
 #  estado_vencida        :boolean
 #  estado_proxima        :boolean
 #  estado_vigente        :boolean
+#  riesgo_id             :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

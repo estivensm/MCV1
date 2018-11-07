@@ -22,6 +22,7 @@
 //= require bootstrap-checkbox
 //= require jquery.remotipart
 //= require jquery-ui
+//= require js-routes
 //= require ckeditor-jquery
 //= require image-picker
 //= require chartkick
@@ -29,6 +30,7 @@
 //= require fullcalendar
 //= require googledocviewer
 //= require config
+//= require dataTables/jquery.dataTables
 //= require jquery-fileupload/basic
 //= require jquery.validate
 //= require jquery.validate.additional-methods

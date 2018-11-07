@@ -21,6 +21,7 @@
 #  risk_value             :integer
 #  proceso_id             :integer
 #  risk_level             :string
+#  risk_source_id         :integer
 #
 
 require 'test_helper'

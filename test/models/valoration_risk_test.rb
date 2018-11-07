@@ -24,6 +24,8 @@
 #  analysis              :text
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  controls_description  :text
+#  count                 :integer
 #
 
 require 'test_helper'
