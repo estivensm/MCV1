@@ -124,8 +124,9 @@
             <th style = "width:3%">NPR</th>
             <!--<th style = "width:20%">Acciones a tomar</th>-->
            <!-- <th style = "width:5%">Ok</th>-->
+            <th style = "width:20%">Acciones a tomar</th>
             <th style = "width:10%">Responsable</th>
-            <th style = "width:20%">Acciones tomadas</th>
+            
              <% if @amefp.s_valoracion %>
              <th style = "width:3%">G</th>
             <th style = "width:3%">O</th>
@@ -184,17 +185,17 @@
           <!--<td class="input"><span><%= causa.a_tomar %></span><%= text_area_tag "a_tomar[]", causa.a_tomar  %></td>-->
           <!--<td class="input text-center"><span><%= get_state(causa.accion_ok).html_safe %></span>  <%= check_box_tag "accion_ok[]", causa.id ,causa.accion_ok,class:""%></td>-->
        
-          <td >           
-
-
-
-          </td>
           <td >
             
             <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each do |accion| %>
                  <%= link_to  "- " + accion.descripcion , report_accion_path(accion.report_id,accion.id)%><br>
             <% end %>
+              
+          <td >           
 
+
+
+          </td>
 
 
           </td>

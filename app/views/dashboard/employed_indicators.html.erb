@@ -181,13 +181,32 @@
   <hr>
 </div>
 <div class="col-md-4" >
-      <div id="container_r" style="height: 250px;"></div>
+       <%if @rcerrados != 0 %>
+    <div id="container_r" style="height: 250px;"></div>
+        <%else%>
+        <div id="container_r" style="height: 250px;display: none"></div>
+        <h3 style="font-size: 14px !important;text-align: center;padding: 20px 0px">NO HAY REPORTES <br> CERRADOS</t3>
+        <%end%>
+      
 </div>
 <div class="col-md-4">
-        <div id="container_a" style="height: 250px;"></div>
+  
+           <%if @acerradas != 0  %>
+    <div id="container_a" style="height: 250px;"></div>
+        <%else%>
+        <div id="container_a" style="height: 250px;display: none"></div>
+        <h3 style="font-size: 14px !important;text-align: center;padding: 20px 0px">NO HAY ACCIONES <br> CERRADOS</t3>
+        <%end%>
+      
 </div>
 <div class="col-md-4">
-      <div id="container_t" style="height: 250px;"></div>
+         <%if @tcerradas != 0 %>
+    <div id="container_t" style="height: 250px;"></div>
+        <%else%>
+        <div id="container_t" style="height: 250px;display: none"></div>
+        <h3 style="font-size: 14px !important;text-align: center; padding: 20px 0px">NO HAY TAREAS <br> CERRADOS</t3>
+        <%end%>
+      
 </div>
 
   <div class="col-md-6" style="margin-bottom: 37px !important; display:none">
@@ -1129,6 +1148,8 @@ Highcharts.chart('container15', {
   }]
 });
 </script>
+
+
 
 
 
