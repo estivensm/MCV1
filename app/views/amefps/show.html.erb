@@ -98,7 +98,7 @@
     <div class="row">
 
     <div class="col-md-12 ">
-<p style="font-size:12px;margin-bottom: 25px;"><strong>Efecto del Fallo:</strong> <%=  @amefp.causa.report.name %>
+<p style="font-size:12px;margin-bottom: 25px;"><strong>Efecto del Fallo:</strong> <%=  @amefp.causa.report.description %>
 <%= (link_to "+ Accion", new_report_accion_path(@amefp.causa.report) + "?tipo=Accion", :class => 'pull-right btn btn-primary') if view_report(@amefp.causa.report)%></p>
   </div>
       
@@ -117,6 +117,9 @@
            <th style = "width:3%">G</th>
             <th style = "width:10%">Modo de Fallo</th>
             <th style = "width:10%">Causa de Fallo</th>
+             <th style = "width:3%">EPV</th>
+             <th style = "width:3%">ESV</th>
+             <th style = "width:3%">ETV</th>
              <th style = "width:3%">O</th>
             <th style = "width:20%">Controles Actuales</th>
            
@@ -173,6 +176,9 @@
          <%end%>
         
            <td><%= causa.causa_fallo %></td>
+            <td><%= causa.estado %></td>
+              <td><%= causa.sestado %></td>
+                <td><%= causa.testado %></td>
            <td class="po num text-center"><span><%= causa.p_ocurrencia %></span><%= number_field_tag "p_ocurrencia[]", causa.p_ocurrencia   %></td>
             <td class="input"><span><%= causa.c_actuales %></span><%= text_area_tag "c_actuales[]", causa.c_actuales  %></td>
 
