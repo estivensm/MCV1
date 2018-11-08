@@ -222,6 +222,9 @@ def edit_amefp
     @causa = Causa.find(@amefp.causa_id)
   end
 
+
+
+
 def delete_amefp
     @amefp = Amefp.find(params[:id])
      @report = @amefp.report_id
@@ -247,21 +250,21 @@ def update_vcaef
     a = params[:ids]# Array de los ids
     b = params[:p_ocurrencia] #propbabilidad de ocurrencia primera valoracion
     c = params[:pn_deteccion] #propbabilidad de no deteccion primera valoracion
-    e = params[:a_tomar]
+    #e = params[:a_tomar]
     bs = params[:sp_ocurrencia]#propbabilidad de ocurrencia segunda valoracion
     cs = params[:spn_deteccion]#propbabilidad de no deteccion segunda valoracion
     bt = params[:tp_ocurrencia]#propbabilidad de ocurrencia tercera valoracion
     ct = params[:tpn_deteccion]#propbabilidad de no deteccion tercera valoracion
     ca = params[:c_actuales]
-    ok = params[:accion_ok]
-    Amef.where(amefp_id: amefp.id).update_all(accion_ok:false)
-    if ok != nil
-    ok.each do |ame|
-       amef = Amef.find(ame)
-       amef.accion_ok = true
-       amef.save
-    end
-  end
+    #ok = params[:accion_ok]
+    #Amef.where(amefp_id: amefp.id).update_all(accion_ok:false)
+    #if ok != nil
+    #ok.each do |ame|
+     #  amef = Amef.find(ame)
+     #  amef.accion_ok = true
+      # amef.save
+    #end
+  #end
     x = 0
     a.each do |i|
       g = b[x].to_i * c[x].to_i * params[:grado].to_i
@@ -274,11 +277,12 @@ def update_vcaef
       estado = ""
       gs > nprmayor ?  estado = "vital" : estado = "trivial"
 
-      Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x], sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
+      Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, c_actuales: ca[x], sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
+      #Amef.find(i).update(testado: estado , grado:params[:grado],sgrado:params[:sgrado],tgrado:params[:tgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x], sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs,tp_ocurrencia: bt[x],tpn_deteccion: ct[x] , tnpr: gt)
       
           
           #Mira si es vital o trivial de acurdo al npr tage que se puso
-     CausaEfecto.find(am.causa_efecto).update(estado: estado) 
+     CausaEfecto.find(am.causa_efecto.id).update(estado: estado) 
             
 
 
@@ -287,8 +291,9 @@ def update_vcaef
                       am = Amef.find(i)
                       estado = ""
                       gs > nprmayor ?  estado = "vital" : estado = "trivial"
-                      Amef.find(i).update(sestado: estado,grado:params[:grado],sgrado:params[:sgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
-                      CausaEfecto.find(am.causa_efecto).update(estado: estado)  
+                      Amef.find(i).update(sestado: estado,grado:params[:grado],sgrado:params[:sgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g ,c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
+                      #Amef.find(i).update(sestado: estado,grado:params[:grado],sgrado:params[:sgrado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x],sp_ocurrencia: bs[x],spn_deteccion: cs[x] , snpr: gs)
+                      CausaEfecto.find(am.causa_efecto_id).update(estado: estado)  
                       
 
 
@@ -301,8 +306,9 @@ def update_vcaef
                       puts am.npr
                       puts nprmayor
                       puts "hola"
-                      Amef.find(i).update(estado: estado ,grado:params[:grado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x])
-                       
+                      Amef.find(i).update(estado: estado ,grado:params[:grado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g,c_actuales: ca[x])
+                      #Amef.find(i).update(estado: estado ,grado:params[:grado],p_ocurrencia: b[x],pn_deteccion: c[x] , npr: g, a_tomar: e[x],c_actuales: ca[x])
+
                         CausaEfecto.find(am.causa_efecto_id).update(estado: estado) 
            end    
       x = x + 1

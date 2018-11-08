@@ -187,12 +187,14 @@
        
           <td >
             
-            <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each do |accion| %>
-                 <%= link_to  "- " + accion.descripcion , report_accion_path(accion.report_id,accion.id)%><br>
+            <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each_with_index do |accion, index| %>
+                 <%= link_to  (index + 1).to_s + " - " + accion.descripcion , report_accion_path(accion.report_id,accion.id)%><br>
             <% end %>
               
           <td >           
-
+              <% CausaEfecto.where(id: causa.causa_efecto_id).take.accions.each_with_index do |accion, index| %>
+                 <%=index + 1%> - <%= accion.employed.first_name%> <%= accion.employed.second_last_name%><br>
+            <% end %>
 
 
           </td>
@@ -208,7 +210,7 @@
               <td><%= causa.snpr %></td>
               <% end %>
               <% if @amefp.t_valoracion %>
-              <%= hidden_field_tag "tgrado text-center", @amefp.t_valor %>
+              <%= hidden_field_tag "tgrado", @amefp.t_valor %>
               <td><%= causa.tgrado %></td>
                 <td class="input num text-center"><span><%= causa.tp_ocurrencia %></span><%= number_field_tag "tp_ocurrencia[]", causa.tp_ocurrencia  %></td>
              <td class="input num text-center"><span><%= causa.tpn_deteccion %></span><%= number_field_tag "tpn_deteccion[]", causa.tpn_deteccion %></td>
