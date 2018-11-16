@@ -212,7 +212,7 @@
                </li>
                </ul>
                <ul class="nav navbar-nav navbar-right" style = "background:white">
-                  <li style = "height: 51px; background: #313131;padding: 10px
+                  <li style = "height: 51px; background: #2a3f54;padding: 10px
                      " >
                      <p style=""><%= link_to 'Nuevo Reporte', new_report_path, class: "btn btn-primary nuevor"  if (current_user.role == "SuperAdmin" || current_user.rol.report_crear) && enable_report %> </p>
                   </li>
@@ -633,7 +633,7 @@
    }
    #cssmenu {
    width: auto;
-   border-bottom: 3px solid #47c9af;
+   border-bottom: 3px solid #2a3f54;
    font-family: Raleway, sans-serif;
    line-height: 1;
    }
@@ -702,7 +702,7 @@
    #cssmenu > ul > li.active > a:after,
    #cssmenu > ul > li:hover > a:after,
    #cssmenu > ul > li > a:hover:after {
-   background: #47c9af;
+   background: #2a3f54;
    }
    .show_report_c
    {

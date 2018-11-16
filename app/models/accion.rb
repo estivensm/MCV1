@@ -167,6 +167,7 @@ puts search2
 
     def start_must_be_before_end_time
       
+      report = Report.find(self.report_id)
       if self.tag
         self.fp_seguimiento = Time.at(Time.now.to_i + (self.f_seguimiento*60*60*24))
         @times = self.f_compromiso.to_time
@@ -201,6 +202,8 @@ puts search2
         end
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         (self.contador_seg > self.f_seguimiento || self.f_seguimiento == 0)
+        errors.add(:La, "La fecha de compromiso de la Accion debe ser menor a la fecha de compromiso del Reporte") unless
+        (self.f_compromiso < report.f_compromiso)
       end
   end
 
