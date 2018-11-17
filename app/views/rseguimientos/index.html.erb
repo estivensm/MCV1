@@ -1,7 +1,7 @@
-<div class="conteinter htitle" style = "padding:0px;margin-bottom: 5px;">
+<div class="conteinter htitle" style = "padding:0px;margin-bottom: 5px;background: #2a3f54;color:white">
    <div class="row rtr" style="padding: 10px;">
       <div class="col-md-8">
-         <h4 class="htitle linka" style="font-weight: bold">SEGUIMIENTOS  <span class="rsegcount">   (<%=@seguimientosa.count %>)</span></h4>
+         <h4 class="htitle linka" style="font-weight: bold;background: #2a3f54;color:white !important">SEGUIMIENTOS  <span class="rsegcount">   (<%=@seguimientosa.count %>)</span></h4>
         
       </div>
       <div class="col-md-4 rtd text-right"><% if @seguimientosa.count > 0 %><%= (link_to "Nuevo Seguimiento", new_report_rseguimiento_path(@report),remote:true, :class => 'btn btn-primary')  %><%end%></div>
