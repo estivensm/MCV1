@@ -1,6 +1,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js" type="text/javascript" charset="utf-8" async defer></script>
 
-
+<br>
+<div id='cssmenu1'>
+  <ul>
+    <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+    <li class=""><%= link_to "Empleados", employeds_path, :class => "linka" %></li>
+    <li class="active"><%= link_to "#{@employed.first_name} #{@employed.first_last_name}", :class => "linka" %></li>
+  </ul>
+</div>
+<br>
 <!--holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
 <body class="w3-light-grey">
   <div class="w3-content w3-margin-top" style="max-width:1400px;">
