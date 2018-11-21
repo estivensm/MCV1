@@ -2,6 +2,7 @@
 
 <div class="container-fluid">
 <h3>REPORTES</h3>
+<% if @reports_sh.any? %>
 <table class="table">
    <% @reports_sh.each do |report| %>
    <tr>
@@ -19,7 +20,12 @@
    </tr>
    <%end%>
 </table>
+
+<%else%>
+  <h4>NO TIENES REPORTES VENCIDAS O PROXIMOS A VENCER</h4>
+<%end%>
 <h3>ACCIONES</h3>
+<% if @accions_sh.any? %>
 <table class="table">
    <% @accions_sh.each do |accion| %>
    <tr>
@@ -37,7 +43,16 @@
    </tr>
    <%end%>
 </table>
+
+<%else%>
+  <h4>NO TIENES ACCIONES VENCIDAS O PROXIMAS A VENCER</h4>
+<%end%>
 <h3>TAREAS</h3>
+
+<% if @tasks_sh.any? %>
+
+
+
 <table class="table">
    <% @tasks_sh.each do |task| %>
    <tr>
@@ -52,6 +67,10 @@
    </tr>
    <%end%>
 </table>
+
+<%else%>
+  <h4>NO TIENES TAREAS VENCIDAS O PROXIMAS A VENCER</h4>
+<%end%>
 </div>
 <style>
   h3 
@@ -63,5 +82,16 @@
     display: inline-block;
     padding: 5px 23px;
     color: white;
+    width: 200px;
+  }
+  h4  
+  {    text-align: center;
+    background: whitesmoke;
+    padding: 30px;
+    color: gray;}
+
+  .table
+  {
+    margin-bottom: 20px !important;
   }
 </style>
