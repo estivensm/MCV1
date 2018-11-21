@@ -281,15 +281,15 @@ class DashboardController < ApplicationController
     @accions_sh = Accion.where(employed_id: @employed.id).alerta1
     @tasks_sh = @employed.tasks.alerta
     
-    @reports_sh.each do |rp|
-        @todos << {name: rp.description, date: rp.f_compromiso, type: "report"} 
-    end  
-    @accions_sh.each do |ac|
-        @todos << {name: ac.descripcion, date: ac.f_compromiso, type: "accion"}
-    end 
-    @tasks_sh.each do |tk|
-        @todos << {name: tk.description, date: tk.f_compromiso, type: "tarea"}
-    end
+   # @reports_sh.each do |rp|
+    #    @todos << {name: rp.description, date: rp.f_compromiso, type: "report"} 
+    #end  
+    #{}@accions_sh.each do |ac|
+    #    @todos << {name: ac.descripcion, date: ac.f_compromiso, type: "accion"}
+    #end 
+    #@tasks_sh.each do |tk|
+     #   @todos << {name: tk.description, date: tk.f_compromiso, type: "tarea"}
+    #end
 
 
 
