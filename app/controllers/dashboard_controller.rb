@@ -253,9 +253,9 @@ class DashboardController < ApplicationController
  def pending
     
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
-    @reports_sh = Report.where(employed_id: @employed.id).alerta
-    @accions_sh = Accion.where(employed_id: @employed.id).alerta1
-    @tasks_sh = @employed.tasks.alerta
+    @reports_sh = Report.where(employed_id: @employed.id).abiertos.alerta
+    @accions_sh = Accion.where(employed_id: @employed.id).abiertas.alerta1
+    @tasks_sh = @employed.tasks.abiertas.alerta
 
  end 
 
