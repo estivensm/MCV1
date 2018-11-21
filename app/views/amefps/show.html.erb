@@ -66,12 +66,13 @@
 <div class = "row title-table">
    <div class = "col-md-8">
       <p >AMEF</p>
+         <button type="" class="actu btn btn-primary">Editar Cuadro AMEF</button>
    </div>
      <div class = "col-md-4 text-right">
-     <%=link_to "Editar AMEF" ,edit_amefp_path(@amefp.id),remote:true , class: "btn btn-primary"%>
+     <%=link_to "Editar Valoraciones" ,edit_amefp_path(@amefp.id),remote:true , class: "btn btn-primary"%>
      <%=link_to "Borrar AMEF" ,delete_amefp_path(@amefp.id) ,method: :delete, data: { confirm: '¿Estas seguro?' }, class: "btn btn-danger"%>
 
-      <button type="" class="actu btn btn-primary">Editar Cuadro</button>
+   
    </div>
 
    </div>
@@ -99,7 +100,7 @@
 
     <div class="col-md-12 ">
 <p style="font-size:12px;margin-bottom: 25px;"><strong>Efecto del Fallo:</strong> <%=  @amefp.causa.report.description %>
-<%= (link_to "+ Accion", new_report_accion_path(@amefp.causa.report) + "?tipo=Accion", :class => 'pull-right btn btn-primary') if view_report(@amefp.causa.report)%></p>
+<%= (link_to "Crear Accion", new_report_accion_path(@amefp.causa.report) + "?tipo=Accion", :class => 'pull-right btn btn-primary', style: "") if view_report(@amefp.causa.report)%></p>
   </div>
       
     </div>

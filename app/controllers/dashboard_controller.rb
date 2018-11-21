@@ -250,9 +250,51 @@ class DashboardController < ApplicationController
 
   end
 
+ def pending
+    
+    @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
+    @reports_sh = Report.where(employed_id: @employed.id).alerta
+    @accions_sh = Accion.where(employed_id: @employed.id).alerta1
+    @tasks_sh = @employed.tasks.alerta
+
+ end 
+
 
  def employed_indicators
+
+
+
+   @todos = []
+
+
+
+
+
+
+
+
+
+
     @employed = Employed.where(email: current_user.email).where(admin_user: current_user.admin_user).first
+   
+    @reports_sh = Report.where(employed_id: @employed.id).alerta
+    @accions_sh = Accion.where(employed_id: @employed.id).alerta1
+    @tasks_sh = @employed.tasks.alerta
+    
+    @reports_sh.each do |rp|
+        @todos << {name: rp.description, date: rp.f_compromiso, type: "report"} 
+    end  
+    @accions_sh.each do |ac|
+        @todos << {name: ac.descripcion, date: ac.f_compromiso, type: "accion"}
+    end 
+    @tasks_sh.each do |tk|
+        @todos << {name: tk.description, date: tk.f_compromiso, type: "tarea"}
+    end
+
+
+
+
+
     @reports = Report.where(employed_id: @employed.id)
     @accions = Accion.where(employed_id: @employed.id)
     @tasksd = @employed.tasks

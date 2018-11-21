@@ -2,12 +2,41 @@
 
 <div class="row">
 <div class="col-md-12" style="padding: 10px 30px;">
-  <h1 class ="titaccion"><%=action_type%> <%=@tipo%> Reporte
+<div class="row">
+
+  <div class="col-md-8">
+        <h1 class ="titaccion"><%=action_type%> <%=@tipo%> Reporte
 (<a class="btn numerb"  data-toggle="modal" data-target="#myModal" ><%= @report.codigo%>) Ver <i class="fa fa-eye" aria-hidden="true"></i></a></h1>
+</div>
+
+  <div class="col-md-4 text-right" style="margin-top: 30px;">
+
+ <%if @report.source.causa%>  
+                      <% if @report.causas.count == 0 && @tipo  == "Accion"%>
+                           
+                           <%else%>
+                           
 
 
-  
+                            <%if  Amefp.where(causa_id:@report.causas.last.id).count != 0 %>   
 
+                            <%=  link_to  show_amefp_path(@report.causas.last.amefps.first.id), class: "btn btn-primary" do  %>  
+                               <i class="fa fa-search" style="font-size: 20px"></i> Ir a Analisis de Causa
+                                  <%end%> 
+                            <%else%>
+
+                                 <%= link_to report_causa_path(@report,@report.causas.last.id), class: "btn btn-primary" do %>
+                                   <i class="fa fa-search" style="font-size: 20px"></i> Ir a Analisis de Causa
+                            
+                                  <%end%>
+                            
+                            <%end%>
+
+
+                           <%end%>
+        <%end%>                    
+    </div>
+  </div>
 
  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">

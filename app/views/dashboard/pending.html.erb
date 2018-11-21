@@ -1,0 +1,67 @@
+<%= render 'encabezado'%>
+
+<div class="container-fluid">
+<h3>REPORTES</h3>
+<table class="table">
+   <% @reports_sh.each do |report| %>
+   <tr>
+      <td style="width:60%"><%=report.description%></td>
+      <td style="width:15%"><%=report.source.name%></td>
+      <td  style = "width:15%;background:<%=estado_contador(report.contador_seg)%>;color:white;text-align:center" >   
+         <strong>  <%=get_date(report.f_compromiso)%><br> <%= report.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=report.contador_seg.abs%> días</strong>
+      </td>
+
+       <td style="width:10%;text-align: center">
+         <a href="/reports/<%=report.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ver</a>  
+        <a href="/reports/<%=report.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;"> Ir</a>
+         
+       </td>
+   </tr>
+   <%end%>
+</table>
+<h3>ACCIONES</h3>
+<table class="table">
+   <% @accions_sh.each do |accion| %>
+   <tr>
+      <td style="width:60%"><%=accion.descripcion%></td>
+      <td style="width:15%"><%=accion.tipo%></td>
+      <td  style = "width:15%;background:<%=estado_contador(accion.contador_seg)%>;color:white;text-align:center" >   
+         <strong>  <%=get_date(accion.f_compromiso)%><br> <%= accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=accion.contador_seg.abs%> días</strong>
+      </td>
+
+       <td style="width:10%;text-align: center">
+        <a href="/reports/<%=accion.report.id%>/accions/<%=accion.id%>" class="btn btn-primary"style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ver</a>
+        <a href="/reports/<%=accion.report.id%>/accions/<%=accion.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ir</a>
+     
+       </td>
+   </tr>
+   <%end%>
+</table>
+<h3>TAREAS</h3>
+<table class="table">
+   <% @tasks_sh.each do |task| %>
+   <tr>
+      <td style="width:70%"><%=task.name%></td>
+      <td  style = "width:20%;background:<%=estado_contador(task.contador_seg)%>;color:white;text-align:center" >   
+         <strong>  <%=get_date(task.f_compromiso)%><br> <%= task.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=task.contador_seg.abs%> días</strong>
+      </td>
+       <td style="width:10%;text-align: center">
+        <a href="/reports/<%=task.report.id%>/accions/<%=task.accion.id%>/tasks/<%=task.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ir</a>
+        <a href="/reports/<%=taksk.report.id%>/accions/<%=task.accion.id%>/tasks/<%=task.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ver</a>
+       </td>
+   </tr>
+   <%end%>
+</table>
+</div>
+<style>
+  h3 
+  {
+    color: #2a3f54;
+    font-weight: bold;
+    background: #2a3f54;
+    margin-bottom: 0px;
+    display: inline-block;
+    padding: 5px 23px;
+    color: white;
+  }
+</style>

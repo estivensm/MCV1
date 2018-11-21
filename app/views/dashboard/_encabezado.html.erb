@@ -7,11 +7,13 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-     <li role="presentation" class="indi active"><%= link_to "indicadores", root_path %></li>
+    <li role="presentation" class="indi active"><%= link_to "indicadores", root_path %></li>
     
-   <li role="presentation" class="res active"><%= link_to "Gestion pendiente de Cierre", dashboard_index_path %></li>
+    <li role="presentation" class="pen active"><%= link_to "Gestion Pendiente", pending_path %></li>
+    
+    <li role="presentation" class="res active"><%= link_to "Gestion pendiente por Reporte", dashboard_index_path %></li>
       
-     <li role="presentation" class="asi active"><%= link_to "Gestion pendiente de Seguimiento", asignados_d_path %></li>
+    <li role="presentation" class="asi active"><%= link_to "Gestion pendiente de Seguimiento", asignados_d_path %></li>
     
 
 
@@ -116,6 +118,7 @@ $('.asi').removeClass('active');
 $('.inv').removeClass('active');
 $('.indi').removeClass('active');
  $('.rep').removeClass('active');
+ $('.pen').removeClass('active');
 }
 else if ("<%=action_name%>" == "asignados_d")
 {$('.res').removeClass('active');
@@ -123,6 +126,7 @@ $('.asi').addClass('active');
 $('.inv').removeClass('active');
  $('.indi').removeClass('active');
   $('.rep').removeClass('active');
+   $('.pen').removeClass('active');
  }
  else if ("<%=action_name%>" == "employed_indicators")
 {
@@ -131,6 +135,7 @@ $('.asi').removeClass('active');
 $('.inv').removeClass('active');
  $('.indi').addClass('active');
   $('.rep').removeClass('active');
+   $('.pen').removeClass('active');
  }
  else if ("<%=action_name%>" == "mis_reportesd")
 {
@@ -140,6 +145,18 @@ $('.asi').removeClass('active');
 $('.inv').removeClass('active');
  $('.indi').removeClass('active');
  $('.rep').addClass('active');
+  $('.pen').removeClass('active');
+
+ }
+  else if ("<%=action_name%>" == "pending")
+{
+
+  $('.res').removeClass('active');
+$('.asi').removeClass('active');
+$('.inv').removeClass('active');
+ $('.indi').removeClass('active');
+ $('.rep').removeClass('active');
+  $('.pen').addClass('active');
 
  }
 else
@@ -150,6 +167,7 @@ $('.res').removeClass('active');
 $('.asi').removeClass('active');
 $('.inv').addClass('active');
  $('.rep').removeClass('active');
+  $('.pen').removeClass('active');
 	}
 
 </script>

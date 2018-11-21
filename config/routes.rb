@@ -99,7 +99,7 @@ post 'task_change_state' , to: "tasks#task_change_state", as: "task_change_state
 
 
 
-
+  get 'pending', to: 'dashboard#pending', as: "pending"
   get 'asignados_d', to: 'dashboard#asignados_d', as: "asignados_d"
   get 'invitado_d', to: 'dashboard#invitado_d', as: "invitado_d"
   get 'employed_indicators', to: 'dashboard#employed_indicators', as: "employed_indicators"

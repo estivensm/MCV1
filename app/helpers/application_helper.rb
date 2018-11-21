@@ -181,7 +181,7 @@ def get_source_parents
 
 end
 def get_numerals
-Numeral.where(admin_user: current_user.admin_user)
+Numeral.where(admin_user: current_user.admin_user).or(Numeral.where(admin: true))
 
 end
 def get_rols
@@ -241,27 +241,33 @@ def bootstrap_class_for flash_type
 
 
   def menu
-    @menum = ["","", "", "" ,"", "","","",""]
+    @menum = ["","", "", "" ,"", "","","","", ""]
   if controller.controller_name == "views" || controller.controller_name == "procesos" || controller.controller_name == "cargos" || (controller.controller_name == "companies" && action_name != "company_indicators") || (controller.controller_name == "employeds" && action_name != "edit_myself" && (action_name == "show" && current_user.rol.configuracion) || (controller.controller_name == "employeds" && action_name == "index") ) || controller.controller_name == "normas" ||controller.controller_name == "numerals" ||controller.controller_name == "sources" ||controller.controller_name == "rols" || controller.controller_name == "clinte_proveedors" || controller.controller_name == "cliente_proveedor_types" ||controller.controller_name == "source_parents"
-    @menum = ["active2","", "", "", "", "","",""]
+    @menum = ["active2","", "", "", "", "","","", ""]
   elsif (controller.controller_name == "reports" && action_name =="index" ||  (controller.controller_name == "reports" && action_name =="abiertos")||  (controller.controller_name == "reports" && action_name =="cerrados" ) || (controller.controller_name == "reports" && action_name =="reportst_calendar" ) ) 
-    @menum = ["","active1","", "","", "","","",""]
+    @menum = ["","active1","", "","", "","","active4","active4", ""]
   elsif controller.controller_name == "my_accions"  
-    @menum = ["","","active1", "","", "","","",""]
+    @menum = ["","","active1", "","", "","","","", ""]
      elsif controller.controller_name == "my_reports"  
-    @menum = ["","","", "active1","", "","",""]
+    @menum = ["","","", "active1","", "","","", ""]
     elsif controller.controller_name == "dashboard"  
-    @menum = ["","","","", "active1", "","","",""]
+    @menum = ["","","","", "active1", "","","","", ""]
   elsif controller.controller_name == "my_tasks"  
-    @menum = ["","","", "","","active1","","",""]
+    @menum = ["","","", "","","active1","","","", ""]
       elsif controller.controller_name == "companies" && action_name == "company_indicators"  
-    @menum = ["","","", "","","","active1","",""]
+    @menum = ["","","", "","","","active1","","", ""]
   elsif controller.controller_name == "accions" && (action_name == "acciones_todas" || action_name == "acciones_abiertas" || action_name == "acciones_cerradas")   
-    @menum = ["","","", "","","","","active1",""]
+    @menum = ["","","", "","","","","active1","", ""]
 
      elsif controller.controller_name == "tasks" && (controller.action_name == "tasks_todas" || controller.action_name == "tasks_abiertas" || controller.action_name == "tasks_cerradas")   
-    @menum = ["","","", "","","","","","active1"]
+    @menum = ["","","", "","","","","","active1", ""]
+
+       elsif controller.controller_name == "riesgos"   
+        puts "riesgossssssssssssssssssssssssssssssssssssssssssssss"
+    @menum = ["","","", "","","","","","", "active1"]
   end
+
+
 
 
   return @menum

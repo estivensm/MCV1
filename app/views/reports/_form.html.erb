@@ -482,7 +482,7 @@
          <div class="col-lg-6">
             <div class="form-group num">
                <label>Numerales de <span style="text-transform: capitalize;">Normas</span></label> 
-               <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.name}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control  mn'} %>
+               <%= f.select :numeral_ids, get_numerals.collect {|b| ["#{b.norma.name}: #{b.numeral} - #{b.clausula} - #{b.subtitulo} - #{b.subclausula}", b.id]}, {prompt: false}, {:multiple => true,class: 'form-control  mn'} %>
             </div>
          </div>
          <!--<div class="col-md-6">

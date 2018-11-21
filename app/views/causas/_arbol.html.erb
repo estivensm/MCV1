@@ -1,6 +1,18 @@
-   
-<p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
-   
+
+<div class="row">
+    <div class="col-md-9">
+        <p class="title-table">Analisis de Causas (<%= @causa.tipo %>)</p>
+         <div class="alert alert-info" style="padding: 10px; font-size:12px;">
+          - Crea primero el arbol y luego selecciona si son vitales o triviales  <br>
+          - Actualiza cada vez que puedas para que no pierdas los cambios
+          </div>
+    </div>
+    <div class="col-md-3" style="margin-top: 70px;">
+      <%= (link_to "Crear Accion", new_report_accion_path(@report.id) + "?tipo=Accion", :class => 'pull-right btn btn-primary')%></p>
+    </div>
+</div>   
+
+<hr>
 <style type="text/css">
 #orgChart{
     width: auto;
@@ -18,8 +30,12 @@
     width: 250px;
 }
 
+.del
+{
+  display: none;
+}
     </style>
-<p><a href="#" data-remote="true"  class="actualizar1 btn btn-primary">Actualizar</a><p>
+<p style="text-align: center"><a href="#" data-remote="true"  class="actualizar1 btn btn-primary">Guardar Cambios</a><p>
  <div class="alert alert-success info" style = "display:none">
   <strong>El Arbol se actualizo correctamente!</strong> Indicates a successful or positive action.
 </div>
@@ -52,11 +68,74 @@
             allowEdit: true,
             onAddNode: function(node){ 
                 //log('Created new node on node '+node.data.id);
+
                 org_chart.newNode(node.data.id); 
             },
             onDeleteNode: function(node){
                 //log('Deleted node '+node.data.id);
                 org_chart.deleteNode(node.data.id); 
+     
+
+var h2a = []
+var nodea = []
+var parenta = []
+var estado = []
+
+
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+
+$(".node").each(function(){
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+ h2a.push($(this).children('h2').text());
+ nodea.push($(this).attr('node-id'));
+ parenta.push($(this).attr('name'));
+ estado.push($(this).children("select").val());
+
+}
+
+});
+}
+
+console.log(h2a);
+console.log(nodea);
+console.log(parenta);
+console.log(estado)
+setTimeout(function(){
+
+
+$.ajax({
+    url: '/delete_arbol',
+    type: 'get',
+    data: {
+      "report_id": <%=@report.id%>,
+         "causa_id": <%=@causa.id%>,
+        "size": h2a.length,
+        "name": h2a,
+        "node": nodea,
+        "parent": parenta,
+        "estado": estado,
+         
+      },
+    success: function(result) {
+       
+
+
+    }
+});
+
+
+
+
+  });
+
+
+
             },
             onClickNode: function(node){
                 //log('Clicked node '+node.data.id);
@@ -225,13 +304,154 @@ $(".node").each(function(){
 
 
 
+$('#orgChartContainer').on('change', '.org-input' ,function(){
+
+var h2a = []
+var nodea = []
+var parenta = []
+var estado = []
+
+
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+
+$(".node").each(function(){
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+ h2a.push($(this).children('h2').text());
+ nodea.push($(this).attr('node-id'));
+ parenta.push($(this).attr('name'));
+ estado.push($(this).children("select").val());
+
+}
+
+});
+}
+
+console.log(h2a);
+console.log(nodea);
+console.log(parenta);
+console.log(estado)
+setTimeout(function(){
+
+
+$.ajax({
+    url: '/delete_arbol',
+    type: 'get',
+    data: {
+      "report_id": <%=@report.id%>,
+         "causa_id": <%=@causa.id%>,
+        "size": h2a.length,
+        "name": h2a,
+        "node": nodea,
+        "parent": parenta,
+        "estado": estado,
+         
+      },
+    success: function(result) {
+        /*$('.info').show();
+        setTimeout(function(){
+        $('.info').fadeOut();
+},2000);*/
+
+
+    }
+});
+
+
+
+
+  });
 
 
 
 
 
+
+
+});
+
+
+
+$('#orgChartContainer').on('change', 'select' ,function(){
+
+var h2a = []
+var nodea = []
+var parenta = []
+var estado = []
+
+
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+
+$(".node").each(function(){
+
+        if ($(this).attr('node-id') != 1)
+        {
+
+ h2a.push($(this).children('h2').text());
+ nodea.push($(this).attr('node-id'));
+ parenta.push($(this).attr('name'));
+ estado.push($(this).children("select").val());
+
+}
+
+});
+}
+
+console.log(h2a);
+console.log(nodea);
+console.log(parenta);
+console.log(estado)
+setTimeout(function(){
+
+
+$.ajax({
+    url: '/delete_arbol',
+    type: 'get',
+    data: {
+      "report_id": <%=@report.id%>,
+         "causa_id": <%=@causa.id%>,
+        "size": h2a.length,
+        "name": h2a,
+        "node": nodea,
+        "parent": parenta,
+        "estado": estado,
+         
+      },
+    success: function(result) {
+        /*$('.info').show();
+        setTimeout(function(){
+        $('.info').fadeOut();
+},2000);*/
+
+
+    }
+});
+
+
+
+
+  });
+
+
+
+
+
+
+
+});
+
+/*$("[idi=<%=causa.id%>] .org-del-button").addClass('del');
+
+console.log($("[node-id=1]").html("asfasfsdfsd"))*/
 </script>
 
 
  
-    

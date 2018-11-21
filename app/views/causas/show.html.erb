@@ -3,13 +3,15 @@
 
 <div class="row">
     <div class="col-md-6">
-        <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %></p>
+        <p><%= link_to "Inicio",  root_path, :class => "linka" %>  <%= link_to "| Reportes",  reports_path, :class => "linka" %>  <%= link_to "| Reporte (#{@report.codigo})",  @report, :class => "linka" %>
+          <%= link_to "| Acciones (#{@report.codigo})",  report_accions_path(@report.id), :class => "linka" %>
+        </p>
     </div>
     <div class="col-md-6 text-right">
         <p>
 
 <%if  @causa_paret.count != 0%>
-          <%= link_to  "Editar #{@causa.tipo}" ,edit_report_causa_path(@report,@causa), remote: true, :class => " btn btn-primary"  %>
+          <%= link_to  "Editar Informacion Principal" ,edit_report_causa_path(@report,@causa), remote: true, :class => " btn btn-primary"  %>
            
    <%end%>
     <%= link_to  "Eliminar #{@causa.tipo}", report_causa_path(@report,@causa), method: :delete, data: { confirm: '¿Estas seguro?' }, :class => "btn btn-danger", style:"display:inline-block !important" %>

@@ -51,16 +51,30 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
+               <ul class="nav navbar-nav empresa barone" style="height: 50px;">
                   <% menu %>
-                  
-                  <!--<li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                  <li class="icon-empresa"><a href=""><i class="fa fa-building" aria-hidden="true"></i></a>  </li>
+                 <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
                      <%= link_to reports_abiertos_path,:class => "Reportes #{@menum[1]}" do %>
-                     <i class="fa fa-search ic" aria-hidden="true"></i>
+                   
                      <span >Reportes</span>
                      <% end %>
                      <% end %>
-                     </li>-->
+                     </li>
+                     <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                     <%= link_to acciones_abiertas_path,:class => "Reportes #{@menum[7]}" do %>
+                 
+                     <span >Acciones</span>
+                     <% end %>
+                     <% end %>
+                     </li>
+                       <li><% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %>
+                     <%= link_to tasks_abiertas_path,:class => "Reportes #{@menum[8]}" do %>
+                   
+                     <span >Tareas</span>
+                     <% end %>
+                     <% end %>
+                     </li>  
                  
                   
                  
@@ -126,7 +140,7 @@
             </div>
             <!-- /.navbar-collapse -->
          </nav>
-         <nav class="navbar navbar-default">
+         <nav class="navbar navbar-default bartwo">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header" style = "    border: 0px;
                border-radius: 0px;">
@@ -140,11 +154,13 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
+               <ul class="nav navbar-nav" style="height: 50px;
+">
                   <% menu %>
+                    <li class="icon-user"><a href=""><i class="fa fa-user" aria-hidden="true"></i></a>  </li>
                   <li> 
                      <%= link_to root_path,:class => "Reportes #{@menum[4]}" do %>
-                     <i class="fa fa-line-chart ic icon_p" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-line-chart ic icon_p" aria-hidden="true"></i>-->
                      <span >DashBoard</span>
                      <% end %>
                   </li>
@@ -155,7 +171,7 @@
                      <% end %>
                      <% end %>
                      </li>-->
-                  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %><li class="dropdown <%=@menum[1]%> <%=@menum[7]%> <%=@menum[8]%>" >
+                 <!-- <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion || current_user.rol.report_procesos %><li class="dropdown <%=@menum[1]%> <%=@menum[7]%> <%=@menum[8]%>" >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-building icon_p" aria-hidden="true"></i>
                      Gestion de la Empresa<span class="caret"></span></a>
                      <ul class="dropdown-menu">
@@ -183,38 +199,38 @@
                         </li>
                      </ul>
                   </li>
-                  <%end%>
-                  <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[5]%>" >
+                  <%end%>-->
+                 <!-- <li class="dropdown <%=@menum[3]%> <%=@menum[2]%> <%=@menum[5]%>" >
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user ic icon_p" aria-hidden="true"></i>
                      Mi Gestion<span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                        <li style = "margin-bottom:5px"><%= link_to misreports_path,:class => "" do %>
-                           <i class="far fa-file-alt color-gray" aria-hidden="true"></i>
-                           <span class = "color-gray">Mis Reportes</span>
+                     <ul class="dropdown-menu">-->
+                        <li style = ""><%= link_to misreports_path,:class => "#{@menum[3]}" do %>
+                         
+                           <span class = "">Mis Reportes</span>
                            <% end %>
                         </li>
-                        <li style = "margin-bottom:5px"><%= link_to misacciones_path,:class => "" do %>
-                           <i class="fas fa-thumbtack color-gray" aria-hidden="true"></i>
-                           <span class = "color-gray">Mis Acciones, Correcciones y Actividades</span>
+                        <li style = ""><%= link_to misacciones_path,:class => "#{@menum[2]}" do %>
+                          
+                           <span class = "">Mis Acciones</span>
                            <% end %>
                         </li>
-                        <li><%= link_to mistasks_path,:class => "" do %>
-                           <i class="fa fa-calendar color-gray" aria-hidden="true"></i>
-                           <span class = "color-gray">Mis Tareas</span>
+                        <li><%= link_to mistasks_path,:class => "#{@menum[5]}" do %>
+                        
+                           <span class = "">Mis Tareas</span>
                            <% end %>
                         </li>
-                     </ul>
-                  </li>
+                    <!-- </ul>
+                  </li>-->
                   <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                      <%= link_to company_indicators_path,:class => "configuracion #{@menum[6]}"  do %>
-                     <i class="fa fa-bar-chart icon_p" aria-hidden="true"></i>
+                   <!--  <i class="fa fa-bar-chart icon_p" aria-hidden="true"></i>-->
                      <span>Indicadores</span>
                      <% end %>
                      <%end%>
                   </li>
                   <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-               <%= link_to riesgos_path, style: "margin-top: 1px;", :class => "configuracion #{@menum[7]}"  do %>
-                    <i class="fas fa-exclamation-triangle"></i>
+               <%= link_to riesgos_path, style: "margin-top: 1px;", :class => "configuracion #{@menum[9]}"  do %>
+                    <!--<i class="fas fa-exclamation-triangle"></i>-->
                      <span>Riesgos</span>
                      <% end %>
                      <%end%>
@@ -588,5 +604,29 @@
     overflow: visible;
 }
 
+.empresa span
+{
+   
+}
+.icon-empresa i
+{
+   font-size: 38px !important;
+    padding: 4px;
+    color:#2a3f54;
+}
+.icon-empresa a
+{
+    padding: 4px !important
+}
 
+.icon-user i
+{
+   font-size: 38px !important;
+    padding: 4px;
+    color:white;
+}
+.icon-user a
+{
+    padding: 4px !important
+}
 </style>

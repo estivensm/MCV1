@@ -215,10 +215,18 @@ label
     background: #2a3f54 !important;
 
   }
-  .navbar-nav a
+ .barone a
   {
-    color: #f1f1f1 !important;border-left-width: medium;
-font-size: 13px !important;
+    color: #2a3f54 ;
+    border-left-width: medium;
+    font-size: 13px !important;
+
+  }
+  .bartwo a
+  {
+    color: white !important;
+    border-left-width: medium;
+    font-size: 13px !important;
 
   }
   .logo
