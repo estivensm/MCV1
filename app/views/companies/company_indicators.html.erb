@@ -131,7 +131,18 @@
         </tr>
       </tbody>
    </table>
-
+   <h4 style="color:gray">GESTION (ABIERTA)</h4>
+        <div class = "progress">
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
+            <span class = "" style="font-size: 18px"> <%= @por_tac %>% Vigente</span>
+         </div>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>% Vencida</span>
+         </div>
+     
+      </div>
    </div>
 </div>
 <hr>
@@ -139,7 +150,7 @@
 <div class="row tortas">
   
 <div class="col-md-12">
-  <h3 style="color:gray">% DE EFICACIA</h3>
+  <h4 style="color:gray">% DE EFICACIA (GESTION CERRADA)</h4>
 </div>
 
   
@@ -376,6 +387,10 @@
     color: #d27f37;
 }
 
+.progress {
+    overflow: hidden;
+    height: 32px;
+ }   
 </style>
 
 

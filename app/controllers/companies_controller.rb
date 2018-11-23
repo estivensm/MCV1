@@ -222,7 +222,12 @@ class CompaniesController < ApplicationController
       @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i
     
 
-
+        
+      @total_abiertas_cumplio = @racumplio  +  @aacumplio  + @tacumplio
+      @total_abiertas_no_cumplio = @ranocumplio + @aanocumplio + @tanocumplio
+      @total_abiertas = @total_abiertas_cumplio + @total_abiertas_no_cumplio
+      @por_tac = ((@total_abiertas_cumplio.to_f/@total_abiertas)*100).to_i
+      @por_tanc = ((@total_abiertas_no_cumplio.to_f/@total_abiertas)*100).to_i
 
 
       else 
@@ -313,7 +318,12 @@ class CompaniesController < ApplicationController
 
       @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i
     
-
+      
+      @total_abiertas_cumplio = @racumplio  +  @aacumplio  + @tacumplio
+      @total_abiertas_no_cumplio = @ranocumplio + @aanocumplio + @tanocumplio
+      @total_abiertas = @total_abiertas_cumplio + @total_abiertas_no_cumplio
+      @por_tac = ((@total_abiertas_cumplio.to_f/@total_abiertas)*100).to_i
+      @por_tanc = ((@total_abiertas_no_cumplio.to_f/@total_abiertas)*100).to_i
 
 
     end

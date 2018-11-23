@@ -13,12 +13,12 @@
     <div class="col-md-3 text-right">
      <%if @accion_array[i]["cierre"] ||  @task_array[i]["cierre"]%>
 
-<a class="linka ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+<a class="btn btn-primary ver-pendientes" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
 </a>
 
-<%end%> | 
-      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "linka", style: ""%>
+<%end%> 
+      <%= link_to "Ir al Reporte" ,report_path(report.id), class: "btn btn-primary", style: ""%>
 
     </div>
 
@@ -233,6 +233,11 @@
     padding: 5px;
     
 } 
+
+.btn-primary {
+    background: #2a3f54 !important;
+    border-color: #2a3f54 !important;
+}
 </style>
 
 

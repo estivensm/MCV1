@@ -129,6 +129,13 @@ end
 
 
 
+      @total_abiertas_cumplio = @racumplio  +  @aacumplio  + @tacumplio
+      @total_abiertas_no_cumplio = @ranocumplio + @aanocumplio + @tanocumplio
+      @total_abiertas = @total_abiertas_cumplio + @total_abiertas_no_cumplio
+      @por_tac = @total_abiertas_cumplio == 0 ? 0 : ((@total_abiertas_cumplio.to_f/@total_abiertas)*100).to_i
+      @por_tanc = @total_abiertas_no_cumplio == 0 ? 0 :  ((@total_abiertas_no_cumplio.to_f/@total_abiertas)*100).to_i
+
+
 
    
   end

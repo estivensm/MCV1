@@ -75,6 +75,14 @@
                      <% end %>
                      <% end %>
                      </li>  
+
+                        <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
+                     <%= link_to company_indicators_path,:class => "configuracion #{@menum[6]}"  do %>
+                   <!--  <i class="fa fa-bar-chart icon_p" aria-hidden="true"></i>-->
+                     <span>Indicadores</span>
+                     <% end %>
+                     <%end%>
+                  </li>
                  
                   
                  
@@ -221,13 +229,7 @@
                         </li>
                     <!-- </ul>
                   </li>-->
-                  <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
-                     <%= link_to company_indicators_path,:class => "configuracion #{@menum[6]}"  do %>
-                   <!--  <i class="fa fa-bar-chart icon_p" aria-hidden="true"></i>-->
-                     <span>Indicadores</span>
-                     <% end %>
-                     <%end%>
-                  </li>
+           
                   <li>  <% if current_user.role == "SuperAdmin" || current_user.rol.configuracion%>
                <%= link_to riesgos_path, style: "margin-top: 1px;", :class => "configuracion #{@menum[9]}"  do %>
                     <!--<i class="fas fa-exclamation-triangle"></i>-->
@@ -866,7 +868,7 @@
 }
 .icon-empresa i
 {
-   font-size: 38px !important;
+   font-size: 30px !important;
     padding: 4px;
     color:#2a3f54;
 }
@@ -877,7 +879,7 @@
 
 .icon-user i
 {
-   font-size: 38px !important;
+   font-size: 30px !important;
     padding: 4px;
     color:white;
 }

@@ -11,10 +11,10 @@
     </div>
 
     <div class="col-md-3 text-right">
-    <a class="linka" style="" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
+    <a class="btn btn-primary" style="" role="button" data-toggle="collapse" href="#collapseExample<%=report.id%>" aria-expanded="false" aria-controls="collapseExample">
   Ver Pendientes
 </a>
-     | <%= link_to "Ir al Reporte" ,report_path(report.id), class: "linka"%>
+     | <%= link_to "Ir al Reporte" ,report_path(report.id), class: "btn btn-primary"%>
     </div>
 
    </div>
@@ -159,7 +159,10 @@
     position: relative;
     top: 2px;
 }
-    
+  .btn-primary {
+    background: #2a3f54 !important;
+    border-color: #2a3f54 !important;
+}  
 </style>
 
 
