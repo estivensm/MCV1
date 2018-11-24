@@ -170,15 +170,18 @@
    </table>
       <h4 style="color:gray">GESTION (ABIERTA)</h4>
         <div class = "progress">
+         <% if @por_tac != 0%>
          <div class = "progress-bar progress-bar-success" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
             <span class = "" style="font-size: 18px"> <%= @por_tac %>% Vigente</span>
          </div>
+         <%end%>
+         <% if @por_tanc != 0%>
          <div class = "progress-bar progress-bar-danger" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
             <span class = "" style="font-size: 18px"><%= @por_tanc %>% Vencida</span>
          </div>
-     
+         <%end%>
       </div>
   <br><br>
 <div class="row tortas">
