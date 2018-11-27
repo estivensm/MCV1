@@ -1,73 +1,74 @@
 <div class="info">
-  
 
-  <table class="table1" >
-          <tr>
-            <td><strong>Creado:</strong> <%= get_date(@report.created_at) %></td>
-            <td><strong>Proceso:</strong> <%= @report.proceso.name %></td>
-            <td><strong>Fuente:</strong> <%= @report.source.name %></td>
-            <td><strong>Tipo de Reporte:</strong> <%= @report.proceso.name %></td>
-          </tr>
-           <tr>
-             <td  colspan="5" style="text-align: center"><strong>Descripcion</strong></td>
-           </tr>
-           <tr>
-              <td  colspan="5" class=""> <%=@report.description%></td>
-           </tr>
+<table class="table1" style="margin-top: 40px;">
 
+    <tr>
+
+      <td  colspan="5" style="text-align: center; margin-bottom: 20px;"><strong>Descripcion</strong>
+        <p> <%=@report.description%></p>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td style="text-align: center;"><strong>Creado:</strong><br> <%= get_date(@report.created_at) %></td>
+      <td style="text-align: center;"><strong>Proceso:</strong><br> <%= @report.proceso.name %></td>
+      <td style="text-align: center;"><strong>Fuente:</strong><br> <%= @report.source.name %></td>
+      <td style="text-align: center;"><strong>Tipo de Reporte:</strong><br> <%= @report.proceso.name %></td>
+    </tr>
 
 </table>
 
-<table class="table1">
-   
-    
-    </table>
-
-<hr>
 
 <%if @report.source.tipo == "Externa"%>
-<table class="table1" >
-   
-    
-      <tr>
-         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
-          <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
-         
-            
-      </tr></table>
+  <table class="table1" style="margin-bottom: 40px !important; margin-top: 40px !important; margin-left: 20px;" >
+        <tr>
+            <td><strong> Tipo de Cliente Proveedor <%= @report.clinte_proveedor.tipo  if @report.clinte_proveedor %></strong><br>
+              <p><%= @report.clinte_proveedor.name if @report.clinte_proveedor %></p>
+            </td>
 
-<hr>
+            <td><% if @report.contact%><strong>Contacto: </strong><br> 
+              <p><%= @report.contact.name%></p>
+              <% end %>
+            </td>   
 
- <%end%>
+            <td>
+              <strong>Email: </strong><br>
+              <p><%= @report.contact.email%></p>
+            </td> 
+        </tr>
+  </table>
+<% end %>
 
-<table class="table1" >
-       <tr>
-         <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
+
+  <table class="table1" >
+        <tr>
+
+          <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
           <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
-           <td><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></td>
-        
-      </tr>
+          <td><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></td>
+          
+        </tr>
 
-      <tr>
-         <td ><strong>Otros Interesados: </strong><% 
-            cm = 0 
-            @report.employeds.each do |resp|
-              %><%= "," if cm != 0 %> 
-         <%= resp.first_name%> <%=resp.first_last_name%>
-         <%  cm = cm + 1 %> 
-         <%end%></td>
-         <td><strong>Costo Presupuestado: </strong><%= @report.costo_presupuestado %></td>
-          <td><strong>Costo Real: </strong><%= @report.costo %></td>
-           
-      </tr>
-       <tr>
-       <td><strong>Estado: </strong><%= @report.state %></td>
-         <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
-          <td><strong>Fecha de Cierre: </strong> <%= get_date(@report.f_real) if @report.f_real %></td>
-         
-            
-      </tr>   
-</table>
+        <tr>
+           <td ><strong>Otros Interesados: </strong><% 
+              cm = 0 
+              @report.employeds.each do |resp|
+                %><%= "," if cm != 0 %> 
+           <%= resp.first_name%> <%=resp.first_last_name%>
+           <%  cm = cm + 1 %> 
+           <%end%></td>
+           <td><strong>Costo Presupuestado: </strong><%= @report.costo_presupuestado %></td>
+            <td><strong>Costo Real: </strong><%= @report.costo %></td>   
+        </tr>
+
+         <tr>
+         <td><strong>Estado: </strong><%= @report.state %></td>
+            <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
+            <td><strong>Fecha de Cierre: </strong> <%= get_date(@report.f_real) if @report.f_real %></td>
+        </tr>   
+  </table>
+
 
 <table class="table1" >
      
@@ -94,7 +95,7 @@
    
 </table>
 
-<hr>
+
 <table class="table1" >
      
       <tr>
@@ -160,7 +161,7 @@
    
 </table>
 
-<%end%>
+<% end %>
 </div>
 
 <div class="info">
@@ -198,23 +199,14 @@
          </tr>
         <%end%>
             
-      </tr>
-      <tr><td colspan="4"><hr></td></tr>     
+      </tr>   
     <%end%>
 </table>
 
-<%end%>
+<% end %>
 
 
 
-
-
-
-
-
-
-
-<hr>
 
 
 
@@ -301,968 +293,17 @@
 
 
 <style type="text/css">
-#orgChart{
-    width: auto;
-    height: auto;
-}
-
-#orgChartContainer{
-    width: 1000px;
-    height: 500px;
-    overflow: auto;
-    background: #eeeeee;
-}
-
-    </style>
-
-<div class="info">
-  
-
-  <table class="table1" >
-          <tr>
-            <td><strong>Creado:</strong> <%= get_date(@report.created_at) %></td>
-            <td><strong>Proceso:</strong> <%= @report.proceso.name %></td>
-            <td><strong>Fuente:</strong> <%= @report.source.name %></td>
-            <td><strong>Tipo de Reporte:</strong> <%= @report.proceso.name %></td>
-          </tr>
-           <tr>
-             <td  colspan="5" style="text-align: center"><strong>Descripcion</strong></td>
-           </tr>
-           <tr>
-              <td  colspan="5" class=""> <%=@report.description%></td>
-           </tr>
-
-
-</table>
-
-<table class="table1">
-   
-    
-    </table>
-
-<hr>
-
-<%if @report.source.tipo == "Externa"%>
-<table class="table1" >
-   
-    
-      <tr>
-         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
-          <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
-         
-            
-      </tr></table>
-
-<hr>
-
- <%end%>
-
-<table class="table1" >
-       <tr>
-         <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
-          <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
-           <td><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></td>
-        
-      </tr>
-
-      <tr>
-         <td ><strong>Otros Interesados: </strong><% 
-            cm = 0 
-            @report.employeds.each do |resp|
-              %><%= "," if cm != 0 %> 
-         <%= resp.first_name%> <%=resp.first_last_name%>
-         <%  cm = cm + 1 %> 
-         <%end%></td>
-         <td><strong>Costo Presupuestado: </strong><%= @report.costo_presupuestado %></td>
-          <td><strong>Costo Real: </strong><%= @report.costo %></td>
-           
-      </tr>
-       <tr>
-       <td><strong>Estado: </strong><%= @report.state %></td>
-         <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
-          <td><strong>Fecha de Cierre: </strong> <%= get_date(@report.f_real) if @report.f_real %></td>
-         
-            
-      </tr>   
-</table>
-
-<table class="table1" >
-     
-
-      <tr>
-         <td><%if @report.source.evidencia%>
-         <strong>Evidencia que soporta el Reporte:</strong> <%= @report.evidencia%> </div>
-         <%end%> 
-      </td>
-          
-         
-            
-      </tr>  
-
-         <tr>
-         <td> <%if @report.source.requisito%>
-      <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%>
- <%end%> 
-      </td>
-          
-         
-            
-      </tr>  
-   
-</table>
-
-<hr>
-<table class="table1" >
-     
-      <tr>
-         <td><%cm = 0
-          if @report.source.numerales%>
-            
-         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
-<%= "," if cm != 0 %> 
-       <%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%>
-
-       
-         <%cm = cm + 1
-         end%>
-      
-    
-<%end%>
-      </td>
-    
-         
-            
-      </tr>  
-   
-</table>
-
-
-
-</div>
-<br>
-
-<%if @report.source.correccion%>
-<div class="info">
-  <table class="table1" >
-     
-      <tr>
-        <th colspan="4" class="tit">CORRECCIONES</th>
-         </tr>  
-         <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
-        <tr>
-        <td><%=correccion.name%></td>
-        <td><%=correccion.f_compromiso%></td>
-        <td><%=if correccion.estado == "Cerrada"
-                  correccion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if correccion.estado == "Cerrada"
-                  correccion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>  
-   
-</table>
-
-<%end%>
-</div>
-
-<div class="info">
-<%if @report.source.causa%>
-<table class="table1">
-     
-      <tr>
-        <th colspan="4" class="tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
-         </tr>  
-       <% @report.causa_efectos.where(estado: "vital").each do |causa|%>
-          <tr><td><strong>Causa</strong><%= causa.name %></td></tr>
-        <tr><td>Acciones</td></tr>
-       <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%causa.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.f_compromiso%></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>
-      <tr><td colspan="4"><hr></td></tr>     
-    <%end%>
-</table>
-
-<%end%>
-
-
-
-
-
-
-
-
-
-
-<hr>
-
-
-
-<%if @report.source.accion%>
-<% ax = 0
- @report.accions.where(tipo:"Accion").each do |acc|
-    if acc.causa_efectos.count < 1 
-        ax = 1
-    end
-
-  end%>
-
-  <% if ax == 1 %>
-<table class="table1" >
-     
-      <tr>
-        <th colspan="4" class=" tit">ACCIONES</td>
-         </tr>  
-       <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%@report.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.f_compromiso%></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>   
-   
-</table>
-<%end%>
-<%end%>
-
-
-</div>
-
-
-
-<style>
-.info
-{
-  border:1px solid #cecece;
-}
- .table1
-    {
-
-        color: #7a7a7a;
-        font-size:12px;
-       
-    width:1100px;font-size:16px;
-
-
-
-    }
-  .table1 td, th
-  {
-        padding: 6px 20px;
-    
+  #orgChart{
+      width: auto;
+      height: auto;
   }
-  .tit
-  {
-   font-size: 22px;
 
+  #orgChartContainer{
+      width: 1000px;
+      height: 500px;
+      overflow: auto;
+      background: #eeeeee;
   }
+
 </style>
-
-
-
-
-<style type="text/css">
-#orgChart{
-    width: auto;
-    height: auto;
-}
-
-#orgChartContainer{
-    width: 1000px;
-    height: 500px;
-    overflow: auto;
-    background: #eeeeee;
-}
-
-    </style>
-
-<div class="info">
-  
-
-  <table class="table1" >
-          <tr>
-            <td><strong>Creado:</strong> <%= get_date(@report.created_at) %></td>
-            <td><strong>Proceso:</strong> <%= @report.proceso.name %></td>
-            <td><strong>Fuente:</strong> <%= @report.source.name %></td>
-            <td><strong>Tipo de Reporte:</strong> <%= @report.proceso.name %></td>
-          </tr>
-           <tr>
-             <td  colspan="5" style="text-align: center"><strong>Descripcion</strong></td>
-           </tr>
-           <tr>
-              <td  colspan="5" class=""> <%=@report.description%></td>
-           </tr>
-
-
-</table>
-
-<table class="table1">
-   
-    
-    </table>
-
-<hr>
-
-<%if @report.source.tipo == "Externa"%>
-<table class="table1" >
-   
-    
-      <tr>
-         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
-          <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
-         
-            
-      </tr></table>
-
-<hr>
-
- <%end%>
-
-<table class="table1" >
-       <tr>
-         <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
-          <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
-           <td><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></td>
-        
-      </tr>
-
-      <tr>
-         <td ><strong>Otros Interesados: </strong><% 
-            cm = 0 
-            @report.employeds.each do |resp|
-              %><%= "," if cm != 0 %> 
-         <%= resp.first_name%> <%=resp.first_last_name%>
-         <%  cm = cm + 1 %> 
-         <%end%></td>
-         <td><strong>Costo Presupuestado: </strong><%= @report.costo_presupuestado %></td>
-          <td><strong>Costo Real: </strong><%= @report.costo %></td>
-           
-      </tr>
-       <tr>
-       <td><strong>Estado: </strong><%= @report.state %></td>
-         <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
-          <td><strong>Fecha de Cierre: </strong> <%= get_date(@report.f_real) if @report.f_real %></td>
-         
-            
-      </tr>   
-</table>
-
-<table class="table1" >
-     
-
-      <tr>
-         <td><%if @report.source.evidencia%>
-         <strong>Evidencia que soporta el Reporte:</strong> <%= @report.evidencia%> </div>
-         <%end%> 
-      </td>
-          
-         
-            
-      </tr>  
-
-         <tr>
-         <td> <%if @report.source.requisito%>
-      <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%>
- <%end%> 
-      </td>
-          
-         
-            
-      </tr>  
-   
-</table>
-
-<hr>
-<table class="table1" >
-     
-      <tr>
-         <td><%cm = 0
-          if @report.source.numerales%>
-            
-         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
-<%= "," if cm != 0 %> 
-       <%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%>
-
-       
-         <%cm = cm + 1
-         end%>
-      
-    
-<%end%>
-      </td>
-    
-         
-            
-      </tr>  
-   
-</table>
-
-
-
-</div>
-<br>
-
-<%if @report.source.correccion%>
-<div class="info">
-  <table class="table1" >
-     
-      <tr>
-        <th colspan="4" class="tit">CORRECCIONES</th>
-         </tr>  
-         <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
-        <tr>
-        <td><%=correccion.name%></td>
-        <td><%=correccion.f_compromiso%></td>
-        <td><%=if correccion.estado == "Cerrada"
-                  correccion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if correccion.estado == "Cerrada"
-                  correccion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>  
-   
-</table>
-
-<%end%>
-</div>
-
-<div class="info">
-<%if @report.source.causa%>
-<table class="table1">
-     
-      <tr>
-        <th colspan="4" class="tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
-         </tr>  
-       <% @report.causa_efectos.where(estado: "vital").each do |causa|%>
-          <tr><td><strong>Causa</strong><%= causa.name %></td></tr>
-        <tr><td>Acciones</td></tr>
-       <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%causa.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.f_compromiso%></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>
-      <tr><td colspan="4"><hr></td></tr>     
-    <%end%>
-</table>
-
-<%end%>
-
-
-
-
-
-
-
-
-
-
-<hr>
-
-
-
-<%if @report.source.accion%>
-<% ax = 0
- @report.accions.where(tipo:"Accion").each do |acc|
-    if acc.causa_efectos.count < 1 
-        ax = 1
-    end
-
-  end%>
-
-  <% if ax == 1 %>
-<table class="table1" >
-     
-      <tr>
-        <th colspan="4" class=" tit">ACCIONES</td>
-         </tr>  
-       <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%@report.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.f_compromiso%></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>   
-   
-</table>
-<%end%>
-<%end%>
-
-
-</div>
-
-
-
-<style>
-.info
-{
-  border:1px solid #cecece;
-}
- .table1
-    {
-
-        color: #7a7a7a;
-        font-size:12px;
-       
-    width:1100px;font-size:16px;
-
-
-
-    }
-  .table1 td, th
-  {
-        padding: 6px 20px;
-    
-  }
-  .tit
-  {
-   font-size: 22px;
-
-  }
-</style>
-
-
-
-
-<style type="text/css">
-#orgChart{
-    width: auto;
-    height: auto;
-}
-
-#orgChartContainer{
-    width: 1000px;
-    height: 500px;
-    overflow: auto;
-    background: #eeeeee;
-}
-
-    </style>
-
-<div class="info">
-  
-
-  <table class="table1" >
-          <tr>
-            <td><strong>Creado:</strong> <%= get_date(@report.created_at) %></td>
-            <td><strong>Proceso:</strong> <%= @report.proceso.name %></td>
-            <td><strong>Fuente:</strong> <%= @report.source.name %></td>
-            <td><strong>Tipo de Reporte:</strong> <%= @report.proceso.name %></td>
-          </tr>
-           <tr>
-             <td  colspan="5" style="text-align: center"><strong>Descripcion</strong></td>
-           </tr>
-           <tr>
-              <td  colspan="5" class=""> <%=@report.description%></td>
-           </tr>
-
-
-</table>
-
-<table class="table1">
-   
-    
-    </table>
-
-<hr>
-
-<%if @report.source.tipo == "Externa"%>
-<table class="table1" >
-   
-    
-      <tr>
-         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
-          <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
-         
-            
-      </tr></table>
-
-<hr>
-
- <%end%>
-
-<table class="table1" >
-       <tr>
-         <td><strong>Reporta: </strong> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
-          <td><strong>Ejecuta: </strong> <%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></td>
-           <td><strong>Cierra: </strong> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></td>
-        
-      </tr>
-
-      <tr>
-         <td ><strong>Otros Interesados: </strong><% 
-            cm = 0 
-            @report.employeds.each do |resp|
-              %><%= "," if cm != 0 %> 
-         <%= resp.first_name%> <%=resp.first_last_name%>
-         <%  cm = cm + 1 %> 
-         <%end%></td>
-         <td><strong>Costo Presupuestado: </strong><%= @report.costo_presupuestado %></td>
-          <td><strong>Costo Real: </strong><%= @report.costo %></td>
-           
-      </tr>
-       <tr>
-       <td><strong>Estado: </strong><%= @report.state %></td>
-         <td><strong>Fecha de compromiso: </strong> <%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
-          <td><strong>Fecha de Cierre: </strong> <%= get_date(@report.f_real) if @report.f_real %></td>
-         
-            
-      </tr>   
-</table>
-
-<table class="table1" >
-     
-
-      <tr>
-         <td><%if @report.source.evidencia%>
-         <strong>Evidencia que soporta el Reporte:</strong> <%= @report.evidencia%> </div>
-         <%end%> 
-      </td>
-          
-         
-            
-      </tr>  
-
-         <tr>
-         <td> <%if @report.source.requisito%>
-      <strong>Requisito Legal y/o Interno:</strong>: <%= @report.requisito%>
- <%end%> 
-      </td>
-          
-         
-            
-      </tr>  
-   
-</table>
-
-<hr>
-<table class="table1" >
-     
-      <tr>
-         <td><%cm = 0
-          if @report.source.numerales%>
-            
-         <strong>Requisito Aplicable:</strong> <% @report.numerals.each do |numr|%>
-<%= "," if cm != 0 %> 
-       <%= numr.norma_name%>-<%= numr.numeral%>-<%= numr.name%>
-
-       
-         <%cm = cm + 1
-         end%>
-      
-    
-<%end%>
-      </td>
-    
-         
-            
-      </tr>  
-   
-</table>
-
-
-
-</div>
-<br>
-
-<%if @report.source.correccion%>
-<div class="info">
-  <table class="table1" >
-     
-      <tr>
-        <th colspan="4" class="tit">CORRECCIONES</th>
-         </tr>  
-         <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
-        <tr>
-        <td><%=correccion.name%></td>
-        <td><%=correccion.f_compromiso%></td>
-        <td><%=if correccion.estado == "Cerrada"
-                  correccion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if correccion.estado == "Cerrada"
-                  correccion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>  
-   
-</table>
-
-<%end%>
-</div>
-
-<div class="info">
-<%if @report.source.causa%>
-<table class="table1">
-     
-      <tr>
-        <th colspan="4" class="tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
-         </tr>  
-       <% @report.causa_efectos.where(estado: "vital").each do |causa|%>
-          <tr><td><strong>Causa</strong><%= causa.name %></td></tr>
-        <tr><td>Acciones</td></tr>
-       <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%causa.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.f_compromiso%></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>
-      <tr><td colspan="4"><hr></td></tr>     
-    <%end%>
-</table>
-
-<%end%>
-
-
-
-
-
-
-
-
-
-
-<hr>
-
-
-
-<%if @report.source.accion%>
-<% ax = 0
- @report.accions.where(tipo:"Accion").each do |acc|
-    if acc.causa_efectos.count < 1 
-        ax = 1
-    end
-
-  end%>
-
-  <% if ax == 1 %>
-<table class="table1" >
-     
-      <tr>
-        <th colspan="4" class=" tit">ACCIONES</td>
-         </tr>  
-       <tr>
-        <th style="width:40%">Descripcion</th>
-        <th style="width:20%">Entrega</th>
-        <th style="width:20%">Cumplio</th>
-        <th style="width:20%">Eficaz</th>
-        
-         </tr> 
-        <%@report.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.f_compromiso%></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.contador_seg > 0  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %></td>
-        <td><%=if accion.estado == "Cerrada"
-                  accion.eficaz  ? "Si" : "No"
-              else
-                 "Sin Cerrar"
-               end %>
-        </td>
-         </tr>
-        <%end%>
-            
-      </tr>   
-   
-</table>
-<%end%>
-<%end%>
-
-
-</div>
-
-
-
-<style>
-.info
-{
-  border:1px solid #cecece;
-}
- .table1
-    {
-
-        color: #7a7a7a;
-        font-size:12px;
-       
-    width:1100px;font-size:16px;
-
-
-
-    }
-  .table1 td, th
-  {
-        padding: 6px 20px;
-    
-  }
-  .tit
-  {
-   font-size: 22px;
-
-  }
-</style>
-
-
-
-
-<style type="text/css">
-#orgChart{
-    width: auto;
-    height: auto;
-}
-
-#orgChartContainer{
-    width: 1000px;
-    height: 500px;
-    overflow: auto;
-    background: #eeeeee;
-}
-
-    </style>
 

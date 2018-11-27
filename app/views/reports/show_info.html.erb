@@ -1,40 +1,180 @@
+<div class="container border">
+
+      <div class="col-md-12 text-center margitop"><br>
+
+        <small>Descripcion Corta: </small><br>
+          <b><%=@report.name%></b>
+        <hr class="hr">
+      </div>
+
+      <div class="col-md-3 text-center">
+        <small>Creado:</small><br>
+        <b><%= get_date(@report.created_at) %></b>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <small>Fuente:</small><br>
+        <b><%= @report.source.name %></b>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <small>Proceso:</small><br>
+        <b><%= @report.proceso.name %></b>
+      </div>
+
+      <div class="col-md-3 text-center" style="margin-top: 10px;">
+        <small>Estado:</small><br>
+        <b><%= @report.state %></b>
+      </div>
+      
+
+      <div class="col-md-6 text-center" style="margin-top: 10px;">
+        <small style="color: #0db497;">Fecha de compromiso</small><br>
+        <b><%= get_date(@report.f_compromiso) if @report.f_compromiso %></b>
+      </div>
+      
+
+      <div class="col-md-6 text-center">
+        <small style="color: #0db497;">Fecha de Cierre</small><br>
+        <b><%= get_date(@report.f_real) if @report.f_real %></b>
+      </div>
+
+      <div class="col-md-12" style="padding: 0px; margin-top: 10px;">
+        <legend>Responsabilidad</legend>
+      </div>
+
+      <div class="col-md-3" style="padding-left: 0px;">
+        <small>Reporta:</small><br>
+        <b><%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></b>
+      </div>
+
+      <div class="col-md-3" style="padding-left: 0px;">
+        <small>Ejecuta:</small><br>
+        <b><%= Employed.find(@report.employed_id).first_name%> <%= Employed.find(@report.employed_id).first_last_name%></b>
+      </div>
+
+      <div class="col-md-3 margin" style="padding-left: 0px;">
+        <small>Cierra: </small><br>
+        <b> <%= Employed.find(@report.cierra_id).first_name%> <%= Employed.find(@report.cierra_id).first_last_name%></b>
+      </div>
+
+      <div class="col-md-3" style="margin-left: 0px;">
+        <small>Otros Interesados:</small><br>
+        <% 
+            cm = 0 
+            @report.employeds.each do |resp|
+              %><%= "," if cm != 0 %> 
+         <b class="show-intere"><%= resp.first_name%> <%=resp.first_last_name%></b>
+         <%  cm = cm + 1 %> 
+        <% end -%>
+
+      </div>
+
+    <%if @report.source.tipo == "Externa"%>
+      <div class="col-md-12"  style="padding: 0px; margin-top: 10px;">
+
+        <legend>Cliente Proveedor</legend>
+
+        <div class="col-md-3"  style="padding-left: 0px;">
+          <small>Tipo de Cliente Proveedor <%= @report.clinte_proveedor.tipo if @report.clinte_proveedor %></small><br>
+            <b><%= @report.clinte_proveedor.name if @report.clinte_proveedor%></b>
+        </div>
+
+        <div class="col-md-3"  style="padding-left: 0px;">
+          <small>Nombre Contacto</small><br>
+          <b><%= @report.contact.name if @report.contact %></b>
+        </div>
+
+        <div class="col-md-3"  style="padding-left: 0px;">
+          <small>Email</small><br>
+          <b> <%= @report.contact.email if @report.contact %></b>
+        </div>
+
+        <br><br><br>
+
+      </div>
+    <% end -%>
+
+</div>
+
+<%if @report.source.correccion%>
+  <div class="container border" style="margin-top: 32px;">
+
+        <div class="col-md-12 text-center margitop"><br>
+          <strong>Correcciones</strong>
+          <hr class="hr">
+        </div>
+
+        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
+
+        <div class="col-md-6 text-center">
+          <strong>Descripcion:</strong>
+          <p><%= correccion.name %></p>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <strong>Eficaz:</strong>
+          <p><%= correccion.eficaz %></p>
+        </div>
+
+    <% end -%>
+  </div>
+<% end -%>
+
+<%if @report.source.causa%>
+  <div class="container border" style="margin-top: 32px;">
+
+        <div class="col-md-12 text-center margitop"><br>
+          <strong>Analisis de Causas (<%=@report.causas.first.tipo if @report.causas.first%>)</strong>
+          <hr class="hr">
+        </div>
+
+        <%@report.accions.where(tipo:"Accion").each do |correccion|%>
+
+        <div class="col-md-6 text-center">
+          <strong>Descripcion:</strong>
+          <p><%= correccion.name %></p>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <strong>Eficaz:</strong>
+          <p><%= correccion.eficaz %></p>
+        </div>
+
+    <% end -%>
+  </div>
+<% end -%>
+
+<%if @report.source.accion%>
+  <div class="container border" style="margin-top: 32px;">
+
+        <div class="col-md-12 text-center margitop"><br>
+          <strong>Acciones</strong>
+          <hr class="hr">
+        </div>
+
+        <%@report.accions.where(tipo:"Accion").each do |accion|%>
+
+        <div class="col-md-6 text-center">
+          <strong>Descripcion:</strong>
+          <p><%= accion.name %></p>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <strong>Eficaz:</strong>
+          <p><%= accion.eficaz %></p>
+        </div>
+
+    <% end -%>
+  </div>
+<% end -%>
+
 <div class="info">
   
 
   <table class="table1" >
-        <tr>
-         <td  colspan="5" class=""><strong>Descripcion Corta: </strong> <%=@report.name%></td>
-      </tr>
 
 </table>
-<hr>
-<table class="table1">
-   
-    
-      <tr>
-         <td><strong>Creado:</strong> <%= get_date(@report.created_at) %></td>
-          <td><strong>Fuente:</strong> <%= @report.source.name %></td>
-           <td><strong>Proceso:</strong> <%= @report.proceso.name %></td>
-            <td><strong>Estado: </strong><%= @report.state %></td>
-            
-      </tr></table>
-
-<hr>
-
-<%if @report.source.tipo == "Externa"%>
-<table class="table1" >
-   
-    
-      <tr>
-         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
-          <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
-         
-            
-      </tr></table>
-
-<hr>
-
- <%end%>
 
 <table class="table1" >
        <tr>
@@ -71,7 +211,6 @@
 <table class="table1" >
      
       <tr>
-         <td><strong>Descripción detallada:</strong> <%= @report.description%></td>
           
          
             
@@ -123,76 +262,6 @@
    
 </table>
 
-
-<hr>
-<%if @report.source.correccion%>
-<table class="table1" >
-     
-      <tr>
-        <td colspan="2" class="text-center tit">CORRECCIONES</td>
-         </tr>  
-         <tr>
-        <th style="width:80%">Descripcion</th>
-        <th style="width:20%">Eficaz</th>
-         </tr> 
-        <%@report.accions.where(tipo:"Correccion").each do |correccion|%>
-        <tr>
-        <td><%=correccion.name%></td>
-        <td><%=correccion.eficaz%></td>
-         </tr>
-        <%end%>
-            
-      </tr>  
-   
-</table>
-<hr>
-<%end%>
-<%if @report.source.causa%>
-<table class="table1">
-     
-      <tr>
-        <td colspan="2" class="text-center tit">ANALIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
-         </tr>  
-         <tr>
-               <th style="width:80%">Descripcion</th>
-        <th style="width:20%">Eficaz</th>
-         </tr> 
-        <%@report.accions.where(tipo:"Accion").each do |correccion|%>
-        <tr>
-        <td style="width:80%"><%=correccion.name%></td>
-        <td style="width:20%"><%=correccion.eficaz%></td>
-         </tr>
-        <%end%>
-            
-      </tr>  
-   
-</table>
-<hr>
-<%end%>
-<%if @report.source.accion%>
-<table class="table1" >
-     
-      <tr>
-        <td colspan="2" class="text-center tit">ACCIONES</td>
-         </tr>  
-         <tr>
-      <th style="width:80%">Descripcion</th>
-        <th style="width:20%">Eficaz</th>
-         </tr> 
-        <%@report.accions.where(tipo:"Accion").each do |accion|%>
-        <tr>
-        <td><%=accion.name%></td>
-        <td><%=accion.eficaz%></td>
-         </tr>
-        <%end%>
-            
-      </tr>  
-   
-</table>
-<hr>
-<%end%>
-
-
 </div>
 
 
@@ -223,7 +292,31 @@
    font-size: 22px;
 
   }
-</style>
 
+  .border{
+    border: 5px solid  #e8e8e8;
+    border-radius: 4px;
+  }
+
+  .margitop{
+    margin-bottom: 16px;
+  }
+
+  .margin{
+    margin-bottom: 20px;
+  }
+
+  .show-intere{
+    background-color: #e8e8e8;
+    padding: 3px;
+    border-radius: 4px;
+  }
+
+  small{
+    color: #0db497 !important;
+  }
+
+
+</style>
 
 
