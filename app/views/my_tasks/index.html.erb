@@ -126,7 +126,8 @@
          <th style = "width:5%" class="text-left">¿Cumplio?</th>
          <%end%>
          <th style = "width:5%" class="text-center">Días</th>
-         <th  class="text-left" style = "width:40%">Tarea</th>
+         <th  class="text-left" style = "width:25%">Tarea</th>
+         <th  class="text-center" style = "width: 3%;">Procedencia</th>
 
 
          
@@ -171,6 +172,96 @@
          <td>
            
                <%= task.name %>
+         </td>
+
+         <td>
+          <label type="button" class="label label-success clasemodal" data-toggle="modal" data-target="#modal<%= task.id %>">Mas Informacion</label>
+
+          <!-- Modal -->
+          <div class="modal fade" id="modal<%= task.id %>" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" align="center">Tarea</h4>
+                </div>
+                <div class="modal-body">
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-8 no-padding-left">
+
+                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Tarea</b></p>
+                        <p><%= task.name %></p> 
+
+                        <p class="margin-top"><b>Fecha:</b></p>
+                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+
+                      </div>
+                  </div>
+                  <br>
+
+                  <div class="text-center">
+                    <i class="fas fa-arrow-down" id="flecha"></i><br>
+                    <label class="label label-primary">Pertenece a la Accion:</label>
+                  </div>
+                  <br>
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-8 no-padding-left">
+
+                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Accion</b></p>
+                        <p><%= task.accion.descripcion %></p> 
+
+                        <p class="margin-top"><b>Fecha:</b></p>
+                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+
+                      </div>
+                  </div>
+                  <br>
+
+                  <div class="text-center">
+                    <i class="fas fa-arrow-down" id="flecha"></i><br>
+                    <label class="label label-primary">Pertenece al Reporte:</label>
+                  </div>
+                  <br>
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-8 no-padding-left">
+
+                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion del Reporte</b></p>
+                        <p><%= task.report.description %></p> 
+
+                        <p class="margin-top"><b>Fecha:</b></p>
+                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+
+                      </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrar">Cerrar</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
          </td>
         </tr>
         <% end %>
@@ -298,6 +389,50 @@
       
 </script>
 <style>
+
+
+#contenedor2{
+   border: 1px solid #c3c3c3;
+}
+
+#contenedor2:hover{box-shadow: 0px 0px 0px gray , 0px 2px 10px gray; transition: box-shadow 0.3s;}
+
+#contenedor2 img{
+    width: 64px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.no-padding-left{
+  padding-left: 0px;
+}
+
+.margin-top{
+  margin-bottom: 0px;
+}
+
+.no-margin-bottom{
+  margin-bottom: 5px;
+}
+
+.label{
+  color: #fff !important;
+  font-size: 10px;
+}
+
+
+  #flecha{
+    font-size: 15px;
+  }
+  .clasemodal{
+    padding: 5px 10px;
+    color: #fff !important;
+    font-size: 9px;
+    background-color: #2a3f54 !important;
+    cursor: pointer;
+  }
+    
    .shi
    {
    height:  30px !important;
