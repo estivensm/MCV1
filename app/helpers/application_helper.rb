@@ -994,7 +994,7 @@ def  get_riesgo(nr)
          
    ["Mejorar si es posible. Sería conveniente justificar la intervención y su rentabilidad." ,"III - Tolerable","#5cb85c"]
 
-  elsif (nr < 20 )
+  elsif (nr <= 20 )
          
    ["Mantener las medidas de control existentes, pero se deberían considerar soluciones o mejoras y se deben hacer comprobaciones periódicas para asegurar que el riesgo aún es aceptable." ,"IV - Aceptable","#5cb85c"]
   

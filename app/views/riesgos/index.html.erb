@@ -20,13 +20,14 @@
 <table class="table">
   <thead>
     <tr class = "tr-table">
-      <th>User</th>
-      <th>Admin user</th>
+
 
       <th>Descripcion</th>
+      <th>Proceso</th>
       <th>Clasificacion</th>
       <th>Fuente de Riesgo</th>
-      <th>Nivel</th>
+      <th>VNR</th>
+      <th>Valoracion</th>
       <th style="width: 150px;">Acciones</th>
     </tr>
   </thead>
@@ -34,13 +35,15 @@
   <tbody>
     <% @riesgos.each do |riesgo| %>
       <tr>
-        <td><%= riesgo.user_id %></td>
-        <td><%= riesgo.admin_user %></td>
+
 
         <td><%= riesgo.descripcion %></td>
+       <td><%= riesgo.proceso.name %></td>
         <td><%= riesgo.classification_risk.name if riesgo.classification_risk %></td>
          <td><%=riesgo.risk_source.name if riesgo.risk_source  %></td>
-        <td><%= riesgo.nivel %></td>
+        <td class="text-center" ><%= !riesgo.risk_value.nil? ? riesgo.risk_value : "Sin Valorar" %></td>
+          <td  style="text-align:center;font-size:15px;background:<%=get_riesgo(riesgo.risk_value)[2] if !riesgo.risk_value.nil?%>;color:<%= !riesgo.risk_value.nil? ? "white !important" : "gray"%>">
+               <strong style="color:<%= "white !important" if !riesgo.risk_value.nil? %>"><%= !riesgo.risk_value.nil? ? get_riesgo(riesgo.risk_value)[1] : "Sin Valorar" %></strong></td>
         <td>
 
         <%= link_to  riesgo, class: "btn btn-warning" do %>
