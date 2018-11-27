@@ -10,6 +10,10 @@ body{
        
   
 }
+
+.no-padding-left{
+  padding-left: 0px;
+}
 .ppal
 {
   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), 
@@ -498,7 +502,7 @@ dp a:focus:hover:active:visited {color:black !important }
   }
   .titulo1
   {
-      margin-left: 120px;
+    margin-left: 57px;
     color:#0db497  !important;
   }
   .def

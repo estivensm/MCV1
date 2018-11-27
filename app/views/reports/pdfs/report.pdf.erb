@@ -26,7 +26,7 @@
    
     
       <tr>
-         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name%></td>
+         <td><strong><%= @report.clinte_proveedor.tipo%>: </strong> <%= @report.clinte_proveedor.name if @report.clinte_proveedor %></td>
           <td><%if @report.contact%><strong>Contacto: </strong> <%= @report.contact.name%> <strong>Email: </strong> </strong> <%= @report.contact.email%><%end%></td>
          
             

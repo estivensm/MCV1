@@ -60,9 +60,96 @@
       <td  style = "width:20%;background:<%=estado_contador(task.contador_seg)%>;color:white;text-align:center" >   
          <strong>  <%=get_date(task.f_compromiso)%><br> <%= task.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=task.contador_seg.abs%> días</strong>
       </td>
-       <td style="width:10%;text-align: center">
+       <td style="width:8%;">
         <a href="/reports/<%=task.report.id%>/accions/<%=task.accion.id%>/tasks/<%=task.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ir</a>
-        <a href="/reports/<%=task.report.id%>/accions/<%=task.accion.id%>/tasks/<%=task.id%>" class="btn btn-primary" style="padding: 0px 10px 0px 10px;    background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ver</a>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal<%=task.report.id%>" style="padding: 0px 10px 0px 10px;background-color: #2a3f54 !important;border-color: #2a3f54 !important;border-radius: 0px !important;">Ver</button>
+
+        <!-- Modal -->
+        <div id="modal<%=task.report.id%>" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <p>Tareas</p>
+              </div>
+                              <div class="modal-body">
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-8 no-padding-left">
+
+                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Tarea</b></p>
+                        <p><%= task.name %></p> 
+
+                        <p class="margin-top"><b>Fecha:</b></p>
+                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+
+                      </div>
+                  </div>
+                  <br>
+
+                  <div class="text-center">
+                    <i class="fas fa-arrow-down" id="flecha"></i><br>
+                    <label class="label label-primary">Pertenece a la Accion:</label>
+                  </div>
+                  <br>
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-8 no-padding-left">
+
+                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Accion</b></p>
+                        <p><%= task.accion.descripcion %></p> 
+
+                        <p class="margin-top"><b>Fecha:</b></p>
+                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+
+                      </div>
+                  </div>
+                  <br>
+
+                  <div class="text-center">
+                    <i class="fas fa-arrow-down" id="flecha"></i><br>
+                    <label class="label label-primary">Pertenece al Reporte:</label>
+                  </div>
+                  <br>
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-8 no-padding-left">
+
+                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion del Reporte</b></p>
+                        <p><%= task.report.description %></p> 
+
+                        <p class="margin-top"><b>Fecha:</b></p>
+                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+
+                      </div>
+                  </div>
+
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
        </td>
    </tr>
    <%end%>
@@ -93,5 +180,47 @@
   .table
   {
     margin-bottom: 20px !important;
+  }
+
+  #contenedor2{
+   border: 1px solid #c3c3c3;
+}
+
+#contenedor2:hover{box-shadow: 0px 0px 0px gray , 0px 2px 10px gray; transition: box-shadow 0.3s;}
+
+#contenedor2 img{
+    width: 64px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.no-padding-left{
+  padding-left: 0px;
+}
+
+.margin-top{
+  margin-bottom: 0px;
+}
+
+.no-margin-bottom{
+  margin-bottom: 5px;
+}
+
+.label{
+  color: #fff !important;
+  font-size: 10px;
+}
+
+
+  #flecha{
+    font-size: 15px;
+  }
+  .clasemodal{
+    padding: 5px 10px;
+    color: #fff !important;
+    font-size: 9px;
+    background-color: #2a3f54 !important;
+    cursor: pointer;
   }
 </style>

@@ -16,9 +16,15 @@
                                   <div class="col-md-2 rtd text-right"><%= link_to  edit_report_accion_aseguimiento_path(@report,accion,seg),remote: true, :class => "opciones" do %>
                                   <i class="fa fa-pencil" aria-hidden="true"></i>
                                   <% end %>
-                                  <%= link_to  report_accion_aseguimiento_path(@report,accion,seg),  method: :delete, remote: true ,data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
-                                  <i class="fa fa-trash" aria-hidden="true"></i>
-                                  <% end %>
+                                  <%= link_to  report_accion_aseguimiento_path(@report,accion,seg), remote: true,  method: :delete, data: {
+                                      confirm: '¿Estas Seguro?',
+                                      'confirm-button-text': 'Borrar',
+                                      'cancel-button-text': 'Cancelar',
+                                      'confirm-button-color': '#CC0000',
+                                       text: 'Recuerda que el registro se borrara permanentemente',
+                                      'image-url': ''}, :class => "opciones" do %>
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <% end %>
                                   </div>
                           </div>
                       

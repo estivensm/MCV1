@@ -38,7 +38,7 @@
  
    <div class="field">
     <%= f.label "Fecha de Compromiso" %>
-    <%= f.date_field :f_compromiso,  class: "form-control" %>
+    <%= f.date_field :f_compromiso,  class: "form-control required", :title => "Es un Campo Obligatorio" %>
   </div>
 
 <%end%> 
@@ -129,6 +129,10 @@ $('.levidencia').html(" <%=@task.anexo.file.filename if @task.anexo.file %> ")
   });
 }( document, window, 0 ));
 
+
+ $(document).ready(function(){
+     $('#task_f_compromiso').validate();
+  });
    
 </script>
 
@@ -142,6 +146,10 @@ $('.levidencia').html(" <%=@task.anexo.file.filename if @task.anexo.file %> ")
   overflow: hidden;
   position: absolute;
   z-index: -1;
+}
+
+.error{
+  color: red !important;
 }
 
 .inputfile + label {
