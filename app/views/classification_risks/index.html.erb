@@ -1,15 +1,16 @@
 <div class = "row title-table" style="padding-left: 0px;">
+  <div id='cssmenu1'>
+    <ul>
+      <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+      <li class="active"><%= link_to "Clasificacion de Riesgos", risk_sources_path %></li>
+    </ul>
+  </div>
+  <br><br>
    <div class = "col-md-6"  style="padding-left: 0px;">
       <p>Clasificacion de Riesgos <span class="label label-primary"><%=@classification_risks.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_clasification_info @classification_risks, :entry_name => 'Riesgos' %></span> </p>
    </div>
 
-
-     <div class = "col-md-4 paginate text-left title-table1">
-       
-     </div>
-
-
-   <div class = "col-md-2">
+   <div class = "col-md-2" style="float: right; padding: 0px;">
       <%= link_to 'Nuevo', new_classification_risk_path, remote: true, class: "btn btn-primary", style: "float: right;" if current_user.role == "SuperAdmin"  || current_user.rol.configuracion %>
    </div>
 </div>

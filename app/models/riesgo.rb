@@ -30,6 +30,15 @@ class Riesgo < ApplicationRecord
     belongs_to :risk_source
 	has_many :valoration_risks , dependent: :destroy
     has_one :report
+
+
+    def self.search(search, search2, search3)
+    	search != "" ? (scope :clasificacion, -> { where(classification_risk_id: search) }) : (scope :clasificacion, -> { where.not(id: nil) }) 
+        search2 != "" ? (scope :fuente, -> { where(risk_source_id: search2) }) : (scope :fuente, -> { where.not(id: nil) })
+        search3 != "" ? (scope :descrip, -> { where(descripcion: search3) }) : (scope :descrip, -> { where.not(id: nil) })
+
+        clasificacion.fuente.descrip
+    end
 end
 
 

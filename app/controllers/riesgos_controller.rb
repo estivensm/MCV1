@@ -5,10 +5,15 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   # GET /riesgos
   # GET /riesgos.json
   def index
-    @riesgos = Riesgo.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
+    if params[:search] || params[:search2] || params[:search3]
+        @riesgos = Riesgo.where(admin_user: current_user.admin_user).search(params[:search],params[:search2],params[:search3]).paginate(page: params[:page],:per_page => 20)
+      else 
+        @riesgos = Riesgo.where(admin_user: current_user.admin_user).paginate(page: params[:page],:per_page => 20)
+    end
   
     respond_to do |format|
       format.html
+      format.js
       format.json do
         render json: RiesgosDatatable.new(view_context)
       end

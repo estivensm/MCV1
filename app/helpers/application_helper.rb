@@ -9,6 +9,14 @@ else
     end
 end
 
+def get_classification
+  ClassificationRisk.where(admin_user: current_user.admin_user)
+end
+
+def get_RiskSource
+  RiskSource.where(admin_user: current_user.admin_user)
+end
+
 
 def enable_report
 
