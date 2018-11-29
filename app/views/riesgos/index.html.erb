@@ -1,23 +1,46 @@
 <div class = "row title-table">
-   <div class = "col-md-6"  style="padding-left: 0px;">
+    <div id='cssmenu1'>
+      <ul>
+        <li><%= link_to "Inicio ",  root_path, :class => "linka" %></li>
+        <li class="active"><%= link_to "Riesgos", riesgos_path %></li>
+      </ul>
+    </div>
+    <br><br>
+
+   <div class = "col-md-4"  style="padding-left: 0px;">
       <p>Riesgos <span class="label label-primary"><%=@riesgos.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_riesgo_info  @riesgos, :entry_name => 'Riesgos' %></span> </p>
-
-
-     
    </div>
 
+  <%= form_tag riesgos_path, :method => "get" do %>
 
-     <div class = "col-md-4 paginate text-left title-table1">
-       
-     </div>
+    <div class="col-md-2" style="padding: 0px;">
+      <%= select_tag 'search', options_for_select(get_classification.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control no-display", include_blank: true, :prompt => 'Clasificacion' }%>
+    </div>
 
+    <div class="col-md-2">
+      <%= select_tag 'search2', options_for_select(get_RiskSource.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control no-display", include_blank: true, :prompt => 'Fuente de Riesgo' }%>
+    </div>
 
-   <div class = "col-md-2">
+    <div class = "col-md-3" style="padding: 0px;">
+      <%= text_field_tag :search3,params[:search3], autocomplete: "off", :requerid => true, placeholder: "Ingrese Descripcion", class: "form form-control no-display", style: "width: 70%;"%>
+
+      <%= button_tag class: "btn btn-primary btn-search", :title => "Buscar Registros" do %>
+        <i class="fas fa-search" style=""></i>
+      <% end -%>
+
+      <%= link_to riesgos_path, :title => "Cancelar Filtros", class: "btn btn-danger btn-search", id: "btn3" do%>
+        <i class="fas fa-ban"></i>
+      <% end -%> 
+    </div>
+
+  <% end -%>
+
+    <div class = "col-md-1" style="float: right; padding: 0px;">
       <%= link_to 'Nuevo', new_riesgo_path, class: "btn btn-primary", style: "float: right;" if current_user.role == "SuperAdmin"  || current_user.rol.configuracion %>
    </div>
 </div>
-<br>
-<table class="table">
+<br> 
+<table class="table" id="myTable">
   <thead>
     <tr class = "tr-table">
 
@@ -31,42 +54,12 @@
       <th style="width: 150px;">Acciones</th>
     </tr>
   </thead>
-
   <tbody>
+    <div class="items">
     <% @riesgos.each do |riesgo| %>
-      <tr>
-
-
-        <td><%= riesgo.descripcion %></td>
-       <td><%= riesgo.proceso.name %></td>
-        <td><%= riesgo.classification_risk.name if riesgo.classification_risk %></td>
-         <td><%=riesgo.risk_source.name if riesgo.risk_source  %></td>
-        <td class="text-center" ><%= !riesgo.risk_value.nil? ? riesgo.risk_value : "Sin Valorar" %></td>
-          <td  style="text-align:center;font-size:15px;background:<%=get_riesgo(riesgo.risk_value)[2] if !riesgo.risk_value.nil?%>;color:<%= !riesgo.risk_value.nil? ? "white !important" : "gray"%>">
-               <strong style="color:<%= "white !important" if !riesgo.risk_value.nil? %>"><%= !riesgo.risk_value.nil? ? get_riesgo(riesgo.risk_value)[1] : "Sin Valorar" %></strong></td>
-        <td>
-
-        <%= link_to  riesgo, class: "btn btn-warning" do %>
-          <i class="fas fa-eye" style="color: #fff"></i>
-          <% end -%>
-
-        <%= link_to  edit_riesgo_path(riesgo), class: "btn btn-warning" do %>
-          <i class="fas fa-pencil-alt" style="color: #fff"></i>
-          <% end -%>
-
-        <%= link_to  riesgo, class: "btn btn-danger", method: :delete, data: {
-              confirm: '¿Estas Seguro?',
-              'confirm-button-text': 'Borrar',
-              'cancel-button-text': 'Cancelar',
-              'confirm-button-color': '#CC0000',
-               text: 'Recuerda que el registro se borrara permanentemente',
-              'image-url': ''} do %>
-                <i class="fas fa-trash-alt" style="color: #fff"></i>
-              <% end -%>
-                
-        </td>
-      </tr>
+      <%= render "items", riesgo: riesgo %>
     <% end %>
+   </div>
   </tbody>
 </table>
 
@@ -86,6 +79,16 @@
   .btn-warning:hover{
     background: #37b597;
     border-color: #37b597;
+  }
+
+  .no-display{
+    display: -webkit-inline-box;
+  }
+
+  .btn-search{
+    margin-right: 3px;
+    float: right; 
+    margin-top: 2px;
   }
   
 </style>
@@ -163,6 +166,7 @@
           }
         ]
       });
+
 </script>
 
 

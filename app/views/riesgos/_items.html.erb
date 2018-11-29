@@ -1,0 +1,32 @@
+<tr>
+
+
+        <td><%= riesgo.descripcion %></td>
+        <td><%= riesgo.proceso.name if  riesgo.proceso %></td>
+        <td><%= riesgo.classification_risk.name if riesgo.classification_risk %></td>
+        <td><%= riesgo.risk_source.name if riesgo.risk_source  %></td>
+        <td class="text-center" ><%= !riesgo.risk_value.nil? ? riesgo.risk_value : "Sin Valorar" %></td>
+          <td  style="text-align:center;font-size:15px;background:<%=get_riesgo(riesgo.risk_value)[2] if !riesgo.risk_value.nil?%>;color:<%= !riesgo.risk_value.nil? ? "white !important" : "gray"%>">
+               <strong style="color:<%= "white !important" if !riesgo.risk_value.nil? %>"><%= !riesgo.risk_value.nil? ? get_riesgo(riesgo.risk_value)[1] : "Sin Valorar" %></strong></td>
+        <td>
+
+        <%= link_to  riesgo, class: "btn btn-warning" do %>
+          <i class="fas fa-eye" style="color: #fff"></i>
+          <% end -%>
+
+        <%= link_to  edit_riesgo_path(riesgo), class: "btn btn-warning" do %>
+          <i class="fas fa-pencil-alt" style="color: #fff"></i>
+          <% end -%>
+
+        <%= link_to  riesgo, class: "btn btn-danger", method: :delete, data: {
+              confirm: '¿Estas Seguro?',
+              'confirm-button-text': 'Borrar',
+              'cancel-button-text': 'Cancelar',
+              'confirm-button-color': '#CC0000',
+               text: 'Recuerda que el registro se borrara permanentemente',
+              'image-url': ''} do %>
+                <i class="fas fa-trash-alt" style="color: #fff"></i>
+              <% end -%>
+                
+        </td>
+      </tr>
