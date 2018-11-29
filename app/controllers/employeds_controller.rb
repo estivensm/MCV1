@@ -100,8 +100,8 @@ end
 
       @tasks =  @employed.tasks.count
       @tabiertas =  @employed.tasks.abiertas.count
-      @tanocumplio =  @employed.tasks.abiertas.where(cumplio: false).count
-      @tacumplio =  @employed.tasks.abiertas.where(cumplio: true).count
+      @tanocumplio =  @employed.tasks.abiertas.vigentes.count
+      @tacumplio =  @employed.tasks.abiertas.vencidas.count
       @tporcentaje_abi_cump = ((@employed.tasks.abiertas.where(cumplio: true).count.to_f/@divta)*100).to_i
       @tporcentaje_abi_no = ((@employed.tasks.abiertas.where(cumplio: false).count.to_f/@divta)*100).to_i
 
@@ -132,8 +132,8 @@ end
       @total_abiertas_cumplio = @racumplio  +  @aacumplio  + @tacumplio
       @total_abiertas_no_cumplio = @ranocumplio + @aanocumplio + @tanocumplio
       @total_abiertas = @total_abiertas_cumplio + @total_abiertas_no_cumplio
-      @por_tac = @total_abiertas_cumplio == 0 ? 0 : ((@total_abiertas_cumplio.to_f/@total_abiertas)*100).to_i
-      @por_tanc = @total_abiertas_no_cumplio == 0 ? 0 :  ((@total_abiertas_no_cumplio.to_f/@total_abiertas)*100).to_i
+      @por_tac = @total_abiertas == 0 ? 0 : ((@total_abiertas_cumplio.to_f/@total_abiertas)*100).to_i
+      @por_tanc = @total_abiertas == 0 ? 0 :  ((@total_abiertas_no_cumplio.to_f/@total_abiertas)*100).to_i
 
 
 
