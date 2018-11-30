@@ -57,7 +57,7 @@
    <% @tasks_sh.each do |task| %>
    <tr>
       <td style="width:70%"><%=task.name%></td>
-      <td  style = "width:20%;background:<%=estado_contador(task.contador_seg)%>;color:white;text-align:center" >   
+      <td  style = "width:20%;background:<%= estado_contador (task.contador_seg) %>;color:white;text-align:center" >   
          <strong>  <%=get_date(task.f_compromiso)%><br> <%= task.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=task.contador_seg.abs%> días</strong>
       </td>
        <td style="width:8%;">
@@ -73,7 +73,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <p>Tareas</p>
+                <p id="titulo-modal">Tarea</p>
               </div>
                               <div class="modal-body">
 
@@ -83,13 +83,19 @@
                          <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
                       </div>
 
-                       <div class="col-md-8 no-padding-left">
+                       <div class="col-md-10 no-padding-left">
 
                         <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Tarea</b></p>
                         <p><%= task.name %></p> 
 
-                        <p class="margin-top"><b>Fecha:</b></p>
-                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+                        <div class="col-md-4" style="padding: 0px;">
+                          <p class="margin-top"><b>Responsable:</b></p>
+                          <p class="no-margin-bottom"><%= task.employed.first_name %> <b id="no-color"><%= task.employed.second_last_name %></b></p>
+                        </div>
+
+                        <div class="col-md-4 fecha-hel">
+                          <strong>  <%=get_date(task.f_compromiso)%><br> <%= task.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=task.contador_seg.abs%> días</strong>
+                        </div>
 
                       </div>
                   </div>
@@ -107,13 +113,19 @@
                          <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
                       </div>
 
-                       <div class="col-md-8 no-padding-left">
+                       <div class="col-md-10 no-padding-left">
 
                         <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Accion</b></p>
                         <p><%= task.accion.descripcion %></p> 
 
-                        <p class="margin-top"><b>Fecha:</b></p>
-                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+                        <div class="col-md-3" style="padding: 0px;">
+                          <p class="margin-top"><b>Responsable:</b></p>
+                          <p class="no-margin-bottom"><%= task.accion.employed.first_name %> <b id="no-color"><%= task.accion.employed.second_last_name %></b></p>
+                        </div>
+
+                        <div class="col-md-4 fecha-hel">
+                          <strong>  <%=get_date(task.accion.f_compromiso)%><br> <%= task.accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=task.accion.contador_seg.abs%> días</strong>
+                        </div>
 
                       </div>
                   </div>
@@ -131,13 +143,19 @@
                          <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url(:logo)) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
                       </div>
 
-                       <div class="col-md-8 no-padding-left">
+                       <div class="col-md-10 no-padding-left">
 
                         <p class="margin-top" style="margin-top: 5px;"><b>Descripcion del Reporte</b></p>
                         <p><%= task.report.description %></p> 
 
-                        <p class="margin-top"><b>Fecha:</b></p>
-                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+                        <div class="col-md-3" style="padding: 0px;">
+                          <p class="margin-top"><b>Responsable:</b></p>
+                          <p class="no-margin-bottom"><%= task.report.employed.first_name %> <b id="no-color"> <%= task.report.employed.second_last_name %></b></p>
+                        </div>
+
+                        <div class="col-md-4 fecha-hel">
+                          <strong>  <%=get_date(task.report.f_compromiso)%><br> <%= task.report.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=task.report.contador_seg.abs%> días</strong>
+                        </div>
 
                       </div>
                   </div>
@@ -152,6 +170,14 @@
         </div>
        </td>
    </tr>
+   <style type="text/css">
+    .fecha-hel{
+      float: right; 
+      background:<%= estado_contador (task.contador_seg) %>; 
+      color: #fff;
+      text-align: center;
+    }
+   </style>
    <%end%>
 </table>
 
@@ -160,6 +186,7 @@
 <%end%>
 </div>
 <style>
+
   h3 
   {
     color: #2a3f54;
@@ -171,6 +198,13 @@
     color: white;
     width: 200px;
   }
+
+  #titulo-modal{
+    color: #0db497  !important;
+    text-align: center;
+    font-size: 23px;
+  }
+
   h4  
   {    text-align: center;
     background: whitesmoke;
@@ -180,6 +214,10 @@
   .table
   {
     margin-bottom: 20px !important;
+  }
+
+  #no-color{
+     font-weight: normal;
   }
 
   #contenedor2{

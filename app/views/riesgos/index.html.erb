@@ -11,35 +11,38 @@
       <p>Riesgos <span class="label label-primary"><%=@riesgos.count%></span> <span style = "font-size:12px;margin-left:20px;"> <%= page_riesgo_info  @riesgos, :entry_name => 'Riesgos' %></span> </p>
    </div>
 
-  <%= form_tag riesgos_path, :method => "get" do %>
+    <div class = "col-md-2" style="float: right; padding: 0px; width: 18%;">
+     <%= (link_to "Filtros",riesgos_path + "?filtros=true", class: "btn btn-primary") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
 
-    <div class="col-md-2" style="padding: 0px;">
-      <%= select_tag 'search', options_for_select(get_classification.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control no-display", include_blank: true, :prompt => 'Clasificacion' }%>
-    </div>
-
-    <div class="col-md-2">
-      <%= select_tag 'search2', options_for_select(get_RiskSource.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control no-display", include_blank: true, :prompt => 'Fuente de Riesgo' }%>
-    </div>
-
-    <div class = "col-md-3" style="padding: 0px;">
-      <%= text_field_tag :search3,params[:search3], autocomplete: "off", :requerid => true, placeholder: "Ingrese Descripcion", class: "form form-control no-display", style: "width: 70%;"%>
-
-      <%= button_tag class: "btn btn-primary btn-search", :title => "Buscar Registros" do %>
-        <i class="fas fa-search" style=""></i>
-      <% end -%>
-
-      <%= link_to riesgos_path, :title => "Cancelar Filtros", class: "btn btn-danger btn-search", id: "btn3" do%>
-        <i class="fas fa-ban"></i>
-      <% end -%> 
-    </div>
-
-  <% end -%>
-
-    <div class = "col-md-1" style="float: right; padding: 0px;">
+    <%= (link_to "Cancelar Filtros", riesgos_path, class: "btn btn-primary") if (params[:commit] || params[:filtros])  %>
       <%= link_to 'Nuevo', new_riesgo_path, class: "btn btn-primary", style: "float: right;" if current_user.role == "SuperAdmin"  || current_user.rol.configuracion %>
    </div>
 </div>
 <br> 
+
+
+
+<div class="col-md-12 busqueda" style="margin-bottom: 10px; padding-left: 0px; display: none;">
+    <%= form_tag riesgos_path, :method => "get" do %>
+
+    <div class="col-md-2" style="padding: 0px;">
+      <%= select_tag 'search', options_for_select(get_classification.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control no-display sh1", include_blank: true, :prompt => 'Clasificacion' }%>
+    </div>
+
+    <div class="col-md-2">
+      <%= select_tag 'search2', options_for_select(get_RiskSource.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control no-display sh2", include_blank: true, :prompt => 'Fuente de Riesgo' }%>
+    </div>
+
+    <div class = "col-md-3" style="padding: 0px;">
+      <%= text_field_tag :search3,params[:search3], autocomplete: "off", :requerid => true, placeholder: "Ingrese Descripcion", class: "form form-control no-display sh3", style: "width: 70%;"%>
+
+      <%= submit_tag "Buscar", :class => "btn btn-primary" %>
+    </div>
+
+  <% end -%>
+</div>
+
+
 <table class="table" id="myTable">
   <thead>
     <tr class = "tr-table">
@@ -87,9 +90,8 @@
 
   .btn-search{
     margin-right: 3px;
-    float: right; 
-    margin-top: 2px;
   }
+
   
 </style>
 
@@ -122,6 +124,34 @@
           </table>-->
 
 <script >
+
+  $(document).on('turbolinks:load',function() {
+   
+
+   if ("<%=params[:filtros]%>" != "" ||  "<%=params[:commit]%>" != "")
+   {
+  $('.busqueda').show();
+
+
+   }
+   else
+   {
+    $('.busqueda').hide();
+
+
+   }
+
+
+
+
+ });
+//filtros
+    $('.sh1').val("<%= params[:search] %>") ;
+    $('.sh2').val("<%= params[:search2] %>") ;
+    $('.sh3').val("<%= params[:search3] %>") ;
+
+
+
    $('#dataTable').dataTable({
     searching: true,
     ordering: true,
@@ -166,6 +196,7 @@
           }
         ]
       });
+
 
 </script>
 

@@ -18,21 +18,30 @@
     
    </div>
 
-   <div class = "col-md-2" style="padding: 0px;">
+   <div class = "col-md-2" style="padding: 0px; float: right; width: 18%;">
+
+        <%= (link_to "Filtros",source_parents_path + "?filtros=true", class: "btn btn-primary") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
+
+       <%= (link_to "Cancelar Filtros", source_parents_path, class: "btn btn-primary") if (params[:commit] || params[:filtros])  %>
+
        <%= link_to 'Nuevo', new_source_parent_path, remote: true, class: "btn btn-primary", style: "float: right;"  if current_user.role == "SuperAdmin" ||  current_user.rol.configuracion %>
    </div>
 </div>
-<hr class="hr">
-<%= (link_to "Filtros",source_parents_path + "?filtros=true", class: "linka canf1") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
-<%= (link_to "Cancelar Filtros", source_parents_path, class: "linka canf") if (params[:commit] || params[:filtros])  %>
 
+
+<hr class="hr">
 <div class = "row busqueda" style="display:none">
-   <div class = "col-md-9">
+   <div class = "col-md-9" style="padding-left: 0px">
       <div class="form-group fil">
          <%= form_tag(source_parents_path, :method => "get", id: "search-form") do %>
-   
-  <%= text_field_tag :search, params[:search], placeholder: "Nombre", class: "form-control search" %>
-  <%= text_field_tag :search1, params[:search1], placeholder: "Descripcion", class: "form-control search" %>
+
+          <div class="col-md-3" style="padding-left: 0px;">
+            <%= text_field_tag :search, params[:search], placeholder: "Nombre", class: "form-control search" %>
+          </div>
+
+          <div class="col-md-3">
+            <%= text_field_tag :search1, params[:search1], placeholder: "Descripcion", class: "form-control search" %>
+          </div>
       
          <%= submit_tag "Buscar", :class => "btn btn-primary" %>
     
@@ -117,21 +126,10 @@
    font-size: 10px !important;
    padding: 6px 2px;
       }
-         .busqueda
-   {
-        display: block;
-    padding: 10px;
-    background: #e8e8e8;
-   }
 .fil
 {margin: 0px;
 }
-.search
-   {
-   width:200px !important;
-   height: 27px!important;
-   display:inline-block !important;
-   }
+
 </style>
 
       <script>
