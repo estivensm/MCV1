@@ -75,6 +75,7 @@ gem 'ckeditor_rails', '~> 4.5', '>= 4.5.10'
 gem 'wicked_pdf'
 gem 'roo'
 gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary-edge'
 
 gem 'remotipart', '~> 1.4', '>= 1.4.2'
 

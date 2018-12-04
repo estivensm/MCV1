@@ -24,7 +24,7 @@ def enable_report
   Cargo.where(admin_user: current_user.admin_user).exists? ?  cargos = true : cargos = false
   Source.where(admin_user: current_user.admin_user).exists? ?  sources = true : sources = false
   Employed.where(admin_user: current_user.admin_user).first.first_name != nil  &&  !Employed.where(admin_user: current_user.admin_user).first.first_name.empty? ?  employeds = true : employeds = false
-puts "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
  
  if procesos && cargos && sources && employeds
     
@@ -89,12 +89,22 @@ def get_state(state)
   
 end
 
+
+
+
+#Devuleve candado abierto si state = true si no devuelve candado abierto
 def get_state_candado(state)
 
   state == true ? a = "<i class='fas fa-lock' aria-hidden='true'></i>" : a = "<i class='fas fa-lock-open' style='color:#bdb628' aria-hidden='true'></i>"
   
 end
 
+#Devuleve candado abierto si state = "Cerrada" si no devuelve candado abierto
+def get_state_candado_string(state) 
+
+  state == "Cerrada" ? a = "<i class='fas fa-lock' aria-hidden='true'></i>" : a = "<i class='fas fa-lock-open' style='color:#bdb628' aria-hidden='true'></i>"
+  
+end
 
 
 def cumplio(state)
