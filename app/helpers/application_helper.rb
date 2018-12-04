@@ -854,25 +854,25 @@ def  get_deficiencia(nd)
 
   
 
-  if nd = 10
+  if nd == 10
       
       ["Se ha(n) detectado peligro(s) que determina(n) como posible la generación de
 incidentes o consecuencias muy significativas, o la eficacia del conjunto de medidas
 preventivas existentes respecto al riesgo es nula o no existe, o ambos. ", "Muy Alto (MA) " ]    
 
-  elsif nd = 6
+  elsif nd == 6
       
       ["Se ha(n) detectado algún(os) peligro(s) que pueden dar lugar a consecuencias
 significativa(s), o la eficacia del conjunto de medidas preventivas existentes es baja, o
 ambos", "Alto (A) " ]  
     
-  elsif nd = 2
+  elsif nd == 2
 
      ["Se han detectado peligros que pueden dar lugar a consecuencias poco significativas
 o de menor importancia, o la eficacia del conjunto de medidas preventivas
 existentes es moderada, o ambos. s", "Medio (M)" ]  
 
-  elsif nd = 1
+  elsif nd == 1
      
      ["No se ha detectado consecuencia alguna, o la eficacia del conjunto de medidas
 preventivas existentes es alta, o ambos. El riesgo está controlado. ", "Bajo (B) " ]  
@@ -887,23 +887,23 @@ def  get_exposicion(ne)
 
   
 
-  if ne = 4
+  if ne == 4
       
       ["La situación de exposición se presenta sin interrupción o varias veces con
 tiempo prolongado durante la jornada laboral.", "Continua (EC) " ]    
 
-  elsif ne = 3
+  elsif ne == 3
       
       ["Se ha(n) detectado algún(os) peligro(s) que pueden dar lugar a consecuencias
 significativa(s), o la eficacia del conjunto de medidas preventivas existentes es baja, o
 ambos", "Frecuente (EF) " ]  
     
-  elsif ne = 2
+  elsif ne == 2
 
      ["La situación de exposición se presenta alguna vez durante la jornada laboral
 y por un periodo de tiempo corto.", "Ocasional (EO) " ]  
 
-  elsif ne = 1
+  elsif ne == 1
      
      ["La situación de exposición se presenta de manera eventual. ", "Esporádica (EE) " ]  
   
