@@ -72,12 +72,17 @@
    }
     .title-accion-select
    {
-    font-size:20px;
+    
    }
       .button_ver_accion
    {
     background: red !important;
     content: " New!" !important; 
+   }
+   .text-hidden
+   {
+    max-height: 47px;
+    overflow: hidden;
    }
 </style>
 <script>
@@ -99,10 +104,14 @@
       var x = '#row-cont-' + a;
        var y = '#title-accion-' + a;
        var z = '#accion' + a;
+      var text_hidden = '#text_hidden-' + a; 
+      console.log(text_hidden)
+      console.log(y)
       //$('.show_accion').hide();
       $(b).toggle( "slow", "linear" );
       $(x).toggleClass("border-select");
       $(y).toggleClass("title-accion-select");
+      $(text_hidden).toggleClass("text_hidden");
       console.log($(y).attr('class'))
       if ($(y).attr('class') == 'filter3 title-accion-select')
       {

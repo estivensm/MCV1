@@ -8,7 +8,7 @@
       <div class="w3-third" style="width: 320px;">
         <div class="w3-white w3-text-grey w3-card-4">
           <div class="w3-display-container" style="text-align:center; padding-top: 17px;" >
-            <%= @employed.avatare? ? image_tag(@employed.avatare_url(:medium)) : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe", style: "height: 104px;")%>
+           <%= @employed.avatare? ? image_tag(@employed.avatare_url, style:"width:150px") : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe", style: "height: 104px;")%>
         </div>
         <br><br>
         <div class="w3-container">

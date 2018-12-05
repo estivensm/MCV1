@@ -28,6 +28,7 @@
    
 <div class="col-md-12">
 <hr>
+<br>
 </div>
 </div>
 <div class = "row">
@@ -103,7 +104,7 @@
    }
     .title-accion-select
    {
-    font-size:20px;
+  
    }
       .button_ver_accion
    {
@@ -113,6 +114,11 @@
    .task_select{
 
       border: 4px solid #6c6c6c !important;
+   }
+     .text-hidden
+   {
+    max-height: 47px;
+    overflow: hidden;
    }
 </style>
 <script>
@@ -124,9 +130,7 @@
    
    })
    })
-   
-   
-    $('#filter').on('click', '.ver_accion', function() {
+       $('#filter').on('click', '.ver_accion', function() {
       
       var a = $(this).attr('id').match(/\d+/)[0]
       console.log(a);
@@ -134,12 +138,16 @@
       var x = '#row-cont-' + a;
        var y = '#title-accion-' + a;
        var z = '#accion' + a;
+      var text_hidden = '#text_hidden-' + a; 
+      console.log(text_hidden)
+      console.log(y)
       //$('.show_accion').hide();
       $(b).toggle( "slow", "linear" );
       $(x).toggleClass("border-select");
       $(y).toggleClass("title-accion-select");
+      $(text_hidden).toggleClass("text_hidden");
       console.log($(y).attr('class'))
-      if ($(y).attr('class') == 'filter3 none title-accion-select')
+      if ($(y).attr('class') == 'filter3 title-accion-select')
       {
         console.log('hola')
         $(z).text("VER MENOS");
