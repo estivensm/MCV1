@@ -159,7 +159,7 @@
 <div class="form-group">
     <%= f.label "Fecha de Compromiso (dd-mm-aaaa)"%>
     <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @accion.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker fecha" %>
-    <span style="font-size: 12px;color:gray">debe ser menor a la fecha del reporte <br>(<%= get_date(@report.f_compromiso)%>)</span>
+    <span style="font-size: 12px;color:gray">Debe ser menor a la fecha del reporte <br>(<%= get_date(@report.f_compromiso)%>)</span>
   </div>
  
 
