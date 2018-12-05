@@ -20,8 +20,7 @@
 <table class="table">
   <thead>
     <tr class="tr-table">
-      <th>User</th>
-      <th>Admin user</th>
+
       <th>Nombre</th>
       <th>Descripcion</th>
       <th>Codigo</th>
@@ -32,8 +31,7 @@
   <tbody>
     <% @risk_sources.each do |risk_source| %>
       <tr>
-        <td><%= risk_source.user_id %></td>
-        <td><%= risk_source.admin_user %></td>
+
         <td><%= risk_source.name %></td>
         <td><%= risk_source.description %></td>
         <td><%= risk_source.code %></td>

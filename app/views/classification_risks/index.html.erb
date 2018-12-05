@@ -18,8 +18,7 @@
 <table class="table">
   <thead>
     <tr class="tr-table">
-      <th>User</th>
-      <th>Admin user</th>
+
       <th>Nombre</th>
       <th>Descripcion</th>
       <th>Contexto</th>
@@ -30,8 +29,7 @@
   <tbody>
     <% @classification_risks.each do |classification_risk| %>
       <tr>
-        <td><%= classification_risk.user_id %></td>
-        <td><%= classification_risk.admin_user %></td>
+
         <td><%= classification_risk.name %></td>
         <td><%= classification_risk.description %></td>
         <td><%= classification_risk.context %></td>

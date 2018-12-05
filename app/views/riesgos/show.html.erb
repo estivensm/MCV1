@@ -24,13 +24,14 @@
             <div class="col-md-3 text-center">
                <strong>Proceso</strong> <br> <%=@riesgo.proceso.name if @riesgo.proceso %>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
                <strong>Contexto</strong> <br><%=@riesgo.context%> 
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
                <strong>Clasificacion</strong> <br><%=@riesgo.classification_risk.name%> 
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
+                <strong>Fuente de Riesgo</strong> <br><%=@riesgo.risk_source.name%> 
             </div>
          </div>
          <hr>
