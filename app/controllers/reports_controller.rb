@@ -508,7 +508,11 @@ end
         @descripcion = @riesgo.descripcion
         @proceso = @riesgo.proceso_id
         @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"PR").first.id
-        @tipo = Source.where(admin_user: current_user.admin_user).where(codigo:"RG").first.id
+        @tipot =  Source.where(admin_user: current_user.admin_user).where(codigo:"RG").first
+        @tipo = @tipot.id
+        @evi =  @tipot.evidencia
+        @requi =  @tipot.requisito
+        @num = @tipot.numerales
     else
         puts "222222222222222222222222222222222222222222"
         @riesgo_e = "no"
@@ -516,7 +520,10 @@ end
         @proceso = 0
         @fuente = 0
         @tipo = 0
-         @riesgo_id = 0
+        @riesgo_id = 0
+        @evi =  false
+        @requi =  false
+        @num = false
     end  
 
 

@@ -610,7 +610,7 @@
 </style>
 
 </div>
-<%=@riesgo_e%>
+
 <script>
    $( document ).ready(function() {
      if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
@@ -855,6 +855,7 @@
                {
                  $('.num').fadeIn();
                  
+                 
                }
                else
                {
@@ -896,7 +897,62 @@
     $('#proceso').val("<%=@proceso%>");
     $('#fuente').val("<%=@fuente%>");
     $('#tipo_riesgo').val("<%=@tipo%>");
-    console.log("holaaaaaaaaaaaa")
+    console.log(<%=@evi%>);
+
+
+         
+                if (<%=@evi%>)
+               {
+                 $('.evi').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.evi').fadeOut();
+                 
+               }
+               if (<%=@requi%>)
+               {
+                 $('.req').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.req').fadeOut();
+                 
+               }
+               if (<%=@num%>)
+               {
+                 $('.num').fadeIn();
+                    $('.mn').addClass("chosen-select5");
+           $('.chosen-select5').chosen(
+           {
+   
+             allow_single_deselect: true,
+             no_results_text: 'No hay resultados',
+            
+             placeholder_text_single: "Seleccione una opción",
+             placeholder_text_multiple: "Seleccione una varias opciones"
+   
+           });
+               }
+               else
+               {
+                 $('.num').fadeOut();
+                 
+               }
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
