@@ -6,7 +6,7 @@ class Registration extends React.Component {
   render () {
     return (
        <div>
-       <p>hello world</p>
+       <p>hello world a</p>
        </div>	
     );
   }
