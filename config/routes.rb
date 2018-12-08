@@ -17,7 +17,6 @@ Rails.application.routes.draw do
 
 get "report_pdf/:id", to: 'reports#report_pdf' , as: 'report_pdf'
 
-
 resources :reports do 
     get :get_reportsc, on: :collection
     get :get_invitadoc, on: :collection
@@ -61,6 +60,11 @@ post "crear_hallazgo", to: "reports#crear_hallazgo", as: "crear_hallazgo"
 post "crear_hallazgo_p", to: "reports#crear_hallazgo_p", as: "crear_hallazgo_p"
 
 
+
+
+
+get 'get_task/:id', to: 'tasks#get_task'
+post "close_task", to: 'tasks#close_task'
 
 
 

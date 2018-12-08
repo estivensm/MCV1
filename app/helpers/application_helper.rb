@@ -106,6 +106,12 @@ def get_state_candado_string(state)
   
 end
 
+def get_state_string(state) 
+
+  state == "Cerrada" ? a = "Cerrada" : a = "Abierta"
+  
+end
+
 
 def cumplio(state)
 

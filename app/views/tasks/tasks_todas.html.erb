@@ -130,9 +130,10 @@
          <%end%>
          <th style = "width:5%" class="text-center">Días</th>
          <th  class="text-left" style = "width:40%">Tarea</th>
+          <th  class="text-left" style = "width:40%">Procedencia</th>
 
 
-         
+
          
         
       </tr>
@@ -178,6 +179,7 @@
            
                <%= task.name %>
          </td>
+         <td><%= react_component("Registration" , id: task.id)%></td>
         </tr>
         <% end %>
    </tbody>

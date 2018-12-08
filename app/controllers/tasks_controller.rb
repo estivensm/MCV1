@@ -107,6 +107,28 @@ end
 
   # GET /tasks/1
   # GET /tasks/1.json
+
+
+  def get_task
+      @task = Task.find(params[:id])
+      responsable = Employed.find(@task.employed_id)
+      responsable_full = responsable.first_name + responsable.first_last_name
+      render json: @task.as_json.merge(:responsable => responsable_full,:accion_name => @task.accion.descripcion)
+
+  end
+
+  def close_task
+
+    @task = Task.find(params[:id])
+    @task.update(estado: !@task.estado)
+    @task.save
+
+    render plain: "se cerro"  
+    
+  end
+  
+
+
   def show
     @accion = @task.accion
     @tipo = @accion.tipo

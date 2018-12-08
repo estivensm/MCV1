@@ -27,6 +27,7 @@ gem 'googledocviewer'
 gem 'webpacker'
 gem 'react-rails'
 gem 'webpacker-react', '~> 0.3.2'
+gem 'react_rails_modal'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

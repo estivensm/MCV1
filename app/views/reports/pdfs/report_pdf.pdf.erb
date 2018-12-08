@@ -10,8 +10,8 @@
       <tr>
          <td style=";width:25%"><strong>Creado</strong><br> <%= get_date(@report.created_at) %></td>
          <td style=";width:25%"><strong>Proceso</strong><br> <%= @report.proceso.name %></td>
-         <td style=";width:25%"><strong>Fuente</strong><br> <%= @report.source.name %></td>
-         <td style=";width:25%"><strong>Tipo de Reporte</strong><br> <%= @report.proceso.name %></td>
+         <td style=";width:25%"><strong>Fuente</strong><br> <%= @report.source_parent.name %></td>
+         <td style=";width:25%"><strong>Tipo de Reporte</strong><br> <%= @report.source.name %></td>
       </tr>
    </table>
    
@@ -105,10 +105,10 @@
       </tr>   
 
       <tr>
-        <td><strong>Responsable </strong><br> <%= correccion.employed.first_name %><%= correccion.employed.first_last_name %></td>
-        <td><strong>Fecha Creacion </strong><br> <%= get_date(correccion.created_at) %></td>
-        <td><strong>Fecha Compromiso </strong><br> <%= get_date(correccion.f_compromiso) %></td>
-        <td><strong>Estado </strong><br> <%= get_state_candado_string(correccion.estado).html_safe %></td>
+        <td style="width: 25%"><strong>Responsable </strong><br> <%= correccion.employed.first_name %><%= correccion.employed.first_last_name %></td>
+        <td style="width: 25%"><strong>Fecha Creacion </strong><br> <%= get_date(correccion.created_at) %></td>
+        <td style="width: 25%"><strong>Fecha Compromiso </strong><br> <%= get_date(correccion.f_compromiso) %></td>
+        <td style="width: 25%"><strong>Estado </strong><br> <%= get_state_string(correccion.estado).html_safe %></td>
     
       </tr>
      
@@ -187,10 +187,10 @@
       </tr>   
 
       <tr>
-          <td><strong>Responsable </strong><br> <%= accion.employed.first_name %><%= accion.employed.first_last_name %></td>
-          <td><strong>Fecha Creacion </strong><br> <%= get_date(accion.created_at) %></td>
-          <td><strong>Fecha Compromiso </strong><br> <%= get_date(accion.f_compromiso) %></td>
-          <td><strong>Estado </strong><br> <%= get_state_candado_string(accion.estado).html_safe %></td>
+          <td style="width: 25%"><strong>Responsable </strong><br> <%= accion.employed.first_name %><%= accion.employed.first_last_name %></td>
+          <td style="width: 25%"><strong>Fecha Creacion </strong><br> <%= get_date(accion.created_at) %></td>
+          <td style="width: 25%"><strong>Fecha Compromiso </strong><br> <%= get_date(accion.f_compromiso) %></td>
+          <td style="width: 25%"><strong>Estado </strong><br> <%= get_state_string(accion.estado).html_safe %></td>
       </tr>
      
       <tr>
@@ -226,10 +226,10 @@
       </tr>   
 
       <tr>
-        <td><strong>Responsable </strong><br> <%= actividad.employed.first_name %><%= actividad.employed.first_last_name %></td>
-        <td><strong>Fecha Creacion </strong><br> <%= get_date(actividad.created_at) %></td>
-        <td><strong>Fecha Compromiso </strong><br> <%= get_date(actividad.f_compromiso) %></td>
-        <td><strong>Estado </strong><br> <%= get_state_candado_string(actividad.estado).html_safe %></td>
+        <td style="width: 25%"><strong>Responsable </strong><br> <%= actividad.employed.first_name %><%= actividad.employed.first_last_name %></td>
+        <td style="width: 25%"><strong>Fecha Creacion </strong><br> <%= get_date(actividad.created_at) %></td>
+        <td style="width: 25%"><strong>Fecha Compromiso </strong><br> <%= get_date(actividad.f_compromiso) %></td>
+        <td style="width: 25%"><strong>Estado </strong><br> <%= get_state_string(actividad.estado).html_safe %></td>
     
       </tr>
      
