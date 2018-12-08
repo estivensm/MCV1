@@ -1,6 +1,6 @@
 import React from "react"
 import WebpackerReact from 'webpacker-react';
-import Modal from 'react-modal';
+
 import {Task} from 'components/task'
 import reqwest from 'reqwest'
 
@@ -120,27 +120,7 @@ class Registration extends React.Component {
       <div>
        
         <button className="btn btn-primary" onClick={this.openModal}>VER</button>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-
-          <h2 ref={subtitle => this.subtitle = subtitle}>Hello {this.props.name}</h2>
-          <button onClick={this.closeModal}>close</button>
-           <button onClick={this.closeTask.bind(this)}>Cerrar Tarea</button>
-          
-            <span>{this.state.name}</span>
-            <span>{this.state.fecha}</span>
-            <span>{this.state.responsable}</span>
-            <span>{this.state.accion_name}</span>
-            <span>{this.state.accion_name}</span>
-            <span style={this.state.style_task}>{this.state.estado}</span>
-
-    
-        </Modal>
+   
       </div>
     );
   }
