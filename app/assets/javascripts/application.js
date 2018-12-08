@@ -27,7 +27,6 @@
 //= require image-picker
 //= require chartkick
 //= require moment 
-
 //= require fullcalendar
 //= require googledocviewer
 //= require config
