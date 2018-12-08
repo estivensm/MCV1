@@ -27,8 +27,7 @@
 //= require image-picker
 //= require chartkick
 //= require moment 
-//= require react 
-//= require react_rails_modal
+
 //= require fullcalendar
 //= require googledocviewer
 //= require config
