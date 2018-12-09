@@ -14,13 +14,13 @@
  
 
         <div class="col-md-3" style="padding: 0px;">
-          <%= select_tag 'search1', options_for_select(get_procesos.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh1", include_blank: "Proceso" }%>
+          <%= select_tag 'search1', options_for_select(get_procesos.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control ", include_blank: "Proceso" }%>
         </div>
          <div class="col-md-3" style=" padding: 0px;">
-          <%= select_tag 'search7', options_for_select(get_source_parents.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh7", include_blank: "Fuente" }%>
+          <%= select_tag 'search7', options_for_select(get_source_parents.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control ", include_blank: "Fuente" }%>
         </div>
          <div class="col-md-3" style=" padding: 0px;">
-          <%= select_tag 'search2', options_for_select(get_sources.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control sh2", include_blank: "Tipo de Reporte" }%>
+          <%= select_tag 'search2', options_for_select(get_sources.collect{ |u| ["#{u.name}", u.id, ] }),{:class => "form-control ", include_blank: "Tipo de Reporte" }%>
         </div>
 
       <% end -%>

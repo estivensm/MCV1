@@ -516,19 +516,38 @@
                            </div>
                         </div>
                         <hr style="margin-top: 5px;margin-bottom: 10px;border-top: 1px solid #d5d5d5;">
+
+
+                    <%if @report.riesgo %>
+                              
+                              <%=render 'reports/riesgos/info_riesgo', riesgo: @report.riesgo %>
+
+                   <%end%>  
+
+
+
                         <div class="row">
-                           <div class="col-md-3 rtd  text-left">
+                           <div class="col-md-2 rtd  text-left">
                               <button type="button" style="border: 0px;font-size: 14px;" class="ver_report btn-primary" >VER MAS</button>
                            </div>
-                           <div class="col-md-2 text-center">
-                              <strong>Fecha de Creacion</strong><br><%= get_date(@report.created_at) %>
+                           <div class="col-md-3 text-center">
+                              <strong>Fecha de creacion Reporte</strong><br><%= get_date(@report.created_at) %>
                            </div>
+                            <%if !@report.riesgo %>
                            <div class="col-md-2 text-center">
                               <strong>Fuente</strong> <br><%=@report.source_parent.name%> 
                            </div>
                            <div class="col-md-2 text-center">
                               <strong>Proceso</strong> <br> <%=@report.proceso.name%>
                            </div>
+                           <%else%>
+                             <div class="col-md-2 text-center">
+                           
+                           </div>
+                           <div class="col-md-2 text-center">
+                                  <%= link_to 'Ir al Riesgo', riesgo_path(@report.riesgo.id), class: 'linka' %>
+                           </div>
+                           <%end%>
                            <%color = ""
                               @report.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
                               color = "#22c488" if @report.contador_seg > 5 %>

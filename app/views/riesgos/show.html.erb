@@ -1,6 +1,11 @@
 <%if @fuente_existe && @riesgo.report.nil? && @riesgo.valoration_risks.count > 0%>
-<div class="alert alert-info text-center">
+<div class="alert alert-info text-center" style="padding: 4px;margin-bottom: 5px!important">
     EL RIESGO NO TIENE PLAN DE ACCION ¿ QUIERES CREARLO?<br><br> <%= link_to "Genera Reporte", new_report_path + "?idr=#{@riesgo.id}", class: "btn btn-primary" %> 
+</div>
+<%end%>
+<%if @riesgo.report %>
+<div class="alert alert-info text-center" style="padding: 4px;margin-bottom: 5px !important;">
+  <strong> ESTE RIESGO TIENE UN REPORTE (PLAN DE ACCION) </strong><%= link_to "IR AL REPORTE", report_path(@riesgo.report.id) , class: "btn btn-primary" %> 
 </div>
 <%end%>
 <div class="row encabezado"">

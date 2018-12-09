@@ -1,4 +1,4 @@
- <%= react_component("Registration" )%>
+
 
 <hr>
 <div class="row" style="padding: 10px 30px;">
@@ -40,7 +40,7 @@
                <%= f.select :source_parent_id,
                   get_source_parents.map { |u| [u.name, u.id] },
                               { include_blank: true },
-                              { class: 'chosen-select1 form-control ch source pr1', id: "fuente"  }
+                              { class: 'chosen-select1 form-control ch source pr1 r', id: "fuente"  }
                    %>
             </div>
          </div>
@@ -855,6 +855,17 @@
                if (data.numerales)
                {
                  $('.num').fadeIn();
+                 $('.mn').addClass("chosen-select5");
+                 $('.chosen-select5').chosen(
+           {
+   
+             allow_single_deselect: true,
+             no_results_text: 'No hay resultados',
+            
+             placeholder_text_single: "Seleccione una opción",
+             placeholder_text_multiple: "Seleccione una varias opciones"
+   
+           });
                  
                  
                }
@@ -898,6 +909,15 @@
     $('#proceso').val("<%=@proceso%>");
     $('#fuente').val("<%=@fuente%>");
     $('#tipo_riesgo').val("<%=@tipo%>");
+
+
+    $('#proceso').parent().parent().hide();
+    $('#fuente').parent().parent().hide(); 
+    $('#tipo_riesgo').parent().parent().hide(); 
+
+
+
+
     console.log(<%=@evi%>);
 
 
