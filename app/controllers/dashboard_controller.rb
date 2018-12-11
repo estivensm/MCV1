@@ -313,8 +313,8 @@ class DashboardController < ApplicationController
 
 
     @rabiertos = @reports.abiertos.count
-    @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,1).count
-    @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,1).count
+    @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,0).count
+    @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,0).count
     @rporcentaje_abi_cump =    ((@reports.abiertos.where("contador_seg >= ?" ,1).count.to_f/@divra)*100).to_i
     @rporcentaje_abi_no =    ((@reports.abiertos.where("contador_seg < ?" ,1).count.to_f/@divra)*100).to_i
       
@@ -337,10 +337,10 @@ class DashboardController < ApplicationController
 
       @acciones =   @accions.count
       @aabiertas=   @accions.abiertas.count
-      @aanocumplio =   @accions.abiertas.where("contador_seg < ?" ,1).count
-      @aacumplio =   @accions.abiertas.where("contador_seg >= ?" ,1).count
-      @aporcentaje_abi_cump = ((@accions.abiertas.where("contador_seg < ?" ,1).count.to_f/ @divaa)*100).to_i
-      @aporcentaje_abi_no = (( @accions.abiertas.where("contador_seg >= ?" ,1).count.to_f/ @divaa)*100).to_i
+      @aanocumplio =   @accions.abiertas.where("contador_seg < ?" ,0).count
+      @aacumplio =   @accions.abiertas.where("contador_seg >= ?" ,0).count
+      @aporcentaje_abi_no = ((@accions.abiertas.where("contador_seg < ?" ,0).count.to_f/ @divaa)*100).to_i
+      @aporcentaje_abi_cump = (( @accions.abiertas.where("contador_seg >= ?" ,0).count.to_f/ @divaa)*100).to_i
 
 
 
@@ -354,11 +354,13 @@ class DashboardController < ApplicationController
 
       @tasks =  @employed.tasks.count
       @tabiertas =  @employed.tasks.abiertas.count
-       @tanocumplio =  @employed.tasks.abiertas.vigentes.count
-      @tacumplio =  @employed.tasks.abiertas.vencidas.count
-      @tporcentaje_abi_cump = ((@employed.tasks.abiertas.where(cumplio: true).count.to_f/@divta)*100).to_i
-      @tporcentaje_abi_no = ((@employed.tasks.abiertas.where(cumplio: false).count.to_f/@divta)*100).to_i
-
+      @tacumplio =  @employed.tasks.abiertas.viegentes_t.count
+      @tanocumplio =  @employed.tasks.abiertas.vencidas.count
+      @tporcentaje_abi_cump = ((@employed.tasks.abiertas.viegentes_t.where(cumplio: true).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_no = ((@employed.tasks.abiertas.vencidas.count.to_f/@divta)*100).to_i
+      puts @divta
+      
+      puts "porcentajjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
 
 
       @tcerradas =   @employed.tasks.cerradas.count

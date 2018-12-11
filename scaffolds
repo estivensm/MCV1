@@ -1527,3 +1527,124 @@ alto: <i class="fa fa-arrow-right" aria-hidden="true" style="color:red"></i>
    </style>
    
    -->
+
+
+
+   
+       <table class="table indicadores">
+      <thead>
+      <tr class = "tr-table">
+          
+            <th style = "border-bottom: none !important;"></th>
+            <th style = "border-bottom: none !important;"></th>
+            <th  colspan="3" style = "border-right: 1px solid gray;
+    border-left: 1px solid gray;border-bottom: none !important; font-size: 16px !important;">Abiertos</th>
+            <th  colspan="4" style = "border-left: 1px solid gray;border-bottom: none !important; font-size: 16px !important;">Cerrados</th>
+        
+
+         <tr class = "tr-table">
+          
+            <th></th>
+            <th style=" font-size: 14px !important;">Total</th>
+
+           <th style = "border-left:1px solid gray"> <i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i>
+</th>
+  
+            <th><i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i>
+</th><th style = "border-right:1px solid gray; font-size: 14px !important; ">Total</th>
+            
+            <th> <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:#279afd" aria-hidden="true"></i>
+</th>
+            <th><i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: #d27f37;"></i>
+</th><th style=" font-size: 14px !important;" >Total</th>
+<th style=" font-size: 14px !important;">% Cumplimiento</th>
+         </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td class="text-left" style = "font-weight:bold; font-size: 14px !important;" >Reportes</td>
+        <td ><%= @reports.count %></td>
+      
+         <td class="color1"><%= @racumplio %></td>
+          <td class="color2"><%= @ranocumplio %></td>
+            <td><%= @rabiertos %></td>
+        
+        <td class="color3"><%= @rcumplio %></td>
+        <td class="color4"><%= @rnocumplio %></td>
+         <td><%= @rcerrados %></td>
+         <%if @rcerrados != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@rporcentaje)%>">% <%= @rporcentaje%></td>
+        <%else%>
+        <td style="font-size: 14px !important;">Sin Datos</td>
+        <%end%>
+        </tr>
+      
+          <tr>
+        <td class="text-left" style = "font-weight:bold; font-size: 14px !important;">Acciones</td>
+       <td><%= @acciones %></td>
+       
+   <td class="color1"><%= @aacumplio %></td>
+         <td class="color2"><%= @aanocumplio %></td>
+          <td><%= @aabiertas %></td>
+        
+       
+        <td  class="color3"><%= @acumplio %></td>
+         <td class="color4"><%= @anocumplio %></td>
+         <td><%= @acerradas %></td>
+         <%if @acerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@aporcentaje)%>">% <%= @aporcentaje%></td>
+        <%else%>
+        <td style="font-size: 14px !important;">Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr>
+        <td class="text-left" style = "font-weight:bold; font-size: 14px !important;">Tareas</td>
+             <td><%= @tasks%></td>
+       
+    <td  class="color1"><%= @tacumplio %></td>
+        <td class="color2"><%= @tanocumplio %></td>
+         <td><%= @tabiertas %></td>
+        
+        
+        <td  class="color3"><%= @tcumplio %></td>
+        <td class="color4"><%= @tnocumplio %></td>
+        <td><%= @tcerradas %></td>
+         <%if @tcerradas != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@tporcentaje)%>">% <%= @tporcentaje%></td>
+        <%else%>
+        <td style="font-size: 14px !important;">Sin Datos</td>
+        <%end%>
+        </tr>
+          <tr class="total">
+        <td class="text-right" style = "font-weight:bold; font-size: 14px !important;">Totales</td>
+             <td><%= @total1%></td>
+        <td  class="color1"><%= @total2%></td>
+         <td class="color2"><%= @total3%></td>
+         
+        <td><%= @total4%></td>
+        <td class="color3" ><%= @total5 %></td>
+        <td  class="color4"><%= @total6 %></td>
+        <td><%= @total7 %></td>
+         <%if @total7 != 0 %>
+        <td style = "color:white;background:<%=get_color_porcentaje(@total8)%>">% <%= @total8%></td>
+        <%else%>
+        <td style="font-size: 14px !important;">Sin Datos</td>
+        <%end%>
+        </tr>
+      </tbody>
+   </table><br>
+   <h4 style="color:gray">GESTION (ABIERTA)</h4>
+        <div class = "progress">
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
+            <span class = "" style="font-size: 18px"> <%= @por_tac %>% Vigente</span>
+         </div>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>% Vencida</span>
+         </div>
+     
+      </div>
+   </div>
+</div>
+<hr>

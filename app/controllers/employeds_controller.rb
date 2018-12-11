@@ -81,12 +81,12 @@ end
     #@ccumplio =    @accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count
      #@cporcentaje =  ((@accions.cerradas.where(tipo: "Correcion").where("contador_seg >= ?" ,1).count.to_f/ @divc)*100).to_i
 
-      @acciones =   @accions.count
+       @acciones =   @accions.count
       @aabiertas=   @accions.abiertas.count
-      @aanocumplio =   @accions.abiertas.where("contador_seg < ?" ,1).count
-      @aacumplio =   @accions.abiertas.where("contador_seg >= ?" ,1).count
-      @aporcentaje_abi_cump = ((@accions.abiertas.where("contador_seg < ?" ,1).count.to_f/ @divaa)*100).to_i
-      @aporcentaje_abi_no = (( @accions.abiertas.where("contador_seg >= ?" ,1).count.to_f/ @divaa)*100).to_i
+      @aanocumplio =   @accions.abiertas.where("contador_seg < ?" ,0).count
+      @aacumplio =   @accions.abiertas.where("contador_seg >= ?" ,0).count
+      @aporcentaje_abi_no = ((@accions.abiertas.where("contador_seg < ?" ,0).count.to_f/ @divaa)*100).to_i
+      @aporcentaje_abi_cump = (( @accions.abiertas.where("contador_seg >= ?" ,0).count.to_f/ @divaa)*100).to_i
 
 
 
@@ -100,11 +100,13 @@ end
 
       @tasks =  @employed.tasks.count
       @tabiertas =  @employed.tasks.abiertas.count
-      @tanocumplio =  @employed.tasks.abiertas.vigentes.count
-      @tacumplio =  @employed.tasks.abiertas.vencidas.count
-      @tporcentaje_abi_cump = ((@employed.tasks.abiertas.where(cumplio: true).count.to_f/@divta)*100).to_i
-      @tporcentaje_abi_no = ((@employed.tasks.abiertas.where(cumplio: false).count.to_f/@divta)*100).to_i
-
+      @tacumplio =  @employed.tasks.abiertas.viegentes_t.count
+      @tanocumplio =  @employed.tasks.abiertas.vencidas.count
+      @tporcentaje_abi_cump = ((@employed.tasks.abiertas.viegentes_t.where(cumplio: true).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_no = ((@employed.tasks.abiertas.vencidas.count.to_f/@divta)*100).to_i
+      puts @divta
+      
+      puts "porcentajjeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
 
 
       @tcerradas =   @employed.tasks.cerradas.count
@@ -128,6 +130,8 @@ end
       @total8 = @total7 == 0 ? ((@total5.to_f/@total7.to_f)*100) : ((@total5.to_f/@total7.to_f)*100).to_i
 
 
+      
+      @total_abiertas_v = @total_abiertas != 0 ? @total_abiertas : 1
 
       @total_abiertas_cumplio = @racumplio  +  @aacumplio  + @tacumplio
       @total_abiertas_no_cumplio = @ranocumplio + @aanocumplio + @tanocumplio

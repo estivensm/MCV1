@@ -51,25 +51,7 @@
           <div class="row">
    
      
-                 <br>
-<div class="col-md-9" style="padding: 0px;">
-   <p style = "font-size: 12px;
-"><i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Vigentes</span>
-   <i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">Vencidos</span>
-   <i class="fa fa-thumbs-o-up" style="font-size: 16px;color:  #279afd;" aria-hidden="true"></i> <span style = "margin-right:25px">Cumplio Fecha de Entrega</span>
-   <i class="fa fa-thumbs-o-down" aria-hidden="true" style="font-size: 16px;color: #d27f37;"></i> <span style = "margin-right:25px">No Cumplio Fecha de Entrega</span>
-   </p>
-</div>
-
-<div class="col-md-5" style="padding: 0px; float: right; width: 203px;">
-   <p style = "font-size: 12px;
-"><i class="fas fa-circle" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right: 10px">Exelente</span>
-   <i class="fas fa-circle" aria-hidden="true" style="font-size: 16px;color: #ec971f;"></i> <span style = "margin-right:10px">Buena</span>
-   <i class="fas fa-circle" style="font-size: 16px;color:  red;" aria-hidden="true"></i> <span style = "margin-right:10px">Mala</span>
-   </p>
-</div>
-<br><br>
-      <table class="table indicadores" >
+      <table class="table indicadores" style="display: none" >
       <thead>
       <tr class = "tr-table">
           
@@ -171,38 +153,126 @@
         </tr>
       </tbody>
    </table>
-   <br>
-      <h4 style="color:gray">GESTION (ABIERTA)</h4>
+   <br><div class="row">
+      <div class="col-md-12 text-center" style="padding: 0px;">
+ 
+
+      <h4 style="color:gray;display: inline-block;margin-right:20px;">GESTION (ABIERTA)</h4>  <p style = "font-size: 12px;display: inline-block;
+"><i class="fa fa-calendar-check-o" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right:25px">Vigentes</span>
+   <i class="fa fa-calendar-times-o" aria-hidden="true" style="font-size: 16px;color: red;"></i> <span style = "margin-right:25px">Vencidos</span>
+   </p>
+
+   </div>
+   <br><hr>
+      <div class="row">
+      <div class="col-md-12" style="padding: 0px;">
+ 
+</div>
+           <div class="col-md-6">
+                 <h4 style="color:gray;text-align: left;margin: 0px;">REPORTES <span class="badge" style="font-size: 18px;"> <%= @rabiertos%></span></h4>
+         <span style = ""><%=@racumplio%> Vigentes</span><span style = ""> / <%= @ranocumplio %> Vencidos</span>    <br>    <br>   
+        <div class = "progress">
+         <% if @rporcentaje_abi_cump != 0%>
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @rporcentaje_abi_cump %>%;">
+            <span class = "" style="font-size: 18px"> <%= @rporcentaje_abi_cump %>% </span>
+         </div>
+         <%end%>
+         <% if @rporcentaje_abi_no != 0%>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @rporcentaje_abi_no %>%;">
+            <span class = "" style="font-size: 18px"><%= @rporcentaje_abi_no %>% </span>
+         </div>
+         <%end%>
+      </div>
+          </div>
+        <div class="col-md-6">
+                 <h4 style="color:gray;text-align: left;margin: 0px;">ACCIONES <span class="badge" style="font-size: 18px;"> <%= @aabiertas%></span></h4>
+         <span style = ""><%=@aacumplio%> Vigentes</span><span style = ""> / <%= @aanocumplio %> Vencidas</span>    <br>    <br>   
+        <div class = "progress">
+         <% if @aporcentaje_abi_cump != 0%>
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @aporcentaje_abi_cump %>%;">
+            <span class = "" style="font-size: 18px"> <%= @aporcentaje_abi_cump %>% </span>
+         </div>
+         <%end%>
+         <% if @aporcentaje_abi_no != 0%>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @aporcentaje_abi_no %>%;">
+            <span class = "" style="font-size: 18px"><%= @aporcentaje_abi_no %>% </span>
+         </div>
+         <%end%>
+      </div>
+          </div>
+
+      <div class="col-md-6">
+                 <h4 style="color:gray;text-align: left;margin: 0px;">TAREAS <span class="badge" style="font-size: 18px;"> <%= @tabiertas%></span></h4>
+         <span style = ""><%=@tacumplio%> Vigentes</span><span style = ""> / <%= @tanocumplio %> Vencidas</span>    <br>    <br>   
+        <div class = "progress">
+         <% if @tporcentaje_abi_cump != 0%>
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @tporcentaje_abi_cump %>%;">
+            <span class = "" style="font-size: 18px"> <%= @tporcentaje_abi_cump %>% </span>
+         </div>
+         <%end%>
+         <% if @tporcentaje_abi_no != 0 %>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @tporcentaje_abi_no %>%;">
+            <span class = "" style="font-size: 18px"><%= @tporcentaje_abi_no %>% </span>
+         </div>
+         <%end%>
+      </div>
+          </div>
+
+                <div class="col-md-6">
+                 <h4 style="color:gray;text-align: left;margin: 0px;">TOTAL <span class="badge" style="font-size: 18px;"> <%= @total_abiertas%></span></h4>
+         <span style = ""><%=@total_abiertas_cumplio%> Vigentes</span><span style = ""> / <%= @total_abiertas_no_cumplio %> Vencidas</span>    <br>    <br>   
         <div class = "progress">
          <% if @por_tac != 0%>
          <div class = "progress-bar progress-bar-success" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
-            <span class = "" style="font-size: 18px"> <%= @por_tac %>% Vigente</span>
+            <span class = "" style="font-size: 18px"> <%= @por_tac %>% </span>
          </div>
          <%end%>
-         <% if @por_tanc != 0%>
+         <% if @por_tanc != 0 %>
          <div class = "progress-bar progress-bar-danger" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
-            <span class = "" style="font-size: 18px"><%= @por_tanc %>% Vencida</span>
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>% </span>
          </div>
          <%end%>
       </div>
-  <br>
+          </div>
+
+
+
+          
+
+      </div>
+      
+     <br>
+<hr>
+
+
 <div class="row tortas">
-  
-<div class="col-md-12">
-  <h4 style="color:gray">% DE EFICACIA (GESTION CERRADA)</h4>
-</div>
+  <div class="row">
+      <div class="col-md-12 text-center" style="padding: 0px;margin-bottom: 20px">
+ 
+
+      <h4 style="color:gray;display: inline-block;margin-right:20px;">% DE EFICACIA (GESTION CERRADA)</h4>  <p style = "font-size: 12px;display: inline-block;
+"><i class="fas fa-circle" style="font-size: 16px;color:#0db45a" aria-hidden="true"></i> <span style = "margin-right: 10px">Exelente</span>
+   <i class="fas fa-circle" aria-hidden="true" style="font-size: 16px;color: #ec971f;"></i> <span style = "margin-right:10px">Buena</span>
+   <i class="fas fa-circle" style="font-size: 16px;color:  red;" aria-hidden="true"></i> <span style = "margin-right:10px">Mala</span>
+   </p>
+
+   </div>
+
 
   
 
-<div class="col-md-12">
-  <hr>
-</div>
-<div class="col-md-4 text-center" >
+<div class="col-md-3 text-center" >
        <%if @rcerrados != 0 %>
-    <div id="container_r" style="height: 250px;"></div>
-     <h4 style="margin: 0px;color: gray">REPORTES</h4>
+    
+     <h4 style="margin: 0px;color: gray">REPORTES <span class="badge" style="font-size: 18px;"> <%= @rcerrados%></span></h4>
     <p>cumplio <%=@rcumplio%> de <%=@rcerradas%></p><br>
     <span style="background:<%=get_color_porcentaje(@rporcentaje)%>" class="eficiencia"><%=@rporcentaje%>%</span>
         <%else%>
@@ -211,10 +281,10 @@
         <%end%>
       
 </div>
-<div class="col-md-4 text-center">
+<div class="col-md-3 text-center">
   
            <%if @acerradas != 0  %>
-            <h4 style="margin: 0px;color: gray">ACCIONES</h4>
+            <h4 style="margin: 0px;color: gray">ACCIONES</span></h4>
      <p>cumplio <%=@acumplio%> de <%=@acerradas%></p><br>
      <span style="background:<%=get_color_porcentaje(@aporcentaje)%>" class="eficiencia"><%=@aporcentaje%>%</span>
         <%else%>
@@ -223,15 +293,27 @@
         <%end%>
       
 </div>
-<div class="col-md-4 text-center">
+<div class="col-md-3 text-center">
          <%if @tcerradas != 0 %>
-      <h4 style="margin: 0px;color: gray">TAREAS</h4>
+      <h4 style="margin: 0px;color: gray">TAREAS </h4>
       <p>cumplio <%=@tcumplio%> de <%=@tcerradas%></p><br>
       <span style="background:<%=get_color_porcentaje(@tporcentaje)%>" class="eficiencia"><%=@tporcentaje%>%</span>
-  <br><br>
+  <br><br><br>
         <%else%>
         <div id="container_t" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center; padding: 20px 0px">NO HAY TAREAS <br> CERRADOS</t3>
+        <%end%>
+      
+</div>
+<div class="col-md-3 text-center">
+         <%if @total7 != 0 %>
+      <h4 style="margin: 0px;color: gray">TOTAL</h4>
+      <p>cumplio <%=@total5%> de <%=@total7%></p><br>
+      <span style="background:<%=get_color_porcentaje(@total8)%>" class="eficiencia"><%=@total8%>%</span>
+  <br><br><br>
+        <%else%>
+        <div id="container_t" style="height: 250px;display: none"></div>
+        <h3 style="font-size: 14px !important;text-align: center; padding: 20px 0px">NO HAY TAREAS GESTION CERRADA</t3>
         <%end%>
       
 </div>

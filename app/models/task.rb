@@ -44,7 +44,7 @@ class Task < ApplicationRecord
   scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
   scope :vencidas, -> { where('contador_seg < ?', 0) }
   scope :alerta, -> { where('contador_seg <= ?', 5) }
-
+  scope :viegentes_t, -> { where('contador_seg >= ?', 0) }
 
 
 
