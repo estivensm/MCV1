@@ -171,6 +171,7 @@
         </tr>
       </tbody>
    </table>
+   <br>
       <h4 style="color:gray">GESTION (ABIERTA)</h4>
         <div class = "progress">
          <% if @por_tac != 0%>
@@ -186,7 +187,7 @@
          </div>
          <%end%>
       </div>
-  <br><br>
+  <br>
 <div class="row tortas">
   
 <div class="col-md-12">
@@ -198,28 +199,36 @@
 <div class="col-md-12">
   <hr>
 </div>
-<div class="col-md-4" >
+<div class="col-md-4 text-center" >
        <%if @rcerrados != 0 %>
     <div id="container_r" style="height: 250px;"></div>
+     <h4 style="margin: 0px;color: gray">REPORTES</h4>
+    <p>cumplio <%=@rcumplio%> de <%=@rcerradas%></p><br>
+    <span style="background:<%=get_color_porcentaje(@rporcentaje)%>" class="eficiencia"><%=@rporcentaje%>%</span>
         <%else%>
         <div id="container_r" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center;padding: 20px 0px">NO HAY REPORTES <br> CERRADOS</t3>
         <%end%>
       
 </div>
-<div class="col-md-4">
+<div class="col-md-4 text-center">
   
            <%if @acerradas != 0  %>
-    <div id="container_a" style="height: 250px;"></div>
+            <h4 style="margin: 0px;color: gray">ACCIONES</h4>
+     <p>cumplio <%=@acumplio%> de <%=@acerradas%></p><br>
+     <span style="background:<%=get_color_porcentaje(@aporcentaje)%>" class="eficiencia"><%=@aporcentaje%>%</span>
         <%else%>
         <div id="container_a" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center;padding: 20px 0px">NO HAY ACCIONES <br> CERRADOS</t3>
         <%end%>
       
 </div>
-<div class="col-md-4">
+<div class="col-md-4 text-center">
          <%if @tcerradas != 0 %>
-    <div id="container_t" style="height: 250px;"></div>
+      <h4 style="margin: 0px;color: gray">TAREAS</h4>
+      <p>cumplio <%=@tcumplio%> de <%=@tcerradas%></p><br>
+      <span style="background:<%=get_color_porcentaje(@tporcentaje)%>" class="eficiencia"><%=@tporcentaje%>%</span>
+  <br><br>
         <%else%>
         <div id="container_t" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center; padding: 20px 0px">NO HAY TAREAS <br> CERRADOS</t3>
@@ -258,7 +267,16 @@
 
 
 <style>
-
+.eficiencia
+{
+    border: 10px;
+    background: green;
+    color: white;
+    vertical-align: -webkit-baseline-middle;
+    padding: 20px;
+    font-size: 34px;
+    border-radius: 12px;
+}
 .progress {
     overflow: hidden;
     height: 32px;

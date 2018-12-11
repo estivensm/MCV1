@@ -2,13 +2,16 @@
 
 
 
+
+
+
 <body class="w3-light-grey">
   <div class="w3-content w3-margin-top" style="max-width:1400px;">
     <div class="w3-row-padding">
       <div class="w3-third" style="width: 320px;">
         <div class="w3-white w3-text-grey w3-card-4">
           <div class="w3-display-container" style="text-align:center; padding-top: 17px;" >
-           <%= @employed.avatare? ? image_tag(@employed.avatare_url, style:"width:150px") : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe", style: "height: 104px;")%>
+            <%= @employed.avatare? ? image_tag(@employed.avatare_url, style:"width:150px") : image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRuEG5mQKFGi9hNgrdBJnEyBfw2Kl0JNXwoHiXjVeKQemKOQqFe", style: "height: 104px;")%>
         </div>
         <br><br>
         <div class="w3-container">
@@ -168,20 +171,23 @@
         </tr>
       </tbody>
    </table>
+   <br>
       <h4 style="color:gray">GESTION (ABIERTA)</h4>
         <div class = "progress">
-          <%if @por_tac != 0 && @por_tanc != 0%>
+         <% if @por_tac != 0%>
          <div class = "progress-bar progress-bar-success" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
             <span class = "" style="font-size: 18px"> <%= @por_tac %>% Vigente</span>
          </div>
+         <%end%>
+         <% if @por_tanc != 0%>
          <div class = "progress-bar progress-bar-danger" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
             <span class = "" style="font-size: 18px"><%= @por_tanc %>% Vencida</span>
          </div>
-        <%end%>
+         <%end%>
       </div>
-  <br><br>
+  <br>
 <div class="row tortas">
   
 <div class="col-md-12">
@@ -193,28 +199,36 @@
 <div class="col-md-12">
   <hr>
 </div>
-<div class="col-md-4" >
+<div class="col-md-4 text-center" >
        <%if @rcerrados != 0 %>
     <div id="container_r" style="height: 250px;"></div>
+     <h4 style="margin: 0px;color: gray">REPORTES</h4>
+    <p>cumplio <%=@rcumplio%> de <%=@rcerradas%></p><br>
+    <span style="background:<%=get_color_porcentaje(@rporcentaje)%>" class="eficiencia"><%=@rporcentaje%>%</span>
         <%else%>
         <div id="container_r" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center;padding: 20px 0px">NO HAY REPORTES <br> CERRADOS</t3>
         <%end%>
       
 </div>
-<div class="col-md-4">
+<div class="col-md-4 text-center">
   
            <%if @acerradas != 0  %>
-    <div id="container_a" style="height: 250px;"></div>
+            <h4 style="margin: 0px;color: gray">ACCIONES</h4>
+     <p>cumplio <%=@acumplio%> de <%=@acerradas%></p><br>
+     <span style="background:<%=get_color_porcentaje(@aporcentaje)%>" class="eficiencia"><%=@aporcentaje%>%</span>
         <%else%>
         <div id="container_a" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center;padding: 20px 0px">NO HAY ACCIONES <br> CERRADOS</t3>
         <%end%>
       
 </div>
-<div class="col-md-4">
+<div class="col-md-4 text-center">
          <%if @tcerradas != 0 %>
-    <div id="container_t" style="height: 250px;"></div>
+      <h4 style="margin: 0px;color: gray">TAREAS</h4>
+      <p>cumplio <%=@tcumplio%> de <%=@tcerradas%></p><br>
+      <span style="background:<%=get_color_porcentaje(@tporcentaje)%>" class="eficiencia"><%=@tporcentaje%>%</span>
+  <br><br>
         <%else%>
         <div id="container_t" style="height: 250px;display: none"></div>
         <h3 style="font-size: 14px !important;text-align: center; padding: 20px 0px">NO HAY TAREAS <br> CERRADOS</t3>
@@ -253,7 +267,16 @@
 
 
 <style>
-
+.eficiencia
+{
+    border: 10px;
+    background: green;
+    color: white;
+    vertical-align: -webkit-baseline-middle;
+    padding: 20px;
+    font-size: 34px;
+    border-radius: 12px;
+}
 .progress {
     overflow: hidden;
     height: 32px;

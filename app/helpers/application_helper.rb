@@ -743,7 +743,7 @@ def get_color(color)
    
   c = ""
   color < 60 ? c = "#d82c2c" : c = "orange"
-  c = "#22c488" if color > 90
+  c = "#22c488" if color > 80
   return c
 
   end
