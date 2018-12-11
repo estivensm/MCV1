@@ -1,0 +1,146 @@
+
+ 
+          <div class="modal fade" id="modal<%= task.id %>" role="dialog">
+            <div class="modal-dialog">
+            
+             
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" align="center">TAREA</h4>
+                </div>
+                <div class="modal-body">
+
+                  <div class="container-fluid" id="contenedor3">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                       <div class="col-md-10 no-padding-left">
+                          <div class="col-md-12">
+                         <p class="margin-top" style="margin-top: 5px;font-size: 14px"><b>Descripcion: </b><%= task.name %></p>
+                       </div>
+                  
+                       <div class="col-md-6">
+                          <strong>Responsable <br></strong> <%= task.employed.first_name + " " + task.employed.first_last_name%>
+                       </div>
+                       <div class="col-md-6 text-center" style = "background:<%=estado_contador(task.contador_seg)%>;color:white">
+                            <strong>Fecha de Compromiso <br> </strong> <%= task.f_compromiso%>
+                       </div>
+                       
+               
+
+                      
+                        
+                      </div>
+                  </div>
+                  <hr>
+                  <br>
+
+                  <div class="text-center">
+                    <i class="fas fa-arrow-down" id="flecha"></i><br>
+                    <label class="">PERTENECE A LA ACCIÓN</label>
+                  </div>
+                  <br>
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                         <div class="col-md-10 no-padding-left">
+                          <div class="col-md-12">
+                         <p class="margin-top" style="margin-top: 5px;font-size: 12px"><b>Descripcion: </b><%= task.accion.descripcion %></p>
+                       </div>
+                  
+                       <div class="col-md-6">
+                          <strong>Responsable <br></strong> <%= task.accion.employed.first_name + " " + task.accion.employed.first_last_name%>
+                       </div>
+                       <div class="col-md-6 text-center" style = "background:<%= estado_contador(task.accion.contador_seg)%>;color:white">
+                            <strong>Fecha de Compromiso <br> </strong> <%= task.accion.f_compromiso%>
+                       </div>
+                       
+               
+
+                      
+                        
+                      </div>
+                  </div>
+                  <br>
+
+                  <div class="text-center">
+                    <i class="fas fa-arrow-down" id="flecha"></i><br>
+                    <label class="">PERTENECE AL REPORTE</label>
+                  </div>
+                  <br>
+
+                  <div class="container-fluid" id="contenedor2">
+
+                      <div class="col-md-2 no-padding-left">
+                         <%=  task.employed.avatare? ? image_tag(task.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                      </div>
+
+                                              <div class="col-md-10 no-padding-left">
+                          <div class="col-md-12">
+                         <p class="margin-top" style="margin-top: 5px;font-size: 12px"><b>Descripcion: </b><%= task.report.description %></p>
+                       </div>
+                  
+                       <div class="col-md-6">
+                          <strong>Responsable <br></strong> <%= task.report.employed.first_name + " " + task.report.employed.first_last_name%>
+                       </div>
+                       <div class="col-md-6 text-center" style = "background:<%= estado_contador(task.report.contador_seg)%>;color:white">
+                            <strong>Fecha de Compromiso <br> </strong> <%= task.report.f_compromiso%>
+                       </div>
+                       
+               
+
+                      
+                        
+                      </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrar">Cerrar</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+
+          <style >
+            
+            
+#contenedor3{
+   
+}
+
+#contenedor3:hover{box-shadow: 0px 0px 0px gray , 0px 2px 10px gray; transition: box-shadow 0.3s;}
+
+#contenedor3 img{
+    width: 64px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 63px;
+}
+
+#contenedor2{
+    border: 2px solid #c3c3c3;
+    border-radius: 6px;
+    background: #f3f3f3;
+}
+
+#contenedor2:hover{box-shadow: 0px 0px 0px gray , 0px 2px 10px gray; transition: box-shadow 0.3s;}
+
+#contenedor2 img{
+    width: 64px;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 63px;
+}
+          </style>

@@ -111,9 +111,17 @@ end
 
   def get_task
       @task = Task.find(params[:id])
-      responsable = Employed.find(@task.employed_id)
-      responsable_full = responsable.first_name + responsable.first_last_name
-      render json: @task.as_json.merge(:responsable => responsable_full,:accion_name => @task.accion.descripcion)
+      @accion = @task.accion
+      @report = @task.report
+      responsable_full_task = @task.employed.first_name + @task.employed.first_last_name
+      responsable_full_accion = @accion.employed.first_name + @accion.employed.first_last_name
+      responsable_full_report = @report.employed.first_name + @report.employed.first_last_name
+      render json: { 
+        :task => @task.as_json.merge(:responsable => responsable_full_task,:description => @task.name, :image => @task.employed.avatare_url), 
+        :task => @accion.as_json.merge(:responsable => responsable_full_accion,:description => @accion.descripcion, :image => @task.employed.avatare_url), 
+        :report => @report.as_json.merge(:responsable => responsable_full_report,:description => @report.description,  :image => @task.employed.avatare_url), 
+
+      }
 
   end
 

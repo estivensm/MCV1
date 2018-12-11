@@ -179,7 +179,11 @@
            
                <%= task.name %>
          </td>
-         <td><%= react_component("Registration" , id: task.id)%></td>
+         <td>      
+              <button type="button" style = "padding:0px 10px" class="btn btn-primary" data-toggle="modal" data-target="#modal<%= task.id %>">Mas Informacion</button>
+          <%= render "tasks/partials/task", task: task%>
+
+         </td>
         </tr>
         <% end %>
    </tbody>

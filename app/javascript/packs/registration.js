@@ -12,7 +12,8 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
+    width                 : '50%'
   }
 };
 
@@ -35,6 +36,13 @@ var styles_open = {
 
 
 }
+var image_style = {
+
+    width: '64px',
+    borderRadius: '50%',
+    marginTop: '5px',
+    marginBottom: '5px'
+}
 
 class Registration extends React.Component {
   constructor(props) {
@@ -45,6 +53,7 @@ class Registration extends React.Component {
       name: "",
       fecha: "",
       responsable: "",
+      image: "",
       id: 0,
       estado: "Abierta",
       style_task: styles_open
@@ -67,11 +76,12 @@ class Registration extends React.Component {
       
       that.setState({
 
-        name: resp.name,
-        fecha: resp.f_compromiso,
-        responsable: resp.responsable, 
-        accion_name: resp.accion_name,
-        id: resp.id,
+        name: resp["task"].name,
+        fecha: resp["task"].f_compromiso,
+        responsable: resp["task"].responsable, 
+        accion_name: resp["task"].description,
+        image: resp["task"].image,
+        id: resp["task"].id,
 
       
       });
@@ -130,16 +140,27 @@ class Registration extends React.Component {
 
           <h2 ref={subtitle => this.subtitle = subtitle}>Hello {this.props.name}</h2>
           <button onClick={this.closeModal}>close</button>
-           <button onClick={this.closeTask.bind(this)}>Cerrar Tarea</button>
-          
-            <span>{this.state.name}</span>
-            <span>{this.state.fecha}</span>
-            <span>{this.state.responsable}</span>
-            <span>{this.state.accion_name}</span>
-            <span>{this.state.accion_name}</span>
-            <span style={this.state.style_task}>{this.state.estado}</span>
-
+       
+          s
     
+                  <div className="container-fluid" >
+
+                      <div className="col-md-2 no-padding-left">
+                          <img style={image_style} src={this.state.image != null ? this.state.image : "https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg"} />
+                                        
+                      </div>
+
+                       <div className="col-md-8 no-padding-left">
+
+                        <p className="margin-top" ><b>Descripcion de la Tarea</b></p>
+                        <p>{this.state.accion_name}</p> 
+
+                        <p className="margin-top"><b>Fecha:</b></p>
+                        <p className="no-margin-bottom">{this.state.fecha}</p>
+
+                      </div>
+                  </div>
+
         </Modal>
       </div>
     );
@@ -150,3 +171,5 @@ class Registration extends React.Component {
 
 WebpackerReact.setup({Registration})
 
+   // <button onClick={this.closeTask.bind(this)}>Cerrar Tarea</button>
+   //   <span style={this.state.style_task}>{this.state.estado}</span>
