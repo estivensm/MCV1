@@ -130,7 +130,7 @@
         <%end%>
         </tr>
       </tbody>
-   </table>
+   </table><br>
    <h4 style="color:gray">GESTION (ABIERTA)</h4>
         <div class = "progress">
          <div class = "progress-bar progress-bar-success" role = "progressbar"
@@ -160,7 +160,7 @@
 </div>
 <div class="col-md-4 text-center" >
        <%if @rcerrados != 0 %>
-    <div id="container_r" style="height: 250px;"></div>
+   
      <h4 style="margin: 0px;color: gray">REPORTES</h4>
     <p>cumplio <%=@rcumplio%> de <%=@rcerradas%></p><br>
     <span style="background:<%=get_color_porcentaje(@rporcentaje)%>" class="eficiencia"><%=@rporcentaje%>%</span>

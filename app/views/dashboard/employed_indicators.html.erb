@@ -69,7 +69,7 @@
    </p>
 </div>
 <br><br>
-      <table class="table indicadores" >
+      <table class="table indicadores" style="display: none" >
       <thead>
       <tr class = "tr-table">
           
@@ -173,21 +173,83 @@
    </table>
    <br>
       <h4 style="color:gray">GESTION (ABIERTA)</h4>
+      <div class="row">
+      
+           <div class="col-md-6">
+                 <h4 style="color:gray;text-align: left">REPORTES</h4>
         <div class = "progress">
          <% if @por_tac != 0%>
          <div class = "progress-bar progress-bar-success" role = "progressbar"
-            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
-            <span class = "" style="font-size: 18px"> <%= @por_tac %>% Vigente</span>
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @rporcentaje_abi_cump %>%;">
+            <span class = "" style="font-size: 18px"> <%= @rporcentaje_abi_no %>% </span>
          </div>
          <%end%>
          <% if @por_tanc != 0%>
          <div class = "progress-bar progress-bar-danger" role = "progressbar"
             aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
-            <span class = "" style="font-size: 18px"><%= @por_tanc %>% Vencida</span>
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>% </span>
          </div>
          <%end%>
       </div>
-  <br>
+          </div>
+           <div class="col-md-6">
+                 <h4 style="color:gray;text-align: left">ACCIONES</h4>
+        <div class = "progress">
+         <% if @por_tac != 0%>
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
+            <span class = "" style="font-size: 18px"> <%= @por_tac %>% </span>
+         </div>
+         <%end%>
+         <% if @por_tanc != 0%>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>% </span>
+         </div>
+         <%end%>
+      </div>
+          </div>
+           <div class="col-md-6">
+               <h4 style="color:gray;text-align: left">TAREAS</h4>
+        <div class = "progress">
+         <% if @por_tac != 0%>
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
+            <span class = "" style="font-size: 18px"> <%= @por_tac %>% </span>
+         </div>
+         <%end%>
+         <% if @por_tanc != 0%>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>% </span>
+         </div>
+         <%end%>
+      </div>
+          </div>
+             <div class="col-md-6">
+               <h4 style="color:gray;text-align: left">TOTAL</h4>
+        <div class = "progress">
+         <% if @por_tac != 0%>
+         <div class = "progress-bar progress-bar-success" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width: <%= @por_tac %>%;">
+            <span class = "" style="font-size: 18px"> <%= @por_tac %>% </span>
+         </div>
+         <%end%>
+         <% if @por_tanc != 0%>
+         <div class = "progress-bar progress-bar-danger" role = "progressbar"
+            aria-valuenow = "60" aria-valuemin = "0" aria-valuemax = "100" style = "padding: 5px;width:<%= @por_tanc %>%;">
+            <span class = "" style="font-size: 18px"><%= @por_tanc %>%</span>
+         </div>
+         <%end%>
+      </div>
+          </div>
+
+      </div>
+      
+     <br>
+
+
+
 <div class="row tortas">
   
 <div class="col-md-12">
