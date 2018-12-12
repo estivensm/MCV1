@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927194251) do
+ActiveRecord::Schema.define(version: 20181212153313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -302,6 +302,8 @@ ActiveRecord::Schema.define(version: 20180927194251) do
     t.string "clausula"
     t.string "subtitulo"
     t.string "subclausula"
+    t.integer "numeral_count"
+    t.text "subclausula_description"
   end
 
   create_table "numerals_reports", id: false, force: :cascade do |t|

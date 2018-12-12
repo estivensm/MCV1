@@ -14,6 +14,12 @@
       <div class="modal-body">
 
 <div class="form-group">
+    <%= f.label "Contador" %>
+    <%= f.number_field :numeral_count,  class: "form-control" %>
+</div>
+
+
+<div class="form-group">
     <%= f.label "Numeral" %>
     <%= f.text_field :numeral,  class: "form-control" %>
   </div>
@@ -42,7 +48,10 @@
   <%= f.hidden_field :user_id ,:value =>  current_user.id %>
 
   <%= f.hidden_field :norma_id , :value => @norma.id %>
-  
+  <div class="form-group">
+    <%= f.label "Titulo Subclausula" %>
+    <%= f.text_area :subclausula_description,  class: "form-control"%>
+  </div>
 
   <div class="form-group">
     <%= f.label "Descripción" %>
