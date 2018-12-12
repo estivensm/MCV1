@@ -315,8 +315,8 @@ class DashboardController < ApplicationController
     @rabiertos = @reports.abiertos.count
     @racumplio =    @reports.abiertos.where("contador_seg >= ?" ,0).count
     @ranocumplio =    @reports.abiertos.where("contador_seg < ?" ,0).count
-    @rporcentaje_abi_cump =    ((@reports.abiertos.where("contador_seg >= ?" ,1).count.to_f/@divra)*100).to_i
-    @rporcentaje_abi_no =    ((@reports.abiertos.where("contador_seg < ?" ,1).count.to_f/@divra)*100).to_i
+    @rporcentaje_abi_cump =    ((@reports.abiertos.where("contador_seg >= ?" ,0).count.to_f/@divra)*100).to_i
+    @rporcentaje_abi_no =    ((@reports.abiertos.where("contador_seg < ?" ,0).count.to_f/@divra)*100).to_i
       
 
 
