@@ -35,7 +35,7 @@ end
 
 
 
-   @numerals = @numerals1.paginate(page: params[:page],:per_page => 80)
+   @numerals = @numerals1.paginate(page: params[:page],:per_page => 30)
    
   end
 

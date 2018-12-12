@@ -205,7 +205,7 @@ def get_source_parents
 
 end
 def get_numerals
-Numeral.where(admin_user: current_user.admin_user).or(Numeral.where(admin: true))
+Numeral.where(admin_user: current_user.admin_user).or(Numeral.where(admin: true)).order(numeral_count: :asc)
 
 end
 def get_rols
