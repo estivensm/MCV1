@@ -82,6 +82,7 @@
       <thead>
          <tr class = "tr-table">
           <th class="text-left" style="width: 5%"><%= check_box_tag "all_id", 0 %></th>
+            <th>Contador</th>
             <th>Numeral</th>
             <th style="width:10%">Nombre</th>
             <th style="width:10%">Clausula</th>
@@ -100,6 +101,7 @@
          <%= check_box_tag "numeral_ids[]", numeral.id ,false ,class:"ck"%>
            <% end %>
          </td>
+            <td><%= numeral.numeral_count %></td>
             <td><%= numeral.numeral %></td>
             <td><%= numeral.name %></td>
             <td><%= numeral.clausula %></td>
