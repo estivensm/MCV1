@@ -92,7 +92,7 @@
          </tr>
       </thead>
       <tbody>
-         <% @numerals.order(clausula: :asc).each do |numeral| %>
+         <% @numerals.order(clausula: :desc).each do |numeral| %>
          <tr>
          <td>
            <%if current_user.admin || numeral.admin_user == current_user.admin_user %>
