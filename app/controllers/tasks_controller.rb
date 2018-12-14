@@ -128,10 +128,19 @@ end
   def close_task
 
     @task = Task.find(params[:id])
-    @task.update(estado: !@task.estado)
-    @task.save
+    @task.update(estado: true, observacion: params[:observacion],anexo: params[:anexo])
+    if @task.save
 
-    render plain: "se cerro"  
+      if params[:action_name] == "index"
+        redirect_to mistasks_path
+      elsif
+        params[:action_name] == "pending"
+          redirect_to pending_path
+      elsif
+        params[:action_name] == "tasks_abiertas"
+          redirect_to tasks_abiertas_path    
+      end
+    end
     
   end
   

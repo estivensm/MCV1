@@ -17,7 +17,7 @@
                            <%else%>
                            
 
-
+                           <%if @report.causas.last != nil%>
                             <%if  Amefp.where(causa_id:@report.causas.last.id).count != 0 %>   
 
                             <%=  link_to  show_amefp_path(@report.causas.last.amefps.first.id), class: "btn btn-primary" do  %>  
@@ -31,7 +31,7 @@
                                   <%end%>
                             
                             <%end%>
-
+                                <%end%>
 
                            <%end%>
         <%end%>                    

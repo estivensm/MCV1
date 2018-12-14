@@ -64,7 +64,7 @@ post "crear_hallazgo_p", to: "reports#crear_hallazgo_p", as: "crear_hallazgo_p"
 
 
 get 'get_task/:id', to: 'tasks#get_task'
-post "close_task", to: 'tasks#close_task'
+post "close_task", to: 'tasks#close_task', as: "close_task"
 
 
 

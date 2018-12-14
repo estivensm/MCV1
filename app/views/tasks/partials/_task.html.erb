@@ -7,7 +7,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title" align="center">TAREA</h4>
+                  <h4 class="modal-title" align="center" style="padding: 10px;">TAREA</h4>
                 </div>
                 <div class="modal-body">
 
@@ -19,13 +19,13 @@
 
                        <div class="col-md-10 no-padding-left">
                           <div class="col-md-12">
-                         <p class="margin-top" style="margin-top: 5px;font-size: 14px"><b>Descripcion: </b><%= task.name %></p>
+                         <p class="margin-top" style="margin-top: 5px;font-size: 14px"><b>Descripcion: </b><%= task.name %></p><br>
                        </div>
                   
-                       <div class="col-md-6">
+                       <div class="col-md-6" style="font-size:12px">
                           <strong>Responsable <br></strong> <%= task.employed.first_name + " " + task.employed.first_last_name%>
                        </div>
-                       <div class="col-md-6 text-center" style = "background:<%=estado_contador(task.contador_seg)%>;color:white">
+                       <div class="col-md-6 text-center" style = "font-size:12px;background:<%=estado_contador(task.contador_seg)%>;color:white">
                             <strong>Fecha de Compromiso <br> </strong> <%= task.f_compromiso%>
                        </div>
                        
@@ -35,6 +35,44 @@
                         
                       </div>
                   </div>
+                  <% if !task.estado%>
+                                            <a href="#demo" class="linka" style="font-size: 12px;padding: 10px;font-weight: bold" data-toggle="collapse">Cerrar Tarea</a>
+                    
+                    
+                   <div id="demo" class="collapse">
+                  <div class="row"  style="padding: 10px;background: whitesmoke;">
+                  
+                   
+                    <div class="col-md-12">
+                      <%= form_tag close_task_path, method: :post, remote: true do  %>
+                         <div class="row">
+                        <div class="col-md-6">
+                          <%=label_tag "Observaciones"%>
+                          <%=text_area_tag :observacion, nil,class: 'form form-control' %>   
+                        </div>  
+                        <div class="col-md-6">
+                          <%=label_tag "Anexo"%>
+                          <%= file_field_tag :anexo,class: 'form form-control' %>   
+                        </div>  
+                        </div>  
+                                              
+                                    <%= hidden_field_tag :id , task.id%>
+                          <%= hidden_field_tag :action_name , action_name%>              
+                       <br>
+                       <div class="row">
+                         <div class="col-md-6">
+                    
+                            <%= submit_tag "Guardar", class: "btn btn-primary"%>  
+                        </div>
+                      </div>
+
+                       
+                      <%end%>
+                  
+                  </div>
+                  </div>
+                    </div>
+                  <%end%>
                   <hr>
                   <br>
 
@@ -51,14 +89,15 @@
                       </div>
 
                          <div class="col-md-10 no-padding-left">
-                          <div class="col-md-12">
-                         <p class="margin-top" style="margin-top: 5px;font-size: 12px"><b>Descripcion: </b><%= task.accion.descripcion %></p>
+                          <div class="col-md-12" style="font-size:12px">
+                         <p class="margin-top" style="font-size:12px;margin-top: 5px;font-size: 12px"><b>Descripcion: </b><%= task.accion.descripcion %></p>
+                         <br>
                        </div>
                   
-                       <div class="col-md-6">
+                       <div class="col-md-6" style="font-size:12px" >
                           <strong>Responsable <br></strong> <%= task.accion.employed.first_name + " " + task.accion.employed.first_last_name%>
                        </div>
-                       <div class="col-md-6 text-center" style = "background:<%= estado_contador(task.accion.contador_seg)%>;color:white">
+                       <div class="col-md-6 text-center" style = "font-size:12px;background:<%= estado_contador(task.accion.contador_seg)%>;color:white">
                             <strong>Fecha de Compromiso <br> </strong> <%= task.accion.f_compromiso%>
                        </div>
                        
@@ -85,12 +124,13 @@
                                               <div class="col-md-10 no-padding-left">
                           <div class="col-md-12">
                          <p class="margin-top" style="margin-top: 5px;font-size: 12px"><b>Descripcion: </b><%= task.report.description %></p>
+                         <br>
                        </div>
                   
-                       <div class="col-md-6">
+                       <div class="col-md-6" style="font-size:12px">
                           <strong>Responsable <br></strong> <%= task.report.employed.first_name + " " + task.report.employed.first_last_name%>
                        </div>
-                       <div class="col-md-6 text-center" style = "background:<%= estado_contador(task.report.contador_seg)%>;color:white">
+                       <div class="col-md-6 text-center" style = "font-size:12px;background:<%= estado_contador(task.report.contador_seg)%>;color:white">
                             <strong>Fecha de Compromiso <br> </strong> <%= task.report.f_compromiso%>
                        </div>
                        
