@@ -31,13 +31,21 @@
          </div>
          <hr>
          <div class="row" style="margin-bottom:20px;">
-            <div class="col-md-12 text-center" style="font-size:15px;">
+            <div class="col-md-8" style="font-size:15px;">
                <strong>Tratamiento</strong> <br><strong><%=@riesgo.treatment.upcase%></strong> <%=get_tratamiento(@riesgo.treatment)%>
+            </div>
+            <div class="col-md-2 text-center" style="font-size:15px;">
+               <strong>Valor del NR</strong> <br><%= !@riesgo.risk_value.nil? ? @riesgo.risk_value : "Sin Valorar" %>
+            </div>
+            <div class="col-md-2 text-center" style="font-size:15px;background:<%=get_riesgo(@riesgo.risk_value)[2] if !@riesgo.risk_value.nil?%>;color:<%= !@riesgo.risk_value.nil? ? "white !important" : "gray"%>">
+               <strong style="color:<%= "white !important" if !@riesgo.risk_value.nil? %>"> Nivel del Riesgo</strong> <br><%= !@riesgo.risk_value.nil? ? get_riesgo(@riesgo.risk_value)[1] : "Sin Valorar" %>
             </div>
          </div>
       </div>
    </div>
+   
 </div>
+
 <h3 style="text-align: center" class="linka">Nueva Valoracion del Riesgo</h3>
 <!--<%= render 'form', valoration_risk: @valoration_risk %>-->
 <br>

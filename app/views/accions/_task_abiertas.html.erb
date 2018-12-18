@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-2 rtd">       
          <% if @tasks.count > 0 %>
-         <%= (link_to 'Nueva Tarea', new_report_accion_task_path(@report,accion), remote: true,:class => 'btn btn-primary pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" || current_user.rol.create_all %><%end%>
+         <%= (link_to 'Nueva Tarea', new_report_accion_task_path(@report,accion), remote: true,:class => 'btn btn-primary pull-right') if (current_user.rol ? current_user.rol.configuracion : false) || current_user.role == "SuperAdmin" || current_user.rol.create_all || current_user.email == @task.employed.email %><%end%>
       </div>
    </div>
 </div>
@@ -23,7 +23,7 @@
    <h4 class="display-3 text-gray">No se ha creado ninguna Tarea</h4>
    <hr class="my-4">
    <br>
-   <%= (link_to "Nueva Tarea", new_report_accion_task_path(@report,accion.id) ,remote: true, :class => 'btn btn-primary') if (current_user.rol ? current_user.rol.configuracion : false) || (current_user.role == "SuperAdmin")||  current_user.rol.create_all %>
+   <%= (link_to "Nueva Tarea", new_report_accion_task_path(@report,accion.id) ,remote: true, :class => 'btn btn-primary') if (current_user.rol ? current_user.rol.configuracion : false) || (current_user.role == "SuperAdmin")||  current_user.rol.create_all  || current_user.email == @task.employed.email%>
    </p>
 </div>
 <%end%>

@@ -14,7 +14,14 @@
 *= require_tree .
 */
 
-
+.color-blue-app
+{
+  color:#2A3F54 !important;
+}
+.bg-blue-app
+{
+  background: #2A3F54 !important;
+}
 
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus 
 {
