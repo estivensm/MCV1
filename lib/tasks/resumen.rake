@@ -178,8 +178,10 @@ namespace :resumen do
 
             
     end 
-
+              
+              if Time.now.strftime("%w") == "6" && Time.now.strftime("%w") == "7"
               AlertaMailer.resumen(empleado, @reports_alarma_vencido,@reports_alarma_proximo,@reports_seguimiento, @accion_alarma_vencido,@accion_alarma_proximo,@accion_seguimiento, @task_alarma_vencido,@task_alarma_proximo).deliver
+              end
               puts "holaaaaaaaaaaa"
               puts @reports_alarma_proximo.count
             
