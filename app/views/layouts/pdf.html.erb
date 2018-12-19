@@ -5,14 +5,19 @@
     
   
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
+    <%= stylesheet_link_tag 'retailers_pdf',media: 'all' %>
   </head>
+
   <body onload='number_pages'>
     <div id="header">
       
     </div>
+    
     <div id="content">
-     
+ 
       <%= yield %>
+
+
     </div>
   </body>
 </html>
