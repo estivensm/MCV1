@@ -1,4 +1,4 @@
-<div class="page-break">
+
   <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">INFORMACION GENERAL</t3>
          
@@ -39,8 +39,8 @@
          <tr>
             <td><strong>Fecha de compromiso </strong> <br><%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
             <td><strong>Fecha de Cierre </strong> <br><%= get_date(@report.f_real) if @report.f_real %></td>
-            <td><strong>Costo Presupuestado </strong><br> <%= @report.costo_presupuestado %></td>
-            <td><strong>Costo Real </strong><br> <%= @report.costo %></td>
+            <td><strong>Costo Presupuestado </strong><br> <%= number_to_currency(@report.costo_presupuestado, precision: 0) %></td>
+            <td><strong>Costo Real </strong><br> <%= number_to_currency(@report.costo, precision: 0) %></td>
          </tr>
       </table>
       <% if @report.clinte_proveedor != nil%>
@@ -99,7 +99,7 @@
    <%end%>
 </div>
 <br>
-<%if @report.source.correccion%>
+<%if @report.source.correccion && @report.accions.where(tipo:"Correccion").count != 0%>
  <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">CORRECCIONES</t3>
          
@@ -121,7 +121,7 @@
          <td><strong>Fecha de Entrega </strong><br> <%= get_date(correccion.f_real) %></td>
          <td><strong>¿ Cumplio ?</strong><br> <%= correccion.contador_seg > 0  ? "Si" : "No" %></td>
          <td><strong>¿ Eficaz ?</strong><br> <%= correccion.eficaz  ? "Si" : "No" %></td>
-         <td><strong>Costos</strong><br>Pruesupuesto: <%= correccion.costo %> / Real: <%= correccion.costo %></td>
+         <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(correccion.costo_presupuestado, precision: 0) %> <br> Real: <%= number_to_currency(correccion.costo, precision: 0) %></td>
       </tr>
    </table>
    <%= "<hr>".html_safe if index != (@report.accions.where(tipo:"Correccion").count - 1) %>
@@ -129,7 +129,7 @@
 </div>
 <% end %>
 <br>
-<%if @report.source.causa%>
+<%if @report.source.causa && @report.causa_efectos.where(estado: "vital").count != 0%>
 <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">ANALISIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</t3>
          
@@ -149,7 +149,7 @@
 </div>
 <% end %>
 <br>
-<%if @report.source.accion%>
+<%if @report.source.accion && @report.accions.where(tipo:"Accion").count != 0%>
 <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">ACCIONES</t3>
          
@@ -179,7 +179,7 @@
          <td><strong>Fecha de Entrega </strong><br> <%= get_date(accion.f_real) %></td>
          <td><strong>¿ Cumplio ?</strong><br> <%= accion.contador_seg > 0  ? "Si" : "No" %></td>
          <td><strong>¿ Eficaz ?</strong><br> <%= accion.eficaz  ? "Si" : "No" %></td>
-         <td><strong>Costos</strong><br>Pruesupuesto: <%= accion.costo %> / Real: <%= accion.costo %></td>
+      <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(accion.costo_presupuestado, precision: 0) %> <br> Real: <%= number_to_currency(accion.costo, precision: 0) %></td>
       </tr>
    </table>
    <%= "<hr>".html_safe if index != (@report.accions.where(tipo:"Accion").count - 1) %>
@@ -187,7 +187,7 @@
 </div>
 <% end %>
 <br>
-<%if @report.source.actividad%>
+<%if @report.source.actividad && @report.accions.where(tipo:"Actividad").count != 0%>
 <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">ACTIVIDADES</t3>
          
@@ -209,14 +209,14 @@
          <td><strong>Fecha de Entrega </strong><br> <%= get_date(actividad.f_real) %></td>
          <td><strong>¿ Cumplio ?</strong><br> <%= actividad.contador_seg > 0  ? "Si" : "No" %></td>
          <td><strong>¿ Eficaz ?</strong><br> <%= actividad.eficaz  ? "Si" : "No" %></td>
-         <td><strong>Costos</strong><br>Pruesupuesto: <%= actividad.costo %> / Real: <%= actividad.costo %></td>
+         <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(actividad.costo_presupuestado, precision: 0) %><br> Real: <%= number_to_currency(actividad.costo, precision: 0) %></td>
       </tr>
    </table>
    <%= "<hr>".html_safe if index != (@report.accions.where(tipo:"Actividad").count - 1) %>
    <%end%>
 </div>
 <% end %>
-</div>  
+
 <br>
 <style>
    .info1

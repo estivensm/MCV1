@@ -99,13 +99,13 @@
    <%end%>
 </div>
 <br>
-<%if @report.source.correccion%>
+<%if @report.source.correccion && @report.accions.where(tipo:"Correccion").count != 0%>
+ <div class="info1 ">
+        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">CORRECCIONES</t3>
+         
+  </div>  
 <div class="info">
-   <table class="table1" >
-      <tr class="bg-blue-app color-white">
-         <th colspan="4" class="tit">CORRECCIONES</th>
-      </tr>
-   </table>
+
    <%@report.accions.where(tipo:"Correccion").each_with_index do |correccion, index| %>
    <table class="table1" >
       <tr>
@@ -129,12 +129,14 @@
 </div>
 <% end %>
 <br>
-<%if @report.source.causa%>
+<%if @report.source.causa && @report.causa_efectos.where(estado: "vital").count != 0%>
+<div class="info1 ">
+        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">ANALISIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</t3>
+         
+  </div>
 <div class="info">
    <table class="table1" >
-      <tr class="bg-blue-app color-white">
-         <th colspan="4" class="tit">ANALISIS DE CAUSAS (<%=@report.causas.first.tipo if @report.causas.first%>)</td>
-      </tr>
+     
       <tr>
          <td>
             <strong>Causas:</strong> 
@@ -147,13 +149,13 @@
 </div>
 <% end %>
 <br>
-<%if @report.source.accion%>
+<%if @report.source.accion && @report.accions.where(tipo:"Accion").count != 0%>
+<div class="info1 ">
+        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">ACCIONES</t3>
+         
+  </div>
 <div class="info">
-   <tr class="bg-blue-app color-white">
-   <tr>
-      <th colspan="4" class="tit">ACCIONES</th>
-   </tr>
-   </table> 
+ 
    <%@report.accions.where(tipo:"Accion").each_with_index do |accion, index|%>
    <table class="table1" >
       <tr>
@@ -185,13 +187,13 @@
 </div>
 <% end %>
 <br>
-<%if @report.source.actividad%>
+<%if @report.source.actividad && @report.accions.where(tipo:"Actividad").count != 0%>
+<div class="info1 ">
+        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">ACTIVIDADES</t3>
+         
+  </div>
 <div class="info">
-   <table class="table1" >
-      <tr class="bg-blue-app color-white">
-         <th colspan="4" class="tit">ACTIVIDADES</th>
-      </tr>
-   </table>
+ 
    <%@report.accions.where(tipo:"Actividad").each_with_index do |actividad, index|%>
    <table class="table1" >
       <tr>
@@ -219,7 +221,7 @@
 <style>
    .info1
    {
-   
+   border:1px solid #2A3F54;
    width:1100px;
    }
    .info1-h3
