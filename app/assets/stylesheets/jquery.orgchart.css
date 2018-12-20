@@ -6,9 +6,13 @@ div.orgChart {
 
 div.orgChart h2 {
   margin : 0px;
-  font-size : 16px;
+  font-size : 12px;
   font-weight: normal;
   min-height: 20px;
+    overflow: auto;
+    max-height: 73px;
+    height: 65px;
+
 }
 
 div.orgChart h2:hover {
