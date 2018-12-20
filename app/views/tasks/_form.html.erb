@@ -30,7 +30,7 @@
    <div class="form-group">
                <%= f.label "Asignada a" %><br>
                <%= f.select :employed_id,
-                 get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                 get_employeds.map { |u| ["#{u.first_name} #{u.first_last_name} ", u.id] },
                              { include_blank: true },
                              { class: 'chosen-select form-control ch'  }
                   %>

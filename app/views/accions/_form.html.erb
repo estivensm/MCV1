@@ -218,7 +218,7 @@
   <div class="form-group">
                <%= f.label "Asignada a" %><br>
                <%= f.select :employed_id,
-                 get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                 get_employeds.map { |u| ["#{u.first_name} #{u.first_last_name} ", u.id] },
                              { include_blank: true },
                              { class: 'chosen-select1 form-control ch'  }
                   %>
@@ -228,7 +228,7 @@
   <div class="form-group">
                <%= f.label "Responsable de Cierre" %><br>
                <%= f.select :cierra_id,
-                 get_employeds.map { |u| ["#{u.first_name} #{u.second_name} ", u.id] },
+                 get_employeds.map { |u| ["#{u.first_name} #{u.first_last_name} ", u.id] },
                              { include_blank: true },
                              { class: 'chosen-select1 form-control ch reporta'  }
                   %>
@@ -238,7 +238,7 @@
             <div class="col-md-6">
             <div class="form-group">
                <%= f.label "Otros interesados" %><br>
-               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.second_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
+               <%= f.select :employed_ids, get_employeds.collect {|c| ["#{c.first_name} #{c.first_last_name}", c.id]}, {prompt: false}, {:multiple => true,class: 'form-control chosen-select2 mn'} %>
             </div>
 
 </div>
