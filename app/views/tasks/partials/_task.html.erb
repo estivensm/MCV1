@@ -36,10 +36,10 @@
                       </div>
                   </div>
                   <% if !task.estado%>
-                                            <a href="#demo" class="linka" style="font-size: 12px;padding: 10px;font-weight: bold" data-toggle="collapse">Cerrar Tarea</a>
+                                            <a href="#demo<%= task.id %>" class="linka" style="font-size: 12px;padding: 10px;font-weight: bold" data-toggle="collapse">Cerrar Tarea</a>
                     
                     
-                   <div id="demo" class="collapse">
+                   <div id="demo<%= task.id %>" class="collapse">
                   <div class="row"  style="padding: 10px;background: whitesmoke;">
                   
                    
