@@ -201,7 +201,7 @@ class CompaniesController < ApplicationController
       @tabiertas =  @tasksd.abiertas.count
       @tacumplio =  @tasksd.abiertas.where("tasks.contador_seg >= ?" ,0).count
       @tanocumplio =  @tasksd.abiertas.where("tasks.contador_seg < ?" ,0).count
-      @tporcentaje_abi_cump = ((@tasksd.abiertas.where("tasks.contador_seg >= ?" ,0).where(cumplio: true).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_cump = ((@tasksd.abiertas.where("tasks.contador_seg >= ?" ,0).count.to_f/@divta)*100).to_i
       @tporcentaje_abi_no = ((@tasksd.abiertas.where("tasks.contador_seg < ?" ,0).count.to_f/@divta)*100).to_i
       puts @divta
       
@@ -330,7 +330,7 @@ class CompaniesController < ApplicationController
       @tabiertas =  @tasksd.abiertas.count
       @tacumplio =  @tasksd.abiertas.viegentes_t.count
       @tanocumplio =  @tasksd.abiertas.vencidas.count
-      @tporcentaje_abi_cump = ((@tasksd.abiertas.viegentes_t.where(cumplio: true).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_cump = ((@tasksd.abiertas.viegentes_t.count.to_f/@divta)*100).to_i
       @tporcentaje_abi_no = ((@tasksd.abiertas.vencidas.count.to_f/@divta)*100).to_i
       puts @divta
       
