@@ -356,7 +356,7 @@ class DashboardController < ApplicationController
       @tabiertas =  @employed.tasks.abiertas.count
       @tacumplio =  @employed.tasks.abiertas.viegentes_t.count
       @tanocumplio =  @employed.tasks.abiertas.vencidas.count
-      @tporcentaje_abi_cump = ((@employed.tasks.abiertas.viegentes_t).count.to_f/@divta)*100).to_i
+      @tporcentaje_abi_cump = ((@employed.tasks.abiertas.viegentes_t.count.to_f/@divta)*100).to_i
       @tporcentaje_abi_no = ((@employed.tasks.abiertas.vencidas.count.to_f/@divta)*100).to_i
       puts @divta
       
