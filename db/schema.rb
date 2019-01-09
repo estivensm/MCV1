@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181212153313) do
+ActiveRecord::Schema.define(version: 20190109201145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20181212153313) do
     t.boolean "estado_vencida"
     t.boolean "estado_proxima"
     t.boolean "estado_vigente"
+    t.date "start_date"
   end
 
   create_table "accions_causa_efectos", id: false, force: :cascade do |t|
@@ -376,6 +377,7 @@ ActiveRecord::Schema.define(version: 20181212153313) do
     t.boolean "estado_proxima"
     t.boolean "estado_vigente"
     t.integer "riesgo_id"
+    t.date "start_date"
   end
 
   create_table "riesgos", id: :serial, force: :cascade do |t|

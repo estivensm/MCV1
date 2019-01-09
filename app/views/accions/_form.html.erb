@@ -157,6 +157,47 @@
   <div class="col-md-3">
 
 <div class="form-group">
+    <%= f.label "Fecha de Inicio (dd-mm-aaaa)"%>
+    <%= f.text_field :start_date, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @accion.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker fecha" %>
+    <span style="font-size: 12px;color:gray">Debe ser mayor a la fecha de inicio del Reporte <br>(<%= get_date(@report.f_compromiso)%>)</span>
+  </div>
+ 
+
+  <script>
+  $(function() {
+    $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+  $('.datepicker').datepicker({
+    altField: "#actualDate",
+    changeMonth: true,
+    changeYear: true
+  });
+ 
+});
+
+</script>
+</div>
+
+
+  <div class="col-md-3">
+
+<div class="form-group">
     <%= f.label "Fecha de Compromiso (dd-mm-aaaa)"%>
     <%= f.text_field :f_compromiso, :value => ( action_name == 'new' ? Time.now.strftime("%d/%m/%Y"): @accion.f_compromiso.strftime("%d/%m/%Y")) ,class: "form-control datepicker fecha" %>
     <span style="font-size: 12px;color:gray">Debe ser menor a la fecha del reporte <br>(<%= get_date(@report.f_compromiso)%>)</span>
@@ -193,6 +234,9 @@
 
 </script>
 </div>
+
+
+
 
    
 
