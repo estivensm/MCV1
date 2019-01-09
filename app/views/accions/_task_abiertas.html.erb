@@ -10,3 +10,20 @@
       </div>
    </div>
 </div>
+<% if @tasks.count > 0 %>
+<div class="taskcont">
+<% @tasks.each do |task| %>
+<div class="conteinter reporte cnt trow<%=task.id%>">
+   
+</div>
+<%end%>
+</div>
+<%else%>
+<div class="jumbotron jumbacc">
+   <h4 class="display-3 text-gray">No se ha creado ninguna Tarea</h4>
+   <hr class="my-4">
+   <br>
+   <%= (link_to "Nueva Tarea", new_report_accion_task_path(@report,accion.id) ,remote: true, :class => 'btn btn-primary') if (current_user.rol ? current_user.rol.configuracion : false) || (current_user.role == "SuperAdmin")||  current_user.rol.create_all  || current_user.email == accion.employed.email%>
+   </p>
+</div>
+<%end%>
