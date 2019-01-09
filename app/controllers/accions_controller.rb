@@ -33,7 +33,7 @@ respond_to :json
     @tipo = "Accion"
     @report = Report.find(params[:report_id])
     @accions_t = @report.accions
-    @accions = @report.accions.where(tipo: "Accion").order(estado: :asc).order(created_at: :desc)
+    @accions = @report.accions.where(tipo: "Accion").order(estado: :asc).order(f_compromiso: :desc)
     @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").count
     @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").count
