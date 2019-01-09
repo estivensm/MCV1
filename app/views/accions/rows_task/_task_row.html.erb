@@ -6,7 +6,47 @@
    
    </div>
    <hr class="hr">
+   <div class="row rtr">
+       <div class="col-md-4 rtd text-left">
+         <strong>Responsable:
+         </strong> <%  
+            employed = Employed.find(task.employed_id)
+            %>
+          <%= employed.first_name %> <%= employed.first_last_name %>
+      </div>
+      <%color = ""
+         task.contador_seg < 0 ?  color = "#d82c2c" : color = "orange"
+         color = "#0db4a0" if task.contador_seg > 5%>
+      <div class="col-md-4 rtd" style = "color:white;background:<%=color%>"><strong><i class="fa fa-calendar" aria-hidden="true"></i>
+         </strong> <%=  get_date(task.f_compromiso)  %>
+      </div>
+      <div class="col-md-3 rtd" style = "font-size: 12px;
+         color: gray;"> <%= link_to  edit_report_accion_task_path(@report,accion.id,task) + "?tipo=do",remote:true, :class => "opciones" do %><span style="font-size:10px"> Cerrar</span>
+         <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+         <% end %> <span style="font-size:20px;"> <%=get_state_candado(task.estado).html_safe%></span>
+           </div>   
+         <% if current_user.id == task.user_id%>
+       
+    <div class="col-md-1 rtd" style = "font-size: 20px;
+         color: gray;">
+<div class="dropdown">
+  <a id="dLabel" href ="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <i class="fa fa-sort-desc" aria-hidden="true"></i>
+  </a>
+           <ul class="dropdown-menu" aria-labelledby="dLabel">
+     <li> <%= link_to  edit_report_accion_task_path(@report,accion,task),remote:true, :class => "opciones" do %>
+         <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+         <% end %></li>
+           <li>  <%= link_to  report_accion_task_path(@report,accion,task),  method: :delete,remote:true, data: { confirm: 'Are you sure?' }, :class => "opciones" do %>
+         <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
+         <% end %> </li>
+  </ul>
 
+</div>
+  </div>
+         <% end %>
+       
+   </div>
 
  <%else%>
  
