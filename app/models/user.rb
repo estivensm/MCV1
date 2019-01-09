@@ -127,7 +127,7 @@ class User < ApplicationRecord
         ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Desastres")
         ClassificationRisk.create(user_id: self.id, admin_user: self.id, name: "Humano")
         ClassificationRisk.create(user_id:self.id, admin_user: self.id, name: "Ambiental")
-        WelcomeMailer.welcome(self).deliver  
+        
 
       end
 
