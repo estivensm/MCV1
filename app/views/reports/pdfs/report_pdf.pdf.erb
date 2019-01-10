@@ -4,8 +4,15 @@
          
   </div>  
    <div class="info">
-      <table class="table1"  >
-        
+      
+      <table class="table1 " style="border-bottom: 1px solid #c2c2c2;" >
+          <tr>
+            <td colspan="2"><strong>Rerpote Generado por</strong>: <%= get_employed(current_user.email).first_name + " " + get_employed(current_user.email).first_last_name%></td>
+            <td colspan="2"><strong>Fecha de Generación</strong>: <%= get_date(Date.today) %></td>
+         </tr>
+      </table>
+
+      <table class="table1 tditems"  >
          <tr>
             <td  colspan="4" style="text-align:center;margin-bottom: 20px;    border-bottom: 1px solid #c2c2c2;">
                <strong>Descripcion</strong>
@@ -14,12 +21,13 @@
             </td>
          </tr>
          <tr>
-            <td style=";width:25%"><strong>Creado</strong><br> <%= get_date(@report.created_at) %></td>
+            <td style=";width:25%"><strong>Creacion del Reporte</strong><br> <%= get_date(@report.created_at) %></td>
             <td style=";width:25%"><strong>Proceso</strong><br> <%= @report.proceso.name %></td>
             <td style=";width:25%"><strong>Fuente</strong><br> <%= @report.source_parent.name %></td>
             <td style=";width:25%"><strong>Tipo de Reporte</strong><br> <%= @report.source.name %></td>
          </tr>
       </table>
+
       <table class="table1 responsables tditems" style="border-top:1px solid #c2c2c2">
          <tr>
             <td><strong>Reporta </strong><br> <%= Employed.find(@report.employed_reporta).first_name%> <%= Employed.find(@report.employed_reporta).first_last_name%></td>
@@ -181,6 +189,7 @@
          <td><strong>¿ Eficaz ?</strong><br> <%if accion.estado == "Cerrada"%> <%= accion.eficaz  ? "Si" : "No" %><%else%><%="N/A"%><%end%></td>
       <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(accion.costo_presupuestado, precision: 0) %> <br> Real: <%= number_to_currency(accion.costo, precision: 0) %></td>
       </tr>
+
    </table>
    <%= "<hr>".html_safe if index != (@report.accions.where(tipo:"Accion").count - 1) %>
    <%end%>
@@ -197,7 +206,7 @@
    <%@report.accions.where(tipo:"Actividad").each_with_index do |actividad, index|%>
    <table class="table1" >
       <tr>
-         <td colspan="4" style="padding: 5px 20px;"><strong>Actividad: </strong><%= actividad.descripcion %></td>
+         <td colspan="4" style="padding: 10px 20px;"><strong>ACTIVIDAD: </strong><%= actividad.descripcion %></td>
       </tr>
       <tr>
          <td style="width: 25%"><strong>Responsable </strong><br> <%= actividad.employed.first_name %><%= actividad.employed.first_last_name %></td>
@@ -211,6 +220,18 @@
          <td><strong>¿ Eficaz ?</strong><br> <%if actividad.estado == "Cerrada"%> <%= actividad.eficaz  ? "Si" : "No" %><%else%><%="N/A"%><%end%></td>
          <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(actividad.costo_presupuestado, precision: 0) %><br> Real: <%= number_to_currency(actividad.costo, precision: 0) %></td>
       </tr>
+        <tr>
+         <td colspan="4" style="padding: 5px 20px;"><strong>Tareas </strong></td>
+      </tr>
+    
+         <% actividad.tasks.each do |task| %>
+           <tr>
+        
+         <td ><%= get_state_string(task.estado)%></td>
+          <td colspan="3" ><%=task.name %></td>
+         </tr>
+         <%end%>
+      
    </table>
    <%= "<hr>".html_safe if index != (@report.accions.where(tipo:"Actividad").count - 1) %>
    <%end%>
