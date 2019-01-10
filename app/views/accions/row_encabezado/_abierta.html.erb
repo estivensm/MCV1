@@ -39,7 +39,7 @@
        <div class="col-md-1 rtd">
           <button type="button" style="    border: 0px;font-size: 12px;" class="ver_accion btn-primary" id="accion<%=accion.id%>"><%= ver %></button>
        </div>
-      <div class="col-md-3 rtd text-left">
+      <div class="col-md-2 rtd text-left">
          <strong>Responsable: </strong> <%  
             employed = Employed.find(accion.employed_id)
             %>
@@ -57,7 +57,10 @@
         <div class="col-md-2 rtd  text-left">
          <strong >Seguimimientos:   </strong><span class="seg-cont-p" style="font-size: 16px;"><%=accion.aseguimientos.count%></span> 
       </div>
-        <div class="col-md-3 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> <%=  get_date(accion.f_compromiso)  %> 
+        <div class="col-md-2 rtd" style = ""><i class="fa fa-calendar" aria-hidden="true" "></i> Fecha de Inicio <br> <%=  get_date(accion.f_compromiso)  %> 
+        
+      </div>
+      <div class="col-md-2 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> Fecha de Cierre <br> <%=  get_date(accion.f_compromiso)  %> 
          <%= accion.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=accion.contador_seg.abs%> días
       </div>
       
