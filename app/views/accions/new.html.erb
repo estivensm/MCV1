@@ -1,7 +1,30 @@
 
+
 <div class="row">
   <div class="col-md-12 ">
-    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo}) /",  @report, :class => "linka" %> <%= link_to "#{@tipo}es",  report_accions_path(@report), :class => "linka" %></p>
+    <p><%= link_to "Inicio /",  root_path, :class => "linka" %>  <%= link_to "Reportes /",  reports_path, :class => "linka" %>  <%= link_to "Reporte (#{@report.codigo}) /",  @report, :class => "linka" %>
+     
+     	
+
+
+	<%if @tipo == "Actividad"%>
+
+
+		<%= link_to "#{@tipo}es",  report_actividades_path(@report), :class => "linka" %>
+
+	<%elsif @tipo == "Correccion"%>
+	
+		<%= link_to "#{@tipo}es",  report_correcciones_path(@report), :class => "linka" %>
+	<%else%>
+       
+       <%= link_to "#{@tipo}es",  report_accions_path(@report), :class => "linka" %>
+				
+	<%end%>
+
+
+
+
+     </p>
   </div>
 
 </div>
