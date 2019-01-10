@@ -57,7 +57,7 @@
         <div class="col-md-2 rtd  text-left">
          <strong >Seguimimientos:   </strong><span class="seg-cont-p" style="font-size: 16px;"><%=accion.aseguimientos.count%></span> 
       </div>
-        <div class="col-md-2 rtd" style = ""><i class="fa fa-calendar" aria-hidden="true" "></i> Fecha de Inicio <br> <%=  get_date(accion.f_compromiso)  %> 
+        <div class="col-md-2 rtd" style = ""><i class="fa fa-calendar" aria-hidden="true" "></i> Fecha de Inicio <br> <%=  get_date(accion.start_date)  %> 
         
       </div>
       <div class="col-md-2 rtd" style = "color:white;background:<%=get_color(accion.contador_seg)%>"><i class="fa fa-calendar" aria-hidden="true" "></i> Fecha de Cierre <br> <%=  get_date(accion.f_compromiso)  %> 
