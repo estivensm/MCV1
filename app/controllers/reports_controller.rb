@@ -501,20 +501,19 @@ end
   def new
     
     if params[:idr]
-        puts "11111111111111111111111111111111111"
         @riesgo = Riesgo.find(params[:idr])
         @riesgo_e  = "si"
         @riesgo_id = @riesgo.id
         @descripcion = @riesgo.descripcion
         @proceso = @riesgo.proceso_id
-        @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"PR").first.id
+        @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"RG").first.id
         @tipot =  Source.where(admin_user: current_user.admin_user).where(codigo:"RG").first
         @tipo = @tipot.id
         @evi =  @tipot.evidencia
         @requi =  @tipot.requisito
         @num = @tipot.numerales
     else
-        puts "222222222222222222222222222222222222222222"
+
         @riesgo_e = "no"
         @descripcion = ""
         @proceso = 0

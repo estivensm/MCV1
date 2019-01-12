@@ -36,9 +36,9 @@ def myaccions_cerradas
     end
 
 
-@resp = "Mis Actividades, Acciones y Correcciones Cerradas"
+  @resp = "Mis Actividades, Acciones y Correcciones Cerradas"
   @route = myaccions_cerradas_path
-    render "index"
+  render "index"
 
 end
 

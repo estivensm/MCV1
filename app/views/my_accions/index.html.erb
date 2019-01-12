@@ -14,66 +14,66 @@
    <div class = "col-md-2">
       <div class="col-md-12 text-right">
          <% if action_name == "index"%>
-              <%if !params[:commit]%> 
-              <%= link_to misacciones_path + "?filtros=true", class: "linka canf1" do %>
-              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if !params[:commit]%> 
+         <%= link_to misacciones_path + "?filtros=true", class: "linka canf1" do %>
+         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "asignado_por_mi"%>
-              <%if !params[:commit]%> 
-              <%= link_to accions_asignados_path + "?filtros=true", class: "linka canf1" do %>
-              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if !params[:commit]%> 
+         <%= link_to accions_asignados_path + "?filtros=true", class: "linka canf1" do %>
+         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "invitado"%>
-              <%if !params[:commit]%> 
-              <%= link_to accions_invitado_path + "?filtros=true", class: "linka canf1" do %>
-              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if !params[:commit]%> 
+         <%= link_to accions_invitado_path + "?filtros=true", class: "linka canf1" do %>
+         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "myaccions_cerradas"%>
-              <%if !params[:commit]%> 
-              <%= link_to myaccions_cerradas_path + "?filtros=true", class: "linka canf1" do %>
-              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if !params[:commit]%> 
+         <%= link_to myaccions_cerradas_path + "?filtros=true", class: "linka canf1" do %>
+         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "myaccions_asignadas_cerradas"%>
-              <%if !params[:commit]%> 
-              <%= link_to myaccions_asignadas_cerradas_path + "?filtros=true", class: "linka canf1" do %>
-              <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if !params[:commit]%> 
+         <%= link_to myaccions_asignadas_cerradas_path + "?filtros=true", class: "linka canf1" do %>
+         <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/222696-200.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%end%>
          <% if action_name == "index"%>
-              <%if ( params[:commit] || params[:filtros] ) %>
-              <%= link_to  misacciones_path , class: "linka canf" do%> 
-              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if ( params[:commit] || params[:filtros] ) %>
+         <%= link_to  misacciones_path , class: "linka canf" do%> 
+         <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "asignado_por_mi"%>
-              <%if ( params[:commit] || params[:filtros] ) %>
-              <%= link_to  accions_asignados_path , class: "linka canf" do%> 
-              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if ( params[:commit] || params[:filtros] ) %>
+         <%= link_to  accions_asignados_path , class: "linka canf" do%> 
+         <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "invitado"%>
-              <%if ( params[:commit] || params[:filtros] ) %>
-              <%= link_to  accions_invitado_path , class: "linka canf" do%> 
-              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if ( params[:commit] || params[:filtros] ) %>
+         <%= link_to  accions_invitado_path , class: "linka canf" do%> 
+         <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "myaccions_cerradas"%>
-              <%if ( params[:commit] || params[:filtros] ) %>
-              <%= link_to  myaccions_cerradas_path , class: "linka canf" do%> 
-              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if ( params[:commit] || params[:filtros] ) %>
+         <%= link_to  myaccions_cerradas_path , class: "linka canf" do%> 
+         <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%elsif action_name == "myaccions_asignadas_cerradas"%>
-              <%if ( params[:commit] || params[:filtros] ) %>
-              <%= link_to  myaccions_asignadas_cerradas_path , class: "linka canf" do%> 
-              <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
-              <%end%>
-              <%end%>
+         <%if ( params[:commit] || params[:filtros] ) %>
+         <%= link_to  myaccions_asignadas_cerradas_path , class: "linka canf" do%> 
+         <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Data-Clear-Filters-icon.png" style="width:30px;" alt="">
+         <%end%>
+         <%end%>
          <%end%>
          <%= link_to image_tag("https://image.flaticon.com/icons/svg/29/29102.svg"), @route_csv, class: "icon-export", style: "display:none"%>
       </div>
@@ -139,7 +139,7 @@
          <th style = "width:10%" class="text-left">F Creacion</th>
          <th style = "width:10%" class="text-left">Codigo</th>
          <th style = "width:10%" class="text-left">Tipo</th>
-         <th style = "width:10%" class="text-left">Me Asigno</th>
+         <th style = "width:10%" class="text-left"><%=asignacion_title_accion(action_name)%></th>
          <th style = "width:10%" class="text-left">Compromiso</th>
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
          <th  class="text-left" style = "width:10%">Entrega</th>
@@ -165,7 +165,9 @@
          <td><%= get_date(accion.created_at) %></td>
          <td><%= link_to  "#{accion.codigo}", report_accion_path(report,accion), :class => "linka"  %></td>
          <td><%= accion.tipo %></td>
-         <td><%= get_employed(accion.user.email).first_name %> <%= get_employed(accion.user.email).first_last_name %></td>
+         <td>
+            <%= asignacion_name_accion(accion.id, action_name) %>
+         </td>
          <%if action_name == "myaccions_cerradas" || action_name == "myaccions_asignadas_cerradas" %>
          <td  ><%= get_date(accion.f_compromiso)%></td>
          <%else%>
@@ -182,73 +184,54 @@
             <%= accion.descripcion %>
          </td>
          <td> <%=accion.aseguimientos.count %></td>
-
          <td>
-          <label type="button" class="label label-success clasemodal" data-toggle="modal" data-target="#modal<%= accion.id %>">Mas Informacion</label>
-
-          <!-- Modal -->
-          <div class="modal fade" id="modal<%= accion.id %>" role="dialog">
-            <div class="modal-dialog">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title" align="center">Accion</h4>
-                </div>
-                <div class="modal-body">
-
-                  <div class="container-fluid" id="contenedor2">
-
-                      <div class="col-md-2 no-padding-left">
-                       <%=  accion.employed.avatare? ? image_tag(accion.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
-                      </div>
-
-                       <div class="col-md-8 no-padding-left">
-
-                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Accion</b></p>
-                        <p><%= accion.descripcion %></p> 
-
-                        <p class="margin-top"><b>Fecha:</b></p>
-                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
-
-                      </div>
+            <label type="button" class="label label-success clasemodal" data-toggle="modal" data-target="#modal<%= accion.id %>">Mas Informacion</label>
+            <!-- Modal -->
+            <div class="modal fade" id="modal<%= accion.id %>" role="dialog">
+               <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" align="center">Accion</h4>
+                     </div>
+                     <div class="modal-body">
+                        <div class="container-fluid" id="contenedor2">
+                           <div class="col-md-2 no-padding-left">
+                              <%=  accion.employed.avatare? ? image_tag(accion.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                           </div>
+                           <div class="col-md-8 no-padding-left">
+                              <p class="margin-top" style="margin-top: 5px;"><b>Descripcion de la Accion</b></p>
+                              <p><%= accion.descripcion %></p>
+                              <p class="margin-top"><b>Fecha:</b></p>
+                              <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                           <i class="fas fa-arrow-down" id="flecha"></i><br>
+                           <label class="label label-primary">Pertenece al Reporte:</label>
+                        </div>
+                        <br>
+                        <div class="container-fluid" id="contenedor2">
+                           <div class="col-md-2 no-padding-left">
+                              <%=  accion.employed.avatare? ? image_tag(accion.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
+                           </div>
+                           <div class="col-md-8 no-padding-left">
+                              <p class="margin-top" style="margin-top: 5px;"><b>Descripcion del Reporte</b></p>
+                              <p><%= accion.report.description %></p>
+                              <p class="margin-top"><b>Fecha:</b></p>
+                              <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     </div>
                   </div>
-                  <br>
-
-                  <div class="text-center">
-                    <i class="fas fa-arrow-down" id="flecha"></i><br>
-                    <label class="label label-primary">Pertenece al Reporte:</label>
-                  </div>
-                  <br>
-
-                  <div class="container-fluid" id="contenedor2">
-
-                      <div class="col-md-2 no-padding-left">
-                         <%=  accion.employed.avatare? ? image_tag(accion.employed.avatare_url) : image_tag("https://dnuba.s3.amazonaws.com/uploads/bank_image/achivo/44/user.jpeg")%>                 
-                      </div>
-
-                       <div class="col-md-8 no-padding-left">
-
-                        <p class="margin-top" style="margin-top: 5px;"><b>Descripcion del Reporte</b></p>
-                        <p><%= accion.report.description %></p> 
-
-                        <p class="margin-top"><b>Fecha:</b></p>
-                        <p class="no-margin-bottom">aasdgfasdfashgdahd</p>
-
-                      </div>
-                  </div>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-              
+               </div>
             </div>
-          </div>
          </td>
-
          <% end %>
    </tbody>
 </table>
@@ -364,48 +347,39 @@
       
 </script>
 <style>
-
-#contenedor2{
+   #contenedor2{
    border: 1px solid #c3c3c3;
-}
-
-#contenedor2:hover{box-shadow: 0px 0px 0px gray , 0px 2px 10px gray; transition: box-shadow 0.3s;}
-
-#contenedor2 img{
-    width: 64px;
-    border-radius: 50%;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.no-padding-left{
-  padding-left: 0px;
-}
-
-.margin-top{
-  margin-bottom: 0px;
-}
-
-.no-margin-bottom{
-  margin-bottom: 5px;
-}
-
-.label{
-  color: #fff !important;
-  font-size: 10px;
-}
-
-
-  #flecha{
-    font-size: 15px;
-  }
-  .clasemodal{
-    padding: 5px 10px;
-    color: #fff !important;
-    font-size: 9px;
-    background-color: #2a3f54 !important;
-    cursor: pointer;
-  }
+   }
+   #contenedor2:hover{box-shadow: 0px 0px 0px gray , 0px 2px 10px gray; transition: box-shadow 0.3s;}
+   #contenedor2 img{
+   width: 64px;
+   border-radius: 50%;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   }
+   .no-padding-left{
+   padding-left: 0px;
+   }
+   .margin-top{
+   margin-bottom: 0px;
+   }
+   .no-margin-bottom{
+   margin-bottom: 5px;
+   }
+   .label{
+   color: #fff !important;
+   font-size: 10px;
+   }
+   #flecha{
+   font-size: 15px;
+   }
+   .clasemodal{
+   padding: 5px 10px;
+   color: #fff !important;
+   font-size: 9px;
+   background-color: #2a3f54 !important;
+   cursor: pointer;
+   }
    .shi
    {
    height:  30px !important;
