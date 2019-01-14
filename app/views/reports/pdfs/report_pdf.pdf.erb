@@ -47,8 +47,8 @@
          <tr>
             <td><strong>Fecha de compromiso </strong> <br><%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
             <td><strong>Fecha de Cierre </strong> <br><%= get_date(@report.f_real) if @report.f_real %></td>
-            <td><strong>Costo Presupuestado </strong><br> <%= number_to_currency(@report.costo_presupuestado, precision: 0) %></td>
-            <td><strong>Costo Real </strong><br> <%= number_to_currency(@report.costo, precision: 0) %></td>
+            <td><strong>Costo Presupuestado </strong><br> <%= number_to_currency(@report.accions.sum(:costo_presupuestado), precision: 0) %></td>
+            <td><strong>Costo Real </strong><br> <%= number_to_currency(@report.accions.sum(:costo), precision: 0) %></td>
          </tr>
       </table>
       <% if @report.clinte_proveedor != nil%>
