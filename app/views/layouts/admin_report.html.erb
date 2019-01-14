@@ -553,7 +553,7 @@
                            <%if @report.state == "Abierto"%>   
                            <div class="col-md-4 text-center" style= "background:<%=color%>;color:white;font-weight:bold">
                               Fecha de Entrega<br><%= get_date(@report.f_compromiso)%> &nbsp;&nbsp;&nbsp; <%= @report.contador_seg < 0 ?  "Vencido" :  "Faltan"%> <%=@report.contador_seg.abs%> días
-                           </dissv>
+                           </div>
                            <%else%>
                            <div class="col-md-2 text-center" style= "background:white;color:gray;font-weight:bold">
                               Ejecución Esperada<br><%= get_date(@report.f_compromiso)%>  
