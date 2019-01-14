@@ -35,8 +35,8 @@
          <!-- FIN RESPONSABILIDAD-->
          <div class="row rtr">
         
-         <div class="col-md-6 rtd "><span class="s"><strong class="color_primary">    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.costo_presupuestado) %></span></div>
-         <div class="col-md-6 rtd "><span class=""><strong class="color_primary"> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.costo) %></span></div>
+         <div class="col-md-6 rtd "><span class="s"><strong class="color_primary">    <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Presupuestado: </strong> <%= number_to_currency(@report.accions.sum(:costo_presupuestado)) %></span></div>
+         <div class="col-md-6 rtd "><span class=""><strong class="color_primary"> <i class= "fas fa-hand-holding-usd" style="font-size: 20px"></i> Costo Real: </strong><%= number_to_currency(@report.accions.sum(:costo)) %></span></div>
          </div>
 
          <% if @report.clinte_proveedor%> 
