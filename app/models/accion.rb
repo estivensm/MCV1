@@ -202,7 +202,7 @@ puts search2
         end
         errors.add(:La, " frecuencia de seguimiento no puede ser mayor a la fecha de compromiso") unless
         (self.contador_seg > self.f_seguimiento || self.f_seguimiento == 0)
-        errors.add(:La, "La fecha de compromiso de la Accion debe ser menor a la fecha de compromiso del Reporte") unless
+        errors.add(:La, " fecha de compromiso de la Accion debe ser menor a la fecha de compromiso del Reporte") unless
         (self.f_compromiso < report.f_compromiso)
       end
   end
