@@ -600,20 +600,12 @@
                            
 
 
-                            <%if  Amefp.where(causa_id:@report.causas.last.id).count != 0 %>   
-
-                            <%=  link_to  show_amefp_path(@report.causas.last.amefps.first.id) do  %>  
-                               <i class="fa fa-search" style="font-size: 20px"></i> Analisis de Causa
-                                  <%end%> 
-                            <%else%>
+                       
 
                                  <%= link_to report_causa_path(@report,@report.causas.last.id) do %>
                                    <i class="fa fa-search" style="font-size: 20px"></i> Analisis de Causa
                             
-                                  <%end%>
-                            
-                            <%end%>
-
+                                  
 
                            <%end%>
                         </li>
