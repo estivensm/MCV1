@@ -487,6 +487,9 @@ end
     @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
+
+    @valor_real = @accions.sum(:costo)
+    @valor_presupuestado = @accions.sum(:costo_presupuestado)
     @seguimientos = @report.rseguimientos.order(created_at: :desc)
     @accion_eficaz = @report.accions.where(eficaz: true).count
     @accion_noeficaz = @report.accions.where(eficaz: false).count
