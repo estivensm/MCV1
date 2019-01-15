@@ -647,6 +647,12 @@
              placeholder_text_multiple: "Seleccione una varias opciones"
    
            });
+
+        var c = "<%=@report.source_id%>"; 
+        get_source(c);
+
+
+
    }
    else
    {
@@ -718,7 +724,7 @@
    {
      
    
-     $.get("/sourcee/" + b, function(data) {
+     $.get("/sourceep/" + b, function(data) {
            
             
                

@@ -545,8 +545,10 @@ end
     @es = Source.where({default: true, admin_user: current_user.admin_user}).first
     @source_parents = SourceParent.where(admin_user: current_user.admin_user)
     @cliente_proveedors1 = ClinteProveedor.where(admin_user: current_user.admin_user).order(created_at: :desc)
-
-@report.tag = false
+    @report.tag = false
+    @evi =  false
+    @requi =  false
+    @num = false
   end
 
   # POST /reports
