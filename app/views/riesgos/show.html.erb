@@ -5,8 +5,41 @@
 <%end%>
 <%if @riesgo.report %>
 <div class="alert alert-info text-center" style="padding: 4px;margin-bottom: 5px !important;">
-  <strong> ESTE RIESGO TIENE UN REPORTE (PLAN DE ACCION) </strong><%= link_to "IR AL REPORTE", report_path(@riesgo.report.id) , class: "btn btn-primary" %> 
+
+   <%if @riesgo.report.state != "Cerrado" && @riesgo.report.accions.count != 0 && @riesgo.report.accions.abiertas.count == 0 && @riesgo.risk_value > 120 %>
+      
+         <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL REPORTE ASOCIADO A ESTE RIESGO NO TIENE GESTION PENDIENTE, PERO EL RIESGO AÚN NO ES ACEPTABLE O TOLERABLE  !
+         <br><span>(Valora el riesgo nuevamente para poder cerrar el Reporte )</span> <br>
+         <br>
+               
+                  <%= link_to "VALORAR RIESGO", new_riesgo_valoration_risk_path(@riesgo.report.riesgo.id) ,data: { turbolinks: false }, :class => 'btn btn-primary', style: ""  %>
+     
+ <%end%>  
+ <%if @riesgo.report.state != "Cerrado" && @riesgo.report.accions.count != 0 && @riesgo.report.accions.abiertas.count == 0 && @riesgo.risk_value <= 120 %>
+      
+         <i class="fa fa-thumbs-o-up" style = "font-size:30px;margin-right: 15px;" aria-hidden="true"></i>¡EL REPORTE ASOCIADO A ESTE RIESGO NO TIENE GESTION PENDIENTE, Y EL RIESGO ES  ACEPTABLE O TOLERABLE, YA PUEDES CERRARLO!
+       
+               
+                 <br><br>
+     
+ <%end%>  
+
+<%if @riesgo.report.state != "Cerrado" && ((@riesgo.report.accions.count == 0 && @riesgo.report.accions.cerradas.count == 0) || (@riesgo.report.accions.count != 0 && @riesgo.report.accions.abiertas.count != 0)) && @riesgo.risk_value > 120 %>
+  <strong> ESTE RIESGO TIENE UN REPORTE (PLAN DE ACCION)  </strong>
+<br><br>
+<%end%>
+
+
+<%if @riesgo.report.state == "Cerrado"%>
+  <strong> ESTE RIESGO TIENE UN REPORTE (PLAN DE ACCION) CERRADO  </strong>
+<br><br>
+<%end%>
+<%= link_to "IR AL REPORTE", report_path(@riesgo.report.id) , class: "btn btn-primary" %> 
 </div>
+
+      
+
+
 <%end%>
 <div class="row encabezado"">
    <div class="row">

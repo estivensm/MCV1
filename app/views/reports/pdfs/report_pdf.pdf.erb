@@ -210,25 +210,31 @@
       </tr>
       <tr>
          <td style="width: 25%"><strong>Responsable </strong><br> <%= actividad.employed.first_name %><%= actividad.employed.first_last_name %></td>
-         <td style="width: 25%"><strong>Fecha Creacion </strong><br> <%= get_date(actividad.created_at) %></td>
+         <td style="width: 25%"><strong>Fecha Inicio </strong><br> <%= get_date(actividad.start_date) %></td>
          <td style="width: 25%"><strong>Fecha Compromiso </strong><br> <%= get_date(actividad.f_compromiso) %></td>
          <td style="width: 25%"><strong>Estado </strong><br> <%= get_state_string(actividad.estado).html_safe %></td>
       </tr>
       <tr>
-         <td><strong>Fecha de Entrega </strong><br> <%= get_date(actividad.f_real) %></td>
+         <td><strong>Fecha de Cierre </strong><br> <%= get_date(actividad.f_real) %></td>
          <td><strong>¿ Cumplio ?</strong><br><%if actividad.estado == "Cerrada"%>  <%= actividad.contador_seg > 0  ? "Si" : "No" %><%else%><%="N/A"%><%end%></td>
          <td><strong>¿ Eficaz ?</strong><br> <%if actividad.estado == "Cerrada"%> <%= actividad.eficaz  ? "Si" : "No" %><%else%><%="N/A"%><%end%></td>
          <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(actividad.costo_presupuestado, precision: 0) %><br> Real: <%= number_to_currency(actividad.costo, precision: 0) %></td>
       </tr>
         <tr>
-         <td colspan="4" style="padding: 5px 20px;"><strong>Tareas </strong></td>
+         <td colspan="4" style="padding: 5px 20px;"><strong>TAREAS </strong></td>
+      </tr>
+       <tr>
+         <td colspan="2" style="padding: 5px 20px;"><strong>Descripcion </strong></td>
+         <td style="padding: 5px 20px;"><strong>Estado</strong></td>
+         <td style="padding: 5px 20px;"><strong>Fecha de Compromiso</strong></td>
       </tr>
     
          <% actividad.tasks.each do |task| %>
            <tr>
-        
+         <td colspan="2" ><%=task.name %></td>
          <td ><%= get_state_string(task.estado)%></td>
-          <td colspan="3" ><%=task.name %></td>
+          
+           <td><%=task.f_compromiso %></td>
          </tr>
          <%end%>
       
