@@ -6,10 +6,10 @@ before_action :authenticate_user!
     @accion_search = Accion.where(employed_id: @employed.id).abiertas
     if params[:search]
     	
-    	@acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+    	@acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(f_compromiso: :asc)
 
     else 
-    	@acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+    	@acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(f_compromiso: :asc)
 
     end
 
@@ -28,10 +28,10 @@ def myaccions_cerradas
     @accion_search = Accion.where(employed_id: @employed.id).cerradas
     if params[:search]
       
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(f_compromiso: :asc)
 
     else 
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(f_compromiso: :asc)
 
     end
 
@@ -58,7 +58,7 @@ end
     @accion_search1 = Accion.where(user_id: current_user.id).where(admin_user: current_user.admin_user).abiertas
     if params[:search]
       
-      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
+      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(f_compromiso: :asc)
 
     else 
      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
@@ -78,10 +78,10 @@ def myaccions_asignadas_cerradas
     @accion_search1 = Accion.where(user_id: current_user.id).where(admin_user: current_user.admin_user).cerradas
     if params[:search]
       
-      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(created_at: :desc)
+      @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search4],params[:search5]).order(f_compromiso: :asc)
 
     else 
-     @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
+     @acciones = @accion_search1.paginate(page: params[:page],:per_page => 30).order(f_compromiso: :asc)
 
     end
 

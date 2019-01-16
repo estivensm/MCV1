@@ -181,7 +181,7 @@ end
     @accion_search = Accion.where(admin_user:current_user.admin_user)
     if params[:search]
 
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(f_compromiso: :asc)
 
     else
       @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
@@ -217,7 +217,7 @@ end
     @accion_search = Accion.where(admin_user:current_user.admin_user).abiertas
     if params[:search]
 
-      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(created_at: :desc)
+      @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).search(params[:search0],params[:search],params[:search2],params[:search3],params[:search5],params[:search6]).order(f_compromiso: :asc)
 
     else
       @acciones = @accion_search.paginate(page: params[:page],:per_page => 30).order(created_at: :desc)
