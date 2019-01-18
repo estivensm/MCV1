@@ -964,7 +964,7 @@ La materialización del riesgo es posible que suceda varias veces en la vida lab
 con exposición continuada o frecuente.
 Es posible que suceda el daño alguna vez. ", "Medio (M)" ]  
 
-  elsif (np <= 4 && np >= 2)
+  elsif (np <= 4 && np >= 1)
      
      ["Situación mejorable con exposición ocasional o esporádica, o situación sin
 anomalía destacable con cualquier nivel de exposición.
