@@ -180,7 +180,7 @@
             </th>
             <th id="c6" style="background:#ff4b4b;">
                <span style="position:absolute;width: 30px;margin-left: 45px;">
-               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 60 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)   %>
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 60 && (valoration_risk.np_value <= 30 && valoration_risk.np_value >= 10)   %>
                </span>
                <span style="position:absolute;margin-top: 10px;margin-left: 5px;">I</span>
                <span style="position:absolute;margin-top: 25px; margin-left: 3px;">1200 - 600</span>
@@ -214,7 +214,7 @@
             </th>
             <th id="c10" style="background:yellow">
                <span style="position:absolute;width: 30px;margin-left: 45px;">
-               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 25 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)   %>
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 25 && (valoration_risk.np_value <= 30 && valoration_risk.np_value >= 10)   %>
                </span>
                <span style="position:absolute;margin-top: 10px;margin-left: 5px;">II</span>
                <span style="position:absolute;margin-top: 25px; margin-left: 3px;">500 - 250</span>
@@ -250,7 +250,7 @@
             </th>
             <th id="c14" style="background:yellow">
                <span style="position:absolute;width: 30px;margin-left: 45px;">
-               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 10 && (valoration_risk.np_value <= 20 && valoration_risk.np_value >= 10)   %></span>
+               <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Simple_Alert.svg/600px-Simple_Alert.svg.png", style:"width:30px" if valoration_risk.nc_value == 10 && (valoration_risk.np_value <= 30 && valoration_risk.np_value >= 10)   %></span>
                <span style="position: absolute;margin-left:5px">II 200</span>
                <span style="position: absolute;margin-top: 25px;margin-left: 76px;">III 100</span>
                <canvas id="canvas14<%=valoration_risk.id%>" width="120" height="45"></canvas>
