@@ -432,6 +432,78 @@ def  report_pdf
 
     end
     @seguimientos_t = @seguimientos + @seguimientosa
+        @responsables = @report.employeds
+    @accionsca = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Abierta").count
+    @accionscc = Accion.where(report_id: @report.id).where(tipo: "Accion").where(estado: "Cerrada").count
+    @correa = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Abierta").count
+    @correc = Accion.where(report_id: @report.id).where(tipo: "Correccion").where(estado: "Cerrada").count
+    @actividad = Accion.where(report_id: @report.id).where(tipo: "Actividad").count
+    @accions = Accion.where(report_id: @report.id)
+    @tasks = Task.where(report_id: @report.id)
+
+    @valor_real = @accions.cerradas.sum(:costo)
+    @valor_presupuestado = @accions.cerradas.sum(:costo_presupuestado)
+    @resultado_eficacia = @valor_presupuestado - @valor_real
+
+    @seguimientos = @report.rseguimientos.order(created_at: :desc)
+    
+    @accion_eficaz = @report.accions.where(eficaz: true).count
+    @accion_noeficaz = @report.accions.where(eficaz: false).count
+    
+
+    @total_cerradas = @report.accions.cerradas.count
+    @accion_cumplio = @report.accions.cumplio.count
+    @accion_no_cumplio = @report.accions.nocumplio.vencidas.count
+    
+
+    @accion_eficacia = @total_cerradas == 0 ? 0 :  ((@accion_cumplio.to_f/@total_cerradas)*100).to_i
+    
+    #@accion_eficacia = @total_cerradas == 0 ? 0 :  ((@accion_cumplio.to_f/@total_cerradas)*100).to_i
+    
+    if @total_cerradas > 0
+     
+     if @valor_real > @valor_presupuestado
+         
+         @resultado_costo = "El costo Real es mayor en " + ActionController::Base.helpers.number_to_currency(@resultado_eficacia.abs , precision: 0).to_s +  " lo presupuestado, el desarrollo de esta gestion no fue eficiente financieramente"
+     
+     elsif  @valor_real == @valor_presupuestado
+           
+         @resultado_costo = "El costo Real es igual al Presupuestado, el desarrollo de esta gestion es eficiente financieramente"
+     
+     else
+        
+         @resultado_costo = "El costo Real es menor en " + ActionController::Base.helpers.number_to_currency(@resultado_eficacia, precision: 0).to_s +  " de lo presupuestado, el desarrollo de esta gestion es eficiente financieramente"
+     
+     end
+       
+
+
+    else
+      @resultado_costo = "No hay Gestion Cerrada"
+    end  
+
+    if @total_cerradas > 0
+
+      if @accion_eficacia < 60
+
+          @color = "red"
+
+      elsif @accion_eficacia >= 60 && @accion_eficacia <= 80 
+
+          @color = "orange"
+      else
+
+        @color = "green"
+
+      end
+
+
+    else
+        
+        @color = "gray"
+
+    end
+      
 
     @accion_eficaz = @report.accions.where(eficaz: true).count
     @accion_noeficaz = @report.accions.where(eficaz: false).count
@@ -488,12 +560,72 @@ end
     @accions = Accion.where(report_id: @report.id)
     @tasks = Task.where(report_id: @report.id)
 
-    @valor_real = @accions.sum(:costo)
-    @valor_presupuestado = @accions.sum(:costo_presupuestado)
+    @valor_real = @accions.cerradas.sum(:costo)
+    @valor_presupuestado = @accions.cerradas.sum(:costo_presupuestado)
+    @resultado_eficacia = @valor_presupuestado - @valor_real
+
     @seguimientos = @report.rseguimientos.order(created_at: :desc)
+    
     @accion_eficaz = @report.accions.where(eficaz: true).count
     @accion_noeficaz = @report.accions.where(eficaz: false).count
     
+
+    @total_cerradas = @report.accions.cerradas.count
+    @accion_cumplio = @report.accions.cumplio.count
+    @accion_no_cumplio = @report.accions.nocumplio.vencidas.count
+    
+
+    @accion_eficacia = @total_cerradas == 0 ? 0 :  ((@accion_cumplio.to_f/@total_cerradas)*100).to_i
+    
+    #@accion_eficacia = @total_cerradas == 0 ? 0 :  ((@accion_cumplio.to_f/@total_cerradas)*100).to_i
+    
+    if @total_cerradas > 0
+     
+     if @valor_real > @valor_presupuestado
+         
+         @resultado_costo = "El costo Real es mayor en " + ActionController::Base.helpers.number_to_currency(@resultado_eficacia.abs , precision: 0).to_s +  " lo presupuestado, el desarrollo de esta gestion no fue eficiente financieramente"
+     
+     elsif  @valor_real == @valor_presupuestado
+           
+         @resultado_costo = "El costo Real es igual al Presupuestado, el desarrollo de esta gestion es eficiente financieramente"
+     
+     else
+        
+         @resultado_costo = "El costo Real es menor en " + ActionController::Base.helpers.number_to_currency(@resultado_eficacia, precision: 0).to_s +  " de lo presupuestado, el desarrollo de esta gestion es eficiente financieramente"
+     
+     end
+       
+
+
+    else
+      @resultado_costo = "No hay Gestion Cerrada"
+    end  
+
+    if @total_cerradas > 0
+
+      if @accion_eficacia < 60
+
+          @color = "red"
+
+      elsif @accion_eficacia >= 60 && @accion_eficacia <= 80 
+
+          @color = "orange"
+      else
+
+        @color = "green"
+
+      end
+
+
+    else
+        
+        @color = "gray"
+
+    end
+      
+
+
+
   end
 
 

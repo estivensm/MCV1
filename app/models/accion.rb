@@ -62,6 +62,10 @@ scope :vencidas, -> { where('contador_seg < ?', 0) }
 scope :alerta1, -> { where('contador_seg <= ?', 5) }
 scope :alerta, ->   { where(estado_vencida: true) }
 
+scope :cumplio, -> { where('contador_seg >= ?', 0).where(estado: "Cerrada") }
+scope :nocumplio, -> { where('contador_seg < ?', 0).where(estado: "Cerrada") }
+
+
 
 def self.search(search0,search, search2, search3, search5, search6)
 

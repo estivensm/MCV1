@@ -967,8 +967,8 @@ Es posible que suceda el daño alguna vez. ", "Medio (M)" ]
   elsif (np <= 4 && np >= 1)
      
      ["Situación mejorable con exposición ocasional o esporádica, o situación sin
-anomalía destacable con cualquier nivel de exposición.
-No es esperable que se materialice el riesgo, aunque puede ser concebible. ", "Bajo (B) " ]  
+       anomalía destacable con cualquier nivel de exposición.
+       No es esperable que se materialice el riesgo, aunque puede ser concebible. ", "Bajo (B) " ]  
   
   end        
   

@@ -107,6 +107,10 @@
    <%end%>
 </div>
 <br>
+
+
+
+
 <%if @report.source.correccion && @report.accions.where(tipo:"Correccion").count != 0%>
  <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">CORRECCIONES</t3>
@@ -243,9 +247,37 @@
    <%end%>
 </div>
 <% end %>
+<br>
+   <div class="info">
+             <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">INDICADORES</h3>
+
+               <table class="table1 indicadores" style="border-bottom: 1px solid #c2c2c2;" >
+          <tr>
+            <td style="text-align:center"><strong>Eficacia en cierre de Acciones</strong></td>
+            <td style="text-align:center"><strong>Eficacia en cumplimiento Financiero</strong></td>
+         </tr>
+           <tr>
+            <td ><%  if @total_cerradas > 0 %>
+
+
+             <%= "El porcentaje de eficacia en la gestion del reporte es de "  %><span style="color:<%=@color%>"> %<%=@accion_eficacia%></span>
+               <%else%>
+
+               <%= "No hay Gestion Cerrada" %>
+               <%end%>
+          </td>
+            <td ><%=@resultado_costo%></td>
+         </tr>
+      </table>
+   </div>   
 
 <br>
 <style>
+   .indicadores td
+   {
+    text-align: center;
+    border: 1px solid #d0d0d0;
+   }
    .info1
    {
    border:1px solid #2A3F54;

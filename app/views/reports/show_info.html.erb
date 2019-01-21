@@ -47,8 +47,8 @@
          <tr>
             <td><strong>Fecha de compromiso </strong> <br><%= get_date(@report.f_compromiso) if @report.f_compromiso %></td>
             <td><strong>Fecha de Cierre </strong> <br><%= get_date(@report.f_real) if @report.f_real %></td>
-            <td><strong>Costo Presupuestado </strong><br> <%= number_to_currency(@report.costo_presupuestado, precision: 0) %></td>
-            <td><strong>Costo Real </strong><br> <%= number_to_currency(@report.costo, precision: 0) %></td>
+            <td><strong>Costo Presupuestado </strong><br> <%= number_to_currency(@report.accions.sum(:costo_presupuestado), precision: 0) %></td>
+            <td><strong>Costo Real </strong><br> <%= number_to_currency(@report.accions.sum(:costo), precision: 0) %></td>
          </tr>
       </table>
       <% if @report.clinte_proveedor != nil%>
@@ -107,6 +107,10 @@
    <%end%>
 </div>
 <br>
+
+
+
+
 <%if @report.source.correccion && @report.accions.where(tipo:"Correccion").count != 0%>
  <div class="info1 ">
         <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">CORRECCIONES</t3>
@@ -210,25 +214,31 @@
       </tr>
       <tr>
          <td style="width: 25%"><strong>Responsable </strong><br> <%= actividad.employed.first_name %><%= actividad.employed.first_last_name %></td>
-         <td style="width: 25%"><strong>Fecha Creacion </strong><br> <%= get_date(actividad.created_at) %></td>
+         <td style="width: 25%"><strong>Fecha Inicio </strong><br> <%= get_date(actividad.start_date) %></td>
          <td style="width: 25%"><strong>Fecha Compromiso </strong><br> <%= get_date(actividad.f_compromiso) %></td>
          <td style="width: 25%"><strong>Estado </strong><br> <%= get_state_string(actividad.estado).html_safe %></td>
       </tr>
       <tr>
-         <td><strong>Fecha de Entrega </strong><br> <%= get_date(actividad.f_real) %></td>
+         <td><strong>Fecha de Cierre </strong><br> <%= get_date(actividad.f_real) %></td>
          <td><strong>¿ Cumplio ?</strong><br><%if actividad.estado == "Cerrada"%>  <%= actividad.contador_seg > 0  ? "Si" : "No" %><%else%><%="N/A"%><%end%></td>
          <td><strong>¿ Eficaz ?</strong><br> <%if actividad.estado == "Cerrada"%> <%= actividad.eficaz  ? "Si" : "No" %><%else%><%="N/A"%><%end%></td>
          <td><strong>Costos</strong><br>Pruesupuesto: <%= number_to_currency(actividad.costo_presupuestado, precision: 0) %><br> Real: <%= number_to_currency(actividad.costo, precision: 0) %></td>
       </tr>
         <tr>
-         <td colspan="4" style="padding: 5px 20px;"><strong>Tareas </strong></td>
+         <td colspan="4" style="padding: 5px 20px;"><strong>TAREAS </strong></td>
+      </tr>
+       <tr>
+         <td colspan="2" style="padding: 5px 20px;"><strong>Descripcion </strong></td>
+         <td style="padding: 5px 20px;"><strong>Estado</strong></td>
+         <td style="padding: 5px 20px;"><strong>Fecha de Compromiso</strong></td>
       </tr>
     
          <% actividad.tasks.each do |task| %>
            <tr>
-        
+         <td colspan="2" ><%=task.name %></td>
          <td ><%= get_state_string(task.estado)%></td>
-          <td colspan="3" ><%=task.name %></td>
+          
+           <td><%=task.f_compromiso %></td>
          </tr>
          <%end%>
       
@@ -237,12 +247,37 @@
    <%end%>
 </div>
 <% end %>
+<br>
+   <div class="info">
+             <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">INDICADORES</h3>
+
+               <table class="table1 indicadores" style="border-bottom: 1px solid #c2c2c2;" >
+          <tr>
+            <td style="text-align:center"><strong>Eficacia en cierre de Acciones</strong></td>
+            <td style="text-align:center"><strong>Eficacia en cumplimiento Financiero</strong></td>
+         </tr>
+           <tr>
+            <td ><%  if @total_cerradas > 0 %>
 
 
+             <%= "El porcentaje de eficacia en la gestion del reporte es de "  %><span style="color:<%=@color%>"> %<%=@accion_eficacia%></span>
+               <%else%>
 
+               <%= "No hay Gestion Cerrada" %>
+               <%end%>
+          </td>
+            <td ><%=@resultado_costo%></td>
+         </tr>
+      </table>
+   </div>   
 
 <br>
 <style>
+   .indicadores td
+   {
+    text-align: center;
+    border: 1px solid #d0d0d0;
+   }
    .info1
    {
    border:1px solid #2A3F54;
