@@ -1,6 +1,34 @@
 
+  <%if @report.riesgo%> 
+     <div class="info1 ">
+        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">INFORMACION DEL RIESGO</t3>
+         
+  </div> 
+  <div class="info">
+   <table class="table1 responsables tditems" style="border-top:1px solid #c2c2c2">
+         <tr>
+            <td><strong>Proceso </strong><br> <%=@report.riesgo.proceso.name%></td>
+            <td><strong>Contexto </strong><br> <%=@report.riesgo.context%></td>
+             <td><strong>Clasificación </strong><br> <%=@report.riesgo.classification_risk.name%></td>
+              <td><strong>Fuente de Riesgo </strong><br> <%=@report.riesgo.risk_source.name%></td>
+
+         </tr>
+         <tr>
+            <td colspan="2"><strong>Tratamiento </strong><br><%=@report.riesgo.treatment.upcase%></strong> <%=get_tratamiento(@report.riesgo.treatment)%></td>
+             <td><strong>Valor del NR </strong><br> <%= !@report.riesgo.risk_value.nil? ? @report.riesgo.risk_value : "Sin Valorar" %></td>
+
+                <td ><strong> Nivel del Riesgo </strong><br> <span style="font-weight:bold;color:<%=get_riesgo(@report.riesgo.risk_value)[2] if !@report.riesgo.risk_value.nil?%>"> <%= !@report.riesgo.risk_value.nil? ? get_riesgo(@report.riesgo.risk_value)[1] : "Sin Valorar" %></span></td>
+
+                  
+            
+            </div>
+
+         </tr>
+      </table>
+ </div>
+<%end%>
   <div class="info1 ">
-        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">INFORMACION GENERAL</t3>
+        <h3 colspan="4" class="tit bg-blue-app color-white info1-h3">INFORMACION GENERAL DEL REPORTE</t3>
          
   </div>  
    <div class="info">
@@ -254,7 +282,7 @@
                <table class="table1 indicadores" style="border-bottom: 1px solid #c2c2c2;" >
           <tr>
             <td style="text-align:center"><strong>Eficacia en cierre de Acciones</strong></td>
-            <td style="text-align:center"><strong>Eficacia en cumplimiento Financiero</strong></td>
+            <td style="text-align:center"><strong>Eficiencia en cumplimiento Financiero</strong></td>
          </tr>
            <tr>
             <td ><%  if @total_cerradas > 0 %>
