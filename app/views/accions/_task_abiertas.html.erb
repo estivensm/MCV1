@@ -11,7 +11,7 @@
    </div>
 </div>
 <% if @tasks.count > 0 %>
-<div class="taskcont">
+<div class="taskcont<%=accion.id%>">
 <% @tasks.each do |task| %>
 <div class="conteinter reporte cnt trow<%=task.id%>">
     <%= render "accions/rows_task/task_row" , task: task, accion: accion %>
