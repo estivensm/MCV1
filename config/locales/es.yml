@@ -6,7 +6,8 @@ es:
       not_saved: 
         one: "Ha ocurrido 1 error:"
         other: "Han ocurrido %{count} errores:"
-      confirmation: "y contraseña deberian ser iguales."  
+      confirmation: "y contraseña deberian ser iguales." 
+      required: debe existir 
       
   activerecord:
     attributes:
@@ -28,12 +29,13 @@ es:
         t_valor: "Gravedad"
         npr_tage: "NPR Tage"
       report:
-        employed_id: "Asignada a"
-        source_id: "Hallazgo"
+        employed: "Asignada a"
+        source: "Tipo de Reporte"
         source_parent: "Fuente"
         cierra_id: "Responsable de Cierre"
         employed_reporta: "Empleado que Reporta"
         name: "Descripción corta"
+        
   devise:
     failure:
       not_found_in_database: "Usuario o Contraseña inválido"

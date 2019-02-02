@@ -28,8 +28,10 @@ class Riesgo < ApplicationRecord
 	belongs_to :proceso
     belongs_to :classification_risk
     belongs_to :risk_source
-	has_many :valoration_risks , dependent: :destroy
+	belongs_to :accion, optional: true
+    has_many :valoration_risks , dependent: :destroy
     has_one :report
+
 
 
     def self.search(search, search2, search3)

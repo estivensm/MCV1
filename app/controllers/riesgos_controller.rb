@@ -33,6 +33,7 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   # GET /riesgos/new
   def new
     @riesgo = Riesgo.new
+    @accion = params[:accion]
     
   end
 

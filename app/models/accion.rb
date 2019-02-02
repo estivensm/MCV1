@@ -39,6 +39,7 @@
 class Accion < ApplicationRecord
   belongs_to :report
   has_many :tasks , dependent: :destroy
+  has_many :riesgos, dependent: :destroy
   has_and_belongs_to_many :employeds, dependent: :destroy
   has_and_belongs_to_many :causa_efectos, dependent: :destroy
     has_many :aseguimientos, dependent: :destroy

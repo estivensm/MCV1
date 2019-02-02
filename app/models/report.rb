@@ -70,7 +70,7 @@ class Report < ApplicationRecord
   mount_uploader :archivo, ArchivoReportUploader
   validate :archivo_size_validation, :if => "archivo?"  
   validate :start_must_be_before_end_time, on: [:create, :update]
-  validates :employed_id, :proceso_id, :source_id,:source_parent_id ,:employed_reporta,:cierra_id ,:f_compromiso,presence: true
+  validates :employed_reporta,:cierra_id ,:f_compromiso, :description,presence: true
 
   scope :cerrados, -> { where(state: "Cerrado") }
   scope :abiertos, -> { where(state: "Abierto") }
