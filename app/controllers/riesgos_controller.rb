@@ -33,7 +33,12 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
   # GET /riesgos/new
   def new
     @riesgo = Riesgo.new
-    @accion = params[:accion]
+    if !params[:accion].nil?
+       accion = Accion.find(params[:accion])
+       @accion_msg = ["Este riesgo pertenece a la accion: #{accion.descripcion}", accion.id]
+    else
+       @accion_msg = ["", ""]
+    end
     
   end
 

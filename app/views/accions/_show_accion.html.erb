@@ -133,11 +133,29 @@
 
 
            <div class="col-md-12">
-  
+   
              
               <div class="Riesgos">
-                     <%= link_to "Crear Riesgo", new_riesgo_path + "?accion=#{accion.id}"%> 
+                     <%= link_to "Crear Riesgo", new_riesgo_path + "?accion=#{accion.id}", class: "btn btn-primary"%> 
                  </div>
+         
+              <%if accion.riesgos.count != 0%>
+         <%accion.riesgos.each do |riesgo|%>        
+          <div class="row" style="margin-bottom:20px;    margin-bottom: 20px;  background: whitesmoke;
+    padding: 10px;">
+            <div class="col-md-8" style="font-size:15px;">
+               <strong>Tratamiento</strong> <br><strong><%=riesgo.treatment.upcase%></strong> <%=get_tratamiento(riesgo.treatment)%>
+            </div>
+            <div class="col-md-2 text-center" style="font-size:15px;">
+               <strong>Valor del NR</strong> <br><%= !riesgo.risk_value.nil? ? riesgo.risk_value : "Sin Valorar" %>
+            </div>
+            <div class="col-md-2 text-center" style="font-size:15px;background:<%=get_riesgo(riesgo.risk_value)[2] if !riesgo.risk_value.nil?%>;color:<%= !riesgo.risk_value.nil? ? "white !important" : "gray"%>">
+               <strong style="color:<%= "white !important" if !riesgo.risk_value.nil? %>"> Nivel del Riesgo</strong> <br><%= !riesgo.risk_value.nil? ? get_riesgo(riesgo.risk_value)[1] : "Sin Valorar" %>
+            </div>
+         </div>
+              <%end%> 
+
+         <%end%>       
 
 
         </div>  

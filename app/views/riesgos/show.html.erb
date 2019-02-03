@@ -54,6 +54,17 @@
                <%= @riesgo.descripcion %>
             </div>
          </div>
+         <%if @riesgo.accion%>
+        
+           <hr style="margin-top: 5px;border-top: 1px solid #d5d5d5;">
+
+         <div class="row">
+            <div class="col-md-12" style="font-size:15px;">
+                <strong>Acción a la que pertenece el Riesgo: </strong><%= @riesgo.accion.descripcion %><%= link_to "IR",report_accion_path(@riesgo.accion.report.id, @riesgo.accion.id), class: "btn btn-primary", style: "padding:0px 6px;margin-left:10px;"%>
+            </div>
+         </div>
+         
+         <%end%>
          <hr style="margin-top: 5px;border-top: 1px solid #d5d5d5;">
          <div class="row">
             <div class="col-md-3 text-center">
