@@ -152,7 +152,11 @@
           <div class="row" style="margin-bottom:20px;    margin-bottom: 20px;  background: whitesmoke;
     padding: 10px;">
      <div class="row">
-            <div class="col-md-3 text-center">
+            
+            <div class="col-md-1 text-center">
+               <%= link_to  "IR", riesgo_path(riesgo.id), class:"btn btn-primary" %>
+            </div>
+            <div class="col-md-2 text-center">
                <strong>Fecha de creacion Riesgo</strong><br><%= get_date(riesgo.created_at) %>
             </div>
             <div class="col-md-3 text-center">
@@ -168,6 +172,7 @@
                 <strong>Fuente de Riesgo</strong> <br><%=riesgo.risk_source.name%> 
             </div>
          </div>
+         <br>
          <hr>
          <div class="row" style="margin-bottom:20px;">
             <div class="col-md-8" style="font-size:15px;">
