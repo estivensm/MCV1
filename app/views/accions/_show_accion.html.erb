@@ -139,8 +139,16 @@
                   <br><br> 
       <div class="col-md-2 rtd"></div>
       <div class="col-md-8 rtd">
-         <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> ¿ LA ACCIÒN GENERA RIESGOS ? <%= link_to "Crear Riesgo", new_riesgo_path + "?accion=#{accion.id}", class: "btn btn-primary"%> </h4>
+         <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> ¿ La Acciòn genera nuevo peligro ?</h4>
+         <%= form_tag accion_riesgo_path, method: :get do %>
+            <%=hidden_field_tag :accion_id, accion.id%>
+            <br>
+            <%= select_tag 'peligro_id', options_for_select(get_RiskSource.collect{ |u| [u.name, u.id] }),{:class => "peligro", :style => '', :prompt => 'Selecciona Peligro', id: "validationCustom01", :required => true}%>
+         <%=submit_tag "Crear riesgo para este peligro", class: "btn btn-primary"%> 
+         <%end%>
+         
       </div>
+        
       
 
       <div class="col-md-12 text-left">
@@ -269,5 +277,10 @@ margin-bottom: 0px;
      border: none !important;
      border-radius: 0px !important; 
  
+}
+.peligro{
+   width:200px;
+   margin-left:20px;
+   height:34px;
 }
 </style>

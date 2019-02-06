@@ -1,7 +1,7 @@
 class RiesgosController < ApplicationController
 before_action :authenticate_user!
 before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
-
+include ApplicationHelper
   # GET /riesgos
   # GET /riesgos.json
   def index
@@ -39,6 +39,12 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
     else
        @accion_msg = ["", ""]
     end
+
+    if !params[:peligro_id].nil?
+        @peligro = params[:peligro_id]
+   else
+       @peligro = get_RiskSource.last
+   end
     
   end
 
@@ -64,7 +70,10 @@ before_action :set_riesgo, only: [:show, :edit, :update, :destroy]
     
   end
 
-
+  def accion_riesgo
+      peligro = params[:peligro_id]
+      redirect_to new_riesgo_path + "?peligro_id=#{peligro}&accion=#{params[:accion_id]}"
+  end  
   # PATCH/PUT /riesgos/1
   # PATCH/PUT /riesgos/1.json
   def update

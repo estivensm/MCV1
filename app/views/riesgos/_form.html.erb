@@ -8,7 +8,27 @@
          <ul>
          </ul>
       </div>
-         
+               <div class="row">
+               <div class="col-md-6">
+                        
+                          <div class="form-group">
+                          
+                            <%= f.label "Fuente de Riesgo" %>
+                            <%= f.select :risk_source_id, get_RiskSource.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'form form-control', id: "peligro"  }%>
+                        </div>
+               </div>
+               <div class="col-md-6">
+                     
+                     
+                         <div class="form-group">
+                          
+                           <%= f.label "Clasificacion" %>
+                           <%= f.select :classification_risk_id,    get_classification_risk.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%><br>
+
+                        </div>
+               </div>
+            
+         </div>
          <div class="row">
                   <div class="col-md-6">
                        <div class="form-group">
@@ -18,8 +38,8 @@
                   </div>
                    <div class="col-md-6 funkyradio">
 
-                       <div class="col-md-12">
-                           <p><strong>Contexto</strong></p>
+                       <div class="col-md-12" style="padding-left:0px;">
+                           <p style="margin-bottom:0px; "><strong>Contexto</strong></p>
 
                        </div>
                        <div class="col-md-6 funkyradio-success" style="padding-left: 0px;">
@@ -38,24 +58,13 @@
          </div>  
          <hr>   
             <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-12">
                        <div class="form-group">
                            <%= f.label "Descripcion" %>
                            <%= f.text_area :descripcion,  class: "form-control area required", :title => "Es un Campo Obligatorio" %>
                        </div>
                </div>
-               <div class="col-md-6">
-                     
-                     
-                         <div class="form-group">
-                          
-                           <%= f.label "Clasificacion" %>
-                           <%= f.select :classification_risk_id,    get_classification_risk.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'chosen-select form-control'  }%><br>
-
-                          <%= f.label "Fuente de Riesgo" %>
-                            <%= f.select :risk_source_id, get_RiskSource.map { |u| [u.name, u.id] },{ include_blank: false },{ class: 'form form-control', class: "form form-control"   }%>
-                        </div>
-               </div>
+             
             
          </div>
 
@@ -259,5 +268,9 @@
 <script>
    $(document).ready(function(){
      $('#new_riesgo').validate();
+
+
+     $('#peligro').val(<%=@peligro%>);
+     console.log()
     });
 </script>
