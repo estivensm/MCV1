@@ -43,7 +43,7 @@ resources :reports do
     get "correcciones", to: "accions#correcciones" , as: "correcciones"
     get "actividades", to: "accions#actividades" , as: "actividades" 
 end
-
+get 'accion_riesgo', to: "riesgos#accion_riesgo", as:'accion_riesgo'
 get 'new_parte', to: "reports#new_parte", as: "new_parte"
 post "crear_parte", to: "reports#crear_parte", as: "crear_parte"
 
