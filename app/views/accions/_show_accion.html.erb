@@ -132,16 +132,20 @@
         </div>
 
 
-           <div class="col-md-12">
+           <div class="col-md-12" style="margin-top:20px">
                  <div class="row rtr">
-<br>
+<br><br> 
                   <hr>
+                  <br><br> 
       <div class="col-md-2 rtd"></div>
       <div class="col-md-8 rtd">
-         <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> RIESGOS (<%= @tasks.count %>)</h4>
+         <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> ¿ LA ACCIÒN GENERA RIESGOS ? <%= link_to "Crear Riesgo", new_riesgo_path + "?accion=#{accion.id}", class: "btn btn-primary"%> </h4>
       </div>
-      <div class="col-md-2 rtd">       
-         <%= link_to "Crear Riesgo", new_riesgo_path + "?accion=#{accion.id}", class: "btn btn-primary"%> 
+      
+
+      <div class="col-md-12 text-left">
+         <h4 class="linka margin-cero"><i style = "font-size:20px"  class="fa fa-unlock" aria-hidden="true"></i> RIESGOS (<%= accion.riesgos.count %>)</h4>
+    <br>
       </div>
    </div>
              
