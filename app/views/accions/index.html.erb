@@ -130,10 +130,10 @@
    
    })
    })
-       $('#filter').on('click', '.ver_accion', function() {
+       $('.ver_accion').on('click', function() {
       
-      var a = $(this).attr('id').match(/\d+/)[0]
-      console.log(a);
+     var a = $(this).attr('id').match(/\d+/)[0]
+     console.log(a);
       var b = '#show_accion' + a;
       var x = '#row-cont-' + a;
        var y = '#title-accion-' + a;
@@ -160,6 +160,8 @@
       console.log($(y).attr('class') == "filter3 title-accion-select")
       
       console.log("filter3 title-accion-select")
+      console.log(a);
+      console.log('hola1')
    })
    
 
