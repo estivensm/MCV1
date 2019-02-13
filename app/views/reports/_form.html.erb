@@ -41,7 +41,7 @@
          </div>
                 <div class="col-md-3" style="display: none;">
             <div class="form-group cli1">
-               <%= f.label "Reporte" %><br>
+               <%= f.label "Relacionar con otro Reporte" %><br>
                <%= f.select :report_id,
                   Report.all.map { |u| [u.description, u.id] },
                               { include_blank: true },
