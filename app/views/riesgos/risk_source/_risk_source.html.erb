@@ -1,0 +1,11 @@
+
+
+
+ <select class="form form-control" id="peligro" name="riesgo[risk_source_id]">
+   <%@risk_sources.each do |rs|%>
+
+ 	 <option value="<%=rs.id%>" <%= "selected" if action_name == "edit" && @riesgo.risk_source.id == rs.id %>><%=rs.name%></option>
+
+  <%end%>
+
+</select>

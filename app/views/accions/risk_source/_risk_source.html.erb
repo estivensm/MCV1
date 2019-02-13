@@ -1,0 +1,2 @@
+  
+  <%= select_tag 'peligro_id', options_for_select(@risk_sources.all.collect{ |u| [u.name, u.id] }),{:class => "peligro", :style => '', id: "validationCustom01", :required => true}%>

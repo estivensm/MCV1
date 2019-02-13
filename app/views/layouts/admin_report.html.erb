@@ -516,6 +516,18 @@
                               <%end%>  
                            </div>
                         </div>
+                     
+
+
+                      <% if @report.accion%>
+                        <div class="row">
+                           <div class="col-md-12" style="font-size:15px;">
+                              <strong>Este Reporte fue Generado por la Accion: </strong><%= @report.accion.descripcion %><%= link_to "IR",report_accion_path(@report.accion.report.id, @report.accion.id), class: "btn btn-primary", style: "padding:0px 6px;margin-left:10px;"%>
+                           </div>
+                        </div>
+                      <%end%>
+
+
                         <hr style="margin-top: 5px;margin-bottom: 10px;border-top: 1px solid #d5d5d5;">
 
 

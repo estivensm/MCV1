@@ -1,5 +1,10 @@
-
-
+<%if @accion_e == "si"%>
+<div class="row" style="padding: 10px 30px;">
+    <div class="col-md-12">
+       <p style="font-size:18px">¡ Este reporte es una Gestion del Cambio que fue generada por la Accion: <%=@accion.descripcion%> !</p>
+    </div>
+</div>  
+<%end%>
 <hr>
 <div class="row" style="padding: 10px 30px;">
    <div class="col-md-12">
@@ -34,6 +39,16 @@
          <div class="col-md-12">
             <hr>
          </div>
+                <div class="col-md-3" style="display: none;">
+            <div class="form-group cli1">
+               <%= f.label "Reporte" %><br>
+               <%= f.select :report_id,
+                  Report.all.map { |u| [u.description, u.id] },
+                              { include_blank: true },
+                              { class: 'chosen-select1 form-control', id: ""  }
+                   %>
+            </div>
+         </div>
          <div class="col-md-3">
             <div class="form-group cli1">
                <%= f.label "Fuente" %><br>
@@ -44,6 +59,7 @@
                    %>
             </div>
          </div>
+         
          <!--source parentes-->
          <div class="col-md-3">
             <div class="form-group pru1">
@@ -507,6 +523,7 @@
       <hr>
       <%= f.hidden_field :admin_user , :value => current_user.admin_user %>
       <%= f.hidden_field :user_id ,:value =>  current_user.id %>
+      <%=f.hidden_field :accion_id , value: @accion.id if !@accion.nil?%>
 
 
       <%if action_name = "new" &&   @riesgo_e == "si"%>
@@ -617,7 +634,7 @@
      if ("<%=action_name%>" != "edit" && "<%=action_name%>" == "new" )
    {
    
-   if("<%=@riesgo_e%>" != "si")
+   if("<%=@riesgo_e%>" != "si" && "<%=@accion_e%>" != "si")
 
   {
    $('.pri1').attr('disabled', 'disabled'); 
@@ -918,6 +935,72 @@
 
 
     $('#proceso').parent().parent().hide();
+    $('#fuente').parent().parent().hide(); 
+    $('#tipo_riesgo').parent().parent().hide(); 
+
+
+
+
+    console.log(<%=@evi%>);
+
+
+         
+                if (<%=@evi%>)
+               {
+                 $('.evi').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.evi').fadeOut();
+                 
+               }
+               if (<%=@requi%>)
+               {
+                 $('.req').fadeIn();
+                 
+               }
+               else
+               {
+                 $('.req').fadeOut();
+                 
+               }
+               if (<%=@num%>)
+               {
+                 $('.num').fadeIn();
+                    $('.mn').addClass("chosen-select5");
+           $('.chosen-select5').chosen(
+           {
+   
+             allow_single_deselect: true,
+             no_results_text: 'No hay resultados',
+            
+             placeholder_text_single: "Seleccione una opción",
+             placeholder_text_multiple: "Seleccione una varias opciones"
+   
+           });
+               }
+               else
+               {
+                 $('.num').fadeOut();
+                 
+               }
+  }
+
+
+ console.log("<%=action_name%>")
+ console.log("<%=@accion_e%>")
+
+  if ("<%=action_name%>" == "new" && "<%=@accion_e%>" == "si")
+
+  {
+   
+    $('#proceso').val("<%=@proceso%>");
+    $('#fuente').val("<%=@fuente%>");
+    $('#tipo_riesgo').val("<%=@tipo%>");
+
+
+    //$('#proceso').parent().parent().hide();
     $('#fuente').parent().parent().hide(); 
     $('#tipo_riesgo').parent().parent().hide(); 
 

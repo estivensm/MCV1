@@ -62,6 +62,21 @@ class RiskSourcesController < ApplicationController
     end
   end
 
+  def risk_source_form
+        @risk_source = RiskSource.new
+        @action = params[:action_params]
+
+
+    
+  end
+
+  def create_risk_source
+
+      @risk_source = RiskSource.create(user_id: params[:user_id] ,admin_user: params[:admin_user] ,name: params[:name] ,description: params[:description]  ,code: params[:code] )
+      @action = params[:action_params]
+      @risk_sources = RiskSource.where(admin_user: current_user.admin_user).order(created_at: :desc)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_risk_source

@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
 
   resources :risk_sources
+  get 'risk_source_form/:action_params' , to: 'risk_sources#risk_source_form', as: 'risk_source_form'
+  post 'create_risk_source' , to: 'risk_sources#create_risk_source', as: 'create_risk_source'
+
+
+
   resources :classification_risks
   resources :cliente_proveedor_types
   resources :page_documents

@@ -1,0 +1,15 @@
+$('#contact-modal').modal('hide');
+     console.log("<%=@action%>")
+     
+     if ("<%=@action%>" == "accion")	
+   		{
+             console.log("accion")
+       		$('.form_risk').html('<%= j render "accions/risk_source/risk_source", get_RiskSource: @get_RiskSource %>');
+        
+      }
+        else
+
+       {
+       		console.log("riesgo")
+       		$('.form_risk').html('<%= j render "riesgos/risk_source/risk_source", get_RiskSource: @get_RiskSource %>');
+       }

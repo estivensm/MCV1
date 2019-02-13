@@ -1,0 +1,6 @@
+console.log("hola risk")
+$('<%= j render "create_form", risk_source: @risk_source%>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
+

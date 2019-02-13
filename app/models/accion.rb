@@ -37,55 +37,56 @@
 #
 
 class Accion < ApplicationRecord
+  
+
   belongs_to :report
   has_many :tasks , dependent: :destroy
+  has_many :reports, dependent: :destroy
   has_many :riesgos, dependent: :destroy
   has_and_belongs_to_many :employeds, dependent: :destroy
   has_and_belongs_to_many :causa_efectos, dependent: :destroy
-    has_many :aseguimientos, dependent: :destroy
-    has_many :riesgos, dependent: :destroy
-    belongs_to :user
-    belongs_to :employed, :class_name => 'Employed'
-    validate :start_must_be_before_end_time
-    validates :employed_id, presence: true
-    after_destroy :restar_costo
-    after_create :sumar_costo
-    after_create :send_mail
-    before_update :causas
-    validates :employed_id, :cierra_id, :descripcion ,presence: true
-
-scope :cerrados, -> { where(state: "Cerrado") }
-scope :cerradas, -> { where(estado: "Cerrada") }
-scope :abiertas, -> { where(estado: "Abierta") }
-scope :vigentes, -> { where('contador_seg > ?', 5) }
-scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
-scope :vencidas, -> { where('contador_seg < ?', 0) }
-scope :alerta1, -> { where('contador_seg <= ?', 5) }
-scope :alerta, ->   { where(estado_vencida: true) }
-
-scope :cumplio, -> { where('contador_seg >= ?', 0).where(estado: "Cerrada") }
-scope :nocumplio, -> { where('contador_seg < ?', 0).where(estado: "Cerrada") }
+  has_many :aseguimientos, dependent: :destroy
+  has_many :riesgos, dependent: :destroy
+  belongs_to :user
+  belongs_to :employed, :class_name => 'Employed'
+  validate :start_must_be_before_end_time
+  validates :employed_id, presence: true
+  after_destroy :restar_costo
+  after_create :sumar_costo
+  after_create :send_mail
+  before_update :causas
+  validates :employed_id, :cierra_id, :descripcion ,presence: true
+  scope :cerrados, -> { where(state: "Cerrado") }
+  scope :cerradas, -> { where(estado: "Cerrada") }
+  scope :abiertas, -> { where(estado: "Abierta") }
+  scope :vigentes, -> { where('contador_seg > ?', 5) }
+  scope :proximas, -> { where('contador_seg >= ?', 0).where('contador_seg <= ?', 5) }
+  scope :vencidas, -> { where('contador_seg < ?', 0) }
+  scope :alerta1, -> { where('contador_seg <= ?', 5) }
+  scope :alerta, ->   { where(estado_vencida: true) }
+  scope :cumplio, -> { where('contador_seg >= ?', 0).where(estado: "Cerrada") }
+  scope :nocumplio, -> { where('contador_seg < ?', 0).where(estado: "Cerrada") }
 
 
 
-def self.search(search0,search, search2, search3, search5, search6)
+  def self.search(search0,search, search2, search3, search5, search6)
 
    search6 = search6.chomp("s") if search6 != ""
    search2 = search2.chomp("es") if search2 != ""
 
-puts "aaaaaaaaaaaaaaaaaaaaaaaaaa"
-puts search2
+   puts "aaaaaaaaaaaaaaaaaaaaaaaaaa"
+   puts search2
 
 
-    search0 != "" ? (scope :fdesdep, -> { where(['created_at > ?', search0]) }) : (scope :fdesdep, -> { where.not(id: nil) })
-    search != "" ? (scope :fhastap, -> { where(['created_at < ?', search]) }) : (scope :fhastap, -> { where.not(id: nil) })
-    search2 != "" ? (scope :tipop, -> { where(tipo: search2) }) : (scope :tipop, -> { where.not(id: nil) })
-    search3 != "" ? (scope :employedop, -> { where(employed_id: search3) }) : (scope :employedop, -> { where.not(id: nil) })
-    search5 != "" && search5 != nil ? (scope :descop, -> { where("name like '%#{search5.downcase}%' or name like '%#{search5.upcase}%'  or name like '%#{search5.capitalize}%'  ") }) : (scope :descop, -> { where.not(id: nil) })
-    search6 != "" ? (scope :estadop, -> { where(estado: search6) }) : (scope :estadop, -> { where.not(id: nil) })
+   search0 != "" ? (scope :fdesdep, -> { where(['created_at > ?', search0]) }) : (scope :fdesdep, -> { where.not(id: nil) })
+   search != "" ? (scope :fhastap, -> { where(['created_at < ?', search]) }) : (scope :fhastap, -> { where.not(id: nil) })
+   search2 != "" ? (scope :tipop, -> { where(tipo: search2) }) : (scope :tipop, -> { where.not(id: nil) })
+   search3 != "" ? (scope :employedop, -> { where(employed_id: search3) }) : (scope :employedop, -> { where.not(id: nil) })
+   search5 != "" && search5 != nil ? (scope :descop, -> { where("name like '%#{search5.downcase}%' or name like '%#{search5.upcase}%'  or name like '%#{search5.capitalize}%'  ") }) : (scope :descop, -> { where.not(id: nil) })
+   search6 != "" ? (scope :estadop, -> { where(estado: search6) }) : (scope :estadop, -> { where.not(id: nil) })
 
 
-        tipop.descop.estadop.fdesdep.fhastap
+  tipop.descop.estadop.fdesdep.fhastap
 
      #begin if search2 != ""
        #   where("description like '%#{search5.downcase}%' or description like '%#{search5.upcase}%'  or description like '%#{search5.capitalize}%' or state like '%#{search5.downcase}%' or state like '%#{search5.capitalize}%' ").where(source_id: search2).employedp

@@ -1,0 +1,59 @@
+<div id="contact-modal" class="modal fade">
+<div class="modal-dialog ">
+   <div class="modal-content ">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+         <h4 class="modal-title">Crear Peligro</h4>
+      </div>
+      <%= form_tag(create_risk_source_path, remote: true) do |f| %>
+      <div class="alert alert-danger" style="display:none">
+         <ul>
+         </ul>
+      </div>
+      <div class="modal-body">
+
+         <div class="row">
+            
+            <div class="col-md-12">
+               <div class="field">
+                  <%= label_tag "Nombre del Peligro" %>
+                  <%= text_field_tag :name , nil, class: "form form-control" %>
+               </div>
+               <br>
+            </div>
+            <div class="col-md-12">
+               <div class="field">
+                  <%= label_tag "Description" %>
+                  <%= text_area_tag :description, nil, class: "form form-control" %>
+               </div>
+               <br>
+            </div>
+            <div class="col-md-12">
+               <div class="field">
+                  <%= label_tag "Prefijo" %>
+                  <%= text_field_tag :code, nil, class: "form form-control" %>
+               </div>
+            </div>
+         </div>
+            <%=  hidden_field_tag :admin_user , current_user.admin_user %>
+            <%=  hidden_field_tag :user_id , current_user.id %>
+            <%=  hidden_field_tag :action_params , @action %>
+         <br>
+         <hr>
+         <br>
+         <div class="form-group text-center">
+            <%= submit_tag "Guardar", class: 'btn btn-primary btnpad' %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+         </div>
+         <% end %>
+      </div>
+   </div>
+</div>
+<style>
+   .pdd{
+   padding: 2px;
+   }
+   .top10
+   {margin-top: 10px;
+   }
+</style>

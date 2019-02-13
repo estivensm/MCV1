@@ -53,6 +53,9 @@ class Report < ApplicationRecord
   belongs_to :cierra, :class_name => 'Employed'
   belongs_to :employed, :class_name => 'Employed'
   belongs_to :source_parent
+  belongs_to :accion, optional: true
+  belongs_to :report , optional: true
+  has_many :reports
   has_and_belongs_to_many :numerals, dependent: :destroy
   belongs_to :source
   belongs_to :clinte_proveedor , optional: true

@@ -635,8 +635,21 @@ end
   # GET /reports/new
   def new
     
-    if params[:idr]
-        @riesgo = Riesgo.find(params[:idr])
+    if params[:accion]
+        @accion = Accion.find(params[:accion])
+        @accion_e  = "si"
+        @accion_id = @accion.id
+        @descripcion = @accion.descripcion
+        #@proceso = @riesgo.proceso_id
+        @fuente = SourceParent.where(admin_user: current_user.admin_user).where(codigo:"EP").first.id
+        @tipot =  Source.where(admin_user: current_user.admin_user).where(codigo:"GC").first
+        @tipo = @tipot.id
+        @evi =  @tipot.evidencia
+        @requi =  @tipot.requisito
+        @num = @tipot.numerales
+    elsif params[:idr]
+
+       @riesgo = Riesgo.find(params[:idr])
         @riesgo_e  = "si"
         @riesgo_id = @riesgo.id
         @descripcion = @riesgo.descripcion
@@ -647,8 +660,9 @@ end
         @evi =  @tipot.evidencia
         @requi =  @tipot.requisito
         @num = @tipot.numerales
-    else
+   else
 
+        @accion_e = "no"
         @riesgo_e = "no"
         @descripcion = ""
         @proceso = 0
@@ -657,8 +671,9 @@ end
         @riesgo_id = 0
         @evi =  false
         @requi =  false
-        @num = false
-    end  
+
+end
+
 
 
     @report = Report.new
@@ -910,7 +925,7 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso,:estado_vencida,:estado_proxima,:estado_vigente ,:fp_seguimiento, :f_real,:clinte_proveedor_id,:contact_id,:contador_seg,:costo,:name, :tag,:source_parent_id ,:remove_archivo,:cierra_id,:costo_presupuestado, :riesgo_id ,:employed_ids => [], :numeral_ids => [])
+      params.require(:report).permit( :employed_id, :proceso_id, :description, :requisito, :evidencia, :nc_type, :accion, :justificacion, :user_id, :accion_id ,:report_id ,:admin_user,:state,:codigo,:contador , :source_id,:archivo, :employed_reporta, :f_seguimiento, :f_compromiso,:estado_vencida,:estado_proxima,:estado_vigente ,:fp_seguimiento, :f_real,:clinte_proveedor_id,:contact_id,:contador_seg,:costo,:name, :tag,:source_parent_id ,:remove_archivo,:cierra_id,:costo_presupuestado, :riesgo_id ,:employed_ids => [], :numeral_ids => [])
     end
 end
 

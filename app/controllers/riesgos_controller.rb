@@ -43,14 +43,19 @@ include ApplicationHelper
     if !params[:peligro_id].nil?
         @peligro = params[:peligro_id]
    else
-       @peligro = get_RiskSource.last
+       @peligro = get_RiskSource.last.id
    end
     
   end
 
   # GET /riesgos/1/edit
   def edit
-     
+       if @riesgo.accion
+       accion = Accion.find(@riesgo.accion.id)
+       @accion_msg = ["Este riesgo pertenece a la accion: #{accion.descripcion}", accion.id]
+    else
+       @accion_msg = ["", ""]
+    end
   
   end
 
