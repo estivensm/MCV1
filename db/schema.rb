@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190109201145) do
+ActiveRecord::Schema.define(version: 20190211230834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,10 +144,10 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.string "name"
     t.string "description"
     t.integer "proceso_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "admin_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "causa_efectos", id: :serial, force: :cascade do |t|
@@ -155,11 +155,11 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.integer "admin_user"
     t.string "nivel"
     t.string "descripcion"
+    t.string "tipo"
+    t.integer "causa_id"
+    t.integer "report_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "tipo"
-    t.integer "report_id"
-    t.integer "causa_id"
     t.string "name"
     t.integer "frecuencia"
     t.float "porcentaje"
@@ -258,11 +258,11 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.string "genero"
     t.integer "admin_user"
     t.integer "user_id"
+    t.string "avatare"
+    t.string "email"
+    t.integer "cargo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cargo_id"
-    t.string "email"
-    t.string "avatare"
     t.string "password"
     t.string "password_c"
     t.boolean "is_user"
@@ -344,13 +344,13 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.text "justificacion"
     t.integer "user_id"
     t.integer "admin_user"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "state"
     t.string "codigo"
     t.integer "contador"
     t.integer "source_id"
     t.string "archivo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "employed_reporta"
     t.integer "f_seguimiento"
     t.date "f_compromiso"
@@ -378,6 +378,8 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.boolean "estado_vigente"
     t.integer "riesgo_id"
     t.date "start_date"
+    t.integer "accion_id"
+    t.integer "report_id"
   end
 
   create_table "riesgos", id: :serial, force: :cascade do |t|
@@ -419,10 +421,10 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.boolean "report_ver"
     t.boolean "report_crear"
     t.boolean "report_edit"
+    t.boolean "report_delete"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.boolean "report_delete"
     t.boolean "report_procesos"
     t.boolean "default"
     t.boolean "create_all"
@@ -469,9 +471,9 @@ ActiveRecord::Schema.define(version: 20190109201145) do
     t.integer "user_id"
     t.integer "admin_user"
     t.boolean "state"
+    t.boolean "default"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "default"
     t.boolean "accion"
     t.boolean "correccion"
     t.boolean "causa"

@@ -27,13 +27,14 @@
       <div class="col-md-12 text-center" style="padding: 0px;">
  
 
-      <h4 style="color:gray;display: inline-block;margin-right:20px;">GESTION (ABIERTA)</h4>   <p style = "font-size: 12px;display: inline-block;
+      <h3 style="color:gray;display: inline-block;margin-right:20px;">GESTION (ABIERTA)</h3>   <p style = "font-size: 12px;display: inline-block;
 "><span style="    background: #5cb85c;color: #5cb85c;border-radius: 3px;">vige</span> <span style = "margin-right:25px">Vigentes</span>
    <span style="    background: #d9534f;color: #d9534f;border-radius: 3px;">vige</span>  <span style = "margin-right:25px">Vencidos</span>
    </p>
 
 
    </div>
+   <br>
    <br><hr>
       <div class="row">
       <div class="col-md-12" style="padding: 0px;">
@@ -129,7 +130,7 @@
       <div class="col-md-12 text-center" style="padding: 0px;margin-bottom: 20px">
  
 
-      <h4 style="color:gray;display: inline-block;margin-right:20px;">% DE EFICACIA (GESTION CERRADA)</h4>  
+      <h3 style="color:gray;display: inline-block;margin-right:20px;">% DE EFICACIA (GESTION CERRADA)</h3>  
       <p style = "font-size: 12px;display: inline-block;
 ">
   <span style="    background: #d9534f;color: #d9534f;border-radius: 3px;">vige</span><span style = "margin-right:10px"> Mala (Menor a 60)</span>
@@ -183,7 +184,7 @@
          <%if @total7 != 0 %>
       <h4 style="margin: 0px;color: gray">TOTAL</h4>
       <p>cumplio <%=@total5%> de <%=@total7%></p><br>
-      <span style="background:<%=get_color_porcentaje(@total8)%>" class="eficiencia"><%=@total8%>%</span>
+     ©
   <br><br><br>
         <%else%>
         <div id="container_t" style="height: 250px;display: none"></div>
@@ -191,6 +192,36 @@
         <%end%>
       
 </div>
+
+
+</div>
+<br>
+<hr>
+<div class="row">
+      <div class="col-md-12 text-center" style="padding: 0px;margin-bottom: 20px">
+ 
+
+      <h3 style="color:gray;display: inline-block;margin-right:20px;">% DE EFICIENTCIA (FINANCIERA)</h3>  
+      <p style = "font-size: 12px;display: inline-block;
+">
+  <span style="    background: #30485e;color: #30485e;border-radius: 3px;">vige</span><span style = "margin-right:10px"> Costo Presupuestado</span>
+
+  <span style="    background: #2a82d2;color:#2a82d2;border-radius: 3px;">vige</span> <span style = "margin-right:10px">Costo Real</span>
+
+   </p>
+    <br>
+    <br>
+    <br>
+
+      <span style="" class="eficiencia-financiera"><%= number_to_currency(@budget_cost, precision: 0)%></span>
+
+      <span style="background: #2a82d2" class="eficiencia-financiera"><%=number_to_currency(@real_cost, precision: 0)%></span>
+       <br>
+       <br>
+      <p style="font-size:25px"> <%=@resultado_costo%></p>
+
+   </div>
+      </div>
 
 
 
@@ -375,6 +406,16 @@
     font-size-adjust: 16px;
 
    }
+ .eficiencia-financiera
+ {
+   border: 10px;
+    background: #30485e;
+    color: white;
+    vertical-align: -webkit-baseline-middle;
+    padding: 5px;
+    font-size: 34px;
+    border-radius: 12px;
+ }  
 .myd
 {
 

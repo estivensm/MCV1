@@ -2,10 +2,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: MCV1_development
+  database: MCV_development
   pool: 5
   username: postgres 
-  password: Servidual2016
+  password: alejo0906
   host: localhost
   port: 5432
 
@@ -14,19 +14,19 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: MCV1_test
+  database: MCV_test
   pool: 5
   username: postgres 
-  password: Servidual2016
+  password: alejo0906
   host: localhost
   port: 5432
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: MCV1_production
+  database: MCV_production
   pool: 5
   username: rails
-  password: 0r04PxFG8S
+  password: alejo0906
   host: localhost
   port: 5432
