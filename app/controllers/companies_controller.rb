@@ -243,6 +243,37 @@ class CompaniesController < ApplicationController
       @budget_cost = @accions.cerradas.sum(:costo_presupuestado)
 
 
+@real_cost = @accions.cerradas.sum(:costo)
+      @budget_cost = @accions.cerradas.sum(:costo_presupuestado)
+
+      @valor_real = @accions.cerradas.sum(:costo)
+      @valor_presupuestado = @accions.cerradas.sum(:costo_presupuestado)
+      @resultado_eficacia = @valor_presupuestado - @valor_real
+      @total_cerradas = @accions.cerradas.count
+
+
+        if @total_cerradas > 0
+       
+            if @valor_real > @valor_presupuestado
+           
+                @resultado_costo = "El costo Real es mayor en " + ActionController::Base.helpers.number_to_currency(@resultado_eficacia.abs , precision: 0).to_s +  " lo presupuestado, el desarrollo de esta gestion no fue eficiente financieramente"
+       
+           elsif  @valor_real == @valor_presupuestado
+             
+               @resultado_costo = "El costo Real es igual al Presupuestado, el desarrollo de esta gestion es eficiente financieramente"
+       
+          else
+          
+               @resultado_costo = "El costo Real es menor en " + ActionController::Base.helpers.number_to_currency(@resultado_eficacia, precision: 0).to_s +  " de lo presupuestado, el desarrollo de esta gestion es eficiente financieramente"
+       
+          end
+       
+
+
+      else
+         @resultado_costo = "No hay Gestion Cerrada"
+    
+      end  
 
 
 
