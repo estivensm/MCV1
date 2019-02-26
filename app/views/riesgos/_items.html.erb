@@ -2,9 +2,11 @@
 
 
         <td style="width:30%"><%= riesgo.descripcion %></td>
+        <td ><%= riesgo.risk_type %></td>
         <td><%= riesgo.proceso.name if  riesgo.proceso %></td>
         <td><%= riesgo.classification_risk.name if riesgo.classification_risk %></td>
         <td><%= riesgo.risk_source.name if riesgo.risk_source  %></td>
+        <td ><%= riesgo.treatment %></td>
         <td class="text-center" ><%= !riesgo.risk_value.nil? ? riesgo.risk_value : "Sin Valorar" %></td>
           <td  style="text-align:center;font-size:15px;background:<%=get_riesgo(riesgo.risk_value)[2] if !riesgo.risk_value.nil?%>;color:<%= !riesgo.risk_value.nil? ? "white !important" : "gray"%>">
                <strong style="color:<%= "white !important" if !riesgo.risk_value.nil? %>"><%= !riesgo.risk_value.nil? ? get_riesgo(riesgo.risk_value)[1] : "Sin Valorar" %></strong></td>

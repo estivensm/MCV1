@@ -111,7 +111,7 @@ include ApplicationHelper
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def riesgo_params
-      params.require(:riesgo).permit(:user_id, :admin_user, :risk_source_id, :report_id, :accion_id, :descripcion,:proceso_id,:context,:treatment,:classification_risk_id,:justification,:state,:risk_state,:risk_value ,:clasificacion, :nivel)
+      params.require(:riesgo).permit(:user_id, :admin_user, :risk_source_id, :report_id, :accion_id, :risk_type,:descripcion,:proceso_id,:context,:treatment,:classification_risk_id,:justification,:state,:risk_state,:risk_value ,:clasificacion, :nivel)
     end
 end
    

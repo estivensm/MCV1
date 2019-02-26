@@ -858,6 +858,26 @@ def  get_tratamiento(tratamiento)
   when "Asumir"
      
      "Aceptar el riesgo inherente (!Pero conociéndolo!)"
+
+  when "Eliminación"
+      
+      "Elimine el peligro del lugar de trabajo, tarea, proceso, método o material."      
+
+  when "Sustitución"
+      
+      "Sustituya la actividad, el proceso, el material o la sustancia por una menos peligrosa."
+    
+  when "Ingeniería"
+
+     "Aislé el peligro usando ayudas mecánicas, barreras, guardas, sistema de ventilación y aislamiento durante el tiempo de operación."
+
+  when "Administración"
+     
+     "Establezca políticas, procedimientos, prácticas del trabajo y programas de entrenamiento para reducir la exposición al riesgo."   
+  
+  when "EPP"
+     
+     "Proporcione el EPP adecuado para proteger a las personas contra peligros"   
   
   end        
   

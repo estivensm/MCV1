@@ -15,7 +15,7 @@
      <%= (link_to "Filtros",riesgos_path + "?filtros=true", class: "btn btn-primary") if params[:filtros] != "true" && params[:commit] != "Buscar"  %>
 
     <%= (link_to "Cancelar Filtros", riesgos_path, class: "btn btn-primary") if (params[:commit] || params[:filtros])  %>
-      <%= link_to 'Nuevo', new_riesgo_path, class: "btn btn-primary", style: "float: right;" if current_user.role == "SuperAdmin"  || current_user.rol.configuracion %>
+      <%= link_to 'Nuevo Riesgo', new_riesgo_path, class: "btn btn-primary", style: "float: right;" if (current_user.role == "SuperAdmin"  || current_user.rol.configuracion) && (get_RiskSource.count > 0 && @riesgos.count > 0 )%>
    </div>
 </div>
 <br> 
@@ -49,9 +49,11 @@
 
 
       <th>Descripcion</th>
+      <th>Tipo</th>
       <th>Proceso</th>
       <th>Clasificacion</th>
       <th>Fuente de Riesgo</th>
+      <th>Tratamiento</th>
       <th>VNR</th>
       <th>Valoracion</th>
       <th>Plan de Accion</th>
@@ -66,6 +68,19 @@
    </div>
   </tbody>
 </table>
+<%if get_RiskSource.count == 0%>
+      <div class="text-center">
+      <h1> ! PARA CREAR TU PRIMER RIESGO DEBES TENER ALMENOS UNA FUENTE DE RIESGO ¡ </h1><br>
+      <%= link_to "Crear Fuente de Riesgo", new_risk_source_path, remote:true ,class: "btn btn-primary" %>
+      </div>
+<%end%>
+<%if get_RiskSource.count != 0  && @riesgos.count == 0%>
+      <div class="text-center">
+      <h1> ! CREA TU PRIMER RIESGO¡ </h1><br>
+      <%= link_to "Crear primer Riesgo", new_riesgo_path ,class: "btn btn-primary" %>
+      </div>
+<%end%>
+<h1></h1>
 
     <div class="row">
         <div class = "col-md-12 paginate text-center title-table1">

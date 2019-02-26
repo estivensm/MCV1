@@ -8,7 +8,29 @@
          <ul>
          </ul>
       </div>
-               <div class="row">
+               <div class="row funkyradio">
+                                <div class="col-md-6 ">
+
+                       <div class="col-md-12" style="padding-left:0px;">
+                           <p style="margin-bottom:0px; "><strong>Tipo</strong></p>
+
+                       </div>
+                       <div class="col-md-6 funkyradio-success" style="padding-left: 0px;">
+                       <%= f.radio_button :risk_type, "Proceso", class: "scorrecion tipo-riesgo" , id:"radio-proceso", checked: "checked" %>
+                          <%= f.label "Proceso" ,for: "radio-proceso" %>
+                          
+                       </div>
+                      <div class="col-md-6 funkyradio-success">
+                              <%= f.radio_button :risk_type, "SST" ,class: "scausa tipo-riesgo" ,id: "radio-sst"%>
+                              <%= f.label "SST", class: "lb1" ,for: "radio-sst"%>
+
+                      </div>
+   
+                        
+         </div> 
+           </div>  
+           <br> 
+         <div class="row">
                     <div class="col-md-6">
                    
                     
@@ -66,7 +88,7 @@
    
                         
          </div>  
-         <hr>   
+       
             <div class="row">
                <div class="col-md-12">
                        <div class="form-group">
@@ -83,7 +105,7 @@
                <div class="col-md-12 ">
                        <p><strong>Tratamiento</strong></p>
                   
-                       <div class="row tratamiento">
+                       <div class="row tratamiento procesos">
                            <div class="col-md-6" style="padding-left: 0px; ">
                                   <div class="funkyradio-success">
                                      <%= f.radio_button :treatment, "Eludir" , id: "radio1", class: "radio-nd" , checked: "checked" %>
@@ -98,7 +120,7 @@
                               </div> <span>(Que otra parte soporte parte del riesgo (Pensar en que nuevos riesgos ocasiona este cambio)</span>
                            </div>
                      </div>
-                     <div class="row tratamiento">
+                     <div class="row tratamiento procesos">
                             <div class="col-md-6" style="padding-left: 0px;">
                              <div class="funkyradio-success">
                               <%= f.radio_button :treatment, "Reducir", class:"scorrecion check", id: "radio3" %>
@@ -114,7 +136,47 @@
                            </div>
                           
                        </div>
-                             
+
+                       <!-- TRATAMIENTO PARA SST -->
+                        <div class="row tratamiento sst">
+                           <div class="col-md-6" style="padding-left: 0px; ">
+                                  <div class="funkyradio-success">
+                                     <%= f.radio_button :treatment, "Eliminación" , id: "radio5", class: "radio-nd" %>
+                                     <%= f.label "Eliminación", class: "lb1" , for: "radio5" %> 
+                                  </div> 
+                                <span>Elimine el peligro del lugar de trabajo, tarea, proceso, método o material.</span>
+                           </div>
+
+                            <div class="col-md-6" style="padding-left:  ">
+                             <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "Sustitución" ,class: "scausa check" , id: "radio6"%>
+                              <%= f.label "Sustitución", class: "lb1" , for: "radio6"%>
+                              </div> <span>Sustituya la actividad, el proceso, el material o la sustancia por una menos peligrosa.</span>
+                           </div>
+                     </div>
+                     <div class="row tratamiento sst">
+                            <div class="col-md-6" style="padding-left: 0px;">
+                             <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "Ingeniería", class:"scorrecion check", id: "radio7" %>
+                               <%= f.label "Ingeniería" ,for: "radio7"%>
+                              </div>
+                               <span>Aislé el peligro usando ayudas mecánicas, barreras, guardas, sistema de ventilación y aislamiento durante el tiempo de operación.</span>
+                           </div>
+                            <div class="col-md-6">
+                               <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "Administración" ,class: "scausa check" , id: "radio8"%>
+                               <%= f.label "Administración", class: "lb1", for: "radio8" %>
+                               </div><span>Establezca políticas, procedimientos, prácticas del trabajo y programas de entrenamiento para reducir la exposición al riesgo.</span>
+                           </div>
+                           <div class="col-md-6" style="padding-left: 0px;">
+                               <div class="funkyradio-success">
+                              <%= f.radio_button :treatment, "EPP" ,class: "scausa check" , id: "radio9"%>
+                               <%= f.label "EPP", class: "lb1", for: "radio9" %>
+                               </div><span>Proporcione el EPP adecuado para proteger a las personas contra peligros</span>
+                           </div>
+                          
+                       </div>
+                       <!-- TRATAMIENTO PARA SST -->       
                               
                                
                              
@@ -137,7 +199,6 @@
             <%= link_to "Cancelar", riesgos_path, class: "btn btn-default" %>
          </div>
  <% end %>
-
 
 
  <style>
@@ -277,9 +338,65 @@
 
 <script>
    $(document).ready(function(){
+    
+    if ("<%=action_name%>" == "new")
+    {
+    showProceso()
+    }
+
+    if ("<%=action_name%>" == "edit")
+    { 
+      console.log("<%=@riesgo.risk_type%>")
+       if ("<%=@riesgo.risk_type%>" == "SST")
+      {
+          
+          $('.procesos').hide();
+          $('.sst').show();
+          console.log("holaa")
+      }
+      if ("<%=@riesgo.risk_type%>" == "Proceso")
+      {
+           $('.procesos').show();
+          $('.sst').hide();
+          console.log("hola1")
+      }
+    }
+
+
+
+
+    $('.tipo-riesgo').on('change', function(){
+      if ($(this).val() == "SST")
+      {
+          
+             showSST();
+      }
+      else
+      {
+          showProceso();
+      }
+    })
+    
+
+    function showSST()
+    {
+          $('.procesos').hide();
+          $('.sst').show();
+          $('#radio5').prop('checked',true);
+          $('#radio1').prop('checked',false);
+
+    }
+
+    function showProceso()
+    {
+          $('.procesos').show();
+          $('.sst').hide();
+          $('#radio1').prop('checked',true);
+          $('#radio5').prop('checked',false);
+    }
+
+
      $('#new_riesgo').validate();
-
-
      $('#peligro').val(<%=@peligro%>);
      console.log()
     });
