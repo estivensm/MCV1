@@ -1,96 +1,69 @@
-
 <div class = "row" style="">
    <div class="col-md-12" style="background: #ededed;padding:  10px;">
-     
-  <div class="col-md-3">
+      <div class="col-md-3">
          <input type="text" style="margin-top:2px;" id="myInput" class="form form-control" onkeyup="myFunction()" placeholder="Busqueda por descripcion o codigo" title="Type in a name">
-      </div>          
+      </div>
       <div class="col-md-6 text-center" >
-      <h4 class="titulo-acciones" style="color:#2a3f54" ><span id="todas"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</span> <span style="margin-left: 10px;font-size: 16px" id="abiertas"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
-                  <span style="font-size: 16px" id="abiertas_c"><%=@accions.abiertas.count%></span>
-                  <span style="margin-left: 10px;font-size: 16px" id="cerradas"><i class='fas fa-lock' aria-hidden='true'></i></span>
-                  <span style="font-size: 16px" id="cerradas_c"><%=@accions.cerradas.count%></span></h4>
-       </div>
-
-   
-
-     
-        <div class="col-md-3">
+         <h4 class="titulo-acciones" style="color:#2a3f54" ><span id="todas"><%=@tipo.upcase + "ES"%> (<%=@accions.abiertas.count + @accions.cerradas.count  %>)</span> <span style="margin-left: 10px;font-size: 16px" id="abiertas"><i class='fas fa-lock-open' aria-hidden='true'></i></span>
+            <span style="font-size: 16px" id="abiertas_c"><%=@accions.abiertas.count%></span>
+            <span style="margin-left: 10px;font-size: 16px" id="cerradas"><i class='fas fa-lock' aria-hidden='true'></i></span>
+            <span style="font-size: 16px" id="cerradas_c"><%=@accions.cerradas.count%></span>
+         </h4>
+      </div>
+      <div class="col-md-3">
          <% if @accions.count > 0 %>
-      <strong style="float: right;">
-      <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'pull-right btn btn-primary') if view_report(@report) || current_user.rol.create_all %> </strong>
-      <%end%>
-        </div>
-       
+         <strong style="float: right;">
+         <%= (link_to " + Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'pull-right btn btn-primary') if view_report(@report) || current_user.rol.create_all %> </strong>
+         <%end%>
+      </div>
    </div>
-
-    
-   
-<div class="col-md-12">
-<hr>
-<br>
-</div>
+   <div class="col-md-12">
+      <hr>
+      <br>
+   </div>
 </div>
 <div class = "row">
-
    <div class="col-md-12 wihtout-padding" id="filter">
       <%if @accion != nil%>
-                   <% clases_select = @accion != nil ? "border-select" : "none" %>
-         <div class = "row <%=clases_select%> filter2" id="row-cont-<%=@accion.id%>">
-
-            <%if @accion.estado == "Abierta"%>
-              <%= render "accions/row_encabezado/abierta", accion: @accion %>
-             <%else%>
-                <%= render "accions/row_encabezado/cerrada", accion: @accion %>
-             <%end%> 
-
-
-             
-              <div id="show_accion<%=@accion.id%>" class="show_accion reporte" style="padding:0px 10px;margin">
+      <% clases_select = @accion != nil ? "border-select" : "none" %>
+      <div class = "row <%=clases_select%> filter2" id="row-cont-<%=@accion.id%>">
+         <%if @accion.estado == "Abierta"%>
+         <%= render "accions/row_encabezado/abierta", accion: @accion %>
+         <%else%>
+         <%= render "accions/row_encabezado/cerrada", accion: @accion %>
+         <%end%> 
+         <div id="show_accion<%=@accion.id%>" class="show_accion reporte" style="padding:0px 10px;margin">
             <%=render "accions/show_accion", accion: @accion %>
-
-              </div>
-            
-        </div>
-
+         </div>
+      </div>
       <%end%>
       <% if @accions.count > 0  || @accion != nil%>
       <% @accions.each do |accion| %>
-         <% clases_select = @accion != nil && @accion.id == accion.id ? "border-select" : "none" %>
-         <div class = "row <%=clases_select%> filter2" id="row-cont-<%=accion.id%>">
-
-            <%if accion.estado == "Abierta"%>
-              <%= render "accions/row_encabezado/abierta", accion: accion %>
-             <%else%>
-                <%= render "accions/row_encabezado/cerrada", accion: accion %>
-             <%end%> 
-
-
-             <% estado = @accion != nil && @accion.id == accion.id ? "block" : "none" %>
-             
-              <div id="show_accion<%=accion.id%>" class="show_accion reporte" style="display: <%=estado%>;padding:0px 10px;">
+      <% clases_select = @accion != nil && @accion.id == accion.id ? "border-select" : "none" %>
+      <div class = "row <%=clases_select%> filter2" id="row-cont-<%=accion.id%>">
+         <%if accion.estado == "Abierta"%>
+         <%= render "accions/row_encabezado/abierta", accion: accion %>
+         <%else%>
+         <%= render "accions/row_encabezado/cerrada", accion: accion %>
+         <%end%> 
+         <% estado = @accion != nil && @accion.id == accion.id ? "block" : "none" %>
+         <div id="show_accion<%=accion.id%>" class="show_accion reporte" style="display: <%=estado%>;padding:0px 10px;">
             <%=render "show_accion", accion: accion %>
-              </div>
-            
-        </div>
-    
-      <% end %>
-  </div>
-      
-      </div>     
-      <%else%>
-      <div class="jumbotron jumbacc">
-         <br>
-         <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
-         <hr class="my-4">
-         <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin" || current_user.rol.create_all)%>
+         </div>
       </div>
-      <%end%>
-
-   <!--fin-->
-   <!--fin-->
-
-
+      <% end %>
+   </div>
+</div>
+<%else%>
+<div class="jumbotron jumbacc">
+   <br>
+   <h4 class="display-3 text-gray">No hay  <%= @tipo + "es Abiertas" %></h4>
+   <hr class="my-4">
+   <%= (link_to "Nueva #{@tipo}", new_report_accion_path(@report) + "?tipo=#{@tipo}", :class => 'btn btn-primary btn-lg') if view_report(@report) || (current_user.role == "SuperAdmin" || current_user.rol.create_all)%>
+</div>
+<%end%>
+<!--fin-->
+<!--fin-->
 <style>
    .imaacc img
    {
@@ -98,27 +71,25 @@
    }
    .border-select
    {
-    border: 3px solid #1f8143 !important;
-    border-radius: 6px;
-    margin-bottom: 15px;
+   border: 3px solid #1f8143 !important;
+   border-radius: 6px;
+   margin-bottom: 15px;
    }
-    .title-accion-select
+   .title-accion-select
    {
-  
    }
-      .button_ver_accion
+   .button_ver_accion
    {
-    background: red !important;
-    content: " New!" !important; 
+   background: red !important;
+   content: " New!" !important; 
    }
    .task_select{
-
-      border: 4px solid #6c6c6c !important;
+   border: 4px solid #6c6c6c !important;
    }
-     .text-hidden
+   .text-hidden
    {
-    max-height: 47px;
-    overflow: hidden;
+   max-height: 47px;
+   overflow: hidden;
    }
 </style>
 <script>
@@ -164,30 +135,30 @@
       console.log('hola1')
    })
    
-
-$(document).ready(function () {
-    // Handler for .ready() called.
-
    
-
+   $(document).ready(function () {
+    // Handler for .ready() called.
+   
+   
+   
    
     
-});
- 
-
-
-
-
+   });
+   
+   
+   
+   
+   
    
 </script>
 <style>
-.redonda1
-{
+   .redonda1
+   {
    padding: 5px 8px;
-    background: #a4a4a4;
-    color: white;
-    border-radius: 10px;
-}
+   background: #a4a4a4;
+   color: white;
+   border-radius: 10px;
+   }
    .imaacc img
    {
    border-radius: 40px;
@@ -218,99 +189,94 @@ $(document).ready(function () {
    }
    .titulo-acciones
    {
-    margin: 0px 0px 0px 0px;
-    padding: 10px;
-    font-weight: bold;
-    color: #8b8b8b;
+   margin: 0px 0px 0px 0px;
+   padding: 10px;
+   font-weight: bold;
+   color: #8b8b8b;
    }
    #cerradas:hover , #todas:hover, #abiertas:hover{
-    cursor: pointer;
+   cursor: pointer;
    } 
 </style>
-
 <script>
-
-$('#abiertas').click(function(){
-  
-  var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("filter");
-    li = ul.getElementsByClassName("filter2");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByClassName("fecha_cierre");
-        console.log(a.length);
-        if (a.length == 0) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-
-        }
-    }
-  
-
-})
-
-$('#cerradas').click(function(){
-  
-  var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("filter");
-    li = ul.getElementsByClassName("filter2");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByClassName("fecha_cierre");
-        console.log(a.length);
-        if (a.length > 0) {
-            li[i].style.display = "";
-             console.log("hola");
-        } else {
-            li[i].style.display = "none";
-            console.log("hola1");
-        }
-    }
-  
-
-})
-
-$('#todas').click(function(){
-  
-  var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("filter");
-    li = ul.getElementsByClassName("filter2");
-    for (i = 0; i < li.length; i++) {
-       
-            li[i].style.display = "";
+   $('#abiertas').click(function(){
      
-    }
-  
-
-})
-
-
-
-
-function myFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("filter");
-    li = ul.getElementsByClassName("filter2");
-    for (i = 0; i < li.length; i++) {
-        a = li[i].getElementsByClassName("filter3")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
-            console.log(a.innerHTML.toUpperCase().indexOf(filter)
-)
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-
-        }
-    }
-}
+     var input, filter, ul, li, a, i;
+       input = document.getElementById("myInput");
+       filter = input.value.toUpperCase();
+       ul = document.getElementById("filter");
+       li = ul.getElementsByClassName("filter2");
+       for (i = 0; i < li.length; i++) {
+           a = li[i].getElementsByClassName("fecha_cierre");
+           console.log(a.length);
+           if (a.length == 0) {
+               li[i].style.display = "";
+           } else {
+               li[i].style.display = "none";
+   
+           }
+       }
+     
+   
+   })
+   
+   $('#cerradas').click(function(){
+     
+     var input, filter, ul, li, a, i;
+       input = document.getElementById("myInput");
+       filter = input.value.toUpperCase();
+       ul = document.getElementById("filter");
+       li = ul.getElementsByClassName("filter2");
+       for (i = 0; i < li.length; i++) {
+           a = li[i].getElementsByClassName("fecha_cierre");
+           console.log(a.length);
+           if (a.length > 0) {
+               li[i].style.display = "";
+                console.log("hola");
+           } else {
+               li[i].style.display = "none";
+               console.log("hola1");
+           }
+       }
+     
+   
+   })
+   
+   $('#todas').click(function(){
+     
+     var input, filter, ul, li, a, i;
+       input = document.getElementById("myInput");
+       filter = input.value.toUpperCase();
+       ul = document.getElementById("filter");
+       li = ul.getElementsByClassName("filter2");
+       for (i = 0; i < li.length; i++) {
+          
+               li[i].style.display = "";
+        
+       }
+     
+   
+   })
+   
+   
+   
+   
+   function myFunction() {
+       var input, filter, ul, li, a, i;
+       input = document.getElementById("myInput");
+       filter = input.value.toUpperCase();
+       ul = document.getElementById("filter");
+       li = ul.getElementsByClassName("filter2");
+       for (i = 0; i < li.length; i++) {
+           a = li[i].getElementsByClassName("filter3")[0];
+           if (a.innerHTML.toUpperCase().indexOf(filter) > -1 ) {
+               console.log(a.innerHTML.toUpperCase().indexOf(filter)
+   )
+               li[i].style.display = "";
+           } else {
+               li[i].style.display = "none";
+   
+           }
+       }
+   }
 </script>
-
-
-
